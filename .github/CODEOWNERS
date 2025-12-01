@@ -1,0 +1,15 @@
+# CODEOWNERS file
+# This file defines who must review changes in this repository
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global owner - all files require review from maxwangsongyuan
+* @maxwangsongyuan
+
+# Documentation-specific (if you have a docs team later)
+# docs/ @maxwangsongyuan @docs-team
+
+# Critical infrastructure files
+/.github/ @maxwangsongyuan
+/mkdocs.yml @maxwangsongyuan
+/requirements.txt @maxwangsongyuan
+/.gitignore @maxwangsongyuan
