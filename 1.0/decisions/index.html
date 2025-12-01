@@ -12,29 +12,31 @@
         <meta name="author" content="Movement Chain AI Team">
       
       
-        <link rel="canonical" href="https://movement-chain-ai.github.io/system-documentation/1.0/">
+        <link rel="canonical" href="https://movement-chain-ai.github.io/system-documentation/1.0/decisions/">
       
       
+        <link rel="prev" href="../architecture/hld/04-performance-targets/">
       
-        <link rel="next" href="architecture/hld/01-system-overview/">
+      
+        <link rel="next" href="0001-multi-repo-structure/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>Movement Chain AI Documentation</title>
+        <title>Overview - Movement Chain AI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-movement-chain-ai-documentation" class="md-skip">
+        <a href="#architecture-decision-records" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +98,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href=".." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Overview
             
           </span>
         </div>
@@ -227,11 +229,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
         
   
   
@@ -259,7 +259,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="architecture/hld/01-system-overview/" class="md-tabs__link">
+        <a href="../architecture/hld/01-system-overview/" class="md-tabs__link">
           
   
   
@@ -280,11 +280,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="decisions/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -306,7 +308,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="resources/hardware-comparison/" class="md-tabs__link">
+        <a href="../resources/hardware-comparison/" class="md-tabs__link">
           
   
   
@@ -344,7 +346,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href=".." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -371,37 +373,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Home
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -417,226 +392,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#system-vision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Vision
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System Vision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#core-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Capabilities
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#system-architecture-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Architecture Overview
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System Architecture Overview">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#module-breakdown" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Module Breakdown
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#navigation-guide" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Navigation Guide
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Navigation Guide">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-system-architects" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For System Architects
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-developers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Developers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-hardware-engineers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Hardware Engineers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-ml-engineers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For ML Engineers
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick Links
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick Links">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#key-architecture-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Architecture Documents
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#critical-design-decisions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Critical Design Decisions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#technical-comparisons" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Technical Comparisons
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Project Status
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contributing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#support" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Support
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -766,7 +521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/01-system-overview/" class="md-nav__link">
+      <a href="../architecture/hld/01-system-overview/" class="md-nav__link">
         
   
   
@@ -794,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/02-data-flow/" class="md-nav__link">
+      <a href="../architecture/hld/02-data-flow/" class="md-nav__link">
         
   
   
@@ -822,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/03-integration-patterns/" class="md-nav__link">
+      <a href="../architecture/hld/03-integration-patterns/" class="md-nav__link">
         
   
   
@@ -850,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/04-performance-targets/" class="md-nav__link">
+      <a href="../architecture/hld/04-performance-targets/" class="md-nav__link">
         
   
   
@@ -890,6 +645,8 @@
       
   
   
+    
+  
   
   
     
@@ -915,20 +672,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="decisions/" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   
@@ -946,13 +706,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link md-nav__link--active" for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -972,7 +732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0001-multi-repo-structure/" class="md-nav__link">
+      <a href="0001-multi-repo-structure/" class="md-nav__link">
         
   
   
@@ -1000,7 +760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+      <a href="0002-lsm6dsv16x-imu/" class="md-nav__link">
         
   
   
@@ -1028,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0003-flutter-mobile/" class="md-nav__link">
+      <a href="0003-flutter-mobile/" class="md-nav__link">
         
   
   
@@ -1056,7 +816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+      <a href="0004-simplified-4-module-architecture/" class="md-nav__link">
         
   
   
@@ -1084,7 +844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+      <a href="0005-esp32-s3-microcontroller/" class="md-nav__link">
         
   
   
@@ -1112,7 +872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+      <a href="0006-onnx-runtime-deployment/" class="md-nav__link">
         
   
   
@@ -1207,7 +967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="resources/hardware-comparison/" class="md-nav__link">
+      <a href="../resources/hardware-comparison/" class="md-nav__link">
         
   
   
@@ -1235,7 +995,7 @@
   
   
     <li class="md-nav__item">
-      <a href="resources/ml-frameworks-comparison/" class="md-nav__link">
+      <a href="../resources/ml-frameworks-comparison/" class="md-nav__link">
         
   
   
@@ -1263,7 +1023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="resources/mobile-frameworks-comparison/" class="md-nav__link">
+      <a href="../resources/mobile-frameworks-comparison/" class="md-nav__link">
         
   
   
@@ -1311,205 +1071,47 @@
   
 
 
-<h1 id="welcome-to-movement-chain-ai-documentation">Welcome to Movement Chain AI Documentation<a class="headerlink" href="#welcome-to-movement-chain-ai-documentation" title="Permanent link">&para;</a></h1>
-<h2 id="system-vision">System Vision<a class="headerlink" href="#system-vision" title="Permanent link">&para;</a></h2>
-<p>Movement Chain AI is a comprehensive multimodal movement training system designed to provide real-time, intelligent feedback for athletic movements. Initially targeting golf swing analysis and workout form correction, the system combines cutting-edge wearable sensor technology with advanced machine learning to deliver immediate, actionable insights that help users improve their technique and performance.</p>
-<h3 id="core-capabilities">Core Capabilities<a class="headerlink" href="#core-capabilities" title="Permanent link">&para;</a></h3>
+<h1 id="architecture-decision-records">Architecture Decision Records<a class="headerlink" href="#architecture-decision-records" title="Permanent link">&para;</a></h1>
+<p>This directory contains Architecture Decision Records (ADRs) documenting key technical decisions made during the Movement Chain AI project development.</p>
+<h2 id="what-are-adrs">What are ADRs?<a class="headerlink" href="#what-are-adrs" title="Permanent link">&para;</a></h2>
+<p>Architecture Decision Records capture important architectural decisions along with their context and consequences. Each ADR describes:</p>
 <ul>
-<li><strong>Real-time Movement Analysis</strong>: Instant feedback on movement patterns with &lt;100ms latency</li>
-<li><strong>Multimodal AI Processing</strong>: Combines IMU sensor data with video and audio inputs</li>
-<li><strong>Personalized Training</strong>: Adaptive ML models that learn from individual movement patterns</li>
-<li><strong>Cross-Platform Experience</strong>: Seamless mobile app integration on iOS and Android</li>
-<li><strong>Scalable Architecture</strong>: Cloud-native design supporting thousands of concurrent users</li>
+<li><strong>Context</strong>: The situation that requires a decision</li>
+<li><strong>Decision</strong>: The change or choice being proposed</li>
+<li><strong>Status</strong>: Whether the decision is proposed, accepted, deprecated, or superseded</li>
+<li><strong>Consequences</strong>: The resulting context after applying the decision</li>
 </ul>
-<hr />
-<h2 id="system-architecture-overview">System Architecture Overview<a class="headerlink" href="#system-architecture-overview" title="Permanent link">&para;</a></h2>
-<p>Movement Chain AI follows a <strong>4-module architecture</strong> designed for scalability, maintainability, and performance:</p>
-<pre class="mermaid"><code>graph TB
-    subgraph "Wearable Device"
-        A[ESP32-S3 MCU]
-        B[LSM6DSV16X IMU]
-        C[BLE Stack]
-    end
-
-    subgraph "Mobile Application"
-        D[Flutter UI]
-        E[BLE Client]
-        F[ONNX Runtime]
-        G[Local Storage]
-    end
-
-    subgraph "Cloud Backend"
-        H[API Gateway]
-        I[Lambda Functions]
-        J[DynamoDB]
-        K[S3 Storage]
-        L[SageMaker]
-    end
-
-    subgraph "ML/AI Module"
-        M[Training Pipeline]
-        N[Model Registry]
-        O[Feature Engineering]
-    end
-
-    B --&gt;|Motion Data| A
-    A --&gt;|BLE| C
-    C --&gt;|Wireless| E
-    E --&gt; D
-    D --&gt; F
-    F --&gt;|Inference Results| D
-    D --&gt;|Upload| H
-    H --&gt; I
-    I --&gt; J
-    I --&gt; K
-    K --&gt; M
-    M --&gt; N
-    N --&gt;|Model Updates| F
-    L --&gt; M</code></pre>
-<h3 id="module-breakdown">Module Breakdown<a class="headerlink" href="#module-breakdown" title="Permanent link">&para;</a></h3>
-<h4 id="1-wearable-device-module">1. Wearable Device Module<a class="headerlink" href="#1-wearable-device-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Capture high-frequency motion data with minimal latency</p>
+<h2 id="current-decisions">Current Decisions<a class="headerlink" href="#current-decisions" title="Permanent link">&para;</a></h2>
+<h3 id="system-architecture">System Architecture<a class="headerlink" href="#system-architecture" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>MCU</strong>: ESP32-S3 (dual-core, BLE 5.0)</li>
-<li><strong>IMU Sensor</strong>: LSM6DSV16X (6-axis, up to 8kHz sampling)</li>
-<li><strong>Communication</strong>: Bluetooth Low Energy 5.0</li>
-<li><strong>Battery Life</strong>: 8+ hours continuous use</li>
-<li><strong>Form Factor</strong>: Wrist-worn device (&lt;50g)</li>
+<li><a href="0001-multi-repo-structure/">ADR-0001: Multi-Repository Structure</a> - Organizational structure for the codebase</li>
+<li><a href="0004-simplified-4-module-architecture/">ADR-0004: Simplified 4-Module Architecture</a> - Core system design with Assessment → Diagnosis → Correction → Tracking modules</li>
 </ul>
-<p><a href="decisions/0002-lsm6dsv16x-imu/">View Hardware Decision Records →</a></p>
-<h4 id="2-mobile-application-module">2. Mobile Application Module<a class="headerlink" href="#2-mobile-application-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Provide intuitive user interface and edge AI inference</p>
+<h3 id="hardware-stack">Hardware Stack<a class="headerlink" href="#hardware-stack" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Framework</strong>: Flutter (cross-platform iOS/Android)</li>
-<li><strong>ML Runtime</strong>: ONNX Runtime Mobile</li>
-<li><strong>Features</strong>: Real-time visualization, offline mode, workout tracking</li>
-<li><strong>Inference</strong>: On-device ML for &lt;100ms feedback latency</li>
-<li><strong>Storage</strong>: Local SQLite + cloud sync</li>
+<li><a href="0002-lsm6dsv16x-imu/">ADR-0002: LSM6DSV16X IMU Selection</a> - Motion sensor choice replacing discontinued BNO055</li>
+<li><a href="0005-esp32-s3-microcontroller/">ADR-0005: ESP32-S3 Microcontroller</a> - MCU platform for embedded firmware</li>
 </ul>
-<p><a href="decisions/0003-flutter-mobile/">View Mobile Framework Decision →</a></p>
-<h4 id="3-cloud-backend-module">3. Cloud Backend Module<a class="headerlink" href="#3-cloud-backend-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Scalable data processing and long-term storage</p>
+<h3 id="software-stack">Software Stack<a class="headerlink" href="#software-stack" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Architecture</strong>: AWS Serverless (API Gateway + Lambda + DynamoDB)</li>
-<li><strong>Storage</strong>: S3 for raw sensor data, DynamoDB for metadata</li>
-<li><strong>API</strong>: REST + GraphQL for flexible data access</li>
-<li><strong>Auth</strong>: Cognito for user management</li>
-<li><strong>Scale</strong>: Auto-scaling to handle 10k+ concurrent users</li>
+<li><a href="0003-flutter-mobile/">ADR-0003: Flutter Mobile Framework</a> - Cross-platform mobile development framework</li>
+<li><a href="0006-onnx-runtime-deployment/">ADR-0006: ONNX Runtime for ML Deployment</a> - Machine learning inference runtime</li>
 </ul>
-<p><a href="architecture/hld/03-integration-patterns/">View Integration Patterns →</a></p>
-<h4 id="4-mlai-module">4. ML/AI Module<a class="headerlink" href="#4-mlai-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Train and optimize movement analysis models</p>
+<h2 id="decision-status-legend">Decision Status Legend<a class="headerlink" href="#decision-status-legend" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Training</strong>: AWS SageMaker for distributed training</li>
-<li><strong>Framework</strong>: PyTorch → ONNX export pipeline</li>
-<li><strong>Models</strong>: Transformer-based sequence models + CNNs</li>
-<li><strong>Registry</strong>: Centralized model versioning and A/B testing</li>
-<li><strong>Pipeline</strong>: Automated retraining on new labeled data</li>
+<li>✅ <strong>Accepted</strong>: Decision is approved and being implemented</li>
+<li>🔄 <strong>Proposed</strong>: Decision is under review</li>
+<li>⚠️ <strong>Deprecated</strong>: Decision is no longer recommended</li>
+<li>❌ <strong>Superseded</strong>: Decision has been replaced by another ADR</li>
 </ul>
-<p><a href="decisions/0006-onnx-runtime-deployment/">View ONNX Runtime Decision →</a></p>
-<hr />
-<h2 id="navigation-guide">Navigation Guide<a class="headerlink" href="#navigation-guide" title="Permanent link">&para;</a></h2>
-<h3 id="for-system-architects">For System Architects<a class="headerlink" href="#for-system-architects" title="Permanent link">&para;</a></h3>
-<p>Start with the <strong>Architecture</strong> section to understand the overall system design:</p>
-<ul>
-<li><a href="architecture/hld/01-system-overview/">System Overview</a> - Component interactions and responsibilities</li>
-<li><a href="architecture/hld/02-data-flow/">Data Flow</a> - How data moves through the system</li>
-<li><a href="architecture/hld/04-performance-targets/">Performance Targets</a> - SLAs and scalability goals</li>
-</ul>
-<h3 id="for-developers">For Developers<a class="headerlink" href="#for-developers" title="Permanent link">&para;</a></h3>
-<p>Review the <strong>Decisions</strong> section to understand key technical choices:</p>
-<ul>
-<li><a href="decisions/0004-simplified-4-module-architecture/">ADR-0004: 4-Module Architecture</a> - Why we chose this structure</li>
-<li><a href="decisions/0001-multi-repo-structure/">ADR-0001: Multi-Repo Structure</a> - Code organization strategy</li>
-<li><a href="decisions/0006-onnx-runtime-deployment/">ADR-0006: ONNX Runtime</a> - ML deployment approach</li>
-</ul>
-<h3 id="for-hardware-engineers">For Hardware Engineers<a class="headerlink" href="#for-hardware-engineers" title="Permanent link">&para;</a></h3>
-<p>Explore the <strong>Resources</strong> section for detailed comparisons:</p>
-<ul>
-<li><a href="resources/hardware-comparison/">Hardware Comparison</a> - MCU and IMU evaluation</li>
-<li><a href="resources/hardware-comparison/#performance-metrics">Performance Benchmarks</a> - Real-world testing results</li>
-</ul>
-<h3 id="for-ml-engineers">For ML Engineers<a class="headerlink" href="#for-ml-engineers" title="Permanent link">&para;</a></h3>
-<p>Focus on ML-specific architecture and decisions:</p>
-<ul>
-<li><a href="architecture/hld/01-system-overview/#mlai-module">ML/AI Module Design</a> - Training and inference pipeline</li>
-<li><a href="decisions/0006-onnx-runtime-deployment/">Model Deployment Strategy</a> - Why ONNX Runtime</li>
-</ul>
-<hr />
-<h2 id="quick-links">Quick Links<a class="headerlink" href="#quick-links" title="Permanent link">&para;</a></h2>
-<h3 id="key-architecture-documents">Key Architecture Documents<a class="headerlink" href="#key-architecture-documents" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="architecture/hld/01-system-overview/">System Overview</a></li>
-<li><a href="architecture/hld/02-data-flow/">Data Flow Diagrams</a></li>
-<li><a href="architecture/hld/03-integration-patterns/">Integration Patterns</a></li>
-</ul>
-<h3 id="critical-design-decisions">Critical Design Decisions<a class="headerlink" href="#critical-design-decisions" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="decisions/0004-simplified-4-module-architecture/">4-Module Architecture Rationale</a></li>
-<li><a href="decisions/0005-esp32-s3-microcontroller/">ESP32-S3 Selection</a></li>
-<li><a href="decisions/0003-flutter-mobile/">Flutter Mobile Framework</a></li>
-</ul>
-<h3 id="technical-comparisons">Technical Comparisons<a class="headerlink" href="#technical-comparisons" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="resources/hardware-comparison/">MCU Comparison Matrix</a></li>
-<li><a href="resources/ml-frameworks-comparison/">ML Framework Analysis</a></li>
-<li><a href="resources/mobile-frameworks-comparison/">Mobile Framework Evaluation</a></li>
-</ul>
-<hr />
-<h2 id="project-status">Project Status<a class="headerlink" href="#project-status" title="Permanent link">&para;</a></h2>
-<div class="admonition info">
-<p class="admonition-title">Documentation Status</p>
-<p>This documentation is actively maintained and reflects the current system architecture as of December 2025.</p>
-</div>
-<p><strong>Current Phase</strong>: Architecture Design &amp; Documentation</p>
-<p><strong>Completed Milestones</strong>:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> High-level system architecture</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Hardware component selection</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Mobile framework evaluation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ML deployment strategy</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Cloud infrastructure design</li>
-</ul>
-<p><strong>In Progress</strong>:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Detailed API specifications</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Security and compliance documentation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Deployment runbooks</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Performance benchmarking</li>
-</ul>
-<p><strong>Upcoming</strong>:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Developer onboarding guides</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> API reference documentation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Troubleshooting guides</li>
-</ul>
-<hr />
 <h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
-<p>We welcome contributions to improve this documentation. See the <a href="https://github.com/movement-chain-ai/system-documentation/blob/main/README.md">README</a> for contribution guidelines.</p>
-<p><strong>Quick contribution checklist</strong>:</p>
+<p>When making significant architectural decisions:</p>
 <ol>
-<li>Fork the repository</li>
-<li>Create a feature branch</li>
-<li>Test locally with <code>mkdocs serve</code></li>
-<li>Submit a pull request with clear description</li>
+<li>Create a new ADR using the next sequential number (e.g., <code>0007-decision-title.md</code>)</li>
+<li>Follow the ADR template structure</li>
+<li>Link to related ADRs if applicable</li>
+<li>Update this index page with the new decision</li>
 </ol>
-<hr />
-<h2 id="support">Support<a class="headerlink" href="#support" title="Permanent link">&para;</a></h2>
-<p>If you have questions about the architecture or documentation:</p>
-<ul>
-<li>Open an issue in the <a href="https://github.com/movement-chain-ai/system-documentation/issues">GitHub repository</a></li>
-<li>Review existing <a href="decisions/">Architectural Decision Records</a></li>
-<li>Check the <a href="resources/hardware-comparison/">FAQ section</a> (coming soon)</li>
-</ul>
-<hr />
-<div align="center">
-
-**Movement Chain AI** | [GitHub](https://github.com/movement-chain-ai) | [Website](https://movement-chain-ai.com)
-
-*Building the future of intelligent movement training*
-
-</div>
 
 
 
@@ -1594,10 +1196,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
     
   </body>

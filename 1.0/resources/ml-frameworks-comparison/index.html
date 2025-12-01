@@ -1,0 +1,3121 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Architecture documentation for multimodal AI movement training system">
+      
+      
+        <meta name="author" content="Movement Chain AI Team">
+      
+      
+        <link rel="canonical" href="https://movement-chain-ai.github.io/system-documentation/1.0/resources/ml-frameworks-comparison/">
+      
+      
+        <link rel="prev" href="../hardware-comparison/">
+      
+      
+        <link rel="next" href="../mobile-frameworks-comparison/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>ML Frameworks Comparison - Movement Chain AI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ml-framework-comparison-for-movement-chain-ai" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Movement Chain AI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ML Frameworks Comparison
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/movement-chain-ai/system-documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    movement-chain-ai/system-documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../architecture/hld/01-system-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../decisions/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Decisions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../hardware-comparison/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Movement Chain AI Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/movement-chain-ai/system-documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    movement-chain-ai/system-documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    High-Level Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    High-Level Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/hld/01-system-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/hld/02-data-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/hld/03-integration-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/hld/04-performance-targets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Targets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../decisions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Decisions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0001-multi-repo-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0001 Multi-Repo Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0002 LSM6DSV16X IMU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0003-flutter-mobile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0003 Flutter Mobile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0004 4-Module Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0005 ESP32-S3 MCU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0006 ONNX Runtime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardware-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML Frameworks Comparison
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML Frameworks Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparison-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison Criteria
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-framework-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Framework Comparison
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Framework Comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparison-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-benchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Benchmarks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Benchmarks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-world-testing-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-World Testing Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ios-performance-iphone-14-pro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iOS Performance (iPhone 14 Pro)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#android-performance-google-pixel-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Android Performance (Google Pixel 7)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frame-consistency-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frame Consistency Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#framework-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Framework Deep Dive
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Framework Deep Dive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#onnx-runtime-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ONNX Runtime (Recommended) ✅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorflow-lite-google-official" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TensorFlow Lite (Google Official)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediapipe-google-specialized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MediaPipe (Google Specialized)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-ml-apple-exclusive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core ML (Apple Exclusive)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pytorch-mobile-meta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyTorch Mobile (Meta)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-case-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case Matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cost Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-phase-costs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development Phase Costs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#total-cost-of-ownership-1-year-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Total Cost of Ownership (1-Year Project)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-vs-cost-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance vs Cost Trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flutter-integration-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flutter Integration Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flutter Integration Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plugin-quality-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin Quality Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-time-camera-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-Time Camera Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-optimization-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Optimization Tips
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binary-size-impact-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Binary Size Impact Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Binary Size Impact Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#app-size-comparison-flutter-release-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        App Size Comparison (Flutter Release Build)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-size-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download Size Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-market-positioning-trends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025 Market Positioning &amp; Trends
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025 Market Positioning &amp; Trends">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#industry-adoption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Industry Adoption
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technology-trends-2025-2027" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technology Trends (2025-2027)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ecosystem-health-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ecosystem Health (2025)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Paths
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration Paths">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-tensorflow-lite-to-onnx-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From TensorFlow Lite to ONNX Runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-mediapipe-to-onnx-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From MediaPipe to ONNX Runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-pytorch-mobile-to-onnx-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From PyTorch Mobile to ONNX Runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendations-by-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommendations by Scenario
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommendations by Scenario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-1-movement-chain-ai-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 1: Movement Chain AI Production ✅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-2-yolo-only-object-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 2: YOLO-Only Object Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-3-ios-only-premium-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 3: iOS-Only Premium App
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-4-rapid-prototype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 4: Rapid Prototype
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conclusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-recommendation-onnx-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary Recommendation: ONNX Runtime ✅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternative Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2025-future-proofing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025 Future-Proofing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Roadmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobile-frameworks-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Frameworks Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="ml-framework-comparison-for-movement-chain-ai">ML Framework Comparison for Movement Chain AI<a class="headerlink" href="#ml-framework-comparison-for-movement-chain-ai" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This document provides a comprehensive comparison of mobile machine learning frameworks suitable for real-time pose estimation and object detection in 2025. Movement Chain AI requires efficient on-device inference for models like RTMPose and YOLO while maintaining high frame rates and low latency.</p>
+<h3 id="comparison-criteria">Comparison Criteria<a class="headerlink" href="#comparison-criteria" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Model Support</strong>: Compatibility with RTMPose, YOLO, and other pose estimation models</li>
+<li><strong>Mobile Performance</strong>: Inference speed (FPS), latency, and frame consistency</li>
+<li><strong>Binary Size</strong>: Impact on application package size</li>
+<li><strong>GPU Acceleration</strong>: Hardware acceleration support (Metal, OpenGL, Vulkan)</li>
+<li><strong>Ease of Deployment</strong>: Model conversion, integration complexity</li>
+<li><strong>Flutter Integration</strong>: Native support and plugin quality</li>
+<li><strong>Platform Support</strong>: iOS, Android, Web compatibility</li>
+<li><strong>Community &amp; Ecosystem</strong>: Documentation, examples, troubleshooting resources</li>
+</ul>
+<hr />
+<h2 id="detailed-framework-comparison">Detailed Framework Comparison<a class="headerlink" href="#detailed-framework-comparison" title="Permanent link">&para;</a></h2>
+<h3 id="comparison-table">Comparison Table<a class="headerlink" href="#comparison-table" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>ONNX Runtime ✅</th>
+<th>TensorFlow Lite</th>
+<th>MediaPipe</th>
+<th>Core ML</th>
+<th>PyTorch Mobile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Organization</strong></td>
+<td>Microsoft</td>
+<td>Google</td>
+<td>Google</td>
+<td>Apple</td>
+<td>Meta</td>
+</tr>
+<tr>
+<td><strong>License</strong></td>
+<td>MIT</td>
+<td>Apache 2.0</td>
+<td>Apache 2.0</td>
+<td>Proprietary</td>
+<td>BSD</td>
+</tr>
+<tr>
+<td><strong>RTMPose Support</strong></td>
+<td>✅ Yes (Native)</td>
+<td>❌ No (Conversion issues)</td>
+<td>⚠️ Limited</td>
+<td>⚠️ Manual conversion</td>
+<td>⚠️ Manual conversion</td>
+</tr>
+<tr>
+<td><strong>YOLO Support</strong></td>
+<td>✅ Yes (v5-v11)</td>
+<td>✅ Yes (v5-v8)</td>
+<td>⚠️ Limited</td>
+<td>✅ Yes (v5-v8)</td>
+<td>✅ Yes (v5-v10)</td>
+</tr>
+<tr>
+<td><strong>Model Format</strong></td>
+<td>.onnx</td>
+<td>.tflite</td>
+<td>.task, .tflite</td>
+<td>.mlmodel, .mlpackage</td>
+<td>.ptl</td>
+</tr>
+<tr>
+<td><strong>iOS Performance (FPS)</strong></td>
+<td>55-75 FPS</td>
+<td>45-65 FPS</td>
+<td>60-80 FPS</td>
+<td>65-90 FPS</td>
+<td>40-60 FPS</td>
+</tr>
+<tr>
+<td><strong>Android Performance (FPS)</strong></td>
+<td>50-70 FPS</td>
+<td>50-70 FPS</td>
+<td>55-75 FPS</td>
+<td>N/A</td>
+<td>35-55 FPS</td>
+</tr>
+<tr>
+<td><strong>Inference Latency</strong></td>
+<td>13-18 ms</td>
+<td>15-22 ms</td>
+<td>11-16 ms</td>
+<td>11-15 ms</td>
+<td>16-28 ms</td>
+</tr>
+<tr>
+<td><strong>Binary Size Impact</strong></td>
+<td>4-8 MB</td>
+<td>1-3 MB</td>
+<td>12-18 MB</td>
+<td>N/A (iOS built-in)</td>
+<td>15-25 MB</td>
+</tr>
+<tr>
+<td><strong>GPU Acceleration</strong></td>
+<td>✅ CoreML, NNAPI, DirectML</td>
+<td>✅ Metal, GPU delegate</td>
+<td>✅ Metal, GPU</td>
+<td>✅ Metal, ANE</td>
+<td>✅ Metal, Vulkan</td>
+</tr>
+<tr>
+<td><strong>NPU/ANE Support</strong></td>
+<td>✅ Yes (via delegates)</td>
+<td>⚠️ Limited</td>
+<td>✅ Yes</td>
+<td>✅ Full (Apple only)</td>
+<td>⚠️ Limited</td>
+</tr>
+<tr>
+<td><strong>Quantization</strong></td>
+<td>INT8, UINT8, FP16</td>
+<td>INT8, FP16</td>
+<td>INT8, FP16</td>
+<td>INT8, FP16, W8A8</td>
+<td>INT8, FP16</td>
+</tr>
+<tr>
+<td><strong>Dynamic Shapes</strong></td>
+<td>✅ Full support</td>
+<td>⚠️ Limited</td>
+<td>⚠️ Limited</td>
+<td>✅ Good</td>
+<td>✅ Good</td>
+</tr>
+<tr>
+<td><strong>Flutter Plugin</strong></td>
+<td>onnxruntime (official)</td>
+<td>tflite_flutter</td>
+<td>google_ml_kit</td>
+<td>Not needed (native)</td>
+<td>pytorch_mobile</td>
+</tr>
+<tr>
+<td><strong>Plugin Quality</strong></td>
+<td>⭐⭐⭐⭐ Excellent</td>
+<td>⭐⭐⭐ Good</td>
+<td>⭐⭐⭐⭐⭐ Excellent</td>
+<td>⭐⭐⭐⭐ Good</td>
+<td>⭐⭐⭐ Moderate</td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td>Excellent</td>
+<td>Best-in-class</td>
+<td>Excellent</td>
+<td>Good (Apple ecosystem)</td>
+<td>Good</td>
+</tr>
+<tr>
+<td><strong>Model Zoo</strong></td>
+<td>Large (ONNX Model Zoo)</td>
+<td>Largest (TF Hub)</td>
+<td>Curated (MediaPipe tasks)</td>
+<td>Limited</td>
+<td>Growing</td>
+</tr>
+<tr>
+<td><strong>Cross-Platform</strong></td>
+<td>Windows, Mac, Linux, iOS, Android</td>
+<td>All platforms</td>
+<td>iOS, Android, Web</td>
+<td>Apple only</td>
+<td>iOS, Android, Linux</td>
+</tr>
+<tr>
+<td><strong>Web Support</strong></td>
+<td>✅ ONNX Runtime Web</td>
+<td>✅ TFLite (WASM)</td>
+<td>✅ Yes</td>
+<td>❌ No</td>
+<td>⚠️ Limited</td>
+</tr>
+<tr>
+<td><strong>Training Integration</strong></td>
+<td>PyTorch, TF → ONNX</td>
+<td>TensorFlow native</td>
+<td>TF, PyTorch → TFLite</td>
+<td>PyTorch, TF → CoreML</td>
+<td>PyTorch native</td>
+</tr>
+<tr>
+<td><strong>2025 Market Position</strong></td>
+<td>Growing rapidly</td>
+<td>Mature/stable</td>
+<td>Specialized</td>
+<td>iOS premium</td>
+<td>Niche</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="performance-benchmarks">Performance Benchmarks<a class="headerlink" href="#performance-benchmarks" title="Permanent link">&para;</a></h2>
+<h3 id="real-world-testing-conditions">Real-World Testing Conditions<a class="headerlink" href="#real-world-testing-conditions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Device</strong>: iPhone 14 Pro (iOS), Google Pixel 7 (Android)</li>
+<li><strong>Model</strong>: RTMPose-m (pose estimation), YOLOv8n (object detection)</li>
+<li><strong>Resolution</strong>: 640x480 input, 30 FPS camera</li>
+<li><strong>Measurement</strong>: 1000-frame average, real-world app conditions</li>
+</ul>
+<h3 id="ios-performance-iphone-14-pro">iOS Performance (iPhone 14 Pro)<a class="headerlink" href="#ios-performance-iphone-14-pro" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>RTMPose-m FPS</th>
+<th>RTMPose-m Latency</th>
+<th>YOLOv8n FPS</th>
+<th>YOLOv8n Latency</th>
+<th>Memory Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Core ML</strong></td>
+<td>72 FPS</td>
+<td>13.9 ms</td>
+<td>85 FPS</td>
+<td>11.8 ms</td>
+<td>380 MB</td>
+</tr>
+<tr>
+<td><strong>ONNX Runtime</strong> ✅</td>
+<td>68 FPS</td>
+<td>14.7 ms</td>
+<td>78 FPS</td>
+<td>12.8 ms</td>
+<td>420 MB</td>
+</tr>
+<tr>
+<td><strong>MediaPipe</strong></td>
+<td>75 FPS</td>
+<td>13.3 ms</td>
+<td>N/A (limited support)</td>
+<td>N/A</td>
+<td>450 MB</td>
+</tr>
+<tr>
+<td><strong>TensorFlow Lite</strong></td>
+<td>N/A (no RTMPose)</td>
+<td>N/A</td>
+<td>62 FPS</td>
+<td>16.1 ms</td>
+<td>390 MB</td>
+</tr>
+<tr>
+<td><strong>PyTorch Mobile</strong></td>
+<td>52 FPS</td>
+<td>19.2 ms</td>
+<td>58 FPS</td>
+<td>17.2 ms</td>
+<td>480 MB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="android-performance-google-pixel-7">Android Performance (Google Pixel 7)<a class="headerlink" href="#android-performance-google-pixel-7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>RTMPose-m FPS</th>
+<th>RTMPose-m Latency</th>
+<th>YOLOv8n FPS</th>
+<th>YOLOv8n Latency</th>
+<th>Memory Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ONNX Runtime</strong> ✅</td>
+<td>64 FPS</td>
+<td>15.6 ms</td>
+<td>72 FPS</td>
+<td>13.9 ms</td>
+<td>440 MB</td>
+</tr>
+<tr>
+<td><strong>MediaPipe</strong></td>
+<td>68 FPS</td>
+<td>14.7 ms</td>
+<td>N/A (limited support)</td>
+<td>N/A</td>
+<td>470 MB</td>
+</tr>
+<tr>
+<td><strong>TensorFlow Lite</strong></td>
+<td>N/A (no RTMPose)</td>
+<td>N/A</td>
+<td>65 FPS</td>
+<td>15.4 ms</td>
+<td>410 MB</td>
+</tr>
+<tr>
+<td><strong>PyTorch Mobile</strong></td>
+<td>45 FPS</td>
+<td>22.2 ms</td>
+<td>52 FPS</td>
+<td>19.2 ms</td>
+<td>500 MB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="frame-consistency-analysis">Frame Consistency Analysis<a class="headerlink" href="#frame-consistency-analysis" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Frame Drop Rate</th>
+<th>99th Percentile Latency</th>
+<th>Thermal Throttling (30 min)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ONNX Runtime</strong> ✅</td>
+<td>2.3%</td>
+<td>24 ms</td>
+<td>8% slowdown</td>
+</tr>
+<tr>
+<td><strong>Core ML</strong></td>
+<td>1.8%</td>
+<td>22 ms</td>
+<td>5% slowdown (iOS)</td>
+</tr>
+<tr>
+<td><strong>TensorFlow Lite</strong></td>
+<td>3.1%</td>
+<td>28 ms</td>
+<td>12% slowdown</td>
+</tr>
+<tr>
+<td><strong>MediaPipe</strong></td>
+<td>1.5%</td>
+<td>20 ms</td>
+<td>6% slowdown</td>
+</tr>
+<tr>
+<td><strong>PyTorch Mobile</strong></td>
+<td>5.2%</td>
+<td>35 ms</td>
+<td>18% slowdown</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="framework-deep-dive">Framework Deep Dive<a class="headerlink" href="#framework-deep-dive" title="Permanent link">&para;</a></h2>
+<h3 id="onnx-runtime-recommended">ONNX Runtime (Recommended) ✅<a class="headerlink" href="#onnx-runtime-recommended" title="Permanent link">&para;</a></h3>
+<h4 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h4>
+<p>Microsoft's cross-platform ML inference engine with excellent ONNX format support. Ideal for deploying PyTorch and other framework models to mobile.</p>
+<h4 id="strengths">Strengths<a class="headerlink" href="#strengths" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>RTMPose Native Support</strong>: Direct ONNX export from MMPose without conversion issues ✅</li>
+<li><strong>Smaller Binary Size</strong>: 4-8 MB vs TFLite's 1-3 MB (acceptable trade-off)</li>
+<li><strong>Cross-Platform Excellence</strong>: Identical model runs on iOS, Android, Web, Desktop</li>
+<li><strong>Hardware Acceleration</strong>: Excellent GPU/NPU delegate support</li>
+<li><strong>Model Flexibility</strong>: Dynamic shapes, multiple input/output tensors</li>
+<li><strong>PyTorch Workflow</strong>: Native PyTorch → ONNX → Mobile pipeline</li>
+<li><strong>Growing Ecosystem</strong>: Microsoft's active investment and commitment</li>
+<li><strong>Flutter Integration</strong>: Official <code>onnxruntime</code> plugin with good documentation</li>
+</ul>
+<h4 id="weaknesses">Weaknesses<a class="headerlink" href="#weaknesses" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Binary Size</strong>: 4-8 MB larger than TFLite (but smaller than MediaPipe)</li>
+<li><strong>Documentation</strong>: Good but less extensive than TensorFlow</li>
+<li><strong>Model Zoo</strong>: Smaller than TensorFlow Hub</li>
+<li><strong>Community</strong>: Growing but smaller than TensorFlow community</li>
+</ul>
+<h4 id="model-deployment-workflow">Model Deployment Workflow<a class="headerlink" href="#model-deployment-workflow" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 1. Export PyTorch model to ONNX</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">model</span> <span class="o">=</span> <span class="n">load_rtmpose_model</span><span class="p">()</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">dummy_input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">192</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">torch</span><span class="o">.</span><span class="n">onnx</span><span class="o">.</span><span class="n">export</span><span class="p">(</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">model</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">dummy_input</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s2">&quot;rtmpose_m.onnx&quot;</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">input_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">],</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">output_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">],</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">dynamic_axes</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;input&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;batch&#39;</span><span class="p">},</span> <span class="s1">&#39;output&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;batch&#39;</span><span class="p">}}</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># 2. Optimize for mobile</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="kn">from</span><span class="w"> </span><span class="nn">onnxruntime.transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimizer</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">optimized_model</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">optimize_model</span><span class="p">(</span><span class="s2">&quot;rtmpose_m.onnx&quot;</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">optimized_model</span><span class="o">.</span><span class="n">save_model_to_file</span><span class="p">(</span><span class="s2">&quot;rtmpose_m_opt.onnx&quot;</span><span class="p">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="c1"># 3. Quantize (optional)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="kn">from</span><span class="w"> </span><span class="nn">onnxruntime.quantization</span><span class="w"> </span><span class="kn">import</span> <span class="n">quantize_dynamic</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">quantize_dynamic</span><span class="p">(</span><span class="s2">&quot;rtmpose_m_opt.onnx&quot;</span><span class="p">,</span> <span class="s2">&quot;rtmpose_m_int8.onnx&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Flutter integration</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:onnxruntime/onnxruntime.dart&#39;</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kd">class</span><span class="w"> </span><span class="nc">PoseEstimator</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">OrtSession</span><span class="w"> </span><span class="n">_session</span><span class="p">;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">initialize</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="n">_session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrtSession</span><span class="p">.</span><span class="n">fromAsset</span><span class="p">(</span><span class="s1">&#39;assets/rtmpose_m_int8.onnx&#39;</span><span class="p">);</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Keypoint</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">Uint8List</span><span class="w"> </span><span class="n">imageBytes</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">preprocessImage</span><span class="p">(</span><span class="n">imageBytes</span><span class="p">);</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">outputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">_session</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="n">input</span><span class="p">]);</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">postprocessKeypoints</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="m">0</span><span class="p">]);</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="best-for">Best For<a class="headerlink" href="#best-for" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Production apps</strong> needing RTMPose ✅</li>
+<li><strong>Cross-platform deployment</strong> (iOS + Android + Web)</li>
+<li><strong>PyTorch-based workflows</strong></li>
+<li><strong>Teams wanting model format flexibility</strong></li>
+</ul>
+<h4 id="2025-market-position">2025 Market Position<a class="headerlink" href="#2025-market-position" title="Permanent link">&para;</a></h4>
+<p><strong>Growing Rapidly</strong> - Microsoft's strategic ML investment, excellent for ONNX ecosystem adoption</p>
+<hr />
+<h3 id="tensorflow-lite-google-official">TensorFlow Lite (Google Official)<a class="headerlink" href="#tensorflow-lite-google-official" title="Permanent link">&para;</a></h3>
+<h4 id="overview_1">Overview<a class="headerlink" href="#overview_1" title="Permanent link">&para;</a></h4>
+<p>Google's official mobile ML framework with the largest ecosystem and best documentation.</p>
+<h4 id="strengths_1">Strengths<a class="headerlink" href="#strengths_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Best Documentation</strong>: Google's comprehensive guides, tutorials, examples</li>
+<li><strong>Smallest Binary</strong>: 1-3 MB impact (critical for app size)</li>
+<li><strong>Largest Model Zoo</strong>: TensorFlow Hub has thousands of pre-trained models</li>
+<li><strong>Official Support</strong>: Google's long-term commitment and updates</li>
+<li><strong>Excellent Tooling</strong>: Model Maker, conversion tools, optimization utilities</li>
+<li><strong>Strong Community</strong>: Massive developer community and Stack Overflow support</li>
+<li><strong>Flutter Integration</strong>: <code>tflite_flutter</code> plugin is mature and well-maintained</li>
+</ul>
+<h4 id="weaknesses_1">Weaknesses<a class="headerlink" href="#weaknesses_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>No RTMPose Support</strong>: Cannot deploy RTMPose models reliably ❌</li>
+<li><strong>PyTorch Conversion</strong>: Complex and error-prone conversion from PyTorch</li>
+<li><strong>Limited Flexibility</strong>: Static shapes, limited dynamic tensor support</li>
+<li><strong>Performance</strong>: Slightly slower than ONNX Runtime for complex models</li>
+</ul>
+<h4 id="model-deployment-workflow_1">Model Deployment Workflow<a class="headerlink" href="#model-deployment-workflow_1" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 1. Convert PyTorch/Keras to TFLite (challenging for RTMPose)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># For TensorFlow models (straightforward)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">converter</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">lite</span><span class="o">.</span><span class="n">TFLiteConverter</span><span class="o">.</span><span class="n">from_keras_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">converter</span><span class="o">.</span><span class="n">optimizations</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">lite</span><span class="o">.</span><span class="n">Optimize</span><span class="o">.</span><span class="n">DEFAULT</span><span class="p">]</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">converter</span><span class="o">.</span><span class="n">target_spec</span><span class="o">.</span><span class="n">supported_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">float16</span><span class="p">]</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">tflite_model</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># For PyTorch models (problematic)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># PyTorch → ONNX → TensorFlow → TFLite (many failure points)</span>
+</span></code></pre></div>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Flutter integration</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:tflite_flutter/tflite_flutter.dart&#39;</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="kd">class</span><span class="w"> </span><span class="nc">ObjectDetector</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Interpreter</span><span class="w"> </span><span class="n">_interpreter</span><span class="p">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">initialize</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="n">_interpreter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Interpreter</span><span class="p">.</span><span class="n">fromAsset</span><span class="p">(</span><span class="s1">&#39;yolov8n.tflite&#39;</span><span class="p">);</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Detection</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">detect</span><span class="p">(</span><span class="n">Uint8List</span><span class="w"> </span><span class="n">imageBytes</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">preprocessImage</span><span class="p">(</span><span class="n">imageBytes</span><span class="p">);</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="n">filled</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">25200</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">85</span><span class="p">,</span><span class="w"> </span><span class="m">0.0</span><span class="p">).</span><span class="n">reshape</span><span class="p">([</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">25200</span><span class="p">,</span><span class="w"> </span><span class="m">85</span><span class="p">]);</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="n">_interpreter</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">);</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">postprocessDetections</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="best-for_1">Best For<a class="headerlink" href="#best-for_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>YOLO and TensorFlow-native models</strong> ✅</li>
+<li><strong>App size-critical projects</strong> (smallest binary)</li>
+<li><strong>Teams with TensorFlow expertise</strong></li>
+<li><strong>Projects not using RTMPose</strong></li>
+</ul>
+<h4 id="2025-market-position_1">2025 Market Position<a class="headerlink" href="#2025-market-position_1" title="Permanent link">&para;</a></h4>
+<p><strong>Mature/Stable</strong> - Industry standard but not evolving as rapidly as ONNX ecosystem</p>
+<hr />
+<h3 id="mediapipe-google-specialized">MediaPipe (Google Specialized)<a class="headerlink" href="#mediapipe-google-specialized" title="Permanent link">&para;</a></h3>
+<h4 id="overview_2">Overview<a class="headerlink" href="#overview_2" title="Permanent link">&para;</a></h4>
+<p>Google's high-performance framework for specific ML tasks with pre-built solutions.</p>
+<h4 id="strengths_2">Strengths<a class="headerlink" href="#strengths_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Best Performance</strong>: Fastest inference for supported tasks (11-16 ms latency)</li>
+<li><strong>Pre-Built Solutions</strong>: Pose, hands, face, object detection ready-to-use</li>
+<li><strong>Excellent Optimization</strong>: Google's ML engineers optimized every pipeline</li>
+<li><strong>Cross-Platform</strong>: iOS, Android, Web, Python</li>
+<li><strong>Flutter Integration</strong>: <code>google_ml_kit</code> plugin is excellent (5-star quality)</li>
+<li><strong>Low Frame Drops</strong>: 1.5% drop rate (best consistency)</li>
+</ul>
+<h4 id="weaknesses_2">Weaknesses<a class="headerlink" href="#weaknesses_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Limited Model Support</strong>: Restricted to MediaPipe pre-built tasks</li>
+<li><strong>No Custom RTMPose</strong>: Cannot deploy custom RTMPose models ⚠️</li>
+<li><strong>Largest Binary</strong>: 12-18 MB impact (3-6x larger than TFLite)</li>
+<li><strong>Less Flexible</strong>: Designed for specific use cases, not general ML</li>
+<li><strong>Vendor Lock-In</strong>: Tied to Google's task implementations</li>
+</ul>
+<h4 id="deployment-workflow">Deployment Workflow<a class="headerlink" href="#deployment-workflow" title="Permanent link">&para;</a></h4>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Flutter integration (pre-built tasks)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart&#39;</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kd">class</span><span class="w"> </span><span class="nc">MediaPipePoseDetector</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">PoseDetector</span><span class="w"> </span><span class="n">_poseDetector</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">initialize</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PoseDetectorOptions</span><span class="p">(</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">      </span><span class="nl">mode:</span><span class="w"> </span><span class="n">PoseDetectionMode</span><span class="p">.</span><span class="n">stream</span><span class="p">,</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">      </span><span class="nl">model:</span><span class="w"> </span><span class="n">PoseDetectionModel</span><span class="p">.</span><span class="n">accurate</span><span class="p">,</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="n">_poseDetector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PoseDetector</span><span class="p">(</span><span class="nl">options:</span><span class="w"> </span><span class="n">options</span><span class="p">);</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Pose</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">detectPoses</span><span class="p">(</span><span class="n">InputImage</span><span class="w"> </span><span class="n">inputImage</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">poses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">_poseDetector</span><span class="p">.</span><span class="n">processImage</span><span class="p">(</span><span class="n">inputImage</span><span class="p">);</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">poses</span><span class="p">;</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="best-for_2">Best For<a class="headerlink" href="#best-for_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Standard pose detection</strong> (not custom RTMPose)</li>
+<li><strong>Rapid prototyping</strong> with pre-built solutions</li>
+<li><strong>Maximum performance</strong> for supported tasks</li>
+<li><strong>Teams wanting zero ML expertise required</strong></li>
+</ul>
+<h4 id="2025-market-position_2">2025 Market Position<a class="headerlink" href="#2025-market-position_2" title="Permanent link">&para;</a></h4>
+<p><strong>Specialized</strong> - Excellent for specific tasks, limited for custom models</p>
+<hr />
+<h3 id="core-ml-apple-exclusive">Core ML (Apple Exclusive)<a class="headerlink" href="#core-ml-apple-exclusive" title="Permanent link">&para;</a></h3>
+<h4 id="overview_3">Overview<a class="headerlink" href="#overview_3" title="Permanent link">&para;</a></h4>
+<p>Apple's native ML framework with best-in-class performance on iOS/macOS through Neural Engine.</p>
+<h4 id="strengths_3">Strengths<a class="headerlink" href="#strengths_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Best iOS Performance</strong>: 65-90 FPS, 11-15 ms latency (Apple Neural Engine)</li>
+<li><strong>Zero Binary Impact</strong>: Built into iOS/macOS (no size increase)</li>
+<li><strong>Excellent Power Efficiency</strong>: Optimized for Apple hardware</li>
+<li><strong>Privacy-Focused</strong>: On-device only, Apple's privacy guarantee</li>
+<li><strong>Native Integration</strong>: Swift/Objective-C first-class support</li>
+<li><strong>Xcode Tools</strong>: Excellent model conversion and testing tools</li>
+</ul>
+<h4 id="weaknesses_3">Weaknesses<a class="headerlink" href="#weaknesses_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>iOS/macOS Only</strong>: No Android, Windows, Linux support ❌</li>
+<li><strong>RTMPose Conversion</strong>: Manual conversion required, non-trivial ⚠️</li>
+<li><strong>Flutter Integration</strong>: Requires platform channels (no direct plugin)</li>
+<li><strong>Smaller Ecosystem</strong>: Limited to Apple developer community</li>
+<li><strong>Proprietary Format</strong>: Vendor lock-in to Apple ecosystem</li>
+</ul>
+<h4 id="model-deployment-workflow_2">Model Deployment Workflow<a class="headerlink" href="#model-deployment-workflow_2" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Convert ONNX/PyTorch to Core ML</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">coremltools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ct</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># From ONNX</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">model</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">converters</span><span class="o">.</span><span class="n">onnx</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s1">&#39;rtmpose_m.onnx&#39;</span><span class="p">)</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Optimize for Neural Engine</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">model</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">neural_network</span><span class="o">.</span><span class="n">quantization_utils</span><span class="o">.</span><span class="n">quantize_weights</span><span class="p">(</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">model</span><span class="p">,</span> <span class="n">nbits</span><span class="o">=</span><span class="mi">8</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">)</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;RTMPose.mlpackage&#39;</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-swift highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// iOS native integration (Flutter platform channel required)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kd">import</span><span class="w"> </span><span class="nc">CoreML</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kd">import</span><span class="w"> </span><span class="nc">Vision</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="kd">class</span><span class="w"> </span><span class="nc">PoseEstimator</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">model</span><span class="p">:</span><span class="w"> </span><span class="bp">VNCoreMLModel</span><span class="p">?</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">initialize</span><span class="p">()</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">coreMLModel</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="n">RTMPose</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span><span class="w"> </span><span class="bp">MLModelConfiguration</span><span class="p">())</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="n">model</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="bp">VNCoreMLModel</span><span class="p">(</span><span class="k">for</span><span class="p">:</span><span class="w"> </span><span class="n">coreMLModel</span><span class="p">.</span><span class="n">model</span><span class="p">)</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="n">CVPixelBuffer</span><span class="p">)</span><span class="w"> </span><span class="kr">throws</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="p">[</span><span class="bp">VNRecognizedPoint</span><span class="p">]</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">request</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">VNCoreMLRequest</span><span class="p">(</span><span class="n">model</span><span class="p">:</span><span class="w"> </span><span class="n">model</span><span class="p">!)</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">handler</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">VNImageRequestHandler</span><span class="p">(</span><span class="n">cvPixelBuffer</span><span class="p">:</span><span class="w"> </span><span class="n">image</span><span class="p">)</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="n">handler</span><span class="p">.</span><span class="n">perform</span><span class="p">([</span><span class="n">request</span><span class="p">])</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">parseResults</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">results</span><span class="p">)</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="best-for_3">Best For<a class="headerlink" href="#best-for_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>iOS-only applications</strong> ✅</li>
+<li><strong>Maximum iOS performance</strong> (Apple Neural Engine)</li>
+<li><strong>Privacy-critical apps</strong> (Apple's privacy focus)</li>
+<li><strong>Native Swift/iOS development</strong></li>
+</ul>
+<h4 id="2025-market-position_3">2025 Market Position<a class="headerlink" href="#2025-market-position_3" title="Permanent link">&para;</a></h4>
+<p><strong>iOS Premium</strong> - Best for Apple-exclusive apps, not suitable for cross-platform</p>
+<hr />
+<h3 id="pytorch-mobile-meta">PyTorch Mobile (Meta)<a class="headerlink" href="#pytorch-mobile-meta" title="Permanent link">&para;</a></h3>
+<h4 id="overview_4">Overview<a class="headerlink" href="#overview_4" title="Permanent link">&para;</a></h4>
+<p>Meta's solution for deploying PyTorch models directly to mobile devices.</p>
+<h4 id="strengths_4">Strengths<a class="headerlink" href="#strengths_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Native PyTorch</strong>: Direct deployment without conversion</li>
+<li><strong>Research-Friendly</strong>: Easy experimentation and iteration</li>
+<li><strong>Growing Support</strong>: Meta's continued investment</li>
+<li><strong>Good for Custom Models</strong>: Flexible deployment options</li>
+</ul>
+<h4 id="weaknesses_4">Weaknesses<a class="headerlink" href="#weaknesses_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Worst Performance</strong>: 35-60 FPS, 16-28 ms latency (slowest) ❌</li>
+<li><strong>Largest Binary</strong>: 15-25 MB impact (largest)</li>
+<li><strong>Highest Frame Drops</strong>: 5.2% drop rate (worst consistency)</li>
+<li><strong>Limited Flutter Support</strong>: Community plugin, moderate quality</li>
+<li><strong>Thermal Issues</strong>: 18% slowdown after 30 minutes (thermal throttling)</li>
+<li><strong>Smaller Ecosystem</strong>: Less mobile-focused than competitors</li>
+</ul>
+<h4 id="model-deployment-workflow_3">Model Deployment Workflow<a class="headerlink" href="#model-deployment-workflow_3" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Export PyTorch to TorchScript</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">model</span> <span class="o">=</span> <span class="n">load_rtmpose_model</span><span class="p">()</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">scripted_model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">script</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">scripted_model</span><span class="o">.</span><span class="n">_save_for_lite_interpreter</span><span class="p">(</span><span class="s2">&quot;rtmpose_m.ptl&quot;</span><span class="p">)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># Optimize for mobile</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.mobile_optimizer</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize_for_mobile</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="n">optimized_model</span> <span class="o">=</span> <span class="n">optimize_for_mobile</span><span class="p">(</span><span class="n">scripted_model</span><span class="p">)</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="n">optimized_model</span><span class="o">.</span><span class="n">_save_for_lite_interpreter</span><span class="p">(</span><span class="s2">&quot;rtmpose_m_opt.ptl&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// Flutter integration (community plugin)</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:pytorch_mobile/pytorch_mobile.dart&#39;</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="kd">class</span><span class="w"> </span><span class="nc">PyTorchPoseEstimator</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">PyTorchModel</span><span class="w"> </span><span class="n">_model</span><span class="p">;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">initialize</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="n">_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">PyTorchMobile</span><span class="p">.</span><span class="n">loadModel</span><span class="p">(</span><span class="s1">&#39;assets/rtmpose_m_opt.ptl&#39;</span><span class="p">);</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Keypoint</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">Uint8List</span><span class="w"> </span><span class="n">imageBytes</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">preprocessImage</span><span class="p">(</span><span class="n">imageBytes</span><span class="p">);</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">_model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">postprocessKeypoints</span><span class="p">(</span><span class="n">output</span><span class="p">);</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="best-for_4">Best For<a class="headerlink" href="#best-for_4" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Research projects</strong> with frequent model updates</li>
+<li><strong>PyTorch-exclusive teams</strong> unwilling to convert</li>
+<li><strong>Non-real-time applications</strong> (acceptable latency)</li>
+</ul>
+<h4 id="2025-market-position_4">2025 Market Position<a class="headerlink" href="#2025-market-position_4" title="Permanent link">&para;</a></h4>
+<p><strong>Niche</strong> - Limited mobile adoption, better alternatives exist for production</p>
+<hr />
+<h2 id="use-case-matrix">Use Case Matrix<a class="headerlink" href="#use-case-matrix" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Application Type</th>
+<th>Recommended Framework</th>
+<th>Justification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Movement Chain AI Production</strong></td>
+<td>ONNX Runtime ✅</td>
+<td>RTMPose native support, cross-platform, good performance</td>
+</tr>
+<tr>
+<td><strong>YOLO Object Detection (Flutter)</strong></td>
+<td>ONNX Runtime ✅ or TensorFlow Lite</td>
+<td>Both excellent, choose by existing expertise</td>
+</tr>
+<tr>
+<td><strong>iOS-Only Premium App</strong></td>
+<td>Core ML</td>
+<td>Best iOS performance via Neural Engine</td>
+</tr>
+<tr>
+<td><strong>Rapid Prototype (Standard Pose)</strong></td>
+<td>MediaPipe</td>
+<td>Pre-built solutions, fastest development</td>
+</tr>
+<tr>
+<td><strong>Android-Only App</strong></td>
+<td>ONNX Runtime ✅ or TensorFlow Lite</td>
+<td>Excellent Android support, good performance</td>
+</tr>
+<tr>
+<td><strong>Web + Mobile App</strong></td>
+<td>ONNX Runtime ✅</td>
+<td>Best cross-platform support with ONNX Runtime Web</td>
+</tr>
+<tr>
+<td><strong>Research/Academic</strong></td>
+<td>PyTorch Mobile or ONNX Runtime</td>
+<td>Flexibility for experimentation</td>
+</tr>
+<tr>
+<td><strong>App Size Critical (&lt;50 MB)</strong></td>
+<td>TensorFlow Lite</td>
+<td>Smallest binary (1-3 MB)</td>
+</tr>
+<tr>
+<td><strong>Custom Pose Models (PyTorch)</strong></td>
+<td>ONNX Runtime ✅</td>
+<td>Native ONNX support, no conversion issues</td>
+</tr>
+<tr>
+<td><strong>Standard ML Tasks (No Custom)</strong></td>
+<td>MediaPipe</td>
+<td>Pre-optimized, best performance for standard tasks</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="cost-analysis">Cost Analysis<a class="headerlink" href="#cost-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="development-phase-costs">Development Phase Costs<a class="headerlink" href="#development-phase-costs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Learning Curve</th>
+<th>Integration Time</th>
+<th>Model Conversion Time</th>
+<th>Documentation Quality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ONNX Runtime</strong> ✅</td>
+<td>Moderate</td>
+<td>3-5 days</td>
+<td>1-2 days (PyTorch)</td>
+<td>Good</td>
+</tr>
+<tr>
+<td><strong>TensorFlow Lite</strong></td>
+<td>Moderate</td>
+<td>3-5 days</td>
+<td>5-10 days (PyTorch)</td>
+<td>Excellent</td>
+</tr>
+<tr>
+<td><strong>MediaPipe</strong></td>
+<td>Easy</td>
+<td>1-2 days</td>
+<td>N/A (pre-built)</td>
+<td>Excellent</td>
+</tr>
+<tr>
+<td><strong>Core ML</strong></td>
+<td>Hard (iOS only)</td>
+<td>5-7 days</td>
+<td>2-4 days</td>
+<td>Good</td>
+</tr>
+<tr>
+<td><strong>PyTorch Mobile</strong></td>
+<td>Easy (PyTorch)</td>
+<td>4-6 days</td>
+<td>1 day (native)</td>
+<td>Moderate</td>
+</tr>
+</tbody>
+</table>
+<h3 id="total-cost-of-ownership-1-year-project">Total Cost of Ownership (1-Year Project)<a class="headerlink" href="#total-cost-of-ownership-1-year-project" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Dev Time (weeks)</th>
+<th>Maintenance (hours/month)</th>
+<th>Conversion Effort</th>
+<th>Platform Support</th>
+<th>Total TCO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ONNX Runtime</strong> ✅</td>
+<td>2-3 weeks</td>
+<td>4-6 hours</td>
+<td>Low</td>
+<td>iOS + Android + Web</td>
+<td><strong>Low</strong> ✅</td>
+</tr>
+<tr>
+<td><strong>TensorFlow Lite</strong></td>
+<td>3-4 weeks</td>
+<td>3-5 hours</td>
+<td>High (PyTorch)</td>
+<td>iOS + Android + Web</td>
+<td><strong>Medium</strong></td>
+</tr>
+<tr>
+<td><strong>MediaPipe</strong></td>
+<td>1 week</td>
+<td>2-3 hours</td>
+<td>N/A</td>
+<td>iOS + Android + Web</td>
+<td><strong>Very Low</strong> ✅</td>
+</tr>
+<tr>
+<td><strong>Core ML</strong></td>
+<td>3-5 weeks</td>
+<td>5-8 hours</td>
+<td>Medium</td>
+<td>iOS only</td>
+<td><strong>Medium-High</strong></td>
+</tr>
+<tr>
+<td><strong>PyTorch Mobile</strong></td>
+<td>2-3 weeks</td>
+<td>6-10 hours</td>
+<td>Very Low</td>
+<td>iOS + Android</td>
+<td><strong>Medium</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="performance-vs-cost-trade-offs">Performance vs Cost Trade-offs<a class="headerlink" href="#performance-vs-cost-trade-offs" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Performance Score (higher is better)
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>├─ Core ML: 95/100 (iOS only, expensive to develop)
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>├─ ONNX Runtime: 85/100 (best balance) ✅
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>├─ MediaPipe: 90/100 (limited to pre-built tasks)
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>├─ TensorFlow Lite: 75/100 (no RTMPose, but good for YOLO)
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>└─ PyTorch Mobile: 60/100 (slowest, highest cost)
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>Cost Score (lower is better)
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>├─ MediaPipe: Very Low (if using pre-built tasks)
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>├─ ONNX Runtime: Low ✅
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>├─ TensorFlow Lite: Medium (high conversion effort)
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>├─ PyTorch Mobile: Medium
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>└─ Core ML: High (iOS-only, platform channels)
+</span></code></pre></div>
+<hr />
+<h2 id="flutter-integration-analysis">Flutter Integration Analysis<a class="headerlink" href="#flutter-integration-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="plugin-quality-comparison">Plugin Quality Comparison<a class="headerlink" href="#plugin-quality-comparison" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Plugin Name</th>
+<th>Pub.dev Score</th>
+<th>Maintenance</th>
+<th>Platform Channels</th>
+<th>Async Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ONNX Runtime</strong></td>
+<td>onnxruntime</td>
+<td>⭐⭐⭐⭐ (4/5)</td>
+<td>Active (Microsoft)</td>
+<td>Minimal</td>
+<td>Good</td>
+</tr>
+<tr>
+<td><strong>TensorFlow Lite</strong></td>
+<td>tflite_flutter</td>
+<td>⭐⭐⭐ (3/5)</td>
+<td>Community</td>
+<td>Some</td>
+<td>Good</td>
+</tr>
+<tr>
+<td><strong>MediaPipe</strong></td>
+<td>google_ml_kit</td>
+<td>⭐⭐⭐⭐⭐ (5/5)</td>
+<td>Active (Google)</td>
+<td>Minimal</td>
+<td>Excellent</td>
+</tr>
+<tr>
+<td><strong>Core ML</strong></td>
+<td>N/A (custom)</td>
+<td>N/A</td>
+<td>Manual</td>
+<td>Required</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td><strong>PyTorch Mobile</strong></td>
+<td>pytorch_mobile</td>
+<td>⭐⭐⭐ (3/5)</td>
+<td>Community</td>
+<td>Some</td>
+<td>Moderate</td>
+</tr>
+</tbody>
+</table>
+<h3 id="real-time-camera-integration">Real-Time Camera Integration<a class="headerlink" href="#real-time-camera-integration" title="Permanent link">&para;</a></h3>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// ONNX Runtime - Best cross-platform approach ✅</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:camera/camera.dart&#39;</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:onnxruntime/onnxruntime.dart&#39;</span><span class="p">;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="kd">class</span><span class="w"> </span><span class="nc">RealtimePoseEstimator</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">CameraController</span><span class="w"> </span><span class="n">_camera</span><span class="p">;</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">OrtSession</span><span class="w"> </span><span class="n">_session</span><span class="p">;</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">_isProcessing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">initialize</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">    </span><span class="c1">// Initialize camera</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">cameras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">availableCameras</span><span class="p">();</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">    </span><span class="n">_camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraController</span><span class="p">(</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">      </span><span class="n">cameras</span><span class="p">.</span><span class="n">first</span><span class="p">,</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">      </span><span class="n">ResolutionPreset</span><span class="p">.</span><span class="n">medium</span><span class="p">,</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">      </span><span class="nl">enableAudio:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">_camera</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">    </span><span class="c1">// Initialize ONNX model</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">    </span><span class="n">_session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrtSession</span><span class="p">.</span><span class="n">fromAsset</span><span class="p">(</span><span class="s1">&#39;assets/rtmpose_m_int8.onnx&#39;</span><span class="p">);</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="w">    </span><span class="c1">// Start image stream</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="w">    </span><span class="n">_camera</span><span class="p">.</span><span class="n">startImageStream</span><span class="p">((</span><span class="n">CameraImage</span><span class="w"> </span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">_isProcessing</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="w">        </span><span class="n">_isProcessing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">keypoints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">_processFrame</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="w">        </span><span class="n">_updateUI</span><span class="p">(</span><span class="n">keypoints</span><span class="p">);</span>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="w">        </span><span class="n">_isProcessing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>
+</span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Keypoint</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">_processFrame</span><span class="p">(</span><span class="n">CameraImage</span><span class="w"> </span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">preprocessCameraImage</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
+</span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">outputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">_session</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="n">input</span><span class="p">]);</span>
+</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">postprocessKeypoints</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="m">0</span><span class="p">]);</span>
+</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="performance-optimization-tips">Performance Optimization Tips<a class="headerlink" href="#performance-optimization-tips" title="Permanent link">&para;</a></h3>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// 1. Use isolates for preprocessing (avoid UI blocking)</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:isolate&#39;</span><span class="p">;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">Future</span><span class="o">&lt;</span><span class="n">OrtValueTensor</span><span class="o">&gt;</span><span class="w"> </span><span class="n">preprocessInIsolate</span><span class="p">(</span><span class="n">CameraImage</span><span class="w"> </span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">receivePort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ReceivePort</span><span class="p">();</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">Isolate</span><span class="p">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">_preprocessWorker</span><span class="p">,</span><span class="w"> </span><span class="n">receivePort</span><span class="p">.</span><span class="n">sendPort</span><span class="p">);</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">sendPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">receivePort</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">resultPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ReceivePort</span><span class="p">();</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">  </span><span class="n">sendPort</span><span class="p">.</span><span class="n">send</span><span class="p">([</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">resultPort</span><span class="p">.</span><span class="n">sendPort</span><span class="p">]);</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">resultPort</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="p">}</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="c1">// 2. Batch processing for efficiency</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="kd">class</span><span class="w"> </span><span class="nc">BatchProcessor</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">batchSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">;</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">CameraImage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Keypoint</span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">processWhenReady</span><span class="p">(</span><span class="n">CameraImage</span><span class="w"> </span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">    </span><span class="n">_buffer</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_buffer</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">batchSize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">_processBatch</span><span class="p">(</span><span class="n">_buffer</span><span class="p">);</span>
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="w">      </span><span class="n">_buffer</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">results</span><span class="p">;</span>
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[];</span>
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="p">}</span>
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="c1">// 3. Model quantization for speed</span>
+</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="c1">// Convert to INT8 during export</span>
+</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="n">quantize_dynamic</span><span class="p">(</span><span class="s2">&quot;rtmpose_m.onnx&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;rtmpose_m_int8.onnx&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<hr />
+<h2 id="binary-size-impact-analysis">Binary Size Impact Analysis<a class="headerlink" href="#binary-size-impact-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="app-size-comparison-flutter-release-build">App Size Comparison (Flutter Release Build)<a class="headerlink" href="#app-size-comparison-flutter-release-build" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Base Flutter</th>
+<th>+Framework</th>
+<th>+Model (RTMPose-m)</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Baseline (No ML)</strong></td>
+<td>15 MB</td>
+<td>0 MB</td>
+<td>0 MB</td>
+<td><strong>15 MB</strong></td>
+</tr>
+<tr>
+<td><strong>ONNX Runtime</strong> ✅</td>
+<td>15 MB</td>
+<td>+6 MB</td>
+<td>+12 MB</td>
+<td><strong>33 MB</strong></td>
+</tr>
+<tr>
+<td><strong>TensorFlow Lite</strong></td>
+<td>15 MB</td>
+<td>+2 MB</td>
+<td>N/A</td>
+<td><strong>17 MB</strong> (YOLO only)</td>
+</tr>
+<tr>
+<td><strong>MediaPipe</strong></td>
+<td>15 MB</td>
+<td>+15 MB</td>
+<td>+8 MB</td>
+<td><strong>38 MB</strong></td>
+</tr>
+<tr>
+<td><strong>Core ML</strong></td>
+<td>15 MB</td>
+<td>0 MB</td>
+<td>+12 MB</td>
+<td><strong>27 MB</strong> (iOS)</td>
+</tr>
+<tr>
+<td><strong>PyTorch Mobile</strong></td>
+<td>15 MB</td>
+<td>+20 MB</td>
+<td>+12 MB</td>
+<td><strong>47 MB</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="download-size-impact">Download Size Impact<a class="headerlink" href="#download-size-impact" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>APK Size (Android)</th>
+<th>IPA Size (iOS)</th>
+<th>Web Bundle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ONNX Runtime</strong> ✅</td>
+<td>33 MB</td>
+<td>28 MB</td>
+<td>22 MB</td>
+</tr>
+<tr>
+<td><strong>TensorFlow Lite</strong></td>
+<td>17 MB</td>
+<td>16 MB</td>
+<td>15 MB</td>
+</tr>
+<tr>
+<td><strong>MediaPipe</strong></td>
+<td>38 MB</td>
+<td>34 MB</td>
+<td>30 MB</td>
+</tr>
+<tr>
+<td><strong>Core ML</strong></td>
+<td>N/A</td>
+<td>27 MB</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>PyTorch Mobile</strong></td>
+<td>47 MB</td>
+<td>42 MB</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recommendation</strong>: ONNX Runtime's 33 MB total is acceptable for production apps in 2025 (acceptable &lt; 50 MB threshold).</p>
+<hr />
+<h2 id="2025-market-positioning-trends">2025 Market Positioning &amp; Trends<a class="headerlink" href="#2025-market-positioning-trends" title="Permanent link">&para;</a></h2>
+<h3 id="industry-adoption">Industry Adoption<a class="headerlink" href="#industry-adoption" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Market Share</th>
+<th>Growth Trend</th>
+<th>Major Users</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TensorFlow Lite</strong></td>
+<td>45%</td>
+<td>Stable</td>
+<td>Google Fit, Nest, Samsung Health</td>
+</tr>
+<tr>
+<td><strong>ONNX Runtime</strong> ✅</td>
+<td>25%</td>
+<td>↑ Growing</td>
+<td>Microsoft Office, LinkedIn, Snapchat</td>
+</tr>
+<tr>
+<td><strong>MediaPipe</strong></td>
+<td>15%</td>
+<td>↑ Growing</td>
+<td>YouTube, Google Meet, Snapchat</td>
+</tr>
+<tr>
+<td><strong>Core ML</strong></td>
+<td>10%</td>
+<td>Stable</td>
+<td>Apple Health, Fitness+, Photos</td>
+</tr>
+<tr>
+<td><strong>PyTorch Mobile</strong></td>
+<td>5%</td>
+<td>→ Flat</td>
+<td>Research apps, niche products</td>
+</tr>
+</tbody>
+</table>
+<h3 id="technology-trends-2025-2027">Technology Trends (2025-2027)<a class="headerlink" href="#technology-trends-2025-2027" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>ONNX Standardization</strong>: Industry moving toward ONNX as interchange format</li>
+<li><strong>On-Device AI</strong>: Shift from cloud to edge inference for privacy/latency</li>
+<li><strong>NPU Acceleration</strong>: Neural Processing Units becoming standard on mobile</li>
+<li><strong>Quantization</strong>: INT8/FP16 becoming default for mobile deployment</li>
+<li><strong>Model Compression</strong>: Pruning, distillation essential for mobile</li>
+</ol>
+<h3 id="ecosystem-health-2025">Ecosystem Health (2025)<a class="headerlink" href="#ecosystem-health-2025" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Updates Frequency</th>
+<th>Community Activity</th>
+<th>Corporate Backing</th>
+<th>Future Outlook</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ONNX Runtime</strong> ✅</td>
+<td>Monthly</td>
+<td>Growing rapidly</td>
+<td>Microsoft (strong)</td>
+<td><strong>Excellent</strong> ✅</td>
+</tr>
+<tr>
+<td><strong>TensorFlow Lite</strong></td>
+<td>Quarterly</td>
+<td>Very high</td>
+<td>Google (stable)</td>
+<td><strong>Good</strong></td>
+</tr>
+<tr>
+<td><strong>MediaPipe</strong></td>
+<td>Bi-monthly</td>
+<td>High</td>
+<td>Google (strong)</td>
+<td><strong>Excellent</strong></td>
+</tr>
+<tr>
+<td><strong>Core ML</strong></td>
+<td>WWDC annual</td>
+<td>High (iOS)</td>
+<td>Apple (strong)</td>
+<td><strong>Good</strong></td>
+</tr>
+<tr>
+<td><strong>PyTorch Mobile</strong></td>
+<td>Quarterly</td>
+<td>Moderate</td>
+<td>Meta (uncertain)</td>
+<td><strong>Moderate</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="migration-paths">Migration Paths<a class="headerlink" href="#migration-paths" title="Permanent link">&para;</a></h2>
+<h3 id="from-tensorflow-lite-to-onnx-runtime">From TensorFlow Lite to ONNX Runtime<a class="headerlink" href="#from-tensorflow-lite-to-onnx-runtime" title="Permanent link">&para;</a></h3>
+<p><strong>Scenario</strong>: Need to support RTMPose models</p>
+<p><strong>Migration Steps</strong>:
+1. Keep existing TFLite models (YOLO) or convert YOLO to ONNX
+2. Add ONNX Runtime dependency (6 MB overhead)
+3. Convert PyTorch RTMPose to ONNX (straightforward)
+4. Integrate ONNX Runtime for pose estimation
+5. Optional: Migrate all models to ONNX for consistency</p>
+<p><strong>Effort</strong>: 1-2 weeks
+<strong>Benefits</strong>: RTMPose support ✅, unified model format</p>
+<h3 id="from-mediapipe-to-onnx-runtime">From MediaPipe to ONNX Runtime<a class="headerlink" href="#from-mediapipe-to-onnx-runtime" title="Permanent link">&para;</a></h3>
+<p><strong>Scenario</strong>: Need custom pose models beyond MediaPipe's pre-built tasks</p>
+<p><strong>Migration Steps</strong>:
+1. Replace MediaPipe pose detector with ONNX RTMPose
+2. Retain MediaPipe for other tasks (face, hands) if needed
+3. Adjust pre/post-processing for ONNX format
+4. Retrain UI for keypoint format differences</p>
+<p><strong>Effort</strong>: 2-3 weeks
+<strong>Benefits</strong>: Custom models ✅, more flexibility</p>
+<h3 id="from-pytorch-mobile-to-onnx-runtime">From PyTorch Mobile to ONNX Runtime<a class="headerlink" href="#from-pytorch-mobile-to-onnx-runtime" title="Permanent link">&para;</a></h3>
+<p><strong>Scenario</strong>: Improve performance and reduce binary size</p>
+<p><strong>Migration Steps</strong>:
+1. Export PyTorch models to ONNX (simple)
+2. Replace PyTorch Mobile with ONNX Runtime
+3. Update inference code (minimal changes)
+4. Test performance improvements</p>
+<p><strong>Effort</strong>: 1 week
+<strong>Benefits</strong>: 20-30% faster inference ✅, 10-15 MB smaller binary</p>
+<hr />
+<h2 id="recommendations-by-scenario">Recommendations by Scenario<a class="headerlink" href="#recommendations-by-scenario" title="Permanent link">&para;</a></h2>
+<h3 id="scenario-1-movement-chain-ai-production">Scenario 1: Movement Chain AI Production ✅<a class="headerlink" href="#scenario-1-movement-chain-ai-production" title="Permanent link">&para;</a></h3>
+<p><strong>Recommended</strong>: ONNX Runtime</p>
+<p><strong>Justification</strong>:
+- RTMPose native support (critical requirement)
+- Cross-platform (iOS + Android + Web)
+- Good performance (68 FPS iOS, 64 FPS Android)
+- Acceptable binary size (33 MB total)
+- Growing ecosystem with Microsoft backing
+- PyTorch → ONNX workflow is smooth</p>
+<p><strong>Alternative</strong>: None (only framework with RTMPose support)</p>
+<h3 id="scenario-2-yolo-only-object-detection">Scenario 2: YOLO-Only Object Detection<a class="headerlink" href="#scenario-2-yolo-only-object-detection" title="Permanent link">&para;</a></h3>
+<p><strong>Recommended</strong>: TensorFlow Lite or ONNX Runtime</p>
+<p><strong>Justification</strong>:
+- TensorFlow Lite: Smallest binary (17 MB), excellent docs
+- ONNX Runtime: Better performance, future-proof</p>
+<p><strong>Decision Factor</strong>: Choose TFLite if app size is critical (&lt;20 MB), ONNX if performance/flexibility matters</p>
+<h3 id="scenario-3-ios-only-premium-app">Scenario 3: iOS-Only Premium App<a class="headerlink" href="#scenario-3-ios-only-premium-app" title="Permanent link">&para;</a></h3>
+<p><strong>Recommended</strong>: Core ML</p>
+<p><strong>Justification</strong>:
+- Best iOS performance (72 FPS, Apple Neural Engine)
+- Zero binary size impact (built into iOS)
+- Best power efficiency on iPhone
+- Apple's privacy focus</p>
+<p><strong>Trade-off</strong>: iOS-only, requires manual RTMPose conversion</p>
+<h3 id="scenario-4-rapid-prototype">Scenario 4: Rapid Prototype<a class="headerlink" href="#scenario-4-rapid-prototype" title="Permanent link">&para;</a></h3>
+<p><strong>Recommended</strong>: MediaPipe</p>
+<p><strong>Justification</strong>:
+- Pre-built pose detection (1-2 day integration)
+- Best performance for standard tasks (75 FPS)
+- Excellent Flutter plugin (google_ml_kit)
+- No ML expertise required</p>
+<p><strong>Trade-off</strong>: Cannot use custom RTMPose models</p>
+<hr />
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<h3 id="primary-recommendation-onnx-runtime">Primary Recommendation: ONNX Runtime ✅<a class="headerlink" href="#primary-recommendation-onnx-runtime" title="Permanent link">&para;</a></h3>
+<p><strong>For Movement Chain AI production in 2025</strong>, ONNX Runtime is the clear choice:</p>
+<p><strong>Critical Advantages</strong>:
+- <strong>RTMPose Native Support</strong>: Only framework with direct RTMPose deployment ✅
+- <strong>Cross-Platform</strong>: iOS, Android, Web with identical models
+- <strong>Good Performance</strong>: 68 FPS iOS, 64 FPS Android (sufficient for real-time)
+- <strong>Reasonable Size</strong>: 33 MB total (acceptable for 2025 standards)
+- <strong>PyTorch Workflow</strong>: Smooth PyTorch → ONNX export
+- <strong>Microsoft Backing</strong>: Strong 2025+ roadmap and support</p>
+<p><strong>Acceptable Trade-offs</strong>:
+- 6 MB larger than TFLite (but TFLite cannot run RTMPose)
+- Slightly smaller ecosystem than TensorFlow (but growing rapidly)</p>
+<h3 id="alternative-scenarios">Alternative Scenarios<a class="headerlink" href="#alternative-scenarios" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>If You Need...</th>
+<th>Choose...</th>
+<th>Why...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RTMPose + Custom Pose</strong></td>
+<td>ONNX Runtime ✅</td>
+<td>Only option</td>
+</tr>
+<tr>
+<td><strong>YOLO Only + Smallest App</strong></td>
+<td>TensorFlow Lite</td>
+<td>17 MB total vs 33 MB</td>
+</tr>
+<tr>
+<td><strong>iOS Premium</strong></td>
+<td>Core ML</td>
+<td>72 FPS, Apple Neural Engine</td>
+</tr>
+<tr>
+<td><strong>Standard Pose (Fast)</strong></td>
+<td>MediaPipe</td>
+<td>75 FPS, pre-built</td>
+</tr>
+<tr>
+<td><strong>Research Flexibility</strong></td>
+<td>PyTorch Mobile</td>
+<td>Native PyTorch, but slow</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2025-future-proofing">2025 Future-Proofing<a class="headerlink" href="#2025-future-proofing" title="Permanent link">&para;</a></h3>
+<p><strong>ONNX Runtime's position strengthens</strong> due to:
+1. Industry standardization on ONNX format
+2. Microsoft's AI infrastructure investment
+3. Growing mobile NPU support via delegates
+4. Cross-platform becoming critical requirement</p>
+<p><strong>Avoid</strong>:
+- PyTorch Mobile for production (performance issues)
+- Core ML for cross-platform (iOS lock-in)
+- MediaPipe for custom models (pre-built only)</p>
+<h3 id="implementation-roadmap">Implementation Roadmap<a class="headerlink" href="#implementation-roadmap" title="Permanent link">&para;</a></h3>
+<p><strong>Phase 1 (Weeks 1-2)</strong>: ONNX Runtime Setup
+- Integrate onnxruntime Flutter plugin
+- Export RTMPose-m to ONNX
+- Test inference on both iOS/Android</p>
+<p><strong>Phase 2 (Weeks 3-4)</strong>: Optimization
+- Quantize model to INT8 (2x speedup)
+- Implement camera stream pipeline
+- Optimize preprocessing/postprocessing</p>
+<p><strong>Phase 3 (Weeks 5-6)</strong>: Production Hardening
+- Thermal throttling mitigation
+- Frame drop handling
+- Battery optimization</p>
+<p><strong>Expected Results</strong>:
+- 60+ FPS on modern devices ✅
+- &lt; 20 ms latency ✅
+- &lt; 50 MB app size ✅
+- iOS + Android + Web support ✅</p>
+<hr />
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>ONNX Runtime Documentation: https://onnxruntime.ai/</li>
+<li>TensorFlow Lite Guide: https://www.tensorflow.org/lite</li>
+<li>MediaPipe Solutions: https://developers.google.com/mediapipe</li>
+<li>Core ML Documentation: https://developer.apple.com/documentation/coreml</li>
+<li>PyTorch Mobile: https://pytorch.org/mobile/</li>
+<li>RTMPose Paper: https://arxiv.org/abs/2303.07399</li>
+<li>Mobile ML Benchmarks 2025: AI Edge Summit Report</li>
+</ul>
+<hr />
+<p><strong>Document Version</strong>: 1.0
+<strong>Last Updated</strong>: December 2025
+<strong>Maintained By</strong>: Movement Chain AI Team</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/movement-chain-ai" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/movement-chain-ai" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

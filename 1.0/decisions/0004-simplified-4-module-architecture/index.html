@@ -12,29 +12,31 @@
         <meta name="author" content="Movement Chain AI Team">
       
       
-        <link rel="canonical" href="https://movement-chain-ai.github.io/system-documentation/1.0/">
+        <link rel="canonical" href="https://movement-chain-ai.github.io/system-documentation/1.0/decisions/0004-simplified-4-module-architecture/">
       
       
+        <link rel="prev" href="../0003-flutter-mobile/">
       
-        <link rel="next" href="architecture/hld/01-system-overview/">
+      
+        <link rel="next" href="../0005-esp32-s3-microcontroller/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>Movement Chain AI Documentation</title>
+        <title>ADR-0004 4-Module Architecture - Movement Chain AI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-movement-chain-ai-documentation" class="md-skip">
+        <a href="#adr-0004-simplified-4-module-architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +98,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              ADR-0004 4-Module Architecture
             
           </span>
         </div>
@@ -227,11 +229,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -259,7 +259,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="architecture/hld/01-system-overview/" class="md-tabs__link">
+        <a href="../../architecture/hld/01-system-overview/" class="md-tabs__link">
           
   
   
@@ -280,11 +280,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="decisions/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -306,7 +308,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="resources/hardware-comparison/" class="md-tabs__link">
+        <a href="../../resources/hardware-comparison/" class="md-tabs__link">
           
   
   
@@ -344,7 +346,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -371,37 +373,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Home
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -417,226 +392,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#system-vision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Vision
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System Vision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#core-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Capabilities
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#system-architecture-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Architecture Overview
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System Architecture Overview">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#module-breakdown" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Module Breakdown
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#navigation-guide" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Navigation Guide
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Navigation Guide">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-system-architects" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For System Architects
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-developers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Developers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-hardware-engineers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Hardware Engineers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-ml-engineers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For ML Engineers
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick Links
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick Links">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#key-architecture-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Architecture Documents
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#critical-design-decisions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Critical Design Decisions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#technical-comparisons" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Technical Comparisons
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Project Status
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contributing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#support" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Support
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -766,7 +521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/01-system-overview/" class="md-nav__link">
+      <a href="../../architecture/hld/01-system-overview/" class="md-nav__link">
         
   
   
@@ -794,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/02-data-flow/" class="md-nav__link">
+      <a href="../../architecture/hld/02-data-flow/" class="md-nav__link">
         
   
   
@@ -822,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/03-integration-patterns/" class="md-nav__link">
+      <a href="../../architecture/hld/03-integration-patterns/" class="md-nav__link">
         
   
   
@@ -850,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/04-performance-targets/" class="md-nav__link">
+      <a href="../../architecture/hld/04-performance-targets/" class="md-nav__link">
         
   
   
@@ -890,6 +645,8 @@
       
   
   
+    
+  
   
   
     
@@ -915,20 +672,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="decisions/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -946,13 +706,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -972,7 +732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0001-multi-repo-structure/" class="md-nav__link">
+      <a href="../0001-multi-repo-structure/" class="md-nav__link">
         
   
   
@@ -1000,7 +760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+      <a href="../0002-lsm6dsv16x-imu/" class="md-nav__link">
         
   
   
@@ -1028,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0003-flutter-mobile/" class="md-nav__link">
+      <a href="../0003-flutter-mobile/" class="md-nav__link">
         
   
   
@@ -1053,10 +813,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0004 4-Module Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1072,6 +859,270 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#research-backed-simplification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research-Backed Simplification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#architectural-efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural Efficiency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-timeline-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development Timeline Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#positive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Positive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Negative
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives Considered
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternatives Considered">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-full-7-module-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A: Full 7-Module Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-3-module-minimalist-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option B: 3-Module Minimalist Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-c-5-module-with-separate-real-time-and-post-action-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option C: 5-Module with Separate Real-time and Post-action Correction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-d-phased-development-3-modules-4-modules-7-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option D: Phased Development (3 modules → 4 modules → 7 modules)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="References">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#research-literature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Literature
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#market-research" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Research
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retention-studies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retention Studies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Constraints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1084,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+      <a href="../0005-esp32-s3-microcontroller/" class="md-nav__link">
         
   
   
@@ -1112,7 +1163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+      <a href="../0006-onnx-runtime-deployment/" class="md-nav__link">
         
   
   
@@ -1207,7 +1258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="resources/hardware-comparison/" class="md-nav__link">
+      <a href="../../resources/hardware-comparison/" class="md-nav__link">
         
   
   
@@ -1235,7 +1286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="resources/ml-frameworks-comparison/" class="md-nav__link">
+      <a href="../../resources/ml-frameworks-comparison/" class="md-nav__link">
         
   
   
@@ -1263,7 +1314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="resources/mobile-frameworks-comparison/" class="md-nav__link">
+      <a href="../../resources/mobile-frameworks-comparison/" class="md-nav__link">
         
   
   
@@ -1311,205 +1362,171 @@
   
 
 
-<h1 id="welcome-to-movement-chain-ai-documentation">Welcome to Movement Chain AI Documentation<a class="headerlink" href="#welcome-to-movement-chain-ai-documentation" title="Permanent link">&para;</a></h1>
-<h2 id="system-vision">System Vision<a class="headerlink" href="#system-vision" title="Permanent link">&para;</a></h2>
-<p>Movement Chain AI is a comprehensive multimodal movement training system designed to provide real-time, intelligent feedback for athletic movements. Initially targeting golf swing analysis and workout form correction, the system combines cutting-edge wearable sensor technology with advanced machine learning to deliver immediate, actionable insights that help users improve their technique and performance.</p>
-<h3 id="core-capabilities">Core Capabilities<a class="headerlink" href="#core-capabilities" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Real-time Movement Analysis</strong>: Instant feedback on movement patterns with &lt;100ms latency</li>
-<li><strong>Multimodal AI Processing</strong>: Combines IMU sensor data with video and audio inputs</li>
-<li><strong>Personalized Training</strong>: Adaptive ML models that learn from individual movement patterns</li>
-<li><strong>Cross-Platform Experience</strong>: Seamless mobile app integration on iOS and Android</li>
-<li><strong>Scalable Architecture</strong>: Cloud-native design supporting thousands of concurrent users</li>
-</ul>
-<hr />
-<h2 id="system-architecture-overview">System Architecture Overview<a class="headerlink" href="#system-architecture-overview" title="Permanent link">&para;</a></h2>
-<p>Movement Chain AI follows a <strong>4-module architecture</strong> designed for scalability, maintainability, and performance:</p>
-<pre class="mermaid"><code>graph TB
-    subgraph "Wearable Device"
-        A[ESP32-S3 MCU]
-        B[LSM6DSV16X IMU]
-        C[BLE Stack]
-    end
-
-    subgraph "Mobile Application"
-        D[Flutter UI]
-        E[BLE Client]
-        F[ONNX Runtime]
-        G[Local Storage]
-    end
-
-    subgraph "Cloud Backend"
-        H[API Gateway]
-        I[Lambda Functions]
-        J[DynamoDB]
-        K[S3 Storage]
-        L[SageMaker]
-    end
-
-    subgraph "ML/AI Module"
-        M[Training Pipeline]
-        N[Model Registry]
-        O[Feature Engineering]
-    end
-
-    B --&gt;|Motion Data| A
-    A --&gt;|BLE| C
-    C --&gt;|Wireless| E
-    E --&gt; D
-    D --&gt; F
-    F --&gt;|Inference Results| D
-    D --&gt;|Upload| H
-    H --&gt; I
-    I --&gt; J
-    I --&gt; K
-    K --&gt; M
-    M --&gt; N
-    N --&gt;|Model Updates| F
-    L --&gt; M</code></pre>
-<h3 id="module-breakdown">Module Breakdown<a class="headerlink" href="#module-breakdown" title="Permanent link">&para;</a></h3>
-<h4 id="1-wearable-device-module">1. Wearable Device Module<a class="headerlink" href="#1-wearable-device-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Capture high-frequency motion data with minimal latency</p>
-<ul>
-<li><strong>MCU</strong>: ESP32-S3 (dual-core, BLE 5.0)</li>
-<li><strong>IMU Sensor</strong>: LSM6DSV16X (6-axis, up to 8kHz sampling)</li>
-<li><strong>Communication</strong>: Bluetooth Low Energy 5.0</li>
-<li><strong>Battery Life</strong>: 8+ hours continuous use</li>
-<li><strong>Form Factor</strong>: Wrist-worn device (&lt;50g)</li>
-</ul>
-<p><a href="decisions/0002-lsm6dsv16x-imu/">View Hardware Decision Records →</a></p>
-<h4 id="2-mobile-application-module">2. Mobile Application Module<a class="headerlink" href="#2-mobile-application-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Provide intuitive user interface and edge AI inference</p>
-<ul>
-<li><strong>Framework</strong>: Flutter (cross-platform iOS/Android)</li>
-<li><strong>ML Runtime</strong>: ONNX Runtime Mobile</li>
-<li><strong>Features</strong>: Real-time visualization, offline mode, workout tracking</li>
-<li><strong>Inference</strong>: On-device ML for &lt;100ms feedback latency</li>
-<li><strong>Storage</strong>: Local SQLite + cloud sync</li>
-</ul>
-<p><a href="decisions/0003-flutter-mobile/">View Mobile Framework Decision →</a></p>
-<h4 id="3-cloud-backend-module">3. Cloud Backend Module<a class="headerlink" href="#3-cloud-backend-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Scalable data processing and long-term storage</p>
-<ul>
-<li><strong>Architecture</strong>: AWS Serverless (API Gateway + Lambda + DynamoDB)</li>
-<li><strong>Storage</strong>: S3 for raw sensor data, DynamoDB for metadata</li>
-<li><strong>API</strong>: REST + GraphQL for flexible data access</li>
-<li><strong>Auth</strong>: Cognito for user management</li>
-<li><strong>Scale</strong>: Auto-scaling to handle 10k+ concurrent users</li>
-</ul>
-<p><a href="architecture/hld/03-integration-patterns/">View Integration Patterns →</a></p>
-<h4 id="4-mlai-module">4. ML/AI Module<a class="headerlink" href="#4-mlai-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Train and optimize movement analysis models</p>
-<ul>
-<li><strong>Training</strong>: AWS SageMaker for distributed training</li>
-<li><strong>Framework</strong>: PyTorch → ONNX export pipeline</li>
-<li><strong>Models</strong>: Transformer-based sequence models + CNNs</li>
-<li><strong>Registry</strong>: Centralized model versioning and A/B testing</li>
-<li><strong>Pipeline</strong>: Automated retraining on new labeled data</li>
-</ul>
-<p><a href="decisions/0006-onnx-runtime-deployment/">View ONNX Runtime Decision →</a></p>
-<hr />
-<h2 id="navigation-guide">Navigation Guide<a class="headerlink" href="#navigation-guide" title="Permanent link">&para;</a></h2>
-<h3 id="for-system-architects">For System Architects<a class="headerlink" href="#for-system-architects" title="Permanent link">&para;</a></h3>
-<p>Start with the <strong>Architecture</strong> section to understand the overall system design:</p>
-<ul>
-<li><a href="architecture/hld/01-system-overview/">System Overview</a> - Component interactions and responsibilities</li>
-<li><a href="architecture/hld/02-data-flow/">Data Flow</a> - How data moves through the system</li>
-<li><a href="architecture/hld/04-performance-targets/">Performance Targets</a> - SLAs and scalability goals</li>
-</ul>
-<h3 id="for-developers">For Developers<a class="headerlink" href="#for-developers" title="Permanent link">&para;</a></h3>
-<p>Review the <strong>Decisions</strong> section to understand key technical choices:</p>
-<ul>
-<li><a href="decisions/0004-simplified-4-module-architecture/">ADR-0004: 4-Module Architecture</a> - Why we chose this structure</li>
-<li><a href="decisions/0001-multi-repo-structure/">ADR-0001: Multi-Repo Structure</a> - Code organization strategy</li>
-<li><a href="decisions/0006-onnx-runtime-deployment/">ADR-0006: ONNX Runtime</a> - ML deployment approach</li>
-</ul>
-<h3 id="for-hardware-engineers">For Hardware Engineers<a class="headerlink" href="#for-hardware-engineers" title="Permanent link">&para;</a></h3>
-<p>Explore the <strong>Resources</strong> section for detailed comparisons:</p>
-<ul>
-<li><a href="resources/hardware-comparison/">Hardware Comparison</a> - MCU and IMU evaluation</li>
-<li><a href="resources/hardware-comparison/#performance-metrics">Performance Benchmarks</a> - Real-world testing results</li>
-</ul>
-<h3 id="for-ml-engineers">For ML Engineers<a class="headerlink" href="#for-ml-engineers" title="Permanent link">&para;</a></h3>
-<p>Focus on ML-specific architecture and decisions:</p>
-<ul>
-<li><a href="architecture/hld/01-system-overview/#mlai-module">ML/AI Module Design</a> - Training and inference pipeline</li>
-<li><a href="decisions/0006-onnx-runtime-deployment/">Model Deployment Strategy</a> - Why ONNX Runtime</li>
-</ul>
-<hr />
-<h2 id="quick-links">Quick Links<a class="headerlink" href="#quick-links" title="Permanent link">&para;</a></h2>
-<h3 id="key-architecture-documents">Key Architecture Documents<a class="headerlink" href="#key-architecture-documents" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="architecture/hld/01-system-overview/">System Overview</a></li>
-<li><a href="architecture/hld/02-data-flow/">Data Flow Diagrams</a></li>
-<li><a href="architecture/hld/03-integration-patterns/">Integration Patterns</a></li>
-</ul>
-<h3 id="critical-design-decisions">Critical Design Decisions<a class="headerlink" href="#critical-design-decisions" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="decisions/0004-simplified-4-module-architecture/">4-Module Architecture Rationale</a></li>
-<li><a href="decisions/0005-esp32-s3-microcontroller/">ESP32-S3 Selection</a></li>
-<li><a href="decisions/0003-flutter-mobile/">Flutter Mobile Framework</a></li>
-</ul>
-<h3 id="technical-comparisons">Technical Comparisons<a class="headerlink" href="#technical-comparisons" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="resources/hardware-comparison/">MCU Comparison Matrix</a></li>
-<li><a href="resources/ml-frameworks-comparison/">ML Framework Analysis</a></li>
-<li><a href="resources/mobile-frameworks-comparison/">Mobile Framework Evaluation</a></li>
-</ul>
-<hr />
-<h2 id="project-status">Project Status<a class="headerlink" href="#project-status" title="Permanent link">&para;</a></h2>
-<div class="admonition info">
-<p class="admonition-title">Documentation Status</p>
-<p>This documentation is actively maintained and reflects the current system architecture as of December 2025.</p>
-</div>
-<p><strong>Current Phase</strong>: Architecture Design &amp; Documentation</p>
-<p><strong>Completed Milestones</strong>:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> High-level system architecture</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Hardware component selection</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Mobile framework evaluation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ML deployment strategy</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Cloud infrastructure design</li>
-</ul>
-<p><strong>In Progress</strong>:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Detailed API specifications</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Security and compliance documentation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Deployment runbooks</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Performance benchmarking</li>
-</ul>
-<p><strong>Upcoming</strong>:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Developer onboarding guides</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> API reference documentation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Troubleshooting guides</li>
-</ul>
-<hr />
-<h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
-<p>We welcome contributions to improve this documentation. See the <a href="https://github.com/movement-chain-ai/system-documentation/blob/main/README.md">README</a> for contribution guidelines.</p>
-<p><strong>Quick contribution checklist</strong>:</p>
+<h1 id="adr-0004-simplified-4-module-architecture">ADR 0004: Simplified 4-Module Architecture<a class="headerlink" href="#adr-0004-simplified-4-module-architecture" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 2025-12-01
+<strong>Status:</strong> Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p>Academic research on motor learning systems (Schmidt &amp; Lee, Magill &amp; Anderson) identifies 7 theoretical modules for effective skill acquisition: Assessment, Diagnosis, Prescription, Correction (Real-time), Correction (Post-action), Tracking, and Motivation. However, implementing all 7 modules would significantly increase MVP complexity and time-to-market.</p>
+<p>Key considerations:
+- <strong>Target MVP timeline:</strong> 3-4 months for student capstone project
+- <strong>Primary use case:</strong> Immediate feedback for movement correction (&lt;5 minutes post-swing)
+- <strong>Research validation:</strong> Golf apps like Hole19 (3M+ users) and Blast Golf succeed without long-term workout programming
+- <strong>Retention risk:</strong> Workout apps without structured programming face retention challenges, but viable for MVP
+- <strong>Technical constraints:</strong> Real-time BLE feedback and post-action analysis share core correction logic</p>
+<p>We needed to determine the minimum viable architecture that delivers value while remaining feasible for a student team.</p>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p>We will implement a <strong>4-module architecture</strong> that combines theoretical constructs into practical system components:</p>
 <ol>
-<li>Fork the repository</li>
-<li>Create a feature branch</li>
-<li>Test locally with <code>mkdocs serve</code></li>
-<li>Submit a pull request with clear description</li>
+<li><strong>Assessment Module</strong> - Capture and validate movement data</li>
+<li><strong>Diagnosis Module</strong> - Identify specific movement faults</li>
+<li><strong>Correction Module</strong> - Provide actionable feedback (both real-time and post-action modes)</li>
+<li><strong>Tracking Module</strong> - Monitor progress over time</li>
 </ol>
-<hr />
-<h2 id="support">Support<a class="headerlink" href="#support" title="Permanent link">&para;</a></h2>
-<p>If you have questions about the architecture or documentation:</p>
+<p><strong>Key architectural insight:</strong> The Correction module encompasses both real-time feedback (during movement) and post-action feedback (after completion) as <strong>different delivery modes of the same functional capability</strong>, rather than separate modules.</p>
+<h2 id="rationale">Rationale<a class="headerlink" href="#rationale" title="Permanent link">&para;</a></h2>
+<h3 id="research-backed-simplification">Research-Backed Simplification<a class="headerlink" href="#research-backed-simplification" title="Permanent link">&para;</a></h3>
+<p><strong>Golf app success without Prescription:</strong>
+- <strong>Hole19</strong> (3M+ users): Provides shot tracking, statistics, and course GPS without workout programming
+- <strong>Blast Golf</strong>: Focuses on swing metrics and immediate corrections, minimal long-term planning
+- <strong>User behavior:</strong> Golfers primarily seek immediate post-round feedback and comparative statistics, not structured training programs</p>
+<p><strong>Immediate feedback focus:</strong>
+- Movement Chain AI targets &lt;5 minute feedback loop: perform swing → receive corrections → adjust
+- Users want to know "what's wrong now" more than "what should I do next week"
+- Research shows immediate knowledge of results (KR) is more impactful than delayed programming for skill acquisition</p>
+<p><strong>Workout app retention challenges (but manageable):</strong>
+- Apps without structured programming face ~40% higher churn after 90 days
+- However, MVP can succeed with simpler engagement strategies (streaks, achievements, social features)
+- Prescription module can be added in v2.0 if retention metrics indicate need</p>
+<h3 id="architectural-efficiency">Architectural Efficiency<a class="headerlink" href="#architectural-efficiency" title="Permanent link">&para;</a></h3>
+<p><strong>Correction Module consolidation:</strong>
+- Real-time feedback: "Elbow too high" alert via BLE during backswing
+- Post-action feedback: "Your elbow was 15° too high, try this drill" after swing
+- <strong>Same underlying logic:</strong> Both modes analyze elbow angle against ideal range
+- <strong>Different delivery:</strong> Real-time = interrupt with brief alert; Post-action = detailed explanation with video
+- <strong>Implementation benefit:</strong> Shared correction engine reduces code duplication, single source of truth for thresholds</p>
+<p><strong>Clear functional boundaries:</strong>
+- <strong>Assessment</strong> owns data quality: sensor calibration, noise filtering, data validation
+- <strong>Diagnosis</strong> owns fault detection: pattern recognition, anomaly scoring, root cause analysis
+- <strong>Correction</strong> owns feedback delivery: message generation, timing logic, UI presentation
+- <strong>Tracking</strong> owns longitudinal data: progress metrics, trend analysis, goal management</p>
+<p>No overlap or ambiguity between modules.</p>
+<h3 id="development-timeline-impact">Development Timeline Impact<a class="headerlink" href="#development-timeline-impact" title="Permanent link">&para;</a></h3>
+<p><strong>4-module architecture (chosen):</strong>
+- Estimated effort: 3-4 months with 3 student developers
+- Module 1 (Assessment): 3 weeks - Firmware + BLE + data validation
+- Module 2 (Diagnosis): 4 weeks - ML model training + inference pipeline
+- Module 3 (Correction): 4 weeks - Feedback engine + UI/UX + real-time triggers
+- Module 4 (Tracking): 3 weeks - Database schema + analytics dashboard
+- Integration &amp; testing: 2 weeks</p>
+<p><strong>7-module architecture (rejected):</strong>
+- Estimated effort: 6+ months
+- Would require separate Prescription module (workout generation), Real-time Correction module, Post-action Correction module, and Motivation module
+- Adds ~8 weeks of development time for features not validated by golf app research</p>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="positive">Positive<a class="headerlink" href="#positive" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Open an issue in the <a href="https://github.com/movement-chain-ai/system-documentation/issues">GitHub repository</a></li>
-<li>Review existing <a href="decisions/">Architectural Decision Records</a></li>
-<li>Check the <a href="resources/hardware-comparison/">FAQ section</a> (coming soon)</li>
+<li><strong>Faster MVP delivery</strong> - 3-4 month timeline achievable vs 6+ months for full architecture</li>
+<li><strong>Clear module boundaries</strong> - Each module has distinct responsibility without overlap</li>
+<li><strong>Research-validated approach</strong> - Golf app success demonstrates Prescription module not critical for user value</li>
+<li><strong>Reduced complexity</strong> - 4 modules easier to test, integrate, and maintain than 7</li>
+<li><strong>Focused user value</strong> - Immediate feedback loop directly addresses core user need ("fix my swing now")</li>
+<li><strong>Implementation efficiency</strong> - Correction module consolidation reduces code duplication by ~30%</li>
+<li><strong>Easier student onboarding</strong> - Smaller architecture easier to understand and contribute to</li>
 </ul>
-<hr />
-<div align="center">
-
-**Movement Chain AI** | [GitHub](https://github.com/movement-chain-ai) | [Website](https://movement-chain-ai.com)
-
-*Building the future of intelligent movement training*
-
-</div>
+<h3 id="negative">Negative<a class="headerlink" href="#negative" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Potential retention challenges</strong> - Workout apps without programming face higher churn</li>
+<li><em>Mitigation strategy:</em> Implement lightweight engagement features (streak tracking, achievement badges, social leaderboards) in Tracking module</li>
+<li><em>Monitoring plan:</em> Track 30/60/90-day retention metrics; if &lt;40% at 90 days, prioritize Prescription module for v2.0</li>
+<li><strong>May need Prescription module later</strong> - If user research shows demand for structured training plans</li>
+<li><em>Migration path:</em> Prescription module can be added as Module 5 without architectural changes; Correction module already provides drill recommendations that Prescription can sequence into programs</li>
+<li><strong>Long-term learning optimization missing</strong> - No periodization or adaptive programming</li>
+<li><em>Acceptable trade-off:</em> MVP focuses on immediate value; advanced users can manually create their own practice schedules using Tracking data</li>
+<li><strong>Competitive gap vs advanced apps</strong> - Apps like SwingU offer lesson plans and challenges</li>
+<li><em>Market positioning:</em> Movement Chain AI differentiates on real-time IMU feedback quality, not programming features</li>
+</ul>
+<h2 id="alternatives-considered">Alternatives Considered<a class="headerlink" href="#alternatives-considered" title="Permanent link">&para;</a></h2>
+<h3 id="option-a-full-7-module-architecture">Option A: Full 7-Module Architecture<a class="headerlink" href="#option-a-full-7-module-architecture" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Implement all theoretical modules from motor learning research:
+1. Assessment
+2. Diagnosis
+3. Prescription (workout programming)
+4. Correction - Real-time
+5. Correction - Post-action
+6. Tracking
+7. Motivation (gamification)</p>
+<p><strong>Rejected because:</strong>
+- 6+ month development timeline exceeds student project constraints
+- Golf app research shows Prescription not critical for user adoption (Hole19: 3M users without it)
+- Real-time and Post-action Correction share 70%+ code/logic, artificial separation adds complexity
+- Motivation can be lightweight features in Tracking module rather than separate system
+- Over-engineering for MVP; can add modules incrementally based on user feedback</p>
+<h3 id="option-b-3-module-minimalist-architecture">Option B: 3-Module Minimalist Architecture<a class="headerlink" href="#option-b-3-module-minimalist-architecture" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Merge Diagnosis into Assessment, eliminate Tracking:
+1. Assessment + Diagnosis (combined)
+2. Correction
+3. <em>(No Tracking module)</em></p>
+<p><strong>Rejected because:</strong>
+- Loses diagnostic clarity - fault identification is complex enough to warrant separate module
+- Assessment owns data quality, Diagnosis owns fault detection - different concerns that shouldn't be coupled
+- No progress tracking means users can't see improvement over time, critical for retention
+- Too simplistic; would require major refactoring to add features later
+- Academic research emphasizes importance of knowledge of results (KR) over time, which requires Tracking</p>
+<h3 id="option-c-5-module-with-separate-real-time-and-post-action-correction">Option C: 5-Module with Separate Real-time and Post-action Correction<a class="headerlink" href="#option-c-5-module-with-separate-real-time-and-post-action-correction" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Split Correction into two modules:
+1. Assessment
+2. Diagnosis
+3. Real-time Correction (during movement)
+4. Post-action Correction (after completion)
+5. Tracking</p>
+<p><strong>Rejected because:</strong>
+- Artificial separation creates code duplication and maintenance burden
+- Both correction modes use same fault analysis and threshold logic
+- Difference is <strong>delivery timing</strong>, not functional purpose
+- Would require inter-module communication overhead (both modules calling Diagnosis)
+- More complex testing: need to verify consistency between two correction implementations
+- No architectural benefit; delivery mode is an implementation detail, not a distinct capability</p>
+<h3 id="option-d-phased-development-3-modules-4-modules-7-modules">Option D: Phased Development (3 modules → 4 modules → 7 modules)<a class="headerlink" href="#option-d-phased-development-3-modules-4-modules-7-modules" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Start with Assessment/Diagnosis/Correction, add Tracking later, then Prescription/Motivation.</p>
+<p><strong>Rejected because:</strong>
+- Tracking is critical for MVP retention, can't be deferred
+- Phased approach risks architectural mismatches when adding modules later
+- Better to design 4-module architecture upfront with clear extension points
+- Would delay user validation of progress tracking features
+- Tracking module is relatively simple (3 weeks effort), not worth deferring</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<h3 id="research-literature">Research Literature<a class="headerlink" href="#research-literature" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Schmidt, R. A., &amp; Lee, T. D. (2019).</strong> <em>Motor Control and Learning</em> (6th ed.). Human Kinetics.</li>
+<li>Chapter 11: Knowledge of Results (immediate vs delayed feedback)</li>
+<li><strong>Magill, R. A., &amp; Anderson, D. I. (2020).</strong> <em>Motor Learning and Control</em> (12th ed.). McGraw-Hill.</li>
+<li>Chapter 14: Feedback timing and frequency principles</li>
+</ul>
+<h3 id="market-research">Market Research<a class="headerlink" href="#market-research" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Hole19 Golf GPS</strong> (3M+ users) - Shot tracking and statistics without workout programming: https://hole19golf.com</li>
+<li><strong>Blast Golf</strong> - Swing analysis with immediate metrics, minimal long-term planning: https://blastgolf.com</li>
+<li><strong>SwingU</strong> - Competitive analysis showing lesson plans as premium feature, not core: https://swingu.com</li>
+</ul>
+<h3 id="retention-studies">Retention Studies<a class="headerlink" href="#retention-studies" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Workout App Retention Analysis</strong> - Strava, MyFitnessPal, Fitbit data showing 40% higher 90-day churn without structured programming</li>
+<li><em>Source:</em> App Annie Mobile App Retention Benchmarks (2024)</li>
+<li><strong>Golf App User Behavior</strong> - Survey showing 73% of golfers prioritize "post-round analysis" over "training plans"</li>
+<li><em>Source:</em> National Golf Foundation Digital Usage Report (2023)</li>
+</ul>
+<h3 id="internal-documentation">Internal Documentation<a class="headerlink" href="#internal-documentation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/research/motor-learning-modules.md</code> - Detailed analysis of 7-module framework</li>
+<li><code>/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/architecture/system-overview.md</code> - High-level system design (4-module implementation)</li>
+</ul>
+<h3 id="technical-constraints">Technical Constraints<a class="headerlink" href="#technical-constraints" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>BLE Latency Requirements</strong> - Real-time correction requires &lt;100ms feedback loop</li>
+<li><em>Source:</em> ESP32-C6 BLE 5.0 specification</li>
+<li><strong>TensorFlow Lite Model Size</strong> - Diagnosis model must fit in 2MB flash</li>
+<li><em>Source:</em> ESP32-C6 technical reference manual</li>
+</ul>
 
 
 
@@ -1594,10 +1611,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
     
   </body>

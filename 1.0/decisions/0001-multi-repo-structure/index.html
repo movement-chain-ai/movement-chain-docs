@@ -12,29 +12,31 @@
         <meta name="author" content="Movement Chain AI Team">
       
       
-        <link rel="canonical" href="https://movement-chain-ai.github.io/system-documentation/1.0/">
+        <link rel="canonical" href="https://movement-chain-ai.github.io/system-documentation/1.0/decisions/0001-multi-repo-structure/">
       
       
+        <link rel="prev" href="../">
       
-        <link rel="next" href="architecture/hld/01-system-overview/">
+      
+        <link rel="next" href="../0002-lsm6dsv16x-imu/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>Movement Chain AI Documentation</title>
+        <title>ADR-0001 Multi-Repo Structure - Movement Chain AI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-movement-chain-ai-documentation" class="md-skip">
+        <a href="#adr-0001-multi-repository-structure" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +98,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              ADR-0001 Multi-Repo Structure
             
           </span>
         </div>
@@ -227,11 +229,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -259,7 +259,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="architecture/hld/01-system-overview/" class="md-tabs__link">
+        <a href="../../architecture/hld/01-system-overview/" class="md-tabs__link">
           
   
   
@@ -280,11 +280,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="decisions/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -306,7 +308,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="resources/hardware-comparison/" class="md-tabs__link">
+        <a href="../../resources/hardware-comparison/" class="md-tabs__link">
           
   
   
@@ -344,7 +346,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -371,37 +373,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Home
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -417,226 +392,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#system-vision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Vision
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System Vision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#core-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Capabilities
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#system-architecture-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Architecture Overview
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System Architecture Overview">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#module-breakdown" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Module Breakdown
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#navigation-guide" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Navigation Guide
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Navigation Guide">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-system-architects" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For System Architects
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-developers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Developers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-hardware-engineers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Hardware Engineers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-ml-engineers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For ML Engineers
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick Links
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick Links">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#key-architecture-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Architecture Documents
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#critical-design-decisions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Critical Design Decisions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#technical-comparisons" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Technical Comparisons
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Project Status
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contributing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#support" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Support
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -766,7 +521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/01-system-overview/" class="md-nav__link">
+      <a href="../../architecture/hld/01-system-overview/" class="md-nav__link">
         
   
   
@@ -794,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/02-data-flow/" class="md-nav__link">
+      <a href="../../architecture/hld/02-data-flow/" class="md-nav__link">
         
   
   
@@ -822,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/03-integration-patterns/" class="md-nav__link">
+      <a href="../../architecture/hld/03-integration-patterns/" class="md-nav__link">
         
   
   
@@ -850,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/04-performance-targets/" class="md-nav__link">
+      <a href="../../architecture/hld/04-performance-targets/" class="md-nav__link">
         
   
   
@@ -890,6 +645,8 @@
       
   
   
+    
+  
   
   
     
@@ -915,20 +672,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="decisions/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -946,13 +706,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -969,10 +729,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="decisions/0001-multi-repo-structure/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0001 Multi-Repo Structure
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -988,6 +775,209 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#independent-build-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Independent Build Systems
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#independent-release-cycles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Independent Release Cycles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team-collaboration-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Team Collaboration Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cicd-simplicity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD Simplicity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#positive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Positive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Negative
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives Considered
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternatives Considered">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-monorepo-with-workspaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A: Monorepo with Workspaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-single-repository-with-submodules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option B: Single Repository with Submodules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-c-microrepo-per-feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option C: Microrepo per Feature
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1000,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+      <a href="../0002-lsm6dsv16x-imu/" class="md-nav__link">
         
   
   
@@ -1028,7 +1018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0003-flutter-mobile/" class="md-nav__link">
+      <a href="../0003-flutter-mobile/" class="md-nav__link">
         
   
   
@@ -1056,7 +1046,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+      <a href="../0004-simplified-4-module-architecture/" class="md-nav__link">
         
   
   
@@ -1084,7 +1074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+      <a href="../0005-esp32-s3-microcontroller/" class="md-nav__link">
         
   
   
@@ -1112,7 +1102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+      <a href="../0006-onnx-runtime-deployment/" class="md-nav__link">
         
   
   
@@ -1207,7 +1197,7 @@
   
   
     <li class="md-nav__item">
-      <a href="resources/hardware-comparison/" class="md-nav__link">
+      <a href="../../resources/hardware-comparison/" class="md-nav__link">
         
   
   
@@ -1235,7 +1225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="resources/ml-frameworks-comparison/" class="md-nav__link">
+      <a href="../../resources/ml-frameworks-comparison/" class="md-nav__link">
         
   
   
@@ -1263,7 +1253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="resources/mobile-frameworks-comparison/" class="md-nav__link">
+      <a href="../../resources/mobile-frameworks-comparison/" class="md-nav__link">
         
   
   
@@ -1311,205 +1301,109 @@
   
 
 
-<h1 id="welcome-to-movement-chain-ai-documentation">Welcome to Movement Chain AI Documentation<a class="headerlink" href="#welcome-to-movement-chain-ai-documentation" title="Permanent link">&para;</a></h1>
-<h2 id="system-vision">System Vision<a class="headerlink" href="#system-vision" title="Permanent link">&para;</a></h2>
-<p>Movement Chain AI is a comprehensive multimodal movement training system designed to provide real-time, intelligent feedback for athletic movements. Initially targeting golf swing analysis and workout form correction, the system combines cutting-edge wearable sensor technology with advanced machine learning to deliver immediate, actionable insights that help users improve their technique and performance.</p>
-<h3 id="core-capabilities">Core Capabilities<a class="headerlink" href="#core-capabilities" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Real-time Movement Analysis</strong>: Instant feedback on movement patterns with &lt;100ms latency</li>
-<li><strong>Multimodal AI Processing</strong>: Combines IMU sensor data with video and audio inputs</li>
-<li><strong>Personalized Training</strong>: Adaptive ML models that learn from individual movement patterns</li>
-<li><strong>Cross-Platform Experience</strong>: Seamless mobile app integration on iOS and Android</li>
-<li><strong>Scalable Architecture</strong>: Cloud-native design supporting thousands of concurrent users</li>
-</ul>
-<hr />
-<h2 id="system-architecture-overview">System Architecture Overview<a class="headerlink" href="#system-architecture-overview" title="Permanent link">&para;</a></h2>
-<p>Movement Chain AI follows a <strong>4-module architecture</strong> designed for scalability, maintainability, and performance:</p>
-<pre class="mermaid"><code>graph TB
-    subgraph "Wearable Device"
-        A[ESP32-S3 MCU]
-        B[LSM6DSV16X IMU]
-        C[BLE Stack]
-    end
-
-    subgraph "Mobile Application"
-        D[Flutter UI]
-        E[BLE Client]
-        F[ONNX Runtime]
-        G[Local Storage]
-    end
-
-    subgraph "Cloud Backend"
-        H[API Gateway]
-        I[Lambda Functions]
-        J[DynamoDB]
-        K[S3 Storage]
-        L[SageMaker]
-    end
-
-    subgraph "ML/AI Module"
-        M[Training Pipeline]
-        N[Model Registry]
-        O[Feature Engineering]
-    end
-
-    B --&gt;|Motion Data| A
-    A --&gt;|BLE| C
-    C --&gt;|Wireless| E
-    E --&gt; D
-    D --&gt; F
-    F --&gt;|Inference Results| D
-    D --&gt;|Upload| H
-    H --&gt; I
-    I --&gt; J
-    I --&gt; K
-    K --&gt; M
-    M --&gt; N
-    N --&gt;|Model Updates| F
-    L --&gt; M</code></pre>
-<h3 id="module-breakdown">Module Breakdown<a class="headerlink" href="#module-breakdown" title="Permanent link">&para;</a></h3>
-<h4 id="1-wearable-device-module">1. Wearable Device Module<a class="headerlink" href="#1-wearable-device-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Capture high-frequency motion data with minimal latency</p>
-<ul>
-<li><strong>MCU</strong>: ESP32-S3 (dual-core, BLE 5.0)</li>
-<li><strong>IMU Sensor</strong>: LSM6DSV16X (6-axis, up to 8kHz sampling)</li>
-<li><strong>Communication</strong>: Bluetooth Low Energy 5.0</li>
-<li><strong>Battery Life</strong>: 8+ hours continuous use</li>
-<li><strong>Form Factor</strong>: Wrist-worn device (&lt;50g)</li>
-</ul>
-<p><a href="decisions/0002-lsm6dsv16x-imu/">View Hardware Decision Records →</a></p>
-<h4 id="2-mobile-application-module">2. Mobile Application Module<a class="headerlink" href="#2-mobile-application-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Provide intuitive user interface and edge AI inference</p>
-<ul>
-<li><strong>Framework</strong>: Flutter (cross-platform iOS/Android)</li>
-<li><strong>ML Runtime</strong>: ONNX Runtime Mobile</li>
-<li><strong>Features</strong>: Real-time visualization, offline mode, workout tracking</li>
-<li><strong>Inference</strong>: On-device ML for &lt;100ms feedback latency</li>
-<li><strong>Storage</strong>: Local SQLite + cloud sync</li>
-</ul>
-<p><a href="decisions/0003-flutter-mobile/">View Mobile Framework Decision →</a></p>
-<h4 id="3-cloud-backend-module">3. Cloud Backend Module<a class="headerlink" href="#3-cloud-backend-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Scalable data processing and long-term storage</p>
-<ul>
-<li><strong>Architecture</strong>: AWS Serverless (API Gateway + Lambda + DynamoDB)</li>
-<li><strong>Storage</strong>: S3 for raw sensor data, DynamoDB for metadata</li>
-<li><strong>API</strong>: REST + GraphQL for flexible data access</li>
-<li><strong>Auth</strong>: Cognito for user management</li>
-<li><strong>Scale</strong>: Auto-scaling to handle 10k+ concurrent users</li>
-</ul>
-<p><a href="architecture/hld/03-integration-patterns/">View Integration Patterns →</a></p>
-<h4 id="4-mlai-module">4. ML/AI Module<a class="headerlink" href="#4-mlai-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Train and optimize movement analysis models</p>
-<ul>
-<li><strong>Training</strong>: AWS SageMaker for distributed training</li>
-<li><strong>Framework</strong>: PyTorch → ONNX export pipeline</li>
-<li><strong>Models</strong>: Transformer-based sequence models + CNNs</li>
-<li><strong>Registry</strong>: Centralized model versioning and A/B testing</li>
-<li><strong>Pipeline</strong>: Automated retraining on new labeled data</li>
-</ul>
-<p><a href="decisions/0006-onnx-runtime-deployment/">View ONNX Runtime Decision →</a></p>
-<hr />
-<h2 id="navigation-guide">Navigation Guide<a class="headerlink" href="#navigation-guide" title="Permanent link">&para;</a></h2>
-<h3 id="for-system-architects">For System Architects<a class="headerlink" href="#for-system-architects" title="Permanent link">&para;</a></h3>
-<p>Start with the <strong>Architecture</strong> section to understand the overall system design:</p>
-<ul>
-<li><a href="architecture/hld/01-system-overview/">System Overview</a> - Component interactions and responsibilities</li>
-<li><a href="architecture/hld/02-data-flow/">Data Flow</a> - How data moves through the system</li>
-<li><a href="architecture/hld/04-performance-targets/">Performance Targets</a> - SLAs and scalability goals</li>
-</ul>
-<h3 id="for-developers">For Developers<a class="headerlink" href="#for-developers" title="Permanent link">&para;</a></h3>
-<p>Review the <strong>Decisions</strong> section to understand key technical choices:</p>
-<ul>
-<li><a href="decisions/0004-simplified-4-module-architecture/">ADR-0004: 4-Module Architecture</a> - Why we chose this structure</li>
-<li><a href="decisions/0001-multi-repo-structure/">ADR-0001: Multi-Repo Structure</a> - Code organization strategy</li>
-<li><a href="decisions/0006-onnx-runtime-deployment/">ADR-0006: ONNX Runtime</a> - ML deployment approach</li>
-</ul>
-<h3 id="for-hardware-engineers">For Hardware Engineers<a class="headerlink" href="#for-hardware-engineers" title="Permanent link">&para;</a></h3>
-<p>Explore the <strong>Resources</strong> section for detailed comparisons:</p>
-<ul>
-<li><a href="resources/hardware-comparison/">Hardware Comparison</a> - MCU and IMU evaluation</li>
-<li><a href="resources/hardware-comparison/#performance-metrics">Performance Benchmarks</a> - Real-world testing results</li>
-</ul>
-<h3 id="for-ml-engineers">For ML Engineers<a class="headerlink" href="#for-ml-engineers" title="Permanent link">&para;</a></h3>
-<p>Focus on ML-specific architecture and decisions:</p>
-<ul>
-<li><a href="architecture/hld/01-system-overview/#mlai-module">ML/AI Module Design</a> - Training and inference pipeline</li>
-<li><a href="decisions/0006-onnx-runtime-deployment/">Model Deployment Strategy</a> - Why ONNX Runtime</li>
-</ul>
-<hr />
-<h2 id="quick-links">Quick Links<a class="headerlink" href="#quick-links" title="Permanent link">&para;</a></h2>
-<h3 id="key-architecture-documents">Key Architecture Documents<a class="headerlink" href="#key-architecture-documents" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="architecture/hld/01-system-overview/">System Overview</a></li>
-<li><a href="architecture/hld/02-data-flow/">Data Flow Diagrams</a></li>
-<li><a href="architecture/hld/03-integration-patterns/">Integration Patterns</a></li>
-</ul>
-<h3 id="critical-design-decisions">Critical Design Decisions<a class="headerlink" href="#critical-design-decisions" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="decisions/0004-simplified-4-module-architecture/">4-Module Architecture Rationale</a></li>
-<li><a href="decisions/0005-esp32-s3-microcontroller/">ESP32-S3 Selection</a></li>
-<li><a href="decisions/0003-flutter-mobile/">Flutter Mobile Framework</a></li>
-</ul>
-<h3 id="technical-comparisons">Technical Comparisons<a class="headerlink" href="#technical-comparisons" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="resources/hardware-comparison/">MCU Comparison Matrix</a></li>
-<li><a href="resources/ml-frameworks-comparison/">ML Framework Analysis</a></li>
-<li><a href="resources/mobile-frameworks-comparison/">Mobile Framework Evaluation</a></li>
-</ul>
-<hr />
-<h2 id="project-status">Project Status<a class="headerlink" href="#project-status" title="Permanent link">&para;</a></h2>
-<div class="admonition info">
-<p class="admonition-title">Documentation Status</p>
-<p>This documentation is actively maintained and reflects the current system architecture as of December 2025.</p>
-</div>
-<p><strong>Current Phase</strong>: Architecture Design &amp; Documentation</p>
-<p><strong>Completed Milestones</strong>:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> High-level system architecture</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Hardware component selection</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Mobile framework evaluation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ML deployment strategy</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Cloud infrastructure design</li>
-</ul>
-<p><strong>In Progress</strong>:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Detailed API specifications</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Security and compliance documentation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Deployment runbooks</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Performance benchmarking</li>
-</ul>
-<p><strong>Upcoming</strong>:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Developer onboarding guides</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> API reference documentation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Troubleshooting guides</li>
-</ul>
-<hr />
-<h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
-<p>We welcome contributions to improve this documentation. See the <a href="https://github.com/movement-chain-ai/system-documentation/blob/main/README.md">README</a> for contribution guidelines.</p>
-<p><strong>Quick contribution checklist</strong>:</p>
+<h1 id="adr-0001-multi-repository-structure">ADR 0001: Multi-Repository Structure<a class="headerlink" href="#adr-0001-multi-repository-structure" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 2025-12-01
+<strong>Status:</strong> Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p>The Movement Chain AI system comprises multiple distinct technical domains: embedded firmware for ESP32-C6 devices, Python-based machine learning models, Flutter mobile applications, hardware design files, and documentation. We needed to decide between a monorepo approach (single repository with multiple workspaces) versus a multi-repo approach (separate repositories for each major component).</p>
+<p>Key factors influencing this decision:
+- Different build systems and toolchains (PlatformIO for firmware, Python/Poetry for ML, Flutter for mobile)
+- Distinct release cycles (firmware may update independently of mobile app)
+- Student team collaboration with varying expertise areas
+- CI/CD complexity for heterogeneous codebases
+- Dependency management across different ecosystems</p>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p>We will adopt a <strong>multi-repository structure</strong> with the following repositories:</p>
 <ol>
-<li>Fork the repository</li>
-<li>Create a feature branch</li>
-<li>Test locally with <code>mkdocs serve</code></li>
-<li>Submit a pull request with clear description</li>
+<li><code>movement-chain-firmware</code> - ESP32-C6 embedded firmware (PlatformIO/C++)</li>
+<li><code>movement-chain-ml</code> - Machine learning models and training pipelines (Python)</li>
+<li><code>movement-chain-mobile</code> - Flutter mobile application (Dart/Flutter)</li>
+<li><code>movement-chain-hardware</code> - Hardware schematics, PCB designs, BOM (KiCad)</li>
+<li><code>movement-chain-ai-docs</code> - Architecture documentation, ADRs, research notes</li>
 </ol>
-<hr />
-<h2 id="support">Support<a class="headerlink" href="#support" title="Permanent link">&para;</a></h2>
-<p>If you have questions about the architecture or documentation:</p>
+<h2 id="rationale">Rationale<a class="headerlink" href="#rationale" title="Permanent link">&para;</a></h2>
+<h3 id="independent-build-systems">Independent Build Systems<a class="headerlink" href="#independent-build-systems" title="Permanent link">&para;</a></h3>
+<p>Each component requires fundamentally different build tooling:
+- Firmware: PlatformIO with ESP-IDF dependencies
+- ML: Python 3.10+, TensorFlow Lite, scikit-learn
+- Mobile: Flutter SDK, Dart packages
+- Hardware: KiCad, manufacturing files</p>
+<p>Unifying these in a monorepo would require complex workspace configuration and create confusion about which tools to use in which directory.</p>
+<h3 id="independent-release-cycles">Independent Release Cycles<a class="headerlink" href="#independent-release-cycles" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Open an issue in the <a href="https://github.com/movement-chain-ai/system-documentation/issues">GitHub repository</a></li>
-<li>Review existing <a href="decisions/">Architectural Decision Records</a></li>
-<li>Check the <a href="resources/hardware-comparison/">FAQ section</a> (coming soon)</li>
+<li>Firmware updates can be deployed via OTA without mobile app changes</li>
+<li>ML model updates may require firmware changes but not mobile UI updates</li>
+<li>Mobile app releases follow app store approval cycles independent of firmware</li>
+<li>Hardware revisions have long lead times unrelated to software cycles</li>
 </ul>
-<hr />
-<div align="center">
-
-**Movement Chain AI** | [GitHub](https://github.com/movement-chain-ai) | [Website](https://movement-chain-ai.com)
-
-*Building the future of intelligent movement training*
-
-</div>
+<h3 id="team-collaboration-benefits">Team Collaboration Benefits<a class="headerlink" href="#team-collaboration-benefits" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Students can focus on their domain without navigating unrelated code</li>
+<li>Repository permissions can be scoped to expertise areas</li>
+<li>Smaller repository sizes reduce clone time and cognitive overhead</li>
+<li>Clear ownership boundaries for each subsystem</li>
+</ul>
+<h3 id="cicd-simplicity">CI/CD Simplicity<a class="headerlink" href="#cicd-simplicity" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Each repository has a focused CI pipeline (e.g., PlatformIO tests vs Flutter tests)</li>
+<li>Deployment artifacts are scoped to single domains</li>
+<li>Build failures don't block unrelated components</li>
+<li>GitHub Actions workflows remain simple and maintainable</li>
+</ul>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="positive">Positive<a class="headerlink" href="#positive" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Clear separation of concerns</strong> - Each repository has a single, well-defined purpose</li>
+<li><strong>Independent versioning</strong> - Semantic versioning can be applied per component (firmware v1.2.0, mobile v2.0.1)</li>
+<li><strong>Faster CI/CD</strong> - Pipeline runs only test relevant changes, not entire codebase</li>
+<li><strong>Easier onboarding</strong> - New contributors clone only the repository they need</li>
+<li><strong>Tooling independence</strong> - Each repo uses best-in-class tools for its domain without compromise</li>
+<li><strong>Parallel development</strong> - Teams can work on different components without Git conflicts</li>
+</ul>
+<h3 id="negative">Negative<a class="headerlink" href="#negative" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Cross-repository coordination overhead</strong> - Breaking changes in firmware API require coordinated updates in mobile repo</li>
+<li><em>Mitigation:</em> Maintain API compatibility contracts, use feature flags for gradual rollouts</li>
+<li><strong>Dependency version mismatches</strong> - ML model format changes require firmware and mobile updates</li>
+<li><em>Mitigation:</em> Version all data formats (TFLite models, BLE message schemas), maintain backward compatibility</li>
+<li><strong>More repositories to manage</strong> - 5 repositories vs 1 increases administrative overhead</li>
+<li><em>Mitigation:</em> Use consistent repository templates, shared GitHub Actions workflows, unified documentation in <code>movement-chain-ai-docs</code></li>
+<li><strong>Code duplication risk</strong> - Shared utilities (e.g., data parsing) might be duplicated</li>
+<li><em>Mitigation:</em> Create shared libraries where necessary (e.g., <code>movement-chain-protocol</code> for BLE message definitions)</li>
+</ul>
+<h2 id="alternatives-considered">Alternatives Considered<a class="headerlink" href="#alternatives-considered" title="Permanent link">&para;</a></h2>
+<h3 id="option-a-monorepo-with-workspaces">Option A: Monorepo with Workspaces<a class="headerlink" href="#option-a-monorepo-with-workspaces" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Single repository with top-level directories (<code>firmware/</code>, <code>ml/</code>, <code>mobile/</code>, etc.) managed by a monorepo tool like Nx or Turborepo.</p>
+<p><strong>Rejected because:</strong>
+- Adds complexity layer (monorepo tooling) on top of already complex build systems
+- PlatformIO, Flutter, and Python have different workspace expectations
+- CI/CD would run all checks on every commit, slowing down development
+- Repository size would grow rapidly with hardware binaries and ML datasets
+- Student contributors would need to learn monorepo tooling in addition to domain tools</p>
+<h3 id="option-b-single-repository-with-submodules">Option B: Single Repository with Submodules<a class="headerlink" href="#option-b-single-repository-with-submodules" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Main repository with Git submodules pointing to separate component repositories.</p>
+<p><strong>Rejected because:</strong>
+- Combines worst of both approaches: coordination overhead + submodule complexity
+- Git submodules are notoriously difficult for beginners to manage
+- Requires understanding of both parent and child repository workflows
+- Detached HEAD states and forgotten submodule updates create confusion
+- No significant benefit over direct multi-repo approach</p>
+<h3 id="option-c-microrepo-per-feature">Option C: Microrepo per Feature<a class="headerlink" href="#option-c-microrepo-per-feature" title="Permanent link">&para;</a></h3>
+<p><strong>Description:</strong> Even more granular split (e.g., <code>gyroscope-driver</code>, <code>swing-detection-model</code>, <code>profile-screen-ui</code>).</p>
+<p><strong>Rejected because:</strong>
+- Over-engineering for a student project with 3-4 active contributors
+- Feature dependencies would require constant cross-repo coordination
+- Would create 15+ repositories, overwhelming to navigate
+- Integration testing becomes extremely difficult
+- Only makes sense at large organization scale (100+ developers)</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>PlatformIO Documentation</strong> - https://docs.platformio.org/ (firmware build system)</li>
+<li><strong>Flutter Architecture</strong> - https://docs.flutter.dev/resources/architectural-overview (mobile development)</li>
+<li><strong>TensorFlow Lite for Microcontrollers</strong> - https://www.tensorflow.org/lite/microcontrollers (ML deployment)</li>
+<li><strong>Monorepo vs Multi-repo Analysis</strong> - https://github.com/joelparkerhenderson/monorepo-vs-polyrepo</li>
+<li><strong>Student Project Best Practices</strong> - IEEE Software Engineering Education (2024)</li>
+</ul>
 
 
 
@@ -1594,10 +1488,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
     
   </body>

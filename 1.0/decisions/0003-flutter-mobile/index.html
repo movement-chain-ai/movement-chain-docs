@@ -12,29 +12,31 @@
         <meta name="author" content="Movement Chain AI Team">
       
       
-        <link rel="canonical" href="https://movement-chain-ai.github.io/system-documentation/1.0/">
+        <link rel="canonical" href="https://movement-chain-ai.github.io/system-documentation/1.0/decisions/0003-flutter-mobile/">
       
       
+        <link rel="prev" href="../0002-lsm6dsv16x-imu/">
       
-        <link rel="next" href="architecture/hld/01-system-overview/">
+      
+        <link rel="next" href="../0004-simplified-4-module-architecture/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>Movement Chain AI Documentation</title>
+        <title>ADR-0003 Flutter Mobile - Movement Chain AI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,7 +55,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-movement-chain-ai-documentation" class="md-skip">
+        <a href="#adr-0003-flutter-for-cross-platform-mobile-development" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +98,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              ADR-0003 Flutter Mobile
             
           </span>
         </div>
@@ -227,11 +229,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -259,7 +259,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="architecture/hld/01-system-overview/" class="md-tabs__link">
+        <a href="../../architecture/hld/01-system-overview/" class="md-tabs__link">
           
   
   
@@ -280,11 +280,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="decisions/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -306,7 +308,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="resources/hardware-comparison/" class="md-tabs__link">
+        <a href="../../resources/hardware-comparison/" class="md-tabs__link">
           
   
   
@@ -344,7 +346,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -371,37 +373,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Home
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -417,226 +392,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#system-vision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Vision
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System Vision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#core-capabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Capabilities
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#system-architecture-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        System Architecture Overview
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="System Architecture Overview">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#module-breakdown" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Module Breakdown
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#navigation-guide" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Navigation Guide
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Navigation Guide">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#for-system-architects" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For System Architects
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-developers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Developers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-hardware-engineers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For Hardware Engineers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#for-ml-engineers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        For ML Engineers
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick Links
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick Links">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#key-architecture-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Architecture Documents
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#critical-design-decisions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Critical Design Decisions
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#technical-comparisons" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Technical Comparisons
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Project Status
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contributing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#support" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Support
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -766,7 +521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/01-system-overview/" class="md-nav__link">
+      <a href="../../architecture/hld/01-system-overview/" class="md-nav__link">
         
   
   
@@ -794,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/02-data-flow/" class="md-nav__link">
+      <a href="../../architecture/hld/02-data-flow/" class="md-nav__link">
         
   
   
@@ -822,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/03-integration-patterns/" class="md-nav__link">
+      <a href="../../architecture/hld/03-integration-patterns/" class="md-nav__link">
         
   
   
@@ -850,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="architecture/hld/04-performance-targets/" class="md-nav__link">
+      <a href="../../architecture/hld/04-performance-targets/" class="md-nav__link">
         
   
   
@@ -890,6 +645,8 @@
       
   
   
+    
+  
   
   
     
@@ -915,20 +672,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="decisions/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -946,13 +706,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -972,7 +732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0001-multi-repo-structure/" class="md-nav__link">
+      <a href="../0001-multi-repo-structure/" class="md-nav__link">
         
   
   
@@ -1000,7 +760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+      <a href="../0002-lsm6dsv16x-imu/" class="md-nav__link">
         
   
   
@@ -1025,10 +785,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="decisions/0003-flutter-mobile/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0003 Flutter Mobile
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1044,6 +831,342 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rationale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-benchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Benchmarks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ecosystem-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ecosystem Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-benefit-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost-Benefit Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-advantages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Advantages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#positive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Positive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Negative
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mitigation-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitigation Strategies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives Considered
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternatives Considered">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#react-native" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        React Native
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-development-swift-kotlin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Native Development (Swift + Kotlin)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ioniccapacitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ionic/Capacitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progressive-web-app-pwa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progressive Web App (PWA)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validated-packagescomponents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validated Packages/Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Validated Packages/Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-ml-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core ML Infrastructure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera-sensor-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Camera &amp; Sensor Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bluetooth-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bluetooth Communication
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Guidelines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#native-escape-hatches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Native Escape Hatches
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review-schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review Schedule
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1056,7 +1179,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+      <a href="../0004-simplified-4-module-architecture/" class="md-nav__link">
         
   
   
@@ -1084,7 +1207,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+      <a href="../0005-esp32-s3-microcontroller/" class="md-nav__link">
         
   
   
@@ -1112,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+      <a href="../0006-onnx-runtime-deployment/" class="md-nav__link">
         
   
   
@@ -1207,7 +1330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="resources/hardware-comparison/" class="md-nav__link">
+      <a href="../../resources/hardware-comparison/" class="md-nav__link">
         
   
   
@@ -1235,7 +1358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="resources/ml-frameworks-comparison/" class="md-nav__link">
+      <a href="../../resources/ml-frameworks-comparison/" class="md-nav__link">
         
   
   
@@ -1263,7 +1386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="resources/mobile-frameworks-comparison/" class="md-nav__link">
+      <a href="../../resources/mobile-frameworks-comparison/" class="md-nav__link">
         
   
   
@@ -1311,205 +1434,227 @@
   
 
 
-<h1 id="welcome-to-movement-chain-ai-documentation">Welcome to Movement Chain AI Documentation<a class="headerlink" href="#welcome-to-movement-chain-ai-documentation" title="Permanent link">&para;</a></h1>
-<h2 id="system-vision">System Vision<a class="headerlink" href="#system-vision" title="Permanent link">&para;</a></h2>
-<p>Movement Chain AI is a comprehensive multimodal movement training system designed to provide real-time, intelligent feedback for athletic movements. Initially targeting golf swing analysis and workout form correction, the system combines cutting-edge wearable sensor technology with advanced machine learning to deliver immediate, actionable insights that help users improve their technique and performance.</p>
-<h3 id="core-capabilities">Core Capabilities<a class="headerlink" href="#core-capabilities" title="Permanent link">&para;</a></h3>
+<h1 id="adr-0003-flutter-for-cross-platform-mobile-development">ADR 0003: Flutter for Cross-Platform Mobile Development<a class="headerlink" href="#adr-0003-flutter-for-cross-platform-mobile-development" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 2025-12-01
+<strong>Status:</strong> Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p>Movement Chain AI requires a mobile application capable of:
+- Real-time camera capture at 60 FPS minimum for pose estimation
+- Simultaneous on-device ML inference (RTMPose-m model)
+- Bluetooth Low Energy (BLE) streaming for motion data export
+- Responsive UI rendering during intensive processing
+- Cross-platform deployment (iOS and Android) with limited development resources</p>
+<p>The application must handle three concurrent high-performance operations: camera processing, ML inference, and BLE communication, while maintaining smooth UI interactions. Budget constraints favor a single-codebase solution over platform-specific native development.</p>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p>Adopt <strong>Flutter 3.x</strong> with Dart as the primary mobile development framework for Movement Chain AI.</p>
+<h2 id="rationale">Rationale<a class="headerlink" href="#rationale" title="Permanent link">&para;</a></h2>
+<h3 id="performance-benchmarks">Performance Benchmarks<a class="headerlink" href="#performance-benchmarks" title="Permanent link">&para;</a></h3>
+<p>Comparative analysis of framework capabilities under simultaneous camera + ML + BLE workloads:</p>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Frame Rate</th>
+<th>Memory (Avg)</th>
+<th>Frame Drops</th>
+<th>ML Inference Overhead</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Flutter</strong></td>
+<td>60-120 FPS</td>
+<td>450MB</td>
+<td>~30% fewer than RN</td>
+<td>+15-20ms vs Native</td>
+</tr>
+<tr>
+<td>React Native</td>
+<td>60 FPS capable</td>
+<td>520MB</td>
+<td>Occasional spikes</td>
+<td>+25-30ms vs Native</td>
+</tr>
+<tr>
+<td>Native (Swift/Kotlin)</td>
+<td>120 FPS</td>
+<td>380MB</td>
+<td>Minimal</td>
+<td>Baseline (fastest)</td>
+</tr>
+</tbody>
+</table>
+<p>Flutter demonstrates <strong>70% fewer frame drops</strong> compared to React Native during intensive ML workloads, critical for maintaining real-time pose estimation quality.</p>
+<h3 id="ecosystem-validation">Ecosystem Validation<a class="headerlink" href="#ecosystem-validation" title="Permanent link">&para;</a></h3>
+<p>All critical dependencies verified for production readiness:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Purpose</th>
+<th>Validation Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>tflite_flutter</strong></td>
+<td>ML inference (official plugin)</td>
+<td>GPU/CoreML/Metal acceleration confirmed</td>
+</tr>
+<tr>
+<td><strong>flutter_reactive_ble</strong></td>
+<td>BLE communication</td>
+<td>Production-tested (Philips Hue uses this)</td>
+</tr>
+<tr>
+<td><strong>camera</strong></td>
+<td>Camera access</td>
+<td>60 FPS capability verified</td>
+</tr>
+<tr>
+<td><strong>sensors_plus</strong></td>
+<td>IMU data</td>
+<td>100-200Hz sampling rate confirmed</td>
+</tr>
+<tr>
+<td><strong>onnxruntime_v2</strong></td>
+<td>ONNX model inference</td>
+<td>Cross-platform support validated</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cost-benefit-analysis">Cost-Benefit Analysis<a class="headerlink" href="#cost-benefit-analysis" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Real-time Movement Analysis</strong>: Instant feedback on movement patterns with &lt;100ms latency</li>
-<li><strong>Multimodal AI Processing</strong>: Combines IMU sensor data with video and audio inputs</li>
-<li><strong>Personalized Training</strong>: Adaptive ML models that learn from individual movement patterns</li>
-<li><strong>Cross-Platform Experience</strong>: Seamless mobile app integration on iOS and Android</li>
-<li><strong>Scalable Architecture</strong>: Cloud-native design supporting thousands of concurrent users</li>
+<li><strong>Single codebase</strong>: 40% cost savings vs dual native development ($80K Flutter vs $140K Native over 12 months)</li>
+<li><strong>Development velocity</strong>: Faster iteration cycles with hot reload</li>
+<li><strong>Team efficiency</strong>: One skillset required (Dart) vs Swift + Kotlin</li>
+<li><strong>Maintenance</strong>: Unified bug fixes and feature rollouts</li>
 </ul>
-<hr />
-<h2 id="system-architecture-overview">System Architecture Overview<a class="headerlink" href="#system-architecture-overview" title="Permanent link">&para;</a></h2>
-<p>Movement Chain AI follows a <strong>4-module architecture</strong> designed for scalability, maintainability, and performance:</p>
-<pre class="mermaid"><code>graph TB
-    subgraph "Wearable Device"
-        A[ESP32-S3 MCU]
-        B[LSM6DSV16X IMU]
-        C[BLE Stack]
-    end
-
-    subgraph "Mobile Application"
-        D[Flutter UI]
-        E[BLE Client]
-        F[ONNX Runtime]
-        G[Local Storage]
-    end
-
-    subgraph "Cloud Backend"
-        H[API Gateway]
-        I[Lambda Functions]
-        J[DynamoDB]
-        K[S3 Storage]
-        L[SageMaker]
-    end
-
-    subgraph "ML/AI Module"
-        M[Training Pipeline]
-        N[Model Registry]
-        O[Feature Engineering]
-    end
-
-    B --&gt;|Motion Data| A
-    A --&gt;|BLE| C
-    C --&gt;|Wireless| E
-    E --&gt; D
-    D --&gt; F
-    F --&gt;|Inference Results| D
-    D --&gt;|Upload| H
-    H --&gt; I
-    I --&gt; J
-    I --&gt; K
-    K --&gt; M
-    M --&gt; N
-    N --&gt;|Model Updates| F
-    L --&gt; M</code></pre>
-<h3 id="module-breakdown">Module Breakdown<a class="headerlink" href="#module-breakdown" title="Permanent link">&para;</a></h3>
-<h4 id="1-wearable-device-module">1. Wearable Device Module<a class="headerlink" href="#1-wearable-device-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Capture high-frequency motion data with minimal latency</p>
+<h3 id="technical-advantages">Technical Advantages<a class="headerlink" href="#technical-advantages" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>MCU</strong>: ESP32-S3 (dual-core, BLE 5.0)</li>
-<li><strong>IMU Sensor</strong>: LSM6DSV16X (6-axis, up to 8kHz sampling)</li>
-<li><strong>Communication</strong>: Bluetooth Low Energy 5.0</li>
-<li><strong>Battery Life</strong>: 8+ hours continuous use</li>
-<li><strong>Form Factor</strong>: Wrist-worn device (&lt;50g)</li>
+<li><strong>Compiled performance</strong>: Dart compiles to native ARM code (no JavaScript bridge overhead)</li>
+<li><strong>Widget-based architecture</strong>: Granular UI control for performance-critical animations</li>
+<li><strong>Platform channels</strong>: Direct native API access when needed (e.g., optimized camera buffers)</li>
+<li><strong>Growing ML ecosystem</strong>: Official TensorFlow Lite support + emerging ONNX runtime integration</li>
 </ul>
-<p><a href="decisions/0002-lsm6dsv16x-imu/">View Hardware Decision Records →</a></p>
-<h4 id="2-mobile-application-module">2. Mobile Application Module<a class="headerlink" href="#2-mobile-application-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Provide intuitive user interface and edge AI inference</p>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="positive">Positive<a class="headerlink" href="#positive" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Framework</strong>: Flutter (cross-platform iOS/Android)</li>
-<li><strong>ML Runtime</strong>: ONNX Runtime Mobile</li>
-<li><strong>Features</strong>: Real-time visualization, offline mode, workout tracking</li>
-<li><strong>Inference</strong>: On-device ML for &lt;100ms feedback latency</li>
-<li><strong>Storage</strong>: Local SQLite + cloud sync</li>
+<li><strong>Performance</strong>: Achieves 60-120 FPS target with 450MB memory footprint under full load</li>
+<li><strong>Cost efficiency</strong>: 40% reduction in development costs vs native approach</li>
+<li><strong>Rapid prototyping</strong>: Hot reload enables quick ML model iteration and UI refinement</li>
+<li><strong>Future-proof</strong>: Strong Google backing, large community (2M+ developers), active package ecosystem</li>
+<li><strong>Platform parity</strong>: Identical user experience across iOS and Android</li>
 </ul>
-<p><a href="decisions/0003-flutter-mobile/">View Mobile Framework Decision →</a></p>
-<h4 id="3-cloud-backend-module">3. Cloud Backend Module<a class="headerlink" href="#3-cloud-backend-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Scalable data processing and long-term storage</p>
+<h3 id="negative">Negative<a class="headerlink" href="#negative" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Architecture</strong>: AWS Serverless (API Gateway + Lambda + DynamoDB)</li>
-<li><strong>Storage</strong>: S3 for raw sensor data, DynamoDB for metadata</li>
-<li><strong>API</strong>: REST + GraphQL for flexible data access</li>
-<li><strong>Auth</strong>: Cognito for user management</li>
-<li><strong>Scale</strong>: Auto-scaling to handle 10k+ concurrent users</li>
+<li><strong>Learning curve</strong>: Team must adopt Dart (syntax similar to JavaScript/Java, ~2-week ramp-up)</li>
+<li><strong>ML performance gap</strong>: Native code still 70% faster for pure ML tasks (mitigated by hardware acceleration plugins)</li>
+<li><strong>Platform-specific issues</strong>: Occasional iOS/Android behavioral differences require conditional code</li>
+<li><strong>Binary size</strong>: Flutter apps start at ~20MB (vs ~5MB for lightweight native apps)</li>
+<li><strong>Debugging complexity</strong>: Framework-level issues may require diving into engine source code</li>
 </ul>
-<p><a href="architecture/hld/03-integration-patterns/">View Integration Patterns →</a></p>
-<h4 id="4-mlai-module">4. ML/AI Module<a class="headerlink" href="#4-mlai-module" title="Permanent link">&para;</a></h4>
-<p><strong>Purpose</strong>: Train and optimize movement analysis models</p>
+<h3 id="mitigation-strategies">Mitigation Strategies<a class="headerlink" href="#mitigation-strategies" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Training</strong>: AWS SageMaker for distributed training</li>
-<li><strong>Framework</strong>: PyTorch → ONNX export pipeline</li>
-<li><strong>Models</strong>: Transformer-based sequence models + CNNs</li>
-<li><strong>Registry</strong>: Centralized model versioning and A/B testing</li>
-<li><strong>Pipeline</strong>: Automated retraining on new labeled data</li>
+<li><strong>Dart training</strong>: Allocate 2 weeks for team onboarding with Flutter Codelabs</li>
+<li><strong>Performance profiling</strong>: Use Flutter DevTools to identify and optimize bottlenecks early</li>
+<li><strong>Native fallbacks</strong>: Implement platform channels for critical paths if Flutter performance insufficient</li>
+<li><strong>Binary optimization</strong>: Enable obfuscation and tree-shaking to reduce APK/IPA size by 30-40%</li>
 </ul>
-<p><a href="decisions/0006-onnx-runtime-deployment/">View ONNX Runtime Decision →</a></p>
-<hr />
-<h2 id="navigation-guide">Navigation Guide<a class="headerlink" href="#navigation-guide" title="Permanent link">&para;</a></h2>
-<h3 id="for-system-architects">For System Architects<a class="headerlink" href="#for-system-architects" title="Permanent link">&para;</a></h3>
-<p>Start with the <strong>Architecture</strong> section to understand the overall system design:</p>
+<h2 id="alternatives-considered">Alternatives Considered<a class="headerlink" href="#alternatives-considered" title="Permanent link">&para;</a></h2>
+<h3 id="react-native">React Native<a class="headerlink" href="#react-native" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="architecture/hld/01-system-overview/">System Overview</a> - Component interactions and responsibilities</li>
-<li><a href="architecture/hld/02-data-flow/">Data Flow</a> - How data moves through the system</li>
-<li><a href="architecture/hld/04-performance-targets/">Performance Targets</a> - SLAs and scalability goals</li>
+<li><strong>Performance</strong>: 60 FPS baseline but inconsistent under ML workloads (frame spikes observed)</li>
+<li><strong>Memory</strong>: 520MB average (15% higher than Flutter)</li>
+<li><strong>Ecosystem</strong>: Mature but ML support less optimized (react-native-tflite less maintained)</li>
+<li><strong>Rejected because</strong>: Frame drop rate 70% higher during pose estimation, critical for UX</li>
 </ul>
-<h3 id="for-developers">For Developers<a class="headerlink" href="#for-developers" title="Permanent link">&para;</a></h3>
-<p>Review the <strong>Decisions</strong> section to understand key technical choices:</p>
+<h3 id="native-development-swift-kotlin">Native Development (Swift + Kotlin)<a class="headerlink" href="#native-development-swift-kotlin" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="decisions/0004-simplified-4-module-architecture/">ADR-0004: 4-Module Architecture</a> - Why we chose this structure</li>
-<li><a href="decisions/0001-multi-repo-structure/">ADR-0001: Multi-Repo Structure</a> - Code organization strategy</li>
-<li><a href="decisions/0006-onnx-runtime-deployment/">ADR-0006: ONNX Runtime</a> - ML deployment approach</li>
+<li><strong>Performance</strong>: Best-in-class (baseline for benchmarks)</li>
+<li><strong>ML integration</strong>: Direct CoreML/ML Kit access, 70% faster inference</li>
+<li><strong>Cost</strong>: $140K over 12 months (2x Flutter cost due to dual codebases)</li>
+<li><strong>Rejected because</strong>: Budget constraints and maintenance overhead outweigh performance gains for MVP</li>
 </ul>
-<h3 id="for-hardware-engineers">For Hardware Engineers<a class="headerlink" href="#for-hardware-engineers" title="Permanent link">&para;</a></h3>
-<p>Explore the <strong>Resources</strong> section for detailed comparisons:</p>
+<h3 id="ioniccapacitor">Ionic/Capacitor<a class="headerlink" href="#ioniccapacitor" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="resources/hardware-comparison/">Hardware Comparison</a> - MCU and IMU evaluation</li>
-<li><a href="resources/hardware-comparison/#performance-metrics">Performance Benchmarks</a> - Real-world testing results</li>
+<li><strong>Performance</strong>: 30-45 FPS typical (WebView-based, unsuitable for real-time ML)</li>
+<li><strong>ML support</strong>: Limited (must use web-based TensorFlow.js, slower inference)</li>
+<li><strong>Rejected because</strong>: Cannot meet 60 FPS requirement for camera + ML operations</li>
 </ul>
-<h3 id="for-ml-engineers">For ML Engineers<a class="headerlink" href="#for-ml-engineers" title="Permanent link">&para;</a></h3>
-<p>Focus on ML-specific architecture and decisions:</p>
+<h3 id="progressive-web-app-pwa">Progressive Web App (PWA)<a class="headerlink" href="#progressive-web-app-pwa" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="architecture/hld/01-system-overview/#mlai-module">ML/AI Module Design</a> - Training and inference pipeline</li>
-<li><a href="decisions/0006-onnx-runtime-deployment/">Model Deployment Strategy</a> - Why ONNX Runtime</li>
+<li><strong>Camera access</strong>: Limited on iOS (Safari restrictions)</li>
+<li><strong>BLE support</strong>: Experimental (Web Bluetooth not universally available)</li>
+<li><strong>Rejected because</strong>: Insufficient platform API access for core features</li>
 </ul>
-<hr />
-<h2 id="quick-links">Quick Links<a class="headerlink" href="#quick-links" title="Permanent link">&para;</a></h2>
-<h3 id="key-architecture-documents">Key Architecture Documents<a class="headerlink" href="#key-architecture-documents" title="Permanent link">&para;</a></h3>
+<h2 id="validated-packagescomponents">Validated Packages/Components<a class="headerlink" href="#validated-packagescomponents" title="Permanent link">&para;</a></h2>
+<h3 id="core-ml-infrastructure">Core ML Infrastructure<a class="headerlink" href="#core-ml-infrastructure" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="architecture/hld/01-system-overview/">System Overview</a></li>
-<li><a href="architecture/hld/02-data-flow/">Data Flow Diagrams</a></li>
-<li><a href="architecture/hld/03-integration-patterns/">Integration Patterns</a></li>
+<li><strong>tflite_flutter</strong> (v0.10.4+): Official TensorFlow Lite plugin</li>
+<li>Hardware acceleration: GPU delegate (Android), CoreML delegate (iOS), Metal delegate (iOS)</li>
+<li>Model format: <code>.tflite</code> files, post-training quantization support</li>
+<li>
+<p>Inference speed: 30-50ms per frame for RTMPose-m on mid-range devices</p>
+</li>
+<li>
+<p><strong>onnxruntime_v2</strong> (v1.16.3): ONNX Runtime Mobile binding</p>
+</li>
+<li>Cross-platform model deployment (primary choice for RTMPose-m)</li>
+<li>Binary size: ~5MB (smaller than TFLite for single-model apps)</li>
+<li>Fallback strategy: TFLite if ONNX model unavailable</li>
 </ul>
-<h3 id="critical-design-decisions">Critical Design Decisions<a class="headerlink" href="#critical-design-decisions" title="Permanent link">&para;</a></h3>
+<h3 id="camera-sensor-access">Camera &amp; Sensor Access<a class="headerlink" href="#camera-sensor-access" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="decisions/0004-simplified-4-module-architecture/">4-Module Architecture Rationale</a></li>
-<li><a href="decisions/0005-esp32-s3-microcontroller/">ESP32-S3 Selection</a></li>
-<li><a href="decisions/0003-flutter-mobile/">Flutter Mobile Framework</a></li>
+<li><strong>camera</strong> (v0.10.5+2): Official camera plugin</li>
+<li>Streaming mode: 60 FPS validated on iPhone 12 Pro and Pixel 6</li>
+<li>
+<p>Format: YUV420/NV21 for efficient ML preprocessing</p>
+</li>
+<li>
+<p><strong>sensors_plus</strong> (v3.0.3): Accelerometer/gyroscope access</p>
+</li>
+<li>Sampling rate: 100-200Hz (sufficient for motion context)</li>
 </ul>
-<h3 id="technical-comparisons">Technical Comparisons<a class="headerlink" href="#technical-comparisons" title="Permanent link">&para;</a></h3>
+<h3 id="bluetooth-communication">Bluetooth Communication<a class="headerlink" href="#bluetooth-communication" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="resources/hardware-comparison/">MCU Comparison Matrix</a></li>
-<li><a href="resources/ml-frameworks-comparison/">ML Framework Analysis</a></li>
-<li><a href="resources/mobile-frameworks-comparison/">Mobile Framework Evaluation</a></li>
+<li><strong>flutter_reactive_ble</strong> (v5.2.0): Production-grade BLE</li>
+<li>Used by: Philips Hue, medical device apps</li>
+<li>Features: GATT characteristic streaming, connection stability management</li>
 </ul>
-<hr />
-<h2 id="project-status">Project Status<a class="headerlink" href="#project-status" title="Permanent link">&para;</a></h2>
-<div class="admonition info">
-<p class="admonition-title">Documentation Status</p>
-<p>This documentation is actively maintained and reflects the current system architecture as of December 2025.</p>
-</div>
-<p><strong>Current Phase</strong>: Architecture Design &amp; Documentation</p>
-<p><strong>Completed Milestones</strong>:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> High-level system architecture</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Hardware component selection</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Mobile framework evaluation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ML deployment strategy</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Cloud infrastructure design</li>
-</ul>
-<p><strong>In Progress</strong>:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Detailed API specifications</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Security and compliance documentation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Deployment runbooks</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Performance benchmarking</li>
-</ul>
-<p><strong>Upcoming</strong>:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Developer onboarding guides</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> API reference documentation</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Troubleshooting guides</li>
-</ul>
-<hr />
-<h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
-<p>We welcome contributions to improve this documentation. See the <a href="https://github.com/movement-chain-ai/system-documentation/blob/main/README.md">README</a> for contribution guidelines.</p>
-<p><strong>Quick contribution checklist</strong>:</p>
+<h2 id="implementation-guidelines">Implementation Guidelines<a class="headerlink" href="#implementation-guidelines" title="Permanent link">&para;</a></h2>
+<h3 id="performance-optimization">Performance Optimization<a class="headerlink" href="#performance-optimization" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Fork the repository</li>
-<li>Create a feature branch</li>
-<li>Test locally with <code>mkdocs serve</code></li>
-<li>Submit a pull request with clear description</li>
+<li><strong>Isolates for ML</strong>: Run inference on background isolate to prevent UI jank</li>
+<li><strong>Image preprocessing</strong>: Convert camera frames to ML input format on GPU where possible</li>
+<li><strong>Memory management</strong>: Reuse Uint8List buffers for camera frames (avoid allocations)</li>
+<li><strong>Widget rebuilds</strong>: Use <code>const</code> constructors and <code>RepaintBoundary</code> for UI layers</li>
 </ol>
-<hr />
-<h2 id="support">Support<a class="headerlink" href="#support" title="Permanent link">&para;</a></h2>
-<p>If you have questions about the architecture or documentation:</p>
+<h3 id="testing-strategy">Testing Strategy<a class="headerlink" href="#testing-strategy" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Open an issue in the <a href="https://github.com/movement-chain-ai/system-documentation/issues">GitHub repository</a></li>
-<li>Review existing <a href="decisions/">Architectural Decision Records</a></li>
-<li>Check the <a href="resources/hardware-comparison/">FAQ section</a> (coming soon)</li>
+<li><strong>Performance benchmarks</strong>: Target 60 FPS sustained on iPhone 11 / Pixel 5 (mid-range baseline)</li>
+<li><strong>Memory profiling</strong>: Monitor with Flutter DevTools, keep peak usage under 500MB</li>
+<li><strong>Battery impact</strong>: Measure power draw, optimize camera/BLE duty cycles</li>
 </ul>
-<hr />
-<div align="center">
-
-**Movement Chain AI** | [GitHub](https://github.com/movement-chain-ai) | [Website](https://movement-chain-ai.com)
-
-*Building the future of intelligent movement training*
-
-</div>
+<h3 id="native-escape-hatches">Native Escape Hatches<a class="headerlink" href="#native-escape-hatches" title="Permanent link">&para;</a></h3>
+<p>If Flutter performance insufficient for specific operations:
+- <strong>Platform channels</strong>: Swift/Kotlin code for camera buffer optimization
+- <strong>Method channels</strong>: Async communication for non-blocking native calls
+- <strong>Federated plugins</strong>: Create custom plugins for specialized hardware access</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Flutter Performance Best Practices</strong>: <a href="https://docs.flutter.dev/perf/best-practices">https://docs.flutter.dev/perf/best-practices</a></li>
+<li><strong>TFLite Flutter Plugin</strong>: <a href="https://github.com/tensorflow/flutter-tflite">https://github.com/tensorflow/flutter-tflite</a></li>
+<li><strong>Flutter Reactive BLE Production Case</strong>: Philips Hue app (2M+ downloads)</li>
+<li><strong>Performance Benchmarks</strong>: Internal testing (2025-11-28), iPhone 12 Pro / Pixel 6</li>
+<li><strong>Cost Analysis</strong>: Flutter vs Native development estimates (2025-11-25)</li>
+</ul>
+<h2 id="review-schedule">Review Schedule<a class="headerlink" href="#review-schedule" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>6-week checkpoint</strong>: Validate 60 FPS target met in integrated prototype</li>
+<li><strong>3-month review</strong>: Assess Dart adoption and team velocity</li>
+<li><strong>6-month review</strong>: Compare actual vs projected development costs</li>
+</ul>
 
 
 
@@ -1594,10 +1739,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
     
   </body>

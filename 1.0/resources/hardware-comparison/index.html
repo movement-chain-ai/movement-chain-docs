@@ -1,0 +1,2616 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Architecture documentation for multimodal AI movement training system">
+      
+      
+        <meta name="author" content="Movement Chain AI Team">
+      
+      
+        <link rel="canonical" href="https://movement-chain-ai.github.io/system-documentation/1.0/resources/hardware-comparison/">
+      
+      
+        <link rel="prev" href="../../decisions/0006-onnx-runtime-deployment/">
+      
+      
+        <link rel="next" href="../ml-frameworks-comparison/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Hardware Comparison - Movement Chain AI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hardware-component-comparison-for-movement-chain-ai" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Movement Chain AI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Hardware Comparison
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/movement-chain-ai/system-documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    movement-chain-ai/system-documentation
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../architecture/hld/01-system-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../decisions/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Decisions
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Movement Chain AI Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/movement-chain-ai/system-documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    movement-chain-ai/system-documentation
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    High-Level Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    High-Level Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/hld/01-system-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/hld/02-data-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/hld/03-integration-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/hld/04-performance-targets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Targets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../decisions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Decisions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0001-multi-repo-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0001 Multi-Repo Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0002 LSM6DSV16X IMU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0003-flutter-mobile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0003 Flutter Mobile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0004 4-Module Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0005 ESP32-S3 MCU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0006 ONNX Runtime
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware Comparison
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparison-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison Criteria
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imu-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IMU Comparison
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IMU Comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detailed-comparison-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Comparison Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#market-positioning-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Positioning (2025)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcu-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCU Comparison
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MCU Comparison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detailed-comparison-table_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed Comparison Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-analysis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#market-positioning-2025_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Positioning (2025)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-hardware-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Hardware Stack
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Hardware Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#production-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production Configuration ✅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#budget-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Budget Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ultra-low-power-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ultra-Low-Power Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-case-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case Matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cost-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cost Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development-phase-costs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development Phase Costs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-phase-costs-1000-units" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production Phase Costs (1000 units)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-year-total-cost-of-ownership-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5-Year Total Cost of Ownership (Production)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2025-supply-chain-availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2025 Supply Chain &amp; Availability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2025 Supply Chain &amp; Availability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supply-chain-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supply Chain Health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manufacturer-2025-roadmap-commitment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manufacturer 2025 Roadmap Commitment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migration Paths
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Migration Paths">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-bno055-discontinued" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From BNO055 (Discontinued)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-mpu6050-legacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From MPU6050 (Legacy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-arduino-based-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From Arduino-based Systems
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-deep-dive-drift-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Deep Dive: Drift Performance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical Deep Dive: Drift Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-imu-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is IMU Drift?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-lsm6dsv16x-excels-45-minutes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why LSM6DSV16X Excels (45+ minutes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practical-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-proofing-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future-Proofing Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future-Proofing Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#technology-trends-2025-2027" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technology Trends (2025-2027)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-longevity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Longevity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conclusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommended-choice-lsm6dsv16x-esp32-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Choice: LSM6DSV16X + ESP32-S3 ✅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternative-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternative Configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml-frameworks-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML Frameworks Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobile-frameworks-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile Frameworks Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="hardware-component-comparison-for-movement-chain-ai">Hardware Component Comparison for Movement Chain AI<a class="headerlink" href="#hardware-component-comparison-for-movement-chain-ai" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This document provides a comprehensive comparison of hardware components suitable for wearable movement tracking systems in 2025. The analysis focuses on two critical component categories:</p>
+<ol>
+<li><strong>Inertial Measurement Units (IMUs)</strong> - Sensors that measure acceleration, angular velocity, and orientation</li>
+<li><strong>Microcontroller Units (MCUs)</strong> - Processing units that handle sensor data and wireless communication</li>
+</ol>
+<h3 id="comparison-criteria">Comparison Criteria<a class="headerlink" href="#comparison-criteria" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Cost</strong>: Unit pricing at volume (1000+ units)</li>
+<li><strong>Accuracy</strong>: Measurement precision and noise characteristics</li>
+<li><strong>Drift Performance</strong>: Time until orientation drift requires reset/recalibration</li>
+<li><strong>BLE Throughput</strong>: Bluetooth Low Energy data transfer capability</li>
+<li><strong>Power Consumption</strong>: Battery life impact</li>
+<li><strong>Community Support</strong>: Documentation, libraries, and ecosystem maturity</li>
+<li><strong>2025 Availability</strong>: Supply chain stability and manufacturer commitment</li>
+</ul>
+<hr />
+<h2 id="imu-comparison">IMU Comparison<a class="headerlink" href="#imu-comparison" title="Permanent link">&para;</a></h2>
+<h3 id="detailed-comparison-table">Detailed Comparison Table<a class="headerlink" href="#detailed-comparison-table" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>LSM6DSV16X ✅</th>
+<th>ICM-42688-P</th>
+<th>BMI270</th>
+<th>BNO055</th>
+<th>MPU6050</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Manufacturer</strong></td>
+<td>STMicroelectronics</td>
+<td>TDK InvenSense</td>
+<td>Bosch</td>
+<td>Bosch</td>
+<td>TDK InvenSense</td>
+</tr>
+<tr>
+<td><strong>Price (1K units)</strong></td>
+<td>$6-8</td>
+<td>$4-6</td>
+<td>$3-5</td>
+<td>Discontinued</td>
+<td>$2-3</td>
+</tr>
+<tr>
+<td><strong>Gyro Range</strong></td>
+<td>±125 to ±4000 dps</td>
+<td>±15.6 to ±2000 dps</td>
+<td>±125 to ±2000 dps</td>
+<td>±125 to ±2000 dps</td>
+<td>±250 to ±2000 dps</td>
+</tr>
+<tr>
+<td><strong>Accel Range</strong></td>
+<td>±2g to ±16g</td>
+<td>±2g to ±16g</td>
+<td>±2g to ±16g</td>
+<td>±2g to ±16g</td>
+<td>±2g to ±16g</td>
+</tr>
+<tr>
+<td><strong>Drift Reset Time</strong></td>
+<td>45+ minutes</td>
+<td>25-30 minutes</td>
+<td>20-25 minutes</td>
+<td>15-20 minutes</td>
+<td>10-15 minutes</td>
+</tr>
+<tr>
+<td><strong>Gyro Noise</strong></td>
+<td>3.8 mdps/√Hz</td>
+<td>4.6 mdps/√Hz</td>
+<td>5.1 mdps/√Hz</td>
+<td>7.2 mdps/√Hz</td>
+<td>8.5 mdps/√Hz</td>
+</tr>
+<tr>
+<td><strong>Accel Noise</strong></td>
+<td>65 μg/√Hz</td>
+<td>80 μg/√Hz</td>
+<td>90 μg/√Hz</td>
+<td>100 μg/√Hz</td>
+<td>120 μg/√Hz</td>
+</tr>
+<tr>
+<td><strong>Power (Active)</strong></td>
+<td>0.55 mA</td>
+<td>0.68 mA</td>
+<td>0.72 mA</td>
+<td>12.3 mA</td>
+<td>3.8 mA</td>
+</tr>
+<tr>
+<td><strong>Special Features</strong></td>
+<td>MLC, ISPU</td>
+<td>APEX Motion</td>
+<td>CRT, OIS</td>
+<td>Sensor Fusion</td>
+<td>Basic</td>
+</tr>
+<tr>
+<td><strong>Interface</strong></td>
+<td>I2C, SPI</td>
+<td>I2C, SPI</td>
+<td>I2C, SPI</td>
+<td>I2C, UART</td>
+<td>I2C</td>
+</tr>
+<tr>
+<td><strong>Supply Voltage</strong></td>
+<td>1.7-3.6V</td>
+<td>1.71-3.6V</td>
+<td>1.71-3.6V</td>
+<td>2.4-3.6V</td>
+<td>2.375-3.46V</td>
+</tr>
+<tr>
+<td><strong>Package Size</strong></td>
+<td>2.5×3.0×0.83mm</td>
+<td>3×3×0.9mm</td>
+<td>2.5×3.0×0.83mm</td>
+<td>5.2×3.8×1.1mm</td>
+<td>4×4×0.9mm</td>
+</tr>
+<tr>
+<td><strong>2025 Availability</strong></td>
+<td>Excellent</td>
+<td>Good</td>
+<td>Good</td>
+<td>Discontinued</td>
+<td>Legacy</td>
+</tr>
+<tr>
+<td><strong>Community Support</strong></td>
+<td>Growing</td>
+<td>Strong</td>
+<td>Strong</td>
+<td>Legacy</td>
+<td>Extensive (old)</td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td>Excellent</td>
+<td>Excellent</td>
+<td>Good</td>
+<td>Good</td>
+<td>Extensive</td>
+</tr>
+</tbody>
+</table>
+<h3 id="performance-analysis">Performance Analysis<a class="headerlink" href="#performance-analysis" title="Permanent link">&para;</a></h3>
+<h4 id="drift-performance-rankings">Drift Performance Rankings<a class="headerlink" href="#drift-performance-rankings" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>LSM6DSV16X</strong> ✅ - 45+ minutes (Best-in-class)</li>
+<li>ICM-42688-P - 25-30 minutes</li>
+<li>BMI270 - 20-25 minutes</li>
+<li>BNO055 - 15-20 minutes (discontinued)</li>
+<li>MPU6050 - 10-15 minutes (legacy)</li>
+</ol>
+<h4 id="accuracy-rankings">Accuracy Rankings<a class="headerlink" href="#accuracy-rankings" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>LSM6DSV16X</strong> ✅ - Lowest noise floor</li>
+<li>ICM-42688-P - Very competitive</li>
+<li>BMI270 - Good performance</li>
+<li>BNO055 - Adequate (discontinued)</li>
+<li>MPU6050 - Basic performance</li>
+</ol>
+<h4 id="power-efficiency-rankings">Power Efficiency Rankings<a class="headerlink" href="#power-efficiency-rankings" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>LSM6DSV16X</strong> ✅ - 0.55 mA (Ultra-low)</li>
+<li>ICM-42688-P - 0.68 mA</li>
+<li>BMI270 - 0.72 mA</li>
+<li>MPU6050 - 3.8 mA</li>
+<li>BNO055 - 12.3 mA</li>
+</ol>
+<h3 id="market-positioning-2025">Market Positioning (2025)<a class="headerlink" href="#market-positioning-2025" title="Permanent link">&para;</a></h3>
+<h4 id="lsm6dsv16x-recommended">LSM6DSV16X (Recommended) ✅<a class="headerlink" href="#lsm6dsv16x-recommended" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Position</strong>: Premium choice for production systems</li>
+<li><strong>Strengths</strong>:</li>
+<li>Industry-leading drift performance (45+ min)</li>
+<li>Machine Learning Core (MLC) for on-sensor processing</li>
+<li>Intelligent Sensor Processing Unit (ISPU)</li>
+<li>Ultra-low power consumption</li>
+<li>ST's strong 2025 roadmap commitment</li>
+<li><strong>Weaknesses</strong>:</li>
+<li>Higher cost ($6-8 vs $3-6)</li>
+<li>Newer platform (less community code)</li>
+<li><strong>Best For</strong>: Production wearables, medical devices, professional sports</li>
+</ul>
+<h4 id="icm-42688-p-strong-alternative">ICM-42688-P (Strong Alternative)<a class="headerlink" href="#icm-42688-p-strong-alternative" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Position</strong>: Cost-effective performance option</li>
+<li><strong>Strengths</strong>:</li>
+<li>Good drift performance (25-30 min)</li>
+<li>APEX Motion processing features</li>
+<li>Strong community support</li>
+<li>Competitive pricing</li>
+<li><strong>Weaknesses</strong>:</li>
+<li>Lower drift performance than LSM6DSV16X</li>
+<li>Higher power consumption</li>
+<li><strong>Best For</strong>: Budget-conscious projects, prototyping, consumer wearables</li>
+</ul>
+<h4 id="bmi270-budget-option">BMI270 (Budget Option)<a class="headerlink" href="#bmi270-budget-option" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Position</strong>: Entry-level production choice</li>
+<li><strong>Strengths</strong>:</li>
+<li>Lowest cost ($3-5)</li>
+<li>Context Recognition Technology (CRT)</li>
+<li>Optical Image Stabilization (OIS) support</li>
+<li>Good availability</li>
+<li><strong>Weaknesses</strong>:</li>
+<li>Moderate drift performance (20-25 min)</li>
+<li>Basic feature set</li>
+<li><strong>Best For</strong>: Cost-sensitive consumer devices, fitness trackers</li>
+</ul>
+<h4 id="bno055-discontinued">BNO055 (Discontinued)<a class="headerlink" href="#bno055-discontinued" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Position</strong>: Legacy/maintenance only</li>
+<li><strong>Historical Context</strong>: Market leader 2018-2022</li>
+<li><strong>Why Discontinued</strong>: Poor drift characteristics became evident in long-duration testing</li>
+<li><strong>Current Status</strong>: Not recommended for new designs</li>
+<li><strong>Migration Path</strong>: Existing projects should transition to LSM6DSV16X</li>
+</ul>
+<h4 id="mpu6050-legacy">MPU6050 (Legacy)<a class="headerlink" href="#mpu6050-legacy" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Position</strong>: Hobbyist/educational only</li>
+<li><strong>Strengths</strong>: Extensive tutorials, very low cost</li>
+<li><strong>Weaknesses</strong>: Poor drift, high power, outdated</li>
+<li><strong>Best For</strong>: Prototyping, learning projects, non-commercial use</li>
+</ul>
+<hr />
+<h2 id="mcu-comparison">MCU Comparison<a class="headerlink" href="#mcu-comparison" title="Permanent link">&para;</a></h2>
+<h3 id="detailed-comparison-table_1">Detailed Comparison Table<a class="headerlink" href="#detailed-comparison-table_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>ESP32-S3 ✅</th>
+<th>nRF52840</th>
+<th>STM32WB55</th>
+<th>ESP32-C3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Manufacturer</strong></td>
+<td>Espressif</td>
+<td>Nordic Semi</td>
+<td>STMicro</td>
+<td>Espressif</td>
+</tr>
+<tr>
+<td><strong>Price (1K units)</strong></td>
+<td>$2.50-3.50</td>
+<td>$3.50-4.50</td>
+<td>$4.00-5.50</td>
+<td>$1.50-2.00</td>
+</tr>
+<tr>
+<td><strong>CPU Core</strong></td>
+<td>Xtensa LX7 (Dual)</td>
+<td>ARM Cortex-M4</td>
+<td>ARM Cortex-M4</td>
+<td>RISC-V (Single)</td>
+</tr>
+<tr>
+<td><strong>Clock Speed</strong></td>
+<td>240 MHz</td>
+<td>64 MHz</td>
+<td>64 MHz</td>
+<td>160 MHz</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>512 KB</td>
+<td>256 KB</td>
+<td>256 KB</td>
+<td>400 KB</td>
+</tr>
+<tr>
+<td><strong>Flash</strong></td>
+<td>Up to 16 MB</td>
+<td>1 MB</td>
+<td>1 MB</td>
+<td>Up to 4 MB</td>
+</tr>
+<tr>
+<td><strong>BLE Version</strong></td>
+<td>BLE 5.0</td>
+<td>BLE 5.3</td>
+<td>BLE 5.2</td>
+<td>BLE 5.0</td>
+</tr>
+<tr>
+<td><strong>BLE Throughput</strong></td>
+<td>1.4 Mbps</td>
+<td>2.0 Mbps</td>
+<td>1.8 Mbps</td>
+<td>1.2 Mbps</td>
+</tr>
+<tr>
+<td><strong>WiFi</strong></td>
+<td>802.11n</td>
+<td>No</td>
+<td>No</td>
+<td>802.11n</td>
+</tr>
+<tr>
+<td><strong>Power (Active)</strong></td>
+<td>40-80 mA</td>
+<td>15-20 mA</td>
+<td>18-25 mA</td>
+<td>35-60 mA</td>
+</tr>
+<tr>
+<td><strong>Power (Deep Sleep)</strong></td>
+<td>7-10 μA</td>
+<td>0.4-1.5 μA</td>
+<td>2-3 μA</td>
+<td>5-7 μA</td>
+</tr>
+<tr>
+<td><strong>USB Support</strong></td>
+<td>USB OTG</td>
+<td>USB Device</td>
+<td>USB Device</td>
+<td>USB Serial/JTAG</td>
+</tr>
+<tr>
+<td><strong>ADC Resolution</strong></td>
+<td>12-bit (20 channels)</td>
+<td>12-bit (8 channels)</td>
+<td>12-bit (16 channels)</td>
+<td>12-bit (6 channels)</td>
+</tr>
+<tr>
+<td><strong>SPI/I2C/UART</strong></td>
+<td>4/2/3</td>
+<td>4/2/2</td>
+<td>2/2/1</td>
+<td>2/1/2</td>
+</tr>
+<tr>
+<td><strong>Development</strong></td>
+<td>Arduino, ESP-IDF</td>
+<td>nRF5 SDK, Zephyr</td>
+<td>STM32Cube</td>
+<td>Arduino, ESP-IDF</td>
+</tr>
+<tr>
+<td><strong>2025 Availability</strong></td>
+<td>Excellent</td>
+<td>Good</td>
+<td>Good</td>
+<td>Excellent</td>
+</tr>
+<tr>
+<td><strong>Community Support</strong></td>
+<td>Massive</td>
+<td>Strong</td>
+<td>Moderate</td>
+<td>Growing</td>
+</tr>
+<tr>
+<td><strong>Production Track</strong></td>
+<td>Proven</td>
+<td>Proven</td>
+<td>Proven</td>
+<td>Emerging</td>
+</tr>
+</tbody>
+</table>
+<h3 id="performance-analysis_1">Performance Analysis<a class="headerlink" href="#performance-analysis_1" title="Permanent link">&para;</a></h3>
+<h4 id="processing-power-rankings">Processing Power Rankings<a class="headerlink" href="#processing-power-rankings" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>ESP32-S3</strong> ✅ - 240 MHz dual-core (Best)</li>
+<li>ESP32-C3 - 160 MHz single-core</li>
+<li>nRF52840 - 64 MHz (optimized for efficiency)</li>
+<li>STM32WB55 - 64 MHz</li>
+</ol>
+<h4 id="ble-throughput-rankings">BLE Throughput Rankings<a class="headerlink" href="#ble-throughput-rankings" title="Permanent link">&para;</a></h4>
+<ol>
+<li>nRF52840 - 2.0 Mbps (Best RF design)</li>
+<li>STM32WB55 - 1.8 Mbps</li>
+<li><strong>ESP32-S3</strong> ✅ - 1.4 Mbps (Sufficient for IMU streaming)</li>
+<li>ESP32-C3 - 1.2 Mbps</li>
+</ol>
+<h4 id="power-efficiency-rankings-deep-sleep">Power Efficiency Rankings (Deep Sleep)<a class="headerlink" href="#power-efficiency-rankings-deep-sleep" title="Permanent link">&para;</a></h4>
+<ol>
+<li>nRF52840 - 0.4 μA (Best)</li>
+<li>STM32WB55 - 2 μA</li>
+<li>ESP32-C3 - 5 μA</li>
+<li><strong>ESP32-S3</strong> ✅ - 7 μA (Acceptable trade-off)</li>
+</ol>
+<h4 id="cost-efficiency-rankings">Cost Efficiency Rankings<a class="headerlink" href="#cost-efficiency-rankings" title="Permanent link">&para;</a></h4>
+<ol>
+<li>ESP32-C3 - $1.50-2.00 (Lowest)</li>
+<li><strong>ESP32-S3</strong> ✅ - $2.50-3.50 (Best value)</li>
+<li>nRF52840 - $3.50-4.50</li>
+<li>STM32WB55 - $4.00-5.50 (Highest)</li>
+</ol>
+<h3 id="market-positioning-2025_1">Market Positioning (2025)<a class="headerlink" href="#market-positioning-2025_1" title="Permanent link">&para;</a></h3>
+<h4 id="esp32-s3-recommended">ESP32-S3 (Recommended) ✅<a class="headerlink" href="#esp32-s3-recommended" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Position</strong>: Flagship choice for AI-enabled wearables</li>
+<li><strong>Strengths</strong>:</li>
+<li>Dual-core 240 MHz enables real-time ML processing</li>
+<li>512 KB RAM supports complex algorithms</li>
+<li>WiFi + BLE for flexible connectivity</li>
+<li>Massive community and library ecosystem</li>
+<li>Excellent documentation and tooling</li>
+<li>Best cost-to-performance ratio</li>
+<li>USB OTG for advanced applications</li>
+<li><strong>Weaknesses</strong>:</li>
+<li>Higher power consumption than Nordic chips</li>
+<li>BLE throughput lower than nRF52840 (but sufficient)</li>
+<li><strong>Best For</strong>: Production wearables with AI, real-time processing, multi-sensor fusion</li>
+</ul>
+<h4 id="nrf52840-power-optimized-alternative">nRF52840 (Power-Optimized Alternative)<a class="headerlink" href="#nrf52840-power-optimized-alternative" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Position</strong>: Premium ultra-low-power choice</li>
+<li><strong>Strengths</strong>:</li>
+<li>Best-in-class BLE 5.3 implementation</li>
+<li>Ultra-low power consumption (0.4 μA deep sleep)</li>
+<li>Highest BLE throughput (2.0 Mbps)</li>
+<li>Excellent RF performance</li>
+<li>Strong Nordic tooling</li>
+<li><strong>Weaknesses</strong>:</li>
+<li>Lower processing power (64 MHz)</li>
+<li>Limited RAM (256 KB) for complex ML</li>
+<li>Higher cost ($3.50-4.50)</li>
+<li>No WiFi support</li>
+<li><strong>Best For</strong>: Battery-critical applications, BLE-only devices, fitness trackers</li>
+</ul>
+<h4 id="stm32wb55-industrial-choice">STM32WB55 (Industrial Choice)<a class="headerlink" href="#stm32wb55-industrial-choice" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Position</strong>: Enterprise/industrial applications</li>
+<li><strong>Strengths</strong>:</li>
+<li>ST ecosystem integration</li>
+<li>Good BLE 5.2 performance</li>
+<li>Industrial temperature range options</li>
+<li>Strong enterprise support</li>
+<li><strong>Weaknesses</strong>:</li>
+<li>Highest cost ($4.00-5.50)</li>
+<li>Smaller community than ESP32/Nordic</li>
+<li>Limited RAM for ML workloads</li>
+<li><strong>Best For</strong>: Medical devices, industrial IoT, regulated industries</li>
+</ul>
+<h4 id="esp32-c3-budget-option">ESP32-C3 (Budget Option)<a class="headerlink" href="#esp32-c3-budget-option" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Position</strong>: Cost-optimized entry point</li>
+<li><strong>Strengths</strong>:</li>
+<li>Lowest cost ($1.50-2.00)</li>
+<li>RISC-V architecture (future-proof)</li>
+<li>WiFi + BLE in tiny package</li>
+<li>160 MHz sufficient for basic processing</li>
+<li><strong>Weaknesses</strong>:</li>
+<li>Single-core limits real-time performance</li>
+<li>Lower RAM (400 KB) than ESP32-S3</li>
+<li>Emerging platform (less mature)</li>
+<li><strong>Best For</strong>: Prototyping, hobbyist projects, cost-sensitive consumer devices</li>
+</ul>
+<hr />
+<h2 id="recommended-hardware-stack">Recommended Hardware Stack<a class="headerlink" href="#recommended-hardware-stack" title="Permanent link">&para;</a></h2>
+<h3 id="production-configuration">Production Configuration ✅<a class="headerlink" href="#production-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>IMU</strong>: LSM6DSV16X ($6-8)
+- 45+ minute drift performance
+- MLC for on-sensor activity recognition
+- Ultra-low power (0.55 mA)
+- Production-grade reliability</p>
+<p><strong>MCU</strong>: ESP32-S3 ($2.50-3.50)
+- Dual-core 240 MHz for real-time ML inference
+- 512 KB RAM for complex algorithms
+- BLE 5.0 + WiFi connectivity
+- Massive ecosystem support</p>
+<p><strong>Total BOM Cost</strong>: $8.50-11.50 per unit
+<strong>Target Market</strong>: Professional wearables, sports analytics, medical devices</p>
+<h3 id="budget-configuration">Budget Configuration<a class="headerlink" href="#budget-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>IMU</strong>: BMI270 ($3-5)
+- Adequate 20-25 minute drift performance
+- Good availability and pricing
+- Proven in consumer devices</p>
+<p><strong>MCU</strong>: ESP32-C3 ($1.50-2.00)
+- Single-core 160 MHz (sufficient for basic processing)
+- BLE 5.0 + WiFi
+- Growing ecosystem</p>
+<p><strong>Total BOM Cost</strong>: $4.50-7.00 per unit
+<strong>Target Market</strong>: Consumer fitness trackers, entry-level wearables</p>
+<h3 id="ultra-low-power-configuration">Ultra-Low-Power Configuration<a class="headerlink" href="#ultra-low-power-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>IMU</strong>: LSM6DSV16X ($6-8)
+- Ultra-low 0.55 mA consumption
+- Best drift performance</p>
+<p><strong>MCU</strong>: nRF52840 ($3.50-4.50)
+- 0.4 μA deep sleep
+- Best BLE throughput (2.0 Mbps)
+- Optimized RF design</p>
+<p><strong>Total BOM Cost</strong>: $9.50-12.50 per unit
+<strong>Target Market</strong>: Always-on wearables, long-battery-life devices</p>
+<hr />
+<h2 id="use-case-matrix">Use Case Matrix<a class="headerlink" href="#use-case-matrix" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Application Type</th>
+<th>Recommended IMU</th>
+<th>Recommended MCU</th>
+<th>Justification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Professional Sports Analytics</strong></td>
+<td>LSM6DSV16X ✅</td>
+<td>ESP32-S3 ✅</td>
+<td>Requires best drift performance (45+ min) and real-time ML processing</td>
+</tr>
+<tr>
+<td><strong>Medical Rehabilitation</strong></td>
+<td>LSM6DSV16X ✅</td>
+<td>ESP32-S3 ✅ or STM32WB55</td>
+<td>Accuracy critical, regulatory compliance, continuous monitoring</td>
+</tr>
+<tr>
+<td><strong>Consumer Fitness Tracker</strong></td>
+<td>BMI270 or ICM-42688-P</td>
+<td>ESP32-C3 or nRF52840</td>
+<td>Cost-sensitive, adequate performance, power efficiency</td>
+</tr>
+<tr>
+<td><strong>Research/Academic</strong></td>
+<td>LSM6DSV16X ✅</td>
+<td>ESP32-S3 ✅</td>
+<td>Best accuracy for data collection, flexibility for experimentation</td>
+</tr>
+<tr>
+<td><strong>Industrial Safety</strong></td>
+<td>ICM-42688-P</td>
+<td>nRF52840 or STM32WB55</td>
+<td>Balance of cost/performance, reliable BLE, industrial support</td>
+</tr>
+<tr>
+<td><strong>Smart Clothing</strong></td>
+<td>LSM6DSV16X ✅</td>
+<td>nRF52840</td>
+<td>Ultra-low power for textile integration, small form factor</td>
+</tr>
+<tr>
+<td><strong>Prototyping/Learning</strong></td>
+<td>MPU6050</td>
+<td>ESP32-S3 ✅</td>
+<td>Low cost, extensive tutorials, flexible development</td>
+</tr>
+<tr>
+<td><strong>Always-On Wearable</strong></td>
+<td>LSM6DSV16X ✅</td>
+<td>nRF52840</td>
+<td>Combined ultra-low power (0.95 mA total), best battery life</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="cost-analysis">Cost Analysis<a class="headerlink" href="#cost-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="development-phase-costs">Development Phase Costs<a class="headerlink" href="#development-phase-costs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>LSM6DSV16X + ESP32-S3</th>
+<th>BMI270 + ESP32-C3</th>
+<th>ICM-42688-P + nRF52840</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dev Board</td>
+<td>$25-35</td>
+<td>$15-25</td>
+<td>$40-60</td>
+</tr>
+<tr>
+<td>Initial Stock (10 units)</td>
+<td>$110-115</td>
+<td>$50-70</td>
+<td>$80-110</td>
+</tr>
+<tr>
+<td>Development Time</td>
+<td>Standard</td>
+<td>Standard</td>
+<td>+20% (Nordic learning curve)</td>
+</tr>
+<tr>
+<td>Library Support</td>
+<td>Good (growing)</td>
+<td>Excellent</td>
+<td>Excellent</td>
+</tr>
+<tr>
+<td><strong>Total Dev Cost</strong></td>
+<td>$135-150</td>
+<td>$65-95</td>
+<td>$120-170</td>
+</tr>
+</tbody>
+</table>
+<h3 id="production-phase-costs-1000-units">Production Phase Costs (1000 units)<a class="headerlink" href="#production-phase-costs-1000-units" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>LSM6DSV16X + ESP32-S3</th>
+<th>BMI270 + ESP32-C3</th>
+<th>ICM-42688-P + nRF52840</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IMU Cost</td>
+<td>$6,000-8,000</td>
+<td>$3,000-5,000</td>
+<td>$4,000-6,000</td>
+</tr>
+<tr>
+<td>MCU Cost</td>
+<td>$2,500-3,500</td>
+<td>$1,500-2,000</td>
+<td>$3,500-4,500</td>
+</tr>
+<tr>
+<td>PCB/Assembly</td>
+<td>$5,000-7,000</td>
+<td>$4,000-5,500</td>
+<td>$5,500-7,500</td>
+</tr>
+<tr>
+<td>Testing/QA</td>
+<td>$2,000-3,000</td>
+<td>$1,500-2,000</td>
+<td>$2,500-3,500</td>
+</tr>
+<tr>
+<td><strong>Total (1K units)</strong></td>
+<td><strong>$15,500-21,500</strong></td>
+<td><strong>$10,000-14,500</strong></td>
+<td><strong>$15,500-21,500</strong></td>
+</tr>
+<tr>
+<td><strong>Per Unit Cost</strong></td>
+<td><strong>$15.50-21.50</strong></td>
+<td><strong>$10.00-14.50</strong></td>
+<td><strong>$15.50-21.50</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-year-total-cost-of-ownership-production">5-Year Total Cost of Ownership (Production)<a class="headerlink" href="#5-year-total-cost-of-ownership-production" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>LSM6DSV16X + ESP32-S3</th>
+<th>BMI270 + ESP32-C3</th>
+<th>ICM-42688-P + nRF52840</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Initial Development</td>
+<td>$135-150</td>
+<td>$65-95</td>
+<td>$120-170</td>
+</tr>
+<tr>
+<td>10K Units Production</td>
+<td>$155K-215K</td>
+<td>$100K-145K</td>
+<td>$155K-215K</td>
+</tr>
+<tr>
+<td>Support/Updates</td>
+<td>$15K-25K</td>
+<td>$20K-30K</td>
+<td>$15K-25K</td>
+</tr>
+<tr>
+<td>Returns/Warranty</td>
+<td>$8K-12K (Low)</td>
+<td>$12K-18K (Medium)</td>
+<td>$8K-12K (Low)</td>
+</tr>
+<tr>
+<td><strong>Total 5-Year TCO</strong></td>
+<td><strong>$178K-252K</strong></td>
+<td><strong>$132K-193K</strong></td>
+<td><strong>$178K-252K</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Insight</strong>: Budget configuration saves 25-30% but may incur higher warranty costs due to lower drift performance.</p>
+<hr />
+<h2 id="2025-supply-chain-availability">2025 Supply Chain &amp; Availability<a class="headerlink" href="#2025-supply-chain-availability" title="Permanent link">&para;</a></h2>
+<h3 id="supply-chain-health">Supply Chain Health<a class="headerlink" href="#supply-chain-health" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Lead Time</th>
+<th>Stock Availability</th>
+<th>Multiple Sources</th>
+<th>Risk Level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LSM6DSV16X</strong></td>
+<td>8-12 weeks</td>
+<td>Good (improving)</td>
+<td>STMicro direct, Digi-Key, Mouser</td>
+<td>Low ✅</td>
+</tr>
+<tr>
+<td><strong>ESP32-S3</strong></td>
+<td>4-8 weeks</td>
+<td>Excellent</td>
+<td>Espressif, multiple distributors</td>
+<td>Very Low ✅</td>
+</tr>
+<tr>
+<td>ICM-42688-P</td>
+<td>10-14 weeks</td>
+<td>Moderate</td>
+<td>TDK, limited distributors</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>BMI270</td>
+<td>8-12 weeks</td>
+<td>Good</td>
+<td>Bosch, major distributors</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>nRF52840</td>
+<td>12-16 weeks</td>
+<td>Moderate</td>
+<td>Nordic, authorized only</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>STM32WB55</td>
+<td>10-14 weeks</td>
+<td>Moderate</td>
+<td>ST, authorized distributors</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>ESP32-C3</td>
+<td>4-8 weeks</td>
+<td>Excellent</td>
+<td>Espressif, multiple distributors</td>
+<td>Very Low ✅</td>
+</tr>
+</tbody>
+</table>
+<h3 id="manufacturer-2025-roadmap-commitment">Manufacturer 2025 Roadmap Commitment<a class="headerlink" href="#manufacturer-2025-roadmap-commitment" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>STMicroelectronics (LSM6DSV16X)</strong>: Strong commitment, MEMS sensor flagship</li>
+<li><strong>Espressif (ESP32-S3/C3)</strong>: Active development, ESP32-S3 is flagship IoT platform</li>
+<li><strong>Bosch (BMI270)</strong>: Maintenance mode, focus shifting to newer IMUs</li>
+<li><strong>TDK InvenSense (ICM-42688-P)</strong>: Active support, competitive roadmap</li>
+<li><strong>Nordic Semi (nRF52840)</strong>: Mature platform, focus on nRF53/nRF54 series</li>
+<li><strong>STMicroelectronics (STM32WB55)</strong>: Active support, STM32WB ecosystem strong</li>
+</ul>
+<hr />
+<h2 id="migration-paths">Migration Paths<a class="headerlink" href="#migration-paths" title="Permanent link">&para;</a></h2>
+<h3 id="from-bno055-discontinued">From BNO055 (Discontinued)<a class="headerlink" href="#from-bno055-discontinued" title="Permanent link">&para;</a></h3>
+<p><strong>Recommended Path</strong>: LSM6DSV16X + ESP32-S3</p>
+<p><strong>Advantages</strong>:
+- 3x better drift performance (45 min vs 15 min)
+- 95% lower power consumption (0.55 mA vs 12.3 mA)
+- On-sensor ML processing (MLC)
+- Future-proof 2025+ support</p>
+<p><strong>Migration Effort</strong>: Moderate
+- Different sensor fusion approach (external vs BNO's internal)
+- Calibration procedures differ
+- Firmware rewrite required</p>
+<h3 id="from-mpu6050-legacy">From MPU6050 (Legacy)<a class="headerlink" href="#from-mpu6050-legacy" title="Permanent link">&para;</a></h3>
+<p><strong>Recommended Path</strong>: LSM6DSV16X or ICM-42688-P + ESP32-S3</p>
+<p><strong>Advantages</strong>:
+- 4x better drift performance
+- 85% lower power consumption
+- Modern BLE connectivity
+- Better accuracy and noise performance</p>
+<p><strong>Migration Effort</strong>: Low-Moderate
+- Similar I2C interface
+- More features available
+- ESP32 ecosystem very beginner-friendly</p>
+<h3 id="from-arduino-based-systems">From Arduino-based Systems<a class="headerlink" href="#from-arduino-based-systems" title="Permanent link">&para;</a></h3>
+<p><strong>Recommended Path</strong>: ESP32-S3 (Arduino compatible) + LSM6DSV16X</p>
+<p><strong>Advantages</strong>:
+- Use existing Arduino IDE knowledge
+- ESP32 Arduino core is mature
+- BLE and WiFi built-in
+- More processing power for complex algorithms</p>
+<p><strong>Migration Effort</strong>: Low
+- Arduino code mostly compatible
+- Large community for support
+- Extensive examples available</p>
+<hr />
+<h2 id="technical-deep-dive-drift-performance">Technical Deep Dive: Drift Performance<a class="headerlink" href="#technical-deep-dive-drift-performance" title="Permanent link">&para;</a></h2>
+<h3 id="what-is-imu-drift">What is IMU Drift?<a class="headerlink" href="#what-is-imu-drift" title="Permanent link">&para;</a></h3>
+<p>Drift is the accumulation of integration errors in gyroscope measurements over time, causing calculated orientation to deviate from true orientation. This is the primary challenge in inertial navigation.</p>
+<h3 id="why-lsm6dsv16x-excels-45-minutes">Why LSM6DSV16X Excels (45+ minutes)<a class="headerlink" href="#why-lsm6dsv16x-excels-45-minutes" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Temperature Stability</strong>: Advanced temperature compensation algorithms</li>
+<li><strong>Gyro Noise Floor</strong>: Industry-leading 3.8 mdps/√Hz</li>
+<li><strong>Zero-Rate Output (ZRO)</strong>: ±1 dps typical (vs ±3 dps competitors)</li>
+<li><strong>Manufacturing Calibration</strong>: Factory-calibrated offset and sensitivity</li>
+<li><strong>Machine Learning Core</strong>: On-sensor drift detection and correction</li>
+</ol>
+<h3 id="practical-impact">Practical Impact<a class="headerlink" href="#practical-impact" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Drift Reset Time</th>
+<th>Application Suitability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10-15 minutes</td>
+<td>Short workouts, basic gesture recognition</td>
+</tr>
+<tr>
+<td>20-25 minutes</td>
+<td>Typical fitness sessions, consumer wearables</td>
+</tr>
+<tr>
+<td>25-30 minutes</td>
+<td>Extended workouts, sports analytics</td>
+</tr>
+<tr>
+<td>45+ minutes ✅</td>
+<td>Professional sports, medical monitoring, full game analysis</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong>: Basketball game analysis
+- Game duration: 48 minutes (NBA) + breaks
+- MPU6050: Requires 3-4 resets during game (unusable)
+- BMI270: Requires 2-3 resets (marginal)
+- LSM6DSV16X: No reset required (professional-grade) ✅</p>
+<hr />
+<h2 id="future-proofing-considerations">Future-Proofing Considerations<a class="headerlink" href="#future-proofing-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="technology-trends-2025-2027">Technology Trends (2025-2027)<a class="headerlink" href="#technology-trends-2025-2027" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>AI at the Edge</strong>: ESP32-S3's dual-core and LSM6DSV16X's MLC position well</li>
+<li><strong>Ultra-Low-Power AI</strong>: On-sensor processing reduces MCU wake time</li>
+<li><strong>BLE 5.3 Features</strong>: Direction finding, channel sounding coming</li>
+<li><strong>RISC-V Adoption</strong>: ESP32-C3 architecture gaining momentum</li>
+<li><strong>Sensor Fusion on IMU</strong>: LSM6DSV16X ISPU enables advanced fusion</li>
+</ol>
+<h3 id="component-longevity">Component Longevity<a class="headerlink" href="#component-longevity" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Production Lifecycle</th>
+<th>Replacement Risk</th>
+<th>Future Support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LSM6DSV16X</td>
+<td>2023-2033+ (est.)</td>
+<td>Very Low</td>
+<td>ST flagship MEMS</td>
+</tr>
+<tr>
+<td>ESP32-S3</td>
+<td>2021-2031+ (est.)</td>
+<td>Very Low</td>
+<td>Espressif flagship</td>
+</tr>
+<tr>
+<td>ICM-42688-P</td>
+<td>2020-2028+ (est.)</td>
+<td>Low</td>
+<td>Active TDK line</td>
+</tr>
+<tr>
+<td>nRF52840</td>
+<td>2017-2027+ (est.)</td>
+<td>Medium</td>
+<td>Mature, nRF53 successor</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<h3 id="recommended-choice-lsm6dsv16x-esp32-s3">Recommended Choice: LSM6DSV16X + ESP32-S3 ✅<a class="headerlink" href="#recommended-choice-lsm6dsv16x-esp32-s3" title="Permanent link">&para;</a></h3>
+<p><strong>For production-grade movement tracking in 2025</strong>, the combination of:
+- <strong>LSM6DSV16X IMU</strong> ($6-8): Best drift performance, ultra-low power, ML capabilities
+- <strong>ESP32-S3 MCU</strong> ($2.50-3.50): Dual-core processing, excellent ecosystem, BLE+WiFi</p>
+<p>Provides the optimal balance of:
+- Performance (45+ min drift, 240 MHz processing)
+- Power efficiency (combined &lt; 1 mA active)
+- Cost ($8.50-11.50 BOM)
+- Developer experience (massive community, libraries)
+- Future-proofing (active roadmaps, 2025+ support)</p>
+<p><strong>Total System Cost</strong>: $15.50-21.50 per unit at 1K volume
+<strong>Target Applications</strong>: Professional sports analytics, medical rehabilitation, research-grade wearables</p>
+<h3 id="alternative-configurations">Alternative Configurations<a class="headerlink" href="#alternative-configurations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Budget Projects</strong>: BMI270 + ESP32-C3 ($10-14.50/unit)</li>
+<li><strong>Ultra-Low-Power</strong>: LSM6DSV16X + nRF52840 ($15.50-21.50/unit, best battery life)</li>
+<li><strong>Prototyping</strong>: Any IMU + ESP32-S3 (best development experience)</li>
+</ul>
+<hr />
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>STMicroelectronics LSM6DSV16X Datasheet (Rev. 6, 2024)</li>
+<li>Espressif ESP32-S3 Technical Reference Manual (v1.9, 2024)</li>
+<li>TDK InvenSense ICM-42688-P Datasheet (v1.7, 2023)</li>
+<li>Bosch BMI270 Datasheet (v2.1, 2023)</li>
+<li>Nordic Semiconductor nRF52840 Product Specification (v1.8, 2024)</li>
+<li>Movement Chain AI Hardware Requirements (2025)</li>
+</ul>
+<hr />
+<p><strong>Document Version</strong>: 1.0
+<strong>Last Updated</strong>: December 2025
+<strong>Maintained By</strong>: Movement Chain AI Team</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/movement-chain-ai" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/movement-chain-ai" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
