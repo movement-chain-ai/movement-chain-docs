@@ -19,13 +19,13 @@ The system follows a 4-module architecture:
 
 The Movement Chain AI project is organized into multiple specialized repositories:
 
-1. **[system-documentation](https://github.com/movement-chain-ai/system-documentation)** - Architecture documentation, high-level design (HLD), and architectural decision records (ADRs) _(this repository)_
+1. **[movement-chain-docs](https://github.com/movement-chain-ai/movement-chain-docs)** - Architecture documentation, high-level design (HLD), and architectural decision records (ADRs) _(this repository)_
 2. **[movement-chain-firmware](https://github.com/movement-chain-ai/movement-chain-firmware)** - ESP32-S3 embedded firmware for wearable IMU sensor device
 3. **[movement-chain-ml](https://github.com/movement-chain-ai/movement-chain-ml)** - Machine learning models, training pipelines, and ONNX model conversion
 4. **[movement-chain-hardware](https://github.com/movement-chain-ai/movement-chain-hardware)** - PCB designs, schematics, and hardware specifications
 5. **[movement-chain-mobile](https://github.com/movement-chain-ai/movement-chain-mobile)** - Flutter-based cross-platform mobile application
 
-See [ADR-0001: Multi-Repository Structure](https://movement-chain-ai.github.io/system-documentation/decisions/0001-multi-repo-structure/) for the rationale behind this organizational approach.
+See [ADR-0001: Multi-Repository Structure](https://movement-chain-ai.github.io/movement-chain-docs/decisions/0001-multi-repo-structure/) for the rationale behind this organizational approach.
 
 ## Quick Start
 
@@ -43,8 +43,8 @@ See [ADR-0001: Multi-Repository Structure](https://movement-chain-ai.github.io/s
 
 2. Clone this repository:
    ```bash
-   git clone https://github.com/movement-chain-ai/system-documentation.git
-   cd system-documentation
+   git clone https://github.com/movement-chain-ai/movement-chain-docs.git
+   cd movement-chain-docs
    ```
 
 3. Serve the documentation locally:
@@ -119,7 +119,7 @@ Comparative analysis and research:
 
 The documentation is automatically deployed to GitHub Pages at:
 
-**https://movement-chain-ai.github.io/system-documentation/** (once deployed)
+**https://movement-chain-ai.github.io/movement-chain-docs/**
 
 The deployment is triggered automatically on every push to the `main` branch using GitHub Actions.
 
