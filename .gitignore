@@ -36,3 +36,4 @@ wheels/
 
 # MkDocs
 .cache/
+node_modules/

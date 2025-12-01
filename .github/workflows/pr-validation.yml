@@ -1,0 +1,264 @@
+name: PR Validation
+
+# Trigger on pull requests to main branch
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+# Ensure only one validation runs per PR at a time
+# Cancel in-progress runs when new commits are pushed
+concurrency:
+  group: pr-validation-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate-docs:
+    name: Validate Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the PR branch
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for better diff analysis
+
+      # Step 2: Setup Python environment
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'  # Cache pip dependencies for faster runs
+
+      # Step 3: Install Python dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Step 4: Setup Node.js for markdown linting tools
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Step 5: Install markdown validation tools
+      - name: Install markdown tools
+        run: |
+          npm install -g markdownlint-cli@0.39.0
+          npm install -g markdown-link-check@3.12.1
+
+      # Step 6: Validate Markdown syntax and style
+      - name: Lint Markdown files
+        id: markdown-lint
+        continue-on-error: true
+        run: |
+          echo "Running markdownlint on all markdown files..."
+          markdownlint 'docs/**/*.md' --config .markdownlint.json || true
+
+          # Store exit code for summary
+          if markdownlint 'docs/**/*.md' --config .markdownlint.json; then
+            echo "result=success" >> $GITHUB_OUTPUT
+            echo "✅ Markdown linting passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "result=failure" >> $GITHUB_OUTPUT
+            echo "❌ Markdown linting failed - see logs for details" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      # Step 7: Check for broken links in documentation
+      - name: Check Markdown links
+        id: link-check
+        continue-on-error: true
+        run: |
+          echo "Checking for broken links in documentation..."
+          echo "## Link Validation Results" >> $GITHUB_STEP_SUMMARY
+
+          # Find all markdown files and check links
+          find docs -name "*.md" -print0 | while IFS= read -r -d '' file; do
+            echo "Checking $file..."
+            markdown-link-check "$file" --config .markdown-link-check.json || true
+          done
+
+          # Run link check again to capture exit code
+          link_errors=0
+          find docs -name "*.md" -print0 | while IFS= read -r -d '' file; do
+            if ! markdown-link-check "$file" --config .markdown-link-check.json --quiet; then
+              link_errors=$((link_errors + 1))
+            fi
+          done
+
+          if [ $link_errors -eq 0 ]; then
+            echo "result=success" >> $GITHUB_OUTPUT
+            echo "✅ All links are valid" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "result=failure" >> $GITHUB_OUTPUT
+            echo "❌ Found broken links - see logs for details" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      # Step 8: Validate mkdocs.yml syntax
+      - name: Validate MkDocs configuration
+        id: yaml-validation
+        continue-on-error: true
+        run: |
+          echo "Validating mkdocs.yml syntax..."
+
+          # Install PyYAML for validation
+          pip install pyyaml
+
+          # Validate YAML syntax
+          python -c "import yaml; yaml.safe_load(open('mkdocs.yml'))"
+
+          if [ $? -eq 0 ]; then
+            echo "result=success" >> $GITHUB_OUTPUT
+            echo "✅ MkDocs configuration is valid" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "result=failure" >> $GITHUB_OUTPUT
+            echo "❌ MkDocs configuration validation failed" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      # Step 9: Build documentation with strict mode
+      - name: Build documentation (strict mode)
+        id: build-docs
+        continue-on-error: true
+        run: |
+          echo "Building documentation with strict mode..."
+          echo "## Build Results" >> $GITHUB_STEP_SUMMARY
+
+          # Build with strict mode - fails on warnings
+          if mkdocs build --strict --verbose; then
+            echo "result=success" >> $GITHUB_OUTPUT
+            echo "✅ Documentation built successfully" >> $GITHUB_STEP_SUMMARY
+
+            # Count generated files
+            file_count=$(find site -type f | wc -l)
+            echo "📊 Generated $file_count files" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "result=failure" >> $GITHUB_OUTPUT
+            echo "❌ Documentation build failed - see logs for details" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      # Step 10: Upload build artifacts for review
+      - name: Upload build artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-build-pr-${{ github.event.pull_request.number }}
+          path: site/
+          retention-days: 1
+          if-no-files-found: warn
+
+      # Step 11: Check for broken internal references
+      - name: Validate internal references
+        id: internal-refs
+        continue-on-error: true
+        run: |
+          echo "Checking for broken internal references..."
+          echo "## Internal Reference Check" >> $GITHUB_STEP_SUMMARY
+
+          # Simple check for broken internal links in navigation
+          python << 'EOF'
+          import yaml
+          import os
+          from pathlib import Path
+
+          with open('mkdocs.yml', 'r') as f:
+              config = yaml.safe_load(f)
+
+          def check_nav_item(item, path=[]):
+              if isinstance(item, dict):
+                  for key, value in item.items():
+                      if isinstance(value, str) and value.endswith('.md'):
+                          file_path = Path('docs') / value
+                          if not file_path.exists():
+                              print(f"❌ Missing file referenced in nav: {value}")
+                              return False
+                      elif isinstance(value, list):
+                          for sub_item in value:
+                              if not check_nav_item(sub_item, path + [key]):
+                                  return False
+              return True
+
+          nav = config.get('nav', [])
+          all_valid = all(check_nav_item(item) for item in nav)
+
+          if all_valid:
+              print("✅ All navigation references are valid")
+              exit(0)
+          else:
+              exit(1)
+          EOF
+
+          if [ $? -eq 0 ]; then
+            echo "result=success" >> $GITHUB_OUTPUT
+            echo "✅ All internal references are valid" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "result=failure" >> $GITHUB_OUTPUT
+            echo "❌ Found broken internal references" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+  # Job 2: Generate comprehensive validation summary
+  validation-summary:
+    name: Validation Summary
+    needs: validate-docs
+    if: always()  # Run even if validate-docs fails
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate validation summary
+        run: |
+          echo "# 📋 PR Validation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Pull Request:** #${{ github.event.pull_request.number }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** \`${{ github.head_ref }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** \`${{ github.event.pull_request.head.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Validation Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check overall status
+          if [ "${{ needs.validate-docs.result }}" == "success" ]; then
+            echo "### ✅ All checks passed!" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "This PR is ready for review and merge." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ❌ Some checks failed" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Please review the validation errors above and fix them before merging." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "**Common issues:**" >> $GITHUB_STEP_SUMMARY
+            echo "- Broken links (internal or external)" >> $GITHUB_STEP_SUMMARY
+            echo "- Markdown formatting issues" >> $GITHUB_STEP_SUMMARY
+            echo "- Missing files referenced in navigation" >> $GITHUB_STEP_SUMMARY
+            echo "- Invalid YAML syntax in mkdocs.yml" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 📊 Check Details" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Markdown Linting | See logs |" >> $GITHUB_STEP_SUMMARY
+          echo "| Link Validation | See logs |" >> $GITHUB_STEP_SUMMARY
+          echo "| YAML Validation | See logs |" >> $GITHUB_STEP_SUMMARY
+          echo "| Build Test | See logs |" >> $GITHUB_STEP_SUMMARY
+          echo "| Internal References | See logs |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## 🔗 Useful Links" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- [View full workflow logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
+          echo "- [View PR](${{ github.event.pull_request.html_url }})" >> $GITHUB_STEP_SUMMARY
+          echo "- [View changed files](${{ github.event.pull_request.html_url }}/files)" >> $GITHUB_STEP_SUMMARY
+
+      # Fail the workflow if validation failed
+      - name: Check validation result
+        if: needs.validate-docs.result != 'success'
+        run: |
+          echo "::error::PR validation failed. Please fix the issues above."
+          exit 1
