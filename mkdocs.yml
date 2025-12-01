@@ -111,6 +111,7 @@ nav:
     - ADR-0006 ONNX Runtime: decisions/0006-onnx-runtime-deployment.md
 
   - Resources:
+    - Open Source License Comparison: resources/open-source-license-comparison.md
     - Hardware Comparison: resources/hardware-comparison.md
     - ML Frameworks Comparison: resources/ml-frameworks-comparison.md
     - Mobile Frameworks Comparison: resources/mobile-frameworks-comparison.md
