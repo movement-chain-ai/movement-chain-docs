@@ -1,9 +1,9 @@
 site_name: Movement Chain AI Documentation
 site_description: Architecture documentation for multimodal AI movement training system
 site_author: Movement Chain AI Team
-site_url: https://movement-chain-ai.github.io/system-documentation/
-repo_name: movement-chain-ai/system-documentation
-repo_url: https://github.com/movement-chain-ai/system-documentation
+site_url: https://movement-chain-ai.github.io/movement-chain-docs/
+repo_name: movement-chain-ai/movement-chain-docs
+repo_url: https://github.com/movement-chain-ai/movement-chain-docs
 
 theme:
   name: material
