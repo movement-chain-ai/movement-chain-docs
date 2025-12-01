@@ -117,11 +117,11 @@ Comparative analysis and research:
 
 ## GitHub Pages Deployment
 
-The documentation is automatically deployed to GitHub Pages at:
+The documentation is **live and publicly accessible** at:
 
 **https://movement-chain-ai.github.io/movement-chain-docs/**
 
-The deployment is triggered automatically on every push to the `main` branch using GitHub Actions.
+The site is automatically rebuilt and deployed on every push to the `main` branch that modifies documentation files (via GitHub Actions workflow).
 
 ## Contributing
 
