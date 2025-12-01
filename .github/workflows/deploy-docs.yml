@@ -72,3 +72,155 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  smoke-tests:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for deployment propagation
+        run: |
+          echo "⏳ Waiting 15 seconds for CDN propagation..."
+          sleep 15
+
+      - name: Test Landing Page
+        id: test-landing
+        run: |
+          URL="https://movement-chain-ai.github.io/movement-chain-docs/"
+          echo "Testing: $URL"
+          STATUS=$(curl -f -s -o /dev/null -w "%{http_code}" "$URL")
+          if [ "$STATUS" != "200" ]; then
+            echo "❌ Landing page failed with status: $STATUS"
+            exit 1
+          fi
+          echo "✅ Landing page: $STATUS"
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+
+      - name: Test Architecture Overview
+        id: test-arch
+        run: |
+          URL="https://movement-chain-ai.github.io/movement-chain-docs/architecture/hld/01-system-overview/"
+          echo "Testing: $URL"
+          STATUS=$(curl -f -s -o /dev/null -w "%{http_code}" "$URL")
+          if [ "$STATUS" != "200" ]; then
+            echo "❌ Architecture overview failed with status: $STATUS"
+            exit 1
+          fi
+          echo "✅ Architecture overview: $STATUS"
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+
+      - name: Test ADR-0001
+        id: test-adr-0001
+        run: |
+          URL="https://movement-chain-ai.github.io/movement-chain-docs/decisions/0001-multi-repo-structure/"
+          echo "Testing: $URL"
+          STATUS=$(curl -f -s -o /dev/null -w "%{http_code}" "$URL")
+          if [ "$STATUS" != "200" ]; then
+            echo "❌ ADR-0001 failed with status: $STATUS"
+            exit 1
+          fi
+          echo "✅ ADR-0001: $STATUS"
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+
+      - name: Test ADR-0004
+        id: test-adr-0004
+        run: |
+          URL="https://movement-chain-ai.github.io/movement-chain-docs/decisions/0004-simplified-4-module-architecture/"
+          echo "Testing: $URL"
+          STATUS=$(curl -f -s -o /dev/null -w "%{http_code}" "$URL")
+          if [ "$STATUS" != "200" ]; then
+            echo "❌ ADR-0004 failed with status: $STATUS"
+            exit 1
+          fi
+          echo "✅ ADR-0004: $STATUS"
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+
+      - name: Test Resources Index
+        id: test-resources
+        run: |
+          URL="https://movement-chain-ai.github.io/movement-chain-docs/resources/"
+          echo "Testing: $URL"
+          STATUS=$(curl -f -s -o /dev/null -w "%{http_code}" "$URL")
+          if [ "$STATUS" != "200" ]; then
+            echo "❌ Resources index failed with status: $STATUS"
+            exit 1
+          fi
+          echo "✅ Resources index: $STATUS"
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+
+      - name: Test Sitemap
+        id: test-sitemap
+        run: |
+          URL="https://movement-chain-ai.github.io/movement-chain-docs/sitemap.xml"
+          echo "Testing: $URL"
+          STATUS=$(curl -f -s -o /dev/null -w "%{http_code}" "$URL")
+          if [ "$STATUS" != "200" ]; then
+            echo "❌ Sitemap failed with status: $STATUS"
+            exit 1
+          fi
+          echo "✅ Sitemap: $STATUS"
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+
+      - name: Test Search Index
+        id: test-search
+        run: |
+          URL="https://movement-chain-ai.github.io/movement-chain-docs/search/search_index.json"
+          echo "Testing: $URL"
+          STATUS=$(curl -f -s -o /dev/null -w "%{http_code}" "$URL")
+          if [ "$STATUS" != "200" ]; then
+            echo "❌ Search index failed with status: $STATUS"
+            exit 1
+          fi
+          echo "✅ Search index: $STATUS"
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+
+      - name: Test 404 Page
+        id: test-404
+        run: |
+          URL="https://movement-chain-ai.github.io/movement-chain-docs/this-page-does-not-exist/"
+          echo "Testing: $URL"
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+          if [ "$STATUS" != "404" ]; then
+            echo "⚠️ 404 page returned unexpected status: $STATUS (expected 404)"
+            # Don't fail on this - it's informational
+          else
+            echo "✅ 404 page: $STATUS"
+          fi
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+
+      - name: Create Test Summary
+        if: always()
+        run: |
+          echo "## Smoke Test Results 🧪" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Deployment URL:** https://movement-chain-ai.github.io/movement-chain-docs/" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Page | Status | Result |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|--------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Landing Page | ${{ steps.test-landing.outputs.status || 'N/A' }} | ${{ steps.test-landing.outcome == 'success' && '✅ Pass' || '❌ Fail' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Architecture Overview | ${{ steps.test-arch.outputs.status || 'N/A' }} | ${{ steps.test-arch.outcome == 'success' && '✅ Pass' || '❌ Fail' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| ADR-0001 | ${{ steps.test-adr-0001.outputs.status || 'N/A' }} | ${{ steps.test-adr-0001.outcome == 'success' && '✅ Pass' || '❌ Fail' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| ADR-0004 | ${{ steps.test-adr-0004.outputs.status || 'N/A' }} | ${{ steps.test-adr-0004.outcome == 'success' && '✅ Pass' || '❌ Fail' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Resources Index | ${{ steps.test-resources.outputs.status || 'N/A' }} | ${{ steps.test-resources.outcome == 'success' && '✅ Pass' || '❌ Fail' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Sitemap.xml | ${{ steps.test-sitemap.outputs.status || 'N/A' }} | ${{ steps.test-sitemap.outcome == 'success' && '✅ Pass' || '❌ Fail' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Search Index | ${{ steps.test-search.outputs.status || 'N/A' }} | ${{ steps.test-search.outcome == 'success' && '✅ Pass' || '❌ Fail' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 404 Page | ${{ steps.test-404.outputs.status || 'N/A' }} | ${{ steps.test-404.outcome == 'success' && '✅ Pass' || 'ℹ️ Info' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Total Pages Tested:** 8" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          # Check if any critical tests failed
+          if [ "${{ steps.test-landing.outcome }}" != "success" ] || \
+             [ "${{ steps.test-arch.outcome }}" != "success" ] || \
+             [ "${{ steps.test-adr-0001.outcome }}" != "success" ] || \
+             [ "${{ steps.test-adr-0004.outcome }}" != "success" ] || \
+             [ "${{ steps.test-resources.outcome }}" != "success" ] || \
+             [ "${{ steps.test-sitemap.outcome }}" != "success" ] || \
+             [ "${{ steps.test-search.outcome }}" != "success" ]; then
+            echo "### ⚠️ Some tests failed!" >> $GITHUB_STEP_SUMMARY
+            echo "Please review the failed tests above and investigate deployment issues." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### ✅ All smoke tests passed!" >> $GITHUB_STEP_SUMMARY
+            echo "The documentation site is live and all critical pages are accessible." >> $GITHUB_STEP_SUMMARY
+          fi

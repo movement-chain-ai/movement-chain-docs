@@ -6,7 +6,145 @@ This directory contains automated workflows for the Movement Chain AI documentat
 
 ## Workflows
 
-### 1. Deploy MkDocs to GitHub Pages (`deploy-docs.yml`)
+### 1. PR Validation (`pr-validation.yml`)
+
+**Purpose:** Validates pull requests before they can be merged to main, ensuring documentation quality, correctness, and consistency.
+
+#### Trigger Conditions
+
+The workflow runs automatically when:
+
+1. **Pull request opened** against `main` branch
+2. **Pull request synchronized** (new commits pushed)
+3. **Pull request reopened**
+
+#### Concurrency Control
+
+```yaml
+concurrency:
+  group: pr-validation-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+```
+
+**What this means:**
+- Only one validation runs per PR at a time
+- When new commits are pushed, the old validation is cancelled
+- Saves CI/CD resources and provides faster feedback
+
+#### Validation Checks
+
+The workflow performs five comprehensive checks:
+
+##### 1. Markdown Linting
+- **Tool:** `markdownlint-cli`
+- **Config:** `.markdownlint.json`
+- **What it checks:**
+  - Consistent heading styles
+  - Proper list formatting
+  - Code block syntax
+  - Trailing whitespace
+  - Line length (configurable)
+
+##### 2. Link Validation
+- **Tool:** `markdown-link-check`
+- **Config:** `.markdown-link-check.json`
+- **What it checks:**
+  - Broken external links (HTTP status codes)
+  - Broken internal links (file references)
+  - Anchor links validity
+  - Retries failed links with exponential backoff
+
+##### 3. YAML Configuration Validation
+- **Tool:** Python PyYAML
+- **What it checks:**
+  - `mkdocs.yml` syntax is valid
+  - No YAML parsing errors
+  - Configuration structure is correct
+
+##### 4. Documentation Build Test
+- **Tool:** `mkdocs build --strict --verbose`
+- **What it checks:**
+  - All referenced files exist
+  - No build warnings or errors
+  - Theme and plugins load correctly
+  - Navigation structure is valid
+  - Generates complete site successfully
+
+##### 5. Internal Reference Validation
+- **Tool:** Custom Python script
+- **What it checks:**
+  - All files referenced in `nav:` section exist
+  - No orphaned documentation files
+  - Navigation paths are correct
+
+#### Workflow Jobs
+
+##### Job 1: validate-docs
+1. **Checkout code** - Full PR branch with history
+2. **Setup Python 3.11** - With pip cache enabled
+3. **Install Python dependencies** - MkDocs and plugins
+4. **Setup Node.js 20** - For markdown tools
+5. **Install markdown tools** - markdownlint-cli and markdown-link-check
+6. **Run all validation checks** - With detailed error reporting
+7. **Upload build artifacts** - Generated site/ directory (1 day retention)
+
+##### Job 2: validation-summary
+1. **Generate comprehensive summary** - With check results
+2. **Create step summary** - Visible in GitHub UI
+3. **Fail workflow if checks failed** - Blocks PR merge
+
+#### Build Artifacts
+
+The workflow uploads the built documentation as an artifact:
+- **Name:** `documentation-build-pr-<number>`
+- **Contents:** Complete `site/` directory
+- **Retention:** 1 day
+- **Use case:** Preview the built site before merge
+
+To download:
+1. Go to workflow run in Actions tab
+2. Scroll to "Artifacts" section
+3. Download `documentation-build-pr-<number>`
+4. Extract and open `index.html` in browser
+
+#### GitHub Step Summary
+
+The workflow creates a detailed summary visible in the PR:
+- Overall validation status
+- Individual check results
+- Links to full logs
+- Links to PR and changed files
+- Troubleshooting hints for common issues
+
+#### Configuration Files
+
+##### `.markdownlint.json`
+Controls markdown linting rules:
+```json
+{
+  "default": true,
+  "MD013": false,  // Disable line length check
+  "MD033": false,  // Allow HTML in markdown
+  "MD041": false   // Allow non-heading first line
+}
+```
+
+##### `.markdown-link-check.json`
+Controls link validation:
+```json
+{
+  "ignorePatterns": [
+    { "pattern": "^http://localhost" }
+  ],
+  "timeout": "20s",
+  "retryOn429": true,
+  "retryCount": 3
+}
+```
+
+---
+
+### 2. Deploy MkDocs to GitHub Pages (`deploy-docs.yml`)
 
 **Purpose:** Automatically builds and deploys the MkDocs documentation site to GitHub Pages whenever changes are pushed to the main branch.
 
@@ -153,7 +291,163 @@ You can manually trigger the workflow:
 
 ---
 
+## Testing Workflows
+
+### Testing PR Validation (Before Creating PR)
+
+Test all validation checks locally before creating a PR:
+
+```bash
+# 1. Install Node.js dependencies for linting
+npm install -g markdownlint-cli markdown-link-check
+
+# 2. Install Python dependencies
+pip install -r requirements.txt
+
+# 3. Run markdown linting
+markdownlint 'docs/**/*.md' --config .markdownlint.json
+
+# 4. Check for broken links
+find docs -name "*.md" -exec markdown-link-check {} \;
+
+# 5. Validate mkdocs.yml
+python -c "import yaml; yaml.safe_load(open('mkdocs.yml'))"
+
+# 6. Build documentation (strict mode)
+mkdocs build --strict --verbose
+
+# 7. Preview the site
+mkdocs serve
+```
+
+If all commands succeed, your PR will likely pass validation.
+
+### Testing PR Validation Workflow Changes
+
+When modifying the workflow itself:
+
+1. **Validate YAML syntax:**
+   ```bash
+   # Use GitHub's action-validator or yamllint
+   yamllint .github/workflows/pr-validation.yml
+   ```
+
+2. **Test on a draft PR:**
+   - Create a draft PR to test workflow changes
+   - Review workflow logs carefully
+   - Make adjustments as needed
+
+3. **Use act for local testing** (optional):
+   ```bash
+   # Install act: https://github.com/nektos/act
+   brew install act
+
+   # Run PR validation locally
+   act pull_request -W .github/workflows/pr-validation.yml
+   ```
+
+---
+
 ## Troubleshooting
+
+### PR Validation Issues
+
+#### Issue: "Markdown linting failed"
+
+**Cause:** Markdown files don't follow style guidelines
+
+**Solution:**
+1. Run `markdownlint 'docs/**/*.md'` locally to see specific errors
+2. Common fixes:
+   - Use ATX-style headers (# ## ###)
+   - Ensure consistent list markers (- or *)
+   - Add blank lines around code blocks
+   - Remove trailing whitespace
+3. Auto-fix many issues: `markdownlint 'docs/**/*.md' --fix`
+4. Adjust `.markdownlint.json` if rules are too strict
+
+#### Issue: "Link validation failed"
+
+**Cause:** Broken or unreachable links in documentation
+
+**Solution:**
+1. Run `markdown-link-check` locally on specific files
+2. Common issues:
+   - Typos in URLs
+   - Links to localhost or private resources
+   - External sites temporarily down (retry later)
+   - Incorrect relative paths
+3. Add problematic URLs to ignore list in `.markdown-link-check.json`:
+   ```json
+   {
+     "ignorePatterns": [
+       { "pattern": "^http://example.com/flaky-endpoint" }
+     ]
+   }
+   ```
+
+#### Issue: "YAML validation failed"
+
+**Cause:** Invalid syntax in `mkdocs.yml`
+
+**Solution:**
+1. Check for:
+   - Missing colons or incorrect indentation
+   - Unquoted special characters
+   - Invalid YAML structure
+2. Test locally: `python -c "import yaml; yaml.safe_load(open('mkdocs.yml'))"`
+3. Use a YAML validator or IDE with YAML support
+4. Common issues:
+   - Tabs instead of spaces (use 2 spaces)
+   - Special characters in strings (use quotes)
+   - Incorrect nesting levels
+
+#### Issue: "Build test failed"
+
+**Cause:** MkDocs cannot build the site
+
+**Solution:**
+1. Run `mkdocs build --strict --verbose` locally
+2. Common causes:
+   - Missing files referenced in `nav:` section
+   - Invalid markdown syntax
+   - Missing or incompatible plugins
+   - Broken internal links
+3. Check error messages for specific files/lines
+4. Verify all files in navigation exist:
+   ```bash
+   # List all files in nav
+   grep -E '\.md$' mkdocs.yml
+
+   # Check if they exist
+   grep -E '\.md$' mkdocs.yml | awk '{print $NF}' | while read f; do
+     [ -f "docs/$f" ] || echo "Missing: $f"
+   done
+   ```
+
+#### Issue: "Internal reference validation failed"
+
+**Cause:** Navigation references non-existent files
+
+**Solution:**
+1. Review the workflow logs for specific missing files
+2. Check that all files in `mkdocs.yml` nav section exist in `docs/`
+3. Verify file paths are correct (case-sensitive)
+4. Ensure files have the correct extension (`.md`)
+
+#### Issue: "Workflow not running on PR"
+
+**Cause:** PR not targeting `main` branch or workflow disabled
+
+**Solution:**
+1. Verify PR targets `main` branch
+2. Check workflow file exists in `.github/workflows/`
+3. Ensure workflows are enabled in repository settings
+4. Check for YAML syntax errors in workflow file
+
+---
+
+### Deployment Issues
 
 ### Build Failures
 
