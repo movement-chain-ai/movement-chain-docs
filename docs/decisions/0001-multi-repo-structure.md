@@ -5,7 +5,7 @@
 
 ## Context
 
-The Movement Chain AI system comprises multiple distinct technical domains: embedded firmware for ESP32-C6 devices, Python-based machine learning models, Flutter mobile applications, hardware design files, and documentation. We needed to decide between a monorepo approach (single repository with multiple workspaces) versus a multi-repo approach (separate repositories for each major component).
+The Movement Chain AI system comprises multiple distinct technical domains: embedded firmware for ESP32-S3 devices, Python-based machine learning models, Flutter mobile applications, hardware design files, and documentation. We needed to decide between a monorepo approach (single repository with multiple workspaces) versus a multi-repo approach (separate repositories for each major component).
 
 Key factors influencing this decision:
 - Different build systems and toolchains (PlatformIO for firmware, Python/Poetry for ML, Flutter for mobile)
@@ -18,7 +18,7 @@ Key factors influencing this decision:
 
 We will adopt a **multi-repository structure** with the following repositories:
 
-1. `movement-chain-firmware` - ESP32-C6 embedded firmware (PlatformIO/C++)
+1. `movement-chain-firmware` - ESP32-S3 embedded firmware (PlatformIO/C++)
 2. `movement-chain-ml` - Machine learning models and training pipelines (Python)
 3. `movement-chain-mobile` - Flutter mobile application (Dart/Flutter)
 4. `movement-chain-hardware` - Hardware schematics, PCB designs, BOM (KiCad)
