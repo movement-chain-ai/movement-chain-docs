@@ -1665,13 +1665,13 @@ hive_db/
 - [ADR-0001: Multi-Repository Structure](../../decisions/0001-multi-repo-structure.md)
 - [ADR-0002: LSM6DSV16X IMU Selection](../../decisions/0002-lsm6dsv16x-imu.md)
 - [ADR-0003: Flutter for Mobile Development](../../decisions/0003-flutter-mobile.md)
-- [ADR-0004: Four-Module Architecture (Simplified)](../../decisions/0004-simplified-architecture.md)
+- [ADR-0004: Four-Module Architecture (Simplified)](../../decisions/0004-simplified-4-module-architecture.md)
 
 ### Technical Resources
 - [Hardware Comparison Matrix](../../resources/hardware-comparison.md)
 - [ML Framework Comparison](../../resources/ml-frameworks-comparison.md)
 - [Mobile Framework Comparison](../../resources/mobile-frameworks-comparison.md)
-- [BLE Optimization Guide](../../guides/ble-optimization.md)
+<!-- - [BLE Optimization Guide](../../guides/ble-optimization.md) (Coming soon) -->
 
 ### Research Papers
 - Schmidt, R. A., & Lee, T. D. (2011). *Motor Control and Learning: A Behavioral Emphasis* (5th ed.). Human Kinetics.
