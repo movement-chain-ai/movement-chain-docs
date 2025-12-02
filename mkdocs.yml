@@ -35,9 +35,32 @@ theme:
     repo: fontawesome/brands/github
 
 plugins:
-  - search:
-      lang: en
-      separator: '[\s\-\_]+'
+  - search
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: zh
+          name: 中文 (Simplified Chinese)
+          build: true
+          nav_translations:
+            Home: 首页
+            Architecture: 架构
+            High-Level Design: 高层设计
+            System Overview: 系统概览
+            Data Flow: 数据流
+            Integration Patterns: 集成模式
+            Performance Targets: 性能目标
+            Decisions: 决策记录
+            Overview: 概览
+            Resources: 资源
+            Guides: 指南
 
 markdown_extensions:
   # Code highlighting
@@ -81,6 +104,13 @@ markdown_extensions:
       toc_depth: 3
 
 extra:
+  alternate:
+    - name: English
+      link: /en/
+      lang: en
+    - name: 中文
+      link: /zh/
+      lang: zh
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/movement-chain-ai
