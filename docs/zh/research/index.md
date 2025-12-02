@@ -52,7 +52,7 @@
 
 **旧结构** (基于来源):
 
-```
+```text
 docs/research/
 ├── pose-estimation-tools-2025.md
 ├── visual-feedback-research-summary.md
@@ -65,7 +65,7 @@ docs/research/
 
 **新结构** (基于主题):
 
-```
+```text
 docs/guides/
 ├── pose-estimation.md           ← 关于姿态估计的一切
 ├── visual-feedback-design.md    ← 关于视觉反馈的一切
@@ -81,7 +81,7 @@ docs/guides/
 
 原始研究文档已保留用于历史参考：
 
-📂 **[`docs/archive/research-sources/`](../../en/archive/research-sources/)**
+📂 **[`docs/archive/research-sources/`](../../en/archive/research-sources/index.md)**
 
 这些文件在 2025 年 12 月 1 日 **冻结**。请勿编辑它们。
 
@@ -106,13 +106,13 @@ docs/guides/
 
 ### 想要旧结构？(Want the old structure?)
 
-📦 **[归档研究来源 (Archived Research Sources)](../../en/archive/research-sources/)** - 仅供历史参考
+📦 **[归档研究来源 (Archived Research Sources)](../../en/archive/research-sources/index.md)** - 仅供历史参考
 
 ---
 
 <div align="center">
 
-**[📖 浏览整合指南 (Browse Consolidated Guides)](../guides/index.md)** | **[🏠 主文档 (Main Documentation)](../index.md)** | **[📦 归档研究 (Archived Research)](../../en/archive/research-sources/)**
+**[📖 浏览整合指南 (Browse Consolidated Guides)](../guides/index.md)** | **[🏠 主文档 (Main Documentation)](../index.md)** | **[📦 归档研究 (Archived Research)](../../en/archive/research-sources/index.md)**
 
 ---
 

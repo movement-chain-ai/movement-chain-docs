@@ -22,10 +22,12 @@ These guides are organized **by topic** rather than by source type. Each guide c
 ## Quick Navigation by Topic
 
 ### 🤖 [Pose Estimation & Computer Vision](pose-estimation.md)
+
 **For**: ML engineers, backend developers
 **Size**: 36KB | **Reading time**: ~50 min
 
 Everything about pose estimation and computer vision for movement tracking:
+
 - Quick decision framework (MediaPipe vs RTMPose vs MoveNet vs Apple Vision)
 - Performance comparison and benchmarks
 - Commercial implementations (Peloton IQ, Tonal, Tempo)
@@ -38,10 +40,12 @@ Everything about pose estimation and computer vision for movement tracking:
 ---
 
 ### 🎨 [Visual Feedback Design](visual-feedback-design.md)
+
 **For**: UI/UX designers, frontend developers, researchers
 **Size**: 72KB | **Reading time**: ~90 min
 
 Complete design system for movement correction feedback:
+
 - Research-backed patterns (overlay arrows, ghost avatar, color coding)
 - Optimal design parameters (50% opacity for ghost avatars)
 - Commercial UX analysis (Peloton, MAGIC Mirror, Tempo, Form)
@@ -55,10 +59,12 @@ Complete design system for movement correction feedback:
 ---
 
 ### 🔧 [Sensor Hardware & Embedded Systems](sensor-hardware.md)
+
 **For**: Hardware engineers, embedded developers
 **Size**: 59KB | **Reading time**: ~75 min
 
 Multi-sensor architecture and embedded systems guide:
+
 - System overview (IMU + EMG + Vision fusion)
 - LSM6DSV16X IMU selection and integration (8kHz, 6-axis)
 - **EMG sensors - Our unique advantage!** (No competitor has this)
@@ -72,10 +78,12 @@ Multi-sensor architecture and embedded systems guide:
 ---
 
 ### 📱 [Mobile App Development](mobile-development.md)
+
 **For**: Mobile developers (iOS/Android), app engineers
 **Size**: 36KB | **Reading time**: ~50 min
 
 Cross-platform mobile development guide:
+
 - Framework selection (Flutter vs React Native vs Native)
 - Pose estimation on mobile (on-device inference, optimization)
 - Mobile UI/UX constraints and patterns
@@ -89,10 +97,12 @@ Cross-platform mobile development guide:
 ---
 
 ### 📊 [Datasets & Benchmarking](datasets-benchmarking.md)
+
 **For**: Researchers, ML engineers, academic contributors
 **Size**: 39KB | **Reading time**: ~50 min
 
 Research datasets, benchmarks, and evaluation guide:
+
 - **Priority datasets** with access instructions:
   - Fit3D (3M+ images, 37 exercises) - Application process
   - MM-Fit (IMU + Vision) - Download commands included
@@ -109,10 +119,12 @@ Research datasets, benchmarks, and evaluation guide:
 ---
 
 ### 🏆 [Competitive Analysis & Strategic Positioning](competitive-analysis.md)
+
 **For**: Leadership, strategy, investors, business development
 **Size**: 50KB | **Reading time**: ~65 min
 
 Market landscape and strategic positioning:
+
 - Market landscape 2025 (Peloton IQ, Tonal, MAGIC Mirror, Tempo, Form, Apple Fitness+)
 - **5 unique advantages**:
   1. EMG muscle activation (ONLY us!)
@@ -133,6 +145,7 @@ Market landscape and strategic positioning:
 ## Reading Paths by Role
 
 ### 🎯 New Team Members (Onboarding)
+
 **Goal**: Understand strategic context and competitive landscape
 **Time**: ~2 hours
 
@@ -151,6 +164,7 @@ Market landscape and strategic positioning:
 ---
 
 ### 🤖 ML Engineers (Technical Deep Dive)
+
 **Goal**: Technical proficiency in pose estimation and ML deployment
 **Time**: ~3 hours
 
@@ -174,6 +188,7 @@ Market landscape and strategic positioning:
 ---
 
 ### 🎨 UI/UX Designers (Design System)
+
 **Goal**: Research-backed design expertise
 **Time**: ~3.5 hours
 
@@ -197,6 +212,7 @@ Market landscape and strategic positioning:
 ---
 
 ### 🔧 Hardware Engineers (Embedded Systems)
+
 **Goal**: Multi-sensor hardware implementation
 **Time**: ~2.5 hours
 
@@ -220,6 +236,7 @@ Market landscape and strategic positioning:
 ---
 
 ### 📱 Mobile Developers (App Development)
+
 **Goal**: Cross-platform app implementation
 **Time**: ~2.5 hours
 
@@ -243,6 +260,7 @@ Market landscape and strategic positioning:
 ---
 
 ### 🔬 Researchers (Publication Preparation)
+
 **Goal**: Academic research readiness
 **Time**: ~4 hours
 
@@ -288,6 +306,7 @@ Market landscape and strategic positioning:
 ## What Each Guide Contains
 
 ### Common Sections (All Guides)
+
 - ✅ **Overview & Context** - Why this topic matters
 - ✅ **Research Evidence** - Academic findings and citations
 - ✅ **Commercial Insights** - What production systems do
@@ -299,36 +318,42 @@ Market landscape and strategic positioning:
 ### Guide-Specific Highlights
 
 **Pose Estimation**:
+
 - Quick decision framework flowchart
 - RTMPose migration guide from MediaPipe
 - Cost-benefit analysis (67-82% cloud cost reduction)
 - 7+ code examples (Python, Flutter, JavaScript)
 
 **Visual Feedback Design**:
+
 - Research evidence tables (effect sizes, p-values)
 - Commercial UX pattern catalog
 - Color palette specifications (WCAG 2.1 compliant)
 - 300+ lines of Flutter/Three.js code examples
 
 **Sensor Hardware**:
+
 - Hardware comparison tables (LSM6DSV16X vs alternatives)
 - EMG sensor design (dry electrode specifications)
 - BLE GATT service architecture
 - Power optimization strategies (8+ hour battery)
 
 **Mobile Development**:
+
 - Framework comparison (Flutter vs React Native vs Native)
 - Performance benchmarks (60 FPS, <500MB RAM)
 - BLE integration code (flutter_reactive_ble)
 - Commercial app teardowns (Peloton, Apple Fitness+)
 
 **Datasets & Benchmarking**:
+
 - Dataset access instructions (download commands, application processes)
 - Benchmark comparison tables (COCO AP scores)
 - Phased usage strategy (MVP → Research)
 - Publication venue recommendations
 
 **Competitive Analysis**:
+
 - Market sizing and TAM analysis
 - Competitive positioning matrix
 - Go-to-market roadmap (Year 1-3)
@@ -341,6 +366,7 @@ Market landscape and strategic positioning:
 Each guide consolidates multiple scattered research documents:
 
 ### Pose Estimation Guide ← 7 Documents
+
 - ✅ research/pose-estimation-tools-2025.md
 - ✅ research/visual-feedback-apis-sdks.md (pose APIs)
 - ✅ research/commercial-fitness-tech.md (vision systems)
@@ -350,6 +376,7 @@ Each guide consolidates multiple scattered research documents:
 - ✅ resources/ml-frameworks-comparison.md
 
 ### Visual Feedback Guide ← 5 Documents
+
 - ✅ research/visual-feedback-research-summary.md
 - ✅ research/movement-correction-feedback-ui-ux-guidelines.md
 - ✅ research/visual-feedback-apis-sdks.md (rendering)
@@ -357,6 +384,7 @@ Each guide consolidates multiple scattered research documents:
 - ✅ research/movement-feedback-commercial-research.md (feedback)
 
 ### Sensor Hardware Guide ← 6 Documents
+
 - ✅ decisions/0002-lsm6dsv16x-imu.md
 - ✅ decisions/0005-esp32-s3-microcontroller.md
 - ✅ resources/hardware-comparison.md
@@ -365,6 +393,7 @@ Each guide consolidates multiple scattered research documents:
 - ✅ research/project-unique-value.md (EMG)
 
 ### Mobile Development Guide ← 5 Documents
+
 - ✅ decisions/0003-flutter-mobile.md
 - ✅ resources/mobile-frameworks-comparison.md
 - ✅ research/movement-correction-feedback-ui-ux-guidelines.md (mobile UI)
@@ -372,11 +401,13 @@ Each guide consolidates multiple scattered research documents:
 - ✅ research/pose-estimation-tools-2025.md (mobile deployment)
 
 ### Datasets & Benchmarking Guide ← 3 Documents
+
 - ✅ research/academic-research-datasets.md
 - ✅ research/pose-estimation-tools-2025.md (benchmarks)
 - ✅ research/commercial-fitness-tech.md (performance)
 
 ### Competitive Analysis Guide ← 3 Documents
+
 - ✅ research/project-unique-value.md
 - ✅ research/commercial-fitness-tech.md
 - ✅ research/movement-feedback-commercial-research.md
@@ -388,6 +419,7 @@ Each guide consolidates multiple scattered research documents:
 ## Using These Guides
 
 ### For Current Work
+
 **Principle**: "For whatever section I might touch on, all related resources should be in that document"
 
 **Example workflows**:
@@ -411,14 +443,18 @@ Preparing **pitch deck**?
 → Read [competitive-analysis.md](competitive-analysis.md) - market + strategy
 
 ### For Cross-Functional Teams
+
 Each guide includes cross-references to related topics:
+
 - **Related Decisions**: Links to relevant ADRs
 - **See Also**: Cross-references to other guides
 - **Code Examples**: Ready-to-use implementations
 - **External Resources**: Official documentation and communities
 
 ### For Quick Reference
+
 **Comparison tables** extracted to `docs/resources/`:
+
 - hardware-comparison-table.md
 - ml-frameworks-comparison-table.md
 - mobile-frameworks-comparison-table.md
@@ -430,6 +466,7 @@ Use guides for **comprehensive understanding**, use resources for **quick lookup
 ## Maintenance
 
 ### Update Schedule
+
 | Guide | Next Review | Owner |
 |-------|-------------|-------|
 | Pose Estimation | Q2 2026 | ML Team |
@@ -440,6 +477,7 @@ Use guides for **comprehensive understanding**, use resources for **quick lookup
 | Competitive Analysis | Q2 2026 | Strategy |
 
 ### Contributing
+
 1. Update existing guide sections (add "Last Updated" timestamp)
 2. Submit PR with clear summary of changes
 3. Update this index if adding new guides
@@ -450,11 +488,13 @@ Use guides for **comprehensive understanding**, use resources for **quick lookup
 ## Related Documentation
 
 ### Architecture & Decisions
-- [Architecture Overview](../architecture/hld/) - High-level design documents
-- [ADRs](../decisions/) - Architecture decision records
-- [Resources](../resources/) - Quick reference comparison tables
+
+- [Architecture Overview](../architecture/hld/01-system-overview.md) - High-level design documents
+- [ADRs](../decisions/index.md) - Architecture decision records
+- [Resources](../resources/hardware-comparison.md) - Quick reference comparison tables
 
 ### External Resources
+
 - [MediaPipe Pose](https://ai.google.dev/edge/mediapipe/solutions/vision/pose_landmarker)
 - [RTMPose GitHub](https://github.com/open-mmlab/mmpose/tree/main/projects/rtmpose)
 - [MM-Fit Dataset](https://mmfit.github.io/)
@@ -465,6 +505,7 @@ Use guides for **comprehensive understanding**, use resources for **quick lookup
 ## Quick Links
 
 ### By Topic
+
 - 🤖 [Pose Estimation & CV](pose-estimation.md)
 - 🎨 [Visual Feedback Design](visual-feedback-design.md)
 - 🔧 [Sensor Hardware](sensor-hardware.md)
@@ -473,6 +514,7 @@ Use guides for **comprehensive understanding**, use resources for **quick lookup
 - 🏆 [Competitive Analysis](competitive-analysis.md)
 
 ### By Role
+
 - **ML Engineers**: Pose Estimation → Datasets → Sensor Hardware
 - **Designers**: Visual Feedback → Mobile Development → Competitive Analysis
 - **Hardware Engineers**: Sensor Hardware → Mobile Development → Datasets
@@ -484,7 +526,7 @@ Use guides for **comprehensive understanding**, use resources for **quick lookup
 
 <div align="center">
 
-**[Return to Main Documentation](../index.md)** | **[Architecture Docs](../architecture/)** | **[ADRs](../decisions/)** | **[Resources](../resources/)**
+**[Return to Main Documentation](../index.md)** | **[Architecture Docs](../architecture/hld/01-system-overview.md)** | **[ADRs](../decisions/index.md)** | **[Resources](../resources/hardware-comparison.md)**
 
 ---
 
@@ -492,6 +534,6 @@ Use guides for **comprehensive understanding**, use resources for **quick lookup
 **Total Documentation**: 292KB across 6 comprehensive guides
 **Contributors**: Movement Chain AI Team
 
-*Building the future of intelligent movement training through consolidated, topic-based documentation*
+Building the future of intelligent movement training through consolidated, topic-based documentation.
 
 </div>

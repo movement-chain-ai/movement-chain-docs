@@ -376,9 +376,9 @@
 
 ### 架构与决策 (Architecture & Decisions)
 
-- [架构概览 (Architecture Overview)](../architecture/hld/) - 高层设计文档
-- [ADR 架构决策记录](../decisions/) - 架构决策记录
-- [资源 (Resources)](../resources/) - 快速参考比较表
+- [架构概览 (Architecture Overview)](../architecture/hld/01-system-overview.md) - 高层设计文档
+- [ADR 架构决策记录](../decisions/index.md) - 架构决策记录
+- [资源 (Resources)](../resources/hardware-comparison.md) - 快速参考比较表
 
 ### 外部资源 (External Resources)
 
@@ -413,7 +413,7 @@
 
 <div align="center">
 
-**[返回主文档 (Return to Main Documentation)](../index.md)** | **[架构文档 (Architecture Docs)](../architecture/)** | **[ADR 架构决策记录](../decisions/)** | **[资源 (Resources)](../resources/)**
+**[返回主文档 (Return to Main Documentation)](../index.md)** | **[架构文档 (Architecture Docs)](../architecture/hld/01-system-overview.md)** | **[ADR 架构决策记录](../decisions/index.md)** | **[资源 (Resources)](../resources/hardware-comparison.md)**
 
 ---
 
@@ -421,6 +421,6 @@
 **总文档量**: 6 个综合指南，292KB
 **贡献者**: Movement Chain AI 团队
 
-*通过整合的、基于主题的文档构建智能运动训练的未来*
+通过整合的、基于主题的文档构建智能运动训练的未来。
 
 </div>
