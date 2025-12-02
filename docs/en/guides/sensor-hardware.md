@@ -1482,9 +1482,9 @@ logfile.close();
 ## Related Resources
 
 - [Hardware Component Comparison](../resources/hardware-comparison.md)
-- [Academic Research Datasets](../research/academic-research-datasets.md)
-- [Commercial Fitness Technology Analysis](../research/commercial-fitness-tech.md)
-- [Movement Chain AI Unique Value Proposition](../research/project-unique-value.md)
+- [Academic Research Datasets](../archive/research-sources/academic-research-datasets.md)
+- [Commercial Fitness Technology Analysis](../archive/research-sources/commercial-fitness-tech.md)
+- [Movement Chain AI Unique Value Proposition](../archive/research-sources/project-unique-value.md)
 
 ---
 
