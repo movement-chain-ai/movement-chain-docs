@@ -192,7 +192,7 @@ Focus on ML-specific architecture and decisions:
 
 ## Contributing
 
-We welcome contributions to improve this documentation. See the [README](https://github.com/movement-chain-ai/movement-chain-docs/blob/main/README.md) for contribution guidelines.
+We welcome contributions to improve this documentation. See the repository README for contribution guidelines.
 
 **Quick contribution checklist**:
 
@@ -207,7 +207,6 @@ We welcome contributions to improve this documentation. See the [README](https:/
 
 If you have questions about the architecture or documentation:
 
-- Open an issue in the [GitHub repository](https://github.com/movement-chain-ai/movement-chain-docs/issues)
 - Review existing [Architectural Decision Records](decisions/index.md)
 - Check the [FAQ section](resources/hardware-comparison.md) (coming soon)
 
@@ -215,7 +214,7 @@ If you have questions about the architecture or documentation:
 
 <div align="center">
 
-**Movement Chain AI** | [GitHub](https://github.com/movement-chain-ai) | [Website](https://movement-chain-ai.com)
+**Movement Chain AI** | [GitHub](https://github.com/movement-chain-ai)
 
 *Building the future of intelligent movement training*
 

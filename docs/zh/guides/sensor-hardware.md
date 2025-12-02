@@ -6,18 +6,6 @@
 
 ---
 
-## 目录 (Table of Contents)
-
-1. [多传感器架构概述 Multi-Sensor Architecture Overview](#1-多传感器架构概述-multi-sensor-architecture-overview)
-2. [IMU 传感器选择与集成 IMU Sensor Selection & Integration](#2-imu-传感器选择与集成-imu-sensor-selection--integration)
-3. [EMG 传感器 - 我们的独特优势 EMG Sensors - Our Unique Advantage](#3-emg-传感器---我们的独特优势-emg-sensors---our-unique-advantage)
-4. [微控制器平台 Microcontroller Platform](#4-微控制器平台-microcontroller-platform)
-5. [商业传感器系统分析 Commercial Sensor Systems Analysis](#5-商业传感器系统分析-commercial-sensor-systems-analysis)
-6. [带传感器数据的数据集 Datasets with Sensor Data](#6-带传感器数据的数据集-datasets-with-sensor-data)
-7. [实施指南 Implementation Guide](#7-实施指南-implementation-guide)
-
----
-
 ## 1. 多传感器架构概述 (Multi-Sensor Architecture Overview)
 
 ### 1.1 为什么传感器优于纯视觉 (Why Sensors Beat Pure Vision)
@@ -735,8 +723,8 @@ def calibrate_emg(muscle_group):
 ## 相关资源 (Related Resources)
 
 - [硬件组件对比 Hardware Component Comparison](../resources/hardware-comparison.md)
-- [学术研究数据集 Academic Research Datasets](../archive/research-sources/academic-research-datasets.md)
-- [商业健身技术分析 Commercial Fitness Technology Analysis](../archive/research-sources/commercial-fitness-tech.md)
+- [学术研究数据集 Academic Research Datasets](../../en/archive/research-sources/academic-research-datasets.md)
+- [商业健身技术分析 Commercial Fitness Technology Analysis](../../en/archive/research-sources/commercial-fitness-tech.md)
 
 ---
 

@@ -1804,5 +1804,4 @@ Year 3 第3年: If expanding to PT clinics, pursue 510(k) clearance 如果扩展
 **Document Version 文档版本:** 1.0
 **Last Updated 最后更新:** December 1, 2025
 **Next Strategy Review 下次战略审查:** March 2026
-**Contact 联系:** <research@movement-chain-ai.com>
 **GitHub**: github.com/movement-chain-ai

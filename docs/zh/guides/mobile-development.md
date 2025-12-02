@@ -8,18 +8,6 @@
 
 ---
 
-## Table of Contents 目录
-
-1. [Framework Selection & Rationale 框架选择与理由](#1-framework-selection--rationale-框架选择与理由)
-2. [Pose Estimation on Mobile 移动端姿态估计](#2-pose-estimation-on-mobile-移动端姿态估计)
-3. [Mobile-Specific UI/UX 移动端专用界面设计](#3-mobile-specific-uiux-移动端专用界面设计)
-4. [BLE Sensor Communication BLE传感器通信](#4-ble-sensor-communication-ble传感器通信)
-5. [Commercial Mobile Apps Analysis 商业移动应用分析](#5-commercial-mobile-apps-analysis-商业移动应用分析)
-6. [Mobile SDKs & Libraries 移动端SDK与库](#6-mobile-sdks--libraries-移动端sdk与库)
-7. [Implementation Examples 实现示例](#7-implementation-examples-实现示例)
-
----
-
 ## 1. Framework Selection & Rationale 框架选择与理由
 
 ### 1.1 Why Flutter (Our Choice) 为什么选择Flutter
@@ -1352,8 +1340,8 @@ class FeedbackOverlay extends ConsumerWidget {
 
 ## Related Decisions 相关决策
 
-- [ADR-0003: Flutter Mobile Framework Flutter移动框架](/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/docs/decisions/0003-flutter-mobile.md) - Framework selection rationale 框架选择理由
-- [ADR-0006: ONNX Runtime Deployment ONNX Runtime部署](/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/docs/decisions/0006-onnx-runtime-deployment.md) - ML model deployment strategy ML模型部署策略
+- [ADR-0003: Flutter Mobile Framework Flutter移动框架](../decisions/0003-flutter-mobile.md) - Framework selection rationale 框架选择理由
+- [ADR-0006: ONNX Runtime Deployment ONNX Runtime部署](../decisions/0006-onnx-runtime-deployment.md) - ML model deployment strategy ML模型部署策略
 
 ---
 

@@ -6,21 +6,6 @@
 
 ---
 
-## Table of Contents
-
-1. [Executive Summary](#executive-summary)
-2. [Visual Hierarchy & Information Architecture](#visual-hierarchy--information-architecture)
-3. [Real-Time Overlay Techniques](#real-time-overlay-techniques)
-4. [Animation & Transition Specifications](#animation--transition-specifications)
-5. [Mobile-Specific Considerations](#mobile-specific-considerations)
-6. [Color Palettes & Accessibility](#color-palettes--accessibility)
-7. [Haptic Feedback Patterns](#haptic-feedback-patterns)
-8. [Research-Backed Best Practices](#research-backed-best-practices)
-9. [Implementation Guidelines](#implementation-guidelines)
-10. [References](#references)
-
----
-
 ## Executive Summary
 
 This document synthesizes UI/UX best practices for displaying real-time movement correction feedback in the Movement Chain AI system. It combines insights from:
@@ -908,8 +893,8 @@ class FeedbackConfig {
 - [Haptics UX Design - Android Open Source Project](https://source.android.com/docs/core/interaction/haptics/haptics-ux-design)
 
 ### Movement Chain AI Internal Docs
-- [ADR-0003: Flutter Mobile Development](/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/docs/decisions/0003-flutter-mobile.md)
-- [HLD 01: System Overview](/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/docs/architecture/hld/01-system-overview.md)
+- [ADR-0003: Flutter Mobile Development](../../decisions/0003-flutter-mobile.md)
+- [HLD 01: System Overview](../../architecture/hld/01-system-overview.md)
 
 ---
 

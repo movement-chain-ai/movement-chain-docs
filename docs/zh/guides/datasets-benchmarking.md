@@ -11,17 +11,6 @@ This guide provides **concrete actions** for accessing datasets, benchmarking yo
 
 本指南提供访问数据集、对系统进行基准测试以及与行业标准比较的**具体行动**。每个部分都包含下载链接、申请流程和性能目标。
 
-**Quick Navigation 快速导航**:
-
-- [Priority Datasets 优先数据集](#1-priority-datasets-download-apply-now-优先数据集-立即下载申请) - What to download/apply for NOW 立即下载/申请的内容
-- [Benchmark Results 基准测试结果](#2-benchmark-results--comparisons-基准测试结果与比较) - Performance targets 性能目标
-- [Commercial Metrics 商业指标](#3-commercial-performance-metrics-商业性能指标) - What competitors report 竞争对手报告的内容
-- [Evaluation Standards 评估标准](#4-evaluation-metrics--standards-评估指标与标准) - How to measure 如何测量
-- [Usage Strategy 使用策略](#5-dataset-usage-strategy-phased-数据集使用策略-分阶段) - When to use each dataset 何时使用每个数据集
-- [Publication Targets 发表目标](#6-publication--research-targets-发表与研究目标) - Where to publish 在哪里发表
-- [Citations 引用](#7-citation-requirements-引用要求) - How to cite properly 如何正确引用
-- [Curated Resources 精选资源](#8-curated-research--resource-lists-精选研究与资源列表) - Research aggregation lists 研究汇总列表
-
 ---
 
 ## 1. Priority Datasets (Download/Apply Now!) 优先数据集（立即下载/申请！）

@@ -8,16 +8,6 @@
 
 This guide provides **concrete actions** for accessing datasets, benchmarking your system, and comparing against industry standards. Every section includes download links, application processes, and performance targets.
 
-**Quick Navigation**:
-- [Priority Datasets](#1-priority-datasets-download-apply-now) - What to download/apply for NOW
-- [Benchmark Results](#2-benchmark-results--comparisons) - Performance targets
-- [Commercial Metrics](#3-commercial-performance-metrics) - What competitors report
-- [Evaluation Standards](#4-evaluation-metrics--standards) - How to measure
-- [Usage Strategy](#5-dataset-usage-strategy-phased) - When to use each dataset
-- [Publication Targets](#6-publication--research-targets) - Where to publish
-- [Citations](#7-citation-requirements) - How to cite properly
-- [Curated Resources](#8-curated-research--resource-lists) - Research aggregation lists
-
 ---
 
 ## 1. Priority Datasets (Download/Apply Now!)

@@ -203,7 +203,7 @@ graph TB
 
 ## 贡献 (Contributing)
 
-我们欢迎贡献以改进本文档。请参阅 [README](https://github.com/movement-chain-ai/movement-chain-docs/blob/main/README.md) 了解贡献指南。
+我们欢迎贡献以改进本文档。请参阅仓库 README 了解贡献指南。
 
 **快速贡献检查清单**:
 
@@ -218,7 +218,6 @@ graph TB
 
 如果您对架构或文档有疑问：
 
-- 在 [GitHub 仓库](https://github.com/movement-chain-ai/movement-chain-docs/issues) 中提出 issue
 - 查看现有的 [架构决策记录 (Architectural Decision Records)](decisions/index.md)
 - 查看 [FAQ 部分](resources/hardware-comparison.md) (即将推出)
 
@@ -226,7 +225,7 @@ graph TB
 
 <div align="center">
 
-**Movement Chain AI** | [GitHub](https://github.com/movement-chain-ai) | [Website](https://movement-chain-ai.com)
+**Movement Chain AI** | [GitHub](https://github.com/movement-chain-ai)
 
 *构建智能运动训练的未来*
 

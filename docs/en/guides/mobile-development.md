@@ -7,18 +7,6 @@
 
 ---
 
-## Table of Contents
-
-1. [Framework Selection & Rationale](#1-framework-selection--rationale)
-2. [Pose Estimation on Mobile](#2-pose-estimation-on-mobile)
-3. [Mobile-Specific UI/UX](#3-mobile-specific-uiux)
-4. [BLE Sensor Communication](#4-ble-sensor-communication)
-5. [Commercial Mobile Apps Analysis](#5-commercial-mobile-apps-analysis)
-6. [Mobile SDKs & Libraries](#6-mobile-sdks--libraries)
-7. [Implementation Examples](#7-implementation-examples)
-
----
-
 ## 1. Framework Selection & Rationale
 
 ### 1.1 Why Flutter (Our Choice)
@@ -1258,8 +1246,8 @@ class FeedbackOverlay extends ConsumerWidget {
 
 ## Related Decisions
 
-- [ADR-0003: Flutter Mobile Framework](/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/docs/decisions/0003-flutter-mobile.md) - Framework selection rationale
-- [ADR-0006: ONNX Runtime Deployment](/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/docs/decisions/0006-onnx-runtime-deployment.md) - ML model deployment strategy
+- [ADR-0003: Flutter Mobile Framework](../decisions/0003-flutter-mobile.md) - Framework selection rationale
+- [ADR-0006: ONNX Runtime Deployment](../decisions/0006-onnx-runtime-deployment.md) - ML model deployment strategy
 
 ---
 

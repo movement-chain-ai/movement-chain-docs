@@ -1618,5 +1618,4 @@ Year 3: If expanding to PT clinics, pursue 510(k) clearance
 **Document Version:** 1.0
 **Last Updated:** December 1, 2025
 **Next Strategy Review:** March 2026
-**Contact:** research@movement-chain-ai.com
 **GitHub:** github.com/movement-chain-ai
