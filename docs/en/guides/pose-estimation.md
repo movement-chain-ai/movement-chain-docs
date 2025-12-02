@@ -1386,8 +1386,8 @@ class FrameSkipper {
 
 - **Architecture Decisions**: [ADR-0006: ONNX Runtime Deployment](../decisions/0006-onnx-runtime-deployment.md)
 - **ML Frameworks**: [ML Frameworks Comparison](../resources/ml-frameworks-comparison.md)
-- **Research Datasets**: [Academic Research & Datasets](../research/academic-research-datasets.md)
-- **Commercial Tech**: [Commercial Fitness Technology](../research/commercial-fitness-tech.md)
+- **Research Datasets**: [Academic Research & Datasets](../archive/research-sources/academic-research-datasets.md)
+- **Commercial Tech**: [Commercial Fitness Technology](../archive/research-sources/commercial-fitness-tech.md)
 
 ---
 
