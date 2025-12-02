@@ -178,8 +178,8 @@ No overlap or ambiguity between modules.
   - *Source:* National Golf Foundation Digital Usage Report (2023)
 
 ### Internal Documentation
-- `/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/research/motor-learning-modules.md` - Detailed analysis of 7-module framework
-- `/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/architecture/system-overview.md` - High-level system design (4-module implementation)
+- `research/motor-learning-modules.md` - Detailed analysis of 7-module framework (archived)
+- `architecture/system-overview.md` - High-level system design (4-module implementation)
 
 ### Technical Constraints
 - **BLE Latency Requirements** - Real-time correction requires <100ms feedback loop

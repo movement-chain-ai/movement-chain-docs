@@ -203,8 +203,8 @@
 
 ### 内部文档
 
-- `/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/research/motor-learning-modules.md` - 7 模块框架的详细分析
-- `/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/architecture/system-overview.md` - 高级系统设计（4 模块实现）
+- `research/motor-learning-modules.md` - 7 模块框架的详细分析（已归档）
+- `architecture/system-overview.md` - 高级系统设计（4 模块实现）
 
 ### 技术限制
 

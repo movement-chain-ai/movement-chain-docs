@@ -383,7 +383,7 @@ const arrowThickness = 6 * getScaleFactor(deviceDiagonal);
    - **Texture atlases**: Combine arrow sprites into single texture (reduce draw calls)
    - **Target**: <500MB RAM usage during peak rendering
 
-**Flutter-Specific Optimizations** (per [ADR-0003](/Users/maxwsy/Desktop/workspace/movement-chain-ai-docs/docs/decisions/0003-flutter-mobile.md)):
+**Flutter-Specific Optimizations** (per [ADR-0003](../../decisions/0003-flutter-mobile.md)):
 ```dart
 // Use RepaintBoundary to isolate animated layers
 RepaintBoundary(
