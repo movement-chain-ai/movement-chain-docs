@@ -6,18 +6,6 @@
 
 ---
 
-## Table of Contents
-
-1. [Multi-Sensor Architecture Overview](#1-multi-sensor-architecture-overview)
-2. [IMU Sensor Selection & Integration](#2-imu-sensor-selection--integration)
-3. [EMG Sensors - Our Unique Advantage](#3-emg-sensors---our-unique-advantage)
-4. [Microcontroller Platform](#4-microcontroller-platform)
-5. [Commercial Sensor Systems Analysis](#5-commercial-sensor-systems-analysis)
-6. [Datasets with Sensor Data](#6-datasets-with-sensor-data)
-7. [Implementation Guide](#7-implementation-guide)
-
----
-
 ## 1. Multi-Sensor Architecture Overview
 
 ### 1.1 Why Sensors Beat Pure Vision

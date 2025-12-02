@@ -7,19 +7,6 @@
 
 ---
 
-## Table of Contents
-
-1. [Research-Backed Feedback Patterns](#1-research-backed-feedback-patterns)
-2. [Advanced Research: Avatar Overlay & Temporal Alignment](#2-advanced-research-avatar-overlay--temporal-alignment)
-3. [Commercial Best Practices](#3-commercial-best-practices)
-4. [UI/UX Implementation Guidelines](#4-uiux-implementation-guidelines)
-5. [Rendering Technologies & SDKs](#5-rendering-technologies--sdks)
-6. [Haptic Feedback Integration](#6-haptic-feedback-integration)
-7. [Implementation Examples](#7-implementation-examples)
-8. [Research Evidence & Effectiveness](#8-research-evidence--effectiveness)
-
----
-
 ## 1. Research-Backed Feedback Patterns
 
 ### 1.1 Overlay Arrows: Directional Movement Indicators

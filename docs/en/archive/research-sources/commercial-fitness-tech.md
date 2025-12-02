@@ -92,7 +92,6 @@ This document analyzes commercial fitness products with real-time movement track
 ❌ **Ecosystem lock-in** - We should be platform-agnostic
 
 **Sources**:
-- [Nextpit Review](https://www.nextpit.com/peloton-iq-everything-you-need-to-know)
 - [Peloton Official Announcement](https://www.onepeloton.com/peloton-iq)
 
 ---
@@ -159,7 +158,6 @@ This document analyzes commercial fitness products with real-time movement track
 ❌ **Closed ecosystem** - We'll remain open and affordable
 
 **Sources**:
-- [Tonal Form Feedback Announcement](https://www.tonal.com/blog/form-feedback/)
 - [BarBend Review](https://barbend.com/tonal-review/)
 
 ---
@@ -219,7 +217,6 @@ This document analyzes commercial fitness products with real-time movement track
 
 **Sources**:
 - [MAGIC AI Official](https://www.magicai.com/)
-- [CES 2025 Coverage](https://www.ces.tech/innovation-awards/honorees/2025/health-wellness/magic-ai-mirror.aspx)
 
 ---
 

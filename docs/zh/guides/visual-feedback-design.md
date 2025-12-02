@@ -7,17 +7,6 @@
 
 ---
 
-## 目录 (Table of Contents)
-
-1. [基于研究的反馈模式 Research-Backed Feedback Patterns](#1-基于研究的反馈模式-research-backed-feedback-patterns)
-2. [高级研究：虚拟角色叠加与时间对齐 Advanced Research](#2-高级研究虚拟角色叠加与时间对齐-advanced-research)
-3. [商业最佳实践 Commercial Best Practices](#3-商业最佳实践-commercial-best-practices)
-4. [UI/UX 实施指南 UI/UX Implementation Guidelines](#4-uiux-实施指南-uiux-implementation-guidelines)
-5. [渲染技术与 SDK Rendering Technologies & SDKs](#5-渲染技术与-sdk-rendering-technologies--sdks)
-6. [触觉反馈集成 Haptic Feedback Integration](#6-触觉反馈集成-haptic-feedback-integration)
-
----
-
 ## 1. 基于研究的反馈模式 (Research-Backed Feedback Patterns)
 
 ### 1.1 叠加箭头：方向性运动指示器 (Overlay Arrows: Directional Movement Indicators)

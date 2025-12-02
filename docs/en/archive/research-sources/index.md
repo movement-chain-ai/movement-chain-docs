@@ -327,7 +327,7 @@ If using this research compilation in your work, please cite:
 
 <div align="center">
 
-**[Return to Main Documentation](../index.md)** | **[Technical Resources](../resources/)** | **[Architecture Docs](../architecture/)**
+**[Return to Main Documentation](../../index.md)** | **[Technical Resources](../../resources/)** | **[Architecture Docs](../../architecture/)**
 
 *Building the future of intelligent movement training through rigorous research*
 

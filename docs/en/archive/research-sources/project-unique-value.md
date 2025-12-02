@@ -799,6 +799,4 @@ Low Features  ──────┼───────────────
 
 ---
 
-**Contact**: [research@movement-chain-ai.com](mailto:research@movement-chain-ai.com)
 **GitHub**: [github.com/movement-chain-ai](https://github.com/movement-chain-ai)
-**Website**: [movement-chain-ai.com](https://movement-chain-ai.com)

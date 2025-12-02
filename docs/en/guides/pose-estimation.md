@@ -527,8 +527,6 @@ let request = VNDetectHumanBodyPoseRequest { request, error in
 
 **Price**: $1,995 + $39/month
 
-**References**: [Tempo Studio Review](https://www.cnet.com/health/fitness/tempo-studio-review/)
-
 ---
 
 ### 3.4 MAGIC Mirror - Holographic AI Coaching
