@@ -125,10 +125,10 @@ markdown_extensions:
 extra:
   alternate:
     - name: 中文
-      link: /
+      link: /movement-chain-docs/
       lang: zh
     - name: English
-      link: /en/
+      link: /movement-chain-docs/en/
       lang: en
   social:
     - icon: fontawesome/brands/github
