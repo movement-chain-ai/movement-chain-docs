@@ -43,10 +43,29 @@ plugins:
       reconfigure_search: true
       languages:
         - locale: en
-          default: true
           name: English
           build: true
+          nav_translations:
+            首页: Home
+            架构: Architecture
+            高层设计: High-Level Design
+            系统概览: System Overview
+            数据流: Data Flow
+            集成模式: Integration Patterns
+            性能目标: Performance Targets
+            决策记录: Decisions
+            概览: Overview
+            资源: Resources
+            指南: Guides
+            ADR-0001 多仓库结构: ADR-0001 Multi-Repo Structure
+            ADR-0003 Flutter 移动端: ADR-0003 Flutter Mobile
+            ADR-0004 四模块架构: ADR-0004 4-Module Architecture
+            开源许可证比较: Open Source License Comparison
+            硬件比较: Hardware Comparison
+            机器学习框架比较: ML Frameworks Comparison
+            移动开发框架比较: Mobile Frameworks Comparison
         - locale: zh
+          default: true
           name: 中文 (Simplified Chinese)
           build: true
           nav_translations:
@@ -105,12 +124,12 @@ markdown_extensions:
 
 extra:
   alternate:
+    - name: 中文
+      link: /
+      lang: zh
     - name: English
       link: /en/
       lang: en
-    - name: 中文
-      link: /zh/
-      lang: zh
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/movement-chain-ai
@@ -122,27 +141,27 @@ extra:
     alias: true
 
 nav:
-  - Home: index.md
+  - 首页: index.md
 
-  - Architecture:
-    - High-Level Design:
-      - System Overview: architecture/hld/01-system-overview.md
-      - Data Flow: architecture/hld/02-data-flow.md
-      - Integration Patterns: architecture/hld/03-integration-patterns.md
-      - Performance Targets: architecture/hld/04-performance-targets.md
+  - 架构:
+    - 高层设计:
+      - 系统概览: architecture/hld/01-system-overview.md
+      - 数据流: architecture/hld/02-data-flow.md
+      - 集成模式: architecture/hld/03-integration-patterns.md
+      - 性能目标: architecture/hld/04-performance-targets.md
 
-  - Decisions:
-    - Overview: decisions/index.md
-    - ADR-0001 Multi-Repo Structure: decisions/0001-multi-repo-structure.md
+  - 决策记录:
+    - 概览: decisions/index.md
+    - ADR-0001 多仓库结构: decisions/0001-multi-repo-structure.md
     - ADR-0002 LSM6DSV16X IMU: decisions/0002-lsm6dsv16x-imu.md
-    - ADR-0003 Flutter Mobile: decisions/0003-flutter-mobile.md
-    - ADR-0004 4-Module Architecture: decisions/0004-simplified-4-module-architecture.md
+    - ADR-0003 Flutter 移动端: decisions/0003-flutter-mobile.md
+    - ADR-0004 四模块架构: decisions/0004-simplified-4-module-architecture.md
     - ADR-0005 ESP32-S3 MCU: decisions/0005-esp32-s3-microcontroller.md
     - ADR-0006 ONNX Runtime: decisions/0006-onnx-runtime-deployment.md
 
-  - Resources:
-    - Overview: resources/index.md
-    - Open Source License Comparison: resources/open-source-license-comparison.md
-    - Hardware Comparison: resources/hardware-comparison.md
-    - ML Frameworks Comparison: resources/ml-frameworks-comparison.md
-    - Mobile Frameworks Comparison: resources/mobile-frameworks-comparison.md
+  - 资源:
+    - 概览: resources/index.md
+    - 开源许可证比较: resources/open-source-license-comparison.md
+    - 硬件比较: resources/hardware-comparison.md
+    - 机器学习框架比较: resources/ml-frameworks-comparison.md
+    - 移动开发框架比较: resources/mobile-frameworks-comparison.md

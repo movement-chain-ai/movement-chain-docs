@@ -723,8 +723,6 @@ def calibrate_emg(muscle_group):
 ## 相关资源 (Related Resources)
 
 - [硬件组件对比 Hardware Component Comparison](../resources/hardware-comparison.md)
-- [学术研究数据集 Academic Research Datasets](../../en/archive/research-sources/academic-research-datasets.md)
-- [商业健身技术分析 Commercial Fitness Technology Analysis](../../en/archive/research-sources/commercial-fitness-tech.md)
 
 ---
 
