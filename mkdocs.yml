@@ -211,70 +211,75 @@ extra:
 nav:
   - 首页: index.md
 
-  - 架构:
-    - 高层设计:
-      - 系统概览: architecture/hld/01-system-overview.md
-      - 数据流: architecture/hld/02-data-flow.md
-      - 集成模式: architecture/hld/03-integration-patterns.md
-      - 性能目标: architecture/hld/04-performance-targets.md
+  - 系统设计:
+    - 概览: design/index.md
+    - 系统概览: design/01-system-overview.md
+    - 数据流: design/02-data-flow.md
+    - 集成模式: design/03-integration-patterns.md
+    - 性能目标: design/04-performance-targets.md
+    - 决策记录:
+      - 概览: design/decisions/index.md
+      - ADR-0001 多仓库结构: design/decisions/0001-multi-repo-structure.md
+      - ADR-0002 LSM6DSV16X IMU: design/decisions/0002-lsm6dsv16x-imu.md
+      - ADR-0003 Flutter 移动端: design/decisions/0003-flutter-mobile.md
+      - ADR-0004 四模块架构: design/decisions/0004-simplified-4-module-architecture.md
+      - ADR-0005 ESP32-S3 MCU: design/decisions/0005-esp32-s3-microcontroller.md
+      - ADR-0006 ONNX Runtime: design/decisions/0006-onnx-runtime-deployment.md
 
-  - 决策记录:
-    - 概览: decisions/index.md
-    - ADR-0001 多仓库结构: decisions/0001-multi-repo-structure.md
-    - ADR-0002 LSM6DSV16X IMU: decisions/0002-lsm6dsv16x-imu.md
-    - ADR-0003 Flutter 移动端: decisions/0003-flutter-mobile.md
-    - ADR-0004 四模块架构: decisions/0004-simplified-4-module-architecture.md
-    - ADR-0005 ESP32-S3 MCU: decisions/0005-esp32-s3-microcontroller.md
-    - ADR-0006 ONNX Runtime: decisions/0006-onnx-runtime-deployment.md
+  - 硬件组件:
+    - 概览: components/index.md
+    - 传感器硬件概览: components/sensor-hardware-overview.md
+    - IMU 惯性测量:
+      - 硬件规格: components/imu/hardware.md
+      - 供应商: components/imu/suppliers.md
+    - EMG 肌电传感:
+      - 硬件规格: components/emg/hardware.md
+      - 供应商: components/emg/suppliers.md
+    - 视觉/摄像头:
+      - 硬件规格: components/vision/hardware.md
+      - 软件集成: components/vision/software.md
+    - MCU 微控制器:
+      - 硬件规格: components/mcu/hardware.md
+      - 供应商: components/mcu/suppliers.md
+    - 柔性传感器:
+      - 硬件规格: components/flexible-sensors/hardware.md
+      - 供应商: components/flexible-sensors/suppliers.md
+    - 压力传感器:
+      - 硬件规格: components/pressure-sensors/hardware.md
+      - 供应商: components/pressure-sensors/suppliers.md
+    - ODM/OEM 方案商: components/odm-oem.md
 
-  - 指南:
-    - 概览: guides/index.md
-    - 姿态估计: guides/pose-estimation.md
-    - 视觉反馈设计: guides/visual-feedback-design.md
-    - 综合视觉反馈系统研究: guides/comprehensive-visual-feedback-systems-research.md
-    - 传感器硬件: guides/sensor-hardware.md
-    - 移动应用开发: guides/mobile-development.md
-    - 数据集与基准测试: guides/datasets-benchmarking.md
+  - 开发平台:
+    - 概览: platform/index.md
+    - 移动应用:
+      - 开发指南: platform/mobile/development.md
+    - ML 训练:
+      - 数据集与基准: platform/ml-training/datasets.md
+      - 视觉反馈系统: platform/ml-training/visual-feedback.md
 
-  - 资源:
-    - 概览: resources/index.md
-    - 开源许可证比较: resources/open-source-license-comparison.md
-    - 硬件比较: resources/hardware-comparison.md
-    - 机器学习框架比较: resources/ml-frameworks-comparison.md
-    - 移动开发框架比较: resources/mobile-frameworks-comparison.md
-    - 高尔夫可穿戴竞品分析: resources/golf-wearable-competitor-analysis.md
-    - 国内传感器供应商: resources/domestic-sensor-suppliers.md
-    - 中国智能可穿戴供应商: resources/chinese-smart-wearable-suppliers.md
-    - E-Skin ODM 制造商: resources/e-skin-odm-manufacturers.md
-    - 竞争分析: resources/competitive-analysis.md
-
-  - 传感器技术:
-    - 概览: sensors/index.md
-    - IMU 惯性测量单元: sensors/imu.md
-    - EMG 肌电传感器: sensors/emg.md
-    - 柔性传感器: sensors/flexible-sensors.md
-    - 压力传感器: sensors/pressure-sensors.md
-    - 视觉/摄像头: sensors/vision-camera.md
-    - MCU 微控制器: sensors/mcu.md
-
-  - 供应商大全:
-    - 概览: suppliers/index.md
-    - IMU 供应商: suppliers/imu.md
-    - EMG 供应商: suppliers/emg.md
-    - 柔性传感器供应商: suppliers/flexible.md
-    - 压力传感器供应商: suppliers/pressure.md
-    - MCU 供应商: suppliers/mcu.md
-    - ODM/OEM 方案商: suppliers/odm-oem.md
-
-  - 竞品分析:
-    - 概览: competitors/index.md
-    - IMU 方案竞品: competitors/imu-based.md
-    - 视觉方案竞品: competitors/vision-based.md
-    - 多传感器方案: competitors/multi-sensor.md
-    - 智能服装竞品: competitors/smart-clothing.md
-    - 市场分析: competitors/market-analysis.md
-
-  - 研究:
+  - 市场研究:
     - 概览: research/index.md
-    - 高尔夫可穿戴技术研究: research/golf-wearable-technology-research.md
-    - 可穿戴运动技术生态系统: research/wearable-sports-technology-ecosystem.md
+    - 核心研究:
+      - 高尔夫可穿戴技术: research/golf-wearable-technology-research.md
+      - 可穿戴生态系统: research/wearable-sports-technology-ecosystem.md
+      - 视觉反馈系统: research/comprehensive-visual-feedback-systems-research.md
+      - 竞争分析与定位: research/competitive-analysis.md
+    - 竞品分析:
+      - 概览: research/competitors/index.md
+      - 高尔夫可穿戴竞品: research/competitors/golf-wearable-competitor-analysis.md
+      - IMU 方案竞品: research/competitors/imu-based.md
+      - 视觉方案竞品: research/competitors/vision-based.md
+      - 多传感器方案: research/competitors/multi-sensor.md
+      - 智能服装竞品: research/competitors/smart-clothing.md
+      - 市场分析: research/competitors/market-analysis.md
+    - 技术对比:
+      - 硬件比较: research/comparisons/hardware-comparison.md
+      - ML 框架比较: research/comparisons/ml-frameworks-comparison.md
+      - 移动框架比较: research/comparisons/mobile-frameworks-comparison.md
+      - 开源许可证比较: research/comparisons/open-source-license-comparison.md
+    - 中国供应商:
+      - 国内传感器供应商: research/suppliers-china/domestic-sensor-suppliers.md
+      - 智能可穿戴供应商: research/suppliers-china/chinese-smart-wearable-suppliers.md
+      - MVP 供应商清单: research/suppliers-china/chinese-mvp-suppliers-golf-wearable.md
+      - 智能服装市场: research/suppliers-china/chinese-smart-clothing-wearable-market-research.md
+      - E-Skin ODM 制造商: research/suppliers-china/e-skin-odm-manufacturers.md

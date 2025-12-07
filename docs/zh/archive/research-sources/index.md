@@ -14,7 +14,7 @@ This research hub consolidates findings from academic literature, commercial pro
 
 **研究文档总数 (Total Research Documents)**: 7 documents, ~200KB of curated content
 
-> **注意**: 部分内容已整合到主指南中。详见 [指南索引](../../guides/index.md)。
+> **注意**: 部分内容已整合到主指南中。详见 [指南索引](../../platform/index.md)。
 
 **主要关注领域 (Primary Focus Areas)**:
 1. 学术数据集和基准测试 (Academic datasets and benchmarks)
@@ -43,7 +43,7 @@ This research hub consolidates findings from academic literature, commercial pro
 ### 🏢 商业产品分析 (Commercial Product Analysis)
 **必读人群 (Essential reading for)**: Product managers, strategists, business development
 
-> **已整合**: 商业健身技术分析已整合到 [竞争分析](../../resources/competitive-analysis.md)
+> **已整合**: 商业健身技术分析已整合到 [竞争分析](../../research/competitive-analysis.md)
 
 - **[商业运动反馈系统(深度研究) (Commercial Movement Feedback Systems Deep Dive)](movement-feedback-commercial-research.md)**
   - 技术栈分解 (Technology stack breakdowns)
@@ -74,7 +74,7 @@ This research hub consolidates findings from academic literature, commercial pro
 ### 🤖 姿态估计工具 (Pose Estimation Tools)
 **必读人群 (Essential reading for)**: ML engineers, backend developers, mobile developers
 
-> **已整合**: 姿态估计工具分析已整合到 [姿态估计指南](../../guides/pose-estimation.md)
+> **已整合**: 姿态估计工具分析已整合到 [姿态估计指南](../../components/vision/software.md)
 
 ### 🛠️ API、SDK 和工具 (APIs, SDKs & Tools)
 **必读人群 (Essential reading for)**: Developers, technical architects, integration engineers
@@ -209,28 +209,28 @@ This research hub consolidates findings from academic literature, commercial pro
 
 **总计 (Total)**: ~200 KB, ~4.5 hours of focused reading
 
-> **注意**: 部分文档已整合到指南中。请参阅 [指南索引](../../guides/index.md) 获取最新内容。
+> **注意**: 部分文档已整合到指南中。请参阅 [指南索引](../../platform/index.md) 获取最新内容。
 
 ---
 
 ## 推荐阅读路径 (Recommended Reading Paths)
 
-> **提示**: 建议先阅读 [指南索引](../../guides/index.md) 中的整合指南，然后再深入归档文档。
+> **提示**: 建议先阅读 [指南索引](../../platform/index.md) 中的整合指南，然后再深入归档文档。
 
 ### 新团队成员入职 (For New Team Members - Onboarding)
 1. **[项目独特价值 (Project Unique Value)](project-unique-value.md)** - 了解我们的差异化 (30 min)
-2. **[竞争分析](../../resources/competitive-analysis.md)** - 了解竞争对手 (65 min)
-3. **[姿态估计指南](../../guides/pose-estimation.md)** - 核心技术 (50 min)
+2. **[竞争分析](../../research/competitive-analysis.md)** - 了解竞争对手 (65 min)
+3. **[姿态估计指南](../../components/vision/software.md)** - 核心技术 (50 min)
 
 ### ML 工程师技术深度探讨 (For ML Engineers - Technical Deep Dive)
-1. **[姿态估计指南](../../guides/pose-estimation.md)** - 选择框架 (50 min)
+1. **[姿态估计指南](../../components/vision/software.md)** - 选择框架 (50 min)
 2. **[学术研究与数据集 (Academic Research & Datasets)](academic-research-datasets.md)** - 获取数据集 (15 min)
 3. **[视觉反馈 API 和 SDK (Visual Feedback APIs & SDKs)](visual-feedback-apis-sdks.md)** - 集成选项 (70 min)
 
 ### UI/UX 设计师设计系统 (For UI/UX Designers - Design System)
 1. **[视觉反馈研究摘要 (Visual Feedback Research Summary)](visual-feedback-research-summary.md)** - 证据基础 (45 min)
 2. **[UI/UX 设计指南 (UI/UX Design Guidelines)](movement-correction-feedback-ui-ux-guidelines.md)** - 实施 (50 min)
-3. **[视觉反馈设计指南](../../guides/visual-feedback-design.md)** - 完整设计系统 (90 min)
+3. **[视觉反馈设计指南](../../platform/ml-training/visual-feedback.md)** - 完整设计系统 (90 min)
 
 ### 研究人员发表准备 (For Researchers - Publication Prep)
 1. **[学术研究与数据集 (Academic Research & Datasets)](academic-research-datasets.md)** - 文献综述 (15 min)

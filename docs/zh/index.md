@@ -75,7 +75,7 @@ graph TB
 - **电池续航**: 8+ 小时连续使用
 - **外形尺寸**: 腕戴设备 (<50g)
 
-[查看硬件决策记录 →](decisions/0002-lsm6dsv16x-imu.md)
+[查看硬件决策记录 →](design/decisions/0002-lsm6dsv16x-imu.md)
 
 #### 2. 移动应用模块 (Mobile Application Module)
 
@@ -87,7 +87,7 @@ graph TB
 - **推理**: 设备端机器学习，反馈延迟 <100ms
 - **存储**: 本地 SQLite + 云同步
 
-[查看移动框架决策 →](decisions/0003-flutter-mobile.md)
+[查看移动框架决策 →](design/decisions/0003-flutter-mobile.md)
 
 #### 3. 云后端模块 (Cloud Backend Module)
 
@@ -99,7 +99,7 @@ graph TB
 - **认证**: Cognito 用户管理
 - **扩展性**: 自动扩展以处理 10k+ 并发用户
 
-[查看集成模式 →](architecture/hld/03-integration-patterns.md)
+[查看集成模式 →](design/03-integration-patterns.md)
 
 #### 4. ML/AI 模块
 
@@ -111,7 +111,7 @@ graph TB
 - **注册表**: 集中式模型版本控制和 A/B 测试
 - **管道**: 基于新标注数据的自动重训练
 
-[查看 ONNX Runtime 决策 →](decisions/0006-onnx-runtime-deployment.md)
+[查看 ONNX Runtime 决策 →](design/decisions/0006-onnx-runtime-deployment.md)
 
 ---
 
@@ -119,33 +119,35 @@ graph TB
 
 ### 系统架构师 (For System Architects)
 
-从 **Architecture 架构** 部分开始了解整体系统设计：
+从 **系统设计** 部分开始了解整体系统设计：
 
-- [系统概览 (System Overview)](architecture/hld/01-system-overview.md) - 组件交互和职责
-- [数据流 (Data Flow)](architecture/hld/02-data-flow.md) - 数据如何在系统中流动
-- [性能目标 (Performance Targets)](architecture/hld/04-performance-targets.md) - SLA 和可扩展性目标
+- [系统概览](design/01-system-overview.md) - 组件交互和职责
+- [数据流](design/02-data-flow.md) - 数据如何在系统中流动
+- [性能目标](design/04-performance-targets.md) - SLA 和可扩展性目标
 
 ### 开发人员 (For Developers)
 
-查看 **Decisions 决策** 部分了解关键技术选择：
+查看 **架构决策** 了解关键技术选择：
 
-- [ADR-0004: 4 模块架构](decisions/0004-simplified-4-module-architecture.md) - 为什么选择这种结构
-- [ADR-0001: 多仓库结构](decisions/0001-multi-repo-structure.md) - 代码组织策略
-- [ADR-0006: ONNX Runtime](decisions/0006-onnx-runtime-deployment.md) - ML 部署方法
+- [ADR-0004: 4 模块架构](design/decisions/0004-simplified-4-module-architecture.md) - 为什么选择这种结构
+- [ADR-0001: 多仓库结构](design/decisions/0001-multi-repo-structure.md) - 代码组织策略
+- [ADR-0006: ONNX Runtime](design/decisions/0006-onnx-runtime-deployment.md) - ML 部署方法
 
 ### 硬件工程师 (For Hardware Engineers)
 
-探索 **Resources 资源** 部分获取详细比较：
+探索 **硬件组件** 部分获取详细信息：
 
-- [硬件比较 (Hardware Comparison)](resources/hardware-comparison.md) - MCU 和 IMU 评估
-- [性能基准 (Performance Benchmarks)](resources/hardware-comparison.md#performance-metrics) - 实际测试结果
+- [IMU 硬件](components/imu/hardware.md) - 惯性测量单元
+- [MCU 硬件](components/mcu/hardware.md) - 微控制器选型
+- [硬件对比](research/comparisons/hardware-comparison.md) - MCU 和 IMU 评估
 
 ### 机器学习工程师 (For ML Engineers)
 
 关注 ML 特定架构和决策：
 
-- [ML/AI 模块设计](architecture/hld/01-system-overview.md#mlai-module) - 训练和推理管道
-- [模型部署策略](decisions/0006-onnx-runtime-deployment.md) - 为什么选择 ONNX Runtime
+- [视觉软件](components/vision/software.md) - 姿态估计和 RTMPose
+- [ML 训练](platform/ml-training/datasets.md) - 数据集与基准测试
+- [模型部署策略](design/decisions/0006-onnx-runtime-deployment.md) - 为什么选择 ONNX Runtime
 
 ---
 
@@ -153,21 +155,21 @@ graph TB
 
 ### 关键架构文档 (Key Architecture Documents)
 
-- [系统概览 (System Overview)](architecture/hld/01-system-overview.md)
-- [数据流图 (Data Flow Diagrams)](architecture/hld/02-data-flow.md)
-- [集成模式 (Integration Patterns)](architecture/hld/03-integration-patterns.md)
+- [系统概览](design/01-system-overview.md)
+- [数据流图](design/02-data-flow.md)
+- [集成模式](design/03-integration-patterns.md)
 
 ### 关键设计决策 (Critical Design Decisions)
 
-- [4 模块架构理由](decisions/0004-simplified-4-module-architecture.md)
-- [ESP32-S3 选型](decisions/0005-esp32-s3-microcontroller.md)
-- [Flutter 移动框架](decisions/0003-flutter-mobile.md)
+- [4 模块架构理由](design/decisions/0004-simplified-4-module-architecture.md)
+- [ESP32-S3 选型](design/decisions/0005-esp32-s3-microcontroller.md)
+- [Flutter 移动框架](design/decisions/0003-flutter-mobile.md)
 
 ### 技术比较 (Technical Comparisons)
 
-- [MCU 比较矩阵](resources/hardware-comparison.md)
-- [ML 框架分析](resources/ml-frameworks-comparison.md)
-- [移动框架评估](resources/mobile-frameworks-comparison.md)
+- [MCU 比较矩阵](research/comparisons/hardware-comparison.md)
+- [ML 框架分析](research/comparisons/ml-frameworks-comparison.md)
+- [移动框架评估](research/comparisons/mobile-frameworks-comparison.md)
 
 ---
 
@@ -218,8 +220,8 @@ graph TB
 
 如果您对架构或文档有疑问：
 
-- 查看现有的 [架构决策记录 (Architectural Decision Records)](decisions/index.md)
-- 查看 [FAQ 部分](resources/hardware-comparison.md) (即将推出)
+- 查看现有的 [架构决策记录 (Architectural Decision Records)](design/decisions/index.md)
+- 查看 [FAQ 部分](research/comparisons/hardware-comparison.md) (即将推出)
 
 ---
 

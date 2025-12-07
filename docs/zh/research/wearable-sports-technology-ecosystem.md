@@ -1703,7 +1703,7 @@
 ### 音频反馈
 - [Technology.org: Wearable Technology in Sports Coaching](https://www.technology.org/2025/08/28/why-wearable-technology-in-sports-is-changing-the-future-of-coaching/)
 - [IFPA: Wearable Tech and Biofeedback](https://www.ifpa-fitness.com/blog/meta-movement-how-wearable-tech-and-biofeedback-are-redefining-how-we-move)
-- [PantherTec: Vibratory Feedback Device](https://panthertec.net/blogs/resources/what-s-next-in-sports-instruction-the-only-body-worn-vibratory-feedback-device)
+- [PantherTec: Vibratory Feedback Device](https://panthertec.net/blo./what-s-next-in-sports-instruction-the-only-body-worn-vibratory-feedback-device)
 - [Humai: AI Fitness Wearables 2026](https://www.humai.blog/ai-fitness-wearables-2026-beyond-basic-step-counting/)
 - [NTT: Accurate Sports Coaching](https://group.ntt/en/magazine/blog/sports_coaching/)
 - [Move Sports: AI Coaching Innovations](https://www.movesports.com/en/field-stories/sports/innovations-in-sports-technology-from-wearables-to-ai-coaching)
@@ -1778,7 +1778,7 @@
 - [Made-in-China: Accelerometer](https://www.made-in-china.com/products-search/hot-china-products/Accelerometer.html)
 - [MEMSIC Semiconductor](https://www.memsic.com/)
 - [Robu: IMU, Accelerometer, Magnetometer](https://robu.in/product-category/sensor-modules/imu-accelerometer-magnetometer-gyroscope/)
-- [Sinocera Piezotronics](https://www.china-yec.net/sensors/accelerometer/)
+- [Sinocera Piezotronics](https://www.china-yec.n../components/accelerometer/)
 
 ### 数据融合与机器学习
 - [Apple ML Research: Multimodal Sensor Fusion](https://machinelearning.apple.com/research/multimodal-sensor-fusion)
