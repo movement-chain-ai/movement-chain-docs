@@ -12,7 +12,9 @@ This research hub consolidates findings from academic literature, commercial pro
 
 ### 研究范围 (Research Scope)
 
-**研究文档总数 (Total Research Documents)**: 8 documents, 232KB of curated content
+**研究文档总数 (Total Research Documents)**: 7 documents, ~200KB of curated content
+
+> **注意**: 部分内容已整合到主指南中。详见 [指南索引](../../guides/index.md)。
 
 **主要关注领域 (Primary Focus Areas)**:
 1. 学术数据集和基准测试 (Academic datasets and benchmarks)
@@ -41,14 +43,7 @@ This research hub consolidates findings from academic literature, commercial pro
 ### 🏢 商业产品分析 (Commercial Product Analysis)
 **必读人群 (Essential reading for)**: Product managers, strategists, business development
 
-- **[商业健身技术 2025 (Commercial Fitness Technology 2025)](commercial-fitness-tech.md)**
-  - Peloton IQ ($2,500+) - 基于置信度的反馈 (Confidence-based feedback)
-  - Tonal ($2,995) - 多传感器融合验证 (Multi-sensor fusion validation)
-  - MAGIC Mirror ($1,499) - 每次重复评分 (Rep-level scoring)
-  - Tempo Studio ($1,995) - 3D 深度感知 (3D depth sensing)
-  - Form ($249) - AR 游泳反馈 (AR swimming feedback)
-  - Apple Fitness+ ($10/mo) - 市场缺口分析 (Market gap analysis)
-  - **竞争定位 (Competitive positioning)**: 我们的 $300 系统 vs. $1,500-3,000 竞争对手 (Our $300 system vs. $1,500-3,000 competitors)
+> **已整合**: 商业健身技术分析已整合到 [竞争分析](../../resources/competitive-analysis.md)
 
 - **[商业运动反馈系统(深度研究) (Commercial Movement Feedback Systems Deep Dive)](movement-feedback-commercial-research.md)**
   - 技术栈分解 (Technology stack breakdowns)
@@ -79,12 +74,7 @@ This research hub consolidates findings from academic literature, commercial pro
 ### 🤖 姿态估计工具 (Pose Estimation Tools)
 **必读人群 (Essential reading for)**: ML engineers, backend developers, mobile developers
 
-- **[姿态估计工具 2025 (Pose Estimation Tools 2025)](pose-estimation-tools-2025.md)** ⭐ Critical update
-  - **RTMPose 现已超越 MediaPipe!** (75.8% AP vs 72%, 90+ FPS vs 40 FPS)
-  - MediaPipe vs RTMPose vs MoveNet vs Apple Vision 比较
-  - 部署策略 (Deployment strategies - MVP: MediaPipe, Production: RTMPose)
-  - 迁移指南和代码示例 (Migration guide and code examples)
-  - 成本效益分析 (Cost-benefit analysis - 67-82% cloud cost reduction with RTMPose)
+> **已整合**: 姿态估计工具分析已整合到 [姿态估计指南](../../guides/pose-estimation.md)
 
 ### 🛠️ API、SDK 和工具 (APIs, SDKs & Tools)
 **必读人群 (Essential reading for)**: Developers, technical architects, integration engineers
@@ -211,48 +201,42 @@ This research hub consolidates findings from academic literature, commercial pro
 | 文档 Document | 大小 Size | 阅读时间 Reading Time | 复杂度 Complexity |
 |----------|------|--------------|------------|
 | Academic Research & Datasets | 11 KB | 15 min | Medium |
-| Commercial Fitness Tech | 17 KB | 25 min | Low-Medium |
 | Movement Feedback Commercial (Deep) | 43 KB | 60 min | Medium-High |
 | Visual Feedback Research Summary | 29 KB | 45 min | High |
 | UI/UX Design Guidelines | 35 KB | 50 min | Medium-High |
-| Pose Estimation Tools 2025 | 21 KB | 30 min | Medium |
 | Visual Feedback APIs & SDKs | 53 KB | 70 min | Medium |
 | Project Unique Value | 23 KB | 35 min | Low-Medium |
 
-**总计 (Total)**: 232 KB, ~5.5 hours of focused reading
+**总计 (Total)**: ~200 KB, ~4.5 hours of focused reading
+
+> **注意**: 部分文档已整合到指南中。请参阅 [指南索引](../../guides/index.md) 获取最新内容。
 
 ---
 
 ## 推荐阅读路径 (Recommended Reading Paths)
 
-### 新团队成员入职 (For New Team Members - Onboarding)
-1. **[项目独特价值 (Project Unique Value)](project-unique-value.md)** - 了解我们的差异化 (Understand our differentiation - 30 min)
-2. **[商业健身技术 (Commercial Fitness Tech)](commercial-fitness-tech.md)** - 了解竞争对手 (Know the competition - 25 min)
-3. **[姿态估计工具 2025 (Pose Estimation Tools 2025)](pose-estimation-tools-2025.md)** - 核心技术 (Core technology - 30 min)
+> **提示**: 建议先阅读 [指南索引](../../guides/index.md) 中的整合指南，然后再深入归档文档。
 
-**总计 (Total)**: 1.5 hours to understand strategic context
+### 新团队成员入职 (For New Team Members - Onboarding)
+1. **[项目独特价值 (Project Unique Value)](project-unique-value.md)** - 了解我们的差异化 (30 min)
+2. **[竞争分析](../../resources/competitive-analysis.md)** - 了解竞争对手 (65 min)
+3. **[姿态估计指南](../../guides/pose-estimation.md)** - 核心技术 (50 min)
 
 ### ML 工程师技术深度探讨 (For ML Engineers - Technical Deep Dive)
-1. **[姿态估计工具 2025 (Pose Estimation Tools 2025)](pose-estimation-tools-2025.md)** - 选择框架 (Choose framework - 30 min)
-2. **[学术研究与数据集 (Academic Research & Datasets)](academic-research-datasets.md)** - 获取数据集 (Get datasets - 15 min)
-3. **[视觉反馈 API 和 SDK (Visual Feedback APIs & SDKs)](visual-feedback-apis-sdks.md)** - 集成选项 (Integration options - 70 min)
-
-**总计 (Total)**: 2 hours to technical proficiency
+1. **[姿态估计指南](../../guides/pose-estimation.md)** - 选择框架 (50 min)
+2. **[学术研究与数据集 (Academic Research & Datasets)](academic-research-datasets.md)** - 获取数据集 (15 min)
+3. **[视觉反馈 API 和 SDK (Visual Feedback APIs & SDKs)](visual-feedback-apis-sdks.md)** - 集成选项 (70 min)
 
 ### UI/UX 设计师设计系统 (For UI/UX Designers - Design System)
-1. **[视觉反馈研究摘要 (Visual Feedback Research Summary)](visual-feedback-research-summary.md)** - 证据基础 (Evidence base - 45 min)
-2. **[UI/UX 设计指南 (UI/UX Design Guidelines)](movement-correction-feedback-ui-ux-guidelines.md)** - 实施 (Implementation - 50 min)
-3. **[商业健身技术 (Commercial Fitness Tech)](commercial-fitness-tech.md)** - UX 模式 (UX patterns - 25 min)
-
-**总计 (Total)**: 2 hours to design expertise
+1. **[视觉反馈研究摘要 (Visual Feedback Research Summary)](visual-feedback-research-summary.md)** - 证据基础 (45 min)
+2. **[UI/UX 设计指南 (UI/UX Design Guidelines)](movement-correction-feedback-ui-ux-guidelines.md)** - 实施 (50 min)
+3. **[视觉反馈设计指南](../../guides/visual-feedback-design.md)** - 完整设计系统 (90 min)
 
 ### 研究人员发表准备 (For Researchers - Publication Prep)
-1. **[学术研究与数据集 (Academic Research & Datasets)](academic-research-datasets.md)** - 文献综述 (Literature review - 15 min)
-2. **[视觉反馈研究摘要 (Visual Feedback Research Summary)](visual-feedback-research-summary.md)** - 最新技术 (State of art - 45 min)
-3. **[项目独特价值 (Project Unique Value)](project-unique-value.md)** - 研究问题 (Research questions - 35 min)
-4. **[商业运动反馈系统(深度) (Movement Feedback Commercial Deep)](movement-feedback-commercial-research.md)** - 完整背景 (Full context - 60 min)
-
-**总计 (Total)**: 2.5 hours to research readiness
+1. **[学术研究与数据集 (Academic Research & Datasets)](academic-research-datasets.md)** - 文献综述 (15 min)
+2. **[视觉反馈研究摘要 (Visual Feedback Research Summary)](visual-feedback-research-summary.md)** - 最新技术 (45 min)
+3. **[项目独特价值 (Project Unique Value)](project-unique-value.md)** - 研究问题 (35 min)
+4. **[商业运动反馈系统(深度) (Movement Feedback Commercial Deep)](movement-feedback-commercial-research.md)** - 完整背景 (60 min)
 
 ---
 
@@ -278,13 +262,13 @@ This research hub consolidates findings from academic literature, commercial pro
 | 文档 Document | 最后更新 Last Updated | 下次审查 Next Review | 负责人 Owner |
 |----------|-------------|-------------|-------|
 | Academic Research & Datasets | Dec 2025 | Q1 2026 | Research Team |
-| Commercial Fitness Tech | Dec 2025 | Mar 2026 | Product Strategy |
-| Pose Estimation Tools 2025 | Dec 2025 | Q2 2026 | ML Team |
 | Visual Feedback Research | Dec 2025 | Q2 2026 | UX Research |
 | UI/UX Guidelines | Dec 2025 | Q1 2026 | Design Team |
 | APIs & SDKs | Dec 2025 | Q1 2026 | Engineering |
 | Project Unique Value | Dec 2025 | Q2 2026 | Leadership |
 | Commercial Deep Dive | Dec 2025 | Q2 2026 | Strategy |
+
+> **注意**: 姿态估计和商业健身技术内容现在在主指南中维护。
 
 ---
 

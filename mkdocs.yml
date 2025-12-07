@@ -57,6 +57,7 @@ plugins:
             概览: Overview
             资源: Resources
             指南: Guides
+            研究: Research
             ADR-0001 多仓库结构: ADR-0001 Multi-Repo Structure
             ADR-0003 Flutter 移动端: ADR-0003 Flutter Mobile
             ADR-0004 四模块架构: ADR-0004 4-Module Architecture
@@ -66,6 +67,14 @@ plugins:
             移动开发框架比较: Mobile Frameworks Comparison
             高尔夫可穿戴竞品分析: Golf Wearable Competitor Analysis
             国内传感器供应商: Domestic Sensor Suppliers
+            姿态估计: Pose Estimation
+            视觉反馈设计: Visual Feedback Design
+            传感器硬件: Sensor Hardware
+            移动应用开发: Mobile App Development
+            数据集与基准测试: Datasets & Benchmarking
+            E-Skin ODM 制造商: E-Skin ODM Manufacturers
+            竞争分析: Competitive Analysis
+            高尔夫可穿戴技术研究: Golf Wearable Technology Research
         - locale: zh
           default: true
           name: 中文 (Simplified Chinese)
@@ -82,8 +91,17 @@ plugins:
             Overview: 概览
             Resources: 资源
             Guides: 指南
+            Research: 研究
             Golf Wearable Competitor Analysis: 高尔夫可穿戴竞品分析
             Domestic Sensor Suppliers: 国内传感器供应商
+            Pose Estimation: 姿态估计
+            Visual Feedback Design: 视觉反馈设计
+            Sensor Hardware: 传感器硬件
+            Mobile App Development: 移动应用开发
+            Datasets & Benchmarking: 数据集与基准测试
+            E-Skin ODM Manufacturers: E-Skin ODM 制造商
+            Competitive Analysis: 竞争分析
+            Golf Wearable Technology Research: 高尔夫可穿戴技术研究
 
 markdown_extensions:
   # Code highlighting
@@ -163,6 +181,14 @@ nav:
     - ADR-0005 ESP32-S3 MCU: decisions/0005-esp32-s3-microcontroller.md
     - ADR-0006 ONNX Runtime: decisions/0006-onnx-runtime-deployment.md
 
+  - 指南:
+    - 概览: guides/index.md
+    - 姿态估计: guides/pose-estimation.md
+    - 视觉反馈设计: guides/visual-feedback-design.md
+    - 传感器硬件: guides/sensor-hardware.md
+    - 移动应用开发: guides/mobile-development.md
+    - 数据集与基准测试: guides/datasets-benchmarking.md
+
   - 资源:
     - 概览: resources/index.md
     - 开源许可证比较: resources/open-source-license-comparison.md
@@ -171,3 +197,9 @@ nav:
     - 移动开发框架比较: resources/mobile-frameworks-comparison.md
     - 高尔夫可穿戴竞品分析: resources/golf-wearable-competitor-analysis.md
     - 国内传感器供应商: resources/domestic-sensor-suppliers.md
+    - E-Skin ODM 制造商: resources/e-skin-odm-manufacturers.md
+    - 竞争分析: resources/competitive-analysis.md
+
+  - 研究:
+    - 概览: research/index.md
+    - 高尔夫可穿戴技术研究: research/golf-wearable-technology-research.md
