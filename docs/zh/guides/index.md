@@ -58,6 +58,25 @@
 
 ---
 
+### 📺 [综合视觉反馈系统研究](comprehensive-visual-feedback-systems-research.md) 🆕
+
+**适用于**: 产品经理、UI/UX 设计师、移动开发人员
+**阅读时间**: ~90 分钟
+
+**完整的视觉反馈系统技术研究（高尔夫专用推荐）**：
+
+- **移动应用可视化**: HomeCourt、Hudl、Dartfish 分析，骨架叠加技术
+- **3D 虚拟角色系统**: Unity、Three.js、Babylon.js 渲染引擎对比
+- **AR/VR 反馈**: Apple Vision Pro、Meta Quest、ARKit/ARCore 应用
+- **智能镜**: Tempo、Tonal、Mirror 技术架构和 DIY 方案
+- **LED/光效反馈**: FITLIGHT、BlazePods、触觉可穿戴
+- **SDK 和工具**: MediaPipe、RTMPose、OpenPose 对比
+- **多模态反馈**: 视觉 + 触觉 + 音频组合最佳实践
+
+**高尔夫专用建议**: 挥杆中避免视觉干扰，后摆分析采用 Ghost Avatar + DTW 对齐
+
+---
+
 ### 🔧 [Sensor Hardware 传感器硬件与嵌入式系统](sensor-hardware.md)
 
 **适用于**: 硬件工程师、嵌入式开发人员

@@ -28,6 +28,7 @@ Movement Chain AI 开发决策的技术比较指南和参考材料。
 ### 供应商研究
 
 - [E-Skin ODM/OEM 厂商研究](e-skin-odm-manufacturers.md) - 柔性电子供应商综合研究，包含 SDK/API 能力分析
+- [中国智能可穿戴供应商大全](chinese-smart-wearable-suppliers.md) 🆕 - 智能服装、触觉反馈、鞋垫、手套、柔性传感器供应商
 
 ## 如何使用这些资源
 

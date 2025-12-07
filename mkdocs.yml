@@ -75,6 +75,9 @@ plugins:
             E-Skin ODM 制造商: E-Skin ODM Manufacturers
             竞争分析: Competitive Analysis
             高尔夫可穿戴技术研究: Golf Wearable Technology Research
+            可穿戴运动技术生态系统: Wearable Sports Technology Ecosystem
+            中国智能可穿戴供应商: Chinese Smart Wearable Suppliers
+            综合视觉反馈系统研究: Comprehensive Visual Feedback Systems
         - locale: zh
           default: true
           name: 中文 (Simplified Chinese)
@@ -102,6 +105,9 @@ plugins:
             E-Skin ODM Manufacturers: E-Skin ODM 制造商
             Competitive Analysis: 竞争分析
             Golf Wearable Technology Research: 高尔夫可穿戴技术研究
+            Wearable Sports Technology Ecosystem: 可穿戴运动技术生态系统
+            Chinese Smart Wearable Suppliers: 中国智能可穿戴供应商
+            Comprehensive Visual Feedback Systems: 综合视觉反馈系统研究
 
 markdown_extensions:
   # Code highlighting
@@ -185,6 +191,7 @@ nav:
     - 概览: guides/index.md
     - 姿态估计: guides/pose-estimation.md
     - 视觉反馈设计: guides/visual-feedback-design.md
+    - 综合视觉反馈系统研究: guides/comprehensive-visual-feedback-systems-research.md
     - 传感器硬件: guides/sensor-hardware.md
     - 移动应用开发: guides/mobile-development.md
     - 数据集与基准测试: guides/datasets-benchmarking.md
@@ -197,9 +204,11 @@ nav:
     - 移动开发框架比较: resources/mobile-frameworks-comparison.md
     - 高尔夫可穿戴竞品分析: resources/golf-wearable-competitor-analysis.md
     - 国内传感器供应商: resources/domestic-sensor-suppliers.md
+    - 中国智能可穿戴供应商: resources/chinese-smart-wearable-suppliers.md
     - E-Skin ODM 制造商: resources/e-skin-odm-manufacturers.md
     - 竞争分析: resources/competitive-analysis.md
 
   - 研究:
     - 概览: research/index.md
     - 高尔夫可穿戴技术研究: research/golf-wearable-technology-research.md
+    - 可穿戴运动技术生态系统: research/wearable-sports-technology-ecosystem.md
