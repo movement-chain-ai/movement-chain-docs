@@ -64,6 +64,8 @@ plugins:
             硬件比较: Hardware Comparison
             机器学习框架比较: ML Frameworks Comparison
             移动开发框架比较: Mobile Frameworks Comparison
+            高尔夫可穿戴竞品分析: Golf Wearable Competitor Analysis
+            国内传感器供应商: Domestic Sensor Suppliers
         - locale: zh
           default: true
           name: 中文 (Simplified Chinese)
@@ -80,6 +82,8 @@ plugins:
             Overview: 概览
             Resources: 资源
             Guides: 指南
+            Golf Wearable Competitor Analysis: 高尔夫可穿戴竞品分析
+            Domestic Sensor Suppliers: 国内传感器供应商
 
 markdown_extensions:
   # Code highlighting
@@ -165,3 +169,5 @@ nav:
     - 硬件比较: resources/hardware-comparison.md
     - 机器学习框架比较: resources/ml-frameworks-comparison.md
     - 移动开发框架比较: resources/mobile-frameworks-comparison.md
+    - 高尔夫可穿戴竞品分析: resources/golf-wearable-competitor-analysis.md
+    - 国内传感器供应商: resources/domestic-sensor-suppliers.md

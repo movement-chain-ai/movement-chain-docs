@@ -19,6 +19,10 @@ Movement Chain AI 开发决策的技术比较指南和参考材料。
 - [机器学习框架比较](ml-frameworks-comparison.md) - 机器学习和推理运行时选项
 - [移动开发框架比较](mobile-frameworks-comparison.md) - 跨平台移动开发框架
 
+### 供应商研究
+
+- [E-Skin ODM/OEM 厂商研究](e-skin-odm-manufacturers.md) - 柔性电子供应商综合研究，包含 SDK/API 能力分析
+
 ## 如何使用这些资源
 
 这些比较文档在研究阶段创建，为我们的[架构决策记录](../decisions/index.md)提供依据。每个比较包括：
