@@ -78,6 +78,26 @@ plugins:
             可穿戴运动技术生态系统: Wearable Sports Technology Ecosystem
             中国智能可穿戴供应商: Chinese Smart Wearable Suppliers
             综合视觉反馈系统研究: Comprehensive Visual Feedback Systems
+            传感器技术: Sensors
+            IMU 惯性测量单元: IMU Inertial Measurement Unit
+            EMG 肌电传感器: EMG Electromyography
+            柔性传感器: Flexible Sensors
+            压力传感器: Pressure Sensors
+            视觉/摄像头: Vision/Camera
+            MCU 微控制器: MCU Microcontroller
+            供应商大全: Suppliers
+            IMU 供应商: IMU Suppliers
+            EMG 供应商: EMG Suppliers
+            柔性传感器供应商: Flexible Sensor Suppliers
+            压力传感器供应商: Pressure Sensor Suppliers
+            MCU 供应商: MCU Suppliers
+            ODM/OEM 方案商: ODM/OEM Providers
+            竞品分析: Competitor Analysis
+            IMU 方案竞品: IMU-Based Competitors
+            视觉方案竞品: Vision-Based Competitors
+            多传感器方案: Multi-Sensor Solutions
+            智能服装竞品: Smart Clothing Competitors
+            市场分析: Market Analysis
         - locale: zh
           default: true
           name: 中文 (Simplified Chinese)
@@ -108,6 +128,26 @@ plugins:
             Wearable Sports Technology Ecosystem: 可穿戴运动技术生态系统
             Chinese Smart Wearable Suppliers: 中国智能可穿戴供应商
             Comprehensive Visual Feedback Systems: 综合视觉反馈系统研究
+            Sensors: 传感器技术
+            IMU Inertial Measurement Unit: IMU 惯性测量单元
+            EMG Electromyography: EMG 肌电传感器
+            Flexible Sensors: 柔性传感器
+            Pressure Sensors: 压力传感器
+            Vision/Camera: 视觉/摄像头
+            MCU Microcontroller: MCU 微控制器
+            Suppliers: 供应商大全
+            IMU Suppliers: IMU 供应商
+            EMG Suppliers: EMG 供应商
+            Flexible Sensor Suppliers: 柔性传感器供应商
+            Pressure Sensor Suppliers: 压力传感器供应商
+            MCU Suppliers: MCU 供应商
+            ODM/OEM Providers: ODM/OEM 方案商
+            Competitor Analysis: 竞品分析
+            IMU-Based Competitors: IMU 方案竞品
+            Vision-Based Competitors: 视觉方案竞品
+            Multi-Sensor Solutions: 多传感器方案
+            Smart Clothing Competitors: 智能服装竞品
+            Market Analysis: 市场分析
 
 markdown_extensions:
   # Code highlighting
@@ -207,6 +247,32 @@ nav:
     - 中国智能可穿戴供应商: resources/chinese-smart-wearable-suppliers.md
     - E-Skin ODM 制造商: resources/e-skin-odm-manufacturers.md
     - 竞争分析: resources/competitive-analysis.md
+
+  - 传感器技术:
+    - 概览: sensors/index.md
+    - IMU 惯性测量单元: sensors/imu.md
+    - EMG 肌电传感器: sensors/emg.md
+    - 柔性传感器: sensors/flexible-sensors.md
+    - 压力传感器: sensors/pressure-sensors.md
+    - 视觉/摄像头: sensors/vision-camera.md
+    - MCU 微控制器: sensors/mcu.md
+
+  - 供应商大全:
+    - 概览: suppliers/index.md
+    - IMU 供应商: suppliers/imu.md
+    - EMG 供应商: suppliers/emg.md
+    - 柔性传感器供应商: suppliers/flexible.md
+    - 压力传感器供应商: suppliers/pressure.md
+    - MCU 供应商: suppliers/mcu.md
+    - ODM/OEM 方案商: suppliers/odm-oem.md
+
+  - 竞品分析:
+    - 概览: competitors/index.md
+    - IMU 方案竞品: competitors/imu-based.md
+    - 视觉方案竞品: competitors/vision-based.md
+    - 多传感器方案: competitors/multi-sensor.md
+    - 智能服装竞品: competitors/smart-clothing.md
+    - 市场分析: competitors/market-analysis.md
 
   - 研究:
     - 概览: research/index.md
