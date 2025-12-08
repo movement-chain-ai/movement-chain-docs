@@ -37,3 +37,6 @@ wheels/
 # MkDocs
 .cache/
 node_modules/
+
+# Backup folders
+zh-backup/
