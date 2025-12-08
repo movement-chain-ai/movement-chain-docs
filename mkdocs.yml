@@ -213,18 +213,8 @@ nav:
 
   - 系统设计:
     - 概览: design/index.md
-    - 系统概览: design/01-system-overview.md
-    - 数据流: design/02-data-flow.md
-    - 集成模式: design/03-integration-patterns.md
-    - 性能目标: design/04-performance-targets.md
-    - 决策记录:
-      - 概览: design/decisions/index.md
-      - ADR-0001 多仓库结构: design/decisions/0001-multi-repo-structure.md
-      - ADR-0002 LSM6DSV16X IMU: design/decisions/0002-lsm6dsv16x-imu.md
-      - ADR-0003 Flutter 移动端: design/decisions/0003-flutter-mobile.md
-      - ADR-0004 四模块架构: design/decisions/0004-simplified-4-module-architecture.md
-      - ADR-0005 ESP32-S3 MCU: design/decisions/0005-esp32-s3-microcontroller.md
-      - ADR-0006 ONNX Runtime: design/decisions/0006-onnx-runtime-deployment.md
+    - 系统探索: design/system-exploration.md
+    - 术语表: design/00-glossary.md
 
   - 硬件组件:
     - 概览: components/index.md

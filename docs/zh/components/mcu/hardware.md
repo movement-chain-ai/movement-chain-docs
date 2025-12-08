@@ -7,7 +7,7 @@
 ## 我们的选择：ESP32-S3
 
 !!! success "项目决策"
-    详见 [ADR-0005: ESP32-S3 微控制器选型](../../design/decisions/0005-esp32-s3-microcontroller.md)
+    详见 [ADR-0005: ESP32-S3 微控制器选型](../../design/archive/decisions/0005-esp32-s3-microcontroller.md)
 
 ### 核心规格
 
@@ -362,7 +362,7 @@ void sendIMUData(float ax, float ay, float az, float gx, float gy, float gz) {
 
 ## 相关资源
 
-- [ADR-0005: ESP32-S3 选型](../../design/decisions/0005-esp32-s3-microcontroller.md)
+- [ADR-0005: ESP32-S3 选型](../../design/archive/decisions/0005-esp32-s3-microcontroller.md)
 - [硬件比较](../../research/comparisons/hardware-comparison.md)
 - [传感器硬件指南](../sensor-hardware-overview.md)
 - [MCU 供应商](suppliers.md)

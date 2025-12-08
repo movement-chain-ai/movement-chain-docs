@@ -408,7 +408,7 @@ class SwingPhaseDetector:
 
 - [姿态估计指南](../vision/software.md)
 - [视觉反馈设计](../../platform/ml-training/visual-feedback.md)
-- [ADR-0006: ONNX Runtime 部署](../../design/decisions/0006-onnx-runtime-deployment.md)
+- [ADR-0006: ONNX Runtime 部署](../../design/archive/decisions/0006-onnx-runtime-deployment.md)
 - [视觉方案竞品](../../../research/competitors/vision-based.md)
 
 ---

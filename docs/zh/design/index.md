@@ -1,40 +1,44 @@
 # 系统设计 System Design
 
-系统架构和关键技术决策文档。
+> **当前状态**: 探索阶段 - 还在讨论，尚未定型
 
 ---
 
-## 高层架构 High-Level Architecture
+## 核心文档 Core Documents
 
-| 文档 | 描述 |
+| 文档 | 说明 |
 |-----|------|
-| [系统概览](01-system-overview.md) | 整体系统架构和模块职责 |
-| [数据流](02-data-flow.md) | 数据在系统中的流动路径 |
-| [集成模式](03-integration-patterns.md) | 模块间通信和集成策略 |
-| [性能目标](04-performance-targets.md) | SLA、延迟和可扩展性目标 |
+| [系统探索](system-exploration.md) | 我们在探索什么？有哪些选择？ |
+| [术语表](00-glossary.md) | IMU、EMG、FSR、E-Skin 等术语定义 |
 
 ---
 
-## 架构决策记录 Architecture Decision Records
+## 设计理念 Design Philosophy
 
-重要技术决策的记录和理由。
-
-| ADR | 决策 | 状态 |
-|-----|------|------|
-| [ADR-0001](decisions/0001-multi-repo-structure.md) | 多仓库结构 | ✅ 已采用 |
-| [ADR-0002](decisions/0002-lsm6dsv16x-imu.md) | LSM6DSV16X IMU 选型 | ✅ 已采用 |
-| [ADR-0003](decisions/0003-flutter-mobile.md) | Flutter 移动端框架 | ✅ 已采用 |
-| [ADR-0004](decisions/0004-simplified-4-module-architecture.md) | 四模块架构 | ✅ 已采用 |
-| [ADR-0005](decisions/0005-esp32-s3-microcontroller.md) | ESP32-S3 微控制器 | ✅ 已采用 |
-| [ADR-0006](decisions/0006-onnx-runtime-deployment.md) | ONNX Runtime 部署 | ✅ 已采用 |
+```text
+┌─────────────────────────────────────────────────────────────────────┐
+│                        我们的思路                                    │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│   1. 买现成产品，不造轮子                                            │
+│      → 智能鞋垫、EMG 传感器、E-Skin 都有成熟产品可买                 │
+│                                                                     │
+│   2. 多源数据采集                                                    │
+│      → 视觉 + 压力 + EMG + E-Skin + IMU                             │
+│                                                                     │
+│   3. AI 融合是核心价值                                               │
+│      → 市场上没有人把这些数据源融合起来训练 AI                       │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 快速导航
+## 归档文档 Archived Documents
 
-- **想了解整体架构？** → [系统概览](01-system-overview.md)
-- **想了解为什么选这个技术？** → [决策记录](decisions/index.md)
-- **想了解模块如何通信？** → [集成模式](03-integration-patterns.md)
+详细的实现设计文档已归档，待探索阶段结束后再完善：
+
+- [归档目录](archive/) - 包含系统概览、数据流、集成模式、性能目标、ADR 决策记录
 
 ---
 

@@ -385,7 +385,7 @@ const arrowThickness = 6 * getScaleFactor(deviceDiagonal);
    - **纹理图集 (Texture atlases)**: 将箭头精灵组合到单个纹理中 (减少绘制调用)
    - **目标 (Target)**: 峰值渲染期间 <500MB RAM 使用
 
-**Flutter 特定优化 (Flutter-Specific Optimizations)** (参见 [ADR-0003](../../design/decisions/0003-flutter-mobile.md)):
+**Flutter 特定优化 (Flutter-Specific Optimizations)** (参见 [ADR-0003](../../design/archive/decisions/0003-flutter-mobile.md)):
 ```dart
 // Use RepaintBoundary to isolate animated layers
 RepaintBoundary(
@@ -903,8 +903,8 @@ class FeedbackConfig {
 - [Haptics UX Design - Android Open Source Project](https://source.android.com/docs/core/interaction/haptics/haptics-ux-design)
 
 ### Movement Chain AI 内部文档 (Movement Chain AI Internal Docs)
-- [ADR-0003: Flutter Mobile Development](../../design/decisions/0003-flutter-mobile.md)
-- [HLD 01: System Overview](../../design/01-system-overview.md)
+- [ADR-0003: Flutter Mobile Development](../../design/archive/decisions/0003-flutter-mobile.md)
+- [HLD 01: System Overview](../../design/archive/01-system-overview.md)
 
 ---
 
