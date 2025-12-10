@@ -12,7 +12,7 @@ This research hub consolidates findings from academic literature, commercial pro
 
 ### 研究范围 (Research Scope)
 
-**研究文档总数 (Total Research Documents)**: 7 documents, ~200KB of curated content
+**研究文档总数 (Total Research Documents)**: 11 documents, ~320KB of curated content
 
 > **注意**: 部分内容已整合到主指南中。详见 [指南索引](../../platform/index.md)。
 
@@ -96,6 +96,37 @@ This research hub consolidates findings from academic literature, commercial pro
   - 发表路线图 (Publication roadmap - CHI, IMWUT, CVPR papers planned)
   - 商业化潜力和退出策略 (Commercialization potential and exit strategies)
   - **我们为什么会赢 (Why we'll win)**: 10倍成本优势 ($300 vs $3,000)
+
+### ⛳ 高尔夫产品原始研究 (Golf Product Raw Research)
+**必读人群 (Essential reading for)**: Product team, marketing, market research
+**状态 (Status)**: 原始研究数据，核心内容已整合到产品文档中
+
+!!! info "整合说明"
+    以下研究文件的核心内容已整合到 [市场验证报告](../../product/market-validation.md) 和 [竞品市场分析](../../research/competitors/market-analysis.md)。此处保留原始研究供参考。
+
+- **[高尔夫挥杆分析仪用户痛点研究 (Golf Swing Analyzer User Pain Points)](golf-swing-analyzer-user-pain-points.md)**
+  - 150+ 来源分析 (YouTube、Amazon、Reddit、GolfWRX、MyGolfSpy)
+  - Top 10 痛点排名与用户原话
+  - 产品评测摘要 (HackMotion, SwingMotion, Sportsbox AI, deWiz, Blast Golf)
+  - 定价与订阅模式分析
+
+- **[中国市场高尔夫挥杆分析仪反馈研究 (Chinese Market Golf Feedback Research)](chinese-market-golf-swing-analyzer-feedback-research.md)**
+  - 小红书/Bilibili/知乎/淘宝 用户反馈
+  - 中国教练费用分析 (¥600-2,000/小时)
+  - 室内模拟器市场 (2,000+ 场馆, 30% 年增长)
+  - 中国本土化需求与渠道建议
+
+- **[球场辅助与实时反馈用户需求研究 (On-Course Assistance User Needs)](on-course-golf-assistance-user-needs-research.md)**
+  - "练习→实战"鸿沟深度分析
+  - Arccos/Tangent/Shot Scope/18Birdies 评测
+  - Virtual Caddy 功能需求与支付意愿
+  - USGA 规则对设备功能限制
+
+- **[高尔夫科技深度投诉研究 (Golf Tech Deep Complaints Research)](golf-tech-complaints-research.md)**
+  - "设备吃灰"现象 (2-4周产品弃用率)
+  - 订阅疲劳与隐藏费用问题
+  - 数据准确性与信任危机
+  - 用户愿望清单："圣杯产品"特征
 
 ---
 
@@ -206,8 +237,12 @@ This research hub consolidates findings from academic literature, commercial pro
 | UI/UX Design Guidelines | 35 KB | 50 min | Medium-High |
 | Visual Feedback APIs & SDKs | 53 KB | 70 min | Medium |
 | Project Unique Value | 23 KB | 35 min | Low-Medium |
+| **Golf Swing Analyzer Pain Points** | 19 KB | 30 min | Low |
+| **Chinese Market Golf Research** | 25 KB | 40 min | Low-Medium |
+| **On-Course Assistance Needs** | 37 KB | 50 min | Medium |
+| **Golf Tech Deep Complaints** | 38 KB | 55 min | Medium |
 
-**总计 (Total)**: ~200 KB, ~4.5 hours of focused reading
+**总计 (Total)**: ~320 KB, ~7 hours of focused reading
 
 > **注意**: 部分文档已整合到指南中。请参阅 [指南索引](../../platform/index.md) 获取最新内容。
 
@@ -305,8 +340,8 @@ This research hub consolidates findings from academic literature, commercial pro
 
 ---
 
-**最后更新 (Last Updated)**: December 1, 2025
-**研究汇编总量 (Total Research Compilation)**: 232 KB across 8 documents
+**最后更新 (Last Updated)**: December 9, 2025
+**研究汇编总量 (Total Research Compilation)**: 320 KB across 11 documents
 **贡献者 (Contributors)**: Movement Chain AI Team + AI Research Agents
 **许可证 (License)**: See individual documents for source attribution
 

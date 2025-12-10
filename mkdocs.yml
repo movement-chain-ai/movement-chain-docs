@@ -98,6 +98,10 @@ plugins:
             多传感器方案: Multi-Sensor Solutions
             智能服装竞品: Smart Clothing Competitors
             市场分析: Market Analysis
+            产品战略: Product Strategy
+            市场验证: Market Validation
+            MVP规格说明: MVP Specification
+            产品路线图: Product Roadmap
         - locale: zh
           default: true
           name: 中文 (Simplified Chinese)
@@ -148,6 +152,10 @@ plugins:
             Multi-Sensor Solutions: 多传感器方案
             Smart Clothing Competitors: 智能服装竞品
             Market Analysis: 市场分析
+            Product Strategy: 产品战略
+            Market Validation: 市场验证
+            MVP Specification: MVP规格说明
+            Product Roadmap: 产品路线图
 
 markdown_extensions:
   # Code highlighting
@@ -210,6 +218,13 @@ extra:
 
 nav:
   - 首页: index.md
+
+  - 产品战略:
+    - 概览: product/index.md
+    - 市场验证: product/market-validation.md
+    - 产品战略: product/product-strategy.md
+    - MVP规格说明: product/mvp-specification.md
+    - 产品路线图: product/roadmap.md
 
   - 系统设计:
     - 概览: design/index.md
