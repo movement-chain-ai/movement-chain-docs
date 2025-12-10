@@ -24,6 +24,7 @@ npm run lint:md
 npm run lint:links
 
 # Test build (strict mode, used by pre-push hook)
+# IMPORTANT: Run this before pushing to catch broken links
 npm run test:build
 ```
 
@@ -85,5 +86,6 @@ Located in `docs/zh/design/decisions/`:
 
 ## Known Issues
 
+- **Broken ADR links**: Many files link to `design/archive/decisions/` but ADRs are at `design/decisions/` - needs fixing
 - ST.com documentation links (datasheets, MEMS Studio) return Status 0 in automated link checks but are valid - they block automated requests
-- Some pre-existing research files in `archive/` have lint errors; use `--no-verify` when committing archive changes
+- Some pre-existing research files in `archive/` and `suppliers-china/` have dead external links; use `--no-verify` when pushing if unrelated to your changes
