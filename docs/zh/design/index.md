@@ -8,6 +8,7 @@
 
 | 文档 | 说明 |
 |-----|------|
+| [多模态融合流程](multimodal-fusion-pipeline.md) | **核心技术文档** - EMG+IMU+视觉如何协同工作 |
 | [架构决策记录 (ADR)](decisions/index.md) | **关键技术决策** (Flutter, LSM6DSV16X, 4-Module Arch) |
 | [系统探索](system-exploration.md) | 早期探索记录 (历史参考) |
 | [术语表](00-glossary.md) | IMU、EMG、FSR、E-Skin 等术语定义 |

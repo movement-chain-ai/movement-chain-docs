@@ -102,6 +102,7 @@ plugins:
             市场验证: Market Validation
             MVP规格说明: MVP Specification
             产品路线图: Product Roadmap
+            多模态融合流程: Multimodal Fusion Pipeline
         - locale: zh
           default: true
           name: 中文 (Simplified Chinese)
@@ -156,6 +157,7 @@ plugins:
             Market Validation: 市场验证
             MVP Specification: MVP规格说明
             Product Roadmap: 产品路线图
+            Multimodal Fusion Pipeline: 多模态融合流程
 
 markdown_extensions:
   # Code highlighting
@@ -228,6 +230,7 @@ nav:
 
   - 系统设计:
     - 概览: design/index.md
+    - 多模态融合流程: design/multimodal-fusion-pipeline.md
     - 系统探索: design/system-exploration.md
     - 术语表: design/00-glossary.md
 
