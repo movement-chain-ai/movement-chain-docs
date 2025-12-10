@@ -264,7 +264,7 @@ Arduino IDE 2.x 和 PlatformIO 中的 ESP32-S3 支持将开发速度加快 3-5 �
 
 ### 固件架构
 
-```
+```text
 核心 0（高优先级）:
 - IMU 传感器采集（100Hz）
 - 心率处理（1Hz）

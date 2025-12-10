@@ -12,7 +12,7 @@
 
 ```text
 MVP = 能够验证"练习↔实战闭环"价值主张的最小功能集
-```text
+```
 
 ### 范围界定
 
@@ -22,7 +22,8 @@ MVP = 能够验证"练习↔实战闭环"价值主张的最小功能集
 | **传感器** | IMU + Vision + EMG | 智能鞋垫、E-Skin |
 | **反馈** | 视觉 + 语音 | 触觉振动 |
 | **AI功能** | 基础挥杆分析 + 肌肉时序 | AI球童、策略推荐 |
-| **平台** | iOS | Android (Phase 2) |
+| **社交** | 本地历史记录 | 社交排行榜、微信分享 |
+| **平台** | iOS/Android (Flutter) | Web Dashboard |
 
 > **战略决策**: EMG 纳入 MVP 采用并行开发策略。即使 EMG 开发遇到困难，Vision + IMU 仍可独立发布。EMG 是市场唯一差异化，早期投入可建立技术壁垒。
 
@@ -64,7 +65,7 @@ MVP = 能够验证"练习↔实战闭环"价值主张的最小功能集
 │  ┌─────────────────────────────────────────────────────────────┐   │
 │  │                     核心层 (Core Layer)                       │   │
 │  │  ┌───────────┐  ┌───────────┐  ┌───────────┐  ┌─────────┐  │   │
-│  │  │  RTMPose  │  │ IMU处理   │  │ EMG处理   │  │数据融合 │  │   │
+│  │  │ MediaPipe │  │ IMU处理   │  │ EMG处理   │  │数据融合 │  │   │
 │  │  │ 姿态估计  │  │  算法     │  │  算法     │  │  引擎   │  │   │
 │  │  └───────────┘  └───────────┘  └───────────┘  └─────────┘  │   │
 │  └─────────────────────────────────────────────────────────────┘   │
@@ -78,7 +79,7 @@ MVP = 能够验证"练习↔实战闭环"价值主张的最小功能集
 │  └─────────────────────────────────────────────────────────────┘   │
 │                                                                      │
 └─────────────────────────────────────────────────────────────────────┘
-```text
+```
 
 ### 数据流图
 
@@ -102,7 +103,7 @@ MVP = 能够验证"练习↔实战闭环"价值主张的最小功能集
 │                                                     └──────────┘   │
 │                                                                     │
 └────────────────────────────────────────────────────────────────────┘
-```text
+```
 
 ---
 
@@ -129,7 +130,7 @@ struct VideoCaptureConfig {
     let codec: VideoCodec = .h264
     let orientation: CaptureOrientation = .landscape
 }
-```text
+```
 
 **IMU数据采集**:
 
@@ -149,7 +150,7 @@ struct IMUFrame {
     let magnetometer: SIMD3<Float>   // μT
     let quaternion: simd_quatf       // 姿态四元数
 }
-```text
+```
 
 #### 1.2 传感器融合
 
@@ -171,7 +172,7 @@ struct IMUFrame {
 │  运行时: T_aligned = T_imu + offset                          │
 │                                                              │
 └─────────────────────────────────────────────────────────────┘
-```text
+```
 
 **数据对齐算法**:
 
@@ -199,7 +200,7 @@ def calculate_swing_score(swing_data):
 
     total_score = sum(scores[k] * weights[k] for k in scores)
     return total_score, scores
-```text
+```
 
 ---
 
@@ -223,7 +224,7 @@ def calculate_swing_score(swing_data):
 │  正确顺序: P1 < P2 < P3 < P4 (时间)                    │
 │  错误示例: P2 < P1 → "下杆时用肩带动，而非髋部启动"     │
 └────────────────────────────────────────────────────────┘
-```text
+```
 
 **关键关节角度定义**:
 
@@ -271,7 +272,7 @@ rules = [
         "feedback": "手腕过早释放，尝试保持手腕角度到更晚的位置"
     }
 ]
-```text
+```
 
 **MVP支持的诊断项**:
 
@@ -319,7 +320,7 @@ rules = [
 │  └─────────────────────────────────────────────────────┘   │
 │                                                              │
 └─────────────────────────────────────────────────────────────┘
-```text
+```
 
 **语音反馈**:
 
@@ -354,7 +355,7 @@ feedback_templates:
     text: "进步了！{metric}比上次好{improvement}%"
     variables: [metric, improvement]
     priority: 2
-```text
+```
 
 #### 3.2 动作回放
 
@@ -388,7 +389,7 @@ feedback_templates:
 │      - 检测点: 击球后500ms                                  │
 │                                                             │
 └────────────────────────────────────────────────────────────┘
-```text
+```
 
 ---
 
@@ -410,7 +411,7 @@ feedback_templates:
 ├── training_plan.json          # 训练计划
 └── cache/
     └── models/                 # AI模型缓存
-```text
+```
 
 **挥杆数据格式**:
 
@@ -456,7 +457,7 @@ feedback_templates:
     "feedback": ["下杆时髋部过早向球方向推进"]
   }
 }
-```text
+```
 
 #### 4.2 进度追踪
 
@@ -475,22 +476,35 @@ feedback_templates:
 
 ### IMU可穿戴设备
 
-#### 硬件BOM (MVP - 含EMG)
+#### 硬件BOM (MVP 原型阶段)
 
 | 组件 | 型号 | 单价 (USD) | 备注 |
 |-----|------|-----------|------|
-| MCU | ESP32-S3 | $3.50 | BLE5.0 + 高性能 |
-| IMU | ICM-42688-P | $4.00 | 6轴高精度 |
-| 磁力计 | MMC5603 | $0.80 | 可选 |
-| **EMG AFE** | ADS1292R | $8.00 | 2通道，前臂 |
-| **干电极** | AgCl贴片 | $2.00 | 可重复使用 |
-| 电池 | 400mAh LiPo | $3.00 | 6小时续航 |
-| PCB | 4层 | $2.00 | 含SMT |
-| 外壳 | 注塑 | $2.50 | 硅胶+ABS |
-| 其他 | - | $2.00 | 连接器等 |
-| **总计** | - | **~$28** | 含EMG |
+| MCU | ESP32-S3 DevKit | $10.00 | 开发板 (含USB/WiFi) |
+| IMU | LSM6DSV16X 模块 | $15.00 | 45+分钟低漂移，ML核心 |
+| **EMG AFE** | DFRobot/MyoWare | $45.00 | 模拟前端模块 |
+| **电池** | 500mAh LiPo | $5.00 | 6小时续航 |
+| **外壳** | 3D打印 | $5.00 | 快速原型 |
+| **连接线** | 杜邦线/线束 | $2.00 | 连接组件 |
+| **总计 (原型)** | - | **~$82** | 模块化开发成本 |
 
-> **并行开发说明**: 硬件设计支持模块化，IMU 模块和 EMG 模块可独立开发测试。如 EMG 模块延期，可先发布 IMU-only 版本 (~$15 BOM)。
+#### 硬件BOM (量产目标)
+
+| 组件 | 型号 | 单价 (USD) | 备注 |
+|-----|------|-----------|------|
+| MCU | ESP32-S3-WROOM | $3.50 | 芯片级集成 |
+| IMU | LSM6DSV16X | $6.50 | ST高性能传感器 |
+| EMG | ADS1292R + 外围 | $8.00 | 定制PCB集成 |
+| PCB/PCBA | 4层板 + 贴片 | $5.00 | 1k量级预估 |
+| 外壳 | 注塑 | $2.50 | 模具摊销后 |
+| 电池 | 400mAh LiPo | $3.00 | 定制尺寸 |
+| **总计 (量产)** | - | **~$28.50** | 目标成本 |
+
+> **决策更新**:
+>
+> 1. 原型阶段使用模块化组件加速开发 (成本 ~$82)。
+> 2. 量产阶段通过集成设计降低成本至 ~$28.50。
+> 3. IMU 选型从 ICM-42688-P 变更为 **LSM6DSV16X**，因为后者提供优越的零漂移性能 (45+ mins vs 25 mins)。
 
 #### 电气规格
 
@@ -516,19 +530,19 @@ feedback_templates:
 
 ## 软件规格
 
-### iOS App
+### 移动 App (Flutter)
 
 #### 技术栈
 
 | 组件 | 技术选型 | 理由 |
 |-----|---------|------|
-| UI框架 | SwiftUI | 原生性能 |
-| 视频处理 | AVFoundation | 系统原生 |
-| AI推理 | Core ML | 苹果优化 |
-| 姿态估计 | RTMPose → Core ML | 开源+高精度 |
-| BLE通信 | Core Bluetooth | 系统原生 |
-| 数据存储 | Core Data + FileManager | 轻量级 |
-| 语音合成 | AVSpeechSynthesizer | 系统原生 |
+| UI框架 | Flutter 3.x | 跨平台，40%开发成本节省 |
+| 语言 | Dart | 高性能编译 |
+| 视觉处理 | MediaPipe Pose | 3D姿态原生支持，快速MVP |
+| AI推理 | ONNX Runtime | 跨平台模型部署 (Phase 2) |
+| BLE通信 | flutter_reactive_ble | 生产级稳定性 |
+| 状态管理 | Riverpod | 可测试性，解耦 |
+| 数据存储 | Isar / Hive | 高性能NoSQL本地库 |
 
 #### 性能要求
 
@@ -574,7 +588,7 @@ Service UUID: 0x1234 (Movement Chain Service)
 └── Characteristic: 0x1238 (Config)
     - Properties: Read, Write
     - Format: JSON string
-```text
+```
 
 #### 数据包格式
 
@@ -590,7 +604,7 @@ IMU Data Packet (20 bytes):
 │ Byte 14-15: Gyro Z (int16, 0.1°/s)                     │
 │ Byte 16-19: Quaternion W (float16) [可选]              │
 └────────────────────────────────────────────────────────┘
-```text
+```
 
 ### 内部模块接口
 
@@ -617,7 +631,7 @@ protocol CorrectionOutput {
     var audioFeedback: AudioFeedbackData { get }
     var score: Int { get }
 }
-```text
+```
 
 ---
 
@@ -666,7 +680,7 @@ MVP需要设计以下5个核心界面：
 │                    └─────────────┘                          │
 │                                                              │
 └─────────────────────────────────────────────────────────────┘
-```text
+```
 
 #### 2. 挥杆回放界面
 
@@ -694,13 +708,14 @@ MVP需要设计以下5个核心界面：
 │  └────────┘  └────────┘  └────────┘                       │
 │                                                              │
 └─────────────────────────────────────────────────────────────┘
-```text
+```
 
 ### Figma AI 设计指南
 
 #### 推荐 Prompt 模板
 
 **训练主界面**:
+
 ```text
 Design a mobile app screen for golf swing training:
 - Main view: Live camera feed with 3D skeleton overlay
@@ -709,9 +724,10 @@ Design a mobile app screen for golf swing training:
 - Dark background (#1A1A2E) with green accents (#4CAF50)
 - Style: Modern, clean, sports tech, minimal
 - Top bar: Back button, "Training Mode" title, settings icon
-```text
+```
 
 **挥杆回放界面**:
+
 ```text
 Design a mobile app screen for golf swing replay:
 - Video player area at top (16:9 aspect ratio)
@@ -720,9 +736,10 @@ Design a mobile app screen for golf swing replay:
 - Playback controls: slow, play/pause, fast
 - Dark theme with green highlights
 - Share button in top right
-```text
+```
 
 **历史记录界面**:
+
 ```text
 Design a mobile app screen for golf swing history:
 - List of swing cards, each showing:
@@ -732,7 +749,7 @@ Design a mobile app screen for golf swing history:
 - Filter chips at top: All, This Week, Best Swings
 - Pull to refresh
 - Dark theme, card-based layout
-```text
+```
 
 #### 设计系统建议
 
@@ -791,8 +808,8 @@ Design a mobile app screen for golf swing history:
 | 阶段 | 交付物 | 完成标准 |
 |-----|-------|---------|
 | M1 | IMU固件 + BLE通信 | 数据稳定传输 |
-| M2 | iOS基础App + 视频采集 | 录制播放正常 |
-| M3 | 姿态估计集成 | 骨架叠加正常 |
+| M2 | Flutter基础App + 视频采集 | 录制播放正常 |
+| M3 | MediaPipe集成 | 骨架叠加正常 |
 | M4 | 评估+诊断模块 | 挥杆分析可用 |
 | M5 | 反馈系统 | 语音+视觉反馈 |
 | M6 | 完整MVP | 通过Beta测试 |

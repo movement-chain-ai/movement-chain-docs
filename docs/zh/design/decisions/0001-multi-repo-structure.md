@@ -122,7 +122,7 @@ Movement Chain AI 系统包含多个不同的技术领域：ESP32-S3 设备的�
 ## 参考资料
 
 - **PlatformIO 文档** - <https://docs.platformio.org/> (固件构建系统)
-- **Flutter 架构** - <https://docs.flutter.d../../research/comparisons/architectural-overview> (移动开发)
+- **Flutter 架构** - <https://docs.flutter.dev/app-architecture> (移动开发)
 - **TensorFlow Lite for Microcontrollers** - <https://www.tensorflow.org/lite/microcontrollers> (ML 部署)
 - **Monorepo vs Multi-repo 分析** - <https://github.com/joelparkerhenderson/monorepo-vs-polyrepo>
 - **学生项目最佳实践** - IEEE Software Engineering Education (2024)
