@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Movement Chain AI documentation site - bilingual (zh/en) MkDocs Material site for a golf swing analyzer project combining IMU sensors, EMG, and computer vision.
+Movement Chain AI documentation site - MkDocs Material site for a golf swing analyzer project combining IMU sensors, EMG, and computer vision.
+
+**Multi-repo structure** (see ADR-0001): This is the docs repo. Related repos: `movement-chain-firmware` (ESP32), `movement-chain-ml` (Python), `movement-chain-mobile` (Flutter), `movement-chain-hardware` (KiCad).
 
 ## Commands
 
@@ -20,6 +22,9 @@ npm run lint:md
 
 # Check links in documentation
 npm run lint:links
+
+# Test build (strict mode, used by pre-push hook)
+npm run test:build
 ```
 
 ## Git Hooks
