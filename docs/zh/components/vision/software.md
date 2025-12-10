@@ -533,7 +533,7 @@ class PoseEstimator {
 
 ## 相关文档 (Related Documentation)
 
-- **架构决策 Architecture Decisions**: [ADR-0006: ONNX Runtime Deployment](../../design/archive/decisions/0006-onnx-runtime-deployment.md)
+- **架构决策 Architecture Decisions**: [ADR-0006: ONNX Runtime Deployment](../../design/decisions/0006-onnx-runtime-deployment.md)
 - **ML 框架 ML Frameworks**: [ML Frameworks Comparison](../../research/comparisons/ml-frameworks-comparison.md)
 
 ---

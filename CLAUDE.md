@@ -86,6 +86,5 @@ Located in `docs/zh/design/decisions/`:
 
 ## Known Issues
 
-- **Broken ADR links**: Many files link to `design/archive/decisions/` but ADRs are at `design/decisions/` - needs fixing
 - ST.com documentation links (datasheets, MEMS Studio) return Status 0 in automated link checks but are valid - they block automated requests
 - Some pre-existing research files in `archive/` and `suppliers-china/` have dead external links; use `--no-verify` when pushing if unrelated to your changes

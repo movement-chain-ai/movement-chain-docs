@@ -1340,8 +1340,8 @@ class FeedbackOverlay extends ConsumerWidget {
 
 ## Related Decisions 相关决策
 
-- [ADR-0003: Flutter Mobile Framework Flutter移动框架](../../design/archive/decisions/0003-flutter-mobile.md) - Framework selection rationale 框架选择理由
-- [ADR-0006: ONNX Runtime Deployment ONNX Runtime部署](../../design/archive/decisions/0006-onnx-runtime-deployment.md) - ML model deployment strategy ML模型部署策略
+- [ADR-0003: Flutter Mobile Framework Flutter移动框架](../../design/decisions/0003-flutter-mobile.md) - Framework selection rationale 框架选择理由
+- [ADR-0006: ONNX Runtime Deployment ONNX Runtime部署](../../design/decisions/0006-onnx-runtime-deployment.md) - ML model deployment strategy ML模型部署策略
 
 ---
 

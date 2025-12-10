@@ -79,7 +79,7 @@
 
 **选定组件 Selected Component**: STMicroelectronics LSM6DSV16X
 
-**为什么选择这个传感器？Why This Sensor?** (参见 [ADR-0002](../design/archive/decisions/0002-lsm6dsv16x-imu.md) 获取完整理由)
+**为什么选择这个传感器？Why This Sensor?** (参见 [ADR-0002](../design/decisions/0002-lsm6dsv16x-imu.md) 获取完整理由)
 
 **技术规格 Technical Specifications**:
 
@@ -413,7 +413,7 @@ EMG 幅度 vs. 疲劳:
 
 **选定组件 Selected Component**: Espressif ESP32-S3-WROOM-1-N8R8 模块
 
-**为什么选择这个 MCU？Why This MCU?** (参见 [ADR-0005](../design/archive/decisions/0005-esp32-s3-microcontroller.md) 获取完整理由)
+**为什么选择这个 MCU？Why This MCU?** (参见 [ADR-0005](../design/decisions/0005-esp32-s3-microcontroller.md) 获取完整理由)
 
 **与替代品对比 Comparison vs. Alternatives**:
 
@@ -717,8 +717,8 @@ def calibrate_emg(muscle_group):
 
 ## 相关决策 (Related Decisions)
 
-- [ADR-0002: LSM6DSV16X IMU 选择](../design/archive/decisions/0002-lsm6dsv16x-imu.md)
-- [ADR-0005: ESP32-S3 微控制器](../design/archive/decisions/0005-esp32-s3-microcontroller.md)
+- [ADR-0002: LSM6DSV16X IMU 选择](../design/decisions/0002-lsm6dsv16x-imu.md)
+- [ADR-0005: ESP32-S3 微控制器](../design/decisions/0005-esp32-s3-microcontroller.md)
 
 ## 相关资源 (Related Resources)
 

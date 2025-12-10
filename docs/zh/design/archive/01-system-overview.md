@@ -1766,10 +1766,10 @@ hive_db/
 
 ### 架构决策记录 (ADR) (Architecture Decision Records)
 
-- [ADR-0001: Multi-Repository Structure (多仓库结构)](decisions/0001-multi-repo-structure.md)
-- [ADR-0002: LSM6DSV16X IMU Selection (LSM6DSV16X IMU 选择)](decisions/0002-lsm6dsv16x-imu.md)
-- [ADR-0003: Flutter for Mobile Development (Flutter 移动开发)](decisions/0003-flutter-mobile.md)
-- [ADR-0004: Four-Module Architecture (Simplified) (四模块架构-简化)](decisions/0004-simplified-4-module-architecture.md)
+- [ADR-0001: Multi-Repository Structure (多仓库结构)](../decisions/0001-multi-repo-structure.md)
+- [ADR-0002: LSM6DSV16X IMU Selection (LSM6DSV16X IMU 选择)](../decisions/0002-lsm6dsv16x-imu.md)
+- [ADR-0003: Flutter for Mobile Development (Flutter 移动开发)](../decisions/0003-flutter-mobile.md)
+- [ADR-0004: Four-Module Architecture (Simplified) (四模块架构-简化)](../decisions/0004-simplified-4-module-architecture.md)
 
 ### 技术资源 (Technical Resources)
 

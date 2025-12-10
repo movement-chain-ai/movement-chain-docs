@@ -227,7 +227,7 @@ acc = imu.get_acceleration()
 
 - [IMU 技术详解](hardware.md)
 - [硬件比较](../../research/comparisons/hardware-comparison.md)
-- [ADR-0002: LSM6DSV16X 选型](../../design/archive/decisions/0002-lsm6dsv16x-imu.md)
+- [ADR-0002: LSM6DSV16X 选型](../../design/decisions/0002-lsm6dsv16x-imu.md)
 - [IMU 方案竞品](../../../research/competitors/imu-based.md)
 
 ---
