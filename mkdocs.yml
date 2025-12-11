@@ -103,6 +103,8 @@ plugins:
             MVP规格说明: MVP Specification
             产品路线图: Product Roadmap
             多模态融合流程: Multimodal Fusion Pipeline
+            AI整合路线图: AI Integration Roadmap
+            MVP原型代码: MVP Prototype Code
         - locale: zh
           default: true
           name: 中文 (Simplified Chinese)
@@ -158,6 +160,8 @@ plugins:
             MVP Specification: MVP规格说明
             Product Roadmap: 产品路线图
             Multimodal Fusion Pipeline: 多模态融合流程
+            AI Integration Roadmap: AI整合路线图
+            MVP Prototype Code: MVP原型代码
 
 markdown_extensions:
   # Code highlighting
@@ -231,6 +235,7 @@ nav:
   - 系统设计:
     - 概览: design/index.md
     - 多模态融合流程: design/multimodal-fusion-pipeline.md
+    - AI整合路线图: design/ai-integration-roadmap.md
     - 系统探索: design/system-exploration.md
     - 术语表: design/00-glossary.md
 
@@ -259,6 +264,7 @@ nav:
 
   - 开发平台:
     - 概览: platform/index.md
+    - MVP原型代码: platform/mvp-prototype-code.md
     - 移动应用:
       - 开发指南: platform/mobile/development.md
     - ML 训练:
