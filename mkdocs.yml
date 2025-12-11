@@ -104,6 +104,7 @@ plugins:
             产品路线图: Product Roadmap
             多模态融合流程: Multimodal Fusion Pipeline
             AI整合路线图: AI Integration Roadmap
+            端到端AI技术架构: End-to-End AI Technology Stack
             MVP原型代码: MVP Prototype Code
         - locale: zh
           default: true
@@ -161,6 +162,7 @@ plugins:
             Product Roadmap: 产品路线图
             Multimodal Fusion Pipeline: 多模态融合流程
             AI Integration Roadmap: AI整合路线图
+            End-to-End AI Technology Stack: 端到端AI技术架构
             MVP Prototype Code: MVP原型代码
 
 markdown_extensions:
@@ -234,6 +236,7 @@ nav:
 
   - 系统设计:
     - 概览: design/index.md
+    - 端到端AI技术架构: design/ai-technology-stack.md
     - 多模态融合流程: design/multimodal-fusion-pipeline.md
     - AI整合路线图: design/ai-integration-roadmap.md
     - 系统探索: design/system-exploration.md
