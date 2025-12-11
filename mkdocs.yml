@@ -237,8 +237,11 @@ nav:
   - 系统设计:
     - 概览: design/index.md
     - 端到端AI技术架构: design/ai-technology-stack.md
-    - 多模态融合流程: design/multimodal-fusion-pipeline.md
-    - AI整合路线图: design/ai-integration-roadmap.md
+    - 多模态融合:
+      - 融合算法: design/fusion-algorithm.md
+      - 传感器数据格式: design/sensor-data-formats.md
+      - 规则引擎: design/rule-engine.md
+      - 反馈系统: design/feedback-system.md
     - 系统探索: design/system-exploration.md
     - 术语表: design/00-glossary.md
 

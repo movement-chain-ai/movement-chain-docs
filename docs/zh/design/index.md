@@ -6,12 +6,28 @@
 
 ## 核心文档 Core Documents
 
+### AI 与算法
+
 | 文档 | 说明 |
 |-----|------|
-| [多模态融合流程](multimodal-fusion-pipeline.md) | **核心技术文档** - EMG+IMU+视觉如何协同工作 |
-| [架构决策记录 (ADR)](decisions/index.md) | **关键技术决策** (Flutter, LSM6DSV16X, 4-Module Arch) |
+| [端到端 AI 技术架构](ai-technology-stack.md) | **核心AI文档** - 7大场景、SDK可用性、分阶段路线 |
+| [多模态融合算法](fusion-algorithm.md) | Vision+IMU+EMG 时间同步与融合策略 |
+| [规则引擎](rule-engine.md) | 挥杆分析规则引擎实现 |
+
+### 系统规范
+
+| 文档 | 说明 |
+|-----|------|
+| [传感器数据格式](sensor-data-formats.md) | Vision/IMU/EMG 数据格式定义 |
+| [反馈系统](feedback-system.md) | Ghost 指导、视觉/语音反馈设计 |
+
+### 决策与参考
+
+| 文档 | 说明 |
+|-----|------|
+| [架构决策记录 (ADR)](decisions/index.md) | **关键技术决策** |
+| [术语表](00-glossary.md) | IMU、EMG、FSR 等术语定义 |
 | [系统探索](system-exploration.md) | 早期探索记录 (历史参考) |
-| [术语表](00-glossary.md) | IMU、EMG、FSR、E-Skin 等术语定义 |
 
 ---
 
@@ -44,4 +60,4 @@
 
 ---
 
-**最后更新**: 2025 年 12 月 10 日
+**最后更新**: 2025 年 12 月 11 日
