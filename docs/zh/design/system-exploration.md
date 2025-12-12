@@ -235,9 +235,9 @@ BAL.ON         ❌      ✅      ❌      ❌      ❌    单一压力
 | 方向 | 文档 |
 |-----|------|
 | **所有传感器** | [组件总览](../components/index.md) |
-| **竞品分析** | [竞争分析](../research/competitive-analysis.md) |
-| **市场研究** | [可穿戴生态系统](../research/wearable-sports-technology-ecosystem.md) |
-| **供应商** | [中国供应商](../research/suppliers-china/index.md) |
+| **竞品分析** | [竞争分析](../product/competitive/overview.md) |
+| **市场研究** | [可穿戴生态系统](research/sports-tech-ecosystem.md) |
+| **供应商** | [中国供应商](../components/supply-chain/index.md) |
 | **术语定义** | [术语表](00-glossary.md) |
 
 ---

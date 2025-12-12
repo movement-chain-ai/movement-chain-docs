@@ -25,11 +25,10 @@
 
 ### 为什么选择 LSM6DSV16X
 
-1. **超低功耗** - 0.55mA，适合可穿戴
-2. **内置 MLC** - 硬件级运动识别
-3. **极低温漂** - 45+ 分钟无需校准
-4. **高精度** - 满足高尔夫挥杆 500+ dps 需求
-5. **成熟生态** - ST 官方库 + Arduino 支持
+!!! info "选型详情"
+    详细选型分析和对比请参阅 [ADR-0002 LSM6DSV16X IMU 选型](../../design/decisions/0002-lsm6dsv16x-imu.md)
+
+**核心优势**: 45+ 分钟漂移稳定性，内置机器学习核心 (MLC)，业界最佳性价比。
 
 ---
 
@@ -197,10 +196,10 @@ Characteristic UUID: 0000FFE4-0000-1000-8000-00805F9B34FB
 ## 相关资源
 
 - [ADR-0002: LSM6DSV16X 选型决策](../../design/decisions/0002-lsm6dsv16x-imu.md)
-- [硬件比较](../../research/comparisons/hardware-comparison.md)
+- [硬件比较](../../design/research/hardware-comparison.md)
 - [传感器硬件指南](../sensor-hardware-overview.md)
 - [IMU 供应商](suppliers.md)
-- [IMU 方案竞品](../../../research/competitors/imu-based.md)
+- [IMU 方案竞品](../../product/competitive/imu-based.md)
 
 ---
 

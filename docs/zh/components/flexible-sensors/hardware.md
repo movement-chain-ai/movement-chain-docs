@@ -244,9 +244,9 @@ float mapToPressure(int adcValue) {
 ## 相关资源
 
 - [柔性传感器供应商](suppliers.md)
-- [E-Skin ODM 厂商研究](../../research/suppliers-china/e-skin-odm-manufacturers.md)
+- [E-Skin ODM 厂商研究](../supply-chain/e-skin-odm.md)
 - [压力传感器](../pressure-sensors/hardware.md)
-- [中国智能可穿戴供应商](../../research/suppliers-china/chinese-smart-wearable-suppliers.md)
+- [中国智能可穿戴供应商](../supply-chain/china-wearables.md)
 
 ---
 

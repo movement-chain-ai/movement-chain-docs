@@ -60,7 +60,7 @@
 ## 相关文档
 
 - [系统架构](../design/archive/01-system-overview.md)
-- [研究与竞品](../research/index.md)
+- [竞品分析](../product/competitive/index.md)
 - [开发平台](../platform/index.md)
 
 ---

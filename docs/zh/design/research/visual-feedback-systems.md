@@ -1296,10 +1296,10 @@ function calculateSwingQuality(userSwing, idealSwing) {
 
 ## Related Documentation 相关文档
 
-- [Visual Feedback Design Guide](../platform/ml-training/visual-feedback.md) - Implementation specifications
-- [Visual Feedback Research Summary](../archive/research-sources/visual-feedback-research-summary.md) - Academic research compilation
-- [Pose Estimation Guide](../components/vision/software.md) - Technical deep-dive on pose estimation
-- [Mobile Development Guide](../platform/mobile/development.md) - Flutter/React Native implementation
+- [Visual Feedback Design Guide](../../platform/ml-training/visual-feedback.md) - Implementation specifications
+- [Visual Feedback Research Summary](visual-feedback-summary.md) - Academic research compilation
+- [Pose Estimation Guide](../../components/vision/software.md) - Technical deep-dive on pose estimation
+- [Mobile Development Guide](../../platform/mobile/development.md) - Flutter/React Native implementation
 
 ---
 

@@ -291,7 +291,7 @@ void readPressureArray(uint16_t* values) {
 
 - [压力传感器技术](hardware.md)
 - [柔性传感器供应商](../flexible-sensors/suppliers.md)
-- [高尔夫可穿戴技术研究](../../research/golf-wearable-technology-research.md)
+- [高尔夫可穿戴技术研究](../../design/research/wearable-technology.md)
 
 ---
 

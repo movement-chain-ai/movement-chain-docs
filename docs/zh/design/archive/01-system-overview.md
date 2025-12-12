@@ -1,3 +1,13 @@
+!!! warning "归档文档"
+    此文档为早期设计草案，已被以下文档取代：
+
+    - **架构决策**: [ADR-0004 四模块功能架构](../decisions/0004-simplified-4-module-architecture.md)
+    - **技术栈**: [AI 技术栈规划](../ai-technology-stack.md)
+
+    保留此文档用于历史参考和学术引用（Schmidt & Lee 2011 等）。
+
+---
+
 # 系统概述 (System Overview)
 
 **版本 (Version):** 1.0
@@ -1773,9 +1783,9 @@ hive_db/
 
 ### 技术资源 (Technical Resources)
 
-- [Hardware Comparison Matrix (硬件对比矩阵)](../../research/comparisons/hardware-comparison.md)
-- [ML Framework Comparison (ML 框架对比)](../../research/comparisons/ml-frameworks-comparison.md)
-- [Mobile Framework Comparison (移动框架对比)](../../research/comparisons/mobile-frameworks-comparison.md)
+- [Hardware Comparison Matrix (硬件对比矩阵)](../research/hardware-comparison.md)
+- [ML Framework Comparison (ML 框架对比)](../research/ml-frameworks.md)
+- [Mobile Framework Comparison (移动框架对比)](../research/mobile-frameworks.md)
 
 ### 研究论文 (Research Papers)
 

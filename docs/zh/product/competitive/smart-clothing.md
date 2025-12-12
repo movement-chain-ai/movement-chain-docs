@@ -286,7 +286,7 @@ Phase 3 (12-24 个月): 智能服装
 - [柔性传感器](../../components/flexible-sensors/hardware.md)
 - [EMG 技术](../../components/emg/hardware.md)
 - [柔性传感器供应商](../../components/flexible-sensors/hardware.md)
-- [E-Skin ODM 厂商](../suppliers-china/e-skin-odm-manufacturers.md)
+- [E-Skin ODM 厂商](../../components/supply-chain/e-skin-odm.md)
 
 ---
 

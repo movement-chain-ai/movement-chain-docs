@@ -396,7 +396,7 @@ Phase 2 硬件升级:
 
 - [MVP规格说明](mvp-specification.md) - Phase 1详细技术规格
 - [产品战略](product-strategy.md) - 设计决策背景
-- [市场验证报告](market-validation.md) - 市场机会分析
+- [市场验证报告](market/validation.md) - 市场机会分析
 
 ---
 

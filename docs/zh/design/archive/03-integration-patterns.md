@@ -1,3 +1,13 @@
+!!! note "实现级文档"
+    此文档包含 BLE 通信和 ML 推理的详细实现模式，属于实现级技术文档。
+
+    相关决策文档：
+
+    - [ADR-0003 Flutter 移动端选型](../decisions/0003-flutter-mobile.md)
+    - [ADR-0006 ONNX Runtime 部署策略](../decisions/0006-onnx-runtime-deployment.md)
+
+---
+
 # 集成模式 (Integration Patterns)
 
 ## 概述 (Overview)

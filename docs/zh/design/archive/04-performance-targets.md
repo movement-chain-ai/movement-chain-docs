@@ -1,3 +1,13 @@
+!!! info "历史参考"
+    此文档为早期性能目标规划，当前有效的产品目标请参阅：
+
+    - **产品路线图**: [产品路线图](../../product/roadmap.md)
+    - **MVP 规格**: [MVP 规格说明](../../product/mvp-specification.md)
+
+    此文档保留用于追溯早期设计决策。
+
+---
+
 # 性能目标 (Performance Targets)
 
 ## 概述 (Overview)

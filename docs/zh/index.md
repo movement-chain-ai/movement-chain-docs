@@ -37,10 +37,10 @@
 | **MVP 详细规格** | [MVP 规格书](product/mvp-specification.md) |
 | **完整路线图** | [产品路线图](product/roadmap.md) |
 | **产品策略** | [产品策略](product/product-strategy.md) |
-| **市场验证数据** | [市场验证报告](product/market-validation.md) |
+| **市场验证数据** | [市场验证报告](product/market/validation.md) |
 | **技术探索** | [系统探索](design/system-exploration.md) |
 | **组件研究** | [EMG](components/emg/hardware.md) · [IMU](components/imu/hardware.md) · [Vision](components/vision/software.md) |
-| **竞品分析** | [竞争分析](research/competitive-analysis.md) |
+| **竞品分析** | [竞争分析](product/competitive/overview.md) |
 | **术语表** | [术语定义](design/00-glossary.md) |
 
 ---

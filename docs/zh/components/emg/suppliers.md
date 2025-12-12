@@ -285,7 +285,7 @@ void loop() {
 
 - [EMG 技术详解](hardware.md)
 - [传感器硬件指南](../sensor-hardware-overview.md)
-- [高尔夫可穿戴技术研究](../../research/golf-wearable-technology-research.md)
+- [高尔夫可穿戴技术研究](../../design/research/wearable-technology.md)
 
 ---
 

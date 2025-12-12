@@ -1,3 +1,13 @@
+!!! warning "归档文档"
+    此文档为早期数据流设计，已被以下文档取代：
+
+    - **融合算法**: [传感器融合算法](../fusion-algorithm.md)
+    - **数据格式**: [传感器数据格式规范](../sensor-data-formats.md)
+
+    保留此文档中的时钟漂移缓解策略作为实现参考。
+
+---
+
 # 数据流架构 (Data Flow Architecture)
 
 ## 概述 (Overview)

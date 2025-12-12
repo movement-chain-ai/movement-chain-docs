@@ -693,7 +693,7 @@ IF 手腕角度异常 AND 前臂EMG过高:
 
 ## 相关文档
 
-- [市场验证报告](market-validation.md) - 痛点来源和数据支撑
+- [市场验证报告](market/validation.md) - 痛点来源和数据支撑
 - [MVP规格说明](mvp-specification.md) - 最小可行产品实现
 - [产品路线图](roadmap.md) - 阶段性发展计划
 

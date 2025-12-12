@@ -25,14 +25,10 @@
 
 ### 为什么选择 ESP32-S3
 
-| 优势 | 说明 |
-|-----|------|
-| **BLE 5.0** | 高速低功耗蓝牙，适合可穿戴 |
-| **双核 CPU** | 一核采集，一核处理 |
-| **丰富 ADC** | 可同时采集多路传感器 |
-| **AI 加速** | 向量指令，适合边缘 AI |
-| **成熟生态** | Arduino + ESP-IDF + PlatformIO |
-| **低成本** | $2.50-3.50，量产友好 |
+!!! info "选型详情"
+    详细选型分析和对比请参阅 [ADR-0005 ESP32-S3 微控制器选型](../../design/decisions/0005-esp32-s3-microcontroller.md)
+
+**核心优势**: BLE 5.0 + WiFi 双模，240MHz 双核处理器，8MB PSRAM 支持边缘 ML 推理。
 
 ---
 
@@ -363,7 +359,7 @@ void sendIMUData(float ax, float ay, float az, float gx, float gy, float gz) {
 ## 相关资源
 
 - [ADR-0005: ESP32-S3 选型](../../design/decisions/0005-esp32-s3-microcontroller.md)
-- [硬件比较](../../research/comparisons/hardware-comparison.md)
+- [硬件比较](../../design/research/hardware-comparison.md)
 - [传感器硬件指南](../sensor-hardware-overview.md)
 - [MCU 供应商](suppliers.md)
 

@@ -314,7 +314,7 @@ Phase 3: 扩展 (12-24 个月)
 - [竞品分析中心](index.md)
 - [IMU 方案竞品](imu-based.md)
 - [视觉方案竞品](vision-based.md)
-- [竞争分析与战略定位](../competitive-analysis.md)
+- [竞争分析与战略定位](overview.md)
 
 ---
 

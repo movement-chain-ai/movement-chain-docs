@@ -722,7 +722,7 @@ def calibrate_emg(muscle_group):
 
 ## 相关资源 (Related Resources)
 
-- [硬件组件对比 Hardware Component Comparison](../research/comparisons/hardware-comparison.md)
+- [硬件组件对比 Hardware Component Comparison](../design/research/hardware-comparison.md)
 
 ---
 

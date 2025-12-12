@@ -252,7 +252,7 @@
 ## 相关资源
 
 - [MCU 技术详解](hardware.md)
-- [硬件比较](../../research/comparisons/hardware-comparison.md)
+- [硬件比较](../../design/research/hardware-comparison.md)
 - [ADR-0005: ESP32-S3 选型](../../design/decisions/0005-esp32-s3-microcontroller.md)
 
 ---

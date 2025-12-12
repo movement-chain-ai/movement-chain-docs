@@ -2,6 +2,9 @@
 
 > **Movement Chain AI 姿态估计技术权威指南**
 
+!!! info "框架选型"
+    ONNX Runtime 部署决策详情请参阅 [ADR-0006 ONNX Runtime 部署策略](../../design/decisions/0006-onnx-runtime-deployment.md)
+
 ---
 
 ## 1. 快速决策框架 (Quick Decision Framework)
@@ -534,7 +537,7 @@ class PoseEstimator {
 ## 相关文档 (Related Documentation)
 
 - **架构决策 Architecture Decisions**: [ADR-0006: ONNX Runtime Deployment](../../design/decisions/0006-onnx-runtime-deployment.md)
-- **ML 框架 ML Frameworks**: [ML Frameworks Comparison](../../research/comparisons/ml-frameworks-comparison.md)
+- **ML 框架 ML Frameworks**: [ML Frameworks Comparison](../../design/research/ml-frameworks.md)
 
 ---
 
