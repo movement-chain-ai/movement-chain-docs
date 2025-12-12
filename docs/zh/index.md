@@ -1,6 +1,6 @@
 # Movement Chain AI
 
-> **唯一能告诉你"为什么"做错的高尔夫训练系统——因为我们能看到你的肌肉。**
+> **AI + 摄像头 + EMG + IMU：唯一能告诉你"为什么"做错的高尔夫训练系统**
 
 ---
 
@@ -30,19 +30,27 @@
 
 ---
 
-## 深入阅读
+## 文档导航
 
-| 想了解 | 文档 |
-|-------|------|
-| **MVP 详细规格** | [MVP 规格书](product/mvp-specification.md) |
-| **完整路线图** | [产品路线图](product/roadmap.md) |
-| **产品策略** | [产品策略](product/product-strategy.md) |
-| **市场验证数据** | [市场验证报告](product/market/validation.md) |
-| **技术探索** | [系统探索](design/system-exploration.md) |
-| **组件研究** | [EMG](components/emg/hardware.md) · [IMU](components/imu/hardware.md) · [Vision](components/vision/software.md) |
-| **竞品分析** | [竞争分析](product/competitive/overview.md) |
-| **术语表** | [术语定义](design/00-glossary.md) |
+| 章节 | 内容 | 读者 |
+|-----|------|-----|
+| [产品战略](product/index.md) | MVP规格、路线图、市场验证、竞品分析 | 投资人、产品经理 |
+| [系统设计](design/index.md) | AI架构、融合算法、ADR决策 | 架构师、工程师 |
+| [硬件组件](components/index.md) | IMU/EMG/Vision规格、供应商 | 硬件工程师 |
+| [开发平台](platform/index.md) | Flutter移动端、ML训练管道 | 开发者 |
+| [参考资料](reference/index.md) | 学术数据集、外部资源 | 研究人员 |
 
 ---
 
-**最后更新**: 2025 年 12 月 10 日
+## 快速链接
+
+| 想了解 | 文档 |
+|-------|------|
+| MVP 详细规格 | [MVP 规格书](product/mvp-specification.md) |
+| 技术决策 | [架构决策记录 (ADR)](design/decisions/index.md) |
+| 三模态融合 | [融合算法](design/fusion-algorithm.md) |
+| 术语定义 | [术语表](design/00-glossary.md) |
+
+---
+
+**最后更新**: 2025 年 12 月 12 日
