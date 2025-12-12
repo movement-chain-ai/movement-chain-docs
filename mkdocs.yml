@@ -97,24 +97,23 @@ nav:
     - 概览: product/index.md
     - 独特价值: product/unique-value.md
     - 市场研究:
-      - 概览: product/market/index.md
-      - 市场验证报告: product/market/validation.md
-    - 竞品分析:
-      - 概览: product/competitive/index.md
-      - 竞争分析详览: product/competitive/overview.md
-      - 商业系统分析: product/competitive/commercial-systems.md
-      - IMU 方案竞品: product/competitive/imu-based.md
-      - 视觉方案竞品: product/competitive/vision-based.md
-      - 多传感器方案: product/competitive/multi-sensor.md
-      - 智能服装竞品: product/competitive/smart-clothing.md
-      - 市场规模: product/competitive/market-size.md
+      - 概览: product/market-landscape/index.md
+      - 用户痛点分析: product/market-landscape/pain-points.md
+      - 竞品分析:
+        - IMU 方案竞品: product/market-landscape/competitors/imu-based.md
+        - 视觉方案竞品: product/market-landscape/competitors/vision-based.md
+        - 多传感器方案: product/market-landscape/competitors/multi-sensor.md
+        - 智能服装竞品: product/market-landscape/competitors/smart-clothing.md
+        - 商业系统分析: product/market-landscape/competitors/commercial-systems.md
+        - 市场规模: product/market-landscape/competitors/market-size.md
     - 产品战略: product/product-strategy.md
-    - MVP规格说明: product/mvp-specification.md
-    - 产品路线图: product/roadmap.md
 
   - 系统设计:
     - 概览: design/index.md
+    - 产品路线图: design/roadmap.md
     - 端到端AI技术架构: design/ai-technology-stack.md
+    - 规格说明:
+      - MVP规格说明: design/specifications/mvp-spec.md
     - 多模态融合:
       - 融合算法: design/fusion-algorithm.md
       - 传感器数据格式: design/sensor-data-formats.md

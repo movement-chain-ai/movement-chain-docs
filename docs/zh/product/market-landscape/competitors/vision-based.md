@@ -256,8 +256,8 @@ Phase 3: 多视角融合 (远期)
 
 ## 相关资源
 
-- [视觉/摄像头传感器](../../components/vision/hardware.md)
-- [姿态估计指南](../../components/vision/software.md)
+- [视觉/摄像头传感器](../../../components/vision/hardware.md)
+- [姿态估计指南](../../../components/vision/software.md)
 - [IMU 方案竞品](imu-based.md)
 - [多传感器方案](multi-sensor.md)
 

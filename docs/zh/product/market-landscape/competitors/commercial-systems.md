@@ -1101,7 +1101,7 @@
 
 **传感器 → 处理 → 反馈循环 (Sensor → Processing → Feedback Loop):**
 
-```
+```text
 输入 Input (Camera/IMU)
     ↓
 预处理 Preprocessing (帧提取、传感器融合 frame extraction, sensor fusion)

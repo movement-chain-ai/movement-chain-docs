@@ -46,7 +46,7 @@
 
 | 想了解 | 文档 |
 |-------|------|
-| MVP 详细规格 | [MVP 规格书](product/mvp-specification.md) |
+| MVP 详细规格 | [MVP 规格书](design/specifications/mvp-spec.md) |
 | 技术决策 | [架构决策记录 (ADR)](design/decisions/index.md) |
 | 三模态融合 | [融合算法](design/fusion-algorithm.md) |
 | 术语定义 | [术语表](design/00-glossary.md) |

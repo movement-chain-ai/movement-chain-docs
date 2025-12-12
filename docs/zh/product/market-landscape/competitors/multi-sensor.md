@@ -259,7 +259,7 @@ $500│  │  消费级 ($300-500)                   │
 
 ## 相关资源
 
-- [传感器技术中心](../../components/index.md)
+- [传感器技术中心](../../../components/index.md)
 - [IMU 方案竞品](imu-based.md)
 - [视觉方案竞品](vision-based.md)
 - [智能服装竞品](smart-clothing.md)

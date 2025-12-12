@@ -818,10 +818,10 @@ Design a mobile app screen for golf swing history:
 
 ## 相关文档
 
-- [产品战略](product-strategy.md) - 设计决策背景
-- [产品路线图](roadmap.md) - 后续迭代计划
-- [IMU硬件选型](../components/imu/hardware.md) - 传感器详细规格
-- [视觉系统](../components/vision/software.md) - 姿态估计技术
+- [产品战略](../../product/product-strategy.md) - 设计决策背景
+- [产品路线图](../roadmap.md) - 后续迭代计划
+- [IMU硬件选型](../../components/imu/hardware.md) - 传感器详细规格
+- [视觉系统](../../components/vision/software.md) - 姿态估计技术
 
 ---
 
