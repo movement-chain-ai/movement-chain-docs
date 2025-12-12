@@ -109,9 +109,8 @@ nav:
       - product/product-strategy.md
 
   - 系统设计:
-      - design/index.md
-      - design/00-glossary.md
       - design/system-design.md
+      - design/00-glossary.md
       - design/getting-started.md
       - design/decisions-summary.md
       - 架构决策 (ADR):
