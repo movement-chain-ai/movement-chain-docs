@@ -25,101 +25,75 @@ The Movement Chain AI project is organized into multiple specialized repositorie
 4. **[movement-chain-hardware](https://github.com/movement-chain-ai/movement-chain-hardware)** - PCB designs, schematics, and hardware specifications
 5. **[movement-chain-mobile](https://github.com/movement-chain-ai/movement-chain-mobile)** - Flutter-based cross-platform mobile application
 
-See [ADR-0001: Multi-Repository Structure](https://movement-chain-ai.github.io/movement-chain-docs/decisions/0001-multi-repo-structure/) for the rationale behind this organizational approach.
+See [ADR-0001: Multi-Repository Structure](https://movement-chain-ai.github.io/movement-chain-docs/design/decisions/0001-multi-repo-structure/) for the rationale behind this organizational approach.
 
 ## Quick Start
 
 ### Prerequisites
 
 - Python 3.8 or higher
-- pip package manager
+- Node.js 18+ (for git hooks)
 
 ### Building the Documentation Locally
 
-1. Install MkDocs Material theme:
+1. Install Zensical:
+
    ```bash
-   pip install mkdocs-material mkdocs-mermaid2-plugin
+   pip install zensical
    ```
 
 2. Clone this repository:
+
    ```bash
    git clone https://github.com/movement-chain-ai/movement-chain-docs.git
    cd movement-chain-docs
    ```
 
-3. Serve the documentation locally:
+3. Install Node.js dependencies (for git hooks):
+
    ```bash
-   mkdocs serve
+   npm install
    ```
 
-4. Open your browser to `http://127.0.0.1:8000`
+4. Serve the documentation locally:
+
+   ```bash
+   zensical serve
+   ```
+
+5. Open your browser to `http://127.0.0.1:8000`
 
 ### Building Static Site
 
 ```bash
-mkdocs build
+zensical build
 ```
 
 The static site will be generated in the `site/` directory.
 
 ## Repository Structure
 
-```
+```text
 movement-chain-ai-docs/
 ├── README.md                     # This file
-├── mkdocs.yml                    # MkDocs configuration
-├── docs/                         # Documentation source files
-│   ├── index.md                  # Landing page
-│   ├── architecture/             # Architecture documentation
-│   │   └── hld/                  # High-Level Design documents
-│   │       ├── 01-system-overview.md
-│   │       ├── 02-data-flow.md
-│   │       ├── 03-integration-patterns.md
-│   │       └── 04-performance-targets.md
-│   ├── decisions/                # Architectural Decision Records
-│   │   ├── 0001-multi-repo-structure.md
-│   │   ├── 0002-lsm6dsv16x-imu.md
-│   │   ├── 0003-flutter-mobile.md
-│   │   ├── 0004-simplified-4-module-architecture.md
-│   │   ├── 0005-esp32-s3-microcontroller.md
-│   │   └── 0006-onnx-runtime-deployment.md
-│   └── resources/                # Technical comparison resources
-│       ├── hardware-comparison.md
-│       ├── ml-frameworks-comparison.md
-│       └── mobile-frameworks-comparison.md
-└── site/                         # Generated static site (not tracked in git)
+├── CLAUDE.md                     # Claude Code instructions
+├── mkdocs.yml                    # Zensical/MkDocs configuration
+├── package.json                  # Node.js dependencies for git hooks
+└── docs/zh/                      # Documentation source (Chinese)
+    ├── index.md                  # Landing page
+    ├── product/                  # Product strategy, MVP spec, roadmap
+    ├── design/                   # System design, ADRs in decisions/
+    ├── components/               # Hardware specs (IMU, EMG, Vision, MCU)
+    ├── platform/                 # Mobile dev, ML training
+    ├── reference/                # Reference materials, academic datasets
+    └── archive/                  # Historical research (not in nav)
 ```
-
-## Documentation Sections
-
-### Architecture Documentation
-
-High-level design documents covering:
-- System architecture and component interactions
-- Data flow and processing pipelines
-- Integration patterns between modules
-- Performance targets and scalability considerations
-
-### Architectural Decision Records (ADRs)
-
-Chronological record of key architectural decisions including:
-- Multi-repository structure rationale
-- Hardware selection (ESP32-S3, LSM6DSV16X)
-- Framework choices (Flutter, ONNX Runtime)
-- Architecture simplification to 4-module design
-
-### Resources
-
-Comparative analysis and research:
-- Hardware platform comparisons
-- ML framework evaluations
-- Mobile development framework assessments
 
 ## GitHub Pages Deployment
 
 The documentation is **live and publicly accessible** at:
 
-**https://movement-chain-ai.github.io/movement-chain-docs/**
+**<https://movement-chain-ai.github.io/movement-chain-docs/>**
 
 The site is automatically rebuilt and deployed on every push to the `main` branch that modifies documentation files (via GitHub Actions workflow).
 
@@ -140,13 +114,14 @@ We welcome contributions to improve the documentation. Please follow these guide
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/improve-docs`)
 3. Make your changes
-4. Test locally using `mkdocs serve`
-5. Commit your changes with descriptive messages
+4. Test locally using `zensical serve`
+5. Commit your changes using [Conventional Commits](https://www.conventionalcommits.org/) format
 6. Push to your fork and submit a pull request
 
 ### ADR Guidelines
 
 When adding new ADRs:
+
 - Use the next sequential number (e.g., ADR-0007)
 - Follow the standard ADR template
 - Include context, decision, consequences, and alternatives
@@ -154,20 +129,11 @@ When adding new ADRs:
 
 ## License
 
-MIT License (or TBD - to be finalized with legal review)
+MIT License
 
 ## Contact
 
 For questions or feedback about this documentation:
+
 - Create an issue in this repository
 - Contact the Movement Chain AI team
-
-## Additional Resources
-
-- [Movement Chain AI Main Repository](https://github.com/movement-chain-ai) (placeholder)
-- [API Documentation](https://api.movement-chain-ai.com) (placeholder)
-- [Development Guidelines](https://github.com/movement-chain-ai/development-guidelines) (placeholder)
-
----
-
-**Note**: This is a living document. As the system evolves, this documentation will be updated to reflect current architecture and decisions.

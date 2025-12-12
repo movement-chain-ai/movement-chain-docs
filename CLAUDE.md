@@ -72,9 +72,17 @@ docs/zh/                    # Documentation root (Chinese, single-language)
 - HTML is allowed (MD033 disabled)
 - Line length unlimited (MD013 disabled)
 
+## Navigation Configuration
+
+The `nav` section in `mkdocs.yml` controls site navigation. When adding/moving documentation:
+
+1. Create the `.md` file in the appropriate `docs/zh/` subdirectory
+2. Add the entry to `nav` in `mkdocs.yml` (Chinese labels)
+3. Files not in `nav` are still built but won't appear in navigation
+
 ## Key Technical Decisions (ADRs)
 
-Located in `docs/zh/design/decisions/`:
+Located in `docs/zh/design/decisions/`. Use sequential numbering (ADR-0007, etc.):
 
 - **ADR-0002**: LSM6DSV16X IMU (45+ min drift stability)
 - **ADR-0003**: Flutter for cross-platform mobile
