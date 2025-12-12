@@ -71,6 +71,8 @@ graph LR
 | IMU | LSM6DSV16X | ✅ 选型完成 | [ADR-0002](decisions/0002-lsm6dsv16x-imu.md) |
 | EMG | NeuroKit2 处理 | 🔧 Phase 2 | - |
 
+> **全身传感器部署**: MediaPipe 33 关键点分组、IMU 多位置放置策略、EMG 肌群选择及力量链设计见 [挥杆对比策略 - 全身数据采集](swing-comparison.md#全身数据采集-full-body-data-collection)
+
 ---
 
 ## 第二层: 骨架提取 (Pose Estimation)
@@ -429,26 +431,25 @@ Ghost 是用户最想要的功能之一: 生成一个"理想的灰色图形"，�
 | 用户最佳挥杆 | 系统筛选用户评分最高的挥杆作为个人模板 | Phase 2 |
 | 教练定制 | 教练演示一次，系统记录作为学员目标 | B2B |
 
+> **详细对比策略**: 四种参考模型方法 (职业参考、个人最佳、统计参考、神经网络嵌入) 及 DTW 算法见 [挥杆对比策略](swing-comparison.md)
+
 ---
 
 ## SDK/API 可用性总览
 
-| 组件 | 工具 | 代码量 | 状态 |
-|-----|------|-------|-----|
-| 姿态估计 | `pip install mediapipe` | 3行 | ✅ 开箱即用 |
-| EMG处理 | `pip install neurokit2` | 1行 | ✅ 开箱即用 |
-| 时间同步 | `numpy.interp()` | 5行 | ✅ 标准库 |
-| 特征提取 | math, numpy | ~100行 | 🛠️ 自己写 |
-| 规则引擎 | 纯Python IF-THEN | ~200行 | 🛠️ 自己写 |
-| Ghost 生成 | numpy, opencv | ~50行 | 🛠️ 自己写 |
-| 可视化 | OpenCV, MediaPipe | ~30行 | ✅ 现成 |
-| 语音反馈 | flutter_tts | - | ✅ 现成 |
-| LLM 反馈 | OpenAI/Claude API | API调用 | ✅ Phase 2 |
+| 组件 | 工具 | 状态 |
+|-----|------|-----|
+| 姿态估计 | MediaPipe Pose | ✅ 开箱即用 |
+| EMG处理 | NeuroKit2 | ✅ 开箱即用 |
+| 时间同步 | numpy.interp() | ✅ 标准库 |
+| 特征提取 | 自定义 Python | 🛠️ 需开发 |
+| 规则引擎 | 自定义 Python | 🛠️ 需开发 |
+| 可视化 | OpenCV | ✅ 现成 |
+| 语音反馈 | flutter_tts | ✅ 现成 |
 
-**图例:**
+**图例:** ✅ 开箱即用 | 🛠️ 需开发
 
-- ✅ = 开箱即用，pip install 即可
-- 🛠️ = 自己写代码，但逻辑简单
+> **详细选型**: 各 SDK/库的对比分析、升级路径、版本锁定见 [SDK/库选型指南](sdk-selection.md)
 
 ---
 

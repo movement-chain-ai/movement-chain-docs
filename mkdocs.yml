@@ -112,6 +112,8 @@ nav:
       - design/system-design.md
       - design/00-glossary.md
       - design/getting-started.md
+      - design/sdk-selection.md
+      - design/swing-comparison.md
       - design/decisions-summary.md
       - 架构决策 (ADR):
           - design/decisions/index.md

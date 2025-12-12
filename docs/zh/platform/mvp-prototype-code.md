@@ -3,6 +3,8 @@
 > **文档目的**: 提供完整的 MVP 原型代码，可直接运行验证
 >
 > **阅读对象**: 算法工程师、后端开发
+>
+> **相关文档**: [挥杆对比策略](../design/swing-comparison.md) - 全身数据采集设计与四种对比方法
 
 ---
 
@@ -92,110 +94,386 @@ class VisionCapture:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# IMU Mock 数据生成
+# IMU Mock 数据生成 (支持多位置)
 # ═══════════════════════════════════════════════════════════════════════════
 
 class IMUMockGenerator:
-    """生成模拟的高尔夫挥杆 IMU 数据"""
+    """
+    生成模拟的高尔夫挥杆 IMU 数据
+
+    支持多个传感器位置，每个位置有不同的运动特征:
+    - wrist: 手腕 - 最高角速度，击球时机精确
+    - pelvis: 骨盆 - 髋部旋转，先于手腕启动
+    - upper_back: 上背 - 肩膀旋转，X-Factor 来源
+
+    设计依据: docs/zh/design/swing-comparison.md#imu-放置位置-研究验证
+    """
+
+    # 传感器位置及其特征参数
+    LOCATIONS = {
+        'wrist': {
+            'peak_angular_velocity': 1500,  # °/s - 最高
+            'phase_delay': 0,               # 基准
+            'noise_level': 20
+        },
+        'pelvis': {
+            'peak_angular_velocity': 400,   # °/s - 较低
+            'phase_delay': -50,             # 领先手腕 50ms
+            'noise_level': 15
+        },
+        'upper_back': {
+            'peak_angular_velocity': 600,   # °/s - 中等
+            'phase_delay': -30,             # 领先手腕 30ms
+            'noise_level': 18
+        }
+    }
 
     def __init__(self, sample_rate=100, duration_sec=2.0):
         self.sample_rate = sample_rate
         self.duration = duration_sec
         self.n_samples = int(sample_rate * duration_sec)
 
-    def generate_swing(self):
-        """生成一次完整挥杆的 IMU 数据"""
+    def generate_swing(self, location='wrist'):
+        """
+        生成指定位置的 IMU 数据
+
+        Args:
+            location: 传感器位置 ('wrist', 'pelvis', 'upper_back')
+
+        Returns:
+            dict: 包含 6 轴数据和时间戳
+        """
+        if location not in self.LOCATIONS:
+            raise ValueError(f"Unknown location: {location}. Use: {list(self.LOCATIONS.keys())}")
+
+        params = self.LOCATIONS[location]
         t = np.linspace(0, self.duration, self.n_samples)
 
-        # 挥杆阶段划分
-        backswing_end = int(self.n_samples * 0.4)   # 40% 上杆
-        downswing_end = int(self.n_samples * 0.6)   # 60% 下杆
-        # 剩余 40% 送杆
+        # 挥杆阶段划分 (考虑相位延迟)
+        phase_shift = int(params['phase_delay'] / 1000 * self.sample_rate)
+        backswing_end = int(self.n_samples * 0.4) + phase_shift
+        downswing_end = int(self.n_samples * 0.6) + phase_shift
 
-        # 角速度 (gyro_z): 上杆负值 → 下杆正值峰值 → 送杆归零
+        # 确保索引在有效范围内
+        backswing_end = max(1, min(backswing_end, self.n_samples - 2))
+        downswing_end = max(backswing_end + 1, min(downswing_end, self.n_samples - 1))
+
+        # 角速度曲线 (根据位置调整峰值)
+        peak = params['peak_angular_velocity']
         gyro_z = np.zeros(self.n_samples)
-        gyro_z[:backswing_end] = np.linspace(0, -350, backswing_end)
-        gyro_z[backswing_end:downswing_end] = np.linspace(-350, 1500, downswing_end - backswing_end)
-        gyro_z[downswing_end:] = np.linspace(1500, 0, self.n_samples - downswing_end)
+        gyro_z[:backswing_end] = np.linspace(0, -peak * 0.25, backswing_end)
+        gyro_z[backswing_end:downswing_end] = np.linspace(-peak * 0.25, peak, downswing_end - backswing_end)
+        gyro_z[downswing_end:] = np.linspace(peak, 0, self.n_samples - downswing_end)
 
         # 添加噪声
-        gyro_z += np.random.normal(0, 20, self.n_samples)
+        noise = params['noise_level']
+        gyro_z += np.random.normal(0, noise, self.n_samples)
 
-        # 加速度 (简化)
+        # 加速度 (简化模型)
         accel_x = np.gradient(gyro_z) * 0.1 + np.random.normal(0, 0.5, self.n_samples)
 
         return {
+            'location': location,
             'timestamps': t,
             'gyro_z': gyro_z,
-            'gyro_x': np.random.normal(0, 10, self.n_samples),
-            'gyro_y': np.random.normal(0, 10, self.n_samples),
+            'gyro_x': np.random.normal(0, noise * 0.5, self.n_samples),
+            'gyro_y': np.random.normal(0, noise * 0.5, self.n_samples),
             'accel_x': accel_x,
             'accel_y': np.random.normal(0, 0.5, self.n_samples) - 9.8,
             'accel_z': np.random.normal(0, 0.5, self.n_samples),
             'sample_rate': self.sample_rate
         }
 
+    def generate_full_body(self):
+        """生成所有位置的 IMU 数据"""
+        return {loc: self.generate_swing(loc) for loc in self.LOCATIONS}
+
 
 # ═══════════════════════════════════════════════════════════════════════════
-# EMG Mock 数据生成
+# EMG Mock 数据生成 (支持多肌群)
 # ═══════════════════════════════════════════════════════════════════════════
 
 class EMGMockGenerator:
-    """生成模拟的高尔夫挥杆 EMG 数据"""
+    """
+    生成模拟的高尔夫挥杆 EMG 数据
+
+    支持 4 个关键肌群，每个有不同的激活时序 (力量链):
+    - core_obliques: 腹斜肌 - 下杆启动，最早激活
+    - forearm_flexors: 前臂屈肌 - 击球时激活，应晚于核心
+    - glutes: 臀大肌 - 重心转移，持续激活
+    - lats: 背阔肌 - 上杆-下杆过渡，峰值在顶点
+
+    设计依据: docs/zh/design/swing-comparison.md#emg-肌群-高尔夫力量链
+    """
+
+    # 肌群及其激活特征
+    MUSCLES = {
+        'core_obliques': {
+            'burst_start': 0.35,    # 占比: 35% 处开始 (下杆启动)
+            'burst_duration': 0.5,   # 持续时间
+            'peak_timing': 0.5,      # 峰值位置
+            'description': '腹斜肌 - 下杆启动'
+        },
+        'forearm_flexors': {
+            'burst_start': 0.50,    # 占比: 50% 处开始 (击球前)
+            'burst_duration': 0.3,
+            'peak_timing': 0.6,      # 击球时峰值
+            'description': '前臂屈肌 - 击球'
+        },
+        'glutes': {
+            'burst_start': 0.30,    # 占比: 30% 处开始 (重心转移)
+            'burst_duration': 0.6,   # 持续较长
+            'peak_timing': 0.45,
+            'description': '臀大肌 - 重心转移'
+        },
+        'lats': {
+            'burst_start': 0.25,    # 占比: 25% 处开始 (上杆末期)
+            'burst_duration': 0.4,
+            'peak_timing': 0.4,      # 顶点处峰值
+            'description': '背阔肌 - 过渡'
+        }
+    }
 
     def __init__(self, sample_rate=200, duration_sec=2.0):
         self.sample_rate = sample_rate
         self.duration = duration_sec
+        self.n_samples = int(sample_rate * duration_sec)
 
-    def generate_swing(self, core_activation_level=0.5, forearm_activation_level=0.7):
+    def generate_swing(self, muscle_activations=None):
         """
         生成挥杆 EMG 数据
 
         Args:
-            core_activation_level: 核心肌肉激活水平 (0-1)，低值表示核心不足
-            forearm_activation_level: 前臂激活水平 (0-1)，高值可能表示手臂代偿
+            muscle_activations: dict, 每个肌群的激活水平 (0-1)
+                默认: {'core_obliques': 0.6, 'forearm_flexors': 0.6,
+                       'glutes': 0.5, 'lats': 0.5}
+
+        Returns:
+            dict: 包含所有肌群的 EMG 数据
         """
-        # 前臂屈肌: 下杆到击球阶段高激活
-        forearm_flexor = nk.emg_simulate(
-            duration=self.duration,
-            sampling_rate=self.sample_rate,
-            burst_number=1,
-            burst_duration=0.4,
-            noise=0.1
-        ) * forearm_activation_level * 100  # 缩放到 0-100%
-
-        # 核心肌肉: 整个下杆阶段持续激活
-        core_rectus = nk.emg_simulate(
-            duration=self.duration,
-            sampling_rate=self.sample_rate,
-            burst_number=1,
-            burst_duration=0.6,
-            noise=0.15
-        ) * core_activation_level * 100
-
-        # 处理 EMG 信号
-        forearm_cleaned = nk.emg_clean(forearm_flexor, sampling_rate=self.sample_rate)
-        core_cleaned = nk.emg_clean(core_rectus, sampling_rate=self.sample_rate)
-
-        forearm_amplitude = nk.emg_amplitude(forearm_cleaned)
-        core_amplitude = nk.emg_amplitude(core_cleaned)
-
-        t = np.linspace(0, self.duration, int(self.sample_rate * self.duration))
-
-        return {
-            'timestamps': t,
-            'forearm_flexor': {
-                'raw': forearm_flexor,
-                'cleaned': forearm_cleaned,
-                'rms_envelope': forearm_amplitude
-            },
-            'core_rectus': {
-                'raw': core_rectus,
-                'cleaned': core_cleaned,
-                'rms_envelope': core_amplitude
-            },
-            'sample_rate': self.sample_rate
+        # 默认激活水平 (正常挥杆)
+        default_activations = {
+            'core_obliques': 0.6,
+            'forearm_flexors': 0.6,
+            'glutes': 0.5,
+            'lats': 0.5
         }
+
+        if muscle_activations:
+            default_activations.update(muscle_activations)
+
+        t = np.linspace(0, self.duration, self.n_samples)
+        result = {'timestamps': t, 'sample_rate': self.sample_rate}
+
+        for muscle, params in self.MUSCLES.items():
+            activation_level = default_activations.get(muscle, 0.5)
+
+            # 生成 EMG 信号
+            raw_emg = nk.emg_simulate(
+                duration=self.duration,
+                sampling_rate=self.sample_rate,
+                burst_number=1,
+                burst_duration=params['burst_duration'],
+                noise=0.1
+            ) * activation_level * 100
+
+            # 处理信号
+            cleaned = nk.emg_clean(raw_emg, sampling_rate=self.sample_rate)
+            amplitude = nk.emg_amplitude(cleaned)
+
+            result[muscle] = {
+                'raw': raw_emg,
+                'cleaned': cleaned,
+                'rms_envelope': amplitude,
+                'activation_level': activation_level,
+                'description': params['description']
+            }
+
+        return result
+
+    def generate_problem_scenario(self, scenario='weak_core'):
+        """
+        生成特定问题场景的 EMG 数据
+
+        Args:
+            scenario: 问题类型
+                - 'weak_core': 核心不足，手臂代偿
+                - 'early_release': 过早释放
+                - 'over_tension': 全身紧张
+                - 'normal': 正常挥杆
+
+        Returns:
+            dict: EMG 数据
+        """
+        scenarios = {
+            'weak_core': {
+                'core_obliques': 0.3,
+                'forearm_flexors': 0.8,  # 手臂代偿
+                'glutes': 0.4,
+                'lats': 0.5
+            },
+            'early_release': {
+                'core_obliques': 0.5,
+                'forearm_flexors': 0.9,  # 过早过强
+                'glutes': 0.4,
+                'lats': 0.4
+            },
+            'over_tension': {
+                'core_obliques': 0.9,
+                'forearm_flexors': 0.9,
+                'glutes': 0.8,
+                'lats': 0.8
+            },
+            'normal': {
+                'core_obliques': 0.6,
+                'forearm_flexors': 0.6,
+                'glutes': 0.5,
+                'lats': 0.5
+            }
+        }
+
+        if scenario not in scenarios:
+            raise ValueError(f"Unknown scenario: {scenario}. Use: {list(scenarios.keys())}")
+
+        return self.generate_swing(scenarios[scenario])
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Pose Mock 数据生成 (无需摄像头测试)
+# ═══════════════════════════════════════════════════════════════════════════
+
+class PoseMockGenerator:
+    """
+    生成模拟的 MediaPipe 33 关键点数据
+
+    用于在没有摄像头的情况下测试管道，生成合理的高尔夫挥杆姿态序列。
+
+    设计依据: docs/zh/design/swing-comparison.md#mediapipe-33-关键点-按高尔夫相关性
+    """
+
+    # MediaPipe 33 关键点名称
+    KEYPOINT_NAMES = [
+        'nose', 'left_eye_inner', 'left_eye', 'left_eye_outer',
+        'right_eye_inner', 'right_eye', 'right_eye_outer',
+        'left_ear', 'right_ear', 'mouth_left', 'mouth_right',
+        'left_shoulder', 'right_shoulder', 'left_elbow', 'right_elbow',
+        'left_wrist', 'right_wrist', 'left_pinky', 'right_pinky',
+        'left_index', 'right_index', 'left_thumb', 'right_thumb',
+        'left_hip', 'right_hip', 'left_knee', 'right_knee',
+        'left_ankle', 'right_ankle', 'left_heel', 'right_heel',
+        'left_foot_index', 'right_foot_index'
+    ]
+
+    # 高尔夫相关关键点分组
+    GOLF_KEYPOINTS = {
+        'torso': [11, 12, 23, 24],      # 肩膀和髋部 - X-Factor
+        'arms': [13, 14, 15, 16],        # 肘和腕 - 挥杆路径
+        'legs': [25, 26, 27, 28],        # 膝和踝 - 重心转移
+    }
+
+    def __init__(self, fps=30, duration_sec=2.0):
+        self.fps = fps
+        self.duration = duration_sec
+        self.n_frames = int(fps * duration_sec)
+
+    def generate_swing(self, swing_quality='normal'):
+        """
+        生成挥杆姿态序列
+
+        Args:
+            swing_quality: 挥杆质量
+                - 'normal': 标准挥杆
+                - 'poor_rotation': 转肩不足
+                - 'sway': 重心侧移
+
+        Returns:
+            np.ndarray: (n_frames, 33, 3) 的关键点数组
+        """
+        poses = np.zeros((self.n_frames, 33, 3))
+
+        # 基础站姿 (Address)
+        base_pose = self._create_address_pose()
+
+        for frame_idx in range(self.n_frames):
+            progress = frame_idx / self.n_frames
+
+            # 挥杆阶段
+            if progress < 0.4:  # 上杆
+                phase_progress = progress / 0.4
+                rotation = phase_progress * 90 if swing_quality == 'normal' else phase_progress * 60
+            elif progress < 0.6:  # 下杆
+                phase_progress = (progress - 0.4) / 0.2
+                rotation = 90 - phase_progress * 100  # 快速下杆
+            else:  # 送杆
+                phase_progress = (progress - 0.6) / 0.4
+                rotation = -10 - phase_progress * 80
+
+            # 应用旋转到基础姿态
+            poses[frame_idx] = self._apply_rotation(base_pose, rotation, swing_quality)
+
+        return poses
+
+    def _create_address_pose(self):
+        """创建准备站姿"""
+        pose = np.zeros((33, 3))
+
+        # 简化的关键点位置 (归一化坐标 0-1)
+        # 头部
+        pose[0] = [0.5, 0.15, 0]  # nose
+
+        # 肩膀
+        pose[11] = [0.4, 0.3, 0]   # left_shoulder
+        pose[12] = [0.6, 0.3, 0]   # right_shoulder
+
+        # 髋部
+        pose[23] = [0.45, 0.55, 0]  # left_hip
+        pose[24] = [0.55, 0.55, 0]  # right_hip
+
+        # 手臂
+        pose[13] = [0.35, 0.4, 0]   # left_elbow
+        pose[14] = [0.65, 0.4, 0]   # right_elbow
+        pose[15] = [0.4, 0.5, 0.1]  # left_wrist
+        pose[16] = [0.6, 0.5, 0.1]  # right_wrist
+
+        # 腿部
+        pose[25] = [0.45, 0.7, 0]   # left_knee
+        pose[26] = [0.55, 0.7, 0]   # right_knee
+        pose[27] = [0.45, 0.9, 0]   # left_ankle
+        pose[28] = [0.55, 0.9, 0]   # right_ankle
+
+        return pose
+
+    def _apply_rotation(self, base_pose, rotation_deg, quality):
+        """应用旋转变换"""
+        pose = base_pose.copy()
+        rad = np.radians(rotation_deg)
+
+        # 旋转肩膀
+        center = (pose[11] + pose[12]) / 2
+        for idx in [11, 12, 13, 14, 15, 16]:  # 上身
+            offset = pose[idx] - center
+            pose[idx][0] = center[0] + offset[0] * np.cos(rad) - offset[2] * np.sin(rad)
+            pose[idx][2] = offset[0] * np.sin(rad) + offset[2] * np.cos(rad)
+
+        return pose
+
+    def to_landmark_format(self, poses):
+        """
+        转换为 MediaPipe landmark 格式
+
+        Returns:
+            list: 每帧的 landmark 列表，每个 landmark 有 x, y, z, visibility
+        """
+        frames = []
+        for frame_poses in poses:
+            landmarks = []
+            for i, (x, y, z) in enumerate(frame_poses):
+                landmarks.append({
+                    'x': x, 'y': y, 'z': z,
+                    'visibility': 0.95 if i in sum(self.GOLF_KEYPOINTS.values(), []) else 0.8
+                })
+            frames.append(landmarks)
+        return frames
 ```
 
 ### 2. 时间同步模块
