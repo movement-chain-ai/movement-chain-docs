@@ -94,72 +94,72 @@ nav:
   - 首页: index.md
 
   - 产品战略:
-    - 概览: product/index.md
-    - 独特价值: product/unique-value.md
-    - 市场研究:
-      - product/market-landscape/index.md
-      - 用户痛点分析: product/market-landscape/pain-points.md
-      - 竞品分析:
-        - IMU 方案竞品: product/market-landscape/competitors/imu-based.md
-        - 视觉方案竞品: product/market-landscape/competitors/vision-based.md
-        - 多传感器方案: product/market-landscape/competitors/multi-sensor.md
-        - 智能服装竞品: product/market-landscape/competitors/smart-clothing.md
-        - 商业系统分析: product/market-landscape/competitors/commercial-systems.md
-        - 市场规模: product/market-landscape/competitors/market-size.md
-    - 产品战略: product/product-strategy.md
+      - product/index.md
+      - product/unique-value.md
+      - 市场研究:
+          - product/market-landscape/index.md
+          - product/market-landscape/pain-points.md
+          - 竞品分析:
+              - product/market-landscape/competitors/imu-based.md
+              - product/market-landscape/competitors/vision-based.md
+              - product/market-landscape/competitors/multi-sensor.md
+              - product/market-landscape/competitors/smart-clothing.md
+              - product/market-landscape/competitors/commercial-systems.md
+              - product/market-landscape/competitors/market-size.md
+      - product/product-strategy.md
 
   - 系统设计:
-    - 概览: design/index.md
-    - 系统设计: design/system-design.md
-    - 快速开始: design/getting-started.md
-    - 决策摘要: design/decisions-summary.md
-    - 术语表: design/00-glossary.md
-    - 架构决策 (ADR):
-      - design/decisions/index.md
-      - ADR-0001 多仓库结构: design/decisions/0001-multi-repo-structure.md
-      - ADR-0002 LSM6DSV16X IMU: design/decisions/0002-lsm6dsv16x-imu.md
-      - ADR-0003 Flutter 移动框架: design/decisions/0003-flutter-mobile.md
-      - ADR-0004 4模块架构: design/decisions/0004-simplified-4-module-architecture.md
-      - ADR-0005 ESP32-S3 MCU: design/decisions/0005-esp32-s3-microcontroller.md
-      - ADR-0006 ONNX Runtime: design/decisions/0006-onnx-runtime-deployment.md
+      - design/index.md
+      - design/00-glossary.md
+      - design/system-design.md
+      - design/getting-started.md
+      - design/decisions-summary.md
+      - 架构决策 (ADR):
+          - design/decisions/index.md
+          - design/decisions/0001-multi-repo-structure.md
+          - design/decisions/0002-lsm6dsv16x-imu.md
+          - design/decisions/0003-flutter-mobile.md
+          - design/decisions/0004-simplified-4-module-architecture.md
+          - design/decisions/0005-esp32-s3-microcontroller.md
+          - design/decisions/0006-onnx-runtime-deployment.md
 
   - 硬件组件:
-    - 概览: components/index.md
-    - IMU 惯性测量:
-      - 硬件规格: components/imu/hardware.md
-      - 供应商: components/imu/suppliers.md
-    - EMG 肌电传感:
-      - 硬件规格: components/emg/hardware.md
-      - 供应商: components/emg/suppliers.md
-    - 视觉/摄像头:
-      - 硬件规格: components/vision/hardware.md
-      - 软件集成: components/vision/software.md
-    - MCU 微控制器:
-      - 硬件规格: components/mcu/hardware.md
-      - 供应商: components/mcu/suppliers.md
-    - 柔性传感器:
-      - 硬件规格: components/flexible-sensors/hardware.md
-      - 供应商: components/flexible-sensors/suppliers.md
-    - 压力传感器:
-      - 硬件规格: components/pressure-sensors/hardware.md
-      - 供应商: components/pressure-sensors/suppliers.md
-    - 供应链与 ODM/OEM:
-      - components/supply-chain/index.md
-      - 国内传感器供应商: components/supply-chain/china-sensors.md
-      - 智能可穿戴供应商: components/supply-chain/china-wearables.md
-      - MVP 采购推荐: components/supply-chain/mvp-suppliers.md
-      - 智能服装市场: components/supply-chain/smart-clothing-market.md
-      - E-Skin ODM: components/supply-chain/e-skin-odm.md
+      - components/index.md
+      - IMU 惯性测量:
+          - components/imu/hardware.md
+          - components/imu/suppliers.md
+      - EMG 肌电传感:
+          - components/emg/hardware.md
+          - components/emg/suppliers.md
+      - 视觉/摄像头:
+          - components/vision/hardware.md
+          - components/vision/software.md
+      - MCU 微控制器:
+          - components/mcu/hardware.md
+          - components/mcu/suppliers.md
+      - 柔性传感器:
+          - components/flexible-sensors/hardware.md
+          - components/flexible-sensors/suppliers.md
+      - 压力传感器:
+          - components/pressure-sensors/hardware.md
+          - components/pressure-sensors/suppliers.md
+      - 供应链与 ODM/OEM:
+          - components/supply-chain/index.md
+          - components/supply-chain/china-sensors.md
+          - components/supply-chain/china-wearables.md
+          - components/supply-chain/mvp-suppliers.md
+          - components/supply-chain/smart-clothing-market.md
+          - components/supply-chain/e-skin-odm.md
 
   - 开发平台:
-    - 概览: platform/index.md
-    - MVP原型代码: platform/mvp-prototype-code.md
-    - 移动应用:
-      - 开发指南: platform/mobile/development.md
-    - ML 训练:
-      - 数据集与基准: platform/ml-training/datasets.md
-      - 视觉反馈系统: platform/ml-training/visual-feedback.md
+      - platform/index.md
+      - platform/mvp-prototype-code.md
+      - 移动应用:
+          - platform/mobile/development.md
+      - ML 训练:
+          - platform/ml-training/datasets.md
+          - platform/ml-training/visual-feedback.md
 
   - 参考资料:
-    - 概览: reference/index.md
-    - 学术数据集: reference/academic-datasets.md
+      - reference/index.md
+      - reference/academic-datasets.md

@@ -46,9 +46,9 @@
 
 | 想了解 | 文档 |
 |-------|------|
-| MVP 详细规格 | [MVP 规格书](design/specifications/mvp-spec.md) |
+| 系统设计 | [MVP 核心管道](design/system-design.md) |
 | 技术决策 | [架构决策记录 (ADR)](design/decisions/index.md) |
-| 三模态融合 | [融合算法](design/fusion-algorithm.md) |
+| 快速开始 | [无需硬件测试](design/getting-started.md) |
 | 术语定义 | [术语表](design/00-glossary.md) |
 
 ---

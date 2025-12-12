@@ -316,7 +316,6 @@ flowchart LR
 
 - [用户痛点分析](market-landscape/pain-points.md)
 - [系统设计](../design/system-design.md)
-- [AI技术栈](../design/ai-technology-stack.md)
 
 ---
 
