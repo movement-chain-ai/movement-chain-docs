@@ -121,16 +121,16 @@ jobs:
             exit 1
           fi
 
-      # Step 9: Build documentation with strict mode
-      - name: Build documentation (strict mode)
+      # Step 9: Build documentation with Zensical
+      - name: Build documentation (Zensical)
         id: build-docs
         continue-on-error: true
         run: |
-          echo "Building documentation with strict mode..."
+          echo "Building documentation with Zensical..."
           echo "## Build Results" >> $GITHUB_STEP_SUMMARY
 
-          # Build with strict mode - fails on warnings
-          if mkdocs build --strict --verbose; then
+          # Build with Zensical
+          if zensical build; then
             echo "result=success" >> $GITHUB_OUTPUT
             echo "✅ Documentation built successfully" >> $GITHUB_STEP_SUMMARY
 
@@ -170,11 +170,14 @@ jobs:
           with open('mkdocs.yml', 'r') as f:
               config = yaml.safe_load(f)
 
+          # Get docs_dir from config, default to 'docs'
+          docs_dir = config.get('docs_dir', 'docs')
+
           def check_nav_item(item, path=[]):
               if isinstance(item, dict):
                   for key, value in item.items():
                       if isinstance(value, str) and value.endswith('.md'):
-                          file_path = Path('docs') / value
+                          file_path = Path(docs_dir) / value
                           if not file_path.exists():
                               print(f"❌ Missing file referenced in nav: {value}")
                               return False

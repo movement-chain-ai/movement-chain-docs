@@ -4,14 +4,14 @@
 echo "🚀 Running pre-push checks (this may take a moment)..."
 echo ""
 
-# Check if mkdocs is installed
-if ! command -v mkdocs &> /dev/null; then
-  echo "⚠️  MkDocs not found, skipping build check"
-  echo "   Install with: pip install mkdocs mkdocs-material"
+# Check if zensical is installed
+if ! command -v zensical &> /dev/null; then
+  echo "⚠️  Zensical not found, skipping build check"
+  echo "   Install with: pip install zensical"
 else
-  # Build documentation with strict mode
-  echo "🏗️  Building documentation with strict mode..."
-  mkdocs build --strict --quiet
+  # Build documentation
+  echo "🏗️  Building documentation..."
+  zensical build --quiet 2>/dev/null || zensical build
 
   if [ $? -ne 0 ]; then
     echo ""

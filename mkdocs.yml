@@ -4,6 +4,7 @@ site_author: Movement Chain AI Team
 site_url: https://movement-chain-ai.github.io/movement-chain-docs/
 repo_name: movement-chain-ai/movement-chain-docs
 repo_url: https://github.com/movement-chain-ai/movement-chain-docs
+docs_dir: docs/zh
 
 theme:
   name: material
@@ -36,134 +37,6 @@ theme:
 
 plugins:
   - search
-  - i18n:
-      docs_structure: folder
-      fallback_to_default: true
-      reconfigure_material: true
-      reconfigure_search: true
-      languages:
-        - locale: en
-          name: English
-          build: true
-          nav_translations:
-            首页: Home
-            架构: Architecture
-            高层设计: High-Level Design
-            系统概览: System Overview
-            数据流: Data Flow
-            集成模式: Integration Patterns
-            性能目标: Performance Targets
-            决策记录: Decisions
-            概览: Overview
-            资源: Resources
-            指南: Guides
-            研究: Research
-            ADR-0001 多仓库结构: ADR-0001 Multi-Repo Structure
-            ADR-0003 Flutter 移动端: ADR-0003 Flutter Mobile
-            ADR-0004 四模块架构: ADR-0004 4-Module Architecture
-            开源许可证比较: Open Source License Comparison
-            硬件比较: Hardware Comparison
-            机器学习框架比较: ML Frameworks Comparison
-            移动开发框架比较: Mobile Frameworks Comparison
-            高尔夫可穿戴竞品分析: Golf Wearable Competitor Analysis
-            国内传感器供应商: Domestic Sensor Suppliers
-            姿态估计: Pose Estimation
-            视觉反馈设计: Visual Feedback Design
-            传感器硬件: Sensor Hardware
-            移动应用开发: Mobile App Development
-            数据集与基准测试: Datasets & Benchmarking
-            E-Skin ODM 制造商: E-Skin ODM Manufacturers
-            竞争分析: Competitive Analysis
-            高尔夫可穿戴技术研究: Golf Wearable Technology Research
-            可穿戴运动技术生态系统: Wearable Sports Technology Ecosystem
-            中国智能可穿戴供应商: Chinese Smart Wearable Suppliers
-            综合视觉反馈系统研究: Comprehensive Visual Feedback Systems
-            传感器技术: Sensors
-            IMU 惯性测量单元: IMU Inertial Measurement Unit
-            EMG 肌电传感器: EMG Electromyography
-            柔性传感器: Flexible Sensors
-            压力传感器: Pressure Sensors
-            视觉/摄像头: Vision/Camera
-            MCU 微控制器: MCU Microcontroller
-            供应商大全: Suppliers
-            IMU 供应商: IMU Suppliers
-            EMG 供应商: EMG Suppliers
-            柔性传感器供应商: Flexible Sensor Suppliers
-            压力传感器供应商: Pressure Sensor Suppliers
-            MCU 供应商: MCU Suppliers
-            ODM/OEM 方案商: ODM/OEM Providers
-            竞品分析: Competitor Analysis
-            IMU 方案竞品: IMU-Based Competitors
-            视觉方案竞品: Vision-Based Competitors
-            多传感器方案: Multi-Sensor Solutions
-            智能服装竞品: Smart Clothing Competitors
-            市场分析: Market Analysis
-            产品战略: Product Strategy
-            市场验证: Market Validation
-            MVP规格说明: MVP Specification
-            产品路线图: Product Roadmap
-            多模态融合流程: Multimodal Fusion Pipeline
-            AI整合路线图: AI Integration Roadmap
-            端到端AI技术架构: End-to-End AI Technology Stack
-            MVP原型代码: MVP Prototype Code
-        - locale: zh
-          default: true
-          name: 中文 (Simplified Chinese)
-          build: true
-          nav_translations:
-            Home: 首页
-            Architecture: 架构
-            High-Level Design: 高层设计
-            System Overview: 系统概览
-            Data Flow: 数据流
-            Integration Patterns: 集成模式
-            Performance Targets: 性能目标
-            Decisions: 决策记录
-            Overview: 概览
-            Resources: 资源
-            Guides: 指南
-            Research: 研究
-            Golf Wearable Competitor Analysis: 高尔夫可穿戴竞品分析
-            Domestic Sensor Suppliers: 国内传感器供应商
-            Pose Estimation: 姿态估计
-            Visual Feedback Design: 视觉反馈设计
-            Sensor Hardware: 传感器硬件
-            Mobile App Development: 移动应用开发
-            Datasets & Benchmarking: 数据集与基准测试
-            E-Skin ODM Manufacturers: E-Skin ODM 制造商
-            Competitive Analysis: 竞争分析
-            Golf Wearable Technology Research: 高尔夫可穿戴技术研究
-            Wearable Sports Technology Ecosystem: 可穿戴运动技术生态系统
-            Chinese Smart Wearable Suppliers: 中国智能可穿戴供应商
-            Comprehensive Visual Feedback Systems: 综合视觉反馈系统研究
-            Sensors: 传感器技术
-            IMU Inertial Measurement Unit: IMU 惯性测量单元
-            EMG Electromyography: EMG 肌电传感器
-            Flexible Sensors: 柔性传感器
-            Pressure Sensors: 压力传感器
-            Vision/Camera: 视觉/摄像头
-            MCU Microcontroller: MCU 微控制器
-            Suppliers: 供应商大全
-            IMU Suppliers: IMU 供应商
-            EMG Suppliers: EMG 供应商
-            Flexible Sensor Suppliers: 柔性传感器供应商
-            Pressure Sensor Suppliers: 压力传感器供应商
-            MCU Suppliers: MCU 供应商
-            ODM/OEM Providers: ODM/OEM 方案商
-            Competitor Analysis: 竞品分析
-            IMU-Based Competitors: IMU 方案竞品
-            Vision-Based Competitors: 视觉方案竞品
-            Multi-Sensor Solutions: 多传感器方案
-            Smart Clothing Competitors: 智能服装竞品
-            Market Analysis: 市场分析
-            Product Strategy: 产品战略
-            Market Validation: 市场验证
-            MVP Specification: MVP规格说明
-            Product Roadmap: 产品路线图
-            Multimodal Fusion Pipeline: 多模态融合流程
-            AI Integration Roadmap: AI整合路线图
-            End-to-End AI Technology Stack: 端到端AI技术架构
-            MVP Prototype Code: MVP原型代码
 
 markdown_extensions:
   # Code highlighting
@@ -207,13 +80,6 @@ markdown_extensions:
       toc_depth: 3
 
 extra:
-  alternate:
-    - name: 中文
-      link: /movement-chain-docs/
-      lang: zh
-    - name: English
-      link: /movement-chain-docs/en/
-      lang: en
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/movement-chain-ai

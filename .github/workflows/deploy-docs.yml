@@ -1,4 +1,4 @@
-name: Deploy MkDocs to GitHub Pages
+name: Deploy Docs to GitHub Pages
 
 on:
   push:
@@ -49,13 +49,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Verify MkDocs configuration
+      - name: Verify Zensical installation
         run: |
-          mkdocs --version
-          python -c "import material; print(f'Material theme version: {material.__version__}')"
+          zensical --version
 
-      - name: Build MkDocs site
-        run: mkdocs build --strict --verbose
+      - name: Build documentation site
+        run: zensical build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -6,7 +6,7 @@
     "prepare": "husky",
     "lint:md": "markdownlint '**/*.md' --ignore node_modules",
     "lint:links": "markdown-link-check docs/**/*.md",
-    "test:build": "mkdocs build --strict"
+    "test:build": "zensical build"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
@@ -25,7 +25,7 @@
   "keywords": [
     "movement-chain",
     "documentation",
-    "mkdocs"
+    "zensical"
   ],
   "author": "",
   "license": "MIT"
