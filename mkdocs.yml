@@ -136,8 +136,17 @@ nav:
       - ML框架对比: design/research/ml-frameworks.md
       - 移动框架对比: design/research/mobile-frameworks.md
       - 开源协议对比: design/research/open-source-licenses.md
+      - 可穿戴运动生态: design/research/wearable-sports-technology-ecosystem.md
     - 系统探索: design/system-exploration.md
     - 术语表: design/00-glossary.md
+    - 架构决策 (ADR):
+      - 概览: design/decisions/index.md
+      - ADR-0001 多仓库结构: design/decisions/0001-multi-repo-structure.md
+      - ADR-0002 LSM6DSV16X IMU: design/decisions/0002-lsm6dsv16x-imu.md
+      - ADR-0003 Flutter 移动框架: design/decisions/0003-flutter-mobile.md
+      - ADR-0004 4模块架构: design/decisions/0004-simplified-4-module-architecture.md
+      - ADR-0005 ESP32-S3 MCU: design/decisions/0005-esp32-s3-microcontroller.md
+      - ADR-0006 ONNX Runtime: design/decisions/0006-onnx-runtime-deployment.md
 
   - 硬件组件:
     - 概览: components/index.md

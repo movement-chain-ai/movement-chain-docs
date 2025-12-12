@@ -14,7 +14,7 @@ This research hub consolidates findings from academic literature, commercial pro
 
 **研究文档总数 (Total Research Documents)**: 7 documents, ~200KB of curated content
 
-> **注意**: 部分内容已整合到主指南中。详见 [指南索引](../../guides/index.md)。
+> **注意**: 部分内容已整合到主文档中。详见 [系统设计](../../design/index.md)。
 
 **主要关注领域 (Primary Focus Areas)**:
 1. 学术数据集和基准测试 (Academic datasets and benchmarks)
@@ -43,7 +43,7 @@ This research hub consolidates findings from academic literature, commercial pro
 ### 🏢 商业产品分析 (Commercial Product Analysis)
 **必读人群 (Essential reading for)**: Product managers, strategists, business development
 
-> **已整合**: 商业健身技术分析已整合到 [竞争分析](../../resources/competitive-analysis.md)
+> **已整合**: 商业健身技术分析已整合到 [竞品分析](../../product/competitive/overview.md)
 
 - **[商业运动反馈系统(深度研究) (Commercial Movement Feedback Systems Deep Dive)](movement-feedback-commercial-research.md)**
   - 技术栈分解 (Technology stack breakdowns)
@@ -54,7 +54,7 @@ This research hub consolidates findings from academic literature, commercial pro
 ### 🎨 视觉反馈设计 (Visual Feedback Design)
 **必读人群 (Essential reading for)**: UI/UX designers, frontend developers, researchers
 
-- **[视觉反馈研究摘要 (Visual Feedback Research Summary)](visual-feedback-research-summary.md)** ⭐ Research-backed
+- **[视觉反馈研究摘要 (Visual Feedback Research Summary)](../../design/research/visual-feedback-summary.md)** ⭐ Research-backed
   - 覆盖箭头有效性(定量研究) (Overlay arrows effectiveness - quantitative studies)
   - 幽灵化身设计(最佳透明度: **50%**) (Ghost avatar design - optimal transparency: **50%**)
   - 并排比较模式 (Side-by-side comparison patterns)
@@ -74,7 +74,7 @@ This research hub consolidates findings from academic literature, commercial pro
 ### 🤖 姿态估计工具 (Pose Estimation Tools)
 **必读人群 (Essential reading for)**: ML engineers, backend developers, mobile developers
 
-> **已整合**: 姿态估计工具分析已整合到 [姿态估计指南](../../guides/pose-estimation.md)
+> **已整合**: 姿态估计工具分析已整合到 [视觉软件集成](../../components/vision/software.md)
 
 ### 🛠️ API、SDK 和工具 (APIs, SDKs & Tools)
 **必读人群 (Essential reading for)**: Developers, technical architects, integration engineers
@@ -89,7 +89,7 @@ This research hub consolidates findings from academic literature, commercial pro
 ### 🎯 战略定位 (Strategic Positioning)
 **必读人群 (Essential reading for)**: Leadership, investors, strategic partners
 
-- **[项目独特价值主张 (Project Unique Value Proposition)](project-unique-value.md)** ⭐ Strategic
+- **[项目独特价值主张 (Project Unique Value Proposition)](../../product/unique-value.md)** ⭐ Strategic
   - **5个独特差异化因素 (5 Unique Differentiators)** (EMG, Haptic, Low-cost, Open-source, Sport-agnostic)
   - 竞争格局分析(没有竞争对手拥有 EMG!) (Competitive landscape analysis - no competitor has EMG!)
   - 目标市场 (Target markets): Researchers, athletes, therapists, enthusiasts
@@ -209,33 +209,33 @@ This research hub consolidates findings from academic literature, commercial pro
 
 **总计 (Total)**: ~200 KB, ~4.5 hours of focused reading
 
-> **注意**: 部分文档已整合到指南中。请参阅 [指南索引](../../guides/index.md) 获取最新内容。
+> **注意**: 部分文档已整合到主文档中。请参阅 [系统设计](../../design/index.md) 获取最新内容。
 
 ---
 
 ## 推荐阅读路径 (Recommended Reading Paths)
 
-> **提示**: 建议先阅读 [指南索引](../../guides/index.md) 中的整合指南，然后再深入归档文档。
+> **提示**: 建议先阅读 [系统设计](../../design/index.md) 中的整合文档，然后再深入归档文档。
 
 ### 新团队成员入职 (For New Team Members - Onboarding)
-1. **[项目独特价值 (Project Unique Value)](project-unique-value.md)** - 了解我们的差异化 (30 min)
-2. **[竞争分析](../../resources/competitive-analysis.md)** - 了解竞争对手 (65 min)
-3. **[姿态估计指南](../../guides/pose-estimation.md)** - 核心技术 (50 min)
+1. **[项目独特价值 (Project Unique Value)](../../product/unique-value.md)** - 了解我们的差异化 (30 min)
+2. **[竞争分析](../../product/competitive/overview.md)** - 了解竞争对手 (65 min)
+3. **[视觉软件集成](../../components/vision/software.md)** - 核心技术 (50 min)
 
 ### ML 工程师技术深度探讨 (For ML Engineers - Technical Deep Dive)
-1. **[姿态估计指南](../../guides/pose-estimation.md)** - 选择框架 (50 min)
+1. **[视觉软件集成](../../components/vision/software.md)** - 选择框架 (50 min)
 2. **[学术研究与数据集 (Academic Research & Datasets)](academic-research-datasets.md)** - 获取数据集 (15 min)
 3. **[视觉反馈 API 和 SDK (Visual Feedback APIs & SDKs)](visual-feedback-apis-sdks.md)** - 集成选项 (70 min)
 
 ### UI/UX 设计师设计系统 (For UI/UX Designers - Design System)
-1. **[视觉反馈研究摘要 (Visual Feedback Research Summary)](visual-feedback-research-summary.md)** - 证据基础 (45 min)
+1. **[视觉反馈研究摘要 (Visual Feedback Research Summary)](../../design/research/visual-feedback-summary.md)** - 证据基础 (45 min)
 2. **[UI/UX 设计指南 (UI/UX Design Guidelines)](movement-correction-feedback-ui-ux-guidelines.md)** - 实施 (50 min)
-3. **[视觉反馈设计指南](../../guides/visual-feedback-design.md)** - 完整设计系统 (90 min)
+3. **[反馈UX指南](../../design/research/feedback-ux-guidelines.md)** - 完整设计系统 (90 min)
 
 ### 研究人员发表准备 (For Researchers - Publication Prep)
 1. **[学术研究与数据集 (Academic Research & Datasets)](academic-research-datasets.md)** - 文献综述 (15 min)
-2. **[视觉反馈研究摘要 (Visual Feedback Research Summary)](visual-feedback-research-summary.md)** - 最新技术 (45 min)
-3. **[项目独特价值 (Project Unique Value)](project-unique-value.md)** - 研究问题 (35 min)
+2. **[视觉反馈研究摘要 (Visual Feedback Research Summary)](../../design/research/visual-feedback-summary.md)** - 最新技术 (45 min)
+3. **[项目独特价值 (Project Unique Value)](../../product/unique-value.md)** - 研究问题 (35 min)
 4. **[商业运动反馈系统(深度) (Movement Feedback Commercial Deep)](movement-feedback-commercial-research.md)** - 完整背景 (60 min)
 
 ---
@@ -268,7 +268,7 @@ This research hub consolidates findings from academic literature, commercial pro
 | Project Unique Value | Dec 2025 | Q2 2026 | Leadership |
 | Commercial Deep Dive | Dec 2025 | Q2 2026 | Strategy |
 
-> **注意**: 姿态估计和商业健身技术内容现在在主指南中维护。
+> **注意**: 姿态估计和商业健身技术内容现在在主文档中维护。
 
 ---
 
@@ -314,7 +314,7 @@ This research hub consolidates findings from academic literature, commercial pro
 
 <div align="center">
 
-**[返回主文档 (Return to Main Documentation)](../../index.md)** | **[技术资源 (Technical Resources)](../../resources/)** | **[架构文档 (Architecture Docs)](../../architecture/)**
+**[返回主文档 (Return to Main Documentation)](../../index.md)** | **[系统设计 (System Design)](../../design/index.md)** | **[硬件组件 (Hardware Components)](../../components/index.md)**
 
 *通过严谨的研究构建智能运动训练的未来 (Building the future of intelligent movement training through rigorous research)*
 
