@@ -72,6 +72,48 @@ docs/zh/                    # Documentation root (Chinese, single-language)
 - HTML is allowed (MD033 disabled)
 - Line length unlimited (MD013 disabled)
 
+## Diagrams in Zensical
+
+Zensical has **native Mermaid support** via `pymdownx.superfences` (no plugin needed).
+
+### What Works ✅
+
+| Diagram Type | Status | Example Use |
+|--------------|--------|-------------|
+| Flowchart | ✅ Official | System flows, data pipelines |
+| Sequence | ✅ Official | API interactions, user flows |
+| State | ✅ Official | State machines |
+| Class | ✅ Official | OOP diagrams |
+| ER Diagram | ✅ Official | Database schemas |
+
+```mermaid
+graph LR
+  A[IMU] --> D[融合引擎]
+  B[EMG] --> D
+  C[Vision] --> D
+```
+
+### What Doesn't Work ❌
+
+| Diagram Type | Issue |
+|--------------|-------|
+| Quadrant Chart | Requires Mermaid 10.2.0+ (Zensical bundles older) |
+| Pie Chart | Unofficial, poor mobile support |
+| Gantt | Unofficial, poor mobile support |
+
+### For Unsupported Charts: Use ASCII + Admonition
+
+```markdown
+!!! info "市场定位图"
+    ```text
+    ┌─────────────────────────────────┐
+    │  Your ASCII diagram here        │
+    └─────────────────────────────────┘
+    ```
+```
+
+This renders as a styled callout box with the ASCII diagram inside.
+
 ## Navigation Configuration
 
 The `nav` section in `mkdocs.yml` controls site navigation. When adding/moving documentation:

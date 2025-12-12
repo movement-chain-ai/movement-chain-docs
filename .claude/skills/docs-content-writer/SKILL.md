@@ -64,6 +64,33 @@ Content here...
 - HTML is allowed if needed
 - No line length limit
 
+### Diagram Conventions (Zensical)
+
+**Use Mermaid for these (native support):**
+
+```mermaid
+graph LR
+  A[Input] --> B[Process] --> C[Output]
+```
+
+| Type | Works | Use For |
+|------|-------|---------|
+| Flowchart | ✅ | System flows, pipelines |
+| Sequence | ✅ | API calls, user interactions |
+| State/Class/ER | ✅ | Technical diagrams |
+| Quadrant/Pie/Gantt | ❌ | Don't use - version incompatible |
+
+**For charts that don't work, use ASCII + admonition:**
+
+```markdown
+!!! info "Chart Title"
+    ```text
+    ┌───────────────────────┐
+    │  ASCII diagram here   │
+    └───────────────────────┘
+    ```
+```
+
 ### Glossary Terms
 
 Use terms from `00-glossary.md` consistently:
