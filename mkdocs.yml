@@ -97,7 +97,7 @@ nav:
     - 概览: product/index.md
     - 独特价值: product/unique-value.md
     - 市场研究:
-      - 概览: product/market-landscape/index.md
+      - product/market-landscape/index.md
       - 用户痛点分析: product/market-landscape/pain-points.md
       - 竞品分析:
         - IMU 方案竞品: product/market-landscape/competitors/imu-based.md
@@ -120,7 +120,7 @@ nav:
       - 规则引擎: design/rule-engine.md
       - 反馈系统: design/feedback-system.md
     - 技术研究:
-      - 概览: design/research/index.md
+      - design/research/index.md
       - 视觉反馈系统: design/research/visual-feedback-systems.md
       - 反馈UX指南: design/research/feedback-ux-guidelines.md
       - 运动科技生态: design/research/sports-tech-ecosystem.md
@@ -132,7 +132,7 @@ nav:
     - 系统探索: design/system-exploration.md
     - 术语表: design/00-glossary.md
     - 架构决策 (ADR):
-      - 概览: design/decisions/index.md
+      - design/decisions/index.md
       - ADR-0001 多仓库结构: design/decisions/0001-multi-repo-structure.md
       - ADR-0002 LSM6DSV16X IMU: design/decisions/0002-lsm6dsv16x-imu.md
       - ADR-0003 Flutter 移动框架: design/decisions/0003-flutter-mobile.md
@@ -161,7 +161,7 @@ nav:
       - 硬件规格: components/pressure-sensors/hardware.md
       - 供应商: components/pressure-sensors/suppliers.md
     - 供应链与 ODM/OEM:
-      - 概览: components/supply-chain/index.md
+      - components/supply-chain/index.md
       - 国内传感器供应商: components/supply-chain/china-sensors.md
       - 智能可穿戴供应商: components/supply-chain/china-wearables.md
       - MVP 采购推荐: components/supply-chain/mvp-suppliers.md
