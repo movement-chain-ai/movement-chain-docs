@@ -98,11 +98,7 @@ nav:
     - 独特价值: product/unique-value.md
     - 市场研究:
       - 概览: product/market/index.md
-      - 用户痛点分析: product/market/user-pain-points.md
-      - 产品投诉研究: product/market/product-complaints.md
-      - 中国市场: product/market/china-market.md
-      - 球场需求: product/market/on-course-needs.md
-      - 市场验证: product/market/validation.md
+      - 市场验证报告: product/market/validation.md
     - 竞品分析:
       - 概览: product/competitive/index.md
       - 竞争分析详览: product/competitive/overview.md
