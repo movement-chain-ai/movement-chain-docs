@@ -284,7 +284,7 @@ void loop() {
 ## 相关资源
 
 - [EMG 技术详解](hardware.md)
-- [高尔夫可穿戴技术研究](../../design/research/wearable-technology.md)
+- [运动科技生态](../../design/research/sports-tech-ecosystem.md)
 
 ---
 

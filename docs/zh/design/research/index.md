@@ -9,17 +9,16 @@
 | 文档 | 描述 |
 |------|------|
 | [视觉反馈系统](visual-feedback-systems.md) | 全面的视觉反馈系统研究 |
-| [视觉反馈总结](visual-feedback-summary.md) | 视觉反馈设计要点总结 |
 | [反馈UX指南](feedback-ux-guidelines.md) | 动作纠正反馈UI/UX设计指南 |
 
 ### 技术生态
 
 | 文档 | 描述 |
 |------|------|
-| [可穿戴技术](wearable-technology.md) | 高尔夫可穿戴技术研究 |
 | [运动科技生态](sports-tech-ecosystem.md) | 可穿戴运动科技生态系统 |
-| [商业系统分析](commercial-systems.md) | 商业运动反馈系统深度分析 |
 | [SDK与API](sdks-apis.md) | 视觉反馈SDK/API对比 |
+
+> 商业系统分析已移至 [竞品分析](../../product/competitive/commercial-systems.md)
 
 ### 框架对比
 

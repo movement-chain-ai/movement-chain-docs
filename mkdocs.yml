@@ -106,6 +106,7 @@ nav:
     - 竞品分析:
       - 概览: product/competitive/index.md
       - 竞争分析详览: product/competitive/overview.md
+      - 商业系统分析: product/competitive/commercial-systems.md
       - IMU 方案竞品: product/competitive/imu-based.md
       - 视觉方案竞品: product/competitive/vision-based.md
       - 多传感器方案: product/competitive/multi-sensor.md
@@ -126,17 +127,13 @@ nav:
     - 技术研究:
       - 概览: design/research/index.md
       - 视觉反馈系统: design/research/visual-feedback-systems.md
-      - 视觉反馈总结: design/research/visual-feedback-summary.md
       - 反馈UX指南: design/research/feedback-ux-guidelines.md
-      - 可穿戴技术: design/research/wearable-technology.md
       - 运动科技生态: design/research/sports-tech-ecosystem.md
-      - 商业系统分析: design/research/commercial-systems.md
       - SDK与API: design/research/sdks-apis.md
       - 硬件对比: design/research/hardware-comparison.md
       - ML框架对比: design/research/ml-frameworks.md
       - 移动框架对比: design/research/mobile-frameworks.md
       - 开源协议对比: design/research/open-source-licenses.md
-      - 可穿戴运动生态: design/research/wearable-sports-technology-ecosystem.md
     - 系统探索: design/system-exploration.md
     - 术语表: design/00-glossary.md
     - 架构决策 (ADR):
