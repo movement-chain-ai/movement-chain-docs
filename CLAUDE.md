@@ -94,3 +94,34 @@ Located in `docs/zh/design/decisions/`. Use sequential numbering (ADR-0007, etc.
 
 - ST.com documentation links (datasheets, MEMS Studio) return Status 0 in automated link checks but are valid - they block automated requests
 - Some pre-existing research files in `archive/` have dead external links; use `--no-verify` when pushing if unrelated to your changes
+
+## Parallel Execution Strategy
+
+**Before starting tasks involving 10+ files or multiple directories, STOP and ask:**
+
+> Should I use parallel subagents?
+
+| Task Type | Approach |
+|-----------|----------|
+| Audit/scan multiple sections | **Parallel** - spawn Explore agent per section |
+| Search across codebase | **Parallel** - use Task tool with `subagent_type=Explore` |
+| Fix interdependent files | Sequential - changes affect each other |
+| Single file/focused edit | Direct - no subagent needed |
+
+**Trigger words requiring parallel consideration:**
+`audit`, `cleanup`, `scan all`, `check everything`, `comprehensive`, `health check`, `find all`
+
+**Pattern for docs tasks:**
+
+```text
+# Launch in SINGLE message (parallel):
+Task(Explore): "Audit docs/zh/product/ - find orphans, duplicates, broken links"
+Task(Explore): "Audit docs/zh/design/ - find orphans, duplicates, broken links"
+Task(Explore): "Audit docs/zh/components/ - find orphans, duplicates, broken links"
+Task(Explore): "Audit docs/zh/platform/ - find orphans, duplicates, broken links"
+
+# Wait for all results, then:
+# 1. Consolidate findings
+# 2. Create fix plan
+# 3. Execute fixes sequentially (with approval)
+```
