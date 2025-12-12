@@ -29,6 +29,7 @@
 | HWT901B-485 | 高精度 High-precision | ±0.005° | ¥698 | 工业级应用 Industrial applications |
 
 **评估 (Assessment):**
+
 - ✅ 国内最成熟的 IMU 模组供应商 Most mature IMU module supplier in China
 - ✅ 完善的 SDK 和技术文档 Complete SDK and technical documentation
 - ✅ 淘宝直购，发货快 Direct Taobao purchase, fast shipping
@@ -59,6 +60,7 @@
 | ESP32-S3-WROOM-1 | ¥28-35 (~$4-5) | 有货 In Stock |
 
 **评估 (Assessment):**
+
 - ✅ 官方渠道，芯片质量有保证 Official channel, chip quality guaranteed
 - ✅ 可配合嘉立创 PCB 打样服务 Can be combined with JLC PCB prototyping service
 - ✅ 支持小批量和大批量采购 Supports small batch and large batch procurement
@@ -69,12 +71,14 @@
 ### 3. 淘宝/1688 通用卖家 (Taobao/1688 Generic Sellers)
 
 **搜索关键词 (Search Keywords):**
+
 - "9轴IMU模块" (9-axis IMU module)
 - "MPU9250模块" (MPU9250 module)
 - "LSM6DSV16X模块" (LSM6DSV16X module)
 - "ESP32 IMU"
 
 **注意事项 (Cautions):**
+
 - 验证芯片真伪（假货风险）Verify chip authenticity (counterfeit risk)
 - 确认技术支持能力 Confirm technical support capability
 - 索要原理图和 SDK Request schematics and SDK
@@ -112,6 +116,7 @@
 | 尺寸 Size | 25mm × 25mm |
 
 **评估 (Assessment):**
+
 - ✅ 即插即用，适合快速验证 Plug and play, suitable for quick validation
 - ✅ 中英文文档和示例代码 English documentation and example code
 - ✅ 社区支持良好 Good community support
@@ -129,11 +134,13 @@
 | **购买渠道 Purchase Channels** | 淘宝店铺 Taobao store |
 
 **产品特点 (Product Features):**
+
 - 专业级 EMG 模块 Professional-grade EMG modules
 - 多通道同步采集 Multi-channel synchronous acquisition
 - 支持 Bluetooth/Serial 输出 Bluetooth/Serial output support
 
 **评估 (Assessment):**
+
 - ✅ 专注生物电信号，专业性强 Focused on bioelectrical signals, highly professional
 - ✅ 可定制多通道方案 Can customize multi-channel solutions
 - ⚠️ 价格相对较高 Relatively higher price
@@ -150,11 +157,13 @@
 | **价格 Price** | ¥800 - ¥3000+ (~$110-400+) |
 
 **产品线 (Product Line):**
+
 - Cyton Board (8通道 8 channels)
 - Ganglion Board (4通道 4 channels)
 - 配套干电极 Matching dry electrodes
 
 **评估 (Assessment):**
+
 - ✅ 开源硬件，文档完善 Open source hardware, complete documentation
 - ✅ 研究级精度 Research-grade accuracy
 - ⚠️ 价格较高 Higher price
@@ -196,6 +205,7 @@
 | **官网 Website** | [noitom.com](https://noitom.com) |
 
 **评估 (Assessment):**
+
 - ✅ 国内动捕领域领导者 Leader in domestic motion capture field
 - ✅ 全身多节点追踪 Full-body multi-node tracking
 - ⚠️ 价格超出消费级预算 Price exceeds consumer-grade budget
@@ -230,6 +240,7 @@
 | **总计 Total** | | | **¥522 (~$72)** |
 
 **优势 (Advantages):**
+
 - 无需 PCB 设计，即买即用 No PCB design needed, ready to use
 - 1-2 周内可完成硬件搭建 Hardware setup can be completed within 1-2 weeks
 - 适合算法验证和用户测试 Suitable for algorithm validation and user testing
@@ -288,4 +299,4 @@
 
 ---
 
-*最后更新 Last Updated: 2025-12-06*
+**最后更新**: 2025 年 12 月 12 日

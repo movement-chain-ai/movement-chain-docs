@@ -17,6 +17,7 @@
 | SEN0241 | 1 | I²C | ¥359 | 数字输出 |
 
 **产品规格 (SEN0240)**:
+
 - 输入阻抗: >10 MΩ
 - 带宽: 20-500 Hz
 - 增益: 1000x
@@ -24,11 +25,13 @@
 - 输出: 0-3V 模拟
 
 **联系方式**:
+
 - 官网: [dfrobot.com.cn](https://www.dfrobot.com.cn/goods-1599.html)
 - QQ 群: 技术交流群
 - Wiki: [wiki.dfrobot.com.cn/SEN0240](https://wiki.dfrobot.com.cn/SEN0240)
 
 **示例代码**:
+
 ```cpp
 #define EMG_PIN A0
 
@@ -54,6 +57,7 @@ void loop() {
 | MyoWare Power Shield | 电源滤波 | $15 | 可选 |
 
 **联系方式**:
+
 - 官网: [sparkfun.com/myoware](https://www.sparkfun.com/myoware)
 - Hookup Guide: [learn.sparkfun.com](https://learn.sparkfun.com/tutorials/myoware-2.0-muscle-sensor)
 
@@ -69,12 +73,14 @@ void loop() {
 | **uMyo** | BLE, 开源 | ~$50 | 推荐 |
 
 **特性**:
+
 - OSHWA 认证开源硬件
 - BLE GATT 数据访问
 - 原始 EMG 数据
 - 完整设计文件
 
 **联系方式**:
+
 - 项目: [ultimaterobotics.github.io/umyo](https://ultimaterobotics.github.io/umyo/)
 - GitHub: 开源设计文件
 
@@ -88,6 +94,7 @@ void loop() {
 | Muscle BioAmp Shield | Arduino 扩展 | $30 | 入门 |
 
 **联系方式**:
+
 - 官网: [upsidedownlabs.tech](https://upsidedownlabs.tech)
 
 ---
@@ -105,14 +112,16 @@ void loop() {
 | gForce 100 | 8 | BLE | ¥2,000+ | 入门 |
 
 **SDK 支持**:
+
 - Android SDK
 - iOS SDK
 - Unity SDK
 - Windows SDK
 
 **联系方式**:
+
 - 官网: [oymotion.com](https://oymotion.com)
-- 邮箱: support@oymotion.com
+- 邮箱: <support@oymotion.com>
 - 开发者: [developer.oymotion.com](https://developer.oymotion.com)
 
 ---
@@ -125,6 +134,7 @@ void loop() {
 | **EMG PRO** | 8 | 臂带式 | ¥1,500+ | 可穿戴 |
 
 **联系方式**:
+
 - 电话/微信: 15821508209
 - 淘宝: 搜索 "Sichiray"
 
@@ -140,12 +150,14 @@ void loop() {
 | **E3K Kit** | EMG + IMU | $159 | 完整套件 |
 
 **包含**:
+
 - EMG 传感器
 - IMU (LSM6DSx)
 - 电极贴片
 - 开发板
 
 **联系方式**:
+
 - 官网: [e3k.live](https://e3k.live)
 - Kickstarter: E3K Project
 
@@ -161,6 +173,7 @@ void loop() {
 | **Bagnoli** | 8-16 | 有线 | $8,000+ | 经典方案 |
 
 **联系方式**:
+
 - 官网: [delsys.com](https://delsys.com)
 - 软件: EMGworks
 
@@ -174,6 +187,7 @@ void loop() {
 | **Shimmer3 ExG** | EMG/ECG/EEG | $800+ | 多用途 |
 
 **联系方式**:
+
 - 官网: [shimmersensing.com](https://shimmersensing.com)
 - 软件: ConsensysPRO
 
@@ -187,6 +201,7 @@ void loop() {
 | **Ganglion** | 4 | 入门 | $200 | 低成本 |
 
 **联系方式**:
+
 - 官网: [openbci.com](https://openbci.com)
 - 软件: OpenBCI GUI (开源)
 
@@ -199,6 +214,7 @@ void loop() {
 | **BITalino (r)evolution** | 多模态 | €149 | 研究入门 |
 
 **联系方式**:
+
 - 官网: [bitalino.com](https://bitalino.com)
 
 ---
@@ -284,8 +300,7 @@ void loop() {
 ## 相关资源
 
 - [EMG 技术详解](hardware.md)
-- [运动科技生态](../../design/research/sports-tech-ecosystem.md)
 
 ---
 
-**最后更新**: 2025 年 12 月 7 日
+**最后更新**: 2025 年 12 月 12 日

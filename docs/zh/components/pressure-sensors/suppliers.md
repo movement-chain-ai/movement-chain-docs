@@ -16,12 +16,14 @@
 | FSR 408 | 长条形 | ¥60-100 | 特殊用途 |
 
 **规格参数**:
+
 - 量程: 0.1-10 kg
 - 响应时间: <5 ms
 - 寿命: >1000 万次
 - 厚度: <0.5 mm
 
 **采购渠道**:
+
 - DigiKey: [digikey.cn](https://digikey.cn)
 - Mouser: [mouser.cn](https://mouser.cn)
 - 淘宝: 搜索 "FSR 402"
@@ -37,6 +39,7 @@
 | F-Scan 鞋垫 | 压力阵列 | $2,000+ | 专业级 |
 
 **联系方式**:
+
 - 官网: [tekscan.com](https://tekscan.com)
 - 代理: DigiKey
 
@@ -51,6 +54,7 @@
 | SEN0296 | 压力垫 | ¥59 | 大面积 |
 
 **联系方式**:
+
 - 官网: [dfrobot.com.cn](https://dfrobot.com.cn)
 - Wiki: 详细教程
 
@@ -65,6 +69,7 @@
 | FSR 阵列 | 4-8 点 | ¥30-80 | 原型 |
 
 **采购渠道**:
+
 - 淘宝搜索: "FSR 压力传感器"
 - 1688 批量采购
 
@@ -82,16 +87,19 @@
 | BAL.ON Smart | 运动版 | $399 | 通用运动 |
 
 **功能**:
+
 - 足底压力分布
 - 重心追踪
 - 挥杆分析
 - App 可视化
 
 **联系方式**:
+
 - 官网: [balon.eu](https://balon.eu)
 - 应用: iOS/Android App
 
 **API 访问**:
+
 - ✅ App API 可用
 - 数据导出功能
 
@@ -105,10 +113,12 @@
 | Pro Insole | 16 | $400+ | 专业级 |
 
 **SDK 支持**:
+
 - ✅ SDK 可用
 - BLE 数据访问
 
 **联系方式**:
+
 - 官网: [sennotech.com](https://sennotech.com)
 
 ---
@@ -120,11 +130,13 @@
 | **Nurvv Run** | 32 | $300 | 跑步专用 |
 
 **特性**:
+
 - 32 个压力点
 - 实时教练
 - 跑步姿态分析
 
 **联系方式**:
+
 - 官网: [nurvv.com](https://nurvv.com)
 
 ---
@@ -137,6 +149,7 @@
 | Run Profiler | 压力分析 | $250 | 跑步 |
 
 **联系方式**:
+
 - 官网: [digitsole.com](https://digitsole.com)
 
 ---
@@ -149,6 +162,7 @@
 | 智能鞋垫 | 8-16 点 | 询价 | 定制 |
 
 **联系方式**:
+
 - 深圳
 - 主要面向 B2B
 
@@ -164,6 +178,7 @@
 | ConTacts | 手指 | $200+ | 触觉 |
 
 **联系方式**:
+
 - 官网: [pressureprofile.com](https://pressureprofile.com)
 
 ---
@@ -175,6 +190,7 @@
 | FSR 阵列 | 定制 | 询价 | 定制方案 |
 
 **联系方式**:
+
 - 官网: [sensitronics.com](https://sensitronics.com)
 
 ---
@@ -187,6 +203,7 @@
 | FSR × 16 + MUX | 16 | ¥200-400 | 高分辨率 |
 
 **实现方法**:
+
 ```cpp
 // 8 点 FSR 阵列 - ESP32
 #define NUM_FSR 8
@@ -291,8 +308,7 @@ void readPressureArray(uint16_t* values) {
 
 - [压力传感器技术](hardware.md)
 - [柔性传感器供应商](../flexible-sensors/suppliers.md)
-- [运动科技生态](../../design/research/sports-tech-ecosystem.md)
 
 ---
 
-**最后更新**: 2025 年 12 月 7 日
+**最后更新**: 2025 年 12 月 12 日

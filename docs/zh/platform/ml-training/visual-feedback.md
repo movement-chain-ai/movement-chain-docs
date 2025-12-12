@@ -48,9 +48,9 @@
 
 **动画规范 Animation Specifications:**
 
-**状态 1: 出现（检测到错误）Appearance (Error Detected)**
+##### 状态 1: 出现（检测到错误）Appearance (Error Detected)
 
-```
+```text
 动画 Animation: 淡入 + 放大 Fade-in + Scale-up
 持续时间 Duration: 200ms
 缓动 Easing: cubic-bezier(0.25, 0.1, 0.25, 1)
@@ -58,9 +58,9 @@
 到 To: opacity 100%, scale 1.0
 ```
 
-**状态 2: 活动错误（脉冲）Active Error (Pulsing)**
+##### 状态 2: 活动错误（脉冲）Active Error (Pulsing)
 
-```
+```text
 动画 Animation: 脉冲（不透明度变化）Pulse (opacity variation)
 持续时间 Duration: 1000ms (1 Hz 频率)
 缓动 Easing: Ease-in-out sine
@@ -69,9 +69,9 @@
 循环 Loop: 错误持续时无限循环
 ```
 
-**状态 3: 已纠正（退出）Corrected (Exit)**
+##### 状态 3: 已纠正（退出）Corrected (Exit)
 
-```
+```text
 动画 Animation: 淡出 + 缩小 + 对勾 Fade-out + Scale-down + Checkmark
 持续时间 Duration: 300ms
 缓动 Easing: cubic-bezier(0.42, 0, 0.58, 1)
@@ -209,7 +209,7 @@
 
 **关节角度的渐变 Gradient for Joint Angles:**
 
-```
+```text
 完美 Perfect (0% error):      #00897B (蓝绿色 Blue-Green)
 轻微 Slight (25% error):      #66BB6A (浅绿色 Light Green)
 中等 Moderate (50% error):    #F9A825 (琥珀色 Amber)
@@ -282,7 +282,7 @@
 
 **问题 Problem:** 某些运动从某些摄像机角度难以评估。需要自动化方法来找到最佳视角。
 
-**解决方案：主成分分析 (PCA) Solution: Principal Component Analysis (PCA)**
+#### 解决方案：主成分分析 (PCA) Solution: Principal Component Analysis (PCA)
 
 **方法 Method:**
 
@@ -340,7 +340,7 @@ def calculate_optimal_viewpoint(movement_trajectory):
 
 **问题 Problem:** 用户和参考表演者以不同的速度执行相同的运动。直接逐帧比较没有意义。
 
-**解决方案：动态时间规整 (DTW) Solution: Dynamic Time Warping (DTW)**
+#### 解决方案：动态时间规整 (DTW) Solution: Dynamic Time Warping (DTW)
 
 **DTW 做什么 What DTW Does:**
 
@@ -350,7 +350,7 @@ def calculate_optimal_viewpoint(movement_trajectory):
 
 **示例场景 Example Scenario:**
 
-```
+```text
 用户执行深蹲 User performs squat:    [0s--------1s--------2s--------3s--------4s]  (慢，4秒)
 参考运动员 Reference athlete:        [0s----1s----2s]                              (快，2秒)
 
@@ -413,7 +413,8 @@ def align_movements_with_dtw(user_trajectory, reference_trajectory):
 
 **技术 Technology:** 计算机视觉 + 在 500万+ 锻炼上训练的 AI
 
-**关键创新：置信度阈值 Key Innovation: Confidence Thresholding**
+#### 关键创新：置信度阈值 Key Innovation: Confidence Thresholding
+
 > "Peloton IQ 仅在对评估有信心时才提供反馈。"
 
 **置信度级别 Confidence Levels:**
@@ -455,7 +456,7 @@ def provide_feedback(detection_confidence, error_severity):
 
 **技术 Technology:** ReflectAI® - 隐藏摄像头 + 计算机视觉（~400 种运动模式）
 
-**关键创新：定量每次重复反馈 Key Innovation: Quantitative Per-Rep Feedback**
+#### 关键创新：定量每次重复反馈 Key Innovation: Quantitative Per-Rep Feedback
 
 **实时功能 Real-Time Features:**
 
@@ -520,7 +521,7 @@ function calculateRepQuality(userPose, idealPose) {
 
 **问题 Problem:** 在单次运动中同时出现多个错误。
 
-**解决方案：优先级层次 Solution: Priority Hierarchy**
+#### 解决方案：优先级层次 Solution: Priority Hierarchy
 
 | 优先级 Priority | 错误类型 Error Type | 反馈方法 Feedback Method | 示例 Example |
 |----------|-----------|----------------|---------|
@@ -538,23 +539,23 @@ function calculateRepQuality(userPose, idealPose) {
 
 **实施策略 Implementation Strategy:**
 
-**第 1 周 Week 1: 持续反馈 Continuous Feedback (100%)**
+#### 第 1 周 Week 1: 持续反馈 Continuous Feedback (100%)
 
-```
+```text
 每次重复：完整反馈
 Every rep: Full feedback
 ```
 
-**第 2-3 周 Weeks 2-3: 渐进淡出 Progressive Fading (50%)**
+#### 第 2-3 周 Weeks 2-3: 渐进淡出 Progressive Fading (50%)
 
-```
+```text
 每 2 次重复一次反馈
 Feedback every 2 reps
 ```
 
-**第 4+ 周 Week 4+: 最小反馈 Minimal Feedback (20%)**
+#### 第 4+ 周 Week 4+: 最小反馈 Minimal Feedback (20%)
 
-```
+```text
 仅严重错误
 Only critical errors
 ```
@@ -565,7 +566,7 @@ Only critical errors
 
 ### 5.1 原生 iOS - RealityKit (AR 叠加)
 
-**Apple Vision Pro + iPhone AR**
+#### Apple Vision Pro + iPhone AR
 
 ```swift
 import RealityKit

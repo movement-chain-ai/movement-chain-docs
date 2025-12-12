@@ -18,11 +18,13 @@
 | 定制方案 | 按需定制 | 询价 | MOQ 较高 |
 
 **联系方式**:
+
 - 电话: 0371-67169010
 - 母公司: 汉威科技 (股票代码: 300007)
 - 地址: 郑州
 
 **注意事项**:
+
 - ❌ 无 SDK，需自行开发采集电路
 - 需要一定硬件开发能力
 - 小批量定制需沟通
@@ -40,10 +42,12 @@
 | 压力检测方案 | 整体方案 | 询价 | ODM |
 
 **联系方式**:
+
 - 官网: [ndt-global.com](https://ndt-global.com)
 - 总部: 深圳
 
 **注意事项**:
+
 - ❌ 无 SDK
 - 主要面向 B2B 大客户
 - 小批量需沟通
@@ -58,6 +62,7 @@
 | 智能鞋垫 | 8-16 点压力 | 询价 | ODM |
 
 **联系方式**:
+
 - 询价联系
 - 总部: 深圳
 
@@ -71,6 +76,7 @@
 | 柔性电子方案 | 定制 | 询价 | 需沟通 |
 
 **联系方式**:
+
 - 总部: 上海
 
 ---
@@ -83,6 +89,7 @@
 | 智能纺织品 | 心电/肌电 | 询价 | ODM |
 
 **联系方式**:
+
 - 总部: 杭州
 - 应用: 智能服装
 
@@ -101,14 +108,16 @@
 | Stretch Sensor | 单个传感器 | $50+ | 原型验证 |
 
 **SDK 支持**:
+
 - Unity SDK ✅
 - C# SDK ✅
 - Python SDK ✅
 - BLE GATT ✅
 
 **联系方式**:
+
 - 官网: [stretchsense.com](https://stretchsense.com)
-- 邮箱: sales@stretchsense.com
+- 邮箱: <sales@stretchsense.com>
 - 位置: 新西兰奥克兰
 
 ---
@@ -121,10 +130,12 @@
 | Bebop Fabric Sensor | 定制 | 询价 | 智能服装 |
 
 **SDK 支持**:
+
 - SDK 可用 ✅
 - 支持多平台
 
 **联系方式**:
+
 - 官网: [bebopsensors.com](https://bebopsensors.com)
 - 位置: 美国加州
 
@@ -138,10 +149,12 @@
 | 1-Axis Sensor | 单轴弯曲 | $50+ | 入门 |
 
 **SDK 支持**:
+
 - Arduino 库 ✅
 - I²C 接口
 
 **联系方式**:
+
 - 官网: [bendlabs.com](https://bendlabs.com)
 - 位置: 美国犹他州
 
@@ -155,6 +168,7 @@
 | ConTacts | 手指压力 | $200+ | 触觉研究 |
 
 **联系方式**:
+
 - 官网: [pressureprofile.com](https://pressureprofile.com)
 
 ---
@@ -167,10 +181,12 @@
 | e-skin Developer Kit | 开发套件 | $500+ | 原型验证 |
 
 **SDK 支持**:
+
 - Unity SDK ✅
 - 实时数据流
 
 **联系方式**:
+
 - 官网: [xenoma.com](https://xenoma.com)
 - 位置: 日本东京
 

@@ -19,6 +19,7 @@
 | ESP32 (原版) | 双核 240MHz | Wi-Fi + BLE 4.2 | ¥10-15 | 经典款 |
 
 **联系方式**:
+
 - 官网: [espressif.com](https://espressif.com)
 - 中文: [espressif.com/zh-hans](https://espressif.com/zh-hans)
 - 开发框架: ESP-IDF, Arduino
@@ -36,6 +37,7 @@
 | nRF5340 | 双核 | BLE 5.2 | ¥35-50 | 高性能 |
 
 **联系方式**:
+
 - 官网: [nordicsemi.com](https://nordicsemi.com)
 - SDK: nRF Connect SDK
 
@@ -50,6 +52,7 @@
 | STM32WBA52 | M33 | BLE 5.3 | ¥40-55 | 最新 |
 
 **联系方式**:
+
 - 官网: [st.com](https://st.com)
 - 开发: STM32CubeIDE
 
@@ -66,6 +69,7 @@
 | ESP32-S3-MINI-1 | 512KB | 8MB | PCB | ¥20-25 |
 
 **采购渠道**:
+
 - LCSC: [lcsc.com](https://lcsc.com)
 - 淘宝: 乐鑫官方店
 - Mouser: [mouser.cn](https://mouser.cn)
@@ -81,6 +85,7 @@
 | BL654 | nRF52840 | 板载 | ¥50-70 | Laird |
 
 **采购渠道**:
+
 - LCSC
 - DigiKey
 - 淘宝 (亿佰特店)
@@ -119,6 +124,7 @@
 | XIAO nRF52840 | 低功耗 | ¥65 | BLE |
 
 **联系方式**:
+
 - 官网: [seeedstudio.com](https://seeedstudio.com)
 - 淘宝: Seeed 官方店
 
@@ -133,6 +139,7 @@
 | Romeo BLE | Arduino + BLE | ¥150 | 机器人 |
 
 **联系方式**:
+
 - 官网: [dfrobot.com.cn](https://dfrobot.com.cn)
 - QQ 群: 技术支持
 
@@ -147,6 +154,7 @@
 | ItsyBitsy nRF52840 | 低功耗 | $18 | BLE 专用 |
 
 **联系方式**:
+
 - 官网: [adafruit.com](https://adafruit.com)
 - 学习: [learn.adafruit.com](https://learn.adafruit.com)
 
@@ -161,6 +169,7 @@
 | MicroMod ESP32 | 模块化 | $17 | 灵活 |
 
 **联系方式**:
+
 - 官网: [sparkfun.com](https://sparkfun.com)
 - Hookup Guide: 详细教程
 
@@ -252,9 +261,8 @@
 ## 相关资源
 
 - [MCU 技术详解](hardware.md)
-- [硬件比较](../../design/research/hardware-comparison.md)
 - [ADR-0005: ESP32-S3 选型](../../design/decisions/0005-esp32-s3-microcontroller.md)
 
 ---
 
-**最后更新**: 2025 年 12 月 7 日
+**最后更新**: 2025 年 12 月 12 日

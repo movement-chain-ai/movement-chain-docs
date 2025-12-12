@@ -378,7 +378,6 @@ void sendIMUData(float ax, float ay, float az, float gx, float gy, float gz) {
 ## 相关资源
 
 - [ADR-0005: ESP32-S3 选型](../../design/decisions/0005-esp32-s3-microcontroller.md)
-- [硬件比较](../../design/research/hardware-comparison.md)
 - [MCU 供应商](suppliers.md)
 
 ---

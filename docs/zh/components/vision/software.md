@@ -22,7 +22,7 @@
 
 ### RTMPose vs MediaPipe vs MoveNet 对比
 
-```
+```text
                 RTMPose-m    MediaPipe    MoveNet Thunder
 精度 Accuracy (AP):  75.8%        ~72%           72.0%
 CPU FPS:          90+          30-40          30
@@ -60,7 +60,7 @@ GPU FPS:          430+         120+           100
 
 **RTMPose-m (中等变体)**:
 
-```
+```text
 精度 Accuracy (COCO AP): 75.8%
 速度 Speed (CPU - Intel i7-11700): 90+ FPS
 速度 Speed (GPU - GTX 1660 Ti): 430+ FPS
@@ -99,7 +99,7 @@ GPU FPS:          430+         120+           100
 
 #### 部署选项 (Deployment Options)
 
-**选项1: rtmlib (轻量级 - 推荐)**
+##### 选项1: rtmlib (轻量级 - 推荐)
 
 **为什么选择 rtmlib**:
 
@@ -134,7 +134,7 @@ keypoints, scores = tracker(image)
 
 **17个 COCO 关键点**:
 
-```
+```text
 0: 鼻子 Nose
 1-2: 眼睛 Eyes (左, 右)
 3-4: 耳朵 Ears (左, 右)
@@ -190,7 +190,7 @@ keypoints, scores = tracker(image)
 
 **三个模型变体 Three model variants**:
 
-```
+```text
 模型 Model    精度 Accuracy  大小 Size  移动端 FPS  使用场景 Use Case
 ──────────────────────────────────────────────────────────────
 Lite       中等 Medium    4MB     40-50      预算设备
@@ -256,7 +256,7 @@ for landmark in results.pose_world_landmarks.landmark:
 
 #### 性能 (Performance)
 
-```
+```text
 模型 Model    AP (COCO)  移动端 FPS  延迟 Latency
 ─────────────────────────────────────────────────────
 Lightning       63.0%        50+           <30ms
@@ -537,7 +537,6 @@ class PoseEstimator {
 ## 相关文档 (Related Documentation)
 
 - **架构决策 Architecture Decisions**: [ADR-0006: ONNX Runtime Deployment](../../design/decisions/0006-onnx-runtime-deployment.md)
-- **ML 框架 ML Frameworks**: [ML Frameworks Comparison](../../design/research/ml-frameworks.md)
 
 ---
 

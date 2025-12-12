@@ -66,7 +66,7 @@ This guide provides **concrete actions** for accessing datasets, benchmarking yo
 
 #### Dataset Structure 数据集结构
 
-```
+```text
 fit3d/
 ├── images/              # 3M+ RGB images 300万+RGB图像
 ├── mocap/               # 3D motion capture data 3D动作捕捉数据
@@ -141,7 +141,7 @@ fit3d/
 
 3. **Data Format 数据格式**:
 
-   ```
+   ```text
    mm-fit/
    ├── imu_data/          # HDF5/CSV format
    │   ├── smartphone/
@@ -302,7 +302,7 @@ assert len(imu_data) == len(pose_data), "Sync check 同步检查"
 
 3. **Data Format 数据格式**:
 
-   ```
+   ```text
    recofit/
    ├── raw_data/          # IMU time series IMU时间序列
    ├── labels/            # Exercise classifications 运动分类
@@ -412,7 +412,7 @@ cd motion-sense
 
 **Data Structure 数据结构**:
 
-```
+```text
 motion-sense/
 ├── data/
 │   ├── accelerometer/    # Phone accelerometer 手机加速度计
@@ -700,7 +700,7 @@ label-studio start
 
 **Pareto Frontier 帕累托前沿** (COCO AP vs. Mobile FPS):
 
-```
+```text
 Accuracy 精度 (AP %)
     80│                              RTMPose-x
       │                         RTMPose-l
@@ -1234,7 +1234,7 @@ git clone https://github.com/microsoft/Exercise-Recognition-from-Wearable-Sensor
 
 ### Timeline Summary 时间线摘要
 
-```
+```text
 Month 1-3 第1-3个月: MVP with MM-Fit + RecoFit validation 使用MM-Fit + RecoFit验证的MVP
 Month 3-6 第3-6个月: Optimization with Fit3D benchmarking (if granted 使用Fit3D基准优化，如获批)
 Month 6-8 第6-8个月: IRB approval + study design IRB批准+研究设计
@@ -1392,7 +1392,7 @@ Month 12+ 第12个月+: Publication submission 发表提交
 
 1. **Code 代码**:
 
-   ```
+   ```text
    github.com/movement-chain-ai/multimodal-feedback
    ├── pose_estimation/      # RTMPose integration RTMPose集成
    ├── sensor_fusion/        # IMU + EMG processing IMU + EMG处理
@@ -1642,7 +1642,7 @@ Month 12+ 第12个月+: Publication submission 发表提交
 
 **Example Text 示例文本** (adapt for your paper 为您的论文调整):
 
-```
+```text
 We thank the creators of the Fit3D dataset (Fieraru et al., 2021) for providing access
 to their motion capture data. This work utilized the MM-Fit multimodal dataset
 (Strömback et al., 2020) for sensor fusion validation. We acknowledge the FLAG3D team
@@ -1814,7 +1814,7 @@ grep -E "2024|2025" Awesome-Human-Activity-Recognition/README.md
 
 **Example related work structure 示例相关工作结构**:
 
-```
+```text
 Related Work 相关工作:
 ├── IMU-based Exercise Recognition 基于IMU的运动识别
 │   ├── Classical ML approaches 经典ML方法 [cite 3-5 papers 引用3-5篇论文]

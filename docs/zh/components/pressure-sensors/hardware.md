@@ -310,8 +310,7 @@ def visualize_pressure(pressure_data, center):
 
 - [压力传感器供应商](suppliers.md)
 - [柔性传感器](../flexible-sensors/hardware.md)
-- [运动科技生态](../../design/research/sports-tech-ecosystem.md)
 
 ---
 
-**最后更新**: 2025 年 12 月 7 日
+**最后更新**: 2025 年 12 月 12 日

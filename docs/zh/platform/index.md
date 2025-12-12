@@ -15,6 +15,7 @@
 | [开发指南](mobile/development.md) | Flutter 移动应用架构和开发指南 |
 
 **技术栈**:
+
 - 框架: Flutter 3.x
 - 状态管理: Riverpod
 - BLE 通信: flutter_reactive_ble
@@ -24,9 +25,10 @@
 
 ### 云服务 Cloud
 
-*(即将添加)*
+> 即将添加
 
 **计划内容**:
+
 - AWS 无服务器架构
 - API 设计规范
 - 数据存储策略
@@ -43,6 +45,7 @@
 | [视觉反馈系统](ml-training/visual-feedback.md) | 视觉反馈设计和实现 |
 
 **技术栈**:
+
 - 训练框架: PyTorch
 - 推理格式: ONNX
 - 部署: ONNX Runtime Mobile

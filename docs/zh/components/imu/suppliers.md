@@ -49,11 +49,13 @@
 | **WT901C-TTL** | 9轴 | TTL | ¥198 | 嵌入式 |
 
 **联系方式**:
+
 - 官网: [wit-motion.cn](https://wit-motion.cn)
 - 淘宝店: 搜索 "WitMotion 官方店"
 - SDK: [GitHub - WitMotion](https://github.com/witmotion)
 
 **SDK 支持**:
+
 ```python
 # Python SDK 安装
 pip install witmotion
@@ -75,6 +77,7 @@ acc = imu.get_acceleration()
 | SEN0364 | ICM-42688-P | SPI | ¥79 | 高速 |
 
 **联系方式**:
+
 - 官网: [dfrobot.com.cn](https://www.dfrobot.com.cn)
 - QQ 群: 技术交流群
 - Wiki: [wiki.dfrobot.com.cn](https://wiki.dfrobot.com.cn)
@@ -90,6 +93,7 @@ acc = imu.get_acceleration()
 | 4517 | BNO085 | Stemma QT | $19.95 | 融合算法 |
 
 **联系方式**:
+
 - 官网: [adafruit.com](https://adafruit.com)
 - 文档: [learn.adafruit.com](https://learn.adafruit.com)
 
@@ -104,6 +108,7 @@ acc = imu.get_acceleration()
 | SEN-15335 | BNO080 | Qwiic | $24.95 | VR 级 |
 
 **联系方式**:
+
 - 官网: [sparkfun.com](https://sparkfun.com)
 - Hookup Guide: 每款产品都有详细教程
 
@@ -123,8 +128,9 @@ acc = imu.get_acceleration()
 | **Consensys** | 多传感器同步 | $2,500+ | 多人同步 |
 
 **联系方式**:
+
 - 官网: [shimmersensing.com](https://shimmersensing.com)
-- 邮箱: info@shimmersensing.com
+- 邮箱: <info@shimmersensing.com>
 - SDK: ConsensysPRO
 
 ---
@@ -138,6 +144,7 @@ acc = imu.get_acceleration()
 | **MVN** | 全身动捕套装 | $5,000+ | 影视/游戏 |
 
 **联系方式**:
+
 - 官网: [movella.com](https://movella.com)
 - SDK: Xsens SDK
 
@@ -151,6 +158,7 @@ acc = imu.get_acceleration()
 | **Emerald** | 2 传感器 | $1,500+ | 帕金森评估 |
 
 **联系方式**:
+
 - 官网: [apdm.com](https://apdm.com)
 
 ---
@@ -165,6 +173,7 @@ acc = imu.get_acceleration()
 | QMC5883L | 3轴磁力计 | ¥3-5 | 配合使用 |
 
 **联系方式**:
+
 - 官网: [qstcorp.com](https://www.qstcorp.com)
 - 代理: LCSC
 
@@ -178,6 +187,7 @@ acc = imu.get_acceleration()
 | MMC5983MA | 3轴磁力计 | ¥5-8 | 高精度磁力计 |
 
 **联系方式**:
+
 - 官网: [memsic.com](https://www.memsic.com)
 
 ---
@@ -226,10 +236,9 @@ acc = imu.get_acceleration()
 ## 相关资源
 
 - [IMU 技术详解](hardware.md)
-- [硬件比较](../../design/research/hardware-comparison.md)
 - [ADR-0002: LSM6DSV16X 选型](../../design/decisions/0002-lsm6dsv16x-imu.md)
-- [IMU 方案竞品](../../product/competitive/imu-based.md)
+- [IMU 方案竞品](../../product/market-landscape/competitors/imu-based.md)
 
 ---
 
-**最后更新**: 2025 年 12 月 7 日
+**最后更新**: 2025 年 12 月 12 日

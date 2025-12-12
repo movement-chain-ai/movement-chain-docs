@@ -83,6 +83,7 @@
 **官网**: [shimmersensing.com](https://www.shimmersensing.com/)
 
 **核心能力**:
+
 - **IMU**: 10DoF（加速度计+陀螺仪+磁力计+气压计）
 - **EMG**: 双通道EMG，可同时采集运动学数据
 - **数据流**: 实时流传输 + SD卡记录
@@ -94,6 +95,7 @@
 **认证**: ISO 13485, FDA Class II 510(k) exempt
 
 **价格区间**:
+
 - Consensys Bundle Dev Kit: ~$2,500-3,500
 - 单元OEM定价需询问
 
@@ -104,6 +106,7 @@
 **官网**: [qsense-motion.com](https://qsense-motion.com/)
 
 **核心能力**:
+
 - **IMU**: 9DoF, 1Hz-800Hz采样率, 8克超轻量
 - **传感器同步**: <150μs跨设备同步
 - **外部信号扩展**: 可同步EMG/ECG/力板等外部传感器
@@ -119,6 +122,7 @@
 **官网**: [ismarch.com](https://ismarch.com/)
 
 **核心能力**:
+
 - **传感器**: PPG, SpO₂, 皮温, ECG, EDA/GSR, 3轴加速度, 陀螺仪, 气压计
 - **原始数据采样率**:
   - PPG: 25Hz-500Hz
@@ -128,10 +132,12 @@
 - **通信**: BLE 5.0, LoRaWAN, CAT-1, UWB
 
 **SDK类型**:
+
 1. **APP SDK**: 蓝牙通信、设备发现、数据交换
 2. **固件SDK**: 基于硬件信息开发自定义固件
 
 **开放程度**:
+
 - 提供J-Link开放设备（空白固件）
 - 可仅开放特定模块（如UWB或LoRaWAN）
 
@@ -145,15 +151,18 @@
 **官网**: [hwsensor.com](http://www.hwsensor.com/)
 
 **核心技术**:
+
 - 柔性微纳力学量传感器（压力、压电、应变）
 - 灵敏度：接近人类触觉 0.1kPa
 - 四大核心技术、七大产品系列
 
 **产品系列**:
+
 1. **电子皮肤触觉模块PPT100** - 法向力感知
 2. **电子皮肤触觉模块FPT200** - 多模态（法向力+剪切力+温度）
 
 **已有合作**:
+
 - ✅ **小米CyberX人形机器人供应链**
 - ✅ 宇树科技
 - ✅ 九号科技
@@ -166,6 +175,7 @@
 **官网**: [developer.xenoma.com](https://developer.xenoma.com/)
 
 **核心产品**:
+
 - **e-skin MEVA**: 18个IMU集成智能衣，可机洗
 - **e-skin Shirt**: 14个应变传感器 + 6轴IMU Hub
 
@@ -173,6 +183,7 @@
 > "e-skin SDK支持使用C#和Unity游戏开发引擎为Windows和Android创建应用。"
 
 **支持的API**:
+
 - 运动识别（跑步、跳跃、出拳等）
 - 各传感器原始值（应变、加速度、陀螺仪）
 - 平台: Java SDK, Visual C#, Unity, Unreal Engine
@@ -187,6 +198,7 @@
 **官网**: [sency.ai](https://www.sency.ai/)
 
 **核心优势**:
+
 - 仅需手机摄像头，无需额外硬件
 - 实时60fps on-device推理
 - 边缘计算保护隐私
@@ -195,6 +207,7 @@
 > "从安装SDK到在合作伙伴应用上运行完整的健身评估，目前记录是54分钟。"
 
 **价格**:
+
 - 免费：100月活用户以内
 - 企业版：按需定价
 
@@ -203,6 +216,7 @@
 **官网**: [movella.com](https://www.movella.com/)
 
 **核心能力**:
+
 - 10年传感器融合算法研发
 - OEM模块：MTi 1-Series (12x12mm超紧凑)
 - 支持IMU + Camera融合
@@ -215,7 +229,7 @@
 
 ### 策略1: 分层合作（推荐）
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                    产品架构                                  │
 ├─────────────────────────────────────────────────────────────┤
@@ -293,14 +307,14 @@
 
 ### 短期（1-2周）
 
-4. **与iSmarch建立联系**
+1. **与iSmarch建立联系**
    - 了解OEM定制流程
    - 获取SDK文档评估
    - 询问添加EMG模块可能性
 
 ### 中期（1个月）
 
-5. **确定技术路线**
+1. **确定技术路线**
    - 基于样品测试结果选择合作伙伴
    - 启动数据融合中间件开发
    - 与1-2家厂商签订开发合作协议
@@ -322,6 +336,7 @@
 ## 参考来源
 
 ### 主要来源
+
 - [Shimmer Sensing](https://www.shimmersensing.com/) - 多模态传感器平台
 - [QSense Motion](https://qsense-motion.com/) - 开放IMU平台
 - [iSmarch](https://ismarch.com/) - 中国智能穿戴ODM
@@ -331,10 +346,12 @@
 - [Movella Xsens](https://www.movella.com/) - 专业传感器融合
 
 ### 中国厂商
+
 - [能斯达/汉威科技](http://www.hwsensor.com/) - 柔性MEMS传感器
 - [纽迪瑞 NDT](https://ndt.cn.com/) - 柔性压力传感
 
 ### 数据聚合平台
+
 - [Terra API](https://tryterra.co/integrations) - 500+设备数据聚合
 - [Thryve](https://thryve.health/wearable-api/) - GDPR/HIPAA合规
 - [EmotiBit](https://www.emotibit.com/) - 开源生物传感器

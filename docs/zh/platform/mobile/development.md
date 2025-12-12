@@ -357,7 +357,7 @@ class ThermalMonitor {
 
 **Progressive Feature Degradation 渐进式功能降级**:
 
-```
+```text
 Temperature < 40°C 温度<40°C: Full rendering (60 FPS, all overlays) 全渲染（60 FPS，所有覆盖层）
 Temperature 40-45°C 温度40-45°C: Reduced effects (45 FPS, simplified overlays) 降低效果（45 FPS，简化覆盖层）
 Temperature > 45°C 温度>45°C: Minimal mode (30 FPS, skeleton only) 最小模式（30 FPS，仅骨架）
@@ -590,7 +590,7 @@ Slider(
 
 **BLE Stack BLE协议栈**:
 
-```
+```text
 ESP32-S3 (Peripheral 外围设备)
   ↓ BLE GATT Server GATT服务器
   ↓ 6 IMU Sensors @ 100Hz 6个IMU传感器@100Hz
@@ -604,7 +604,7 @@ Flutter App (Central 中心设备)
 
 **Connection Parameters 连接参数**:
 
-```
+```text
 Connection Interval 连接间隔: 7.5ms (fast 快速)
 Slave Latency 从设备延迟: 0
 Supervision Timeout 监督超时: 4000ms
@@ -730,7 +730,7 @@ class PacketBuffer {
 
 **Latency Budget 延迟预算**:
 
-```
+```text
 Camera Frame Capture 相机帧捕获:        16.7ms (60 FPS)
 Pose Estimation (MediaPipe) 姿态估计:   30-50ms
 BLE Data Fetch BLE数据获取:             12ms   (measured Flutter 测量的Flutter)
@@ -1356,7 +1356,7 @@ class FeedbackOverlay extends ConsumerWidget {
 
 **Expected Performance 预期性能**:
 
-```
+```text
 iPhone 11:
   - Pose Estimation 姿态估计: 35-40 FPS (MediaPipe)
   - BLE Throughput BLE吞吐量: 1.2 Mbps

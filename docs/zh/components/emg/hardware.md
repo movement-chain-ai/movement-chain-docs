@@ -272,9 +272,8 @@ EMG 信号链路:
 ## 相关资源
 
 - [EMG 供应商](suppliers.md)
-- [竞品分析](../../product/competitive/index.md) - 无 EMG 竞品
-- [运动科技生态](../../design/research/sports-tech-ecosystem.md)
+- [竞品分析](../../product/market-landscape/index.md) - 无 EMG 竞品
 
 ---
 
-**最后更新**: 2025 年 12 月 7 日
+**最后更新**: 2025 年 12 月 12 日

@@ -58,10 +58,10 @@
 
 ## 相关文档
 
-- [系统设计](../design/index.md)
-- [竞品分析](../product/competitive/index.md)
+- [系统设计](../design/system-design.md)
+- [竞品分析](../product/market-landscape/index.md)
 - [开发平台](../platform/index.md)
 
 ---
 
-**最后更新**: 2025 年 12 月 7 日
+**最后更新**: 2025 年 12 月 12 日

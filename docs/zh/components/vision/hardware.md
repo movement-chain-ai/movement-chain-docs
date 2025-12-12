@@ -400,17 +400,16 @@ class SwingPhaseDetector:
 | **Insta360** | One RS | $300 | 360° |
 | **Intel** | RealSense | $200+ | 深度相机 |
 
-详细供应商信息请参见 [视觉方案竞品](../../product/competitive/vision-based.md)
+详细供应商信息请参见 [视觉方案竞品](../../product/market-landscape/competitors/vision-based.md)
 
 ---
 
 ## 相关资源
 
 - [姿态估计指南](../vision/software.md)
-- [视觉反馈设计](../../design/research/visual-feedback-systems.md)
 - [ADR-0006: ONNX Runtime 部署](../../design/decisions/0006-onnx-runtime-deployment.md)
-- [视觉方案竞品](../../product/competitive/vision-based.md)
+- [视觉方案竞品](../../product/market-landscape/competitors/vision-based.md)
 
 ---
 
-**最后更新**: 2025 年 12 月 7 日
+**最后更新**: 2025 年 12 月 12 日

@@ -108,7 +108,6 @@
 ## 相关文档
 
 - [硬件组件](../index.md)
-- [硬件比较](../../design/research/hardware-comparison.md)
 
 ---
 

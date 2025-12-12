@@ -10,5 +10,5 @@
 
 ## 相关文档
 
-- [ML训练](../platform/ml-training/) - 模型训练相关
-- [技术研究](../design/research/) - 技术选型研究
+- [ML训练数据集](../platform/ml-training/datasets.md) - 模型训练相关
+- [系统设计](../design/system-design.md) - 技术架构
