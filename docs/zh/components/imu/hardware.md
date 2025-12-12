@@ -59,6 +59,50 @@
 | **Movella Xsens DOT** | 专业动捕 | $300+ | 专业运动分析 |
 | **APDM Opal** | 临床级 | $1000+ | 医疗康复 |
 
+### 消费级可穿戴设备
+
+!!! info "作为入门方案的潜力"
+    消费级智能手表/手环虽然不如专用 IMU 精准，但可作为**零硬件成本入门方案**，降低用户尝试门槛。
+
+| 设备 | IMU 传感器 | EMG | API 获取原始数据 | 高尔夫适用性 |
+|------|-----------|-----|-----------------|-------------|
+| **Apple Watch** | ✅ 256g 加速度计 + 陀螺仪 | ❌ | ✅ CoreMotion (800Hz) | ⭐⭐⭐ |
+| **Fitbit** | ✅ 有 | ❌ | ⚠️ 仅 Device SDK | ⭐⭐ |
+| **Oura Ring** | ✅ 有 | ❌ | ❌ 仅处理后指标 | ⭐ |
+
+#### Apple Watch 用于挥杆分析
+
+技术可行性: ✅ 可行
+
+| 参数 | 规格 | 说明 |
+|------|------|------|
+| **加速度计** | 256g 高动态范围 | Series 8+ 为碰撞检测设计 |
+| **采样率** | 800Hz (CMBatchedSensorManager) | WWDC23 新增高频批量采集 |
+| **陀螺仪** | 200Hz device motion | 姿态融合数据 |
+| **位置** | 手腕 | 与我们 IMU 传感器位置相同 |
+
+限制因素:
+
+| 限制 | 影响 |
+|------|------|
+| **平台锁定** | 仅 iOS/watchOS，需 Swift 开发 |
+| **电池消耗** | 高频采样快速耗电 |
+| **无 EMG** | 缺少肌肉激活数据 (我们的核心差异化) |
+| **传输延迟** | Watch → iPhone 数据传输有延迟 |
+
+建议策略:
+
+```text
+MVP Phase:  专用 IMU (ESP32 + LSM6DSV16X) + EMG
+入门版本:   Vision + Apple Watch IMU (无需购买硬件)
+升级路径:   入门版 → 专业版 (含 EMG)
+```
+
+#### Fitbit / Oura Ring
+
+- **Fitbit**: 原始 IMU 数据仅通过 Device SDK (需在设备上运行 app)，Web API 仅返回处理后指标
+- **Oura Ring**: 完全无原始数据访问，仅提供睡眠/活动等处理后指标
+
 ---
 
 ## 数据访问
@@ -196,10 +240,9 @@ Characteristic UUID: 0000FFE4-0000-1000-8000-00805F9B34FB
 ## 相关资源
 
 - [ADR-0002: LSM6DSV16X 选型决策](../../design/decisions/0002-lsm6dsv16x-imu.md)
-- [硬件比较](../../design/research/hardware-comparison.md)
 - [IMU 供应商](suppliers.md)
-- [IMU 方案竞品](../../product/competitive/imu-based.md)
+- [IMU 方案竞品](../../product/market-landscape/competitors/imu-based.md)
 
 ---
 
-**最后更新**: 2025 年 12 月 7 日
+**最后更新**: 2025 年 12 月 12 日
