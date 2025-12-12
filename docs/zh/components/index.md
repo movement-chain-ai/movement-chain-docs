@@ -59,7 +59,7 @@
 
 ## 相关文档
 
-- [系统架构](../design/archive/01-system-overview.md)
+- [系统设计](../design/index.md)
 - [竞品分析](../product/competitive/index.md)
 - [开发平台](../platform/index.md)
 

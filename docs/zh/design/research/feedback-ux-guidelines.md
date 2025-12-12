@@ -903,8 +903,8 @@ class FeedbackConfig {
 - [Haptics UX Design - Android Open Source Project](https://source.android.com/docs/core/interaction/haptics/haptics-ux-design)
 
 ### Movement Chain AI 内部文档 (Movement Chain AI Internal Docs)
-- [ADR-0003: Flutter Mobile Development](../../design/decisions/0003-flutter-mobile.md)
-- [HLD 01: System Overview](../../design/archive/01-system-overview.md)
+- [ADR-0003: Flutter Mobile Development](../decisions/0003-flutter-mobile.md)
+- [ADR-0004: 4模块架构](../decisions/0004-simplified-4-module-architecture.md)
 
 ---
 
