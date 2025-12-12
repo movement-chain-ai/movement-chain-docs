@@ -48,12 +48,34 @@ Types: `docs`, `feat`, `fix`, `chore`, `style`, `refactor`, `test`, `ci`, `perf`
 
 ```text
 docs/zh/                    # Documentation root (Chinese, single-language)
-├── product/                # Product strategy, MVP spec, roadmap
-├── design/                 # System design, ADRs in decisions/
-├── components/             # Hardware specs (IMU, EMG, Vision, MCU)
-├── platform/               # Mobile dev, ML training
-├── reference/              # Reference materials, academic datasets
-└── archive/                # Historical/raw research materials (not in nav)
+├── product/                # WHY - Market value, competitive analysis, MVP spec
+├── design/                 # WHAT - System architecture, ADRs, algorithms
+├── components/             # HARDWARE - IMU, EMG, Vision, MCU specs
+├── platform/               # HOW - Mobile dev, ML training, prototype code
+├── reference/              # LINKS - External URLs only (no content)
+└── archive/                # Historical materials (not in nav)
+```
+
+### Folder Purpose Quick Reference
+
+| Folder | Purpose | Audience | Key Files |
+|--------|---------|----------|-----------|
+| `product/` | Business case, market validation | Investors, PMs | MVP spec, competitive analysis |
+| `design/` | Technical architecture | Engineers | system-design.md, ADRs |
+| `components/` | Hardware specifications | HW engineers | IMU/EMG datasheets, suppliers |
+| `platform/` | Software implementation | SW developers | Flutter guide, prototype code |
+| `reference/` | External links only | Everyone | URLs to papers, datasets |
+
+### design/ Structure (Simplified)
+
+```text
+design/
+├── index.md              # Navigation hub
+├── system-design.md      # Core MVP pipeline (THE main doc)
+├── getting-started.md    # Test without hardware
+├── decisions-summary.md  # ADR quick reference
+├── 00-glossary.md        # Term definitions
+└── decisions/            # Full ADR documents
 ```
 
 ## Language Configuration
