@@ -310,7 +310,6 @@ def visualize_pressure(pressure_data, center):
 
 - [压力传感器供应商](suppliers.md)
 - [柔性传感器](../flexible-sensors/hardware.md)
-- [传感器硬件指南](../sensor-hardware-overview.md)
 - [高尔夫可穿戴技术研究](../../design/research/wearable-technology.md)
 
 ---

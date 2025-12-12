@@ -271,7 +271,6 @@ EMG 信号链路:
 
 ## 相关资源
 
-- [传感器硬件指南](../sensor-hardware-overview.md)
 - [EMG 供应商](suppliers.md)
 - [竞品分析](../../product/competitive/index.md) - 无 EMG 竞品
 - [高尔夫可穿戴技术研究](../../design/research/wearable-technology.md)

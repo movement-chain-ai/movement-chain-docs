@@ -356,13 +356,31 @@ void sendIMUData(float ax, float ay, float az, float gx, float gy, float gz) {
 
 ---
 
+## MVP 物料清单 (BOM)
+
+| 组件 | 零件号 | 数量 | 单价 | 总计 |
+|-----|-------|-----|------|------|
+| **ESP32-S3 模块** | ESP32-S3-WROOM-1-N8R8 | 1 | $3.50 | $3.50 |
+| **IMU 传感器** | LSM6DSV16X | 1 | $6.50 | $6.50 |
+| **EMG 放大器** | INA128 | 2 | $3.00 | $6.00 |
+| 干电极 | Ag/AgCl 织物 | 4 | $5.00 | $20.00 |
+| 触觉电机 | ERM 振动电机 | 2 | $2.50 | $5.00 |
+| LiPo 电池 | 500mAh 3.7V | 1 | $4.00 | $4.00 |
+| 电池充电器 | MCP73831 | 1 | $0.50 | $0.50 |
+| LDO 稳压器 | TPS73633 (3.3V) | 1 | $1.00 | $1.00 |
+| 无源器件 | 电阻、电容等 | - | - | $5.00 |
+| PCB | 4层 50x70mm | 1 | $15.00 | $15.00 |
+| 外壳 | 3D 打印 | 1 | $8.00 | $8.00 |
+| **总 BOM 成本** | | | | **$74.50** |
+
+---
+
 ## 相关资源
 
 - [ADR-0005: ESP32-S3 选型](../../design/decisions/0005-esp32-s3-microcontroller.md)
 - [硬件比较](../../design/research/hardware-comparison.md)
-- [传感器硬件指南](../sensor-hardware-overview.md)
 - [MCU 供应商](suppliers.md)
 
 ---
 
-**最后更新**: 2025 年 12 月 7 日
+**最后更新**: 2025 年 12 月 12 日

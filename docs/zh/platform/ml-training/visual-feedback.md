@@ -686,7 +686,7 @@ class HapticFeedbackEngine {
 ## 相关文档 (Related Documentation)
 
 - **姿态估计 Pose Estimation**: [Pose Estimation Guide](../../components/vision/software.md)
-- **传感器硬件 Sensor Hardware**: [Sensor Hardware Guide](../../components/sensor-hardware-overview.md)
+- **MCU 硬件 MCU Hardware**: [MCU Hardware Guide](../../components/mcu/hardware.md)
 
 ---
 

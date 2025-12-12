@@ -197,7 +197,6 @@ Characteristic UUID: 0000FFE4-0000-1000-8000-00805F9B34FB
 
 - [ADR-0002: LSM6DSV16X 选型决策](../../design/decisions/0002-lsm6dsv16x-imu.md)
 - [硬件比较](../../design/research/hardware-comparison.md)
-- [传感器硬件指南](../sensor-hardware-overview.md)
 - [IMU 供应商](suppliers.md)
 - [IMU 方案竞品](../../product/competitive/imu-based.md)
 

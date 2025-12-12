@@ -150,7 +150,6 @@ nav:
 
   - 硬件组件:
     - 概览: components/index.md
-    - 传感器硬件概览: components/sensor-hardware-overview.md
     - IMU 惯性测量:
       - 硬件规格: components/imu/hardware.md
       - 供应商: components/imu/suppliers.md
@@ -169,8 +168,7 @@ nav:
     - 压力传感器:
       - 硬件规格: components/pressure-sensors/hardware.md
       - 供应商: components/pressure-sensors/suppliers.md
-    - ODM/OEM 方案商: components/odm-oem.md
-    - 中国供应链:
+    - 供应链与 ODM/OEM:
       - 概览: components/supply-chain/index.md
       - 国内传感器供应商: components/supply-chain/china-sensors.md
       - 智能可穿戴供应商: components/supply-chain/china-wearables.md

@@ -52,8 +52,7 @@
 
 ## 综合资源
 
-- [传感器硬件概览](sensor-hardware-overview.md) - 传感器选型指南
-- [ODM/OEM 方案商](odm-oem.md) - 一站式解决方案供应商
+- [供应链与 ODM/OEM](supply-chain/index.md) - 供应商与方案商资源
 
 ---
 
