@@ -47,7 +47,7 @@
 - AI 教练建议
 - PGA 教练对比
 
-**官网**: [sportsbox.ai](https://sportsbox.ai)
+**官网**: [sportsbox.ai](https://www.sportsbox.ai/)
 
 **技术分析**:
 
