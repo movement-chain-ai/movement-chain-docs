@@ -8,6 +8,26 @@
 
 ---
 
+## 高星库快速参考 (一键安装)
+
+!!! success "MVP 核心依赖 - 全部高星开源"
+
+    ```bash
+    # 一键安装所有 Python 依赖
+    pip install mediapipe neurokit2 scipy numpy imufusion opencv-python
+    ```
+
+| 用途 | 库 | Stars | 安装命令 | 文档 |
+|-----|-----|-------|---------|------|
+| **姿态估计** | MediaPipe | 28k⭐ | `pip install mediapipe` | [官方文档](https://developers.google.com/mediapipe) |
+| **EMG 处理** | NeuroKit2 | 1.9k⭐ | `pip install neurokit2` | [EMG 函数](https://neuropsychology.github.io/NeuroKit/functions/emg.html) |
+| **IMU 融合** | imufusion | 1.7k⭐ | `pip install imufusion` | [GitHub](https://github.com/xioTechnologies/Fusion) |
+| **信号处理** | scipy | 12k⭐ | `pip install scipy` | [signal 模块](https://docs.scipy.org/doc/scipy/reference/signal.html) |
+| **数值计算** | numpy | 27k⭐ | `pip install numpy` | [官方文档](https://numpy.org/doc/) |
+| **视频处理** | OpenCV | 80k⭐ | `pip install opencv-python` | [官方文档](https://docs.opencv.org/) |
+
+---
+
 ## 选型原则
 
 1. **MVP 优先**: 选择开箱即用的方案，避免复杂配置
@@ -80,35 +100,85 @@ results = pose.process(rgb_frame)
 
 ### EMG 信号处理
 
-| 候选方案 | GitHub Stars | 特点 | 评估 |
-|---------|-------------|------|------|
-| **NeuroKit2** | 1.9k⭐ | EMG 模拟、清洗、振幅检测 | ✅ 选择 |
+| 候选方案 | Stars | 特点 | 评估 |
+|---------|-------|------|------|
+| **NeuroKit2** | 1.9k⭐ | EMG 模拟、清洗、振幅检测、激活检测 | ✅ 选择 |
 | BioSPPy | 500+⭐ | 类似 API，较老 | 备选 |
-| PyEMGPipeline | 较新 | EMG 专用 | 观望 |
+| BrainFlow | 556⭐ | 多种生物信号 | 备选 |
 
 - **选择**: `NeuroKit2`
 - **理由**: 内置 `emg_simulate()` 支持 Mock 数据，正好匹配"先软件后硬件"策略
 - **注意**: Phase 2 需要将处理逻辑移植到移动端 (Dart) 或嵌入式 (C++)
-- **参考**: [NeuroKit2 EMG 文档](https://neuropsychology.github.io/NeuroKit/functions/emg.html)
+
+```bash
+pip install neurokit2
+```
 
 ```python
 import neurokit2 as nk
-cleaned = nk.emg_clean(raw_emg, sampling_rate=200)
-amplitude = nk.emg_amplitude(cleaned)
+
+# 完整 EMG 处理流程
+cleaned = nk.emg_clean(raw_emg, sampling_rate=200)      # 滤波
+amplitude = nk.emg_amplitude(cleaned)                    # RMS 包络
+activation = nk.emg_activation(cleaned)                  # 激活时刻检测
+
+# 模拟数据 (用于测试)
+simulated = nk.emg_simulate(duration=10, sampling_rate=200, burst_number=5)
 ```
+
+- **参考**: [NeuroKit2 EMG 文档](https://neuropsychology.github.io/NeuroKit/functions/emg.html) | [GitHub](https://github.com/neuropsychology/NeuroKit)
 
 ### 传感器融合 Sensor Fusion
 
-| 候选方案 | 语言 | 特点 | 评估 |
-|---------|------|------|------|
-| **numpy.interp()** | Python | 简单线性插值 | ✅ MVP 选择 |
-| Fusion (x-io) | C/Python | AHRS、Madgwick 算法 | Phase 2 升级 |
-| SensorFusion (Arduino) | C++ | 多种 IMU 支持 | ESP32 端备选 |
+| 候选方案 | Stars | 语言 | 特点 | 评估 |
+|---------|-------|------|------|------|
+| **numpy.interp()** | - | Python | 简单线性插值 | ✅ MVP 选择 |
+| **imufusion** | 1.7k⭐ | C/Python | AHRS、Madgwick 算法 | Phase 2 升级 |
+| pyIMU | 50+⭐ | Python | 四元数、速度估计 | 参考 |
+| SensorFusion (Arduino) | - | C++ | 多种 IMU 支持 | ESP32 端备选 |
 
-- **选择**: `numpy.interp()` (MVP) → Fusion (Phase 2)
+- **选择**: `numpy.interp()` (MVP) → `imufusion` (Phase 2)
 - **理由**: MVP 只需时间轴对齐，5 行代码足够；高级融合 Phase 2 再考虑
 - **升级触发**: 当需要姿态四元数输出或更精确的方向估计时
-- **参考**: [x-io Fusion](https://github.com/xioTechnologies/Fusion)
+
+```bash
+# Phase 2 安装
+pip install imufusion
+```
+
+```python
+# Phase 2: 使用 imufusion 获取姿态
+import imufusion
+ahrs = imufusion.Ahrs()
+ahrs.update_no_magnetometer(gyroscope, accelerometer, 1/100)  # 100Hz
+euler = ahrs.quaternion.to_euler()  # [roll, pitch, yaw]
+```
+
+- **参考**: [x-io Fusion (1.7k⭐)](https://github.com/xioTechnologies/Fusion) | [pyIMU](https://github.com/uutzinger/pyIMU)
+
+### 信号处理 Signal Processing
+
+| 候选方案 | Stars | 用途 | 评估 |
+|---------|-------|------|------|
+| **scipy.signal** | 12k⭐ | 滤波、峰值检测 | ✅ 选择 |
+| numpy | 27k⭐ | 零点交叉、基础计算 | ✅ 选择 |
+
+```python
+from scipy.signal import find_peaks, butter, filtfilt
+import numpy as np
+
+# 峰值检测 (击球瞬间)
+peaks, properties = find_peaks(accel_z, height=5, distance=50)
+
+# 零点交叉 (上杆顶点)
+zero_crossings = np.where(np.diff(np.sign(gyro_z)))[0]
+
+# 低通滤波 (去噪)
+b, a = butter(4, 10, fs=100, btype='low')  # 10Hz 截止
+filtered = filtfilt(b, a, raw_signal)
+```
+
+- **参考**: [scipy.signal.find_peaks](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html)
 
 ---
 
@@ -144,21 +214,29 @@ amplitude = nk.emg_amplitude(cleaned)
 
 ### 高尔夫挥杆
 
-| 数据集 | 内容 | 用途 | 链接 |
-|-------|------|-----|------|
-| **GolfDB** | 1,400 挥杆视频，8 事件标注 | SwingNet 训练，相位检测 | [GitHub](https://github.com/wmcnally/golfdb) |
-| AICaddy | 6,000+ 球杆头图像 | YOLOv8 球杆追踪 | [GitHub](https://github.com/oswinkil-git/AICaddy-A-Golf-Club-Tracer) |
-| golftracker | 视频处理工具包 | 挥杆检测 | [PyPI](https://pypi.org/project/golftracker/) |
+| 数据集 | Stars | 内容 | 用途 | 链接 |
+|-------|-------|------|-----|------|
+| **GolfDB** | 300+⭐ | 1,400 挥杆视频，8 事件标注 | SwingNet 训练，相位检测 | [wmcnally/golfdb](https://github.com/wmcnally/golfdb) |
+| AICaddy | 20+⭐ | 6,000+ 球杆头图像 | YOLOv8 球杆追踪 | [oswinkil-git/AICaddy](https://github.com/oswinkil-git/AICaddy-A-Golf-Club-Tracer) |
+| golftracker | - | 视频处理工具包 | 挥杆检测 | [PyPI](https://pypi.org/project/golftracker/) |
 
 - **主要数据集**: GolfDB
 - **⚠️ 数据缺口**: 无公开数据集包含同步的 IMU + EMG + Video，**需自行录制**
 
+### 开源挥杆分析代码
+
+| 仓库 | Stars | 功能 | 技术栈 |
+|-----|-------|------|--------|
+| [HeleenaRobert/golf-swing-analysis](https://github.com/HeleenaRobert/golf-swing-analysis) | 50+⭐ | MediaPipe 姿态 + 关节角度计算 | Python |
+| [Strojove-uceni/23206-final-pose-estimation](https://github.com/Strojove-uceni/23206-final-pose-estimation-for-swing-improvement) | 10+⭐ | 完整挥杆分析流程 + 反馈生成 | Python |
+
 ### 通用姿态
 
-| 数据集 | 内容 | 用途 |
-|-------|------|-----|
-| COCO Keypoints | 20万+ 图像，17 关节点 | 姿态模型评估 |
-| Human3.6M | 3D 人体动作 | 3D 姿态参考 |
+| 数据集 | 规模 | 内容 | 用途 |
+|-------|------|------|-----|
+| COCO Keypoints | 20万+ 图像 | 17 关节点标注 | 姿态模型评估 |
+| Human3.6M | 360万帧 | 3D 人体动作 | 3D 姿态参考 |
+| MPII Human Pose | 2.5万图像 | 16 关节点 | 基准测试 |
 
 ---
 
@@ -216,4 +294,4 @@ LSM6DSV16X (stm32duino): "latest"
 
 ---
 
-**最后更新**: 2025年12月12日
+**最后更新**: 2025年12月13日
