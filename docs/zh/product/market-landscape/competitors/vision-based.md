@@ -4,6 +4,56 @@
 
 ---
 
+## 教练应用对比 (Coach App Comparison)
+
+!!! warning "关键发现: OnForm 是 PGA Coach 官方首选"
+    OnForm 以最低价格提供最全功能，是我们的**主要竞争对手**
+
+### 功能与定价矩阵
+
+| 功能 | OnForm | V1 Golf | CoachNow | Sportsbox |
+|-----|:------:|:-------:|:--------:|:---------:|
+| **月费** | **$29.99** | $69.99 | $49.99 | $79.99 |
+| **界面友好度** | 9/10 | 6/10 | 7/10 | 5/10 |
+| **Launch Monitor 集成** | ✅ Garmin R10, Full Swing | ❌ | ❌ | ⚠️ +$40/月 |
+| **3D 数据/可视化** | ✅ | ❌ | ❌ | ✅ |
+| **自动检测录制** | ✅ | ❌ | ❌ | ✅ |
+| **一键录制** | ✅ | ❌ | ❌ | ❌ |
+| **多角度同步 (4角度)** | ✅ | ❌ | ❌ | ❌ |
+| **无限云存储** | ✅ | ❌ | ❌ | ❌ |
+| **团队/群组功能** | ✅ | ❌ | ✅ | ⚠️ 有限 |
+
+**来源**: [OnForm vs V1, CoachNow, Sportsbox](https://onform.com/blog/onform-vs-v1-coachnow-and-sportsbox-the-best-video-analysis-tool-for-coaches/)
+
+---
+
+## 教练工作流与技术标准
+
+!!! info "详细技术规范"
+    教练录制设备、双视角要求、5 个关键检查点的检测方法和评估标准详见：
+
+    **[挥杆对比策略 - 视频录制规范 & 检查点](../../../design/swing-comparison.md#视频录制规范-video-recording-standards)**
+
+### 快速参考
+
+| 检查点 | 英文 | 教练关注 |
+|-------|------|---------|
+| 站姿 | Setup | 对准、球位、握杆 |
+| 起杆 | Takeaway | 一体起杆、杆面方正 |
+| 上杆顶点 | Top of Backswing | 肩转90°、髋转45° |
+| 击球 | Impact | 手在球前、髋打开 |
+| 收杆 | Follow Through | 平衡、胸朝目标 |
+
+### 教练追踪的关键数据
+
+| 数据类别 | 来源 | 关键指标 |
+|---------|------|---------|
+| **Launch Monitor** | TrackMan, Garmin R10 | 杆头速度、球速、起飞角、旋转率 |
+| **3D 身体** | Sportsbox AI | 肩/髋旋转、X-Factor、Sway |
+| **节奏** | IMU | 3:1 比例 (上杆:下杆) |
+
+---
+
 ## 市场概况
 
 !!! info "纯软件方案兴起"
@@ -79,49 +129,87 @@
 
 | 参数 | 规格 |
 |-----|------|
-| **价格** | $200/年 |
+| **价格** | $69.99/月 (教练版) |
 | **技术** | 视频分析 + AI |
 | **平台** | iOS / Android |
+| **历史** | 10年+，100万+下载 |
 
 **核心功能**:
 
-- 视频慢动作分析
-- 对比工具
-- 绘图标注
-- 远程教练
+- HD 视频录制，逐帧回放
+- 画线工具 (6种颜色)
+- 并排对比 + 叠加工具
+- 职业球员挥杆库
+- 远程教练协作
 
 **官网**: [v1sports.com](https://v1sports.com)
 
 **定位**:
 
-- 更侧重教练-学员协作
-- 视频分享和标注
-- AI 辅助不如 Sportsbox 深入
+- 行业老牌选择
+- 教练-学员协作核心
+- 界面略老旧 (6/10)
 
 ---
 
-### OnForm ⭐⭐⭐
+### OnForm ⭐⭐⭐⭐⭐ 🎯 主要竞争对手
+
+!!! danger "PGA Coach 官方首选视频合作伙伴"
+    性价比最高，功能最全，是我们需要超越的标杆
 
 | 参数 | 规格 |
 |-----|------|
-| **价格** | $100/年 |
-| **技术** | 视频分析 |
+| **价格** | **$29.99/月** (最低) |
+| **技术** | 视频分析 + 3D + Launch Monitor |
 | **平台** | iOS |
+| **特色** | 无限云存储、4角度同步 |
 
 **核心功能**:
 
-- 录像和回放
-- 慢动作分析
-- 对比视图
-- 简单测量工具
+- 逐帧回放 (业界最佳体验)
+- 4K 60fps 录制 + 快门速度控制
+- **4 角度多设备同步录制**
+- **Launch Monitor 集成** (Garmin R10, Full Swing KIT)
+- **3D 挥杆模型** (单视角生成)
+- 无限云存储 + 自动备份
+- 团队/群组管理
 
 **官网**: [onform.com](https://onform.com/)
 
+**为什么是主要竞争对手**:
+
+| 他们有的 | 我们的差异化 |
+|---------|-------------|
+| 视频分析 | ✅ + **IMU 实时数据** |
+| 3D 可视化 | ✅ + **EMG 肌肉数据** |
+| Launch Monitor 集成 | ✅ + **实时触觉反馈** |
+| 离线需要付费 | ✅ **完全离线免费** |
+
+---
+
+### CoachNow ⭐⭐⭐
+
+| 参数 | 规格 |
+|-----|------|
+| **价格** | $49.99/月 |
+| **技术** | 视频分析 |
+| **平台** | iOS / Android / Web |
+| **特色** | 多运动通用 |
+
+**核心功能**:
+
+- 视频分析和标注
+- 团队/群组管理 (强项)
+- 跨运动支持 (高尔夫、棒球、网球等)
+- 学员沟通工具
+
+**官网**: [coachnow.io](https://coachnow.io)
+
 **定位**:
 
-- 入门级
-- 功能相对简单
-- 价格友好
+- 多运动教练平台
+- 团队管理功能强
+- 高尔夫专业度不如 OnForm/Sportsbox
 
 ---
 
@@ -129,7 +217,8 @@
 
 | 应用 | 价格 | 特点 | 备注 |
 |-----|------|-----|-----|
-| **Swing Profile** | 免费 + 付费 | AI 分析 | 国产 |
+| **Mustard Golf** | 免费 + 付费 | AI 实时分析 | Justin Rose 代言 |
+| **Swing Profile** | 免费 + 付费 | AI 分析 | 国产，2012 PGA 展会最佳产品 |
 | **Golf Pad** | 免费 + 付费 | GPS + 数据 | 球场数据 |
 | **Hole19** | 免费 + 付费 | 社区 + GPS | 社交 |
 
@@ -245,10 +334,24 @@
 
 | 竞品缺失 | 我们的方案 |
 |---------|-----------|
-| **实时反馈** | 端侧 RTMPose |
+| **实时反馈** | 端侧 RTMPose + 触觉震动 |
 | **传感器数据** | IMU + EMG 融合 |
-| **离线使用** | 完全本地 |
+| **离线使用** | 完全本地处理 |
 | **开放性** | 开源核心 |
+| **肌肉数据** | EMG 发力时序 (市场唯一) |
+| **5 检查点自动评估** | 站姿→起杆→顶点→击球→收杆 |
+
+### 针对 OnForm 的差异化策略
+
+!!! success "我们 vs OnForm"
+
+    | OnForm (主要对手) | Movement Chain AI |
+    |------------------|-------------------|
+    | 纯视频分析 | **视频 + IMU + EMG 三模态** |
+    | 需要 Launch Monitor ($200+) 获取数据 | **IMU 内置，无需额外设备** |
+    | 无肌肉数据 | **EMG 显示发力是否正确** |
+    | 录制后分析 | **实时反馈 + 触觉提示** |
+    | 月费 $29.99 | **硬件一次性 + 更低订阅** |
 
 ### 技术路线
 
@@ -277,4 +380,14 @@ Phase 3: 多视角融合 (远期)
 
 ---
 
-**最后更新**: 2025 年 12 月 7 日
+## 研究来源
+
+- [OnForm vs V1, CoachNow, Sportsbox](https://onform.com/blog/onform-vs-v1-coachnow-and-sportsbox-the-best-video-analysis-tool-for-coaches/)
+- [How to Video Your Golf Swing - OnForm](https://onform.com/blog/how-to-video-your-golf-swing-for-better-analysis/)
+- [5 Key Golf Swing Checkpoints](https://www.performancegolf.com/blog/build-a-consistent-golf-swing-with-these-5-key-checkpoints)
+- [V1 Golf Video Analysis Guide](https://v1sports.com/v1-golf-video-analysis-what-to-look-for-in-your-own-swing/)
+- [TrackMan PGA Tour Partnership](https://www.trackman.com/blog/golf/data-matters-inside-the-pga-tour-trackman-partnership)
+
+---
+
+**最后更新**: 2025 年 12 月 12 日

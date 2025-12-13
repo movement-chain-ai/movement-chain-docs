@@ -104,6 +104,160 @@ def detect_compensation(emg_data):
 
 ---
 
+## 视频录制规范 Video Recording Standards
+
+### 教练标准设备 (行业参考)
+
+| 设备 | 推荐规格 | 技术原因 |
+|-----|---------|---------|
+| **录制设备** | iPad Pro (M2) 或 iPhone 12+ | 支持 60-120fps，LiDAR 深度 |
+| **三脚架** | iRange Stick 或等效 | 固定视角，可重复对比 |
+| **对准杆** | 2-3 根 | 定义目标线，校准坐标系 |
+
+### 双视角要求 (DTL + FO)
+
+| 视角 | 英文 | 摄像头位置 | 检测目标 |
+|-----|------|-----------|---------|
+| **后方** | Down-the-Line (DTL) | 后方 3-4 米，腰到胸高度 | 挥杆平面、杆头路径、起杆方向 |
+| **正面** | Face-On (FO) | 正面，手的高度 | 重心转移、身体旋转、平衡 |
+
+**产品启示**: MVP 支持单视角，Phase 2 考虑双视角同步
+
+### 录制质量要求
+
+```python
+VIDEO_REQUIREMENTS = {
+    'min_fps': 60,           # 高尔夫挥杆约 1.2 秒，需要足够帧数
+    'recommended_fps': 120,  # 更好的 impact 捕捉
+    'resolution': '1080p',   # 平衡质量与处理速度
+    'lighting': 'backlit',   # 阳光在摄像头后方
+    'frame_coverage': 'full_club',  # 全杆头始终在画面内
+}
+```
+
+---
+
+## 挥杆关键检查点 Swing Checkpoints
+
+!!! warning "MVP 必须检测"
+    这 5 个位置是教练评估挥杆的核心，我们的分析引擎需要自动检测并评分
+
+### 五阶段检查点定义
+
+| # | 阶段 | 英文 | 检测条件 | 评估指标 |
+|---|------|------|---------|---------|
+| **1** | 站姿 | Setup | 挥杆开始前静止帧 | 脚/髋/肩对准、球位、握杆 |
+| **2** | 起杆 | Takeaway | 杆头离开球后 0-0.3s | 一体起杆、杆面方正 |
+| **3** | 上杆顶点 | Top of Backswing | 角速度由负转正 | 肩转90°、髋转45°、重心后移 |
+| **4** | 击球 | Impact | 峰值角速度时刻 | 手在球前、髋打开、前倾杆身 |
+| **5** | 收杆 | Follow Through | 挥杆结束静止帧 | 平衡、胸朝目标、高手位 |
+
+### 检查点检测代码框架
+
+```python
+class SwingCheckpoints:
+    """挥杆五阶段检测器"""
+
+    CHECKPOINTS = {
+        'setup': {
+            'detection': 'static_frame_before_motion',
+            'metrics': ['alignment', 'ball_position', 'stance_width', 'grip']
+        },
+        'takeaway': {
+            'detection': 'first_0.3s_after_motion_start',
+            'metrics': ['one_piece_takeaway', 'clubface_square', 'path_inside']
+        },
+        'top_of_backswing': {
+            'detection': 'gyro_z_zero_crossing_neg_to_pos',
+            'metrics': ['shoulder_turn_90', 'hip_turn_45', 'weight_75_trail', 'x_factor']
+        },
+        'impact': {
+            'detection': 'peak_angular_velocity',
+            'metrics': ['hands_ahead', 'hip_open', 'forward_shaft_lean', 'clubface_square']
+        },
+        'follow_through': {
+            'detection': 'static_frame_after_motion',
+            'metrics': ['balanced', 'chest_to_target', 'high_hands', 'weight_100_lead']
+        }
+    }
+
+    def detect_checkpoint(self, checkpoint_name, imu_data, vision_data):
+        """检测特定检查点的时间戳"""
+        config = self.CHECKPOINTS[checkpoint_name]
+
+        if config['detection'] == 'gyro_z_zero_crossing_neg_to_pos':
+            # 上杆顶点: 角速度过零点
+            gyro_z = imu_data['gyro_z']
+            zero_crossings = np.where(np.diff(np.sign(gyro_z)) > 0)[0]
+            return imu_data['timestamps'][zero_crossings[0]] if len(zero_crossings) > 0 else None
+
+        elif config['detection'] == 'peak_angular_velocity':
+            # 击球: 峰值角速度
+            peak_idx = np.argmax(np.abs(imu_data['gyro_z']))
+            return imu_data['timestamps'][peak_idx]
+
+        # ... 其他检测逻辑
+
+    def evaluate_checkpoint(self, checkpoint_name, vision_features, imu_features, emg_features=None):
+        """评估检查点质量，返回 0-100 分"""
+        config = self.CHECKPOINTS[checkpoint_name]
+        scores = []
+
+        for metric in config['metrics']:
+            score = self._evaluate_metric(metric, vision_features, imu_features, emg_features)
+            scores.append(score)
+
+        return np.mean(scores)
+```
+
+### 各检查点详细评估标准
+
+#### 1. Setup 站姿
+
+| 指标 | 理想值 | 检测方法 | 来源 |
+|-----|-------|---------|------|
+| 脚宽 | 肩宽 ± 10% | `dist(ankle_L, ankle_R) / dist(shoulder_L, shoulder_R)` | Vision |
+| 脊柱角 | 25-35° | `angle(hip_center, shoulder_center, vertical)` | Vision |
+| 膝盖弯曲 | 140-170° | `angle(hip, knee, ankle)` | Vision |
+| 对准误差 | < 5° | `alignment(shoulders, hips, feet) vs target_line` | Vision |
+
+#### 2. Takeaway 起杆
+
+| 指标 | 理想值 | 检测方法 | 来源 |
+|-----|-------|---------|------|
+| 一体起杆 | 肩/手同步 | `correlation(shoulder_rotation, hand_path)` | Vision |
+| 杆面方正 | 与脊柱平行 | `angle(clubface, spine)` | Vision (需要球杆检测) |
+
+#### 3. Top of Backswing 上杆顶点
+
+| 指标 | 理想值 | 检测方法 | 来源 |
+|-----|-------|---------|------|
+| 肩膀旋转 | 85-95° | `rotation_angle(shoulder_L, shoulder_R)` | Vision |
+| 髋部旋转 | 40-50° | `rotation_angle(hip_L, hip_R)` | Vision |
+| X-Factor | 35-55° | `shoulder_rotation - hip_rotation` | Vision |
+| 后脚重心 | 70-80% | 需要压力传感器或 EMG 推断 | IMU/EMG |
+
+#### 4. Impact 击球
+
+| 指标 | 理想值 | 检测方法 | 来源 |
+|-----|-------|---------|------|
+| 峰值角速度 | >1200°/s | `max(abs(gyro_z))` | IMU |
+| 髋部打开 | 30-45° | `hip_rotation at impact` | Vision |
+| 前倾杆身 | >5° | 需要球杆检测 | Vision |
+| 核心激活 | >50% | `core_emg at impact` | EMG |
+
+#### 5. Follow Through 收杆
+
+| 指标 | 理想值 | 检测方法 | 来源 |
+|-----|-------|---------|------|
+| 胸朝目标 | 正对 | `chest_facing vs target_line` | Vision |
+| 前脚重心 | 90-100% | 需要压力传感器 | IMU/EMG |
+| 平衡 | 稳定 | `stability_score(ankle, knee, hip)` over 1s | Vision |
+
+**来源**: [5 Key Golf Swing Checkpoints](https://www.performancegolf.com/blog/build-a-consistent-golf-swing-with-these-5-key-checkpoints), [V1 Golf Video Analysis](https://v1sports.com/v1-golf-video-analysis-what-to-look-for-in-your-own-swing/)
+
+---
+
 ## 四种对比方法 Four Comparison Approaches
 
 ### 方法 A: 职业参考 (Pro Player Reference)
