@@ -45,7 +45,7 @@
 - 节奏和节拍
 - 历史对比
 
-**官网**: [swingmotion.io](https://swingmotion.io)
+**官网**: [swingmotion.app](https://swingmotion.app)
 
 **技术分析**:
 
