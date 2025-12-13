@@ -8,6 +8,28 @@
 
 ---
 
+## 文档阅读指南
+
+!!! tip "构建 MVP 的阅读顺序"
+
+    按以下顺序阅读，获取完整的 MVP 构建知识:
+
+    | 顺序 | 文档 | 内容 |
+    |:----:|------|------|
+    | 1️⃣ | **本文档** (system-design.md) | 架构总览、数据流、4层管道 |
+    | 2️⃣ | [ML 基础入门](ml-basics.md) | 什么需要 ML、什么用物理公式，代码示例 |
+    | 3️⃣ | [SDK 选型指南](sdk-selection.md) | 所有库的安装命令、Stars、代码片段 |
+    | 4️⃣ | [快速开始](getting-started.md) | 无需硬件即可测试，Mock 数据设置 |
+    | 5️⃣ | [MVP 原型代码](../platform/mvp-prototype-code.md) | 完整可运行的代码示例 |
+
+    **快速参考**:
+
+    - [决策摘要](decisions-summary.md) - 所有 ADR 一页速查
+    - [术语表](00-glossary.md) - IMU、EMG 等术语定义
+    - [挥杆对比策略](swing-comparison.md) - 如何对比两次挥杆
+
+---
+
 ## MVP 核心管道
 
 ```mermaid
