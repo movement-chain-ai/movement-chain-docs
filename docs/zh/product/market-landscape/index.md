@@ -4,63 +4,54 @@
 
 ---
 
-## 我们的差异化优势
+## 核心竞争力对比
 
-!!! success "核心竞争力"
-    **EMG + Vision + IMU 三模态融合 = 市场唯一**
+!!! success "EMG + Vision + IMU 三模态融合 = 市场唯一"
 
-    | 竞品 | IMU | Vision | EMG | 评估 |
-    |-----|-----|--------|-----|------|
-    | SwingMotion | ✅ | ❌ | ❌ | 单一传感器 |
-    | HackMotion | ✅ | ❌ | ❌ | 单一传感器 |
-    | Sportsbox AI | ❌ | ✅ | ❌ | 单一传感器 |
-    | K-Motion | ✅ | ❌ | ❌ | 单一传感器 |
-    | deWiz | ✅ | ❌ | ❌ | 单一传感器 (已破产) |
-    | **Movement Chain AI** | ✅ | ✅ | ✅ | **唯一三模态** |
+    | 竞品 | 技术 | IMU | Vision | EMG | 触觉 | 实战模式 | 价格 | IMU市占率 | 状态 |
+    |-----|------|-----|--------|-----|------|---------|------|----------|------|
+    | **Movement Chain AI** | **三模态** | ✅ | ✅ | ✅ | ✅ | ✅ | $99-149 | - | 开发中 |
+    | HackMotion | IMU | ✅ | ❌ | ❌ | ✅ | ❌ | $345-995 | 45% | 市场领导者 |
+    | deWiz | IMU | ✅ | ❌ | ❌ | ✅ | ❌ | $500+ | 30% | ⚠️ 已破产 |
+    | Blast Golf | IMU | ✅ | ❌ | ❌ | ❌ | ❌ | $150 | 18% | 短杆专用 |
+    | SwingMotion | IMU | ✅ | ❌ | ❌ | ❌ | ❌ | $358 | 7% | 消费级 |
+    | Sportsbox AI | Vision | ❌ | ✅ | ❌ | ❌ | ❌ | $200/年 | - | 纯软件 |
+    | K-Motion | IMU | ✅ | ❌ | ❌ | ❌ | ❌ | $3,000+ | <1% | 专业级 |
+
+    **结论**: 仅 Movement Chain AI 提供三模态融合 + EMG 肌肉数据 + 实战模式
+
+    **我们的定位**: 硬件 $99-149 + 订阅 $99/年，以消费级价格提供专业级三模态分析
 
 ---
 
 ## 市场规模 (US-Focused)
 
-| 市场 | 2024 | 2028 预测 | CAGR |
-|------|------|----------|------|
-| 运动可穿戴 | $320 亿 | $540 亿 | 14% |
-| 高尔夫科技 | $12 亿 | $20 亿 | 13% |
-| 挥杆分析 | $2 亿 | $4 亿 | 19% |
+| 市场 | 2024 | 2028 预测 | CAGR | 来源 |
+|------|------|----------|------|------|
+| 运动可穿戴 | $186B | $300B+ | 14.6% | [Grand View Research][gvr-wearables] |
+| 高尔夫科技 | $8.4B | $10B | 3.7% | [Data Bridge][db-golf] |
+| 挥杆分析 | $407M | $650M | 9.2% | [Data Horizon][dh-swing] |
+
+[gvr-wearables]: https://www.grandviewresearch.com/industry-analysis/wearable-technology-market
+[db-golf]: https://www.databridgemarketresearch.com/reports/global-golf-equipment-market
+[dh-swing]: https://datahorizzonresearch.com/golf-swing-analyzer-market-2548
 
 ---
 
-## 市场竞争格局
+## 深入分析
 
-!!! info "高尔夫挥杆分析市场竞争格局 (2024)"
+### 竞品详情
 
-    | 价位 | 产品 | 技术 | 备注 |
-    |------|------|------|------|
-    | $3,000+ | K-Motion | IMU | 专业级 |
-    | $500-1K | HackMotion Pro, deWiz | IMU | deWiz已破产 |
-    | $300-500 | SwingMotion, HackMotion Standard | IMU | 消费级 |
-    | $200/年 | Sportsbox AI | Vision | 订阅制 |
-
-    **我们的定位**: 硬件 $99-149 + 订阅 $99/年，三模态差异化
-
----
-
-## 快速导航
-
-### 竞品分析 (按技术方案)
-
-| 技术方案 | 代表产品 | 价格范围 | 详情 |
-|---------|---------|---------|------|
-| [IMU 方案](competitors/imu-based.md) | SwingMotion, HackMotion | $300-500 | 便携、实时 |
-| [视觉方案](competitors/vision-based.md) | Sportsbox AI | $200/年 | 无需硬件 |
-| [多传感器方案](competitors/multi-sensor.md) | K-Motion | $3,000+ | 专业级 |
-| [智能服装](competitors/smart-clothing.md) | Athos, WHOOP | $300-500 | 非高尔夫专用 |
+- [IMU 方案](competitors/imu-based.md) - SwingMotion, HackMotion 详细分析
+- [视觉方案](competitors/vision-based.md) - Sportsbox AI 详细分析
+- [多传感器方案](competitors/multi-sensor.md) - K-Motion 详细分析
+- [智能服装](competitors/smart-clothing.md) - Athos, WHOOP (非高尔夫专用)
 
 ### 综合分析
 
 - [用户痛点分析](pain-points.md) - 跨竞品痛点总结、产品弃用研究
 - [商业系统分析](competitors/commercial-systems.md) - Peloton, Mirror, Tempo 等商业系统
-- [市场规模](competitors/market-size.md) - 市场规模、趋势、机会
+- [市场规模详情](competitors/market-size.md) - 详细市场规模、趋势、机会
 
 ---
 
