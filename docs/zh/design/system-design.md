@@ -101,13 +101,15 @@ landmarks = results.pose_landmarks.landmark  # 33个点
 }
 ```
 
-### 模型演进路径
+### 模型选择
 
-| 阶段 | 模型 | 准确率 | 速度 | 部署难度 |
+| 状态 | 模型 | 准确率 | 速度 | 部署难度 |
 |-----|------|-------|------|---------|
-| **MVP** | MediaPipe Pose | ~75% AP | 30fps+ 实时 | `pip install mediapipe` |
-| Phase 2 | RTMPose | ~78% AP | 25fps | 需配置 mmpose |
-| Phase 3 | ViTPose++ | 81.1% AP (SOTA) | 需GPU | 服务器部署 |
+| ✅ **当前方案** | MediaPipe Pose | ~70% AP | 30fps+ 实时 | `pip install mediapipe` |
+| 🔄 备选 | RTMPose | ~76% AP | 25fps | 需配置 mmpose |
+| 🔄 备选 | ViTPose++ | 81.1% AP (SOTA) | 需GPU | 服务器部署 |
+
+> MediaPipe 精度足够 MVP 验证。如用户反馈"精度不够"，再评估升级。
 
 ---
 
