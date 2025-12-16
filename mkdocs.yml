@@ -96,6 +96,8 @@ extra:
 nav:
   - 首页: index.md
 
+  - 风险管理: risk-management.md
+
   - 产品战略:
       - product/index.md
       - product/user-personas.md
