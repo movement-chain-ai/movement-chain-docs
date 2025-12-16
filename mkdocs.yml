@@ -95,6 +95,7 @@ nav:
 
   - 产品战略:
       - product/index.md
+      - product/user-personas.md
       - product/unique-value.md
       - 市场研究:
           - product/market-landscape/index.md
