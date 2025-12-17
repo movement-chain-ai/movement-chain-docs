@@ -222,6 +222,67 @@
 
 ---
 
+## 13. 视觉与姿态估计 Vision & Pose Estimation
+
+| 术语 Term | 中文 | 定义 Definition | 备注 Notes |
+|-----------|------|----------------|-----------|
+| **Pose Estimation** | 姿态估计 | Detecting human body keypoints from images/video | Top-Down vs Bottom-Up approaches |
+| **Keypoint** | 关键点 | Body skeleton joint node (e.g., shoulder, elbow, wrist) | COCO 17-point format standard |
+| **RTMPose** | RTMPose | Real-time pose estimation model from OpenMMLab | RTMPose-m: 75.8% AP, 70+ FPS mobile |
+| **AP (Average Precision)** | 平均精度 | Standard pose estimation accuracy metric; precision averaged across IoU thresholds | `AP@0.5`, `AP@0.75`, mAP |
+| **COCO Format** | COCO格式 | 17-keypoint body format: nose, eyes, ears, shoulders, elbows, wrists, hips, knees, ankles | Industry standard annotation format |
+
+**我们选择 Our Choice**: RTMPose-m (13.6MB model, optimal accuracy/speed trade-off)
+
+详见 See: [视觉软件](../../components/vision/software.md)
+
+---
+
+## 14. 柔性传感器 Flexible Sensors
+
+### FSR (Force Sensing Resistor) 力敏电阻
+
+| 属性 Property | 描述 Description |
+|--------------|-----------------|
+| **原理 Principle** | Pressure increases → Resistance decreases |
+| **厚度 Thickness** | <0.5mm (ultra-thin) |
+| **应用 Applications** | Foot pressure, grip force, touch detection |
+| **常见产品 Products** | Interlink FSR 402/406, FlexiForce A201 |
+
+详见 See: [压力传感器硬件](../../components/pressure-sensors/hardware.md)
+
+### E-Skin (Electronic Skin) 电子皮肤
+
+Flexible sensor arrays conforming to skin or curved surfaces.
+
+| 类型 Type | 原理 Principle | 测量内容 Measures | 特点 Characteristics |
+|-----------|---------------|------------------|---------------------|
+| **应变式 Strain** | Deformation → Resistance change | Bending/stretching | Good linearity |
+| **压阻式 Piezoresistive** | Pressure → Resistance change | Pressure distribution | High sensitivity |
+| **电容式 Capacitive** | Deformation → Capacitance change | Deformation | High precision |
+| **压电式 Piezoelectric** | Deformation → Voltage | Dynamic changes | Fast response |
+
+**我们研究的产品 Products Researched**: StretchSense (capacitive), BendLabs (resistive), Bebop Sensors, 国产: 能斯达、纽迪瑞
+
+详见 See: [柔性传感器硬件](../../components/flexible-sensors/hardware.md)
+
+---
+
+## 15. 数据融合与部署 Data Fusion & Deployment
+
+| 术语 Term | 中文 | 定义 Definition | 备注 Notes |
+|-----------|------|----------------|-----------|
+| **Multi-Modal Fusion** | 多模态融合 | Combining multiple data sources for joint analysis | Vision + Pressure + EMG + E-Skin + IMU |
+| **Time Synchronization** | 时间同步 | Aligning sensor data to unified timeline | Software (~10ms), Hardware (<1ms), Event-based |
+| **Feature Engineering** | 特征工程 | Extracting meaningful features from raw sensor data | Joint angles, CoP trajectory, activation timing |
+| **ONNX** | 开放神经网络交换格式 | Universal ML model format for cross-platform deployment | Train: PyTorch → Export: ONNX → Infer: ONNX Runtime Mobile |
+
+**我们的架构 Our Architecture**: PyTorch training → ONNX export → ONNX Runtime Mobile inference
+
+详见 See: [ONNX Runtime 部署 ADR](../decisions/0006-onnx-runtime-deployment.md)
+
+---
+
 ## 参考文献 References
 
 ### 核心研究 Core Studies
@@ -253,6 +314,7 @@
 | 版本 | 日期 | 修改内容 |
 |------|------|---------|
 | 1.0 | 2025-12-17 | 初始版本: 覆盖12个类别、140+术语 |
+| 1.1 | 2025-12-17 | 合并 00-glossary.md: 新增 §13 视觉/姿态估计, §14 柔性传感器, §15 数据融合 |
 
 ---
 

@@ -115,7 +115,6 @@ nav:
   - 系统设计:
       - design/system-design.md
       - design/ml-basics.md
-      - design/00-glossary.md
       - design/getting-started.md
       - design/sdk-selection.md
       - design/swing-comparison.md

@@ -11,6 +11,10 @@ Movement Chain AI documentation site - built with **Zensical** (MIT-licensed sta
 ## Commands
 
 ```bash
+# Prerequisites (first time setup)
+pip install zensical
+npm install
+
 # Serve documentation locally (default port 8000)
 zensical serve
 
@@ -70,11 +74,10 @@ docs/zh/                    # Documentation root (Chinese, single-language)
 
 ```text
 design/
-├── index.md              # Navigation hub
 ├── system-design.md      # Core MVP pipeline (THE main doc)
 ├── getting-started.md    # Test without hardware
 ├── decisions-summary.md  # ADR quick reference
-├── 00-glossary.md        # Term definitions
+├── research/             # Biomechanics glossary, benchmarks, specs
 └── decisions/            # Full ADR documents
 ```
 
@@ -158,6 +161,7 @@ Located in `docs/zh/design/decisions/`. Use sequential numbering (ADR-0007, etc.
 
 - ST.com documentation links (datasheets, MEMS Studio) return Status 0 in automated link checks but are valid - they block automated requests
 - Some pre-existing research files in `archive/` have dead external links; use `--no-verify` when pushing if unrelated to your changes
+- Link checker config in `.markdown-link-check.json`: 20s timeout, retry on 429, localhost URLs ignored
 
 ## Parallel Execution Strategy
 
