@@ -22,12 +22,10 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    - navigation.tabs
     - navigation.top
     - navigation.tracking
     - navigation.indexes
     - navigation.instant
-    - navigation.prune
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -122,6 +120,12 @@ nav:
       - design/sdk-selection.md
       - design/swing-comparison.md
       - design/decisions-summary.md
+      - 研究与标准:
+          - design/research/index.md
+          - 生物力学术语表: design/research/biomechanics-glossary.md
+          - 生物力学基准值: design/research/biomechanics-benchmarks.md
+          - 传感器指标映射: design/research/sensor-metric-mapping.md
+          - 个性化规范: design/research/personalization-spec.md
       - 架构决策 (ADR):
           - design/decisions/index.md
           - design/decisions/0001-multi-repo-structure.md
