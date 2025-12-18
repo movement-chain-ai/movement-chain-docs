@@ -1,0 +1,4940 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Architecture documentation for multimodal AI movement training system">
+      
+      
+        <meta name="author" content="Movement Chain AI Team">
+      
+      
+        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/design/research/biomechanics-glossary/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../biomechanics-benchmarks/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>生物力学术语表 - Movement Chain AI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#golf-biomechanics-glossary" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Movement Chain AI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              生物力学术语表
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/movement-chain-ai/movement-chain-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    movement-chain-ai/movement-chain-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Movement Chain AI Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/movement-chain-ai/movement-chain-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    movement-chain-ai/movement-chain-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文档导航
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../risk-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    风险管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../product/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    产品战略
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    产品战略
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/user-personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用户画像
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/unique-value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    独特价值主张
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../product/market-landscape/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    市场研究
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    市场研究
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/pain-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用户痛点
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/market-size/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    市场分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_4" id="__nav_4_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    竞品分析
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    竞品分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/competitors/imu-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMU 方案竞品分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/competitors/vision-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    视觉方案竞品分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/competitors/multi-sensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多传感器方案竞品分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/competitors/smart-clothing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能服装竞品分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/product-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    产品战略：从市场缺口到设计决策
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统设计
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统设计 System Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../swing-phases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    挥杆 8 阶段细分 Golf Swing 8-Phase Breakdown
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../real-time-feedback-spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实时反馈规范 Real-Time Feedback Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../swing-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    挥杆对比策略 Swing Comparison Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../personalization-spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个性化基准规范 Personalization Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速开始 Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ml-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML 基础入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sdk-selection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK/库选型指南 SDK Selection Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策摘要 Decisions Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_11" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    研究与标准
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_11" id="__nav_5_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    研究与标准
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生物力学术语表
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生物力学术语表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-body-segments-anatomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 身体部位与解剖学 Body Segments &amp; Anatomy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-rotation-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 旋转指标 Rotation Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-linear-motion-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 线性运动指标 Linear Motion Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-velocity-timing-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 速度与时机指标 Velocity &amp; Timing Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-tempo-timing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 节奏与时机 Tempo &amp; Timing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-kinematic-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 运动链顺序 Kinematic Sequence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-emg-muscle-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 肌电与肌肉术语 EMG &amp; Muscle Terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-performance-correlation-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 性能相关术语 Performance Correlation Terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-swing-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 挥杆阶段 Swing Phases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-sensor-measurement-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 传感器测量术语 Sensor Measurement Terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-training-feedback-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 训练与反馈术语 Training &amp; Feedback Terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-common-swing-fault-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 常见挥杆问题术语 Common Swing Fault Terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminology-usage-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        术语使用规范 Terminology Usage Guidelines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="术语使用规范 Terminology Usage Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-data-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1️⃣ 数据标注 Data Annotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-units-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2️⃣ 单位标准 Units Standard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-abbreviations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3️⃣ 缩写使用 Abbreviations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-vision-pose-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 视觉与姿态估计 Vision &amp; Pose Estimation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-flexible-sensors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. 柔性传感器 Flexible Sensors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. 柔性传感器 Flexible Sensors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fsr-force-sensing-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FSR (Force Sensing Resistor) 力敏电阻
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-skin-electronic-skin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E-Skin (Electronic Skin) 电子皮肤
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-data-fusion-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. 数据融合与部署 Data Fusion &amp; Deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考文献 References
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参考文献 References">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-studies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心研究 Core Studies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systematic-reviews" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        系统综述 Systematic Reviews
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        技术资源 Technical Resources
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        版本历史 Version History
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biomechanics-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生物力学基准值
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sensor-metric-mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    传感器指标映射
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../decisions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架构决策 (ADR)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_12" id="__nav_5_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    架构决策 (ADR)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0001-multi-repo-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001: 多仓库结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002: LSM6DSV16X IMU 传感器选型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0003-flutter-mobile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003: Flutter 跨平台移动开发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0004: 简化的 4 模块架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0005: ESP32-S3 微控制器选择
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0006: ONNX Runtime 用于 ML 模型部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../components/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    硬件组件
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    硬件组件
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMU 惯性测量
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IMU 惯性测量
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/imu/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMU 惯性测量单元
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/imu/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMU 供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EMG 肌电传感
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EMG 肌电传感
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/emg/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EMG 肌电传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/emg/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EMG 供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    视觉/摄像头
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    视觉/摄像头
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/vision/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    视觉/摄像头传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/vision/software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pose Estimation 姿态估计与计算机视觉指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU 微控制器
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCU 微控制器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/mcu/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU 微控制器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/mcu/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU 供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    柔性传感器
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    柔性传感器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/flexible-sensors/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    柔性/E-Skin 传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/flexible-sensors/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    柔性传感器供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_7" id="__nav_6_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压力传感器
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    压力传感器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/pressure-sensors/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压力传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/pressure-sensors/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压力传感器供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../components/supply-chain/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    供应链与 ODM/OEM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_8" id="__nav_6_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    供应链与 ODM/OEM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/supply-chain/china-sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    国内传感器供应商清单 (China Domestic Sensor Suppliers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/supply-chain/china-wearables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中国智能服装与可穿戴设备供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/supply-chain/mvp-suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中国供应商快速 MVP 开发指南 - 高尔夫挥杆分析可穿戴设备
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/supply-chain/smart-clothing-market/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中国智能运动服装与可穿戴设备市场调研报告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/supply-chain/e-skin-odm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Skin ODM/OEM 厂商研究
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../platform/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发平台
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开发平台
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform/mvp-prototype-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVP 原型代码示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    移动应用
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    移动应用
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform/mobile/development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile App Development Guide 移动应用开发指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML 训练
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ML 训练
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform/ml-training/datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets &amp; Benchmarking Guide 数据集与基准测试指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform/ml-training/visual-feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Feedback Design 视觉反馈设计指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    参考资料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    参考资料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/golf-glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高尔夫术语表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/business-glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    商业术语表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/academic-datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运动训练系统的学术研究与数据集 (Academic Research &amp; Datasets for Movement Training Systems)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/golf-research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高尔夫生物力学研究 (Golf Biomechanics Research)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/open-source-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开源工具与代码库 (Open Source Tools &amp; Repositories)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-body-segments-anatomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 身体部位与解剖学 Body Segments &amp; Anatomy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-rotation-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 旋转指标 Rotation Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-linear-motion-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 线性运动指标 Linear Motion Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-velocity-timing-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 速度与时机指标 Velocity &amp; Timing Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-tempo-timing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 节奏与时机 Tempo &amp; Timing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-kinematic-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 运动链顺序 Kinematic Sequence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-emg-muscle-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 肌电与肌肉术语 EMG &amp; Muscle Terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-performance-correlation-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 性能相关术语 Performance Correlation Terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-swing-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 挥杆阶段 Swing Phases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-sensor-measurement-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 传感器测量术语 Sensor Measurement Terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-training-feedback-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 训练与反馈术语 Training &amp; Feedback Terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-common-swing-fault-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 常见挥杆问题术语 Common Swing Fault Terms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terminology-usage-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        术语使用规范 Terminology Usage Guidelines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="术语使用规范 Terminology Usage Guidelines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-data-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1️⃣ 数据标注 Data Annotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-units-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2️⃣ 单位标准 Units Standard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-abbreviations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3️⃣ 缩写使用 Abbreviations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-vision-pose-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 视觉与姿态估计 Vision &amp; Pose Estimation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-flexible-sensors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. 柔性传感器 Flexible Sensors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. 柔性传感器 Flexible Sensors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fsr-force-sensing-resistor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FSR (Force Sensing Resistor) 力敏电阻
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-skin-electronic-skin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E-Skin (Electronic Skin) 电子皮肤
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-data-fusion-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. 数据融合与部署 Data Fusion &amp; Deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考文献 References
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参考文献 References">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-studies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心研究 Core Studies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systematic-reviews" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        系统综述 Systematic Reviews
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        技术资源 Technical Resources
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        版本历史 Version History
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="golf-biomechanics-glossary">高尔夫生物力学术语表 Golf Biomechanics Glossary<a class="headerlink" href="#golf-biomechanics-glossary" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>文档目的</strong>: 定义项目中所有高尔夫生物力学专业术语
+<strong>来源</strong>: TPI, Meister et al. (2011), Cheetham et al., 系统性文献综述 (2022)
+<strong>适用范围</strong>: Movement Chain AI 项目的传感器数据解读、算法开发、用户反馈界面</p>
+</blockquote>
+<hr />
+<h2 id="1-body-segments-anatomy">1. 身体部位与解剖学 Body Segments &amp; Anatomy<a class="headerlink" href="#1-body-segments-anatomy" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>备注 Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Thorax</strong></td>
+<td>胸腔/上躯干</td>
+<td>Upper torso segment from shoulders to mid-spine; primary rotation unit in golf swing</td>
+<td>Rotation measured relative to pelvis coordinate system</td>
+</tr>
+<tr>
+<td><strong>Pelvis</strong></td>
+<td>骨盆</td>
+<td>Hip bone structure; foundational segment that initiates downswing rotation</td>
+<td>Ground contact through feet; first mover in kinematic sequence</td>
+</tr>
+<tr>
+<td><strong>Core</strong></td>
+<td>核心肌群</td>
+<td>Midsection muscle groups including abdominals, obliques, lower back stabilizers</td>
+<td>Critical for X-Factor generation and energy transfer</td>
+</tr>
+<tr>
+<td><strong>Obliques</strong></td>
+<td>腹斜肌</td>
+<td>Side abdominal muscles (internal &amp; external); drive rotational power</td>
+<td>External: backswing; Internal: downswing rotation</td>
+</tr>
+<tr>
+<td><strong>Kinetic Chain</strong></td>
+<td>动力链</td>
+<td>Linked sequence of body segments transferring energy proximally to distally</td>
+<td>Pelvis → Thorax → Arm → Club</td>
+</tr>
+<tr>
+<td><strong>Lead Side</strong></td>
+<td>引导侧</td>
+<td>Left side for right-handed golfers; target-facing side during swing</td>
+<td>Receives majority of impact forces</td>
+</tr>
+<tr>
+<td><strong>Trail Side</strong></td>
+<td>后侧</td>
+<td>Right side for right-handed golfers; power generation side</td>
+<td>Drives rotation in downswing</td>
+</tr>
+<tr>
+<td><strong>Humerus</strong></td>
+<td>肱骨</td>
+<td>Upper arm bone from shoulder to elbow</td>
+<td>Arm segment in kinematic sequence</td>
+</tr>
+<tr>
+<td><strong>Forearm</strong></td>
+<td>前臂</td>
+<td>Lower arm from elbow to wrist (radius and ulna bones)</td>
+<td>Critical for clubface control</td>
+</tr>
+<tr>
+<td><strong>Lumbar Spine</strong></td>
+<td>腰椎</td>
+<td>Lower back vertebrae (L1-L5); primary site of golf-related injuries</td>
+<td>Must balance mobility vs. stability</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-rotation-metrics">2. 旋转指标 Rotation Metrics<a class="headerlink" href="#2-rotation-metrics" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>职业标准 Pro Benchmark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Torso Turn / Shoulder Turn</strong></td>
+<td>肩部旋转</td>
+<td>Rotation of thorax segment about vertical axis during backswing</td>
+<td>Backswing: 90-100° <br> Top: 90-110°</td>
+</tr>
+<tr>
+<td><strong>Pelvis Turn / Hip Turn</strong></td>
+<td>髋部旋转</td>
+<td>Rotation of pelvis segment about vertical axis</td>
+<td>Backswing: 45-55° <br> Top: 45-60°</td>
+</tr>
+<tr>
+<td><strong>X-Factor</strong></td>
+<td>X因子</td>
+<td>Differential rotation between shoulders and pelvis at top of backswing:<br>X-Factor = Shoulder Turn - Pelvis Turn</td>
+<td>42-55° (optimal) <br> &lt;40° = restricted <br> &gt;60° = overly flexible</td>
+</tr>
+<tr>
+<td><strong>X-Factor Stretch</strong></td>
+<td>X因子伸展</td>
+<td><strong>INCREASE</strong> in X-Factor during transition as pelvis rotates forward while shoulders remain coiled:<br>ΔX-Factor = X-Factor(transition) - X-Factor(top)</td>
+<td>+15-25% increase <br> (e.g., 45° → 56° = +24%)</td>
+</tr>
+<tr>
+<td><strong>S-Factor</strong></td>
+<td>S因子/肩倾斜</td>
+<td>Shoulder tilt angle relative to horizontal plane (side bend)</td>
+<td>Backswing: 30-40° right tilt <br> Impact: 25-35° left tilt</td>
+</tr>
+<tr>
+<td><strong>O-Factor</strong></td>
+<td>O因子/髋倾斜</td>
+<td>Pelvis tilt angle relative to horizontal plane</td>
+<td>Stable 5-10° throughout swing</td>
+</tr>
+<tr>
+<td><strong>Forearm Rotation</strong></td>
+<td>前臂旋转</td>
+<td>Pronation/supination of forearm for clubface control</td>
+<td>60-90° total rotation through impact</td>
+</tr>
+<tr>
+<td><strong>Wrist Cock</strong></td>
+<td>腕关节屈曲</td>
+<td>Radial deviation of wrist storing energy in backswing</td>
+<td>90-110° at top; released &lt;30° before impact</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-linear-motion-metrics">3. 线性运动指标 Linear Motion Metrics<a class="headerlink" href="#3-linear-motion-metrics" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>职业标准 Pro Benchmark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sway</strong></td>
+<td>侧移</td>
+<td>Lateral side-to-side movement along target line (X-axis)</td>
+<td>&lt;3 inches backswing <br> 4-6 inches downswing (toward target)</td>
+</tr>
+<tr>
+<td><strong>Thrust</strong></td>
+<td>前后移动</td>
+<td>Front-to-back movement perpendicular to target line (Y-axis)</td>
+<td>&lt;2 inches total swing</td>
+</tr>
+<tr>
+<td><strong>Lift</strong></td>
+<td>垂直位移</td>
+<td>Up-down vertical movement (Z-axis)</td>
+<td>2-4 inches (squat then extend)</td>
+</tr>
+<tr>
+<td><strong>Torso Sway</strong></td>
+<td>上躯干侧移</td>
+<td>Lateral translation of thorax center of mass</td>
+<td>Minimal; rotation dominant</td>
+</tr>
+<tr>
+<td><strong>Pelvis Sway</strong></td>
+<td>骨盆侧移</td>
+<td>Lateral translation of pelvis; weight shift indicator</td>
+<td>3-5 inches toward target in downswing</td>
+</tr>
+<tr>
+<td><strong>Center of Mass (COM)</strong></td>
+<td>质心</td>
+<td>Weighted average position of body mass</td>
+<td>Stays within base of support (feet)</td>
+</tr>
+<tr>
+<td><strong>Weight Shift</strong></td>
+<td>重心转移</td>
+<td>Redistribution of ground reaction forces between feet</td>
+<td>60% trail → 80% lead at impact</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-velocity-timing-metrics">4. 速度与时机指标 Velocity &amp; Timing Metrics<a class="headerlink" href="#4-velocity-timing-metrics" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>职业标准 Pro Benchmark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Angular Velocity</strong></td>
+<td>角速度</td>
+<td>Rate of rotation in degrees per second (°/s)</td>
+<td>See segment-specific values below</td>
+</tr>
+<tr>
+<td><strong>Pelvis Rotation Velocity</strong></td>
+<td>骨盆旋转速度</td>
+<td>Peak rotational speed of pelvis during downswing</td>
+<td>477-550°/s (mean: 477°/s)</td>
+</tr>
+<tr>
+<td><strong>Thorax Rotation Velocity</strong></td>
+<td>胸腔旋转速度</td>
+<td>Peak rotational speed of thorax during downswing</td>
+<td>550-650°/s (mean: 550°/s)</td>
+</tr>
+<tr>
+<td><strong>Arm Rotation Velocity</strong></td>
+<td>手臂旋转速度</td>
+<td>Peak rotational speed of lead arm segment</td>
+<td>900-1200°/s</td>
+</tr>
+<tr>
+<td><strong>Wrist Angular Velocity</strong></td>
+<td>腕关节角速度</td>
+<td>Peak rotational speed of wrist release</td>
+<td>1500-2500°/s (highest in chain)</td>
+</tr>
+<tr>
+<td><strong>Clubhead Speed</strong></td>
+<td>杆头速度</td>
+<td>Linear velocity of clubhead at impact</td>
+<td>110-125 mph (pros) <br> 85-95 mph (scratch) <br> 65-75 mph (15 hdcp)</td>
+</tr>
+<tr>
+<td><strong>Peak Angular Velocity</strong></td>
+<td>峰值角速度</td>
+<td>Maximum rotational speed during downswing for any segment</td>
+<td>Occurs sequentially: Pelvis → Thorax → Arm → Wrist</td>
+</tr>
+<tr>
+<td><strong>Rate of Velocity Development</strong></td>
+<td>速度增长率</td>
+<td>Acceleration slope (°/s²); how fast segment reaches peak speed</td>
+<td>Higher = more explosive power</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-tempo-timing">5. 节奏与时机 Tempo &amp; Timing<a class="headerlink" href="#5-tempo-timing" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>职业标准 Pro Benchmark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tempo</strong></td>
+<td>节奏</td>
+<td>Rhythmic pattern and timing characteristics of swing</td>
+<td>Individual preference; consistency key</td>
+</tr>
+<tr>
+<td><strong>Tempo Ratio</strong></td>
+<td>节奏比</td>
+<td>Ratio of backswing duration to downswing duration:<br>Ratio = Backswing Time / Downswing Time</td>
+<td>3:1 (most common) <br> Range: 2:1 to 4:1</td>
+</tr>
+<tr>
+<td><strong>Backswing Duration</strong></td>
+<td>上杆时间</td>
+<td>Time from takeaway to top of backswing</td>
+<td>0.70-0.80s (driver)</td>
+</tr>
+<tr>
+<td><strong>Downswing Duration</strong></td>
+<td>下杆时间</td>
+<td>Time from transition to impact</td>
+<td>0.23-0.28s (driver)</td>
+</tr>
+<tr>
+<td><strong>Transition</strong></td>
+<td>转换期</td>
+<td>Critical 50-100ms window where pelvis initiates forward rotation while shoulders complete backswing; <strong>X-Factor Stretch</strong> occurs here</td>
+<td>0.05-0.10s duration</td>
+</tr>
+<tr>
+<td><strong>Time to Peak Velocity</strong></td>
+<td>达峰时间</td>
+<td>Time from downswing start to peak angular velocity for each segment</td>
+<td>Pelvis: ~0.10s <br> Thorax: ~0.15s <br> Arm: ~0.20s <br> Wrist: ~0.23s</td>
+</tr>
+<tr>
+<td><strong>Time Between Peaks (TBP)</strong></td>
+<td>峰值间隔</td>
+<td>Temporal gap between segment peak velocities</td>
+<td>Optimal: 20-50ms between segments</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-kinematic-sequence">6. 运动链顺序 Kinematic Sequence<a class="headerlink" href="#6-kinematic-sequence" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>备注 Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Kinematic Sequence</strong></td>
+<td>运动链顺序</td>
+<td>Ordered sequence of segment acceleration and deceleration:<br>1️⃣ Pelvis accelerates<br>2️⃣ Thorax accelerates (pelvis decelerates)<br>3️⃣ Arms accelerate (thorax decelerates)<br>4️⃣ Club accelerates (arms decelerate)</td>
+<td>Signature of efficient power transfer</td>
+</tr>
+<tr>
+<td><strong>Proximal-to-Distal Sequencing</strong></td>
+<td>近端到远端顺序</td>
+<td>Fundamental biomechanical principle: energy flows from body center (proximal) to extremities (distal)</td>
+<td>Pelvis (proximal) → Wrist (distal)</td>
+</tr>
+<tr>
+<td><strong>Peak Timing</strong></td>
+<td>峰值时机</td>
+<td>Temporal location of each segment's peak angular velocity</td>
+<td>Must occur in sequence; no overlaps</td>
+</tr>
+<tr>
+<td><strong>Deceleration</strong></td>
+<td>减速</td>
+<td>Slowing of proximal segment to transfer energy distally</td>
+<td>Each segment decelerates as next accelerates</td>
+</tr>
+<tr>
+<td><strong>Transfer Ratio</strong></td>
+<td>传递比率</td>
+<td>Velocity ratio between adjacent segments:<br>Ratio = Distal Peak / Proximal Peak</td>
+<td>Ideal: ~1.5x gain per segment <br> (e.g., Thorax/Pelvis = 1.3-1.5)</td>
+</tr>
+<tr>
+<td><strong>Sequence Reversal</strong></td>
+<td>顺序颠倒</td>
+<td>Inefficient pattern where distal segment peaks before proximal</td>
+<td>Common fault: Arms peak before thorax</td>
+</tr>
+<tr>
+<td><strong>Simultaneous Peaks</strong></td>
+<td>同步达峰</td>
+<td>Inefficient pattern where two segments peak together</td>
+<td>Loss of energy transfer efficiency</td>
+</tr>
+<tr>
+<td><strong>Double Peak</strong></td>
+<td>双峰</td>
+<td>Segment velocity graph shows two peaks instead of one</td>
+<td>Indicates energy leak or re-acceleration</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-emg-muscle-terms">7. 肌电与肌肉术语 EMG &amp; Muscle Terms<a class="headerlink" href="#7-emg-muscle-terms" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>备注 Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>EMG (Electromyography)</strong></td>
+<td>肌电图</td>
+<td>Measurement of electrical activity produced by skeletal muscles</td>
+<td>Surface EMG: non-invasive skin electrodes</td>
+</tr>
+<tr>
+<td><strong>Muscle Activation</strong></td>
+<td>肌肉激活</td>
+<td>Timing and intensity of muscle contraction; when/how hard muscle works</td>
+<td>Measured as % of Maximum Voluntary Contraction (MVC)</td>
+</tr>
+<tr>
+<td><strong>RMS Envelope</strong></td>
+<td>均方根包络</td>
+<td>Root Mean Square smoothing of raw EMG signal to show activation trend</td>
+<td>Typical window: 50-100ms</td>
+</tr>
+<tr>
+<td><strong>Onset Time</strong></td>
+<td>激活起始时间</td>
+<td>Moment when muscle begins contracting (exceeds baseline threshold)</td>
+<td>Typically &gt;2 SD above baseline</td>
+</tr>
+<tr>
+<td><strong>Peak Time</strong></td>
+<td>峰值时间</td>
+<td>Moment of maximum muscle activation during swing phase</td>
+<td>Varies by muscle and swing phase</td>
+</tr>
+<tr>
+<td><strong>Activation Sequence</strong></td>
+<td>激活顺序</td>
+<td>Order in which muscles activate during swing</td>
+<td><strong>Correct</strong>: Core → Obliques → Forearm <br> <strong>Faulty</strong>: Forearm activates first</td>
+</tr>
+<tr>
+<td><strong>Compensation</strong></td>
+<td>代偿</td>
+<td>Incorrect muscle recruitment pattern where wrong muscles compensate for weak/inactive target muscles</td>
+<td>Example: Forearm working when core should</td>
+</tr>
+<tr>
+<td><strong>MVC (Maximum Voluntary Contraction)</strong></td>
+<td>最大自主收缩</td>
+<td>Reference measurement: maximum force muscle can produce</td>
+<td>Used to normalize EMG data (% MVC)</td>
+</tr>
+<tr>
+<td><strong>Co-contraction</strong></td>
+<td>协同收缩</td>
+<td>Simultaneous activation of agonist and antagonist muscles</td>
+<td>Stabilizes joints but can reduce power</td>
+</tr>
+<tr>
+<td><strong>Lead Oblique</strong></td>
+<td>引导侧腹斜肌</td>
+<td>External oblique on lead side; active in backswing rotation</td>
+<td>Left external oblique (RH golfer)</td>
+</tr>
+<tr>
+<td><strong>Trail Oblique</strong></td>
+<td>后侧腹斜肌</td>
+<td>Internal oblique on trail side; drives downswing rotation</td>
+<td>Right internal oblique (RH golfer)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-performance-correlation-terms">8. 性能相关术语 Performance Correlation Terms<a class="headerlink" href="#8-performance-correlation-terms" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>应用 Application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Coefficient of Variation (CV)</strong></td>
+<td>变异系数</td>
+<td>Measure of consistency: CV = (Standard Deviation / Mean) × 100%</td>
+<td>Lower CV = more consistent <br> Good: &lt;5% for tempo metrics</td>
+</tr>
+<tr>
+<td><strong>Correlation Coefficient (r)</strong></td>
+<td>相关系数</td>
+<td>Statistical measure of linear relationship strength between two variables</td>
+<td>r &gt; 0.7 = strong positive <br> r &lt; -0.7 = strong negative</td>
+</tr>
+<tr>
+<td><strong>Clubhead Speed at Impact (CSI)</strong></td>
+<td>击球时杆头速度</td>
+<td>Primary outcome variable; determines ball distance</td>
+<td>Driver: 110-125 mph (pros)</td>
+</tr>
+<tr>
+<td><strong>Free Moment</strong></td>
+<td>自由力矩</td>
+<td>Vertical torque component measured by force plate; rotation around vertical axis</td>
+<td>Higher = more rotational power from ground</td>
+</tr>
+<tr>
+<td><strong>Ground Reaction Force (GRF)</strong></td>
+<td>地面反作用力</td>
+<td>Forces exerted by ground on golfer's feet</td>
+<td>Vertical: 0.8-1.2× body weight <br> Lateral: drives weight shift</td>
+</tr>
+<tr>
+<td><strong>Smash Factor</strong></td>
+<td>撞击因子</td>
+<td>Ball speed divided by clubhead speed; measures strike quality</td>
+<td>Optimal: 1.48-1.50 (driver)</td>
+</tr>
+<tr>
+<td><strong>Ball Speed</strong></td>
+<td>球速</td>
+<td>Initial velocity of golf ball after impact</td>
+<td>1.48-1.50× clubhead speed (optimal)</td>
+</tr>
+<tr>
+<td><strong>Launch Angle</strong></td>
+<td>发射角</td>
+<td>Vertical angle of ball trajectory at launch</td>
+<td>Driver: 10-15° (optimal)</td>
+</tr>
+<tr>
+<td><strong>Spin Rate</strong></td>
+<td>旋转率</td>
+<td>Backspin of ball in RPM</td>
+<td>Driver: 2200-2800 RPM (optimal)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-swing-phases">9. 挥杆阶段 Swing Phases<a class="headerlink" href="#9-swing-phases" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>时长 Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Address / Setup</strong></td>
+<td>准备站姿</td>
+<td>Initial stationary position before swing begins</td>
+<td>Static position</td>
+</tr>
+<tr>
+<td><strong>Takeaway</strong></td>
+<td>起杆</td>
+<td>First 12-18 inches of backswing; club moves away from ball</td>
+<td>0.10-0.15s</td>
+</tr>
+<tr>
+<td><strong>Backswing</strong></td>
+<td>上杆</td>
+<td>Full rotation phase from takeaway to top</td>
+<td>0.70-0.80s total</td>
+</tr>
+<tr>
+<td><strong>Top of Backswing</strong></td>
+<td>上杆顶点</td>
+<td>Moment of maximum shoulder rotation; club reaches highest point</td>
+<td>Instantaneous (velocity = 0)</td>
+</tr>
+<tr>
+<td><strong>Transition</strong></td>
+<td>转换</td>
+<td>Critical reversal phase where pelvis starts forward while shoulders complete backswing; <strong>X-Factor Stretch happens here</strong></td>
+<td>0.05-0.10s</td>
+</tr>
+<tr>
+<td><strong>Early Downswing</strong></td>
+<td>下杆前期</td>
+<td>Pelvis and thorax accelerate; arms passive</td>
+<td>0.10-0.15s</td>
+</tr>
+<tr>
+<td><strong>Late Downswing</strong></td>
+<td>下杆后期</td>
+<td>Arms and club accelerate toward impact</td>
+<td>0.10-0.15s</td>
+</tr>
+<tr>
+<td><strong>Impact</strong></td>
+<td>击球</td>
+<td>Clubface contacts ball; maximum clubhead speed</td>
+<td>~5ms contact time</td>
+</tr>
+<tr>
+<td><strong>Follow-through</strong></td>
+<td>收杆</td>
+<td>Deceleration phase after impact; energy dissipation</td>
+<td>0.30-0.50s</td>
+</tr>
+<tr>
+<td><strong>Finish</strong></td>
+<td>完成姿势</td>
+<td>Final balanced position after swing</td>
+<td>Static position</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-sensor-measurement-terms">10. 传感器测量术语 Sensor Measurement Terms<a class="headerlink" href="#10-sensor-measurement-terms" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>传感器类型 Sensor Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IMU (Inertial Measurement Unit)</strong></td>
+<td>惯性测量单元</td>
+<td>Sensor combining accelerometer + gyroscope + (optional) magnetometer</td>
+<td>LSM6DSV16X (6-axis)</td>
+</tr>
+<tr>
+<td><strong>Accelerometer</strong></td>
+<td>加速度计</td>
+<td>Measures linear acceleration in 3 axes (X, Y, Z)</td>
+<td>Captures sway, thrust, lift</td>
+</tr>
+<tr>
+<td><strong>Gyroscope</strong></td>
+<td>陀螺仪</td>
+<td>Measures angular velocity in 3 axes (pitch, roll, yaw)</td>
+<td>Captures rotation rates</td>
+</tr>
+<tr>
+<td><strong>Magnetometer</strong></td>
+<td>磁力计</td>
+<td>Measures magnetic field for absolute heading reference</td>
+<td>Optional; helps with drift correction</td>
+</tr>
+<tr>
+<td><strong>Drift</strong></td>
+<td>漂移</td>
+<td>Gradual accumulation of integration error in calculated angles</td>
+<td>LSM6DSV16X: &lt;1° per 45 min</td>
+</tr>
+<tr>
+<td><strong>Sensor Fusion</strong></td>
+<td>传感器融合</td>
+<td>Algorithmic combination of accelerometer + gyroscope data to calculate orientation</td>
+<td>Madgwick, Mahony, EKF algorithms</td>
+</tr>
+<tr>
+<td><strong>Quaternion</strong></td>
+<td>四元数</td>
+<td>Mathematical representation of 3D rotation (4 values: w, x, y, z)</td>
+<td>Avoids gimbal lock vs. Euler angles</td>
+</tr>
+<tr>
+<td><strong>Euler Angles</strong></td>
+<td>欧拉角</td>
+<td>3D rotation as yaw-pitch-roll angles</td>
+<td>Intuitive but has gimbal lock issue</td>
+</tr>
+<tr>
+<td><strong>Sampling Rate</strong></td>
+<td>采样率</td>
+<td>Frequency of sensor measurements (Hz)</td>
+<td>Golf: 100-200 Hz minimum <br> LSM6DSV16X: up to 7.68 kHz</td>
+</tr>
+<tr>
+<td><strong>EMG Electrode</strong></td>
+<td>肌电电极</td>
+<td>Surface sensor measuring muscle electrical activity</td>
+<td>Adhesive Ag/AgCl wet gel electrodes</td>
+</tr>
+<tr>
+<td><strong>Baseline Noise</strong></td>
+<td>基线噪声</td>
+<td>Electrical noise in EMG signal when muscle is relaxed</td>
+<td>Must filter before onset detection</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-training-feedback-terms">11. 训练与反馈术语 Training &amp; Feedback Terms<a class="headerlink" href="#11-training-feedback-terms" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>应用场景 Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Real-Time Feedback</strong></td>
+<td>实时反馈</td>
+<td>Immediate auditory/visual/haptic cues during swing</td>
+<td>Must occur &lt;300ms for effective learning</td>
+</tr>
+<tr>
+<td><strong>Post-Swing Analysis</strong></td>
+<td>挥杆后分析</td>
+<td>Detailed review of swing metrics after completion</td>
+<td>Mobile app visualization, coaching</td>
+</tr>
+<tr>
+<td><strong>Benchmark Comparison</strong></td>
+<td>基准对比</td>
+<td>User's metrics vs. professional/ideal standards</td>
+<td>Shows deviation from optimal ranges</td>
+</tr>
+<tr>
+<td><strong>Progression Tracking</strong></td>
+<td>进度追踪</td>
+<td>Longitudinal monitoring of metric improvements over time</td>
+<td>Session-by-session trend analysis</td>
+</tr>
+<tr>
+<td><strong>Drill</strong></td>
+<td>练习动作</td>
+<td>Targeted exercise to improve specific swing component</td>
+<td>Example: "Pelvis-first" transition drill</td>
+</tr>
+<tr>
+<td><strong>Constraint-Based Training</strong></td>
+<td>约束训练</td>
+<td>Using physical/informational constraints to guide motor learning</td>
+<td>Example: Limit backswing to 70° to feel X-Factor</td>
+</tr>
+<tr>
+<td><strong>Transfer of Learning</strong></td>
+<td>学习迁移</td>
+<td>Application of practiced skill to actual golf performance</td>
+<td>Practice range → course performance</td>
+</tr>
+<tr>
+<td><strong>Variability</strong></td>
+<td>变异性</td>
+<td>Natural fluctuation in swing metrics across repetitions</td>
+<td>Some variability is healthy; CV indicates consistency</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-common-swing-fault-terms">12. 常见挥杆问题术语 Common Swing Fault Terms<a class="headerlink" href="#12-common-swing-fault-terms" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>生物力学特征 Biomechanical Signature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Early Extension</strong></td>
+<td>早起</td>
+<td>Premature straightening of hips in downswing; pelvis moves toward ball</td>
+<td>Thrust &gt;3 inches; loss of spine angle</td>
+</tr>
+<tr>
+<td><strong>Sway</strong></td>
+<td>过度侧移</td>
+<td>Excessive lateral movement of pelvis away from target in backswing</td>
+<td>Pelvis sway &gt;5 inches; weight stuck on trail side</td>
+</tr>
+<tr>
+<td><strong>Reverse Pivot</strong></td>
+<td>反向转移</td>
+<td>Weight shifts toward target in backswing (opposite of correct)</td>
+<td>Weight &gt;55% lead side at top</td>
+</tr>
+<tr>
+<td><strong>Over-the-Top</strong></td>
+<td>外侧下杆</td>
+<td>Shoulders initiate downswing before pelvis; club comes outside-in</td>
+<td>Sequence reversal: Thorax peaks before pelvis</td>
+</tr>
+<tr>
+<td><strong>Casting</strong></td>
+<td>早释放</td>
+<td>Premature release of wrist angle in downswing; power loss</td>
+<td>Wrist uncocks before pelvis reaches peak velocity</td>
+</tr>
+<tr>
+<td><strong>Chicken Wing</strong></td>
+<td>鸡翼</td>
+<td>Lead elbow bends and lifts through impact</td>
+<td>Compensation for early extension or poor sequencing</td>
+</tr>
+<tr>
+<td><strong>Hanging Back</strong></td>
+<td>后撤</td>
+<td>Weight remains on trail side at impact</td>
+<td>Weight &lt;60% lead side at impact</td>
+</tr>
+<tr>
+<td><strong>Slide</strong></td>
+<td>滑动</td>
+<td>Pelvis translates laterally without rotation</td>
+<td>High sway, low pelvis rotation velocity</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="terminology-usage-guidelines">术语使用规范 Terminology Usage Guidelines<a class="headerlink" href="#terminology-usage-guidelines" title="Permanent link">&para;</a></h2>
+<h3 id="1-data-annotation">1️⃣ 数据标注 Data Annotation<a class="headerlink" href="#1-data-annotation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>使用英文术语作为 <strong>变量名</strong> (代码/数据库): <code>x_factor</code>, <code>pelvis_rotation_velocity</code></li>
+<li>使用中文术语作为 <strong>用户界面</strong> (App): "X因子", "骨盆旋转速度"</li>
+</ul>
+<h3 id="2-units-standard">2️⃣ 单位标准 Units Standard<a class="headerlink" href="#2-units-standard" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>角度 Angles</strong>: 度 (°) - degrees</li>
+<li><strong>角速度 Angular Velocity</strong>: 度/秒 (°/s) - degrees per second</li>
+<li><strong>线速度 Linear Velocity</strong>: 米/秒 (m/s) or 英里/时 (mph) for clubhead</li>
+<li><strong>时间 Time</strong>: 秒 (s) or 毫秒 (ms)</li>
+<li><strong>距离 Distance</strong>: 英寸 (inches) or 厘米 (cm)</li>
+</ul>
+<h3 id="3-abbreviations">3️⃣ 缩写使用 Abbreviations<a class="headerlink" href="#3-abbreviations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>EMG</strong>: Electromyography (always capitalized)</li>
+<li><strong>IMU</strong>: Inertial Measurement Unit</li>
+<li><strong>COM</strong>: Center of Mass</li>
+<li><strong>GRF</strong>: Ground Reaction Force</li>
+<li><strong>RMS</strong>: Root Mean Square</li>
+<li><strong>CV</strong>: Coefficient of Variation</li>
+<li><strong>TBP</strong>: Time Between Peaks</li>
+</ul>
+<hr />
+<h2 id="13-vision-pose-estimation">13. 视觉与姿态估计 Vision &amp; Pose Estimation<a class="headerlink" href="#13-vision-pose-estimation" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>备注 Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pose Estimation</strong></td>
+<td>姿态估计</td>
+<td>Detecting human body keypoints from images/video</td>
+<td>Top-Down vs Bottom-Up approaches</td>
+</tr>
+<tr>
+<td><strong>Keypoint</strong></td>
+<td>关键点</td>
+<td>Body skeleton joint node (e.g., shoulder, elbow, wrist)</td>
+<td>COCO 17-point format standard</td>
+</tr>
+<tr>
+<td><strong>RTMPose</strong></td>
+<td>RTMPose</td>
+<td>Real-time pose estimation model from OpenMMLab</td>
+<td>RTMPose-m: 75.8% AP, 70+ FPS mobile</td>
+</tr>
+<tr>
+<td><strong>AP (Average Precision)</strong></td>
+<td>平均精度</td>
+<td>Standard pose estimation accuracy metric; precision averaged across IoU thresholds</td>
+<td><code>AP@0.5</code>, <code>AP@0.75</code>, mAP</td>
+</tr>
+<tr>
+<td><strong>COCO Format</strong></td>
+<td>COCO格式</td>
+<td>17-keypoint body format: nose, eyes, ears, shoulders, elbows, wrists, hips, knees, ankles</td>
+<td>Industry standard annotation format</td>
+</tr>
+</tbody>
+</table>
+<p><strong>我们选择 Our Choice</strong>: RTMPose-m (13.6MB model, optimal accuracy/speed trade-off)</p>
+<p>详见 See: <a href="../../../components/vision/software/">视觉软件</a></p>
+<hr />
+<h2 id="14-flexible-sensors">14. 柔性传感器 Flexible Sensors<a class="headerlink" href="#14-flexible-sensors" title="Permanent link">&para;</a></h2>
+<h3 id="fsr-force-sensing-resistor">FSR (Force Sensing Resistor) 力敏电阻<a class="headerlink" href="#fsr-force-sensing-resistor" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>属性 Property</th>
+<th>描述 Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>原理 Principle</strong></td>
+<td>Pressure increases → Resistance decreases</td>
+</tr>
+<tr>
+<td><strong>厚度 Thickness</strong></td>
+<td>&lt;0.5mm (ultra-thin)</td>
+</tr>
+<tr>
+<td><strong>应用 Applications</strong></td>
+<td>Foot pressure, grip force, touch detection</td>
+</tr>
+<tr>
+<td><strong>常见产品 Products</strong></td>
+<td>Interlink FSR 402/406, FlexiForce A201</td>
+</tr>
+</tbody>
+</table>
+<p>详见 See: <a href="../../../components/pressure-sensors/hardware/">压力传感器硬件</a></p>
+<h3 id="e-skin-electronic-skin">E-Skin (Electronic Skin) 电子皮肤<a class="headerlink" href="#e-skin-electronic-skin" title="Permanent link">&para;</a></h3>
+<p>Flexible sensor arrays conforming to skin or curved surfaces.</p>
+<table>
+<thead>
+<tr>
+<th>类型 Type</th>
+<th>原理 Principle</th>
+<th>测量内容 Measures</th>
+<th>特点 Characteristics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>应变式 Strain</strong></td>
+<td>Deformation → Resistance change</td>
+<td>Bending/stretching</td>
+<td>Good linearity</td>
+</tr>
+<tr>
+<td><strong>压阻式 Piezoresistive</strong></td>
+<td>Pressure → Resistance change</td>
+<td>Pressure distribution</td>
+<td>High sensitivity</td>
+</tr>
+<tr>
+<td><strong>电容式 Capacitive</strong></td>
+<td>Deformation → Capacitance change</td>
+<td>Deformation</td>
+<td>High precision</td>
+</tr>
+<tr>
+<td><strong>压电式 Piezoelectric</strong></td>
+<td>Deformation → Voltage</td>
+<td>Dynamic changes</td>
+<td>Fast response</td>
+</tr>
+</tbody>
+</table>
+<p><strong>我们研究的产品 Products Researched</strong>: StretchSense (capacitive), BendLabs (resistive), Bebop Sensors, 国产: 能斯达、纽迪瑞</p>
+<p>详见 See: <a href="../../../components/flexible-sensors/hardware/">柔性传感器硬件</a></p>
+<hr />
+<h2 id="15-data-fusion-deployment">15. 数据融合与部署 Data Fusion &amp; Deployment<a class="headerlink" href="#15-data-fusion-deployment" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>术语 Term</th>
+<th>中文</th>
+<th>定义 Definition</th>
+<th>备注 Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Multi-Modal Fusion</strong></td>
+<td>多模态融合</td>
+<td>Combining multiple data sources for joint analysis</td>
+<td>Vision + Pressure + EMG + E-Skin + IMU</td>
+</tr>
+<tr>
+<td><strong>Time Synchronization</strong></td>
+<td>时间同步</td>
+<td>Aligning sensor data to unified timeline</td>
+<td>Software (~10ms), Hardware (&lt;1ms), Event-based</td>
+</tr>
+<tr>
+<td><strong>Feature Engineering</strong></td>
+<td>特征工程</td>
+<td>Extracting meaningful features from raw sensor data</td>
+<td>Joint angles, CoP trajectory, activation timing</td>
+</tr>
+<tr>
+<td><strong>ONNX</strong></td>
+<td>开放神经网络交换格式</td>
+<td>Universal ML model format for cross-platform deployment</td>
+<td>Train: PyTorch → Export: ONNX → Infer: ONNX Runtime Mobile</td>
+</tr>
+</tbody>
+</table>
+<p><strong>我们的架构 Our Architecture</strong>: PyTorch training → ONNX export → ONNX Runtime Mobile inference</p>
+<p>详见 See: <a href="../../decisions/0006-onnx-runtime-deployment/">ONNX Runtime 部署 ADR</a></p>
+<hr />
+<h2 id="references">参考文献 References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<h3 id="core-studies">核心研究 Core Studies<a class="headerlink" href="#core-studies" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Cheetham, P.J., Martin, P.E., Mottram, R.E., &amp; St Laurent, B.F.</strong> (2001). The importance of stretching the "X-Factor" in the downswing of golf: The "X-Factor Stretch". In <em>Optimising Performance in Golf</em> (pp. 192-199). Brisbane: Australian Academic Press.</p>
+</li>
+<li>
+<p><strong>Meister, D.W., Ladd, A.L., Butler, E.E., Zhao, B., Rogers, A.P., Ray, C.J., &amp; Rose, J.</strong> (2011). Rotational biomechanics of the elite golf swing: Benchmarks for amateurs. <em>Journal of Applied Biomechanics</em>, 27(3), 242-251.</p>
+</li>
+<li>
+<p><strong>Chu, Y., Sell, T.C., &amp; Lephart, S.M.</strong> (2010). The relationship between biomechanical variables and driving performance during the golf swing. <em>Journal of Sports Sciences</em>, 28(11), 1251-1259.</p>
+</li>
+<li>
+<p><strong>Cole, M.H., &amp; Grimshaw, P.N.</strong> (2016). The X-Factor and its relationship to golfing performance. <em>Journal of Quantitative Analysis in Sports</em>, 12(4), 207-216.</p>
+</li>
+</ol>
+<h3 id="systematic-reviews">系统综述 Systematic Reviews<a class="headerlink" href="#systematic-reviews" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Joyce, C., Burnett, A., &amp; Ball, K.</strong> (2010). Methodological considerations for the 3D measurement of the X-factor and lower trunk movement in golf. <em>Sports Biomechanics</em>, 9(3), 206-221.</p>
+</li>
+<li>
+<p><strong>Kwon, Y.H., Han, K.H., Como, C., Lee, S., &amp; Singhal, K.</strong> (2013). Validity of the X-Factor computation methods and relationship between the X-Factor parameters and clubhead velocity in skilled golfers. <em>Sports Biomechanics</em>, 12(3), 231-246.</p>
+</li>
+</ol>
+<h3 id="technical-resources">技术资源 Technical Resources<a class="headerlink" href="#technical-resources" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>TPI (Titleist Performance Institute)</strong> - Body-Swing Connection framework: <a href="https://www.mytpi.com">mytpi.com</a></li>
+<li><strong>3D Golf Biodynamics</strong> - Cheetham, P.J.: Kinematic sequence analysis</li>
+<li><strong>STRI (Sports Turf Research Institute)</strong> - Biomechanics research database</li>
+</ul>
+<hr />
+<h2 id="version-history">版本历史 Version History<a class="headerlink" href="#version-history" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>日期</th>
+<th>修改内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>2025-12-17</td>
+<td>初始版本: 覆盖12个类别、140+术语</td>
+</tr>
+<tr>
+<td>1.1</td>
+<td>2025-12-17</td>
+<td>合并 00-glossary.md: 新增 §13 视觉/姿态估计, §14 柔性传感器, §15 数据融合</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>维护者 Maintainer</strong>: Movement Chain AI Team
+<strong>最后更新 Last Updated</strong>: 2025-12-17</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/movement-chain-ai" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/movement-chain-ai" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.tracking", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

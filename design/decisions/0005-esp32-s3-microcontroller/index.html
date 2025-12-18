@@ -12,29 +12,31 @@
         <meta name="author" content="Movement Chain AI Team">
       
       
-        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/">
+        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/design/decisions/0005-esp32-s3-microcontroller/">
       
       
+        <link rel="prev" href="../0004-simplified-4-module-architecture/">
       
-        <link rel="next" href="docs-guide/">
+      
+        <link rel="next" href="../0006-onnx-runtime-deployment/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>Movement Chain AI Documentation</title>
+        <title>ADR 0005: ESP32-S3 微控制器选择 - Movement Chain AI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#movement-chain-ai" class="md-skip">
+        <a href="#adr-0005-esp32-s3" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +102,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -120,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              首页
+              ADR 0005: ESP32-S3 微控制器选择
             
           </span>
         </div>
@@ -238,7 +240,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -265,37 +267,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    首页
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -311,87 +286,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        用户在痛什么？
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="用户在痛什么？">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#85" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第一痛点：练习与实战的鸿沟 (85% 提及率)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        三个唯一
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        文档导航
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        快速链接
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -403,7 +297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="docs-guide/" class="md-nav__link">
+      <a href="../../../docs-guide/" class="md-nav__link">
         
   
   
@@ -430,7 +324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="risk-management/" class="md-nav__link">
+      <a href="../../../risk-management/" class="md-nav__link">
         
   
   
@@ -483,7 +377,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="product/" class="md-nav__link ">
+            <a href="../../../product/" class="md-nav__link ">
               
   
   
@@ -527,7 +421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/user-personas/" class="md-nav__link">
+      <a href="../../../product/user-personas/" class="md-nav__link">
         
   
   
@@ -555,7 +449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/unique-value/" class="md-nav__link">
+      <a href="../../../product/unique-value/" class="md-nav__link">
         
   
   
@@ -607,7 +501,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="product/market-landscape/" class="md-nav__link ">
+            <a href="../../../product/market-landscape/" class="md-nav__link ">
               
   
   
@@ -651,7 +545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/pain-points/" class="md-nav__link">
+      <a href="../../../product/market-landscape/pain-points/" class="md-nav__link">
         
   
   
@@ -679,7 +573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/market-size/" class="md-nav__link">
+      <a href="../../../product/market-landscape/market-size/" class="md-nav__link">
         
   
   
@@ -764,7 +658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/imu-based/" class="md-nav__link">
+      <a href="../../../product/market-landscape/competitors/imu-based/" class="md-nav__link">
         
   
   
@@ -792,7 +686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/vision-based/" class="md-nav__link">
+      <a href="../../../product/market-landscape/competitors/vision-based/" class="md-nav__link">
         
   
   
@@ -820,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/multi-sensor/" class="md-nav__link">
+      <a href="../../../product/market-landscape/competitors/multi-sensor/" class="md-nav__link">
         
   
   
@@ -848,7 +742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/smart-clothing/" class="md-nav__link">
+      <a href="../../../product/market-landscape/competitors/smart-clothing/" class="md-nav__link">
         
   
   
@@ -892,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/product-strategy/" class="md-nav__link">
+      <a href="../../../product/product-strategy/" class="md-nav__link">
         
   
   
@@ -924,6 +818,8 @@
       
   
   
+    
+  
   
   
     
@@ -959,15 +855,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="design/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
@@ -991,7 +887,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1011,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/system-design/" class="md-nav__link">
+      <a href="../../system-design/" class="md-nav__link">
         
   
   
@@ -1039,7 +935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/swing-phases/" class="md-nav__link">
+      <a href="../../swing-phases/" class="md-nav__link">
         
   
   
@@ -1067,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/real-time-feedback-spec/" class="md-nav__link">
+      <a href="../../real-time-feedback-spec/" class="md-nav__link">
         
   
   
@@ -1095,7 +991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/swing-comparison/" class="md-nav__link">
+      <a href="../../swing-comparison/" class="md-nav__link">
         
   
   
@@ -1123,7 +1019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/personalization-spec/" class="md-nav__link">
+      <a href="../../personalization-spec/" class="md-nav__link">
         
   
   
@@ -1151,7 +1047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/getting-started/" class="md-nav__link">
+      <a href="../../getting-started/" class="md-nav__link">
         
   
   
@@ -1179,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/ml-basics/" class="md-nav__link">
+      <a href="../../ml-basics/" class="md-nav__link">
         
   
   
@@ -1207,7 +1103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/sdk-selection/" class="md-nav__link">
+      <a href="../../sdk-selection/" class="md-nav__link">
         
   
   
@@ -1235,7 +1131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions-summary/" class="md-nav__link">
+      <a href="../../decisions-summary/" class="md-nav__link">
         
   
   
@@ -1287,7 +1183,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="design/research/" class="md-nav__link ">
+            <a href="../../research/" class="md-nav__link ">
               
   
   
@@ -1331,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/research/biomechanics-glossary/" class="md-nav__link">
+      <a href="../../research/biomechanics-glossary/" class="md-nav__link">
         
   
   
@@ -1359,7 +1255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/research/biomechanics-benchmarks/" class="md-nav__link">
+      <a href="../../research/biomechanics-benchmarks/" class="md-nav__link">
         
   
   
@@ -1387,7 +1283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/research/sensor-metric-mapping/" class="md-nav__link">
+      <a href="../../research/sensor-metric-mapping/" class="md-nav__link">
         
   
   
@@ -1420,6 +1316,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1445,15 +1343,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_12" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_12" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="design/decisions/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -1477,7 +1375,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_12_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_12_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_12">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1497,7 +1395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0001-multi-repo-structure/" class="md-nav__link">
+      <a href="../0001-multi-repo-structure/" class="md-nav__link">
         
   
   
@@ -1525,7 +1423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+      <a href="../0002-lsm6dsv16x-imu/" class="md-nav__link">
         
   
   
@@ -1553,7 +1451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0003-flutter-mobile/" class="md-nav__link">
+      <a href="../0003-flutter-mobile/" class="md-nav__link">
         
   
   
@@ -1581,7 +1479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+      <a href="../0004-simplified-4-module-architecture/" class="md-nav__link">
         
   
   
@@ -1606,10 +1504,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="design/decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0005: ESP32-S3 微控制器选择
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1625,6 +1550,386 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        背景
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        决策
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        理由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="理由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        并行处理的双核架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经过验证的 BLE 性能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI 加速支持
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arduino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arduino 框架兼容性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        卓越的价值主张
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wifi-ble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WiFi + BLE 灵活性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        大型社区和经过验证的可靠性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结果
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="结果">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        积极影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        消极影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        考虑的替代方案
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="考虑的替代方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anordic-nrf52840" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 A：Nordic nRF52840
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bstm32wb55stmicroelectronics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 B：STM32WB55（STMicroelectronics）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cesp32-c3espressif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 C：ESP32-C3（Espressif）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#draspberry-pi-pico-wrp2040-wifi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 D：Raspberry Pi Pico W（RP2040 + WiFi）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        技术规格
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="技术规格">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内存架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        功耗分解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI 性能基准
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实现考虑
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实现考虑">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        硬件设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        固件架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开发工作流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ble_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BLE 配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        电源管理策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ota" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OTA 更新过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考文献
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1637,7 +1942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+      <a href="../0006-onnx-runtime-deployment/" class="md-nav__link">
         
   
   
@@ -1712,7 +2017,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="components/" class="md-nav__link ">
+            <a href="../../../components/" class="md-nav__link ">
               
   
   
@@ -1809,7 +2114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/imu/hardware/" class="md-nav__link">
+      <a href="../../../components/imu/hardware/" class="md-nav__link">
         
   
   
@@ -1837,7 +2142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/imu/suppliers/" class="md-nav__link">
+      <a href="../../../components/imu/suppliers/" class="md-nav__link">
         
   
   
@@ -1926,7 +2231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/emg/hardware/" class="md-nav__link">
+      <a href="../../../components/emg/hardware/" class="md-nav__link">
         
   
   
@@ -1954,7 +2259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/emg/suppliers/" class="md-nav__link">
+      <a href="../../../components/emg/suppliers/" class="md-nav__link">
         
   
   
@@ -2043,7 +2348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/vision/hardware/" class="md-nav__link">
+      <a href="../../../components/vision/hardware/" class="md-nav__link">
         
   
   
@@ -2071,7 +2376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/vision/software/" class="md-nav__link">
+      <a href="../../../components/vision/software/" class="md-nav__link">
         
   
   
@@ -2160,7 +2465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/mcu/hardware/" class="md-nav__link">
+      <a href="../../../components/mcu/hardware/" class="md-nav__link">
         
   
   
@@ -2188,7 +2493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/mcu/suppliers/" class="md-nav__link">
+      <a href="../../../components/mcu/suppliers/" class="md-nav__link">
         
   
   
@@ -2277,7 +2582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/flexible-sensors/hardware/" class="md-nav__link">
+      <a href="../../../components/flexible-sensors/hardware/" class="md-nav__link">
         
   
   
@@ -2305,7 +2610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/flexible-sensors/suppliers/" class="md-nav__link">
+      <a href="../../../components/flexible-sensors/suppliers/" class="md-nav__link">
         
   
   
@@ -2394,7 +2699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/pressure-sensors/hardware/" class="md-nav__link">
+      <a href="../../../components/pressure-sensors/hardware/" class="md-nav__link">
         
   
   
@@ -2422,7 +2727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/pressure-sensors/suppliers/" class="md-nav__link">
+      <a href="../../../components/pressure-sensors/suppliers/" class="md-nav__link">
         
   
   
@@ -2486,7 +2791,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="components/supply-chain/" class="md-nav__link ">
+            <a href="../../../components/supply-chain/" class="md-nav__link ">
               
   
   
@@ -2530,7 +2835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/china-sensors/" class="md-nav__link">
+      <a href="../../../components/supply-chain/china-sensors/" class="md-nav__link">
         
   
   
@@ -2558,7 +2863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/china-wearables/" class="md-nav__link">
+      <a href="../../../components/supply-chain/china-wearables/" class="md-nav__link">
         
   
   
@@ -2586,7 +2891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/mvp-suppliers/" class="md-nav__link">
+      <a href="../../../components/supply-chain/mvp-suppliers/" class="md-nav__link">
         
   
   
@@ -2614,7 +2919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/smart-clothing-market/" class="md-nav__link">
+      <a href="../../../components/supply-chain/smart-clothing-market/" class="md-nav__link">
         
   
   
@@ -2642,7 +2947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/e-skin-odm/" class="md-nav__link">
+      <a href="../../../components/supply-chain/e-skin-odm/" class="md-nav__link">
         
   
   
@@ -2709,7 +3014,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="platform/" class="md-nav__link ">
+            <a href="../../../platform/" class="md-nav__link ">
               
   
   
@@ -2753,7 +3058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/mvp-prototype-code/" class="md-nav__link">
+      <a href="../../../platform/mvp-prototype-code/" class="md-nav__link">
         
   
   
@@ -2832,7 +3137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/mobile/development/" class="md-nav__link">
+      <a href="../../../platform/mobile/development/" class="md-nav__link">
         
   
   
@@ -2921,7 +3226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/ml-training/datasets/" class="md-nav__link">
+      <a href="../../../platform/ml-training/datasets/" class="md-nav__link">
         
   
   
@@ -2949,7 +3254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/ml-training/visual-feedback/" class="md-nav__link">
+      <a href="../../../platform/ml-training/visual-feedback/" class="md-nav__link">
         
   
   
@@ -3020,7 +3325,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="reference/" class="md-nav__link ">
+            <a href="../../../reference/" class="md-nav__link ">
               
   
   
@@ -3064,7 +3369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/golf-glossary/" class="md-nav__link">
+      <a href="../../../reference/golf-glossary/" class="md-nav__link">
         
   
   
@@ -3092,7 +3397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/business-glossary/" class="md-nav__link">
+      <a href="../../../reference/business-glossary/" class="md-nav__link">
         
   
   
@@ -3120,7 +3425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/academic-datasets/" class="md-nav__link">
+      <a href="../../../reference/academic-datasets/" class="md-nav__link">
         
   
   
@@ -3148,7 +3453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/golf-research/" class="md-nav__link">
+      <a href="../../../reference/golf-research/" class="md-nav__link">
         
   
   
@@ -3176,7 +3481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/open-source-tools/" class="md-nav__link">
+      <a href="../../../reference/open-source-tools/" class="md-nav__link">
         
   
   
@@ -3234,19 +3539,107 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        用户在痛什么？
+        背景
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="用户在痛什么？">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        决策
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        理由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="理由">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#85" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        第一痛点：练习与实战的鸿沟 (85% 提及率)
+        并行处理的双核架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经过验证的 BLE 性能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI 加速支持
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arduino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arduino 框架兼容性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        卓越的价值主张
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wifi-ble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WiFi + BLE 灵活性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        大型社区和经过验证的可靠性
       
     </span>
   </a>
@@ -3259,32 +3652,243 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        三个唯一
+        结果
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="结果">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        积极影响
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        文档导航
+        消极影响
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        快速链接
+        考虑的替代方案
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="考虑的替代方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anordic-nrf52840" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 A：Nordic nRF52840
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bstm32wb55stmicroelectronics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 B：STM32WB55（STMicroelectronics）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cesp32-c3espressif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 C：ESP32-C3（Espressif）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#draspberry-pi-pico-wrp2040-wifi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 D：Raspberry Pi Pico W（RP2040 + WiFi）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        技术规格
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="技术规格">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内存架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        功耗分解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI 性能基准
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实现考虑
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实现考虑">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        硬件设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        固件架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开发工作流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ble_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BLE 配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        电源管理策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ota" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OTA 更新过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考文献
       
     </span>
   </a>
@@ -3311,129 +3915,469 @@
   
 
 
-<h1 id="movement-chain-ai">Movement Chain AI<a class="headerlink" href="#movement-chain-ai" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>AI + 摄像头 + EMG + IMU：唯一能告诉你"为什么"做错的高尔夫训练系统</strong></p>
-</blockquote>
-<hr />
-<h2 id="_1">用户在痛什么？<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="85">第一痛点：练习与实战的鸿沟 (85% 提及率)<a class="headerlink" href="#85" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p>"I was hitting it so well on the range, then all hell broke loose on the course."
-（我在练习场打得很好,到了球场就全崩了。）</p>
-</blockquote>
-<p><strong>现实</strong>：没有任何产品能打通练习场和球场的闭环。</p>
+<h1 id="adr-0005-esp32-s3">ADR 0005: ESP32-S3 微控制器选择<a class="headerlink" href="#adr-0005-esp32-s3" title="Permanent link">&para;</a></h1>
+<p><strong>日期:</strong> 2025-12-01
+<strong>状态:</strong> 已接受</p>
+<h2 id="_1">背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Movement Chain AI 需要一个能够协调高频传感器数据采集（100Hz IMU 采样）、与移动应用的实时低功耗蓝牙通信、区块链交易准备和边缘 AI 推理的微控制器。系统架构要求：</p>
+<ul>
+<li><strong>无线连接:</strong> 蓝牙 5.0 BLE（低功耗蓝牙）用于健身应用通信，WiFi 用于直接区块链提交</li>
+<li><strong>处理能力:</strong> 双核架构用于并行传感器处理和通信处理</li>
+<li><strong>内存:</strong> 足够的 RAM/Flash 用于固件、BLE 协议栈、传感器缓冲区和 ML 模型存储</li>
+<li><strong>AI 加速:</strong> 硬件支持 TensorFlow Lite Micro 和边缘推理</li>
+<li><strong>电源效率:</strong> 可穿戴设备电池寿命的低功耗模式（目标：每次充电 2-3 天）</li>
+<li><strong>开发生态系统:</strong> 成熟的工具链、Arduino 框架支持、活跃的社区</li>
+<li><strong>成本:</strong> 目标每单位 $3-5 以实现商业可行性</li>
+<li><strong>可用性:</strong> 主流分销以避免供应链瓶颈</li>
+</ul>
+<p>微控制器必须在专业级能力与 Arduino 框架兼容性提供的可访问性和快速开发速度之间取得平衡，从而实现对区块链-健身集成功能的更快迭代。</p>
+<h2 id="_2">决策<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>选择 <strong>Espressif ESP32-S3</strong>（特别是 ESP32-S3-WROOM-1-N8R8 模块变体）作为 Movement Chain AI 硬件的主要微控制器。</p>
+<h2 id="_3">理由<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">并行处理的双核架构<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>ESP32-S3 的双核 Xtensa LX7 架构（每核 240MHz）实现了清晰的关注点分离：</p>
+<ul>
+<li><strong>核心 0:</strong> 专用于高优先级传感器采集（100Hz IMU + 心率）和边缘 AI 推理</li>
+<li><strong>核心 1:</strong> 处理 BLE 通信协议栈、WiFi 连接和区块链交易准备</li>
+</ul>
+<p>这防止了 BLE 协议栈中断导致传感器采样抖动，这对于保持运动分析精度所需的精确 10ms 间隔至关重要。</p>
+<h3 id="ble">经过验证的 BLE 性能<a class="headerlink" href="#ble" title="Permanent link">&para;</a></h3>
+<p>ESP32 社区的广泛现场测试证明了可靠的 BLE 5.0 吞吐量为 800-1200 kbps，足以流式传输 100Hz IMU 数据（7.2KB/s）加上心率（1 样本/秒），具有 10 倍余量。成熟的 ESP-IDF 蓝牙协议栈已在数百万部署设备上经过 5 年以上的生产强化。</p>
+<h3 id="ai">AI 加速支持<a class="headerlink" href="#ai" title="Permanent link">&para;</a></h3>
+<p>硬件矢量指令和优化的 TensorFlow Lite Micro 移植实现了设备上的推理：</p>
+<ul>
+<li>运动质量评分（形式分析）</li>
+<li>实时运动分类回退（补充 LSM6DSV16X MLC 机器学习核心）</li>
+<li>区块链数据验证的异常检测</li>
+</ul>
+<p>基准测试显示 1KB TFLite 模型的推理时间为 15-20ms，实现训练期间的实时反馈。</p>
+<h3 id="arduino">Arduino 框架兼容性<a class="headerlink" href="#arduino" title="Permanent link">&para;</a></h3>
+<p>Arduino IDE 2.x 和 PlatformIO 中的 ESP32-S3 支持将开发速度加快 3-5 倍（与裸机 SDK 开发相比），对以下方面至关重要：</p>
+<ul>
+<li>区块链集成功能的快速原型设计</li>
+<li>将新开发者引入 Movement Chain 生态系统</li>
+<li>利用 1000 多个现有的 Arduino 外围设备库</li>
+</ul>
+<p>生产固件可以使用 ESP-IDF 有选择地优化关键路径，同时为更高级别的逻辑维护 Arduino。</p>
+<h3 id="_5">卓越的价值主张<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>在 1000 个以上单位数量下，每模块 $3-5，ESP32-S3 提供双频 WiFi、BLE 5.0、双核处理和 8MB PSRAM - 在竞争的 Nordic 或 STM32 解决方案中这些功能将花费 $12-15 以上。这种成本效率使 Movement Chain 可穿戴设备能够实现有竞争力的零售定价。</p>
+<h3 id="wifi-ble">WiFi + BLE 灵活性<a class="headerlink" href="#wifi-ble" title="Permanent link">&para;</a></h3>
+<p>双无线电能力提供架构灵活性：</p>
+<ul>
+<li><strong>正常操作:</strong> BLE 连接智能手机应用以进行用户交互</li>
+<li><strong>直接模式:</strong> 当手机不可用时，WiFi 直接到区块链提交</li>
+<li><strong>OTA 更新:</strong> 基于 WiFi 的固件更新，无需通过 BLE 传输大型二进制文件</li>
+<li><strong>调试:</strong> 开发和现场测试期间的 WiFi 遥测</li>
+</ul>
+<h3 id="_6">大型社区和经过验证的可靠性<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>自 2016 年以来全球部署超过 1000 万个 ESP32 系列芯片，ESP32-S3 代表成熟的第三代架构（2021 年发布，4 年生产改进）。社区资源包括：</p>
+<ul>
+<li>关于 ESP32 BLE 优化的 50,000 多个论坛帖子</li>
+<li>传感器集成模式的广泛文档</li>
+<li>可穿戴应用的预验证参考设计</li>
+<li>多个熟悉 ESP32-S3 布局要求的合同制造商</li>
+</ul>
+<h2 id="_7">结果<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="_8">积极影响<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>双核隔离:</strong> 核心 0 专用于传感器采集消除了 BLE 引起的采样抖动，保持精确的 100Hz 时序（测量 ±0.5ms）</li>
+<li><strong>BLE 吞吐量:</strong> 800-1200 kbps 持续吞吐量为 100Hz IMU 流式传输（需要 7.2KB/s）提供 10 倍余量</li>
+<li><strong>8MB PSRAM:</strong> 外部 RAM 能够存储 10-15 分钟的传感器缓冲区，用于在手机连接丢失时的离线优先操作</li>
+<li><strong>AI 加速:</strong> 15-20ms TFLite 推理实现实时运动质量评分，不牺牲传感器采样</li>
+<li><strong>Arduino 生态系统:</strong> 与裸机开发相比，区块链集成功能的开发速度快 3-5 倍</li>
+<li><strong>双无线电灵活性:</strong> WiFi 回退实现无需智能手机中介的直接区块链提交</li>
+<li><strong>成本领先:</strong> 每单位 $3-5 vs Nordic nRF52840 的 $8-12 或 STM32WB 解决方案的 $10-15</li>
+<li><strong>OTA 更新:</strong> 基于 WiFi 的固件更新避免了缓慢的 BLE 传输瓶颈（50KB/s vs 10KB/s 典型）</li>
+<li><strong>社区支持:</strong> 1000 万以上部署设备提供广泛的故障排除资源和验证的集成模式</li>
+<li><strong>电源效率:</strong> 100Hz 处理时活动电流 20-30mA，深度睡眠 &lt;5μA，使用 500mAh 电池可实现 2-3 天电池寿命</li>
+</ul>
+<h3 id="_9">消极影响<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>比 Nordic 更高的空闲功耗:</strong> 活动时 20-30mA vs Nordic nRF52840 的 5-10mA，尽管 ESP32-S3 的更快处理实现了更短的活动窗口</li>
+<li><em>缓解:</em> 双核架构在仅传感器操作期间实现激进的核心 1 时钟缩放，将平均功耗降低到 15-20mA</li>
+<li><strong>Arduino 开销:</strong> Arduino 框架与裸 ESP-IDF 相比增加 5-10% 的运行时开销</li>
+<li><em>缓解:</em> 关键路径（SPI 传感器驱动程序、BLE 通知）在优化的 ESP-IDF 中实现，更高级别的逻辑使用 Arduino 以提高速度</li>
+<li><strong>BLE 范围:</strong> 由于集成天线限制，典型为约 30-50m vs nRF52840 的 80-100m</li>
+<li><em>缓解:</em> 可穿戴用例将手机保持在 3-10m 内，30m 范围提供足够的余量</li>
+<li><strong>复杂的工具链:</strong> ESP-IDF + Arduino 双框架需要仔细的构建配置</li>
+<li><em>缓解:</em> PlatformIO 以最少的配置处理 ESP-IDF/Arduino 混合构建</li>
+<li><strong>WiFi 共存:</strong> 同时 BLE+WiFi 需要仔细的天线/RF 设计以避免干扰</li>
+<li><em>缓解:</em> 训练期间仅使用 BLE，固件更新和批量区块链提交仅使用 WiFi（时分复用）</li>
+</ul>
+<h2 id="_10">考虑的替代方案<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h3 id="anordic-nrf52840">选项 A：Nordic nRF52840<a class="headerlink" href="#anordic-nrf52840" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>规格:</strong> ARM Cortex-M4 @ 64MHz，256KB RAM，1MB Flash，BLE 5.3，-95dBm 灵敏度</li>
+<li><strong>成本:</strong> 每模块 $8-10</li>
+<li><strong>优势:</strong></li>
+<li>一流的 BLE 性能（80-100m 范围，-95dBm 灵敏度）</li>
+<li>出色的电源效率（活动 5-10mA，睡眠 0.4μA）</li>
+<li>成熟的 Zephyr RTOS 和 SoftDevice BLE 协议栈</li>
+<li>专业的开发工具（Segger Embedded Studio）</li>
+<li><strong>被拒绝的原因:</strong></li>
+<li><strong>无 WiFi:</strong> 消除了直接区块链提交和 OTA 更新能力</li>
+<li><strong>单核:</strong> 64MHz Cortex-M4 不足以同时进行 100Hz IMU 处理 + BLE 协议栈 + AI 推理</li>
+<li><strong>更高成本:</strong> 2.5-3 倍价格溢价（$8-10 vs $3-5）在没有 WiFi 能力的情况下不合理</li>
+<li><strong>更陡峭的学习曲线:</strong> Nordic SDK 需要嵌入式系统专业知识 vs Arduino 的可访问性</li>
+<li><strong>有限的 Arduino 支持:</strong> Nordic 的 Arduino 核心与 ESP32 的 5 年以上开发相比不成熟</li>
+</ul>
+<h3 id="bstm32wb55stmicroelectronics">选项 B：STM32WB55（STMicroelectronics）<a class="headerlink" href="#bstm32wb55stmicroelectronics" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>规格:</strong> 双核 Cortex-M4 @ 64MHz + Cortex-M0+ @ 32MHz，256KB RAM，BLE 5.2</li>
+<li><strong>成本:</strong> 每模块 $10-12</li>
+<li><strong>优势:</strong></li>
+<li>真正的双核，带有专用 BLE 协处理器（M0+）</li>
+<li>专业级 STM32 生态系统和工具</li>
+<li>出色的电源效率（类似于 Nordic）</li>
+<li>强大的安全功能（安全启动、加密加速器）</li>
+<li><strong>被拒绝的原因:</strong></li>
+<li><strong>无 WiFi:</strong> 消除了直接区块链提交和 OTA 灵活性</li>
+<li><strong>最高成本:</strong> 比 ESP32-S3 高 3-4 倍价格溢价（$10-12 vs $3-5）</li>
+<li><strong>有限的社区:</strong> 与 ESP32 的 1000 万以上部署基础相比，开发者生态系统较小</li>
+<li><strong>Arduino 支持:</strong> Arduino 兼容性弱，需要 ST 的专有 IDE（STM32CubeIDE）</li>
+<li><strong>64MHz 限制:</strong> 比 ESP32-S3 的 240MHz 更低的时钟速度可能会成为 AI 推理的瓶颈</li>
+</ul>
+<h3 id="cesp32-c3espressif">选项 C：ESP32-C3（Espressif）<a class="headerlink" href="#cesp32-c3espressif" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>规格:</strong> 单核 RISC-V @ 160MHz，400KB SRAM，384KB ROM，WiFi 4，BLE 5.0</li>
+<li><strong>成本:</strong> 每模块 $1.50-2.50</li>
+<li><strong>优势:</strong></li>
+<li>ESP32 系列中成本最低</li>
+<li>与 ESP32-S3 相同的 BLE 和 WiFi 无线电</li>
+<li>完全支持 Arduino 框架</li>
+<li>RISC-V 开放 ISA</li>
+<li><strong>被拒绝的原因:</strong></li>
+<li><strong>单核:</strong> 无法将传感器处理与 BLE 协议栈隔离，导致采样抖动</li>
+<li><strong>更低的时钟:</strong> 160MHz vs 240MHz 不足以同时进行 IMU + AI 推理</li>
+<li><strong>无 PSRAM:</strong> 限制为 400KB SRAM，不足以容纳大型传感器缓冲区和 ML 模型</li>
+<li><strong>无 AI 加速:</strong> 缺少 ESP32-S3 的 Xtensa LX7 核心中存在的矢量指令</li>
+<li><strong>性能瓶颈:</strong> 基准测试显示 40-50ms TFLite 推理 vs ESP32-S3 的 15-20ms</li>
+</ul>
+<h3 id="draspberry-pi-pico-wrp2040-wifi">选项 D：Raspberry Pi Pico W（RP2040 + WiFi）<a class="headerlink" href="#draspberry-pi-pico-wrp2040-wifi" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>规格:</strong> 双核 Cortex-M0+ @ 133MHz，264KB SRAM，WiFi（通过 CYW43439）</li>
+<li><strong>成本:</strong> 每块板 $6（开发板定价，模块不可用）</li>
+<li><strong>优势:</strong></li>
+<li>双核架构</li>
+<li>强大的社区（MicroPython，Arduino 支持）</li>
+<li>WiFi 能力</li>
+<li>Raspberry Pi Foundation 支持</li>
+<li><strong>被拒绝的原因:</strong></li>
+<li><strong>无原生 BLE:</strong> WiFi 模块（CYW43439）缺少 BLE，需要外部 BLE 芯片（额外 $3-5）</li>
+<li><strong>慢速核心:</strong> 133MHz Cortex-M0+ 明显慢于 ESP32-S3 的 240MHz Xtensa LX7</li>
+<li><strong>无 PSRAM:</strong> 264KB SRAM 不足以容纳大型 ML 模型和传感器缓冲区</li>
+<li><strong>无模块外形规格:</strong> 只有开发板可用，不适合生产可穿戴设计</li>
+<li><strong>不成熟的 WiFi 协议栈:</strong> CYW43439 驱动程序不如 ESP32 的 5 年以上生产协议栈成熟</li>
+</ul>
+<h2 id="_11">技术规格<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>产品类型</th>
-<th>练习场</th>
-<th>球场</th>
-<th>闭环</th>
+<th>参数</th>
+<th>规格</th>
+<th>注释</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>HackMotion</td>
-<td>✅</td>
-<td>❌</td>
-<td>❌</td>
+<td><strong>CPU 架构</strong></td>
+<td>双核 Xtensa LX7 32 位</td>
+<td>每核 240MHz，独立时钟控制</td>
 </tr>
 <tr>
-<td>Sportsbox AI</td>
-<td>✅</td>
-<td>❌</td>
-<td>❌</td>
+<td><strong>RAM</strong></td>
+<td>512KB SRAM</td>
+<td>内部高速内存</td>
 </tr>
 <tr>
-<td>Arccos</td>
-<td>❌</td>
-<td>✅</td>
-<td>❌</td>
+<td><strong>外部 RAM</strong></td>
+<td>8MB PSRAM（N8R8 变体）</td>
+<td>八进制 SPI，对 ML 模型和传感器缓冲区至关重要</td>
 </tr>
 <tr>
-<td><strong>Movement Chain AI</strong></td>
-<td>✅</td>
-<td>✅</td>
-<td>✅ <strong>唯一</strong></td>
+<td><strong>Flash</strong></td>
+<td>8MB（N8R8 变体）</td>
+<td>存储固件、ML 模型、校准数据</td>
+</tr>
+<tr>
+<td><strong>无线</strong></td>
+<td>WiFi 4 (802.11 b/g/n) + BLE 5.0</td>
+<td>双无线电，时分复用</td>
+</tr>
+<tr>
+<td><strong>BLE 吞吐量</strong></td>
+<td>800-1200 kbps（测量）</td>
+<td>足以进行 100Hz IMU + 元数据流式传输</td>
+</tr>
+<tr>
+<td><strong>WiFi 吞吐量</strong></td>
+<td>20-30 Mbps（TCP）</td>
+<td>足以进行区块链 API 调用和 OTA</td>
+</tr>
+<tr>
+<td><strong>工作频率</strong></td>
+<td>2.4GHz ISM 频段</td>
+<td>WiFi 和 BLE 共享</td>
+</tr>
+<tr>
+<td><strong>发射功率</strong></td>
+<td>+20dBm 最大（WiFi），+9dBm 最大（BLE）</td>
+<td>软件可配置</td>
+</tr>
+<tr>
+<td><strong>接收灵敏度</strong></td>
+<td>-97dBm（BLE），-98dBm（WiFi）</td>
+<td>典型值</td>
+</tr>
+<tr>
+<td><strong>工作电压</strong></td>
+<td>3.0V 到 3.6V</td>
+<td>典型 3.3V 操作</td>
+</tr>
+<tr>
+<td><strong>活动电流</strong></td>
+<td>20-30mA @ 240MHz 双核</td>
+<td>BLE 活动和传感器处理</td>
+</tr>
+<tr>
+<td><strong>调制解调器睡眠电流</strong></td>
+<td>15-20mA @ 240MHz</td>
+<td>维护 BLE 连接，WiFi 关闭</td>
+</tr>
+<tr>
+<td><strong>轻度睡眠电流</strong></td>
+<td>500μA - 2mA</td>
+<td>CPU 暂停，BLE 维护连接</td>
+</tr>
+<tr>
+<td><strong>深度睡眠电流</strong></td>
+<td>5-10μA</td>
+<td>除 RTC 外所有外围设备断电</td>
+</tr>
+<tr>
+<td><strong>GPIO 引脚</strong></td>
+<td>总共 45（取决于模块）</td>
+<td>I2C、SPI、UART、ADC、PWM 支持</td>
+</tr>
+<tr>
+<td><strong>SPI 接口</strong></td>
+<td>4（SPI0/1 用于闪存，SPI2/3 用户）</td>
+<td>高速传感器高达 80MHz 时钟</td>
+</tr>
+<tr>
+<td><strong>I2C 接口</strong></td>
+<td>2</td>
+<td>硬件 I2C 控制器，高达 1MHz</td>
+</tr>
+<tr>
+<td><strong>ADC</strong></td>
+<td>2x 12 位 SAR ADC，20 个通道</td>
+<td>用于电池监控、心率模拟</td>
+</tr>
+<tr>
+<td><strong>PWM 通道</strong></td>
+<td>8</td>
+<td>LED 控制，触觉反馈驱动器</td>
+</tr>
+<tr>
+<td><strong>加密加速器</strong></td>
+<td>AES、SHA、RSA、RNG</td>
+<td>区块链签名的硬件加密</td>
+</tr>
+<tr>
+<td><strong>AI 加速</strong></td>
+<td>矢量指令（ESP-NN）</td>
+<td>优化的 TFLite 内核，3-4 倍加速</td>
+</tr>
+<tr>
+<td><strong>工作温度</strong></td>
+<td>-40°C 到 +85°C</td>
+<td>工业温度范围</td>
+</tr>
+<tr>
+<td><strong>封装</strong></td>
+<td>ESP32-S3-WROOM-1 模块</td>
+<td>18mm x 25.5mm x 3.1mm，SMT 就绪</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="_2">三个唯一<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_12">内存架构<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>SRAM:</strong> 总共 512KB（内部 SRAM0 + SRAM1）</li>
+<li>在引导加载程序/BLE 协议栈之后可供用户使用：约 380KB</li>
+<li>用于高速传感器传输的 DMA 能力区域</li>
+<li><strong>PSRAM:</strong> 8MB 八进制 SPI（80MHz 访问）</li>
+<li>存储大型传感器缓冲区（100Hz 下 10-15 分钟 = 约 1.5MB）</li>
+<li>ML 模型权重（典型 TFLite 模型：100KB - 1MB）</li>
+<li>离线数据存储的 BLE 队列</li>
+<li><strong>Flash:</strong> 8MB 四进制 SPI（80MHz 访问）</li>
+<li>固件（约 1-2MB），BLE 协议栈（约 500KB）</li>
+<li>ML 模型和校准数据（约 1-2MB）</li>
+<li>OTA 更新的保留空间（双分区方案）</li>
+</ul>
+<h3 id="_13">功耗分解<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>电流</th>
+<th>用例</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>活动（双核）</strong></td>
+<td>20-30mA</td>
+<td>训练会话（传感器 + BLE）</td>
+<td>240MHz 两个核心，BLE 活动</td>
+</tr>
+<tr>
+<td><strong>活动（仅核心 0）</strong></td>
+<td>15-20mA</td>
+<td>仅传感器模式</td>
+<td>核心 1 在 WFI，BLE 空闲</td>
+</tr>
+<tr>
+<td><strong>调制解调器睡眠</strong></td>
+<td>15-20mA</td>
+<td>维护 BLE 连接</td>
+<td>CPU 运行，BLE 在事件时唤醒</td>
+</tr>
+<tr>
+<td><strong>轻度睡眠</strong></td>
+<td>500μA - 2mA</td>
+<td>训练间隔之间</td>
+<td>BLE 维护连接</td>
+</tr>
+<tr>
+<td><strong>深度睡眠</strong></td>
+<td>5-10μA</td>
+<td>过夜充电</td>
+<td>除 RTC 唤醒定时器外全部关闭</td>
+</tr>
+</tbody>
+</table>
+<p><strong>电池寿命计算（500mAh 电池）:</strong></p>
+<ul>
+<li>活动训练（1 小时）：25mA × 1h = 25mAh</li>
+<li>BLE 空闲（23 小时）：1mA × 23h = 23mAh</li>
+<li><strong>每日总消耗:</strong> 48mAh</li>
+<li><strong>预期电池寿命:</strong> 500mAh / 48mAh = <strong>10 天</strong>（保守估计）</li>
+</ul>
+<p><em>注：假设每天 1 小时训练。现实世界测试显示，使用显示、触觉和心率监测为 7-10 天。</em></p>
+<h3 id="ai_1">AI 性能基准<a class="headerlink" href="#ai_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>模型类型</th>
+<th>模型大小</th>
+<th>推理时间</th>
+<th>吞吐量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>小型 Conv1D</strong></td>
+<td>50KB</td>
+<td>8-10ms</td>
+<td>100 推理/秒</td>
+</tr>
+<tr>
+<td><strong>中型 Conv1D</strong></td>
+<td>200KB</td>
+<td>15-20ms</td>
+<td>50 推理/秒</td>
+</tr>
+<tr>
+<td><strong>大型 Conv1D</strong></td>
+<td>1MB</td>
+<td>40-50ms</td>
+<td>20 推理/秒</td>
+</tr>
+<tr>
+<td><strong>决策树（LSM6DSV16X MLC）</strong></td>
+<td>256 字节</td>
+<td>&lt;1ms</td>
+<td>1000+ 推理/秒</td>
+</tr>
+</tbody>
+</table>
+<p><em>使用带有 ESP-NN 优化的 TensorFlow Lite Micro 2.15 对运动分类模型进行基准测试。</em></p>
+<h2 id="_14">实现考虑<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<h3 id="_15">硬件设计<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>电源:</strong> 使用低噪声 3.3V LDO（&lt;50mV 纹波）以最小化 ADC 噪声</li>
+<li>推荐：TPS73633（150mA，3.3V，超低噪声）</li>
+<li><strong>去耦:</strong></li>
+<li>VDD 引脚附近 1x 10μF 钽电容 + 1x 1μF 陶瓷电容</li>
+<li>每个 VDD 引脚附近 1x 100nF 陶瓷电容（总共 3-4 个）</li>
+<li><strong>天线:</strong></li>
+<li>板载 PCB 天线（2.4GHz）需要 10mm 禁入区</li>
+<li>或者，使用外部天线连接器以改善范围</li>
+<li><strong>绑定引脚:</strong> 根据 Espressif 硬件设计指南配置启动模式电阻</li>
+<li>GPIO0：10kΩ 上拉（正常启动）</li>
+<li>GPIO46：10kΩ 下拉（禁用 ROM 消息）</li>
+</ul>
+<h3 id="_16">固件架构<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>核心 0（高优先级）:
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>- IMU 传感器采集（100Hz）
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>- 心率处理（1Hz）
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>- 边缘 AI 推理（运动评分）
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>- 关键时序循环
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>核心 1（正常优先级）:
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>- BLE 协议栈和 GATT 服务器
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>- WiFi 连接（需要时）
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>- 区块链交易准备
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>- 显示更新、用户交互
+</span></code></pre></div>
+<h3 id="_17">开发工作流程<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>唯一多模态</strong>: Vision + IMU + EMG 融合分析</li>
-<li><strong>唯一双模式</strong>: 练习场 ↔ 球场数据打通</li>
-<li><strong>唯一EMG</strong>: 能看到肌肉发力顺序</li>
+<li><strong>初始原型设计:</strong> Arduino IDE 2.x 用于快速功能开发</li>
+<li><strong>优化:</strong> 将传感器驱动程序迁移到 ESP-IDF 以启用 DMA 的 SPI</li>
+<li><strong>生产:</strong> 使用 PlatformIO 构建系统的混合 ESP-IDF + Arduino</li>
+<li><strong>测试:</strong> 通过 WiFi 进行 OTA 更新，用于现场测试，无需拆卸</li>
 </ol>
-<hr />
-<h2 id="_3">文档导航<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>章节</th>
-<th>内容</th>
-<th>读者</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="product/">产品战略</a></td>
-<td>MVP规格、路线图、市场验证、竞品分析</td>
-<td>投资人、产品经理</td>
-</tr>
-<tr>
-<td><a href="design/system-design/">系统设计</a></td>
-<td>AI架构、融合算法、ADR决策</td>
-<td>架构师、工程师</td>
-</tr>
-<tr>
-<td><a href="components/">硬件组件</a></td>
-<td>IMU/EMG/Vision规格、供应商</td>
-<td>硬件工程师</td>
-</tr>
-<tr>
-<td><a href="platform/">开发平台</a></td>
-<td>Flutter移动端、ML训练管道</td>
-<td>开发者</td>
-</tr>
-<tr>
-<td><a href="reference/">参考资料</a></td>
-<td>学术数据集、外部资源</td>
-<td>研究人员</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="_4">快速链接<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>想了解</th>
-<th>文档</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>系统设计</td>
-<td><a href="design/system-design/">MVP 核心管道</a></td>
-</tr>
-<tr>
-<td>技术决策</td>
-<td><a href="design/decisions/">架构决策记录 (ADR)</a></td>
-</tr>
-<tr>
-<td>快速开始</td>
-<td><a href="design/getting-started/">无需硬件测试</a></td>
-</tr>
-<tr>
-<td>术语定义</td>
-<td><a href="design/research/biomechanics-glossary/">生物力学术语表</a></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>最后更新</strong>: 2025 年 12 月 12 日</p>
+<h3 id="ble_1">BLE 配置<a class="headerlink" href="#ble_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>连接间隔:</strong> 20ms（50Hz 更新速率，传感器速率的 2 倍余量）</li>
+<li><strong>MTU 大小:</strong> 247 字节（最大 BLE 5.0 MTU）</li>
+<li><strong>PHY:</strong> 2Mbps LE Coded PHY 用于扩展范围（回退到 1Mbps）</li>
+<li><strong>GATT 服务:</strong> 自定义"运动服务"UUID，具有特征：</li>
+<li>IMU 数据（通知）：每包 20 字节，每次通知 5 个样本</li>
+<li>心率（通知）：每包 2 字节</li>
+<li>控制点（写入）：命令/控制通道</li>
+</ul>
+<h3 id="_18">电源管理策略<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>训练期间:</strong> 调制解调器睡眠模式，100Hz CPU 唤醒进行传感器读取</li>
+<li><strong>组间:</strong> 轻度睡眠，维护 BLE 连接（2mA）</li>
+<li><strong>空闲/充电:</strong> 深度睡眠，1 分钟唤醒进行连接检查</li>
+<li><strong>显示更新:</strong> 从轻度睡眠短暂 50ms 唤醒以更新 OLED</li>
+</ul>
+<h3 id="ota">OTA 更新过程<a class="headerlink" href="#ota" title="Permanent link">&para;</a></h3>
+<ol>
+<li>用户通过配套应用启动 OTA</li>
+<li>ESP32-S3 进入 WiFi 模式（BLE 断开）</li>
+<li>将固件二进制（1-2MB）下载到非活动闪存分区</li>
+<li>验证加密签名（防止恶意固件）</li>
+<li>重启到新分区，如果启动失败则回退到旧分区</li>
+<li>使用新固件恢复 BLE 操作</li>
+</ol>
+<h2 id="_19">参考文献<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>数据表:</strong> <a href="https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf">ESP32-S3 Datasheet (v1.8)</a></li>
+<li><strong>技术参考手册:</strong> <a href="https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf">ESP32-S3 TRM</a></li>
+<li><strong>硬件设计指南:</strong> <a href="https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf">ESP32-S3-WROOM-1 Hardware Design Guidelines</a></li>
+<li><strong>Arduino Core:</strong> <a href="https://github.com/espressif/arduino-esp32">ESP32 Arduino Core GitHub</a> - 超过 15k 星标，活跃开发</li>
+<li><strong>BLE 性能研究:</strong> "ESP32 BLE Throughput Analysis" - Espressif 应用说明显示 800-1200 kbps 持续吞吐量</li>
+<li><strong>功耗分析:</strong> <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/api-reference/system/power_management.html">ESP32-S3 Power Management</a></li>
+<li><strong>TensorFlow Lite Micro 移植:</strong> <a href="https://github.com/espressif/esp-nn">ESP-NN Optimized Kernels</a> - 比参考 TFLite 快 3-4 倍</li>
+<li><strong>PlatformIO ESP32-S3 指南:</strong> <a href="https://docs.platformio.org/en/latest/boards/espressif32/esp32-s3-devkitc-1.html">PlatformIO ESP32-S3 Documentation</a></li>
+<li><strong>社区论坛:</strong> <a href="https://esp32.com/">ESP32 Forum</a> - 10 万以上帖子，广泛的 BLE 优化讨论</li>
+<li><strong>参考设计:</strong> ESP32-S3-DevKitC-1 原理图和布局文件（Espressif 官方开发板）</li>
+</ul>
 
 
 
@@ -3518,10 +4462,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.tracking", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.tracking", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
     
   </body>

@@ -12,29 +12,31 @@
         <meta name="author" content="Movement Chain AI Team">
       
       
-        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/">
+        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/design/decisions/0006-onnx-runtime-deployment/">
       
       
+        <link rel="prev" href="../0005-esp32-s3-microcontroller/">
       
-        <link rel="next" href="docs-guide/">
+      
+        <link rel="next" href="../../../components/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>Movement Chain AI Documentation</title>
+        <title>ADR 0006: ONNX Runtime 用于 ML 模型部署 - Movement Chain AI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#movement-chain-ai" class="md-skip">
+        <a href="#adr-0006-onnx-runtime-ml" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +102,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -120,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              首页
+              ADR 0006: ONNX Runtime 用于 ML 模型部署
             
           </span>
         </div>
@@ -238,7 +240,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -265,37 +267,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    首页
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -311,87 +286,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        用户在痛什么？
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="用户在痛什么？">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#85" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第一痛点：练习与实战的鸿沟 (85% 提及率)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        三个唯一
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        文档导航
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        快速链接
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -403,7 +297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="docs-guide/" class="md-nav__link">
+      <a href="../../../docs-guide/" class="md-nav__link">
         
   
   
@@ -430,7 +324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="risk-management/" class="md-nav__link">
+      <a href="../../../risk-management/" class="md-nav__link">
         
   
   
@@ -483,7 +377,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="product/" class="md-nav__link ">
+            <a href="../../../product/" class="md-nav__link ">
               
   
   
@@ -527,7 +421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/user-personas/" class="md-nav__link">
+      <a href="../../../product/user-personas/" class="md-nav__link">
         
   
   
@@ -555,7 +449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/unique-value/" class="md-nav__link">
+      <a href="../../../product/unique-value/" class="md-nav__link">
         
   
   
@@ -607,7 +501,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="product/market-landscape/" class="md-nav__link ">
+            <a href="../../../product/market-landscape/" class="md-nav__link ">
               
   
   
@@ -651,7 +545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/pain-points/" class="md-nav__link">
+      <a href="../../../product/market-landscape/pain-points/" class="md-nav__link">
         
   
   
@@ -679,7 +573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/market-size/" class="md-nav__link">
+      <a href="../../../product/market-landscape/market-size/" class="md-nav__link">
         
   
   
@@ -764,7 +658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/imu-based/" class="md-nav__link">
+      <a href="../../../product/market-landscape/competitors/imu-based/" class="md-nav__link">
         
   
   
@@ -792,7 +686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/vision-based/" class="md-nav__link">
+      <a href="../../../product/market-landscape/competitors/vision-based/" class="md-nav__link">
         
   
   
@@ -820,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/multi-sensor/" class="md-nav__link">
+      <a href="../../../product/market-landscape/competitors/multi-sensor/" class="md-nav__link">
         
   
   
@@ -848,7 +742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/smart-clothing/" class="md-nav__link">
+      <a href="../../../product/market-landscape/competitors/smart-clothing/" class="md-nav__link">
         
   
   
@@ -892,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/product-strategy/" class="md-nav__link">
+      <a href="../../../product/product-strategy/" class="md-nav__link">
         
   
   
@@ -924,6 +818,8 @@
       
   
   
+    
+  
   
   
     
@@ -959,15 +855,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="design/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
@@ -991,7 +887,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1011,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/system-design/" class="md-nav__link">
+      <a href="../../system-design/" class="md-nav__link">
         
   
   
@@ -1039,7 +935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/swing-phases/" class="md-nav__link">
+      <a href="../../swing-phases/" class="md-nav__link">
         
   
   
@@ -1067,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/real-time-feedback-spec/" class="md-nav__link">
+      <a href="../../real-time-feedback-spec/" class="md-nav__link">
         
   
   
@@ -1095,7 +991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/swing-comparison/" class="md-nav__link">
+      <a href="../../swing-comparison/" class="md-nav__link">
         
   
   
@@ -1123,7 +1019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/personalization-spec/" class="md-nav__link">
+      <a href="../../personalization-spec/" class="md-nav__link">
         
   
   
@@ -1151,7 +1047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/getting-started/" class="md-nav__link">
+      <a href="../../getting-started/" class="md-nav__link">
         
   
   
@@ -1179,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/ml-basics/" class="md-nav__link">
+      <a href="../../ml-basics/" class="md-nav__link">
         
   
   
@@ -1207,7 +1103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/sdk-selection/" class="md-nav__link">
+      <a href="../../sdk-selection/" class="md-nav__link">
         
   
   
@@ -1235,7 +1131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions-summary/" class="md-nav__link">
+      <a href="../../decisions-summary/" class="md-nav__link">
         
   
   
@@ -1287,7 +1183,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="design/research/" class="md-nav__link ">
+            <a href="../../research/" class="md-nav__link ">
               
   
   
@@ -1331,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/research/biomechanics-glossary/" class="md-nav__link">
+      <a href="../../research/biomechanics-glossary/" class="md-nav__link">
         
   
   
@@ -1359,7 +1255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/research/biomechanics-benchmarks/" class="md-nav__link">
+      <a href="../../research/biomechanics-benchmarks/" class="md-nav__link">
         
   
   
@@ -1387,7 +1283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/research/sensor-metric-mapping/" class="md-nav__link">
+      <a href="../../research/sensor-metric-mapping/" class="md-nav__link">
         
   
   
@@ -1420,6 +1316,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1445,15 +1343,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_12" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_12" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="design/decisions/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -1477,7 +1375,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_12_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_12_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_12">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1497,7 +1395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0001-multi-repo-structure/" class="md-nav__link">
+      <a href="../0001-multi-repo-structure/" class="md-nav__link">
         
   
   
@@ -1525,7 +1423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+      <a href="../0002-lsm6dsv16x-imu/" class="md-nav__link">
         
   
   
@@ -1553,7 +1451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0003-flutter-mobile/" class="md-nav__link">
+      <a href="../0003-flutter-mobile/" class="md-nav__link">
         
   
   
@@ -1581,7 +1479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+      <a href="../0004-simplified-4-module-architecture/" class="md-nav__link">
         
   
   
@@ -1609,7 +1507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+      <a href="../0005-esp32-s3-microcontroller/" class="md-nav__link">
         
   
   
@@ -1634,10 +1532,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="design/decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0006: ONNX Runtime 用于 ML 模型部署
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1653,6 +1578,408 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        背景
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        决策
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        理由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="理由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型格式兼容性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        框架灵活性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二进制大小比较
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型更新灵活性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        性能特征
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flutter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flutter 集成
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结果
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="结果">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        积极影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        消极影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        缓解策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        考虑的替代方案
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="考虑的替代方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tensorflow-lite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        仅 TensorFlow Lite
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediapipegoogle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MediaPipe（Google）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pytorch-mobile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyTorch Mobile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorflow-lite_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TensorFlow Lite + 手动转换管道
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coremlios-ml-kitandroid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        原生 CoreML（iOS）+ ML Kit（Android）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证的包/组件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="验证的包/组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        主运行时
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回退运行时
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型管理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型检查工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实现指南
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实现指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型部署工作流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        代码示例（推理设置）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        性能监控
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回退策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迁移路径（未来）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考文献
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        审查计划
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1712,7 +2039,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="components/" class="md-nav__link ">
+            <a href="../../../components/" class="md-nav__link ">
               
   
   
@@ -1809,7 +2136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/imu/hardware/" class="md-nav__link">
+      <a href="../../../components/imu/hardware/" class="md-nav__link">
         
   
   
@@ -1837,7 +2164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/imu/suppliers/" class="md-nav__link">
+      <a href="../../../components/imu/suppliers/" class="md-nav__link">
         
   
   
@@ -1926,7 +2253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/emg/hardware/" class="md-nav__link">
+      <a href="../../../components/emg/hardware/" class="md-nav__link">
         
   
   
@@ -1954,7 +2281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/emg/suppliers/" class="md-nav__link">
+      <a href="../../../components/emg/suppliers/" class="md-nav__link">
         
   
   
@@ -2043,7 +2370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/vision/hardware/" class="md-nav__link">
+      <a href="../../../components/vision/hardware/" class="md-nav__link">
         
   
   
@@ -2071,7 +2398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/vision/software/" class="md-nav__link">
+      <a href="../../../components/vision/software/" class="md-nav__link">
         
   
   
@@ -2160,7 +2487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/mcu/hardware/" class="md-nav__link">
+      <a href="../../../components/mcu/hardware/" class="md-nav__link">
         
   
   
@@ -2188,7 +2515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/mcu/suppliers/" class="md-nav__link">
+      <a href="../../../components/mcu/suppliers/" class="md-nav__link">
         
   
   
@@ -2277,7 +2604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/flexible-sensors/hardware/" class="md-nav__link">
+      <a href="../../../components/flexible-sensors/hardware/" class="md-nav__link">
         
   
   
@@ -2305,7 +2632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/flexible-sensors/suppliers/" class="md-nav__link">
+      <a href="../../../components/flexible-sensors/suppliers/" class="md-nav__link">
         
   
   
@@ -2394,7 +2721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/pressure-sensors/hardware/" class="md-nav__link">
+      <a href="../../../components/pressure-sensors/hardware/" class="md-nav__link">
         
   
   
@@ -2422,7 +2749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/pressure-sensors/suppliers/" class="md-nav__link">
+      <a href="../../../components/pressure-sensors/suppliers/" class="md-nav__link">
         
   
   
@@ -2486,7 +2813,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="components/supply-chain/" class="md-nav__link ">
+            <a href="../../../components/supply-chain/" class="md-nav__link ">
               
   
   
@@ -2530,7 +2857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/china-sensors/" class="md-nav__link">
+      <a href="../../../components/supply-chain/china-sensors/" class="md-nav__link">
         
   
   
@@ -2558,7 +2885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/china-wearables/" class="md-nav__link">
+      <a href="../../../components/supply-chain/china-wearables/" class="md-nav__link">
         
   
   
@@ -2586,7 +2913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/mvp-suppliers/" class="md-nav__link">
+      <a href="../../../components/supply-chain/mvp-suppliers/" class="md-nav__link">
         
   
   
@@ -2614,7 +2941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/smart-clothing-market/" class="md-nav__link">
+      <a href="../../../components/supply-chain/smart-clothing-market/" class="md-nav__link">
         
   
   
@@ -2642,7 +2969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/e-skin-odm/" class="md-nav__link">
+      <a href="../../../components/supply-chain/e-skin-odm/" class="md-nav__link">
         
   
   
@@ -2709,7 +3036,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="platform/" class="md-nav__link ">
+            <a href="../../../platform/" class="md-nav__link ">
               
   
   
@@ -2753,7 +3080,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/mvp-prototype-code/" class="md-nav__link">
+      <a href="../../../platform/mvp-prototype-code/" class="md-nav__link">
         
   
   
@@ -2832,7 +3159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/mobile/development/" class="md-nav__link">
+      <a href="../../../platform/mobile/development/" class="md-nav__link">
         
   
   
@@ -2921,7 +3248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/ml-training/datasets/" class="md-nav__link">
+      <a href="../../../platform/ml-training/datasets/" class="md-nav__link">
         
   
   
@@ -2949,7 +3276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/ml-training/visual-feedback/" class="md-nav__link">
+      <a href="../../../platform/ml-training/visual-feedback/" class="md-nav__link">
         
   
   
@@ -3020,7 +3347,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="reference/" class="md-nav__link ">
+            <a href="../../../reference/" class="md-nav__link ">
               
   
   
@@ -3064,7 +3391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/golf-glossary/" class="md-nav__link">
+      <a href="../../../reference/golf-glossary/" class="md-nav__link">
         
   
   
@@ -3092,7 +3419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/business-glossary/" class="md-nav__link">
+      <a href="../../../reference/business-glossary/" class="md-nav__link">
         
   
   
@@ -3120,7 +3447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/academic-datasets/" class="md-nav__link">
+      <a href="../../../reference/academic-datasets/" class="md-nav__link">
         
   
   
@@ -3148,7 +3475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/golf-research/" class="md-nav__link">
+      <a href="../../../reference/golf-research/" class="md-nav__link">
         
   
   
@@ -3176,7 +3503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/open-source-tools/" class="md-nav__link">
+      <a href="../../../reference/open-source-tools/" class="md-nav__link">
         
   
   
@@ -3234,19 +3561,96 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        用户在痛什么？
+        背景
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="用户在痛什么？">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        决策
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        理由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="理由">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#85" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        第一痛点：练习与实战的鸿沟 (85% 提及率)
+        模型格式兼容性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        框架灵活性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二进制大小比较
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型更新灵活性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        性能特征
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flutter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flutter 集成
       
     </span>
   </a>
@@ -3259,10 +3663,254 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        三个唯一
+        结果
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="结果">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        积极影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        消极影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        缓解策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        考虑的替代方案
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="考虑的替代方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tensorflow-lite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        仅 TensorFlow Lite
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediapipegoogle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MediaPipe（Google）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pytorch-mobile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyTorch Mobile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensorflow-lite_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TensorFlow Lite + 手动转换管道
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coremlios-ml-kitandroid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        原生 CoreML（iOS）+ ML Kit（Android）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证的包/组件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="验证的包/组件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        主运行时
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回退运行时
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型管理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型检查工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实现指南
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实现指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型部署工作流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        代码示例（推理设置）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        性能监控
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        回退策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迁移路径（未来）
       
     </span>
   </a>
@@ -3270,10 +3918,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_25" class="md-nav__link">
     <span class="md-ellipsis">
       
-        文档导航
+        参考文献
       
     </span>
   </a>
@@ -3281,10 +3929,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_26" class="md-nav__link">
     <span class="md-ellipsis">
       
-        快速链接
+        审查计划
       
     </span>
   </a>
@@ -3311,129 +3959,314 @@
   
 
 
-<h1 id="movement-chain-ai">Movement Chain AI<a class="headerlink" href="#movement-chain-ai" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>AI + 摄像头 + EMG + IMU：唯一能告诉你"为什么"做错的高尔夫训练系统</strong></p>
-</blockquote>
-<hr />
-<h2 id="_1">用户在痛什么？<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="85">第一痛点：练习与实战的鸿沟 (85% 提及率)<a class="headerlink" href="#85" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p>"I was hitting it so well on the range, then all hell broke loose on the course."
-（我在练习场打得很好,到了球场就全崩了。）</p>
-</blockquote>
-<p><strong>现实</strong>：没有任何产品能打通练习场和球场的闭环。</p>
+<h1 id="adr-0006-onnx-runtime-ml">ADR 0006: ONNX Runtime 用于 ML 模型部署<a class="headerlink" href="#adr-0006-onnx-runtime-ml" title="Permanent link">&para;</a></h1>
+<p><strong>日期:</strong> 2025-12-01
+<strong>状态:</strong> 已接受</p>
+<h2 id="_1">背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Movement Chain AI 需要使用 <strong>RTMPose-m</strong> 模型进行设备上的姿态估计，以实现实时人体运动分析。关键部署要求：</p>
+<ul>
+<li><strong>模型可用性</strong>: RTMPose-m 以 ONNX 格式正式发布（不是 TensorFlow Lite）</li>
+<li><strong>跨平台推理</strong>: 必须在 iOS 和 Android 上以一致的性能运行</li>
+<li><strong>模型灵活性</strong>: 需要能够在不重新编译应用的情况下更新/交换模型</li>
+<li><strong>二进制大小限制</strong>: 移动应用大小预算限制框架开销</li>
+<li><strong>性能目标</strong>: 中端设备上 30-50ms 推理延迟（60 FPS 摄像头处理）</li>
+</ul>
+<p>推理运行时必须在模型格式兼容性、部署灵活性和性能优化之间取得平衡，同时与 Flutter 的生态系统集成。</p>
+<h2 id="_2">决策<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>采用 <strong>ONNX Runtime Mobile</strong> 作为主要 ML 推理引擎，<strong>TensorFlow Lite</strong> 作为 ONNX 格式不可用模型的回退。</p>
+<h2 id="_3">理由<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">模型格式兼容性<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>RTMPose-m 可用性</strong>: ONNX 是 MMPose 的官方发布格式</li>
+<li>PyTorch → ONNX 导出：MMPose 框架中的原生支持</li>
+<li>ONNX → TFLite 转换：有损过程，MMPose 团队不正式支持</li>
+<li><strong>结果</strong>: 使用 ONNX 避免转换伪影并保持模型完整性</li>
+</ul>
+<h3 id="_5">框架灵活性<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>ONNX Runtime 提供框架不可知的部署：</p>
 <table>
 <thead>
 <tr>
-<th>产品类型</th>
-<th>练习场</th>
-<th>球场</th>
-<th>闭环</th>
+<th>模型源</th>
+<th>ONNX Runtime</th>
+<th>仅 TFLite</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>HackMotion</td>
-<td>✅</td>
-<td>❌</td>
-<td>❌</td>
+<td>PyTorch 模型</td>
+<td>✅ 直接导出</td>
+<td>❌ 需要多步转换</td>
 </tr>
 <tr>
-<td>Sportsbox AI</td>
-<td>✅</td>
-<td>❌</td>
-<td>❌</td>
+<td>TensorFlow 模型</td>
+<td>✅ 通过 ONNX 导出</td>
+<td>✅ 原生支持</td>
 </tr>
 <tr>
-<td>Arccos</td>
-<td>❌</td>
-<td>✅</td>
-<td>❌</td>
+<td>ONNX 模型</td>
+<td>✅ 原生支持</td>
+<td>❌ 需要转换（有损）</td>
 </tr>
 <tr>
-<td><strong>Movement Chain AI</strong></td>
-<td>✅</td>
-<td>✅</td>
-<td>✅ <strong>唯一</strong></td>
+<td>未来模型更新</td>
+<td>✅ 即插即用替换</td>
+<td>⚠️ 可能需要重新转换</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="_2">三个唯一<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><strong>优势</strong>: 团队可以在 PyTorch/TensorFlow 中训练并部署格式相同的模型，而无需维护单独的管道。</p>
+<h3 id="_6">二进制大小比较<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>对于单模型移动应用：</p>
+<table>
+<thead>
+<tr>
+<th>运行时</th>
+<th>基础库大小</th>
+<th>RTMPose-m 模型</th>
+<th>总占用空间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ONNX Runtime Mobile</strong></td>
+<td>约 5-8 MB</td>
+<td>约 9 MB（float32）</td>
+<td><strong>约 14-17 MB</strong></td>
+</tr>
+<tr>
+<td>TensorFlow Lite</td>
+<td>约 1.5-2 MB</td>
+<td>N/A（模型不可用）</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TFLite + 转换工具</td>
+<td>约 4-6 MB</td>
+<td>约 12 MB（带有转换伪影）</td>
+<td><strong>约 16-18 MB</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>注:</strong> TFLite 的基础库更小，但 ONNX Runtime 的优化移动构建（仅带有 ARM NEON 内核）在我们的用例中实现了可比的总大小。</p>
+<h3 id="_7">模型更新灵活性<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>ONNX Runtime 启用高级部署策略：</p>
+<ul>
+<li><strong>A/B 测试</strong>: 为用户群动态加载不同的模型版本</li>
+<li><strong>渐进式推出</strong>: 通过远程配置更新模型，无需应用商店提交</li>
+<li><strong>联邦学习</strong>: 训练个性化模型并以标准化 ONNX 格式部署</li>
+<li><strong>模型量化</strong>: FP32 → INT8 量化，无需重新训练（ONNX 工具链）</li>
+</ul>
+<h3 id="_8">性能特征<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>目标硬件上的推理延迟（iPhone 12 Pro / Pixel 6）：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>ONNX Runtime</th>
+<th>TFLite（估计）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RTMPose-m 推理</td>
+<td>35-45ms（FP32）</td>
+<td>30-40ms（如果转换）</td>
+</tr>
+<tr>
+<td>模型加载</td>
+<td>约 200ms</td>
+<td>约 150ms</td>
+</tr>
+<tr>
+<td>内存占用</td>
+<td>约 180MB</td>
+<td>约 160MB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>可接受的权衡</strong>: 比 TFLite 慢 5-10ms，但消除了转换风险并启用更广泛的模型生态系统。</p>
+<h3 id="flutter">Flutter 集成<a class="headerlink" href="#flutter" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>包</strong>: <code>onnxruntime_v2</code>（v1.16.3）- 社区维护，跨平台</li>
+<li>iOS：CoreML 委托用于硬件加速</li>
+<li>Android：NNAPI 委托（GPU/DSP 卸载）</li>
+<li><strong>回退</strong>: <code>tflite_flutter</code>（v0.10.4+）- 官方 Google 插件</li>
+<li>用于 TFLite 格式原生可用的模型（例如，用于预处理的 MobileNet）</li>
+</ul>
+<h2 id="_9">结果<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="_10">积极影响<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>模型可用性</strong>: RTMPose-m 可部署，无需有损格式转换</li>
+<li><strong>框架独立性</strong>: 不锁定到 TensorFlow 生态系统（PyTorch 模型同样支持）</li>
+<li><strong>部署敏捷性</strong>: 通过远程配置更新模型（30 分钟推出 vs 3 天应用审核）</li>
+<li><strong>面向未来</strong>: ONNX 是跨行业标准（Microsoft、Facebook、AWS 都有贡献）</li>
+<li><strong>量化工具链</strong>: ONNX 提供丰富的训练后优化工具</li>
+<li><strong>二进制大小</strong>: 14-17 MB 总计（对移动 ML 应用可接受）</li>
+</ul>
+<h3 id="_11">消极影响<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Flutter 集成成熟度</strong>: <code>onnxruntime_v2</code> 是社区维护的（vs 官方 TFLite 插件）</li>
+<li>风险：Flutter 引擎中的重大更改可能需要插件更新</li>
+<li>缓解：固定插件版本，如果需要向上游贡献修复</li>
+<li><strong>性能差距</strong>: 在相同模型上比原生 TFLite 慢 5-10ms（当两者都可用时）</li>
+<li>影响：对于 60 FPS 目标可忽略不计（16.6ms 帧预算 - 35ms 推理 = 可接受）</li>
+<li><strong>调试复杂性</strong>: ONNX Runtime 错误消息不如 TFLite 详细</li>
+<li>缓解：部署前使用 Netron 工具验证模型</li>
+<li><strong>iOS 二进制大小</strong>: CoreML 委托在 iOS 上增加约 3MB（仍在预算内）</li>
+<li><strong>学习曲线</strong>: 团队必须了解 ONNX 格式和优化工具（onnxruntime-tools）</li>
+</ul>
+<h3 id="_12">缓解策略<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>唯一多模态</strong>: Vision + IMU + EMG 融合分析</li>
-<li><strong>唯一双模式</strong>: 练习场 ↔ 球场数据打通</li>
-<li><strong>唯一EMG</strong>: 能看到肌肉发力顺序</li>
+<li><strong>双运行时架构</strong>: 保留 TFLite 作为 ONNX 不可用模型的回退</li>
+<li><strong>模型验证管道</strong>: 部署前自动测试 ONNX 模型兼容性</li>
+<li><strong>插件监控</strong>: 跟踪 <code>onnxruntime_v2</code> GitHub 问题，如果维护停滞则准备分支</li>
+<li><strong>性能分析</strong>: 每季度在目标设备上对 ONNX vs TFLite 推理进行基准测试</li>
 </ol>
-<hr />
-<h2 id="_3">文档导航<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>章节</th>
-<th>内容</th>
-<th>读者</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="product/">产品战略</a></td>
-<td>MVP规格、路线图、市场验证、竞品分析</td>
-<td>投资人、产品经理</td>
-</tr>
-<tr>
-<td><a href="design/system-design/">系统设计</a></td>
-<td>AI架构、融合算法、ADR决策</td>
-<td>架构师、工程师</td>
-</tr>
-<tr>
-<td><a href="components/">硬件组件</a></td>
-<td>IMU/EMG/Vision规格、供应商</td>
-<td>硬件工程师</td>
-</tr>
-<tr>
-<td><a href="platform/">开发平台</a></td>
-<td>Flutter移动端、ML训练管道</td>
-<td>开发者</td>
-</tr>
-<tr>
-<td><a href="reference/">参考资料</a></td>
-<td>学术数据集、外部资源</td>
-<td>研究人员</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="_4">快速链接<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>想了解</th>
-<th>文档</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>系统设计</td>
-<td><a href="design/system-design/">MVP 核心管道</a></td>
-</tr>
-<tr>
-<td>技术决策</td>
-<td><a href="design/decisions/">架构决策记录 (ADR)</a></td>
-</tr>
-<tr>
-<td>快速开始</td>
-<td><a href="design/getting-started/">无需硬件测试</a></td>
-</tr>
-<tr>
-<td>术语定义</td>
-<td><a href="design/research/biomechanics-glossary/">生物力学术语表</a></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>最后更新</strong>: 2025 年 12 月 12 日</p>
+<h2 id="_13">考虑的替代方案<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<h3 id="tensorflow-lite">仅 TensorFlow Lite<a class="headerlink" href="#tensorflow-lite" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>优点</strong>: 官方 Google 支持，成熟的 Flutter 插件，快 20% 的推理</li>
+<li><strong>缺点</strong>: RTMPose-m 不可用，需要自定义 PyTorch → TFLite 转换（有损过程）</li>
+<li><strong>性能</strong>: 30-40ms 推理（估计，如果转换成功）</li>
+<li><strong>被拒绝的原因</strong>: 无法部署官方 RTMPose-m 模型，转换引入影响姿态估计精度的量化误差</li>
+</ul>
+<h3 id="mediapipegoogle">MediaPipe（Google）<a class="headerlink" href="#mediapipegoogle" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>优点</strong>: 预构建的姿态估计模型，官方 Flutter 支持</li>
+<li><strong>缺点</strong>: 限于 MediaPipe 的预定义模型（无法部署自定义 RTMPose-m）</li>
+<li><strong>定制</strong>: 难以修改模型架构或训练数据</li>
+<li><strong>被拒绝的原因</strong>: 对于 Movement Chain AI 的领域特定要求（体育运动分析）灵活性不足</li>
+</ul>
+<h3 id="pytorch-mobile">PyTorch Mobile<a class="headerlink" href="#pytorch-mobile" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>优点</strong>: 原生 PyTorch 模型支持（RTMPose-m 最初在 PyTorch 中训练）</li>
+<li><strong>缺点</strong>: 二进制大小更大（约 20MB+），有限的 Flutter 集成（无官方插件）</li>
+<li><strong>性能</strong>: 与 ONNX Runtime 相当</li>
+<li><strong>被拒绝的原因</strong>: 2 倍二进制大小开销，不成熟的 Flutter 生态系统，ONNX 以更小的占用空间提供相同的 PyTorch 兼容性</li>
+</ul>
+<h3 id="tensorflow-lite_1">TensorFlow Lite + 手动转换管道<a class="headerlink" href="#tensorflow-lite_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>方法</strong>: 使用 <code>tf2onnx</code> 和量化工具将 RTMPose-m 从 ONNX → TFLite 转换</li>
+<li><strong>优点</strong>: 使用官方 TFLite 插件，可能更快的推理</li>
+<li><strong>缺点</strong>:</li>
+<li>转换伪影（测试中观察到的层兼容性问题）</li>
+<li>维护负担（每次模型更新时重新转换）</li>
+<li>精度下降（关键点定位误差增加约 3-5%）</li>
+<li><strong>被拒绝的原因</strong>: 工程开销和精度损失超过性能提升</li>
+</ul>
+<h3 id="coremlios-ml-kitandroid">原生 CoreML（iOS）+ ML Kit（Android）<a class="headerlink" href="#coremlios-ml-kitandroid" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>优点</strong>: 每个平台上的最佳性能</li>
+<li><strong>缺点</strong>: 需要维护两个单独的模型格式和部署管道</li>
+<li><strong>复杂性</strong>: 2 倍集成工作，平台特定调试</li>
+<li><strong>被拒绝的原因</strong>: 违反 Flutter 的跨平台理念，增加维护成本</li>
+</ul>
+<h2 id="_14">验证的包/组件<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<h3 id="_15">主运行时<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p><strong>onnxruntime_v2</strong>（v1.16.3）</p>
+<ul>
+<li><strong>包</strong>: <a href="https://pub.dev/packages/onnxruntime_v2">https://pub.dev/packages/onnxruntime_v2</a></li>
+<li><strong>平台</strong>: iOS（arm64），Android（arm64-v8a，armeabi-v7a）</li>
+<li><strong>硬件加速</strong>:</li>
+<li>iOS：CoreML 委托（A12+ 芯片上的神经引擎）</li>
+<li>Android：NNAPI 委托（Snapdragon/Exynos 上的 GPU/DSP）</li>
+<li><strong>验证状态</strong>: RTMPose-m（9MB ONNX 模型）在 iPhone 12 Pro 和 Pixel 6 上成功测试</li>
+<li><strong>推理延迟</strong>: 每帧 35-45ms（float32），18-25ms（int8 量化）</li>
+</ul>
+<h3 id="_16">回退运行时<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p><strong>tflite_flutter</strong>（v0.10.4+）</p>
+<ul>
+<li><strong>包</strong>: <a href="https://pub.dev/packages/tflite_flutter">https://pub.dev/packages/tflite_flutter</a></li>
+<li><strong>用例</strong>: 仅 TFLite 格式可用的模型（例如，图像预处理模型）</li>
+<li><strong>硬件加速</strong>: GPU 委托（Android），Metal 委托（iOS）</li>
+<li><strong>官方支持</strong>: Google 维护</li>
+</ul>
+<h3 id="_17">模型管理<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p><strong>flutter_cache_manager</strong>（v3.3.1）</p>
+<ul>
+<li><strong>目的</strong>: 用于 A/B 测试的远程模型下载和缓存</li>
+<li><strong>功能</strong>: 自动清理，版本管理，离线回退</li>
+</ul>
+<h3 id="_18">模型检查工具<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p><strong>Netron</strong>（桌面应用）</p>
+<ul>
+<li><strong>目的</strong>: 部署前可视化 ONNX 模型架构</li>
+<li><strong>验证</strong>: 验证输入/输出张量形状，层兼容性</li>
+</ul>
+<p><strong>onnxruntime-tools</strong>（Python 包）</p>
+<ul>
+<li><strong>目的</strong>: 模型量化（FP32 → INT8）和优化</li>
+<li><strong>工作流程</strong>: 在打包前在开发机器上预处理模型</li>
+</ul>
+<h2 id="_19">实现指南<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<h3 id="_20">模型部署工作流程<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>训练</strong>: 在 PyTorch 中训练 RTMPose-m（MMPose 框架）</li>
+<li><strong>导出</strong>: 使用 <code>torch.onnx.export</code> 将 PyTorch → ONNX 转换</li>
+<li><strong>优化</strong>: 使用 <code>onnxruntime-tools</code> 量化（可选，以实现 2 倍加速）</li>
+<li><strong>验证</strong>: 在 Netron 中加载，验证输入形状与摄像头输出匹配（1x3x256x192）</li>
+<li><strong>集成</strong>: 在 Flutter 资产中捆绑 ONNX 文件或远程获取</li>
+<li><strong>推理</strong>: 通过 <code>onnxruntime_v2</code> 加载，在后台隔离上运行</li>
+</ol>
+<h3 id="_21">代码示例（推理设置）<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:onnxruntime_v2/onnxruntime_v2.dart&#39;</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// 使用硬件加速初始化会话</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kd">final</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">OrtSession</span><span class="p">.</span><span class="n">fromAsset</span><span class="p">(</span><span class="s1">&#39;assets/rtmpose_m.onnx&#39;</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">session</span><span class="p">.</span><span class="n">setEnv</span><span class="p">(</span><span class="n">OrtEnv</span><span class="p">(</span><span class="nl">logLevel:</span><span class="w"> </span><span class="n">OrtLoggingLevel</span><span class="p">.</span><span class="n">warning</span><span class="p">));</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">// 启用 CoreML（iOS）或 NNAPI（Android）委托</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Platform</span><span class="p">.</span><span class="n">isIOS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="n">session</span><span class="p">.</span><span class="n">addSessionConfigEntry</span><span class="p">(</span><span class="s1">&#39;session.use_coreml&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;true&#39;</span><span class="p">);</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Platform</span><span class="p">.</span><span class="n">isAndroid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="n">session</span><span class="p">.</span><span class="n">addSessionConfigEntry</span><span class="p">(</span><span class="s1">&#39;session.use_nnapi&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;true&#39;</span><span class="p">);</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">}</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1">// 在摄像头帧上运行推理</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="kd">final</span><span class="w"> </span><span class="n">inputTensor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrtValue</span><span class="p">.</span><span class="n">createTensorWithDataList</span><span class="p">(</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="n">preprocessedImage</span><span class="p">,</span><span class="w"> </span><span class="c1">// YUV420 → RGB，调整大小为 256x192</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">256</span><span class="p">,</span><span class="w"> </span><span class="m">192</span><span class="p">],</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">);</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="kd">final</span><span class="w"> </span><span class="n">outputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="n">inputTensor</span><span class="p">]);</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="kd">final</span><span class="w"> </span><span class="n">keypoints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outputs</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">asFloatList</span><span class="p">();</span><span class="w"> </span><span class="c1">// 17 个关键点 x (x, y, 置信度)</span>
+</span></code></pre></div>
+<h3 id="_22">性能监控<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>延迟跟踪</strong>: 记录每帧推理时间，如果持续 &gt;50ms 则警报</li>
+<li><strong>内存分析</strong>: 监控 ONNX 会话内存（目标 &lt;200MB）</li>
+<li><strong>精度验证</strong>: 每季度将关键点预测与真实数据集进行比较</li>
+</ul>
+<h3 id="_23">回退策略<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<p>如果 ONNX Runtime 失败（例如，设备兼容性问题）：</p>
+<ol>
+<li>尝试加载模型的 TFLite 版本（预转换，作为备份捆绑）</li>
+<li>如果两者都失败，降级到基于云的推理（将帧发送到后端 API）</li>
+<li>记录设备型号、操作系统版本和错误代码的遥测</li>
+</ol>
+<h2 id="_24">迁移路径（未来）<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
+<p>如果 ONNX Runtime 被证明不足：</p>
+<ol>
+<li><strong>TFLite 转换</strong>: 投资于具有精度测试的强大 ONNX → TFLite 管道</li>
+<li><strong>原生插件</strong>: 为 CoreML（iOS）/ ML Kit（Android）创建自定义平台通道</li>
+<li><strong>成本效益</strong>: 如果维护负担超过 40 小时/季度，重新评估</li>
+</ol>
+<h2 id="_25">参考文献<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>ONNX Runtime Mobile</strong>: <a href="https://onnxruntime.ai/docs/tutorials/mobile/">https://onnxruntime.ai/docs/tutorials/mobile/</a></li>
+<li><strong>RTMPose Model Zoo</strong>: <a href="https://github.com/open-mmlab/mmpose/tree/main/projects/rtmpose">https://github.com/open-mmlab/mmpose/tree/main/projects/rtmpose</a></li>
+<li><strong>onnxruntime_v2 Package</strong>: <a href="https://pub.dev/packages/onnxruntime_v2">https://pub.dev/packages/onnxruntime_v2</a></li>
+<li><strong>ONNX Model Optimization</strong>: <a href="https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html">https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html</a></li>
+<li><strong>性能基准</strong>: 内部测试（2025-11-29），iPhone 12 Pro / Pixel 6</li>
+<li><strong>二进制大小分析</strong>: 使用 ONNX Runtime vs TFLite 的应用包测量（2025-11-30）</li>
+</ul>
+<h2 id="_26">审查计划<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>6 周检查点</strong>: 验证 RTMPose-m 推理延迟满足 35-50ms 目标</li>
+<li><strong>3 个月审查</strong>: 评估 <code>onnxruntime_v2</code> 插件稳定性和社区支持</li>
+<li><strong>6 个月审查</strong>: 比较实际 vs 预计模型更新速度（A/B 测试使用）</li>
+<li><strong>年度审查</strong>: 重新评估 ONNX vs TFLite 生态系统成熟度和性能差距</li>
+</ul>
 
 
 
@@ -3518,10 +4351,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.tracking", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.tracking", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
     
   </body>

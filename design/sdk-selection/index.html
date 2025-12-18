@@ -12,29 +12,31 @@
         <meta name="author" content="Movement Chain AI Team">
       
       
-        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/">
+        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/design/sdk-selection/">
       
       
+        <link rel="prev" href="../ml-basics/">
       
-        <link rel="next" href="docs-guide/">
+      
+        <link rel="next" href="../decisions-summary/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>Movement Chain AI Documentation</title>
+        <title>SDK/库选型指南 SDK Selection Guide - Movement Chain AI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#movement-chain-ai" class="md-skip">
+        <a href="#sdk-sdk-selection-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +102,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -120,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              首页
+              SDK/库选型指南 SDK Selection Guide
             
           </span>
         </div>
@@ -238,7 +240,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -265,37 +267,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    首页
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -311,87 +286,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        用户在痛什么？
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="用户在痛什么？">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#85" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第一痛点：练习与实战的鸿沟 (85% 提及率)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        三个唯一
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        文档导航
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        快速链接
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -403,7 +297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="docs-guide/" class="md-nav__link">
+      <a href="../../docs-guide/" class="md-nav__link">
         
   
   
@@ -430,7 +324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="risk-management/" class="md-nav__link">
+      <a href="../../risk-management/" class="md-nav__link">
         
   
   
@@ -483,7 +377,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="product/" class="md-nav__link ">
+            <a href="../../product/" class="md-nav__link ">
               
   
   
@@ -527,7 +421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/user-personas/" class="md-nav__link">
+      <a href="../../product/user-personas/" class="md-nav__link">
         
   
   
@@ -555,7 +449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/unique-value/" class="md-nav__link">
+      <a href="../../product/unique-value/" class="md-nav__link">
         
   
   
@@ -607,7 +501,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="product/market-landscape/" class="md-nav__link ">
+            <a href="../../product/market-landscape/" class="md-nav__link ">
               
   
   
@@ -651,7 +545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/pain-points/" class="md-nav__link">
+      <a href="../../product/market-landscape/pain-points/" class="md-nav__link">
         
   
   
@@ -679,7 +573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/market-size/" class="md-nav__link">
+      <a href="../../product/market-landscape/market-size/" class="md-nav__link">
         
   
   
@@ -764,7 +658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/imu-based/" class="md-nav__link">
+      <a href="../../product/market-landscape/competitors/imu-based/" class="md-nav__link">
         
   
   
@@ -792,7 +686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/vision-based/" class="md-nav__link">
+      <a href="../../product/market-landscape/competitors/vision-based/" class="md-nav__link">
         
   
   
@@ -820,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/multi-sensor/" class="md-nav__link">
+      <a href="../../product/market-landscape/competitors/multi-sensor/" class="md-nav__link">
         
   
   
@@ -848,7 +742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/smart-clothing/" class="md-nav__link">
+      <a href="../../product/market-landscape/competitors/smart-clothing/" class="md-nav__link">
         
   
   
@@ -892,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/product-strategy/" class="md-nav__link">
+      <a href="../../product/product-strategy/" class="md-nav__link">
         
   
   
@@ -924,6 +818,8 @@
       
   
   
+    
+  
   
   
     
@@ -959,15 +855,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="design/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -991,7 +887,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1011,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/system-design/" class="md-nav__link">
+      <a href="../system-design/" class="md-nav__link">
         
   
   
@@ -1039,7 +935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/swing-phases/" class="md-nav__link">
+      <a href="../swing-phases/" class="md-nav__link">
         
   
   
@@ -1067,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/real-time-feedback-spec/" class="md-nav__link">
+      <a href="../real-time-feedback-spec/" class="md-nav__link">
         
   
   
@@ -1095,7 +991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/swing-comparison/" class="md-nav__link">
+      <a href="../swing-comparison/" class="md-nav__link">
         
   
   
@@ -1123,7 +1019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/personalization-spec/" class="md-nav__link">
+      <a href="../personalization-spec/" class="md-nav__link">
         
   
   
@@ -1151,7 +1047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/getting-started/" class="md-nav__link">
+      <a href="../getting-started/" class="md-nav__link">
         
   
   
@@ -1179,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/ml-basics/" class="md-nav__link">
+      <a href="../ml-basics/" class="md-nav__link">
         
   
   
@@ -1204,10 +1100,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="design/sdk-selection/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK/库选型指南 SDK Selection Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1223,6 +1146,309 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        高星库快速参考 (一键安装)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选型原则
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flutter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        移动端 (Flutter)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="移动端 (Flutter)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相机 Camera
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        蓝牙 BLE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        语音反馈 TTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aiml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI/ML 处理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AI/ML 处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pose-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        姿态估计 Pose Estimation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EMG 信号处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensor-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        传感器融合 Sensor Fusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        信号处理 Signal Processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esp32-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        嵌入式 (ESP32-S3)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="嵌入式 (ESP32-S3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#imu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IMU 驱动
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ble_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BLE 通信
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据集
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        高尔夫挥杆
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开源挥杆分析代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通用姿态
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开发工具
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开发工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlc-lsm6dsv16x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MLC 配置 (LSM6DSV16X)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        版本锁定
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1235,7 +1461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions-summary/" class="md-nav__link">
+      <a href="../decisions-summary/" class="md-nav__link">
         
   
   
@@ -1287,7 +1513,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="design/research/" class="md-nav__link ">
+            <a href="../research/" class="md-nav__link ">
               
   
   
@@ -1331,7 +1557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/research/biomechanics-glossary/" class="md-nav__link">
+      <a href="../research/biomechanics-glossary/" class="md-nav__link">
         
   
   
@@ -1359,7 +1585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/research/biomechanics-benchmarks/" class="md-nav__link">
+      <a href="../research/biomechanics-benchmarks/" class="md-nav__link">
         
   
   
@@ -1387,7 +1613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/research/sensor-metric-mapping/" class="md-nav__link">
+      <a href="../research/sensor-metric-mapping/" class="md-nav__link">
         
   
   
@@ -1453,7 +1679,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="design/decisions/" class="md-nav__link ">
+            <a href="../decisions/" class="md-nav__link ">
               
   
   
@@ -1497,7 +1723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0001-multi-repo-structure/" class="md-nav__link">
+      <a href="../decisions/0001-multi-repo-structure/" class="md-nav__link">
         
   
   
@@ -1525,7 +1751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+      <a href="../decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
         
   
   
@@ -1553,7 +1779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0003-flutter-mobile/" class="md-nav__link">
+      <a href="../decisions/0003-flutter-mobile/" class="md-nav__link">
         
   
   
@@ -1581,7 +1807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+      <a href="../decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
         
   
   
@@ -1609,7 +1835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+      <a href="../decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
         
   
   
@@ -1637,7 +1863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+      <a href="../decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
         
   
   
@@ -1712,7 +1938,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="components/" class="md-nav__link ">
+            <a href="../../components/" class="md-nav__link ">
               
   
   
@@ -1809,7 +2035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/imu/hardware/" class="md-nav__link">
+      <a href="../../components/imu/hardware/" class="md-nav__link">
         
   
   
@@ -1837,7 +2063,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/imu/suppliers/" class="md-nav__link">
+      <a href="../../components/imu/suppliers/" class="md-nav__link">
         
   
   
@@ -1926,7 +2152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/emg/hardware/" class="md-nav__link">
+      <a href="../../components/emg/hardware/" class="md-nav__link">
         
   
   
@@ -1954,7 +2180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/emg/suppliers/" class="md-nav__link">
+      <a href="../../components/emg/suppliers/" class="md-nav__link">
         
   
   
@@ -2043,7 +2269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/vision/hardware/" class="md-nav__link">
+      <a href="../../components/vision/hardware/" class="md-nav__link">
         
   
   
@@ -2071,7 +2297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/vision/software/" class="md-nav__link">
+      <a href="../../components/vision/software/" class="md-nav__link">
         
   
   
@@ -2160,7 +2386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/mcu/hardware/" class="md-nav__link">
+      <a href="../../components/mcu/hardware/" class="md-nav__link">
         
   
   
@@ -2188,7 +2414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/mcu/suppliers/" class="md-nav__link">
+      <a href="../../components/mcu/suppliers/" class="md-nav__link">
         
   
   
@@ -2277,7 +2503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/flexible-sensors/hardware/" class="md-nav__link">
+      <a href="../../components/flexible-sensors/hardware/" class="md-nav__link">
         
   
   
@@ -2305,7 +2531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/flexible-sensors/suppliers/" class="md-nav__link">
+      <a href="../../components/flexible-sensors/suppliers/" class="md-nav__link">
         
   
   
@@ -2394,7 +2620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/pressure-sensors/hardware/" class="md-nav__link">
+      <a href="../../components/pressure-sensors/hardware/" class="md-nav__link">
         
   
   
@@ -2422,7 +2648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/pressure-sensors/suppliers/" class="md-nav__link">
+      <a href="../../components/pressure-sensors/suppliers/" class="md-nav__link">
         
   
   
@@ -2486,7 +2712,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="components/supply-chain/" class="md-nav__link ">
+            <a href="../../components/supply-chain/" class="md-nav__link ">
               
   
   
@@ -2530,7 +2756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/china-sensors/" class="md-nav__link">
+      <a href="../../components/supply-chain/china-sensors/" class="md-nav__link">
         
   
   
@@ -2558,7 +2784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/china-wearables/" class="md-nav__link">
+      <a href="../../components/supply-chain/china-wearables/" class="md-nav__link">
         
   
   
@@ -2586,7 +2812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/mvp-suppliers/" class="md-nav__link">
+      <a href="../../components/supply-chain/mvp-suppliers/" class="md-nav__link">
         
   
   
@@ -2614,7 +2840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/smart-clothing-market/" class="md-nav__link">
+      <a href="../../components/supply-chain/smart-clothing-market/" class="md-nav__link">
         
   
   
@@ -2642,7 +2868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/e-skin-odm/" class="md-nav__link">
+      <a href="../../components/supply-chain/e-skin-odm/" class="md-nav__link">
         
   
   
@@ -2709,7 +2935,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="platform/" class="md-nav__link ">
+            <a href="../../platform/" class="md-nav__link ">
               
   
   
@@ -2753,7 +2979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/mvp-prototype-code/" class="md-nav__link">
+      <a href="../../platform/mvp-prototype-code/" class="md-nav__link">
         
   
   
@@ -2832,7 +3058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/mobile/development/" class="md-nav__link">
+      <a href="../../platform/mobile/development/" class="md-nav__link">
         
   
   
@@ -2921,7 +3147,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/ml-training/datasets/" class="md-nav__link">
+      <a href="../../platform/ml-training/datasets/" class="md-nav__link">
         
   
   
@@ -2949,7 +3175,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/ml-training/visual-feedback/" class="md-nav__link">
+      <a href="../../platform/ml-training/visual-feedback/" class="md-nav__link">
         
   
   
@@ -3020,7 +3246,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="reference/" class="md-nav__link ">
+            <a href="../../reference/" class="md-nav__link ">
               
   
   
@@ -3064,7 +3290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/golf-glossary/" class="md-nav__link">
+      <a href="../../reference/golf-glossary/" class="md-nav__link">
         
   
   
@@ -3092,7 +3318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/business-glossary/" class="md-nav__link">
+      <a href="../../reference/business-glossary/" class="md-nav__link">
         
   
   
@@ -3120,7 +3346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/academic-datasets/" class="md-nav__link">
+      <a href="../../reference/academic-datasets/" class="md-nav__link">
         
   
   
@@ -3148,7 +3374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/golf-research/" class="md-nav__link">
+      <a href="../../reference/golf-research/" class="md-nav__link">
         
   
   
@@ -3176,7 +3402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/open-source-tools/" class="md-nav__link">
+      <a href="../../reference/open-source-tools/" class="md-nav__link">
         
   
   
@@ -3234,19 +3460,63 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        用户在痛什么？
+        高星库快速参考 (一键安装)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="用户在痛什么？">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选型原则
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flutter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        移动端 (Flutter)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="移动端 (Flutter)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#85" class="md-nav__link">
+  <a href="#camera" class="md-nav__link">
     <span class="md-ellipsis">
       
-        第一痛点：练习与实战的鸿沟 (85% 提及率)
+        相机 Camera
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        蓝牙 BLE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        语音反馈 TTS
       
     </span>
   </a>
@@ -3259,13 +3529,102 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#aiml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        三个唯一
+        AI/ML 处理
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="AI/ML 处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pose-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        姿态估计 Pose Estimation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EMG 信号处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensor-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        传感器融合 Sensor Fusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signal-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        信号处理 Signal Processing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esp32-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        嵌入式 (ESP32-S3)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="嵌入式 (ESP32-S3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#imu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IMU 驱动
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ble_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BLE 通信
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3273,7 +3632,96 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        文档导航
+        数据集
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        高尔夫挥杆
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开源挥杆分析代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通用姿态
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开发工具
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开发工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mlc-lsm6dsv16x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MLC 配置 (LSM6DSV16X)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        版本锁定
       
     </span>
   </a>
@@ -3281,10 +3729,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        快速链接
+        相关文档
       
     </span>
   </a>
@@ -3311,129 +3759,636 @@
   
 
 
-<h1 id="movement-chain-ai">Movement Chain AI<a class="headerlink" href="#movement-chain-ai" title="Permanent link">&para;</a></h1>
+<h1 id="sdk-sdk-selection-guide">SDK/库选型指南 SDK Selection Guide<a class="headerlink" href="#sdk-sdk-selection-guide" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>AI + 摄像头 + EMG + IMU：唯一能告诉你"为什么"做错的高尔夫训练系统</strong></p>
+<p><strong>文档目的</strong>: 记录 MVP 阶段 SDK 和库的选型理由（Tier 2 决策）</p>
+<p><strong>与 ADR 区别</strong>: ADR 记录难以逆转的架构决策（硬件、框架），本文档记录相对容易更换的库选择（1-5 天工作量）</p>
+<p><strong>硬件/架构决策</strong>: 见 <a href="../decisions/">decisions/</a></p>
 </blockquote>
 <hr />
-<h2 id="_1">用户在痛什么？<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="85">第一痛点：练习与实战的鸿沟 (85% 提及率)<a class="headerlink" href="#85" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p>"I was hitting it so well on the range, then all hell broke loose on the course."
-（我在练习场打得很好,到了球场就全崩了。）</p>
-</blockquote>
-<p><strong>现实</strong>：没有任何产品能打通练习场和球场的闭环。</p>
+<h2 id="_1">高星库快速参考 (一键安装)<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="admonition success">
+<p class="admonition-title">MVP 核心依赖 - 全部高星开源</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 一键安装所有 Python 依赖</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>pip<span class="w"> </span>install<span class="w"> </span>mediapipe<span class="w"> </span>neurokit2<span class="w"> </span>scipy<span class="w"> </span>numpy<span class="w"> </span>imufusion<span class="w"> </span>opencv-python
+</span></code></pre></div>
+</div>
 <table>
 <thead>
 <tr>
-<th>产品类型</th>
-<th>练习场</th>
-<th>球场</th>
-<th>闭环</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>HackMotion</td>
-<td>✅</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>Sportsbox AI</td>
-<td>✅</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>Arccos</td>
-<td>❌</td>
-<td>✅</td>
-<td>❌</td>
-</tr>
-<tr>
-<td><strong>Movement Chain AI</strong></td>
-<td>✅</td>
-<td>✅</td>
-<td>✅ <strong>唯一</strong></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="_2">三个唯一<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>唯一多模态</strong>: Vision + IMU + EMG 融合分析</li>
-<li><strong>唯一双模式</strong>: 练习场 ↔ 球场数据打通</li>
-<li><strong>唯一EMG</strong>: 能看到肌肉发力顺序</li>
-</ol>
-<hr />
-<h2 id="_3">文档导航<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>章节</th>
-<th>内容</th>
-<th>读者</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="product/">产品战略</a></td>
-<td>MVP规格、路线图、市场验证、竞品分析</td>
-<td>投资人、产品经理</td>
-</tr>
-<tr>
-<td><a href="design/system-design/">系统设计</a></td>
-<td>AI架构、融合算法、ADR决策</td>
-<td>架构师、工程师</td>
-</tr>
-<tr>
-<td><a href="components/">硬件组件</a></td>
-<td>IMU/EMG/Vision规格、供应商</td>
-<td>硬件工程师</td>
-</tr>
-<tr>
-<td><a href="platform/">开发平台</a></td>
-<td>Flutter移动端、ML训练管道</td>
-<td>开发者</td>
-</tr>
-<tr>
-<td><a href="reference/">参考资料</a></td>
-<td>学术数据集、外部资源</td>
-<td>研究人员</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="_4">快速链接<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>想了解</th>
+<th>用途</th>
+<th>库</th>
+<th>Stars</th>
+<th>安装命令</th>
 <th>文档</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>系统设计</td>
-<td><a href="design/system-design/">MVP 核心管道</a></td>
+<td><strong>姿态估计</strong></td>
+<td>MediaPipe</td>
+<td>28k⭐</td>
+<td><code>pip install mediapipe</code></td>
+<td><a href="https://developers.google.com/mediapipe">官方文档</a></td>
 </tr>
 <tr>
-<td>技术决策</td>
-<td><a href="design/decisions/">架构决策记录 (ADR)</a></td>
+<td><strong>EMG 处理</strong></td>
+<td>NeuroKit2</td>
+<td>1.9k⭐</td>
+<td><code>pip install neurokit2</code></td>
+<td><a href="https://neuropsychology.github.io/NeuroKit/functions/emg.html">EMG 函数</a></td>
 </tr>
 <tr>
-<td>快速开始</td>
-<td><a href="design/getting-started/">无需硬件测试</a></td>
+<td><strong>IMU 融合</strong></td>
+<td>imufusion</td>
+<td>1.7k⭐</td>
+<td><code>pip install imufusion</code></td>
+<td><a href="https://github.com/xioTechnologies/Fusion">GitHub</a></td>
 </tr>
 <tr>
-<td>术语定义</td>
-<td><a href="design/research/biomechanics-glossary/">生物力学术语表</a></td>
+<td><strong>信号处理</strong></td>
+<td>scipy</td>
+<td>12k⭐</td>
+<td><code>pip install scipy</code></td>
+<td><a href="https://docs.scipy.org/doc/scipy/reference/signal.html">signal 模块</a></td>
+</tr>
+<tr>
+<td><strong>数值计算</strong></td>
+<td>numpy</td>
+<td>27k⭐</td>
+<td><code>pip install numpy</code></td>
+<td><a href="https://numpy.org/doc/">官方文档</a></td>
+</tr>
+<tr>
+<td><strong>视频处理</strong></td>
+<td>OpenCV</td>
+<td>80k⭐</td>
+<td><code>pip install opencv-python</code></td>
+<td><a href="https://docs.opencv.org/">官方文档</a></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<p><strong>最后更新</strong>: 2025 年 12 月 12 日</p>
+<h2 id="_2">选型原则<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>MVP 优先</strong>: 选择开箱即用的方案，避免复杂配置</li>
+<li><strong>升级路径</strong>: 确保有更高性能的替代方案可用</li>
+<li><strong>社区验证</strong>: 优先选择高 GitHub Stars、活跃维护、生产验证的项目</li>
+<li><strong>Mock 兼容</strong>: 支持模拟数据测试，符合"先软件后硬件"策略</li>
+</ol>
+<hr />
+<h2 id="flutter">移动端 (Flutter)<a class="headerlink" href="#flutter" title="Permanent link">&para;</a></h2>
+<h3 id="camera">相机 Camera<a class="headerlink" href="#camera" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>候选方案</th>
+<th>特点</th>
+<th>生产验证</th>
+<th>评估</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>camera</strong></td>
+<td>官方插件，CameraX/Camera2</td>
+<td>Flutter 团队维护</td>
+<td>✅ 选择</td>
+</tr>
+<tr>
+<td>camerawesome</td>
+<td>内置 UI，滤镜，多摄像头</td>
+<td>社区维护</td>
+<td>备选</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>选择</strong>: <code>camera</code> (官方)</li>
+<li><strong>理由</strong>: 官方维护，CameraX 实现对 Android 设备兼容性更好，支持 60 FPS 视频流</li>
+<li><strong>升级触发</strong>: 如需内置 UI 或滤镜功能，考虑 <code>camerawesome</code></li>
+</ul>
+<h3 id="ble">蓝牙 BLE<a class="headerlink" href="#ble" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>候选方案</th>
+<th>特点</th>
+<th>生产验证</th>
+<th>评估</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>flutter_reactive_ble</strong></td>
+<td>响应式 API，连接稳定</td>
+<td>Philips Hue (200万+下载)</td>
+<td>✅ 选择</td>
+</tr>
+<tr>
+<td>flutter_blue_plus</td>
+<td>API 简洁，广泛使用</td>
+<td>社区活跃</td>
+<td>备选</td>
+</tr>
+<tr>
+<td>flutter_splendid_ble</td>
+<td>完整 central 功能</td>
+<td>较新</td>
+<td>观望</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>选择</strong>: <code>flutter_reactive_ble</code></li>
+<li><strong>理由</strong>: 响应式模型适合状态管理，Philips Hue 应用生产验证充分</li>
+<li><strong>升级触发</strong>: 如需后台蓝牙恢复功能，考虑 <code>flutter_blue_plus</code></li>
+</ul>
+<h3 id="tts">语音反馈 TTS<a class="headerlink" href="#tts" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>候选方案</th>
+<th>平台支持</th>
+<th>离线能力</th>
+<th>评估</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>flutter_tts</strong></td>
+<td>iOS, Android, Web, macOS, Windows</td>
+<td>✅ 支持</td>
+<td>✅ 选择</td>
+</tr>
+<tr>
+<td>cloud_text_to_speech</td>
+<td>Google/Microsoft/Amazon</td>
+<td>需联网</td>
+<td>云端备选</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>选择</strong>: <code>flutter_tts</code></li>
+<li><strong>理由</strong>: 多平台支持，离线可用，成熟稳定</li>
+<li><strong>用途</strong>: 挥杆完成后语音反馈 ("82分，节奏很好")</li>
+</ul>
+<hr />
+<h2 id="aiml">AI/ML 处理<a class="headerlink" href="#aiml" title="Permanent link">&para;</a></h2>
+<h3 id="pose-estimation">姿态估计 Pose Estimation<a class="headerlink" href="#pose-estimation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>候选方案</th>
+<th>精度</th>
+<th>速度</th>
+<th>部署难度</th>
+<th>评估</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MediaPipe Pose</strong></td>
+<td>~75% AP</td>
+<td>30+ FPS</td>
+<td><code>pip install mediapipe</code></td>
+<td>✅ MVP 选择</td>
+</tr>
+<tr>
+<td>RTMPose</td>
+<td>75.8% AP</td>
+<td>70 FPS 移动端</td>
+<td>需 mmpose + mmdeploy</td>
+<td>Phase 2 升级</td>
+</tr>
+<tr>
+<td>YOLO11-Pose</td>
+<td>89.4% mAP</td>
+<td>200+ FPS</td>
+<td>Ultralytics</td>
+<td>备选</td>
+</tr>
+<tr>
+<td>ViTPose</td>
+<td>81.1% AP (SOTA)</td>
+<td>需 GPU</td>
+<td>服务器部署</td>
+<td>❌ 移动端过重</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>选择</strong>: MediaPipe Pose (MVP) → RTMPose (Phase 2)</li>
+<li><strong>理由</strong>: 3 行代码开箱即用，33 个关节点输出，适合快速验证</li>
+<li><strong>升级触发</strong>: 当用户反馈关节检测不准确时，升级到 RTMPose</li>
+<li><strong>参考</strong>: <a href="https://github.com/open-mmlab/mmpose/tree/main/projects/rtmpose">RTMPose GitHub</a></li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># MVP: 3 行代码即可运行</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">mediapipe</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mp</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">pose</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">solutions</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">Pose</span><span class="p">()</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">results</span> <span class="o">=</span> <span class="n">pose</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">rgb_frame</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="emg">EMG 信号处理<a class="headerlink" href="#emg" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>候选方案</th>
+<th>Stars</th>
+<th>特点</th>
+<th>评估</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NeuroKit2</strong></td>
+<td>1.9k⭐</td>
+<td>EMG 模拟、清洗、振幅检测、激活检测</td>
+<td>✅ 选择</td>
+</tr>
+<tr>
+<td>BioSPPy</td>
+<td>500+⭐</td>
+<td>类似 API，较老</td>
+<td>备选</td>
+</tr>
+<tr>
+<td>BrainFlow</td>
+<td>556⭐</td>
+<td>多种生物信号</td>
+<td>备选</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>选择</strong>: <code>NeuroKit2</code></li>
+<li><strong>理由</strong>: 内置 <code>emg_simulate()</code> 支持 Mock 数据，正好匹配"先软件后硬件"策略</li>
+<li><strong>注意</strong>: Phase 2 需要将处理逻辑移植到移动端 (Dart) 或嵌入式 (C++)</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>neurokit2
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">neurokit2</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nk</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># 完整 EMG 处理流程</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">cleaned</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">emg_clean</span><span class="p">(</span><span class="n">raw_emg</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>      <span class="c1"># 滤波</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">amplitude</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">emg_amplitude</span><span class="p">(</span><span class="n">cleaned</span><span class="p">)</span>                    <span class="c1"># RMS 包络</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">activation</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">emg_activation</span><span class="p">(</span><span class="n">cleaned</span><span class="p">)</span>                  <span class="c1"># 激活时刻检测</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># 模拟数据 (用于测试)</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">simulated</span> <span class="o">=</span> <span class="n">nk</span><span class="o">.</span><span class="n">emg_simulate</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">burst_number</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span></code></pre></div>
+<ul>
+<li><strong>参考</strong>: <a href="https://neuropsychology.github.io/NeuroKit/functions/emg.html">NeuroKit2 EMG 文档</a> | <a href="https://github.com/neuropsychology/NeuroKit">GitHub</a></li>
+</ul>
+<h3 id="sensor-fusion">传感器融合 Sensor Fusion<a class="headerlink" href="#sensor-fusion" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>候选方案</th>
+<th>Stars</th>
+<th>语言</th>
+<th>特点</th>
+<th>评估</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>numpy.interp()</strong></td>
+<td>-</td>
+<td>Python</td>
+<td>简单线性插值</td>
+<td>✅ MVP 选择</td>
+</tr>
+<tr>
+<td><strong>imufusion</strong></td>
+<td>1.7k⭐</td>
+<td>C/Python</td>
+<td>AHRS、Madgwick 算法</td>
+<td>Phase 2 升级</td>
+</tr>
+<tr>
+<td>pyIMU</td>
+<td>50+⭐</td>
+<td>Python</td>
+<td>四元数、速度估计</td>
+<td>参考</td>
+</tr>
+<tr>
+<td>SensorFusion (Arduino)</td>
+<td>-</td>
+<td>C++</td>
+<td>多种 IMU 支持</td>
+<td>ESP32 端备选</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>选择</strong>: <code>numpy.interp()</code> (MVP) → <code>imufusion</code> (Phase 2)</li>
+<li><strong>理由</strong>: MVP 只需时间轴对齐，5 行代码足够；高级融合 Phase 2 再考虑</li>
+<li><strong>升级触发</strong>: 当需要姿态四元数输出或更精确的方向估计时</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Phase 2 安装</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>pip<span class="w"> </span>install<span class="w"> </span>imufusion
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Phase 2: 使用 imufusion 获取姿态</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">imufusion</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">ahrs</span> <span class="o">=</span> <span class="n">imufusion</span><span class="o">.</span><span class="n">Ahrs</span><span class="p">()</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">ahrs</span><span class="o">.</span><span class="n">update_no_magnetometer</span><span class="p">(</span><span class="n">gyroscope</span><span class="p">,</span> <span class="n">accelerometer</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># 100Hz</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">euler</span> <span class="o">=</span> <span class="n">ahrs</span><span class="o">.</span><span class="n">quaternion</span><span class="o">.</span><span class="n">to_euler</span><span class="p">()</span>  <span class="c1"># [roll, pitch, yaw]</span>
+</span></code></pre></div>
+<ul>
+<li><strong>参考</strong>: <a href="https://github.com/xioTechnologies/Fusion">x-io Fusion (1.7k⭐)</a> | <a href="https://github.com/uutzinger/pyIMU">pyIMU</a></li>
+</ul>
+<h3 id="signal-processing">信号处理 Signal Processing<a class="headerlink" href="#signal-processing" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>候选方案</th>
+<th>Stars</th>
+<th>用途</th>
+<th>评估</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>scipy.signal</strong></td>
+<td>12k⭐</td>
+<td>滤波、峰值检测</td>
+<td>✅ 选择</td>
+</tr>
+<tr>
+<td>numpy</td>
+<td>27k⭐</td>
+<td>零点交叉、基础计算</td>
+<td>✅ 选择</td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_peaks</span><span class="p">,</span> <span class="n">butter</span><span class="p">,</span> <span class="n">filtfilt</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># 峰值检测 (击球瞬间)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">peaks</span><span class="p">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">find_peaks</span><span class="p">(</span><span class="n">accel_z</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># 零点交叉 (上杆顶点)</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">zero_crossings</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">gyro_z</span><span class="p">)))[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c1"># 低通滤波 (去噪)</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">butter</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;low&#39;</span><span class="p">)</span>  <span class="c1"># 10Hz 截止</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="n">filtered</span> <span class="o">=</span> <span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">raw_signal</span><span class="p">)</span>
+</span></code></pre></div>
+<ul>
+<li><strong>参考</strong>: <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html">scipy.signal.find_peaks</a></li>
+</ul>
+<hr />
+<h2 id="esp32-s3">嵌入式 (ESP32-S3)<a class="headerlink" href="#esp32-s3" title="Permanent link">&para;</a></h2>
+<h3 id="imu">IMU 驱动<a class="headerlink" href="#imu" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>候选方案</th>
+<th>特点</th>
+<th>MLC 支持</th>
+<th>评估</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>stm32duino/LSM6DSV16X</strong></td>
+<td>ST 官方，功能完整</td>
+<td>✅ 支持</td>
+<td>✅ 选择</td>
+</tr>
+<tr>
+<td>SparkFun LSM6DSV16X</td>
+<td>开源硬件配套</td>
+<td>✅ 支持</td>
+<td>备选</td>
+</tr>
+<tr>
+<td>kriswiner/LSM6DSV</td>
+<td>高级示例</td>
+<td>✅ 支持</td>
+<td>参考</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>选择</strong>: <code>stm32duino/LSM6DSV16X</code></li>
+<li><strong>理由</strong>: ST 官方维护，支持 MLC、FSM、FIFO 全部功能</li>
+<li><strong>参考</strong>: <a href="https://github.com/stm32duino/LSM6DSV16X">GitHub</a></li>
+</ul>
+<h3 id="ble_1">BLE 通信<a class="headerlink" href="#ble_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>候选方案</th>
+<th>特点</th>
+<th>评估</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ESP32 BLE Arduino</strong></td>
+<td>ESP32 核心自带</td>
+<td>✅ 选择</td>
+</tr>
+<tr>
+<td>NimBLE-Arduino</td>
+<td>更小内存占用</td>
+<td>备选</td>
+</tr>
+<tr>
+<td>ESP-IDF BLE</td>
+<td>原生优化</td>
+<td>生产优化</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>选择</strong>: ESP32 BLE Arduino (MVP) → ESP-IDF (生产)</li>
+<li><strong>理由</strong>: Arduino 开发速度快，生产阶段可迁移到 ESP-IDF 优化</li>
+<li><strong>参考</strong>: <a href="https://randomnerdtutorials.com/esp32-bluetooth-low-energy-ble-arduino-ide/">Random Nerd Tutorials</a></li>
+</ul>
+<hr />
+<h2 id="_3">数据集<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">高尔夫挥杆<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th>Stars</th>
+<th>内容</th>
+<th>用途</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GolfDB</strong></td>
+<td>300+⭐</td>
+<td>1,400 挥杆视频，8 事件标注</td>
+<td>SwingNet 训练，相位检测</td>
+<td><a href="https://github.com/wmcnally/golfdb">wmcnally/golfdb</a></td>
+</tr>
+<tr>
+<td>AICaddy</td>
+<td>20+⭐</td>
+<td>6,000+ 球杆头图像</td>
+<td>YOLOv8 球杆追踪</td>
+<td><a href="https://github.com/oswinkil-git/AICaddy-A-Golf-Club-Tracer">oswinkil-git/AICaddy</a></td>
+</tr>
+<tr>
+<td>golftracker</td>
+<td>-</td>
+<td>视频处理工具包</td>
+<td>挥杆检测</td>
+<td><a href="https://pypi.org/project/golftracker/">PyPI</a></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>主要数据集</strong>: GolfDB</li>
+<li><strong>⚠️ 数据缺口</strong>: 无公开数据集包含同步的 IMU + EMG + Video，<strong>需自行录制</strong></li>
+</ul>
+<h3 id="_5">开源挥杆分析代码<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>仓库</th>
+<th>Stars</th>
+<th>功能</th>
+<th>技术栈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/HeleenaRobert/golf-swing-analysis">HeleenaRobert/golf-swing-analysis</a></td>
+<td>50+⭐</td>
+<td>MediaPipe 姿态 + 关节角度计算</td>
+<td>Python</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Strojove-uceni/23206-final-pose-estimation-for-swing-improvement">Strojove-uceni/23206-final-pose-estimation</a></td>
+<td>10+⭐</td>
+<td>完整挥杆分析流程 + 反馈生成</td>
+<td>Python</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">通用姿态<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th>规模</th>
+<th>内容</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COCO Keypoints</td>
+<td>20万+ 图像</td>
+<td>17 关节点标注</td>
+<td>姿态模型评估</td>
+</tr>
+<tr>
+<td>Human3.6M</td>
+<td>360万帧</td>
+<td>3D 人体动作</td>
+<td>3D 姿态参考</td>
+</tr>
+<tr>
+<td>MPII Human Pose</td>
+<td>2.5万图像</td>
+<td>16 关节点</td>
+<td>基准测试</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_7">开发工具<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="mlc-lsm6dsv16x">MLC 配置 (LSM6DSV16X)<a class="headerlink" href="#mlc-lsm6dsv16x" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MEMS Studio</strong></td>
+<td>MLC 决策树训练，UCF 文件生成</td>
+<td><a href="https://www.st.com/en/embedded-software/mems-studio.html">ST 下载</a></td>
+</tr>
+<tr>
+<td>AN5804</td>
+<td>LSM6DSV16X MLC 应用笔记</td>
+<td><a href="https://www.st.com/resource/en/application_note/an5804-lsm6dsv16x-machine-learning-core-stmicroelectronics.pdf">PDF</a></td>
+</tr>
+<tr>
+<td>st-mems-mlc</td>
+<td>预训练 MLC 示例</td>
+<td><a href="https://github.com/STMicroelectronics/st-mems-machine-learning-core">GitHub</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">模型工具<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Netron</strong></td>
+<td>ONNX 模型可视化验证</td>
+</tr>
+<tr>
+<td>onnxruntime-tools</td>
+<td>FP32→INT8 量化</td>
+</tr>
+<tr>
+<td>MMDeploy</td>
+<td>RTMPose ONNX 导出</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_9">版本锁定<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>MVP 阶段锁定以下版本，避免升级导致的兼容性问题：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Python</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">mediapipe</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.10.x&quot;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nt">neurokit2</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.2.x&quot;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nt">opencv-python</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4.8.x&quot;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nt">numpy</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.24.x&quot;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Flutter (pubspec.yaml)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="nt">camera</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;^0.10.5&quot;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="nt">flutter_reactive_ble</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;^5.2.0&quot;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nt">flutter_tts</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;^3.8.0&quot;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nt">onnxruntime_v2</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;^1.16.3&quot;</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="nt">tflite_flutter</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;^0.10.4&quot;</span><span class="w">  </span><span class="c1"># 备选</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="c1"># Arduino</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="nt">ESP32 Arduino Core</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.0.x&quot;</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="nt">LSM6DSV16X (stm32duino)</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;latest&quot;</span>
+</span></code></pre></div>
+<hr />
+<h2 id="_10">相关文档<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../system-design/">系统设计</a> - 整体架构和数据流</li>
+<li><a href="../decisions-summary/">决策摘要</a> - ADR 快速参考</li>
+<li><a href="../../platform/mvp-prototype-code/">MVP 原型代码</a> - 完整可运行示例</li>
+<li><a href="../getting-started/">快速开始</a> - 无需硬件即可测试</li>
+</ul>
+<hr />
+<p><strong>最后更新</strong>: 2025年12月13日</p>
 
 
 
@@ -3518,10 +4473,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.tracking", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "navigation.tracking", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
     
   </body>

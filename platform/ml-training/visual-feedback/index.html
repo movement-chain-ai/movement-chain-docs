@@ -1,0 +1,4558 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Architecture documentation for multimodal AI movement training system">
+      
+      
+        <meta name="author" content="Movement Chain AI Team">
+      
+      
+        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/platform/ml-training/visual-feedback/">
+      
+      
+        <link rel="prev" href="../datasets/">
+      
+      
+        <link rel="next" href="../../../reference/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Visual Feedback Design 视觉反馈设计指南 - Movement Chain AI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#visual-feedback-design" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Movement Chain AI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Visual Feedback Design 视觉反馈设计指南
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/movement-chain-ai/movement-chain-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    movement-chain-ai/movement-chain-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Movement Chain AI Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/movement-chain-ai/movement-chain-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    movement-chain-ai/movement-chain-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文档导航
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../risk-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    风险管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../product/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    产品战略
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    产品战略
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/user-personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用户画像
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/unique-value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    独特价值主张
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../product/market-landscape/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    市场研究
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    市场研究
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/pain-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用户痛点
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/market-size/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    市场分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_4" id="__nav_4_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    竞品分析
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    竞品分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/competitors/imu-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMU 方案竞品分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/competitors/vision-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    视觉方案竞品分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/competitors/multi-sensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多传感器方案竞品分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/competitors/smart-clothing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能服装竞品分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/product-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    产品战略：从市场缺口到设计决策
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../design/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统设计
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统设计 System Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/swing-phases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    挥杆 8 阶段细分 Golf Swing 8-Phase Breakdown
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/real-time-feedback-spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实时反馈规范 Real-Time Feedback Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/swing-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    挥杆对比策略 Swing Comparison Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/personalization-spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个性化基准规范 Personalization Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速开始 Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/ml-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML 基础入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/sdk-selection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK/库选型指南 SDK Selection Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策摘要 Decisions Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../design/research/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    研究与标准
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_11" id="__nav_5_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    研究与标准
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/research/biomechanics-glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生物力学术语表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/research/biomechanics-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生物力学基准值
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/research/sensor-metric-mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    传感器指标映射
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../design/decisions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架构决策 (ADR)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_12" id="__nav_5_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    架构决策 (ADR)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0001-multi-repo-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001: 多仓库结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002: LSM6DSV16X IMU 传感器选型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0003-flutter-mobile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003: Flutter 跨平台移动开发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0004: 简化的 4 模块架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0005: ESP32-S3 微控制器选择
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0006: ONNX Runtime 用于 ML 模型部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../components/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    硬件组件
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    硬件组件
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMU 惯性测量
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IMU 惯性测量
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/imu/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMU 惯性测量单元
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/imu/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMU 供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EMG 肌电传感
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EMG 肌电传感
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/emg/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EMG 肌电传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/emg/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EMG 供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    视觉/摄像头
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    视觉/摄像头
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/vision/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    视觉/摄像头传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/vision/software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pose Estimation 姿态估计与计算机视觉指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU 微控制器
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCU 微控制器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/mcu/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU 微控制器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/mcu/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU 供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    柔性传感器
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    柔性传感器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/flexible-sensors/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    柔性/E-Skin 传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/flexible-sensors/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    柔性传感器供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_7" id="__nav_6_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压力传感器
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    压力传感器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/pressure-sensors/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压力传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/pressure-sensors/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压力传感器供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../components/supply-chain/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    供应链与 ODM/OEM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_8" id="__nav_6_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    供应链与 ODM/OEM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/supply-chain/china-sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    国内传感器供应商清单 (China Domestic Sensor Suppliers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/supply-chain/china-wearables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中国智能服装与可穿戴设备供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/supply-chain/mvp-suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中国供应商快速 MVP 开发指南 - 高尔夫挥杆分析可穿戴设备
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/supply-chain/smart-clothing-market/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中国智能运动服装与可穿戴设备市场调研报告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/supply-chain/e-skin-odm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Skin ODM/OEM 厂商研究
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发平台
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开发平台
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mvp-prototype-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVP 原型代码示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    移动应用
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    移动应用
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mobile/development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile App Development Guide 移动应用开发指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML 训练
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ML 训练
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets &amp; Benchmarking Guide 数据集与基准测试指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Feedback Design 视觉反馈设计指南
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Feedback Design 视觉反馈设计指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-research-backed-feedback-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 基于研究的反馈模式 (Research-Backed Feedback Patterns)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 基于研究的反馈模式 (Research-Backed Feedback Patterns)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-overlay-arrows-directional-movement-indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 叠加箭头：方向性运动指示器 (Overlay Arrows: Directional Movement Indicators)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-ghost-avatar-semi-transparent-correct-pose-overlay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 幽灵虚拟角色：半透明正确姿态叠加 (Ghost Avatar: Semi-Transparent Correct Pose Overlay)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-vs-side-by-side-comparison-user-vs-expert-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 并排比较：用户 vs. 专家表现 (Side-by-Side Comparison: User vs. Expert Performance)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-color-coding-visual-performance-indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 颜色编码：视觉表现指示器 (Color Coding: Visual Performance Indicators)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-multimodal-visual-feedback-combining-multiple-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 多模态视觉反馈：组合多种模式 (Multimodal Visual Feedback: Combining Multiple Patterns)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-advanced-research-avatar-overlay-temporal-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 高级研究：虚拟角色叠加与时间对齐 (Advanced Research: Avatar Overlay &amp; Temporal Alignment)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 高级研究：虚拟角色叠加与时间对齐 (Advanced Research: Avatar Overlay &amp; Temporal Alignment)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-optimal-display-of-superimposed-avatars-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 叠加虚拟角色的最佳显示 (Optimal Display of Superimposed Avatars) (2025 研究)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-commercial-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 商业最佳实践 (Commercial Best Practices)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 商业最佳实践 (Commercial Best Practices)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-peloton-iq-confidence-based-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Peloton IQ: 基于置信度的反馈 (Confidence-Based Feedback)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-magic-mirror-ui-per-rep-scoring-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 MAGIC Mirror: 每次重复评分 UI (Per-Rep Scoring UI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tempo-studio-3d-3d-overlay-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Tempo Studio: 3D 叠加技术 (3D Overlay Techniques)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-uiux-uiux-implementation-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. UI/UX 实施指南 (UI/UX Implementation Guidelines)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. UI/UX 实施指南 (UI/UX Implementation Guidelines)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-feedback-priority-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 反馈优先级系统 (Feedback Priority System)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-progressive-feedback-fading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 渐进式反馈淡出 (Progressive Feedback Fading)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sdk-rendering-technologies-sdks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 渲染技术与 SDK (Rendering Technologies &amp; SDKs)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 渲染技术与 SDK (Rendering Technologies &amp; SDKs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-ios-realitykit-ar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 原生 iOS - RealityKit (AR 叠加)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-flutter-custompainter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Flutter - CustomPainter (跨平台)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-haptic-feedback-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 触觉反馈集成 (Haptic Feedback Integration)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 触觉反馈集成 (Haptic Feedback Integration)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-haptic-pattern-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 触觉模式设计 (Haptic Pattern Design)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档 (Related Documentation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    参考资料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    参考资料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/golf-glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高尔夫术语表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/business-glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    商业术语表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/academic-datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运动训练系统的学术研究与数据集 (Academic Research &amp; Datasets for Movement Training Systems)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/golf-research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高尔夫生物力学研究 (Golf Biomechanics Research)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/open-source-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开源工具与代码库 (Open Source Tools &amp; Repositories)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-research-backed-feedback-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 基于研究的反馈模式 (Research-Backed Feedback Patterns)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 基于研究的反馈模式 (Research-Backed Feedback Patterns)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-overlay-arrows-directional-movement-indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 叠加箭头：方向性运动指示器 (Overlay Arrows: Directional Movement Indicators)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-ghost-avatar-semi-transparent-correct-pose-overlay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 幽灵虚拟角色：半透明正确姿态叠加 (Ghost Avatar: Semi-Transparent Correct Pose Overlay)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-vs-side-by-side-comparison-user-vs-expert-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 并排比较：用户 vs. 专家表现 (Side-by-Side Comparison: User vs. Expert Performance)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-color-coding-visual-performance-indicators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 颜色编码：视觉表现指示器 (Color Coding: Visual Performance Indicators)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-multimodal-visual-feedback-combining-multiple-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 多模态视觉反馈：组合多种模式 (Multimodal Visual Feedback: Combining Multiple Patterns)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-advanced-research-avatar-overlay-temporal-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 高级研究：虚拟角色叠加与时间对齐 (Advanced Research: Avatar Overlay &amp; Temporal Alignment)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 高级研究：虚拟角色叠加与时间对齐 (Advanced Research: Avatar Overlay &amp; Temporal Alignment)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-optimal-display-of-superimposed-avatars-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 叠加虚拟角色的最佳显示 (Optimal Display of Superimposed Avatars) (2025 研究)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-commercial-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 商业最佳实践 (Commercial Best Practices)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 商业最佳实践 (Commercial Best Practices)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-peloton-iq-confidence-based-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Peloton IQ: 基于置信度的反馈 (Confidence-Based Feedback)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-magic-mirror-ui-per-rep-scoring-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 MAGIC Mirror: 每次重复评分 UI (Per-Rep Scoring UI)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tempo-studio-3d-3d-overlay-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Tempo Studio: 3D 叠加技术 (3D Overlay Techniques)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-uiux-uiux-implementation-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. UI/UX 实施指南 (UI/UX Implementation Guidelines)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. UI/UX 实施指南 (UI/UX Implementation Guidelines)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-feedback-priority-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 反馈优先级系统 (Feedback Priority System)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-progressive-feedback-fading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 渐进式反馈淡出 (Progressive Feedback Fading)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sdk-rendering-technologies-sdks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 渲染技术与 SDK (Rendering Technologies &amp; SDKs)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 渲染技术与 SDK (Rendering Technologies &amp; SDKs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-ios-realitykit-ar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 原生 iOS - RealityKit (AR 叠加)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-flutter-custompainter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Flutter - CustomPainter (跨平台)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-haptic-feedback-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 触觉反馈集成 (Haptic Feedback Integration)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 触觉反馈集成 (Haptic Feedback Integration)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-haptic-pattern-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 触觉模式设计 (Haptic Pattern Design)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档 (Related Documentation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="visual-feedback-design">Visual Feedback Design 视觉反馈设计指南<a class="headerlink" href="#visual-feedback-design" title="Permanent link">&para;</a></h1>
+<p><strong>版本 Version:</strong> 1.0
+<strong>日期 Date:</strong> 2025年12月1日
+<strong>状态 Status:</strong> 生产就绪设计规范
+<strong>目的 Purpose:</strong> 在运动纠正系统中实施基于研究的视觉反馈模式的综合指南</p>
+<hr />
+<h2 id="1-research-backed-feedback-patterns">1. 基于研究的反馈模式 (Research-Backed Feedback Patterns)<a class="headerlink" href="#1-research-backed-feedback-patterns" title="Permanent link">&para;</a></h2>
+<h3 id="11-overlay-arrows-directional-movement-indicators">1.1 叠加箭头：方向性运动指示器 (Overlay Arrows: Directional Movement Indicators)<a class="headerlink" href="#11-overlay-arrows-directional-movement-indicators" title="Permanent link">&para;</a></h3>
+<h4 id="research-findings">研究发现 (Research Findings)<a class="headerlink" href="#research-findings" title="Permanent link">&para;</a></h4>
+<p><strong>有效性 Effectiveness:</strong></p>
+<ul>
+<li>参考和生成模式之间的持久叠加视觉反馈对"精炼视觉运动学习计划具有促进作用" (<a href="https://www.nature.com/articles/s41598-021-96876-6">Nature Scientific Reports, 2021</a>)</li>
+<li>有视觉反馈的组表现出"比没有反馈的组更快的学习和更低的最终端点误差" (<a href="https://www.sciencedirect.com/science/article/pii/S0306452216304584">ScienceDirect, 2016</a>)</li>
+</ul>
+<p><strong>定量结果 Quantitative Results:</strong></p>
+<ul>
+<li>视觉增强反馈结合语言反馈显示**大效应量 (d = 8.352)**</li>
+<li>视觉反馈持久性：相比非持久反馈，精度显著提高</li>
+</ul>
+<p><strong>何时使用 When to Use:</strong></p>
+<ul>
+<li>✅ 学习复杂运动的早期阶段</li>
+<li>✅ 需要精确方向纠正的任务</li>
+<li>✅ 与关于错误的语言反馈结合时</li>
+<li>✅ 方向性纠正和基于路径的运动（高尔夫挥杆平面、运动轨迹）</li>
+</ul>
+<p><strong>局限性 Limitations:</strong></p>
+<ul>
+<li>⚠️ 如果持续提供，有反馈依赖的风险</li>
+<li>⚠️ 对于没有教练协助的初学者效果较差</li>
+<li>⚠️ 如果没有逐步撤回，可能无法很好地转化为保留</li>
+</ul>
+<h4 id="arrow-design-specifications">箭头设计规范 (Arrow Design Specifications)<a class="headerlink" href="#arrow-design-specifications" title="Permanent link">&para;</a></h4>
+<p><strong>视觉属性 Visual Properties:</strong></p>
+<ul>
+<li><strong>锚点 Anchor Point:</strong> 附着到受影响的关节中心，而不是身体部分边缘</li>
+<li><strong>方向 Direction:</strong> 指向纠正位置（3D 投影到 2D 屏幕）</li>
+<li><strong>长度 Length:</strong> 与错误幅度成比例（最小: 20px, 最大: 80px）</li>
+<li><strong>粗细 Thickness:</strong> 6-8px 描边宽度（可见但不突兀）</li>
+<li><strong>颜色 Color:</strong> 基于错误严重性（见颜色调色板部分）</li>
+</ul>
+<p><strong>动画规范 Animation Specifications:</strong></p>
+<h5 id="1-appearance-error-detected">状态 1: 出现（检测到错误）Appearance (Error Detected)<a class="headerlink" href="#1-appearance-error-detected" title="Permanent link">&para;</a></h5>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>动画 Animation: 淡入 + 放大 Fade-in + Scale-up
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>持续时间 Duration: 200ms
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>缓动 Easing: cubic-bezier(0.25, 0.1, 0.25, 1)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>从 From: opacity 0%, scale 0.8
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>到 To: opacity 100%, scale 1.0
+</span></code></pre></div>
+<h5 id="2-active-error-pulsing">状态 2: 活动错误（脉冲）Active Error (Pulsing)<a class="headerlink" href="#2-active-error-pulsing" title="Permanent link">&para;</a></h5>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>动画 Animation: 脉冲（不透明度变化）Pulse (opacity variation)
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>持续时间 Duration: 1000ms (1 Hz 频率)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>缓动 Easing: Ease-in-out sine
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>从 From: opacity 80%
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>到 To: opacity 100%
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>循环 Loop: 错误持续时无限循环
+</span></code></pre></div>
+<h5 id="3-corrected-exit">状态 3: 已纠正（退出）Corrected (Exit)<a class="headerlink" href="#3-corrected-exit" title="Permanent link">&para;</a></h5>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>动画 Animation: 淡出 + 缩小 + 对勾 Fade-out + Scale-down + Checkmark
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>持续时间 Duration: 300ms
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>缓动 Easing: cubic-bezier(0.42, 0, 0.58, 1)
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>从 From: opacity 100%, scale 1.0
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>到 To: opacity 0%, scale 0.7
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>最终 Final: 显示绿色对勾（150ms），然后淡出
+</span></code></pre></div>
+<hr />
+<h3 id="12-ghost-avatar-semi-transparent-correct-pose-overlay">1.2 幽灵虚拟角色：半透明正确姿态叠加 (Ghost Avatar: Semi-Transparent Correct Pose Overlay)<a class="headerlink" href="#12-ghost-avatar-semi-transparent-correct-pose-overlay" title="Permanent link">&para;</a></h3>
+<h4 id="research-findings_1">研究发现 (Research Findings)<a class="headerlink" href="#research-findings_1" title="Permanent link">&para;</a></h4>
+<p><strong>有效性 Effectiveness:</strong></p>
+<ul>
+<li>虚拟镜像中的**叠加熟练表现**显示出视角依赖的改进 (<a href="https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2019.00043/full">Frontiers, 2019</a>)</li>
+<li>前视图：参与者调整深蹲高度</li>
+<li>侧视图：参与者调整向后移动</li>
+<li>"虚拟角色手部动作的纠正支持运动技能的学习" (<a href="https://www.researchgate.net/publication/351475644_Correction_of_Avatar_Hand_Movements_Supports_Learning_of_a_Motor_Skill">ResearchGate, 2021</a>)</li>
+</ul>
+<p><strong>最佳使用场景 Optimal Use Cases:</strong></p>
+<ul>
+<li>✅ 全身运动学习（深蹲、瑜伽、太极）</li>
+<li>✅ 第一人称视角训练</li>
+<li>✅ 需要实时比较的复杂运动模式</li>
+<li>✅ VR/AR 训练环境</li>
+</ul>
+<h4 id="transparency-specifications">透明度规范 (Transparency Specifications)<a class="headerlink" href="#transparency-specifications" title="Permanent link">&para;</a></h4>
+<p><strong>最佳不透明度级别（基于研究）Optimal Opacity Levels (Research-Backed):</strong></p>
+<table>
+<thead>
+<tr>
+<th>虚拟角色类型 Avatar Type</th>
+<th>推荐不透明度 Recommended Opacity</th>
+<th>颜色 Color</th>
+<th>目的 Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>用户的实时骨架 User's Live Skeleton</strong></td>
+<td>100% (α = 1.0)</td>
+<td>白色或浅蓝色 White or light blue (#E0F7FF)</td>
+<td>主要参考点</td>
+</tr>
+<tr>
+<td><strong>理想/专家幽灵 Ideal/Expert Ghost</strong></td>
+<td><strong>50% (α = 0.5)</strong></td>
+<td>绿色 Green (#4CAF50)</td>
+<td>最佳平衡：可见但不突兀</td>
+</tr>
+<tr>
+<td><strong>之前的尝试 Previous Attempt</strong></td>
+<td>30% (α = 0.3)</td>
+<td>浅灰色 Light gray (#BDBDBD)</td>
+<td>上下文但不混乱</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实现示例 Implementation Example (CSS):</strong></p>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">.</span><span class="nc">ghost-skeleton</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="k">opacity</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="k">stroke</span><span class="p">:</span><span class="w"> </span><span class="mh">#4CAF50</span><span class="p">;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="k">stroke-width</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="k">fill</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">}</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">.</span><span class="nc">live-skeleton</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="k">opacity</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="k">stroke</span><span class="p">:</span><span class="w"> </span><span class="mh">#E0F7FF</span><span class="p">;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="k">stroke-width</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="k">fill</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>用户自定义 User Customization:</strong></p>
+<ul>
+<li><strong>不透明度滑块 Opacity Slider:</strong> 30% 到 70% (默认 50%)</li>
+<li><strong>自动调暗 Auto-Dimming:</strong> 在弱光条件下降低不透明度 20%</li>
+<li><strong>碰撞检测 Collision Detection:</strong> 如果幽灵和实时骨架重叠 &gt;80%，增加幽灵不透明度到 60% 以提高清晰度</li>
+</ul>
+<hr />
+<h3 id="13-vs-side-by-side-comparison-user-vs-expert-performance">1.3 并排比较：用户 vs. 专家表现 (Side-by-Side Comparison: User vs. Expert Performance)<a class="headerlink" href="#13-vs-side-by-side-comparison-user-vs-expert-performance" title="Permanent link">&para;</a></h3>
+<h4 id="research-findings_2">研究发现 (Research Findings)<a class="headerlink" href="#research-findings_2" title="Permanent link">&para;</a></h4>
+<p><strong>有效性 Effectiveness:</strong></p>
+<ul>
+<li>观察两个虚拟角色（自己的 + 熟练表现）的组显示"相比仅观察自己表现的优势" (<a href="https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2019.00043/full">Frontiers, 2019</a>)</li>
+<li><strong>专家模型</strong> 帮助学习者理解运动性质和形式</li>
+<li><strong>学习者模型</strong> 促进自我效能</li>
+</ul>
+<p><strong>最佳使用场景 Optimal Use Cases:</strong></p>
+<ul>
+<li>✅ 基于视频的学习和表现后分析</li>
+<li>✅ 当无法立即反馈时</li>
+<li>✅ <strong>对于高级学习者</strong> 能够识别适当的运动</li>
+<li>✅ 运动教练和技术改进</li>
+</ul>
+<p><strong>局限性 Limitations:</strong></p>
+<ul>
+<li>❌ <strong>新手学习者</strong> "除非由教练协助指出特定技能组件，否则无法使用视频反馈" (<a href="https://link.springer.com/article/10.1007/s12662-021-00782-y">Springer, 2021</a>)</li>
+<li>❌ 新手无法在没有指导的情况下区分关键与非关键信息</li>
+<li>❌ 对于复杂任务，不如实时并发反馈有效</li>
+</ul>
+<h4 id="implementation-guidelines">实施指南 (Implementation Guidelines)<a class="headerlink" href="#implementation-guidelines" title="Permanent link">&para;</a></h4>
+<p><strong>对于初学者 For Beginners:</strong></p>
+<ul>
+<li>结合语言教练以突出特定技能组件</li>
+<li>使用简化的比较指标</li>
+<li>一次专注于一个运动方面</li>
+<li>最初避免详细的并排比较</li>
+</ul>
+<p><strong>对于高级用户 For Advanced Users:</strong></p>
+<ul>
+<li>可以在没有广泛指导的情况下自我分析</li>
+<li>从详细的运动学比较中受益</li>
+<li>对微调技术更有效</li>
+</ul>
+<hr />
+<h3 id="14-color-coding-visual-performance-indicators">1.4 颜色编码：视觉表现指示器 (Color Coding: Visual Performance Indicators)<a class="headerlink" href="#14-color-coding-visual-performance-indicators" title="Permanent link">&para;</a></h3>
+<h4 id="research-findings_3">研究发现 (Research Findings)<a class="headerlink" href="#research-findings_3" title="Permanent link">&para;</a></h4>
+<p><strong>有效性 Effectiveness:</strong></p>
+<ul>
+<li><strong>颜色约定 Color conventions:</strong> "红色代表'错误'，绿色代表'正确'"在运动学习中广泛受到尊重 (<a href="https://link.springer.com/article/10.3758/s13423-012-0333-8">Springer, 2012</a>)</li>
+<li><strong>肌肉激活颜色提示 Muscle activation color cues:</strong> "显著增强了网球发球技能的学习，改善了肌肉协调" (<a href="https://www.tandfonline.com/doi/full/10.1080/02640414.2025.2534276">tandfonline.com, 2025</a>)</li>
+</ul>
+<p><strong>研究中的实施示例 Implementation Examples from Research:</strong></p>
+<p><strong>关节角度反馈 Joint Angle Feedback:</strong></p>
+<ul>
+<li>3D 动画棒人，"生物力学需求在关节处使用连续颜色渐变从绿色 0%，琥珀色 50%，到红色 100% 视觉表示" (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3272455/">PMC, 2012</a>)</li>
+<li>这种方法"使没有生物力学培训的人能够访问和解释生物力学信息"</li>
+</ul>
+<p><strong>定量结果 Quantitative Results:</strong></p>
+<ul>
+<li><strong>康复 Rehabilitation:</strong> 颜色编码关节角度反馈导致中风患者"步长和步行速度显著增加"和"推进冲量的积极变化" (<a href="https://pubmed.ncbi.nlm.nih.gov/2780812/">PubMed, 1987</a>)</li>
+</ul>
+<h4 id="color-specifications">颜色规范 (Color Specifications)<a class="headerlink" href="#color-specifications" title="Permanent link">&para;</a></h4>
+<p><strong>主要色盲安全调色板 Primary Color-Blind Safe Palette:</strong></p>
+<table>
+<thead>
+<tr>
+<th>状态 State</th>
+<th>颜色名称 Color Name</th>
+<th>十六进制代码 Hex Code</th>
+<th>RGB</th>
+<th>使用场景 Use Case</th>
+<th>可访问? Accessible?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>严重错误 Critical Error</strong></td>
+<td>深红色 Dark Red</td>
+<td><code>#C62828</code></td>
+<td>(198, 40, 40)</td>
+<td>高优先级错误</td>
+<td>⚠️ 与图标一起使用</td>
+</tr>
+<tr>
+<td><strong>警告 Warning</strong></td>
+<td>琥珀色 Amber</td>
+<td><code>#F9A825</code></td>
+<td>(249, 168, 37)</td>
+<td>中优先级错误</td>
+<td>✓ 是 Yes</td>
+</tr>
+<tr>
+<td><strong>良好/正确 Good/Correct</strong></td>
+<td>蓝绿色 Blue-Green</td>
+<td><code>#00897B</code></td>
+<td>(0, 137, 123)</td>
+<td>积极反馈</td>
+<td>✓ 是 Yes</td>
+</tr>
+<tr>
+<td><strong>中性 Neutral</strong></td>
+<td>浅灰色 Light Gray</td>
+<td><code>#BDBDBD</code></td>
+<td>(189, 189, 189)</td>
+<td>信息性</td>
+<td>✓ 是 Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关节角度的渐变 Gradient for Joint Angles:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>完美 Perfect (0% error):      #00897B (蓝绿色 Blue-Green)
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>轻微 Slight (25% error):      #66BB6A (浅绿色 Light Green)
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>中等 Moderate (50% error):    #F9A825 (琥珀色 Amber)
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>显著 Significant (75% error):  #FB8C00 (橙色 Orange)
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>严重 Critical (100% error):   #C62828 (深红色 Dark Red)
+</span></code></pre></div>
+<hr />
+<h3 id="15-multimodal-visual-feedback-combining-multiple-patterns">1.5 多模态视觉反馈：组合多种模式 (Multimodal Visual Feedback: Combining Multiple Patterns)<a class="headerlink" href="#15-multimodal-visual-feedback-combining-multiple-patterns" title="Permanent link">&para;</a></h3>
+<h4 id="research-findings_4">研究发现 (Research Findings)<a class="headerlink" href="#research-findings_4" title="Permanent link">&para;</a></h4>
+<p><strong>卓越有效性 Superior Effectiveness:</strong></p>
+<ul>
+<li>"<strong>多模态增强反馈似乎是最有效的</strong>，也是在健康和患病人群以及运动员中进行运动学习时给予反馈的适当方式，因为**其刺激被感知得更快，并且往往保留得更久**" (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8681883/">PMC, 2021</a>)</li>
+</ul>
+<p><strong>最佳组合 Optimal Combinations:</strong></p>
+<ul>
+<li><strong>视觉 + 语言反馈 Visual + Verbal feedback:</strong> "处方性和组合反馈技术的组合证明最有效，并且对膝盖、臀部和躯干弯曲角度表现出**大效应量**" (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8681883/">PMC, 2021</a>)</li>
+<li><strong>视觉 + 听觉 + 触觉 Visual + Auditory + Haptic:</strong> "结合触觉和听觉提示增强了可用性和运动学习。参与者偏爱这种方法，最初依赖听觉反馈，然后在长期内切换到触觉反馈" (<a href="https://link.springer.com/article/10.3758/s13423-012-0333-8">Springer, 2012</a>)</li>
+</ul>
+<h4 id="implementation-strategy">实施策略 (Implementation Strategy)<a class="headerlink" href="#implementation-strategy" title="Permanent link">&para;</a></h4>
+<p><strong>模式组合 Pattern Combinations:</strong></p>
+<table>
+<thead>
+<tr>
+<th>使用场景 Use Case</th>
+<th>主要视觉 Primary Visual</th>
+<th>次要视觉 Secondary Visual</th>
+<th>音频 Audio</th>
+<th>触觉 Haptic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>初学者培训 Beginner Training</strong></td>
+<td>颜色编码 Color coding</td>
+<td>叠加箭头 Overlay arrows</td>
+<td>语言提示 Verbal cues</td>
+<td>可选 Optional</td>
+</tr>
+<tr>
+<td><strong>中级 Intermediate</strong></td>
+<td>幽灵虚拟角色 Ghost avatar</td>
+<td>颜色编码 Color coding</td>
+<td>选择性提示 Selective cues</td>
+<td>推荐 Recommended</td>
+</tr>
+<tr>
+<td><strong>高级 Advanced</strong></td>
+<td>并排比较 Side-by-side</td>
+<td>幽灵虚拟角色 Ghost avatar</td>
+<td>最少 Minimal</td>
+<td>仅警报 Alert-only</td>
+</tr>
+<tr>
+<td><strong>康复 Rehabilitation</strong></td>
+<td>颜色编码 Color coding</td>
+<td>叠加箭头 Overlay arrows</td>
+<td>语言 + 音频警报 Verbal + audio alerts</td>
+<td>强 Strong</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-advanced-research-avatar-overlay-temporal-alignment">2. 高级研究：虚拟角色叠加与时间对齐 (Advanced Research: Avatar Overlay &amp; Temporal Alignment)<a class="headerlink" href="#2-advanced-research-avatar-overlay-temporal-alignment" title="Permanent link">&para;</a></h2>
+<h3 id="21-optimal-display-of-superimposed-avatars-2025">2.1 叠加虚拟角色的最佳显示 (Optimal Display of Superimposed Avatars) (2025 研究)<a class="headerlink" href="#21-optimal-display-of-superimposed-avatars-2025" title="Permanent link">&para;</a></h3>
+<p><strong>论文 Paper:</strong> "Towards an Optimal Display of Superimposed Avatars for Motor Feedback"</p>
+<ul>
+<li><strong>发表 Publication:</strong> SN Computer Science, 2025</li>
+<li><strong>链接 Link:</strong> <a href="https://link.springer.com/article/10.1007/s42979-025-03904-7">https://link.springer.com/article/10.1007/s42979-025-03904-7</a></li>
+</ul>
+<h4 id="1-spatial-registration">1. 空间配准 (Spatial Registration)<a class="headerlink" href="#1-spatial-registration" title="Permanent link">&para;</a></h4>
+<p><strong>问题 Problem:</strong> 用户骨架与参考骨架的正确对齐对于有效反馈至关重要。</p>
+<p><strong>关键原则 Key Principle:</strong></p>
+<blockquote>
+<p>用户和参考骨架之间的错位会导致混淆并导致错误的运动纠正。</p>
+</blockquote>
+<p><strong>实施要求 Implementation Requirements:</strong></p>
+<ul>
+<li>对齐方法必须取决于练习类型</li>
+<li>不同的练习需要不同的锚点</li>
+<li>不能在没有空间配准的情况下使用简单的叠加</li>
+</ul>
+<p><strong>特定练习的对齐示例 Exercise-Specific Alignment Examples:</strong></p>
+<table>
+<thead>
+<tr>
+<th>练习类型 Exercise Type</th>
+<th>对齐策略 Alignment Strategy</th>
+<th>锚点 Anchor Point</th>
+<th>原因 Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>深蹲 Squat</strong></td>
+<td>对齐脚位置 Align feet positions</td>
+<td>脚/地面接触 Feet/ground contact</td>
+<td>保持站姿宽度一致性</td>
+</tr>
+<tr>
+<td><strong>俯卧撑 Push-up</strong></td>
+<td>对齐手位置 Align hand positions</td>
+<td>手 Hands</td>
+<td>固定接触点</td>
+</tr>
+<tr>
+<td><strong>二头肌弯举 Bicep curl</strong></td>
+<td>对齐肩部位置 Align shoulder position</td>
+<td>肩关节 Shoulder joint</td>
+<td>运动源自肩部</td>
+</tr>
+<tr>
+<td><strong>跑步步态 Running gait</strong></td>
+<td>对齐质心 Align center of mass</td>
+<td>臀部中心 Hip center</td>
+<td>动态运动参考</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="2-pca-optimal-viewpoint-selection-via-pca">2. 通过 PCA 优化视角选择 (Optimal Viewpoint Selection via PCA)<a class="headerlink" href="#2-pca-optimal-viewpoint-selection-via-pca" title="Permanent link">&para;</a></h4>
+<p><strong>问题 Problem:</strong> 某些运动从某些摄像机角度难以评估。需要自动化方法来找到最佳视角。</p>
+<h4 id="pca-solution-principal-component-analysis-pca">解决方案：主成分分析 (PCA) Solution: Principal Component Analysis (PCA)<a class="headerlink" href="#pca-solution-principal-component-analysis-pca" title="Permanent link">&para;</a></h4>
+<p><strong>方法 Method:</strong></p>
+<ol>
+<li>分析所有关节的 3D 运动轨迹</li>
+<li>使用 PCA 计算运动的主要方向</li>
+<li>将摄像机定位为垂直于主要运动平面</li>
+<li>最大化运动差异的可见性</li>
+</ol>
+<p><strong>数学基础 Mathematical Foundation:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_optimal_viewpoint</span><span class="p">(</span><span class="n">movement_trajectory</span><span class="p">):</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="sd">    使用 PCA 计算最佳摄像机视角</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="sd">    Calculate optimal camera viewpoint using PCA</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="sd">    参数 Args:</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="sd">        movement_trajectory: numpy 数组，形状为 (frames, joints, 3)</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="sd">                           随时间变化的 3D 位置</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="sd">    返回 Returns:</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="sd">        optimal_camera_position: (x, y, z) 摄像机位置</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="sd">        camera_target: (x, y, z) 摄像机应该看向的点</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>    <span class="c1"># 将轨迹展平为 (frames * joints, 3)</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>    <span class="n">flattened</span> <span class="o">=</span> <span class="n">movement_trajectory</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>    <span class="c1"># 应用 PCA 找到主要运动方向</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>    <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">flattened</span><span class="p">)</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    <span class="c1"># 主成分代表主要运动方向</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>    <span class="n">pc1</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># 主要运动方向</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>    <span class="n">pc2</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 次要运动方向</span>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>    <span class="n">pc3</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># 第三（通常垂直于运动平面）</span>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>    <span class="c1"># 最佳摄像机位置：垂直于主要运动平面</span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>    <span class="n">camera_offset</span> <span class="o">=</span> <span class="n">pc3</span> <span class="o">*</span> <span class="mf">3.0</span>  <span class="c1"># 3 米远</span>
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>    <span class="c1"># 质心作为摄像机目标</span>
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>    <span class="n">center_of_mass</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">flattened</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>    <span class="n">optimal_camera_position</span> <span class="o">=</span> <span class="n">center_of_mass</span> <span class="o">+</span> <span class="n">camera_offset</span>
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>    <span class="n">camera_target</span> <span class="o">=</span> <span class="n">center_of_mass</span>
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>    <span class="k">return</span> <span class="n">optimal_camera_position</span><span class="p">,</span> <span class="n">camera_target</span>
+</span></code></pre></div>
+<hr />
+<h4 id="3-dtw-temporal-alignment-via-dynamic-time-warping">3. 通过动态时间规整 (DTW) 的时间对齐 (Temporal Alignment via Dynamic Time Warping)<a class="headerlink" href="#3-dtw-temporal-alignment-via-dynamic-time-warping" title="Permanent link">&para;</a></h4>
+<p><strong>问题 Problem:</strong> 用户和参考表演者以不同的速度执行相同的运动。直接逐帧比较没有意义。</p>
+<h4 id="dtw-solution-dynamic-time-warping-dtw">解决方案：动态时间规整 (DTW) Solution: Dynamic Time Warping (DTW)<a class="headerlink" href="#dtw-solution-dynamic-time-warping-dtw" title="Permanent link">&para;</a></h4>
+<p><strong>DTW 做什么 What DTW Does:</strong></p>
+<ul>
+<li>找到两个时间序列之间的最佳对齐</li>
+<li>尽管速度不同，仍匹配相应的运动阶段</li>
+<li>自然处理可变速度和时间</li>
+</ul>
+<p><strong>示例场景 Example Scenario:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>用户执行深蹲 User performs squat:    [0s--------1s--------2s--------3s--------4s]  (慢，4秒)
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>参考运动员 Reference athlete:        [0s----1s----2s]                              (快，2秒)
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>没有 DTW (简单帧匹配) Without DTW:
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  帧 0 (用户) → 帧 0 (参考): 开始 START ✓
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  帧 20 (用户) → 帧 20 (参考): 越界 OUT OF BOUNDS ✗
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>使用 DTW 对齐 With DTW alignment:
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>  用户帧 0 → 参考帧 0   (开始位置)
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>  用户帧 20 → 参考帧 10  (向下一半)
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>  用户帧 40 → 参考帧 20  (底部位置)
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>  用户帧 60 → 参考帧 30  (向上一半)
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>  用户帧 80 → 参考帧 40  (结束位置)
+</span></code></pre></div>
+<p><strong>实现 Implementation:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dtaidistance</span><span class="w"> </span><span class="kn">import</span> <span class="n">dtw</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">align_movements_with_dtw</span><span class="p">(</span><span class="n">user_trajectory</span><span class="p">,</span> <span class="n">reference_trajectory</span><span class="p">):</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="sd">    使用 DTW 时间对齐用户和参考运动</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="sd">    Temporally align user and reference movements using DTW</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="sd">    参数 Args:</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="sd">        user_trajectory: numpy 数组 (user_frames, joints, 3)</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="sd">        reference_trajectory: numpy 数组 (ref_frames, joints, 3)</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="sd">    返回 Returns:</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="sd">        alignment_path: (user_idx, ref_idx) 元组列表</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="sd">        distance: DTW 距离度量</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="sd">        aligned_user: 扭曲以匹配参考时间的用户轨迹</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    <span class="c1"># 为 DTW 展平关节维度</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>    <span class="n">user_flat</span> <span class="o">=</span> <span class="n">user_trajectory</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">user_trajectory</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>    <span class="n">ref_flat</span> <span class="o">=</span> <span class="n">reference_trajectory</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">reference_trajectory</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>    <span class="c1"># 计算 DTW 距离和对齐路径</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>    <span class="n">distance</span><span class="p">,</span> <span class="n">paths</span> <span class="o">=</span> <span class="n">dtw</span><span class="o">.</span><span class="n">warping_paths</span><span class="p">(</span><span class="n">user_flat</span><span class="p">,</span> <span class="n">ref_flat</span><span class="p">)</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>    <span class="c1"># 提取最佳路径</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>    <span class="n">best_path</span> <span class="o">=</span> <span class="n">dtw</span><span class="o">.</span><span class="n">best_path</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>    <span class="c1"># 创建对齐的用户轨迹（扭曲到参考时间）</span>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>    <span class="n">aligned_user</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">reference_trajectory</span><span class="p">)</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>    <span class="k">for</span> <span class="n">ref_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">reference_trajectory</span><span class="p">)):</span>
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>        <span class="n">user_idx</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">best_path</span> <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="n">ref_idx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>        <span class="n">aligned_user</span><span class="p">[</span><span class="n">ref_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_trajectory</span><span class="p">[</span><span class="n">user_idx</span><span class="p">]</span>
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a>    <span class="k">return</span> <span class="n">best_path</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">aligned_user</span>
+</span></code></pre></div>
+<blockquote>
+<p><strong>扩展阅读</strong>: DTW 在挥杆分析中的完整应用 (四种参考模型、全身数据采集) 见 <a href="../../../design/swing-comparison/">挥杆对比策略</a></p>
+</blockquote>
+<hr />
+<h2 id="3-commercial-best-practices">3. 商业最佳实践 (Commercial Best Practices)<a class="headerlink" href="#3-commercial-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="31-peloton-iq-confidence-based-feedback">3.1 Peloton IQ: 基于置信度的反馈 (Confidence-Based Feedback)<a class="headerlink" href="#31-peloton-iq-confidence-based-feedback" title="Permanent link">&para;</a></h3>
+<p><strong>技术 Technology:</strong> 计算机视觉 + 在 500万+ 锻炼上训练的 AI</p>
+<h4 id="key-innovation-confidence-thresholding">关键创新：置信度阈值 Key Innovation: Confidence Thresholding<a class="headerlink" href="#key-innovation-confidence-thresholding" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>"Peloton IQ 仅在对评估有信心时才提供反馈。"</p>
+</blockquote>
+<p><strong>置信度级别 Confidence Levels:</strong></p>
+<ul>
+<li><strong>低置信度 (&lt;60%):</strong> 无反馈（避免混淆用户）</li>
+<li><strong>中等置信度 (60-80%):</strong> 温和建议</li>
+<li><strong>高置信度 (&gt;80%):</strong> 明确纠正</li>
+</ul>
+<p><strong>实现模式 Implementation Pattern:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">provide_feedback</span><span class="p">(</span><span class="n">detection_confidence</span><span class="p">,</span> <span class="n">error_severity</span><span class="p">):</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">CONFIDENCE_THRESHOLD_LOW</span> <span class="o">=</span> <span class="mf">0.6</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">CONFIDENCE_THRESHOLD_HIGH</span> <span class="o">=</span> <span class="mf">0.8</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="k">if</span> <span class="n">detection_confidence</span> <span class="o">&lt;</span> <span class="n">CONFIDENCE_THRESHOLD_LOW</span><span class="p">:</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>        <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># 无反馈 - 置信度不足</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="k">elif</span> <span class="n">detection_confidence</span> <span class="o">&lt;</span> <span class="n">CONFIDENCE_THRESHOLD_HIGH</span><span class="p">:</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>        <span class="c1"># 中等置信度 - 温和建议</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        <span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;suggestion&#39;</span><span class="p">,</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>            <span class="s1">&#39;intensity&#39;</span><span class="p">:</span> <span class="s1">&#39;low&#39;</span><span class="p">,</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;考虑 Consider </span><span class="si">{</span><span class="n">get_correction_hint</span><span class="p">(</span><span class="n">error_severity</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>        <span class="p">}</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>        <span class="c1"># 高置信度 - 明确纠正</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>        <span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;correction&#39;</span><span class="p">,</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>            <span class="s1">&#39;intensity&#39;</span><span class="p">:</span> <span class="s1">&#39;high&#39;</span><span class="p">,</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">get_correction_instruction</span><span class="p">(</span><span class="n">error_severity</span><span class="p">)</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>        <span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h3 id="32-magic-mirror-ui-per-rep-scoring-ui">3.2 MAGIC Mirror: 每次重复评分 UI (Per-Rep Scoring UI)<a class="headerlink" href="#32-magic-mirror-ui-per-rep-scoring-ui" title="Permanent link">&para;</a></h3>
+<p><strong>技术 Technology:</strong> ReflectAI® - 隐藏摄像头 + 计算机视觉（~400 种运动模式）</p>
+<h4 id="key-innovation-quantitative-per-rep-feedback">关键创新：定量每次重复反馈 Key Innovation: Quantitative Per-Rep Feedback<a class="headerlink" href="#key-innovation-quantitative-per-rep-feedback" title="Permanent link">&para;</a></h4>
+<p><strong>实时功能 Real-Time Features:</strong></p>
+<ol>
+<li><strong>重复计数 Rep counting</strong> 带视觉叠加</li>
+<li><strong>姿态纠正 Pose correction</strong> 指示器</li>
+<li><strong>质量评分 Quality scoring</strong> - 每次重复的数字分数 (0-100)</li>
+<li><strong>全息教练 Holographic coach</strong> - 虚拟教练叠加</li>
+</ol>
+<p><strong>评分系统实现 Scoring System Implementation:</strong></p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// 每次重复质量分数计算示例</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kd">function</span><span class="w"> </span><span class="nx">calculateRepQuality</span><span class="p">(</span><span class="nx">userPose</span><span class="p">,</span><span class="w"> </span><span class="nx">idealPose</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">totalScore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">weightedSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="c1">// 关节角度精度（40% 权重）</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">angleScore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">compareJointAngles</span><span class="p">(</span><span class="nx">userPose</span><span class="p">,</span><span class="w"> </span><span class="nx">idealPose</span><span class="p">);</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="nx">weightedSum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">angleScore</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.4</span><span class="p">;</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="c1">// 运动范围（30% 权重）</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">romScore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evaluateRangeOfMotion</span><span class="p">(</span><span class="nx">userPose</span><span class="p">);</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="nx">weightedSum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">romScore</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.3</span><span class="p">;</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="c1">// 运动平滑度（20% 权重）</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">smoothnessScore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">analyzeSmoothness</span><span class="p">(</span><span class="nx">userPose</span><span class="p">.</span><span class="nx">trajectory</span><span class="p">);</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">    </span><span class="nx">weightedSum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">smoothnessScore</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.2</span><span class="p">;</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">    </span><span class="c1">// 时间/节奏（10% 权重）</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">tempoScore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">evaluateTempo</span><span class="p">(</span><span class="nx">userPose</span><span class="p">.</span><span class="nx">duration</span><span class="p">);</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">    </span><span class="nx">weightedSum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">tempoScore</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">weightedSum</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span><span class="w"> </span><span class="c1">// 返回 0-100 分数</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h3 id="33-tempo-studio-3d-3d-overlay-techniques">3.3 Tempo Studio: 3D 叠加技术 (3D Overlay Techniques)<a class="headerlink" href="#33-tempo-studio-3d-3d-overlay-techniques" title="Permanent link">&para;</a></h3>
+<p><strong>技术 Technology:</strong> 3D 飞行时间 (ToF) 深度传感器（Microsoft Azure + Analog Devices）</p>
+<p><strong>技术规格 Technical Specifications:</strong></p>
+<ul>
+<li><strong>1 百万像素分辨率</strong> 深度感知</li>
+<li><strong>40 FPS</strong> 实时跟踪</li>
+<li><strong>25 个身体关节</strong> 在 3D 空间中分析</li>
+<li><strong>低延迟:</strong> 片上处理减少系统延迟</li>
+</ul>
+<p><strong>采纳内容 What to Adopt:</strong></p>
+<ul>
+<li>✅ 3D 姿态重要性（使用 MediaPipe 的 3D 输出）</li>
+<li>✅ 关节角度精度用于姿态评估</li>
+<li>✅ 危险模式的实时安全警报</li>
+<li>⚠️ 考虑未来版本中使用手机 LiDAR 进行深度</li>
+</ul>
+<hr />
+<h2 id="4-uiux-uiux-implementation-guidelines">4. UI/UX 实施指南 (UI/UX Implementation Guidelines)<a class="headerlink" href="#4-uiux-uiux-implementation-guidelines" title="Permanent link">&para;</a></h2>
+<h3 id="41-feedback-priority-system">4.1 反馈优先级系统 (Feedback Priority System)<a class="headerlink" href="#41-feedback-priority-system" title="Permanent link">&para;</a></h3>
+<p><strong>问题 Problem:</strong> 在单次运动中同时出现多个错误。</p>
+<h4 id="solution-priority-hierarchy">解决方案：优先级层次 Solution: Priority Hierarchy<a class="headerlink" href="#solution-priority-hierarchy" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>优先级 Priority</th>
+<th>错误类型 Error Type</th>
+<th>反馈方法 Feedback Method</th>
+<th>示例 Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1 - 严重 Critical</strong></td>
+<td>安全风险，伤害潜力</td>
+<td>立即停止 + 触觉 + 音频</td>
+<td>深蹲时膝盖过度内扣</td>
+</tr>
+<tr>
+<td><strong>2 - 高 High</strong></td>
+<td>主要姿态偏差</td>
+<td>叠加箭头 + 颜色编码</td>
+<td>深蹲深度不足</td>
+</tr>
+<tr>
+<td><strong>3 - 中 Medium</strong></td>
+<td>次要调整</td>
+<td>颜色编码仅</td>
+<td>轻微的躯干倾斜</td>
+</tr>
+<tr>
+<td><strong>4 - 低 Low</strong></td>
+<td>优化</td>
+<td>后期动作审查</td>
+<td>节奏调整</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="42-progressive-feedback-fading">4.2 渐进式反馈淡出 (Progressive Feedback Fading)<a class="headerlink" href="#42-progressive-feedback-fading" title="Permanent link">&para;</a></h3>
+<p><strong>研究支持 Research Support:</strong>
+减少反馈频率以防止依赖并增强技能保留。</p>
+<p><strong>实施策略 Implementation Strategy:</strong></p>
+<h4 id="1-week-1-continuous-feedback-100">第 1 周 Week 1: 持续反馈 Continuous Feedback (100%)<a class="headerlink" href="#1-week-1-continuous-feedback-100" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>每次重复：完整反馈
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Every rep: Full feedback
+</span></code></pre></div>
+<h4 id="2-3-weeks-2-3-progressive-fading-50">第 2-3 周 Weeks 2-3: 渐进淡出 Progressive Fading (50%)<a class="headerlink" href="#2-3-weeks-2-3-progressive-fading-50" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>每 2 次重复一次反馈
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Feedback every 2 reps
+</span></code></pre></div>
+<h4 id="4-week-4-minimal-feedback-20">第 4+ 周 Week 4+: 最小反馈 Minimal Feedback (20%)<a class="headerlink" href="#4-week-4-minimal-feedback-20" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>仅严重错误
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Only critical errors
+</span></code></pre></div>
+<hr />
+<h2 id="5-sdk-rendering-technologies-sdks">5. 渲染技术与 SDK (Rendering Technologies &amp; SDKs)<a class="headerlink" href="#5-sdk-rendering-technologies-sdks" title="Permanent link">&para;</a></h2>
+<h3 id="51-ios-realitykit-ar">5.1 原生 iOS - RealityKit (AR 叠加)<a class="headerlink" href="#51-ios-realitykit-ar" title="Permanent link">&para;</a></h3>
+<h4 id="apple-vision-pro-iphone-ar">Apple Vision Pro + iPhone AR<a class="headerlink" href="#apple-vision-pro-iphone-ar" title="Permanent link">&para;</a></h4>
+<div class="language-swift highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kd">import</span><span class="w"> </span><span class="nc">RealityKit</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kd">import</span><span class="w"> </span><span class="nc">ARKit</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="kd">class</span><span class="w"> </span><span class="nc">PoseOverlayView</span><span class="p">:</span><span class="w"> </span><span class="bp">ARView</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">ghostSkeleton</span><span class="p">:</span><span class="w"> </span><span class="n">ModelEntity</span><span class="p">?</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">userSkeleton</span><span class="p">:</span><span class="w"> </span><span class="n">ModelEntity</span><span class="p">?</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">updateSkeletons</span><span class="p">(</span><span class="n">userPose</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">CGPoint</span><span class="p">],</span><span class="w"> </span><span class="n">idealPose</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">CGPoint</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">        </span><span class="c1">// 更新实时用户骨架（100% 不透明度）</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">        </span><span class="n">userSkeleton</span><span class="p">?.</span><span class="n">model</span><span class="p">?.</span><span class="n">materials</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">SimpleMaterial</span><span class="p">(</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">            </span><span class="n">color</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">white</span><span class="p">,</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">            </span><span class="n">isMetallic</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">        </span><span class="p">)]</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">        </span><span class="c1">// 更新幽灵参考骨架（50% 不透明度）</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nv">ghostMaterial</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">SimpleMaterial</span><span class="p">(</span><span class="n">color</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">green</span><span class="p">,</span><span class="w"> </span><span class="n">isMetallic</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">        </span><span class="n">ghostMaterial</span><span class="p">.</span><span class="n">baseColor</span><span class="p">.</span><span class="n">tint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">red</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="n">green</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="n">blue</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="w">        </span><span class="n">ghostSkeleton</span><span class="p">?.</span><span class="n">model</span><span class="p">?.</span><span class="n">materials</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">ghostMaterial</span><span class="p">]</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h3 id="52-flutter-custompainter">5.2 Flutter - CustomPainter (跨平台)<a class="headerlink" href="#52-flutter-custompainter" title="Permanent link">&para;</a></h3>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kd">class</span><span class="w"> </span><span class="nc">SkeletonOverlayPainter</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">CustomPainter</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Keypoint</span><span class="o">&gt;</span><span class="w"> </span><span class="n">userKeypoints</span><span class="p">;</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Keypoint</span><span class="o">&gt;</span><span class="w"> </span><span class="n">idealKeypoints</span><span class="p">;</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">  </span><span class="n">SkeletonOverlayPainter</span><span class="p">({</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="kd">required</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">userKeypoints</span><span class="p">,</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="kd">required</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">idealKeypoints</span><span class="p">,</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">  </span><span class="nd">@override</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">paint</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">Size</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">    </span><span class="c1">// 绘制幽灵骨架（50% 不透明度）</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">ghostPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">      </span><span class="p">..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">green</span><span class="p">.</span><span class="n">withOpacity</span><span class="p">(</span><span class="m">0.5</span><span class="p">)</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="w">      </span><span class="p">..</span><span class="n">strokeWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">      </span><span class="p">..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="w">    </span><span class="n">drawSkeleton</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">idealKeypoints</span><span class="p">,</span><span class="w"> </span><span class="n">ghostPaint</span><span class="p">);</span>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="w">    </span><span class="c1">// 绘制实时骨架（100% 不透明度）</span>
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">livePaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()</span>
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="w">      </span><span class="p">..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">white</span>
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="w">      </span><span class="p">..</span><span class="n">strokeWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span>
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a><span class="w">      </span><span class="p">..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span>
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="w">    </span><span class="n">drawSkeleton</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">userKeypoints</span><span class="p">,</span><span class="w"> </span><span class="n">livePaint</span><span class="p">);</span>
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a><span class="w">  </span><span class="nd">@override</span>
+</span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">shouldRepaint</span><span class="p">(</span><span class="kd">covariant</span><span class="w"> </span><span class="n">CustomPainter</span><span class="w"> </span><span class="n">oldDelegate</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+</span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h2 id="6-haptic-feedback-integration">6. 触觉反馈集成 (Haptic Feedback Integration)<a class="headerlink" href="#6-haptic-feedback-integration" title="Permanent link">&para;</a></h2>
+<h3 id="61-haptic-pattern-design">6.1 触觉模式设计 (Haptic Pattern Design)<a class="headerlink" href="#61-haptic-pattern-design" title="Permanent link">&para;</a></h3>
+<p><strong>iOS 实现 iOS Implementation:</strong></p>
+<div class="language-swift highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kd">import</span><span class="w"> </span><span class="nc">CoreHaptics</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="kd">class</span><span class="w"> </span><span class="nc">HapticFeedbackEngine</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">engine</span><span class="p">:</span><span class="w"> </span><span class="bp">CHHapticEngine</span><span class="p">?</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">playCorrection</span><span class="p">(</span><span class="n">severity</span><span class="p">:</span><span class="w"> </span><span class="n">ErrorSeverity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">pattern</span><span class="p">:</span><span class="w"> </span><span class="bp">CHHapticPattern</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="n">severity</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">critical</span><span class="p">:</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">            </span><span class="c1">// 强脉冲 - 立即注意 Strong pulse - immediate attention</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">            </span><span class="n">pattern</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">CHHapticPattern</span><span class="p">(</span><span class="n">events</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">                </span><span class="bp">CHHapticEvent</span><span class="p">(</span><span class="n">eventType</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">hapticTransient</span><span class="p">,</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">                            </span><span class="n">parameters</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="bp">CHHapticEventParameter</span><span class="p">(</span><span class="n">parameterID</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">hapticIntensity</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)],</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">                            </span><span class="n">relativeTime</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">            </span><span class="p">])</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">moderate</span><span class="p">:</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">            </span><span class="c1">// 双脉冲 - 温和纠正 Double pulse - gentle correction</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">            </span><span class="n">pattern</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">CHHapticPattern</span><span class="p">(</span><span class="n">events</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">                </span><span class="bp">CHHapticEvent</span><span class="p">(</span><span class="n">eventType</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">hapticTransient</span><span class="p">,</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">                            </span><span class="n">parameters</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="bp">CHHapticEventParameter</span><span class="p">(</span><span class="n">parameterID</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">hapticIntensity</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span><span class="p">)],</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">                            </span><span class="n">relativeTime</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="w">                </span><span class="bp">CHHapticEvent</span><span class="p">(</span><span class="n">eventType</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">hapticTransient</span><span class="p">,</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="w">                            </span><span class="n">parameters</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="bp">CHHapticEventParameter</span><span class="p">(</span><span class="n">parameterID</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">hapticIntensity</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span><span class="p">)],</span>
+</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a><span class="w">                            </span><span class="n">relativeTime</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">)</span>
+</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a><span class="w">            </span><span class="p">])</span>
+</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>
+</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="p">.</span><span class="n">correct</span><span class="p">:</span>
+</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a><span class="w">            </span><span class="c1">// 成功叮咚 Success chime</span>
+</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a><span class="w">            </span><span class="n">pattern</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="bp">CHHapticPattern</span><span class="p">(</span><span class="n">events</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a><span class="w">                </span><span class="bp">CHHapticEvent</span><span class="p">(</span><span class="n">eventType</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">hapticContinuous</span><span class="p">,</span>
+</span><span id="__span-15-33"><a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a><span class="w">                            </span><span class="n">parameters</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="bp">CHHapticEventParameter</span><span class="p">(</span><span class="n">parameterID</span><span class="p">:</span><span class="w"> </span><span class="p">.</span><span class="n">hapticIntensity</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)],</span>
+</span><span id="__span-15-34"><a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a><span class="w">                            </span><span class="n">relativeTime</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-15-35"><a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a><span class="w">                            </span><span class="n">duration</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">)</span>
+</span><span id="__span-15-36"><a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a><span class="w">            </span><span class="p">])</span>
+</span><span id="__span-15-37"><a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-15-38"><a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a>
+</span><span id="__span-15-39"><a id="__codelineno-15-39" name="__codelineno-15-39" href="#__codelineno-15-39"></a><span class="w">        </span><span class="k">try</span><span class="p">?</span><span class="w"> </span><span class="n">engine</span><span class="p">?.</span><span class="n">start</span><span class="p">()</span>
+</span><span id="__span-15-40"><a id="__codelineno-15-40" name="__codelineno-15-40" href="#__codelineno-15-40"></a><span class="w">        </span><span class="k">try</span><span class="p">?</span><span class="w"> </span><span class="n">engine</span><span class="p">?.</span><span class="n">makePlayer</span><span class="p">(</span><span class="n">with</span><span class="p">:</span><span class="w"> </span><span class="n">pattern</span><span class="p">).</span><span class="n">start</span><span class="p">(</span><span class="n">atTime</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-15-41"><a id="__codelineno-15-41" name="__codelineno-15-41" href="#__codelineno-15-41"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-42"><a id="__codelineno-15-42" name="__codelineno-15-42" href="#__codelineno-15-42"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h2 id="related-documentation">相关文档 (Related Documentation)<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>姿态估计 Pose Estimation</strong>: <a href="../../../components/vision/software/">Pose Estimation Guide</a></li>
+<li><strong>MCU 硬件 MCU Hardware</strong>: <a href="../../../components/mcu/hardware/">MCU Hardware Guide</a></li>
+</ul>
+<hr />
+<p><strong>最后更新 Last Updated</strong>: 2025年12月1日
+<strong>维护者 Maintained By</strong>: Movement Chain AI Design Team</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/movement-chain-ai" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/movement-chain-ai" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.tracking", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

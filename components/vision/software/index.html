@@ -1,0 +1,4641 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Architecture documentation for multimodal AI movement training system">
+      
+      
+        <meta name="author" content="Movement Chain AI Team">
+      
+      
+        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/components/vision/software/">
+      
+      
+        <link rel="prev" href="../hardware/">
+      
+      
+        <link rel="next" href="../../mcu/hardware/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Pose Estimation 姿态估计与计算机视觉指南 - Movement Chain AI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pose-estimation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Movement Chain AI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pose Estimation 姿态估计与计算机视觉指南
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/movement-chain-ai/movement-chain-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    movement-chain-ai/movement-chain-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Movement Chain AI Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/movement-chain-ai/movement-chain-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    movement-chain-ai/movement-chain-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文档导航
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../risk-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    风险管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../product/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    产品战略
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    产品战略
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/user-personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用户画像
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/unique-value/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    独特价值主张
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../product/market-landscape/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    市场研究
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    市场研究
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/pain-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用户痛点
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/market-size/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    市场分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_4" id="__nav_4_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    竞品分析
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    竞品分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/competitors/imu-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMU 方案竞品分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/competitors/vision-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    视觉方案竞品分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/competitors/multi-sensor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多传感器方案竞品分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/market-landscape/competitors/smart-clothing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能服装竞品分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../product/product-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    产品战略：从市场缺口到设计决策
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../design/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统设计
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统设计 System Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/swing-phases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    挥杆 8 阶段细分 Golf Swing 8-Phase Breakdown
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/real-time-feedback-spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实时反馈规范 Real-Time Feedback Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/swing-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    挥杆对比策略 Swing Comparison Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/personalization-spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    个性化基准规范 Personalization Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速开始 Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/ml-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML 基础入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/sdk-selection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK/库选型指南 SDK Selection Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    决策摘要 Decisions Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../design/research/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    研究与标准
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_11" id="__nav_5_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    研究与标准
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/research/biomechanics-glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生物力学术语表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/research/biomechanics-benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生物力学基准值
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/research/sensor-metric-mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    传感器指标映射
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../design/decisions/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架构决策 (ADR)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_12" id="__nav_5_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    架构决策 (ADR)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0001-multi-repo-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001: 多仓库结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002: LSM6DSV16X IMU 传感器选型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0003-flutter-mobile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003: Flutter 跨平台移动开发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0004: 简化的 4 模块架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0005: ESP32-S3 微控制器选择
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0006: ONNX Runtime 用于 ML 模型部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    硬件组件
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    硬件组件
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMU 惯性测量
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IMU 惯性测量
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../imu/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMU 惯性测量单元
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../imu/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IMU 供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EMG 肌电传感
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EMG 肌电传感
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../emg/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EMG 肌电传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../emg/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EMG 供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    视觉/摄像头
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    视觉/摄像头
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    视觉/摄像头传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pose Estimation 姿态估计与计算机视觉指南
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pose Estimation 姿态估计与计算机视觉指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-quick-decision-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 快速决策框架 (Quick Decision Framework)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 快速决策框架 (Quick Decision Framework)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-each-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        何时使用各种工具 (When to Use Each Tool)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rtmpose-vs-mediapipe-vs-movenet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RTMPose vs MediaPipe vs MoveNet 对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediapipe-accuracy-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MediaPipe 精度限制 (Accuracy Limitations)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-open-source-tools-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 开源工具与库 (Open-Source Tools &amp; Libraries)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 开源工具与库 (Open-Source Tools &amp; Libraries)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-rtmpose-performance-leader-2023-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 RTMPose - 性能领导者 (Performance Leader) (2023-2025)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-mediapipe-pose-ecosystem-leader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 MediaPipe Pose - 生态系统领导者 (Ecosystem Leader)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-movenet-tensorflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 MoveNet - TensorFlow 轻量级
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-commercial-implementations-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 商业实现分析 (Commercial Implementations Analysis)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 商业实现分析 (Commercial Implementations Analysis)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-peloton-iq-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Peloton IQ - 计算机视觉系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-tonal-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Tonal - 多传感器力量训练
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tempo-studio-3d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Tempo Studio - 3D 深度感知
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-open-source-fitness-tracking-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 开源健身跟踪项目 (Open-Source Fitness Tracking Projects)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 开源健身跟踪项目 (Open-Source Fitness Tracking Projects)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        社区健身跟踪实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对比矩阵: 开源项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-datasets-for-training-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 训练与评估数据集 (Datasets for Training &amp; Evaluation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 训练与评估数据集 (Datasets for Training &amp; Evaluation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-coco-keypoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 COCO Keypoints 数据集
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-fit3d-googlecmu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Fit3D - Google/CMU 健身数据集
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-mm-fit-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 MM-Fit - 多模态健身数据集
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-deployment-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 部署策略 (Deployment Strategies)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 部署策略 (Deployment Strategies)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-mobile-deployment-iosandroid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 移动端部署 (Mobile Deployment) (iOS/Android)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档 (Related Documentation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结与建议 (Summary &amp; Recommendations)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="总结与建议 (Summary &amp; Recommendations)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#movement-chain-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对于 Movement Chain AI 项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-decision-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        快速决策矩阵 (Quick Decision Matrix)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU 微控制器
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCU 微控制器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mcu/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU 微控制器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mcu/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCU 供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    柔性传感器
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    柔性传感器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flexible-sensors/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    柔性/E-Skin 传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flexible-sensors/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    柔性传感器供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_7" id="__nav_6_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压力传感器
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    压力传感器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pressure-sensors/hardware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压力传感器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pressure-sensors/suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    压力传感器供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../supply-chain/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    供应链与 ODM/OEM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_8" id="__nav_6_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    供应链与 ODM/OEM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supply-chain/china-sensors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    国内传感器供应商清单 (China Domestic Sensor Suppliers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supply-chain/china-wearables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中国智能服装与可穿戴设备供应商大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supply-chain/mvp-suppliers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中国供应商快速 MVP 开发指南 - 高尔夫挥杆分析可穿戴设备
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supply-chain/smart-clothing-market/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中国智能运动服装与可穿戴设备市场调研报告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supply-chain/e-skin-odm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Skin ODM/OEM 厂商研究
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../platform/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发平台
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开发平台
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform/mvp-prototype-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVP 原型代码示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    移动应用
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    移动应用
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform/mobile/development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile App Development Guide 移动应用开发指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML 训练
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ML 训练
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform/ml-training/datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets &amp; Benchmarking Guide 数据集与基准测试指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../platform/ml-training/visual-feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visual Feedback Design 视觉反馈设计指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    参考资料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    参考资料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/golf-glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高尔夫术语表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/business-glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    商业术语表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/academic-datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    运动训练系统的学术研究与数据集 (Academic Research &amp; Datasets for Movement Training Systems)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/golf-research/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高尔夫生物力学研究 (Golf Biomechanics Research)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/open-source-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开源工具与代码库 (Open Source Tools &amp; Repositories)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-quick-decision-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 快速决策框架 (Quick Decision Framework)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 快速决策框架 (Quick Decision Framework)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-each-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        何时使用各种工具 (When to Use Each Tool)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rtmpose-vs-mediapipe-vs-movenet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RTMPose vs MediaPipe vs MoveNet 对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediapipe-accuracy-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MediaPipe 精度限制 (Accuracy Limitations)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-open-source-tools-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 开源工具与库 (Open-Source Tools &amp; Libraries)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 开源工具与库 (Open-Source Tools &amp; Libraries)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-rtmpose-performance-leader-2023-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 RTMPose - 性能领导者 (Performance Leader) (2023-2025)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-mediapipe-pose-ecosystem-leader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 MediaPipe Pose - 生态系统领导者 (Ecosystem Leader)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-movenet-tensorflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 MoveNet - TensorFlow 轻量级
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-commercial-implementations-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 商业实现分析 (Commercial Implementations Analysis)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 商业实现分析 (Commercial Implementations Analysis)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-peloton-iq-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Peloton IQ - 计算机视觉系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-tonal-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Tonal - 多传感器力量训练
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tempo-studio-3d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Tempo Studio - 3D 深度感知
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-open-source-fitness-tracking-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 开源健身跟踪项目 (Open-Source Fitness Tracking Projects)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 开源健身跟踪项目 (Open-Source Fitness Tracking Projects)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        社区健身跟踪实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对比矩阵: 开源项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-datasets-for-training-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 训练与评估数据集 (Datasets for Training &amp; Evaluation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 训练与评估数据集 (Datasets for Training &amp; Evaluation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-coco-keypoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 COCO Keypoints 数据集
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-fit3d-googlecmu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Fit3D - Google/CMU 健身数据集
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-mm-fit-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 MM-Fit - 多模态健身数据集
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-deployment-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 部署策略 (Deployment Strategies)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 部署策略 (Deployment Strategies)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-mobile-deployment-iosandroid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 移动端部署 (Mobile Deployment) (iOS/Android)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关文档 (Related Documentation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结与建议 (Summary &amp; Recommendations)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="总结与建议 (Summary &amp; Recommendations)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#movement-chain-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对于 Movement Chain AI 项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-decision-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        快速决策矩阵 (Quick Decision Matrix)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="pose-estimation">Pose Estimation 姿态估计与计算机视觉指南<a class="headerlink" href="#pose-estimation" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Movement Chain AI 姿态估计技术权威指南</strong></p>
+</blockquote>
+<div class="admonition info">
+<p class="admonition-title">框架选型</p>
+<p>ONNX Runtime 部署决策详情请参阅 <a href="../../../design/decisions/0006-onnx-runtime-deployment/">ADR-0006 ONNX Runtime 部署策略</a></p>
+</div>
+<hr />
+<h2 id="1-quick-decision-framework">1. 快速决策框架 (Quick Decision Framework)<a class="headerlink" href="#1-quick-decision-framework" title="Permanent link">&para;</a></h2>
+<h3 id="when-to-use-each-tool">何时使用各种工具 (When to Use Each Tool)<a class="headerlink" href="#when-to-use-each-tool" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>使用场景 Use Case</th>
+<th>推荐工具 Recommended Tool</th>
+<th>备选方案 Runner-up</th>
+<th>理由 Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MVP / 快速原型 Rapid Prototyping</strong></td>
+<td>MediaPipe Pose</td>
+<td>MoveNet Lightning</td>
+<td>最快开发速度，3D支持，成熟生态</td>
+</tr>
+<tr>
+<td><strong>生产环境（高性能）Production (High Performance)</strong></td>
+<td><strong>RTMPose-m</strong></td>
+<td>MediaPipe Pose</td>
+<td>快 2-3 倍，更高精度，更低成本</td>
+</tr>
+<tr>
+<td><strong>移动端（电池优化）Mobile (Battery Optimized)</strong></td>
+<td>MoveNet Lightning</td>
+<td>RTMPose-t (tiny)</td>
+<td>超高效率，预算设备上 50+ FPS</td>
+</tr>
+<tr>
+<td><strong>研究/基准测试 Research / Benchmarking</strong></td>
+<td>MMPose (toolbox)</td>
+<td>ViTPose</td>
+<td>多模型访问，对比研究</td>
+</tr>
+<tr>
+<td><strong>iOS 原生 iOS Native</strong></td>
+<td>Apple Vision Framework</td>
+<td>MediaPipe</td>
+<td>在苹果设备上最快，神经引擎优化</td>
+</tr>
+<tr>
+<td><strong>Web 浏览器 Web Browser</strong></td>
+<td>PoseNet (TF.js)</td>
+<td>MoveNet (TF.js)</td>
+<td>客户端处理，隐私保护</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rtmpose-vs-mediapipe-vs-movenet">RTMPose vs MediaPipe vs MoveNet 对比<a class="headerlink" href="#rtmpose-vs-mediapipe-vs-movenet" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                RTMPose-m    MediaPipe    MoveNet Thunder
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>精度 Accuracy (AP):  75.8%        ~72%           72.0%
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>CPU FPS:          90+          30-40          30
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>GPU FPS:          430+         120+           100
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>移动端 FPS:        70+          30+            25+
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>关键点 Keypoints:   17 (2D)      33 (3D)        17 (2D)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>3D 支持:          ❌           ✅             ❌
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>多人检测:          ⚠️ 需检测器   ❌             ❌
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>云成本 Cloud Cost:  $15/1M       $45/1M         $35/1M
+</span></code></pre></div>
+<p><strong>结论 Verdict</strong>:</p>
+<ul>
+<li><strong>RTMPose</strong> = 生产环境最佳性能 + 精度</li>
+<li><strong>MediaPipe</strong> = 原型开发最佳 + 需要 3D 姿态</li>
+<li><strong>MoveNet</strong> = Web 部署最佳 + 电池效率</li>
+</ul>
+<h3 id="mediapipe-accuracy-limitations">MediaPipe 精度限制 (Accuracy Limitations)<a class="headerlink" href="#mediapipe-accuracy-limitations" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">工程实践中的精度边界</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>实际表现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>理想条件</strong> (单人 + 光线好 + 全身可见)</td>
+<td></td>
+</tr>
+<tr>
+<td>关键点检测成功率</td>
+<td>95%+</td>
+</tr>
+<tr>
+<td>2D 关节点位置误差</td>
+<td>5–15 像素 (1080p)</td>
+</tr>
+<tr>
+<td>关节角度误差</td>
+<td><strong>±5° ~ ±10°</strong></td>
+</tr>
+<tr>
+<td><strong>挑战场景</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>快速动作 (挥杆 impact 附近)</td>
+<td>精度显著下降，易丢点</td>
+</tr>
+<tr>
+<td>手腕/手被遮挡</td>
+<td>明显漂移</td>
+</tr>
+<tr>
+<td>侧身/背对摄像头</td>
+<td>髋、肩角度不可靠</td>
+</tr>
+</tbody>
+</table>
+<p><strong>结论</strong>: MediaPipe ≈ 人类教练肉眼级 + 稳定 + 实时</p>
+<ul>
+<li>✅ 训练反馈 / SaaS / 消费级产品：足够</li>
+<li>❌ 精密运动学 / 科研 / 医疗级：不够</li>
+</ul>
+</div>
+<hr />
+<h2 id="2-open-source-tools-libraries">2. 开源工具与库 (Open-Source Tools &amp; Libraries)<a class="headerlink" href="#2-open-source-tools-libraries" title="Permanent link">&para;</a></h2>
+<h3 id="21-rtmpose-performance-leader-2023-2025">2.1 RTMPose - 性能领导者 (Performance Leader) (2023-2025)<a class="headerlink" href="#21-rtmpose-performance-leader-2023-2025" title="Permanent link">&para;</a></h3>
+<p><strong>最重要的更新</strong>: RTMPose 在速度和精度上都超越了 MediaPipe。</p>
+<h4 id="overview">概述 (Overview)<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>开发者 Developer</strong>: OpenMMLab (开源研究实验室)</li>
+<li><strong>发布 Release</strong>: 2023年3月 (CVPR 2023 Workshop)</li>
+<li><strong>状态 Status</strong>: 生产就绪，积极维护</li>
+<li><strong>许可 License</strong>: Apache 2.0 (商业友好)</li>
+<li><strong>论文 Paper</strong>: <a href="https://arxiv.org/abs/2303.07399">arXiv:2303.07399</a></li>
+</ul>
+<h4 id="performance-metrics">性能指标 (Performance Metrics)<a class="headerlink" href="#performance-metrics" title="Permanent link">&para;</a></h4>
+<p><strong>RTMPose-m (中等变体)</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>精度 Accuracy (COCO AP): 75.8%
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>速度 Speed (CPU - Intel i7-11700): 90+ FPS
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>速度 Speed (GPU - GTX 1660 Ti): 430+ FPS
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>速度 Speed (Mobile - Snapdragon 865): 70+ FPS
+</span></code></pre></div>
+<p><strong>云推理成本对比 Cloud Inference Cost Comparison</strong> (每月100万次请求):</p>
+<table>
+<thead>
+<tr>
+<th>模型 Model</th>
+<th>计算时间 Compute Time</th>
+<th>AWS Lambda 成本</th>
+<th>相比 MediaPipe 节省</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RTMPose-m (CPU)</td>
+<td>~11ms</td>
+<td>$15</td>
+<td><strong>-67%</strong> (基准)</td>
+</tr>
+<tr>
+<td>MediaPipe (CPU)</td>
+<td>~25ms</td>
+<td>$45</td>
+<td>+200%</td>
+</tr>
+<tr>
+<td>RTMPose-t (CPU)</td>
+<td>~7ms</td>
+<td>$10</td>
+<td><strong>-78%</strong></td>
+</tr>
+<tr>
+<td>RTMPose-m (GPU)</td>
+<td>~2ms</td>
+<td>$8 (G4dn)</td>
+<td><strong>-82%</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>移动端电池影响 Mobile Battery Impact</strong> (持续使用1小时):</p>
+<table>
+<thead>
+<tr>
+<th>模型 Model</th>
+<th>电池消耗 Battery Drain</th>
+<th>手机温度 Phone Temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RTMPose-t</td>
+<td>8%</td>
+<td>+2°C</td>
+</tr>
+<tr>
+<td>RTMPose-m</td>
+<td>12%</td>
+<td>+3°C</td>
+</tr>
+<tr>
+<td>MediaPipe Lite</td>
+<td>15%</td>
+<td>+3.5°C</td>
+</tr>
+<tr>
+<td>MediaPipe Full</td>
+<td>18%</td>
+<td>+4°C</td>
+</tr>
+</tbody>
+</table>
+<h4 id="model-variants">模型变体 (Model Variants)<a class="headerlink" href="#model-variants" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>模型 Model</th>
+<th>AP (COCO)</th>
+<th>参数 Params</th>
+<th>CPU FPS</th>
+<th>Mobile FPS</th>
+<th>使用场景 Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RTMPose-t</td>
+<td>67.1%</td>
+<td>3.3M</td>
+<td>150+</td>
+<td>120+</td>
+<td>超快移动端</td>
+</tr>
+<tr>
+<td>RTMPose-s</td>
+<td>71.7%</td>
+<td>5.5M</td>
+<td>120+</td>
+<td>90+</td>
+<td>平衡移动端</td>
+</tr>
+<tr>
+<td><strong>RTMPose-m</strong></td>
+<td><strong>75.8%</strong></td>
+<td><strong>13.6M</strong></td>
+<td><strong>90+</strong></td>
+<td><strong>70+</strong></td>
+<td><strong>推荐 Recommended</strong></td>
+</tr>
+<tr>
+<td>RTMPose-l</td>
+<td>77.3%</td>
+<td>27.8M</td>
+<td>60+</td>
+<td>40+</td>
+<td>高精度</td>
+</tr>
+<tr>
+<td>RTMPose-x</td>
+<td>77.8%</td>
+<td>49.4M</td>
+<td>40+</td>
+<td>20+</td>
+<td>最高精度</td>
+</tr>
+</tbody>
+</table>
+<p><strong>推荐</strong>: 从 <strong>RTMPose-m</strong> 开始 - 最佳精度/速度权衡。</p>
+<h4 id="deployment-options">部署选项 (Deployment Options)<a class="headerlink" href="#deployment-options" title="Permanent link">&para;</a></h4>
+<h5 id="1-rtmlib-">选项1: rtmlib (轻量级 - 推荐)<a class="headerlink" href="#1-rtmlib-" title="Permanent link">&para;</a></h5>
+<p><strong>为什么选择 rtmlib</strong>:</p>
+<ul>
+<li><strong>零重度依赖</strong>: 不需要 mmcv, mmpose, mmdet</li>
+<li><strong>简单安装</strong>: 仅需 numpy, opencv, onnxruntime</li>
+<li><strong>小占用空间</strong>: 最小磁盘空间</li>
+<li><strong>快速集成</strong>: 数小时内生产就绪</li>
+</ul>
+<p><strong>安装 Installation</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>rtmlib
+</span></code></pre></div>
+<p><strong>基本用法 Basic Usage</strong>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rtmlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">PoseTracker</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">tracker</span> <span class="o">=</span> <span class="n">PoseTracker</span><span class="p">(</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;rtmpose-m&#39;</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;onnxruntime&#39;</span><span class="p">,</span>  <span class="c1"># 或 &#39;openvino&#39;, &#39;tensorrt&#39;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span>  <span class="c1"># 或 &#39;cuda&#39;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">)</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">keypoints</span><span class="p">,</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">tracker</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>GitHub</strong>: <a href="https://github.com/Tau-J/rtmlib">https://github.com/Tau-J/rtmlib</a></p>
+<h4 id="keypoint-format">关键点格式 (Keypoint Format)<a class="headerlink" href="#keypoint-format" title="Permanent link">&para;</a></h4>
+<p><strong>17个 COCO 关键点</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>0: 鼻子 Nose
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>1-2: 眼睛 Eyes (左, 右)
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>3-4: 耳朵 Ears (左, 右)
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>5-6: 肩膀 Shoulders (左, 右)
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>7-8: 肘部 Elbows (左, 右)
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>9-10: 手腕 Wrists (左, 右)
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>11-12: 臀部 Hips (左, 右)
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>13-14: 膝盖 Knees (左, 右)
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>15-16: 脚踝 Ankles (左, 右)
+</span></code></pre></div>
+<h4 id="rtmpose-when-to-choose-rtmpose">何时选择 RTMPose (When to Choose RTMPose)<a class="headerlink" href="#rtmpose-when-to-choose-rtmpose" title="Permanent link">&para;</a></h4>
+<p>✅ <strong>选择 RTMPose 如果</strong>:</p>
+<ul>
+<li>性能至关重要 (FPS, 延迟)</li>
+<li>精度很重要 (竞争基准分数)</li>
+<li>服务器/边缘设备生产部署</li>
+<li>有 GPU 可用</li>
+<li>需要最小化计算成本</li>
+</ul>
+<p>❌ <strong>选择其他方案如果</strong>:</p>
+<ul>
+<li>需要 3D 姿态估计 (使用 MediaPipe)</li>
+<li>部署到 Web 浏览器 (使用 MoveNet/PoseNet)</li>
+<li>需要广泛的手部/面部标记 (使用 MediaPipe)</li>
+<li>更喜欢成熟的生态系统文档</li>
+</ul>
+<hr />
+<h3 id="22-mediapipe-pose-ecosystem-leader">2.2 MediaPipe Pose - 生态系统领导者 (Ecosystem Leader)<a class="headerlink" href="#22-mediapipe-pose-ecosystem-leader" title="Permanent link">&para;</a></h3>
+<p><strong>最适合</strong>: 快速原型开发，移动优先，3D 姿态，综合生态系统。</p>
+<h4 id="overview_1">概述 (Overview)<a class="headerlink" href="#overview_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>开发者 Developer</strong>: Google AI Edge</li>
+<li><strong>最新版本 Latest Version</strong>: v0.10.19 (2025年积极维护)</li>
+<li><strong>许可 License</strong>: Apache 2.0</li>
+<li><strong>平台支持 Platform Support</strong>: Android, iOS, Web, Python, Desktop</li>
+<li><strong>文档 Documentation</strong>: <a href="https://ai.google.dev/edge/mediapipe/solutions/vision/pose_landmarker">Google AI Edge - MediaPipe</a></li>
+</ul>
+<h4 id="core-technology">核心技术 (Core Technology)<a class="headerlink" href="#core-technology" title="Permanent link">&para;</a></h4>
+<p><strong>BlazePose 架构</strong>:</p>
+<ul>
+<li><strong>33个 3D 标记点</strong> (相比 RTMPose 的 17 个 2D)</li>
+<li>真实世界 3D 坐标（米为单位）</li>
+<li><strong>可见性和存在性分数</strong> 每个关键点</li>
+<li>针对单人跟踪优化</li>
+</ul>
+<h4 id="performance">性能 (Performance)<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h4>
+<p><strong>三个模型变体 Three model variants</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>模型 Model    精度 Accuracy  大小 Size  移动端 FPS  使用场景 Use Case
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>──────────────────────────────────────────────────────────────
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Lite       中等 Medium    4MB     40-50      预算设备
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Full       高 High        6MB     30-40      标准
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Heavy      最高 Highest   30MB    15-20      最高精度
+</span></code></pre></div>
+<h4 id="unique-features">独特功能 (Unique Features)<a class="headerlink" href="#unique-features" title="Permanent link">&para;</a></h4>
+<p><strong>3D 姿态估计</strong>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># MediaPipe 提供 3D 坐标</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">for</span> <span class="n">landmark</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">pose_world_landmarks</span><span class="o">.</span><span class="n">landmark</span><span class="p">:</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">landmark</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">landmark</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">landmark</span><span class="o">.</span><span class="n">z</span>  <span class="c1"># 米 Meters</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">visibility</span> <span class="o">=</span> <span class="n">landmark</span><span class="o">.</span><span class="n">visibility</span>  <span class="c1"># 0.0 to 1.0</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">presence</span> <span class="o">=</span> <span class="n">landmark</span><span class="o">.</span><span class="n">presence</span>  <span class="c1"># 0.0 to 1.0</span>
+</span></code></pre></div>
+<p><strong>置信度指标 Confidence Metrics</strong>:</p>
+<ul>
+<li><strong>Visibility 可见性</strong>: 关键点可见还是被遮挡？</li>
+<li><strong>Presence 存在性</strong>: 关键点在帧内吗？</li>
+<li><strong>Detection confidence 检测置信度</strong>: 整体姿态置信度</li>
+</ul>
+<h4 id="strengths">优势 (Strengths)<a class="headerlink" href="#strengths" title="Permanent link">&para;</a></h4>
+<p>✅ <strong>成熟生态系统</strong>: 广泛的文档、教程、社区
+✅ <strong>3D 输出</strong>: 用于生物力学的真实世界坐标
+✅ <strong>多平台</strong>: iOS/Android/Web 的单一代码库
+✅ <strong>可见性分数</strong>: 知道关键点何时被遮挡
+✅ <strong>Google 支持</strong>: 保证长期支持</p>
+<h4 id="limitations">局限性 (Limitations)<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h4>
+<p>❌ <strong>仅单人</strong>: 无法跟踪多人
+❌ <strong>比 RTMPose 慢</strong>: 30-40 FPS vs. 90+ FPS
+❌ <strong>精度较低</strong>: ~72% AP vs. 75.8% AP</p>
+<h4 id="mediapipe-when-to-choose-mediapipe">何时选择 MediaPipe (When to Choose MediaPipe)<a class="headerlink" href="#mediapipe-when-to-choose-mediapipe" title="Permanent link">&para;</a></h4>
+<p>✅ <strong>选择 MediaPipe 如果</strong>:</p>
+<ul>
+<li>需要 3D 姿态估计</li>
+<li>部署到移动端 (iOS/Android)</li>
+<li>需要综合生态系统 (文档、示例)</li>
+<li>需要可见性/存在性置信度分数</li>
+<li>快速原型开发和 MVP 开发</li>
+<li>跨平台一致性很重要</li>
+</ul>
+<hr />
+<h3 id="23-movenet-tensorflow">2.3 MoveNet - TensorFlow 轻量级<a class="headerlink" href="#23-movenet-tensorflow" title="Permanent link">&para;</a></h3>
+<p><strong>最适合</strong>: Web 部署，电池受限移动端，TensorFlow 生态系统。</p>
+<h4 id="overview_2">概述 (Overview)<a class="headerlink" href="#overview_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>开发者 Developer</strong>: Google TensorFlow</li>
+<li><strong>变体 Variants</strong>: Lightning (速度) 和 Thunder (精度)</li>
+<li><strong>许可 License</strong>: Apache 2.0</li>
+<li><strong>平台 Platform</strong>: TensorFlow Lite (移动端、Web、边缘)</li>
+</ul>
+<h4 id="performance_1">性能 (Performance)<a class="headerlink" href="#performance_1" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>模型 Model    AP (COCO)  移动端 FPS  延迟 Latency
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>─────────────────────────────────────────────────────
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Lightning       63.0%        50+           &lt;30ms
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Thunder         72.0%        25+           &lt;50ms
+</span></code></pre></div>
+<h4 id="movenet-when-to-choose-movenet">何时选择 MoveNet (When to Choose MoveNet)<a class="headerlink" href="#movenet-when-to-choose-movenet" title="Permanent link">&para;</a></h4>
+<p>✅ <strong>Web 应用</strong>: 最佳 TF.js 支持
+✅ <strong>电池敏感</strong>: 超高效 Lightning 变体
+✅ <strong>TensorFlow 生态系统</strong>: 与现有 TF 管道集成</p>
+<hr />
+<h2 id="3-commercial-implementations-analysis">3. 商业实现分析 (Commercial Implementations Analysis)<a class="headerlink" href="#3-commercial-implementations-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="31-peloton-iq-">3.1 Peloton IQ - 计算机视觉系统<a class="headerlink" href="#31-peloton-iq-" title="Permanent link">&para;</a></h3>
+<p><strong>技术 Technology</strong>: 带 AI 姿态估计的运动跟踪摄像头</p>
+<h4 id="key-features">关键功能 (Key Features)<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>重复次数跟踪 Rep Tracking</strong>: 运动期间自动计数</li>
+<li><strong>姿态纠正 Form Correction</strong>: 视觉 + 音频提示</li>
+<li><strong>运动指导 Movement Guidance</strong>: 屏幕覆盖层显示正确位置</li>
+<li><strong>建议重量 Suggested Weights</strong>: AI 驱动的重量推荐</li>
+</ol>
+<h4 id="design-principles">设计原则 (Design Principles)<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h4>
+<p><strong>置信度阈值 Confidence Thresholding</strong>:</p>
+<blockquote>
+<p>"Peloton IQ 仅在对评估有信心时才提供反馈。"</p>
+</blockquote>
+<ul>
+<li>低置信度 = 无反馈 (避免混淆用户)</li>
+<li>中等置信度 = 温和建议</li>
+<li>高置信度 = 明确纠正</li>
+</ul>
+<p><strong>我们可以学到什么 What We Can Learn</strong>:
+✅ <strong>基于置信度的反馈</strong> - 不显示低置信度纠正
+✅ <strong>自适应难度</strong> - 根据技能水平调整反馈严格性
+✅ <strong>重量/负载推荐</strong> - 基于 ML 的进展</p>
+<hr />
+<h3 id="32-tonal-">3.2 Tonal - 多传感器力量训练<a class="headerlink" href="#32-tonal-" title="Permanent link">&para;</a></h3>
+<p><strong>技术 Technology</strong>: 多传感器融合 (ToF + 力传感器 + 视觉)</p>
+<blockquote>
+<p>"将当前基于计算机视觉的产品和 Tonal 想象成体育播音员和体育科学实验室之间的区别。"</p>
+</blockquote>
+<h4 id="hardware-stack">硬件堆栈 (Hardware Stack)<a class="headerlink" href="#hardware-stack" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>电磁阻力系统</strong> (数字重量高达 200 磅)</li>
+<li><strong>绳索长度跟踪</strong> (60 Hz 采样率)</li>
+<li><strong>手柄中的力传感器</strong></li>
+<li><strong>计算机视觉</strong> 摄像头 (Smart View)</li>
+</ul>
+<h4 id="form-feedback-system">姿态反馈系统 (Form Feedback System)<a class="headerlink" href="#form-feedback-system" title="Permanent link">&para;</a></h4>
+<p><strong>覆盖范围</strong>: <strong>111 种力量训练练习</strong>，<strong>每个练习最多 6 种反馈类型</strong>:</p>
+<ol>
+<li><strong>速度 Speed</strong>: 节奏控制，离心/向心时间</li>
+<li><strong>运动范围 Range of Motion</strong>: 完整/部分重复检测</li>
+<li><strong>位置 Position</strong>: 身体对齐，关节角度</li>
+<li><strong>平衡 Balance</strong>: 左/右不对称</li>
+<li><strong>对称性 Symmetry</strong>: 双边运动平等</li>
+<li><strong>平滑度 Smoothness</strong>: 运动流畅性，抖动检测</li>
+</ol>
+<p><strong>我们可以学到什么 What We Can Learn</strong>:
+✅ <strong>多传感器优越性</strong> - 验证我们的 IMU + Vision + EMG 方法
+✅ <strong>全面的反馈类型</strong> - 我们应该跟踪速度、ROM、位置、对称性
+✅ <strong>力/负载测量</strong> - 考虑未来添加力传感器</p>
+<hr />
+<h3 id="33-tempo-studio-3d">3.3 Tempo Studio - 3D 深度感知<a class="headerlink" href="#33-tempo-studio-3d" title="Permanent link">&para;</a></h3>
+<p><strong>技术 Technology</strong>: 飞行时间 (ToF) 深度传感器 + Azure AI</p>
+<h4 id="hardware">硬件 (Hardware)<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>3D 飞行时间 (ToF) 深度传感器</strong></li>
+<li><strong>1 百万像素分辨率</strong>: 高精度深度捕获</li>
+<li><strong>Microsoft ToF 技术</strong> + Azure</li>
+</ul>
+<h4 id="capabilities">能力 (Capabilities)<a class="headerlink" href="#capabilities" title="Permanent link">&para;</a></h4>
+<ul>
+<li>实时 3D 骨架叠加</li>
+<li>关节角度测量</li>
+<li>运动速度跟踪</li>
+<li>自动重量选择</li>
+</ul>
+<p><strong>我们可以学到什么 What We Can Learn</strong>:
+✅ <strong>3D 姿态重要性</strong> - 我们应该使用 MediaPipe 的 3D 输出
+✅ <strong>关节角度精度</strong> - 对姿态评估至关重要
+⚠️ <strong>深度感知</strong> - 考虑未来添加 (手机 LiDAR)</p>
+<hr />
+<h2 id="4-open-source-fitness-tracking-projects">4. 开源健身跟踪项目 (Open-Source Fitness Tracking Projects)<a class="headerlink" href="#4-open-source-fitness-tracking-projects" title="Permanent link">&para;</a></h2>
+<h3 id="_1">社区健身跟踪实现<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>这些开源项目展示了用于健身跟踪的姿态估计的实际实现。</p>
+<h4 id="1-good-gym-ai">1. Good-GYM - AI 健身助手<a class="headerlink" href="#1-good-gym-ai" title="Permanent link">&para;</a></h4>
+<p><strong>仓库 Repository</strong>: <a href="https://github.com/yo-WASSUP/Good-GYM">https://github.com/yo-WASSUP/Good-GYM</a></p>
+<p><strong>技术栈 Technology Stack</strong>:</p>
+<ul>
+<li>RTMPose 用于姿态估计</li>
+<li>自动重复计数</li>
+<li>实时反馈</li>
+</ul>
+<p><strong>有用的内容 What's Useful</strong>:</p>
+<ul>
+<li>RTMPose 集成示例</li>
+<li>重复计数逻辑实现</li>
+<li>UI/UX 设计模式</li>
+</ul>
+<hr />
+<h4 id="2-fitness-trainer-">2. Fitness Trainer - 姿态估计<a class="headerlink" href="#2-fitness-trainer-" title="Permanent link">&para;</a></h4>
+<p><strong>仓库 Repository</strong>: <a href="https://github.com/yakupzengin/fitness-trainer-pose-estimation">https://github.com/yakupzengin/fitness-trainer-pose-estimation</a></p>
+<p><strong>支持的练习 Supported Exercises</strong>:</p>
+<ul>
+<li>深蹲 Squats</li>
+<li>俯卧撑 Push-ups</li>
+<li>二头肌弯举 Bicep curls</li>
+</ul>
+<p><strong>有用的内容 What's Useful</strong>:</p>
+<ul>
+<li>特定练习的姿态验证逻辑</li>
+<li>反馈时机实现</li>
+<li>多练习处理</li>
+</ul>
+<hr />
+<h3 id="_2">对比矩阵: 开源项目<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>项目 Project</th>
+<th>姿态模型 Pose Model</th>
+<th>重复计数 Rep Counting</th>
+<th>姿态反馈 Form Feedback</th>
+<th>多练习 Multi-Exercise</th>
+<th>Stars</th>
+<th>活跃 Active</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Good-GYM</td>
+<td>RTMPose</td>
+<td>✅</td>
+<td>✅</td>
+<td>有限 Limited</td>
+<td>~100</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>fitness-trainer</td>
+<td>MediaPipe</td>
+<td>✅</td>
+<td>✅</td>
+<td>3种练习</td>
+<td>~50</td>
+<td>⚠️</td>
+</tr>
+<tr>
+<td>gym-motion-pose-ai</td>
+<td>MediaPipe</td>
+<td>✅</td>
+<td>✅</td>
+<td>多种 Multiple</td>
+<td>~30</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>我们的优势 Our Advantages</strong>:</p>
+<ul>
+<li>✅ 多传感器 (IMU + Vision + EMG)</li>
+<li>✅ 3D 姿态估计</li>
+<li>✅ 触觉实时反馈</li>
+<li>✅ 研究级精度</li>
+</ul>
+<hr />
+<h2 id="5-datasets-for-training-evaluation">5. 训练与评估数据集 (Datasets for Training &amp; Evaluation)<a class="headerlink" href="#5-datasets-for-training-evaluation" title="Permanent link">&para;</a></h2>
+<h3 id="51-coco-keypoints">5.1 COCO Keypoints 数据集<a class="headerlink" href="#51-coco-keypoints" title="Permanent link">&para;</a></h3>
+<p><strong>姿态估计模型的标准基准。</strong></p>
+<h4 id="overview_3">概述 (Overview)<a class="headerlink" href="#overview_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>链接 Link</strong>: <a href="https://cocodataset.org/#keypoints-2020">https://cocodataset.org/#keypoints-2020</a></li>
+<li><strong>内容 Content</strong>: 20万+ 带姿态关键点的图像</li>
+<li><strong>许可 License</strong>: Creative Commons (研究/商业免费)</li>
+</ul>
+<h4 id="dataset-details">数据集详情 (Dataset Details)<a class="headerlink" href="#dataset-details" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>17个关键点</strong> 每人 (与 RTMPose 格式相同)</li>
+<li><strong>多人</strong> 每图像</li>
+<li><strong>多样场景</strong>: 运动、日常活动、人群</li>
+<li><strong>标注</strong>: 关键点位置 + 可见性标志</li>
+</ul>
+<hr />
+<h3 id="52-fit3d-googlecmu">5.2 Fit3D - Google/CMU 健身数据集<a class="headerlink" href="#52-fit3d-googlecmu" title="Permanent link">&para;</a></h3>
+<p><strong>自动健身反馈系统的行业黄金标准。</strong></p>
+<h4 id="publication-details">发布详情 (Publication Details)<a class="headerlink" href="#publication-details" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>论文 Paper</strong>: AIFit: Automatic 3D Human-Interpretable Feedback Models for Fitness Training</li>
+<li><strong>作者 Authors</strong>: Mihai Fieraru 等 (Google Research / CMU)</li>
+<li><strong>会议 Venue</strong>: CVPR 2021 (顶级计算机视觉会议)</li>
+<li><strong>网站 Website</strong>: <a href="https://fit3d.imar.ro/">https://fit3d.imar.ro/</a></li>
+</ul>
+<h4 id="dataset-contents">数据集内容 (Dataset Contents)<a class="headerlink" href="#dataset-contents" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>规模 Scale</strong>: 300万+ 图像，配有 3D 动作捕捉</li>
+<li><strong>练习 Exercises</strong>: 37+ 重复性健身动作</li>
+<li><strong>覆盖范围 Coverage</strong>: 所有主要肌肉群</li>
+<li><strong>参与者 Participants</strong>: 专业教练和学习者</li>
+<li><strong>质量 Quality</strong>: 专业动作捕捉系统</li>
+</ul>
+<h4 id="movement-chain-ai-how-movement-chain-ai-can-use-this">Movement Chain AI 如何使用 (How Movement Chain AI Can Use This)<a class="headerlink" href="#movement-chain-ai-how-movement-chain-ai-can-use-this" title="Permanent link">&para;</a></h4>
+<p>✅ <strong>申请 Fit3D 数据集访问</strong> - 用于:</p>
+<ul>
+<li>预训练姿态估计模型</li>
+<li>基准测试我们的反馈系统</li>
+<li>比较自然语言生成</li>
+</ul>
+<hr />
+<h3 id="53-mm-fit-">5.3 MM-Fit - 多模态健身数据集<a class="headerlink" href="#53-mm-fit-" title="Permanent link">&para;</a></h3>
+<p><strong>最接近我们项目的 - 结合可穿戴设备 + 视觉！</strong></p>
+<h4 id="dataset-contents_1">数据集内容 (Dataset Contents) (所有时间同步!)<a class="headerlink" href="#dataset-contents_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>智能手机 IMU</strong> (加速度计 + 陀螺仪)</li>
+<li><strong>智能手表 IMU</strong></li>
+<li><strong>耳塞 IMU</strong></li>
+<li><strong>多视角 RGB-D 视频</strong></li>
+<li><strong>2D 姿态估计标记</strong></li>
+<li><strong>3D 姿态重建</strong></li>
+</ul>
+<h4 id="movement-chain-ai-how-movement-chain-ai-uses-this">Movement Chain AI 如何使用这个 (How Movement Chain AI Uses This)<a class="headerlink" href="#movement-chain-ai-how-movement-chain-ai-uses-this" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>验证传感器融合 Validate Sensor Fusion</strong>: 测试 IMU + Vision 集成</li>
+<li><strong>基准性能 Benchmark Performance</strong>: 比较我们的姿态估计管道</li>
+<li><strong>时间同步 Time Synchronization</strong>: 参考他们的同步方法</li>
+<li><strong>数据集增强 Dataset Augmentation</strong>: 添加我们的 EMG 数据创建 MM-Fit-Plus</li>
+</ol>
+<p><strong>访问 Access</strong>:</p>
+<ul>
+<li>公开可用</li>
+<li>GitHub: <a href="https://github.com/KDMStromback/mm-fit">https://github.com/KDMStromback/mm-fit</a></li>
+<li>网站: <a href="https://mmfit.github.io/">https://mmfit.github.io/</a></li>
+</ul>
+<hr />
+<h2 id="6-deployment-strategies">6. 部署策略 (Deployment Strategies)<a class="headerlink" href="#6-deployment-strategies" title="Permanent link">&para;</a></h2>
+<h3 id="61-mobile-deployment-iosandroid">6.1 移动端部署 (Mobile Deployment) (iOS/Android)<a class="headerlink" href="#61-mobile-deployment-iosandroid" title="Permanent link">&para;</a></h3>
+<h4 id="onnx-runtime">推荐方法: ONNX Runtime<a class="headerlink" href="#onnx-runtime" title="Permanent link">&para;</a></h4>
+<p><strong>为什么在移动端使用 ONNX Runtime</strong>:</p>
+<ul>
+<li>RTMPose 原生支持 (关键要求)</li>
+<li>跨平台 (iOS + Android + Web)</li>
+<li>良好性能 (iOS 68 FPS, Android 64 FPS)</li>
+<li>可接受的二进制大小 (总共 33 MB)</li>
+</ul>
+<p><strong>性能基准 Performance Benchmarks</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>平台 Platform</th>
+<th>RTMPose-m FPS</th>
+<th>延迟 Latency</th>
+<th>内存 Memory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>iPhone 14 Pro</strong></td>
+<td>68 FPS</td>
+<td>14.7 ms</td>
+<td>420 MB</td>
+</tr>
+<tr>
+<td><strong>Google Pixel 7</strong></td>
+<td>64 FPS</td>
+<td>15.6 ms</td>
+<td>440 MB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Flutter 集成</strong>:</p>
+<div class="language-dart highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:onnxruntime/onnxruntime.dart&#39;</span><span class="p">;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kd">class</span><span class="w"> </span><span class="nc">PoseEstimator</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">OrtSession</span><span class="w"> </span><span class="n">_session</span><span class="p">;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">initialize</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="n">_session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OrtSession</span><span class="p">.</span><span class="n">fromAsset</span><span class="p">(</span><span class="s1">&#39;assets/rtmpose_m_int8.onnx&#39;</span><span class="p">);</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Keypoint</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">Uint8List</span><span class="w"> </span><span class="n">imageBytes</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">preprocessImage</span><span class="p">(</span><span class="n">imageBytes</span><span class="p">);</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">outputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">_session</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="n">input</span><span class="p">]);</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">postprocessKeypoints</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="m">0</span><span class="p">]);</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h2 id="related-documentation">相关文档 (Related Documentation)<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>架构决策 Architecture Decisions</strong>: <a href="../../../design/decisions/0006-onnx-runtime-deployment/">ADR-0006: ONNX Runtime Deployment</a></li>
+</ul>
+<hr />
+<h2 id="summary-recommendations">总结与建议 (Summary &amp; Recommendations)<a class="headerlink" href="#summary-recommendations" title="Permanent link">&para;</a></h2>
+<h3 id="movement-chain-ai">对于 Movement Chain AI 项目<a class="headerlink" href="#movement-chain-ai" title="Permanent link">&para;</a></h3>
+<p><strong>当前 (MVP) Current</strong>: ✅ <strong>MediaPipe Pose</strong></p>
+<ul>
+<li>理由: 最快开发，3D 支持，成熟生态系统</li>
+</ul>
+<p><strong>3-6 个月 3-6 Months</strong>: ⏫ <strong>迁移到 RTMPose-m</strong></p>
+<ul>
+<li>理由: 快 2-3 倍，更高精度，云成本降低 67%</li>
+</ul>
+<p><strong>研究 Research</strong>: 🔬 <strong>MM-Fit + Fit3D 数据集</strong></p>
+<ul>
+<li>理由: 验证多模态方法，与最先进技术进行基准测试</li>
+</ul>
+<h3 id="quick-decision-matrix">快速决策矩阵 (Quick Decision Matrix)<a class="headerlink" href="#quick-decision-matrix" title="Permanent link">&para;</a></h3>
+<p><strong>选择 RTMPose 如果 Choose RTMPose if</strong>:</p>
+<ul>
+<li>✅ 生产部署 (服务器/云)</li>
+<li>✅ 性能很重要 (FPS, 延迟, 成本)</li>
+<li>✅ 有 GPU 可用</li>
+<li>✅ 2D 姿态足够</li>
+</ul>
+<p><strong>选择 MediaPipe 如果 Choose MediaPipe if</strong>:</p>
+<ul>
+<li>✅ 快速原型开发 (MVP)</li>
+<li>✅ 需要 3D 坐标</li>
+<li>✅ 移动优先 (iOS/Android)</li>
+<li>✅ 更喜欢成熟的生态系统</li>
+</ul>
+<hr />
+<p><strong>最后更新 Last Updated</strong>: 2025年12月1日</p>
+<p><strong>维护者 Maintained By</strong>: Movement Chain AI ML Team</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/movement-chain-ai" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/movement-chain-ai" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.tracking", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

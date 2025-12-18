@@ -1,0 +1,23 @@
+/* 让内容区域更宽 */
+.md-grid {
+  max-width: 1600px;
+}
+
+/* 调整侧边栏宽度比例 */
+@media screen and (min-width: 76.25em) {
+  /* 左侧导航栏更宽 */
+  .md-sidebar--primary {
+    width: 15rem;  /* 默认 12.1rem，加宽 */
+  }
+
+  /* 右侧目录栏更窄 */
+  .md-sidebar--secondary {
+    width: 10rem;  /* 默认 12.1rem，缩窄 */
+  }
+}
+
+/* 表格添加竖线分隔 */
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  border: 1px solid var(--md-typeset-table-color);
+}

@@ -12,29 +12,31 @@
         <meta name="author" content="Movement Chain AI Team">
       
       
-        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/">
+        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/design/decisions/0004-simplified-4-module-architecture/">
       
       
+        <link rel="prev" href="../0003-flutter-mobile/">
       
-        <link rel="next" href="docs-guide/">
+      
+        <link rel="next" href="../0005-esp32-s3-microcontroller/">
       
       
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>Movement Chain AI Documentation</title>
+        <title>ADR 0004: 简化的 4 模块架构 - Movement Chain AI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#movement-chain-ai" class="md-skip">
+        <a href="#adr-0004-4" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +102,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -120,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              首页
+              ADR 0004: 简化的 4 模块架构
             
           </span>
         </div>
@@ -238,7 +240,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -265,37 +267,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    首页
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -311,87 +286,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        用户在痛什么？
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="用户在痛什么？">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#85" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第一痛点：练习与实战的鸿沟 (85% 提及率)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        三个唯一
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        文档导航
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        快速链接
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -403,7 +297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="docs-guide/" class="md-nav__link">
+      <a href="../../../docs-guide/" class="md-nav__link">
         
   
   
@@ -430,7 +324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="risk-management/" class="md-nav__link">
+      <a href="../../../risk-management/" class="md-nav__link">
         
   
   
@@ -483,7 +377,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="product/" class="md-nav__link ">
+            <a href="../../../product/" class="md-nav__link ">
               
   
   
@@ -527,7 +421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/user-personas/" class="md-nav__link">
+      <a href="../../../product/user-personas/" class="md-nav__link">
         
   
   
@@ -555,7 +449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/unique-value/" class="md-nav__link">
+      <a href="../../../product/unique-value/" class="md-nav__link">
         
   
   
@@ -607,7 +501,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="product/market-landscape/" class="md-nav__link ">
+            <a href="../../../product/market-landscape/" class="md-nav__link ">
               
   
   
@@ -651,7 +545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/pain-points/" class="md-nav__link">
+      <a href="../../../product/market-landscape/pain-points/" class="md-nav__link">
         
   
   
@@ -679,7 +573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/market-size/" class="md-nav__link">
+      <a href="../../../product/market-landscape/market-size/" class="md-nav__link">
         
   
   
@@ -764,7 +658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/imu-based/" class="md-nav__link">
+      <a href="../../../product/market-landscape/competitors/imu-based/" class="md-nav__link">
         
   
   
@@ -792,7 +686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/vision-based/" class="md-nav__link">
+      <a href="../../../product/market-landscape/competitors/vision-based/" class="md-nav__link">
         
   
   
@@ -820,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/multi-sensor/" class="md-nav__link">
+      <a href="../../../product/market-landscape/competitors/multi-sensor/" class="md-nav__link">
         
   
   
@@ -848,7 +742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/market-landscape/competitors/smart-clothing/" class="md-nav__link">
+      <a href="../../../product/market-landscape/competitors/smart-clothing/" class="md-nav__link">
         
   
   
@@ -892,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="product/product-strategy/" class="md-nav__link">
+      <a href="../../../product/product-strategy/" class="md-nav__link">
         
   
   
@@ -924,6 +818,8 @@
       
   
   
+    
+  
   
   
     
@@ -959,15 +855,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="design/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
@@ -991,7 +887,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1011,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/system-design/" class="md-nav__link">
+      <a href="../../system-design/" class="md-nav__link">
         
   
   
@@ -1039,7 +935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/swing-phases/" class="md-nav__link">
+      <a href="../../swing-phases/" class="md-nav__link">
         
   
   
@@ -1067,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/real-time-feedback-spec/" class="md-nav__link">
+      <a href="../../real-time-feedback-spec/" class="md-nav__link">
         
   
   
@@ -1095,7 +991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/swing-comparison/" class="md-nav__link">
+      <a href="../../swing-comparison/" class="md-nav__link">
         
   
   
@@ -1123,7 +1019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/personalization-spec/" class="md-nav__link">
+      <a href="../../personalization-spec/" class="md-nav__link">
         
   
   
@@ -1151,7 +1047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/getting-started/" class="md-nav__link">
+      <a href="../../getting-started/" class="md-nav__link">
         
   
   
@@ -1179,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/ml-basics/" class="md-nav__link">
+      <a href="../../ml-basics/" class="md-nav__link">
         
   
   
@@ -1207,7 +1103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/sdk-selection/" class="md-nav__link">
+      <a href="../../sdk-selection/" class="md-nav__link">
         
   
   
@@ -1235,7 +1131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions-summary/" class="md-nav__link">
+      <a href="../../decisions-summary/" class="md-nav__link">
         
   
   
@@ -1287,7 +1183,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="design/research/" class="md-nav__link ">
+            <a href="../../research/" class="md-nav__link ">
               
   
   
@@ -1331,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/research/biomechanics-glossary/" class="md-nav__link">
+      <a href="../../research/biomechanics-glossary/" class="md-nav__link">
         
   
   
@@ -1359,7 +1255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/research/biomechanics-benchmarks/" class="md-nav__link">
+      <a href="../../research/biomechanics-benchmarks/" class="md-nav__link">
         
   
   
@@ -1387,7 +1283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/research/sensor-metric-mapping/" class="md-nav__link">
+      <a href="../../research/sensor-metric-mapping/" class="md-nav__link">
         
   
   
@@ -1420,6 +1316,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1445,15 +1343,15 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_12" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_12" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="design/decisions/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -1477,7 +1375,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_12_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_12_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_12">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1497,7 +1395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0001-multi-repo-structure/" class="md-nav__link">
+      <a href="../0001-multi-repo-structure/" class="md-nav__link">
         
   
   
@@ -1525,7 +1423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+      <a href="../0002-lsm6dsv16x-imu/" class="md-nav__link">
         
   
   
@@ -1553,7 +1451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0003-flutter-mobile/" class="md-nav__link">
+      <a href="../0003-flutter-mobile/" class="md-nav__link">
         
   
   
@@ -1578,10 +1476,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="design/decisions/0004-simplified-4-module-architecture/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0004: 简化的 4 模块架构
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1597,6 +1522,270 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        背景
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        决策
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        理由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="理由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基于研究的简化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架构效率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开发时间线影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结果
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="结果">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        积极影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        消极影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        考虑的替代方案
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="考虑的替代方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 A：完整的 7 模块架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 B：3 模块极简架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 C：5 模块，分离实时和事后纠正
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d3-4-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 D：分阶段开发（3 模块 → 4 模块 → 7 模块）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考文献
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参考文献">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        研究文献
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        市场研究
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        留存研究
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内部文档
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        技术限制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1609,7 +1798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+      <a href="../0005-esp32-s3-microcontroller/" class="md-nav__link">
         
   
   
@@ -1637,7 +1826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design/decisions/0006-onnx-runtime-deployment/" class="md-nav__link">
+      <a href="../0006-onnx-runtime-deployment/" class="md-nav__link">
         
   
   
@@ -1712,7 +1901,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="components/" class="md-nav__link ">
+            <a href="../../../components/" class="md-nav__link ">
               
   
   
@@ -1809,7 +1998,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/imu/hardware/" class="md-nav__link">
+      <a href="../../../components/imu/hardware/" class="md-nav__link">
         
   
   
@@ -1837,7 +2026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/imu/suppliers/" class="md-nav__link">
+      <a href="../../../components/imu/suppliers/" class="md-nav__link">
         
   
   
@@ -1926,7 +2115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/emg/hardware/" class="md-nav__link">
+      <a href="../../../components/emg/hardware/" class="md-nav__link">
         
   
   
@@ -1954,7 +2143,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/emg/suppliers/" class="md-nav__link">
+      <a href="../../../components/emg/suppliers/" class="md-nav__link">
         
   
   
@@ -2043,7 +2232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/vision/hardware/" class="md-nav__link">
+      <a href="../../../components/vision/hardware/" class="md-nav__link">
         
   
   
@@ -2071,7 +2260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/vision/software/" class="md-nav__link">
+      <a href="../../../components/vision/software/" class="md-nav__link">
         
   
   
@@ -2160,7 +2349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/mcu/hardware/" class="md-nav__link">
+      <a href="../../../components/mcu/hardware/" class="md-nav__link">
         
   
   
@@ -2188,7 +2377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/mcu/suppliers/" class="md-nav__link">
+      <a href="../../../components/mcu/suppliers/" class="md-nav__link">
         
   
   
@@ -2277,7 +2466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/flexible-sensors/hardware/" class="md-nav__link">
+      <a href="../../../components/flexible-sensors/hardware/" class="md-nav__link">
         
   
   
@@ -2305,7 +2494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/flexible-sensors/suppliers/" class="md-nav__link">
+      <a href="../../../components/flexible-sensors/suppliers/" class="md-nav__link">
         
   
   
@@ -2394,7 +2583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/pressure-sensors/hardware/" class="md-nav__link">
+      <a href="../../../components/pressure-sensors/hardware/" class="md-nav__link">
         
   
   
@@ -2422,7 +2611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/pressure-sensors/suppliers/" class="md-nav__link">
+      <a href="../../../components/pressure-sensors/suppliers/" class="md-nav__link">
         
   
   
@@ -2486,7 +2675,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="components/supply-chain/" class="md-nav__link ">
+            <a href="../../../components/supply-chain/" class="md-nav__link ">
               
   
   
@@ -2530,7 +2719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/china-sensors/" class="md-nav__link">
+      <a href="../../../components/supply-chain/china-sensors/" class="md-nav__link">
         
   
   
@@ -2558,7 +2747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/china-wearables/" class="md-nav__link">
+      <a href="../../../components/supply-chain/china-wearables/" class="md-nav__link">
         
   
   
@@ -2586,7 +2775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/mvp-suppliers/" class="md-nav__link">
+      <a href="../../../components/supply-chain/mvp-suppliers/" class="md-nav__link">
         
   
   
@@ -2614,7 +2803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/smart-clothing-market/" class="md-nav__link">
+      <a href="../../../components/supply-chain/smart-clothing-market/" class="md-nav__link">
         
   
   
@@ -2642,7 +2831,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/supply-chain/e-skin-odm/" class="md-nav__link">
+      <a href="../../../components/supply-chain/e-skin-odm/" class="md-nav__link">
         
   
   
@@ -2709,7 +2898,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="platform/" class="md-nav__link ">
+            <a href="../../../platform/" class="md-nav__link ">
               
   
   
@@ -2753,7 +2942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/mvp-prototype-code/" class="md-nav__link">
+      <a href="../../../platform/mvp-prototype-code/" class="md-nav__link">
         
   
   
@@ -2832,7 +3021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/mobile/development/" class="md-nav__link">
+      <a href="../../../platform/mobile/development/" class="md-nav__link">
         
   
   
@@ -2921,7 +3110,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/ml-training/datasets/" class="md-nav__link">
+      <a href="../../../platform/ml-training/datasets/" class="md-nav__link">
         
   
   
@@ -2949,7 +3138,7 @@
   
   
     <li class="md-nav__item">
-      <a href="platform/ml-training/visual-feedback/" class="md-nav__link">
+      <a href="../../../platform/ml-training/visual-feedback/" class="md-nav__link">
         
   
   
@@ -3020,7 +3209,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="reference/" class="md-nav__link ">
+            <a href="../../../reference/" class="md-nav__link ">
               
   
   
@@ -3064,7 +3253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/golf-glossary/" class="md-nav__link">
+      <a href="../../../reference/golf-glossary/" class="md-nav__link">
         
   
   
@@ -3092,7 +3281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/business-glossary/" class="md-nav__link">
+      <a href="../../../reference/business-glossary/" class="md-nav__link">
         
   
   
@@ -3120,7 +3309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/academic-datasets/" class="md-nav__link">
+      <a href="../../../reference/academic-datasets/" class="md-nav__link">
         
   
   
@@ -3148,7 +3337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/golf-research/" class="md-nav__link">
+      <a href="../../../reference/golf-research/" class="md-nav__link">
         
   
   
@@ -3176,7 +3365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/open-source-tools/" class="md-nav__link">
+      <a href="../../../reference/open-source-tools/" class="md-nav__link">
         
   
   
@@ -3234,19 +3423,63 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        用户在痛什么？
+        背景
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="用户在痛什么？">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        决策
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        理由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="理由">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#85" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        第一痛点：练习与实战的鸿沟 (85% 提及率)
+        基于研究的简化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架构效率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开发时间线影响
       
     </span>
   </a>
@@ -3259,35 +3492,174 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        三个唯一
+        结果
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="结果">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        积极影响
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        文档导航
+        消极影响
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        快速链接
+        考虑的替代方案
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="考虑的替代方案">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 A：完整的 7 模块架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 B：3 模块极简架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 C：5 模块，分离实时和事后纠正
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d3-4-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        选项 D：分阶段开发（3 模块 → 4 模块 → 7 模块）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考文献
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参考文献">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        研究文献
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        市场研究
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        留存研究
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内部文档
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        技术限制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3311,129 +3683,201 @@
   
 
 
-<h1 id="movement-chain-ai">Movement Chain AI<a class="headerlink" href="#movement-chain-ai" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p><strong>AI + 摄像头 + EMG + IMU：唯一能告诉你"为什么"做错的高尔夫训练系统</strong></p>
-</blockquote>
-<hr />
-<h2 id="_1">用户在痛什么？<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<h3 id="85">第一痛点：练习与实战的鸿沟 (85% 提及率)<a class="headerlink" href="#85" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p>"I was hitting it so well on the range, then all hell broke loose on the course."
-（我在练习场打得很好,到了球场就全崩了。）</p>
-</blockquote>
-<p><strong>现实</strong>：没有任何产品能打通练习场和球场的闭环。</p>
-<table>
-<thead>
-<tr>
-<th>产品类型</th>
-<th>练习场</th>
-<th>球场</th>
-<th>闭环</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>HackMotion</td>
-<td>✅</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>Sportsbox AI</td>
-<td>✅</td>
-<td>❌</td>
-<td>❌</td>
-</tr>
-<tr>
-<td>Arccos</td>
-<td>❌</td>
-<td>✅</td>
-<td>❌</td>
-</tr>
-<tr>
-<td><strong>Movement Chain AI</strong></td>
-<td>✅</td>
-<td>✅</td>
-<td>✅ <strong>唯一</strong></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="_2">三个唯一<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h1 id="adr-0004-4">ADR 0004: 简化的 4 模块架构<a class="headerlink" href="#adr-0004-4" title="Permanent link">&para;</a></h1>
+<p><strong>日期:</strong> 2025-12-01
+<strong>状态:</strong> 已接受</p>
+<h2 id="_1">背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>关于运动学习系统的学术研究（Schmidt &amp; Lee, Magill &amp; Anderson）确定了有效技能习得的 7 个理论模块：评估、诊断、处方、纠正（实时）、纠正（事后）、跟踪和激励。然而，实现所有 7 个模块会显著增加 MVP（最小可行产品）的复杂性和上市时间。</p>
+<p>关键考虑因素：</p>
+<ul>
+<li><strong>目标 MVP 时间线:</strong> 学生毕业设计项目 3-4 个月</li>
+<li><strong>主要用例:</strong> 即时反馈用于动作纠正（挥杆后 &lt;5 分钟）</li>
+<li><strong>研究验证:</strong> 像 Hole19（300 万以上用户）和 Blast Golf 这样的高尔夫应用在没有长期训练计划的情况下取得成功</li>
+<li><strong>留存风险:</strong> 没有结构化计划的训练应用面临留存挑战，但对 MVP 来说可行</li>
+<li><strong>技术限制:</strong> 实时 BLE 反馈和事后分析共享核心纠正逻辑</li>
+</ul>
+<p>我们需要确定能够在学生团队可行的情况下交付价值的最小可行架构。</p>
+<h2 id="_2">决策<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>我们将实现一个 <strong>4 模块架构</strong>，将理论构造组合成实用的系统组件：</p>
 <ol>
-<li><strong>唯一多模态</strong>: Vision + IMU + EMG 融合分析</li>
-<li><strong>唯一双模式</strong>: 练习场 ↔ 球场数据打通</li>
-<li><strong>唯一EMG</strong>: 能看到肌肉发力顺序</li>
+<li><strong>评估模块（Assessment Module）</strong> - 捕获和验证动作数据</li>
+<li><strong>诊断模块（Diagnosis Module）</strong> - 识别特定的动作错误</li>
+<li><strong>纠正模块（Correction Module）</strong> - 提供可操作的反馈（实时和事后模式）</li>
+<li><strong>跟踪模块（Tracking Module）</strong> - 监控随时间的进展</li>
 </ol>
-<hr />
-<h2 id="_3">文档导航<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>章节</th>
-<th>内容</th>
-<th>读者</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="product/">产品战略</a></td>
-<td>MVP规格、路线图、市场验证、竞品分析</td>
-<td>投资人、产品经理</td>
-</tr>
-<tr>
-<td><a href="design/system-design/">系统设计</a></td>
-<td>AI架构、融合算法、ADR决策</td>
-<td>架构师、工程师</td>
-</tr>
-<tr>
-<td><a href="components/">硬件组件</a></td>
-<td>IMU/EMG/Vision规格、供应商</td>
-<td>硬件工程师</td>
-</tr>
-<tr>
-<td><a href="platform/">开发平台</a></td>
-<td>Flutter移动端、ML训练管道</td>
-<td>开发者</td>
-</tr>
-<tr>
-<td><a href="reference/">参考资料</a></td>
-<td>学术数据集、外部资源</td>
-<td>研究人员</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="_4">快速链接<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>想了解</th>
-<th>文档</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>系统设计</td>
-<td><a href="design/system-design/">MVP 核心管道</a></td>
-</tr>
-<tr>
-<td>技术决策</td>
-<td><a href="design/decisions/">架构决策记录 (ADR)</a></td>
-</tr>
-<tr>
-<td>快速开始</td>
-<td><a href="design/getting-started/">无需硬件测试</a></td>
-</tr>
-<tr>
-<td>术语定义</td>
-<td><a href="design/research/biomechanics-glossary/">生物力学术语表</a></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><strong>最后更新</strong>: 2025 年 12 月 12 日</p>
+<p><strong>关键架构洞察:</strong> 纠正模块包含实时反馈（动作期间）和事后反馈（完成后），作为**相同功能能力的不同交付模式**，而不是独立的模块。</p>
+<h2 id="_3">理由<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">基于研究的简化<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><strong>高尔夫应用在没有处方模块的情况下成功:</strong></p>
+<ul>
+<li><strong>Hole19</strong>（300 万以上用户）：提供击球跟踪、统计和球场 GPS，不包含训练计划</li>
+<li><strong>Blast Golf</strong>：专注于挥杆指标和即时纠正，最少的长期规划</li>
+<li><strong>用户行为:</strong> 高尔夫球手主要寻求即时的赛后反馈和比较统计，而不是结构化的训练计划</li>
+</ul>
+<p><strong>即时反馈焦点:</strong></p>
+<ul>
+<li>Movement Chain AI 目标 &lt;5 分钟反馈循环：执行挥杆 → 接收纠正 → 调整</li>
+<li>用户想知道"现在出了什么问题"而不是"下周我应该做什么"</li>
+<li>研究表明，对于技能习得，即时的结果知识（KR）比延迟的计划更具影响力</li>
+</ul>
+<p><strong>训练应用留存挑战（但可管理）:</strong></p>
+<ul>
+<li>没有结构化计划的应用在 90 天后面临约 40% 的更高流失率</li>
+<li>然而，MVP 可以通过更简单的参与策略（连续打卡、成就、社交功能）成功</li>
+<li>如果留存指标表明需要，可以在 v2.0 中添加处方模块</li>
+</ul>
+<h3 id="_5">架构效率<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><strong>纠正模块整合:</strong></p>
+<ul>
+<li>实时反馈："肘部过高"在后摆期间通过 BLE 警报</li>
+<li>事后反馈："您的肘部高出 15°，尝试这个训练"在挥杆后</li>
+<li><strong>相同的底层逻辑:</strong> 两种模式都根据理想范围分析肘部角度</li>
+<li><strong>不同的交付:</strong> 实时 = 用简短警报中断；事后 = 带有视频的详细解释</li>
+<li><strong>实现优势:</strong> 共享纠正引擎减少代码重复，阈值的单一真实来源</li>
+</ul>
+<p><strong>清晰的功能边界:</strong></p>
+<ul>
+<li>**评估**拥有数据质量：传感器校准、噪声过滤、数据验证</li>
+<li>**诊断**拥有错误检测：模式识别、异常评分、根本原因分析</li>
+<li>**纠正**拥有反馈交付：消息生成、时序逻辑、UI 呈现</li>
+<li>**跟踪**拥有纵向数据：进度指标、趋势分析、目标管理</li>
+</ul>
+<p>模块之间没有重叠或歧义。</p>
+<h3 id="_6">开发时间线影响<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><strong>4 模块架构（已选择）:</strong></p>
+<ul>
+<li>预估工作量：3 名学生开发者 3-4 个月</li>
+<li>模块 1（评估）：3 周 - 固件 + BLE + 数据验证</li>
+<li>模块 2（诊断）：4 周 - ML 模型训练 + 推理管道</li>
+<li>模块 3（纠正）：4 周 - 反馈引擎 + UI/UX + 实时触发器</li>
+<li>模块 4（跟踪）：3 周 - 数据库架构 + 分析仪表板</li>
+<li>集成和测试：2 周</li>
+</ul>
+<p><strong>7 模块架构（已拒绝）:</strong></p>
+<ul>
+<li>预估工作量：6 个月以上</li>
+<li>需要单独的处方模块（训练生成）、实时纠正模块、事后纠正模块和激励模块</li>
+<li>为高尔夫应用研究未验证的功能增加约 8 周开发时间</li>
+</ul>
+<h2 id="_7">结果<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="_8">积极影响<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>更快的 MVP 交付</strong> - 3-4 个月时间线可实现，而完整架构需要 6 个月以上</li>
+<li><strong>清晰的模块边界</strong> - 每个模块都有明确的职责，没有重叠</li>
+<li><strong>研究验证的方法</strong> - 高尔夫应用的成功表明处方模块对用户价值不是关键</li>
+<li><strong>降低复杂性</strong> - 4 个模块比 7 个更容易测试、集成和维护</li>
+<li><strong>聚焦用户价值</strong> - 即时反馈循环直接解决核心用户需求（"现在修复我的挥杆"）</li>
+<li><strong>实现效率</strong> - 纠正模块整合减少约 30% 的代码重复</li>
+<li><strong>更容易的学生入门</strong> - 更小的架构更容易理解和贡献</li>
+</ul>
+<h3 id="_9">消极影响<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>潜在的留存挑战</strong> - 没有计划的训练应用面临更高的流失率</li>
+<li><em>缓解策略:</em> 在跟踪模块中实现轻量级参与功能（连续打卡跟踪、成就徽章、社交排行榜）</li>
+<li><em>监控计划:</em> 跟踪 30/60/90 天留存指标；如果 90 天时 &lt;40%，优先考虑 v2.0 的处方模块</li>
+<li><strong>以后可能需要处方模块</strong> - 如果用户研究显示对结构化训练计划有需求</li>
+<li><em>迁移路径:</em> 处方模块可以作为模块 5 添加，无需架构更改；纠正模块已经提供训练建议，处方可以将其排序为计划</li>
+<li><strong>缺少长期学习优化</strong> - 没有周期化或自适应计划</li>
+<li><em>可接受的权衡:</em> MVP 专注于即时价值；高级用户可以使用跟踪数据手动创建自己的练习计划</li>
+<li><strong>与高级应用的竞争差距</strong> - 像 SwingU 这样的应用提供课程计划和挑战</li>
+<li><em>市场定位:</em> Movement Chain AI 在实时 IMU 反馈质量上差异化，而不是计划功能</li>
+</ul>
+<h2 id="_10">考虑的替代方案<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h3 id="a-7">选项 A：完整的 7 模块架构<a class="headerlink" href="#a-7" title="Permanent link">&para;</a></h3>
+<p><strong>描述:</strong> 实现来自运动学习研究的所有理论模块：</p>
+<ol>
+<li>评估</li>
+<li>诊断</li>
+<li>处方（训练计划）</li>
+<li>纠正 - 实时</li>
+<li>纠正 - 事后</li>
+<li>跟踪</li>
+<li>激励（游戏化）</li>
+</ol>
+<p><strong>被拒绝的原因:</strong></p>
+<ul>
+<li>6 个月以上的开发时间线超出学生项目限制</li>
+<li>高尔夫应用研究表明处方对用户采用不是关键（Hole19：300 万用户没有它）</li>
+<li>实时和事后纠正共享 70% 以上的代码/逻辑，人为分离增加复杂性</li>
+<li>激励可以是跟踪模块中的轻量级功能，而不是独立系统</li>
+<li>MVP 过度工程；可以根据用户反馈逐步添加模块</li>
+</ul>
+<h3 id="b3">选项 B：3 模块极简架构<a class="headerlink" href="#b3" title="Permanent link">&para;</a></h3>
+<p><strong>描述:</strong> 将诊断合并到评估中，取消跟踪：</p>
+<ol>
+<li>评估 + 诊断（组合）</li>
+<li>纠正</li>
+<li><em>（无跟踪模块）</em></li>
+</ol>
+<p><strong>被拒绝的原因:</strong></p>
+<ul>
+<li>失去诊断清晰度 - 错误识别足够复杂，值得单独模块</li>
+<li>评估拥有数据质量，诊断拥有错误检测 - 不应该耦合的不同关注点</li>
+<li>没有进度跟踪意味着用户无法看到随时间的改进，对留存至关重要</li>
+<li>过于简单；以后添加功能需要重大重构</li>
+<li>学术研究强调随时间的结果知识（KR）的重要性，这需要跟踪</li>
+</ul>
+<h3 id="c5">选项 C：5 模块，分离实时和事后纠正<a class="headerlink" href="#c5" title="Permanent link">&para;</a></h3>
+<p><strong>描述:</strong> 将纠正拆分为两个模块：</p>
+<ol>
+<li>评估</li>
+<li>诊断</li>
+<li>实时纠正（动作期间）</li>
+<li>事后纠正（完成后）</li>
+<li>跟踪</li>
+</ol>
+<p><strong>被拒绝的原因:</strong></p>
+<ul>
+<li>人为分离造成代码重复和维护负担</li>
+<li>两种纠正模式使用相同的错误分析和阈值逻辑</li>
+<li>差异是**交付时间**，而不是功能目的</li>
+<li>需要模块间通信开销（两个模块都调用诊断）</li>
+<li>更复杂的测试：需要验证两个纠正实现之间的一致性</li>
+<li>没有架构优势；交付模式是实现细节，不是独特的能力</li>
+</ul>
+<h3 id="d3-4-7">选项 D：分阶段开发（3 模块 → 4 模块 → 7 模块）<a class="headerlink" href="#d3-4-7" title="Permanent link">&para;</a></h3>
+<p><strong>描述:</strong> 从评估/诊断/纠正开始，稍后添加跟踪，然后是处方/激励。</p>
+<p><strong>被拒绝的原因:</strong></p>
+<ul>
+<li>跟踪对 MVP 留存至关重要，不能推迟</li>
+<li>分阶段方法在以后添加模块时存在架构不匹配的风险</li>
+<li>最好预先设计 4 模块架构，有清晰的扩展点</li>
+<li>会延迟进度跟踪功能的用户验证</li>
+<li>跟踪模块相对简单（3 周工作量），不值得推迟</li>
+</ul>
+<h2 id="_11">参考文献<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="_12">研究文献<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Schmidt, R. A., &amp; Lee, T. D. (2019).</strong> <em>Motor Control and Learning</em> (6th ed.). Human Kinetics.</li>
+<li>第 11 章：结果知识（即时与延迟反馈）</li>
+<li><strong>Magill, R. A., &amp; Anderson, D. I. (2020).</strong> <em>Motor Learning and Control</em> (12th ed.). McGraw-Hill.</li>
+<li>第 14 章：反馈时间和频率原则</li>
+</ul>
+<h3 id="_13">市场研究<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Hole19 Golf GPS</strong>（300 万以上用户）- 击球跟踪和统计，无训练计划：<a href="https://hole19golf.com">https://hole19golf.com</a></li>
+<li><strong>Blast Golf</strong> - 即时指标的挥杆分析，最少的长期规划：<a href="https://blastgolf.com">https://blastgolf.com</a></li>
+<li><strong>SwingU</strong> - 竞争分析显示课程计划作为高级功能，不是核心：<a href="https://swingu.com">https://swingu.com</a></li>
+</ul>
+<h3 id="_14">留存研究<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>训练应用留存分析</strong> - Strava、MyFitnessPal、Fitbit 数据显示没有结构化计划的 90 天流失率高出 40%</li>
+<li><em>来源:</em> App Annie Mobile App Retention Benchmarks (2024)</li>
+<li><strong>高尔夫应用用户行为</strong> - 调查显示 73% 的高尔夫球手优先考虑"赛后分析"而不是"训练计划"</li>
+<li><em>来源:</em> National Golf Foundation Digital Usage Report (2023)</li>
+</ul>
+<h3 id="_15">内部文档<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>research/motor-learning-modules.md</code> - 7 模块框架的详细分析（已归档）</li>
+<li><code>architecture/system-overview.md</code> - 高级系统设计（4 模块实现）</li>
+</ul>
+<h3 id="_16">技术限制<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>BLE 延迟要求</strong> - 实时纠正需要 &lt;100ms 反馈循环</li>
+<li><em>来源:</em> ESP32-C6 BLE 5.0 规范</li>
+<li><strong>TensorFlow Lite 模型大小</strong> - 诊断模型必须适合 2MB 闪存</li>
+<li><em>来源:</em> ESP32-C6 技术参考手册</li>
+</ul>
 
 
 
@@ -3518,10 +3962,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.tracking", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.top", "navigation.tracking", "navigation.indexes", "navigation.instant", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
     
   </body>
