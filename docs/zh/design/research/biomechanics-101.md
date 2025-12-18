@@ -1235,6 +1235,9 @@ EMG 还可以检测**肌肉疲劳**，这是其他传感器无法做到的。
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
+!!! tip "可视化参考"
+    📊 [TPI: Early Extension](https://www.mytpi.com/improve-my-game/swing-characteristics/early-extension) 有详细视频和参考线检测方法。
+
 ### 生物力学特征
 
 | 指标 | 正常范围 | Early Extension |
@@ -1295,6 +1298,9 @@ EMG 还可以检测**肌肉疲劳**，这是其他传感器无法做到的。
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
+!!! tip "可视化参考"
+    📊 [TPI: Over the Top](https://www.mytpi.com/improve-my-game/swing-characteristics/over-the-top) 有详细视频和挥杆路径分析。
+
 ### 生物力学特征
 
 | 指标 | 正常模式 | Over-the-Top |
@@ -1343,6 +1349,9 @@ EMG 还可以检测**肌肉疲劳**，这是其他传感器无法做到的。
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
+
+!!! tip "可视化参考"
+    📊 [TPI: Casting](https://www.mytpi.com/improve-my-game/swing-characteristics/casting) 有详细视频和手腕角度分析。
 
 ### 生物力学特征
 
@@ -1396,6 +1405,9 @@ EMG 还可以检测**肌肉疲劳**，这是其他传感器无法做到的。
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
+
+!!! tip "可视化参考"
+    📊 [TPI: Reverse Spine Angle](https://www.mytpi.com/improve-my-game/swing-characteristics/reverse-spine-angle_v2) 有详细视频和重心转移分析。
 
 ### 生物力学特征
 
