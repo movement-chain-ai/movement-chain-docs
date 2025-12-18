@@ -24,14 +24,16 @@ graph LR
         C1[" C <br/>球场、俱乐部<br/>高尔夫学院"]
     end
 
-    A --> B
-    B --> C
+    subgraph D ["D 类 - 专业高尔夫运动员"]
+        D1[" D <br/>专业运动员"]
+    end
 
     style A1 fill:#22c55e,color:#fff,stroke:#16a34a,stroke-width:2px
     style A2 fill:#22c55e,color:#fff,stroke:#16a34a,stroke-width:2px
     style A3 fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
     style B1 fill:#22c55e,color:#fff,stroke:#16a34a,stroke-width:2px
     style C1 fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
+    style D1 fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
 ```
 
 **核心逻辑：**
@@ -41,6 +43,7 @@ graph LR
 | **A 类** | 目标用户 | A1 重点服务（赚钱） → A2 标准化（赚钱） → A3 不服务（不赚钱） |
 | **B 类** | 战略用户（不一定赚钱但重要） | 让教练"不反对"即可 |
 | **C 类** | 暂不考虑 | 未来机会 |
+| **D 类** | 暂不考虑 | 未来机会 |
 
 ### 1.2 用户分层详情
 
