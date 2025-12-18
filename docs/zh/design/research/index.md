@@ -24,6 +24,7 @@
 | [生物力学术语表](biomechanics-glossary.md) | 140+ 高尔夫生物力学术语定义 | 团队沟通标准、UI 翻译参考 |
 | [生物力学基准值](biomechanics-benchmarks.md) | 职业/业余选手的研究验证基准 | 规则引擎阈值参考 |
 | [传感器指标映射](sensor-metric-mapping.md) | 三模态系统可测量的指标 | 产品差异化定位 |
+| [竞品指标对比](competitor-metrics-comparison.md) | OnForm/Sportsbox vs 我们的指标覆盖 | **竞争分析、MVP范围** |
 
 另见: [个性化规范](../personalization-spec.md) - 基于上述研究的阈值调整规范
 
@@ -75,7 +76,7 @@
 
 ```mermaid
 graph TD
-    A[研究与标准] --> B[system-design.md]
+    A[研究与标准] --> B[implementation-roadmap.md]
     A --> C[swing-comparison.md]
     A --> D[biomechanics-glossary.md]
 
@@ -91,7 +92,7 @@ graph TD
 
 | 文档 | 内容 | 本节提供 |
 |------|------|---------|
-| [系统设计](../system-design.md) | MVP 管道架构 | 规则阈值的科学依据 |
+| [实施路线图](../implementation-roadmap.md) | MVP 范围与规划 | 规则阈值的科学依据 |
 | [挥杆对比策略](../swing-comparison.md) | 四种对比方法 | 职业参考数据来源 |
 | [术语表](biomechanics-glossary.md) | 生物力学术语 | 140+ 专业术语定义 |
 

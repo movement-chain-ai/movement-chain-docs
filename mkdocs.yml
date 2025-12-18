@@ -145,6 +145,7 @@ nav:
           - 生物力学术语表: design/research/biomechanics-glossary.md
           - 生物力学基准值: design/research/biomechanics-benchmarks.md
           - 传感器指标映射: design/research/sensor-metric-mapping.md
+          - 竞品指标对比: design/research/competitor-metrics-comparison.md
       - 架构决策 (ADR):
           - design/decisions/index.md
           - design/decisions/0001-multi-repo-structure.md
