@@ -57,7 +57,7 @@ jobs:
           zensical --version
 
       - name: Build documentation site
-        run: zensical build
+        run: zensical build --clean
 
       - name: Add .nojekyll file
         run: touch ./site/.nojekyll
