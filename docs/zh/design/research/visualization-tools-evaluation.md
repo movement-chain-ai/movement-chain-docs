@@ -329,7 +329,41 @@ python -m rerun_demos.human_pose_tracking
 - 共享标注的挥杆录制
 - 用于规则引擎阈值调优
 
-### 5.3 不推荐的方案
+### 5.3 未来技术储备 (Phase 4+)
+
+#### TAPIR: 球杆追踪技术
+
+**TAPIR** (Tracking Any Point with per-frame Initialization and temporal Refinement) 是 DeepMind 开发的通用点追踪模型，可追踪视频中任意指定点。
+
+| 方面 | 说明 |
+|------|------|
+| **开发者** | Google DeepMind + UCL + Oxford |
+| **论文** | [arXiv:2306.08637](https://arxiv.org/abs/2306.08637) (ICCV 2023) |
+| **代码** | [google-deepmind/tapnet](https://github.com/google-deepmind/tapnet) (开源) |
+| **Rerun 集成** | [rerun-io/tapnet](https://github.com/rerun-io/tapnet) |
+
+**与 MediaPipe 的区别**:
+
+| 能力 | MediaPipe | TAPIR |
+|------|-----------|-------|
+| 人体关键点 | ✅ 33 点自动检测 | ⚠️ 需手动指定 |
+| 球杆头追踪 | ❌ | ✅ |
+| 高尔夫球追踪 | ❌ | ✅ |
+| 任意点追踪 | ❌ | ✅ |
+
+**潜在价值**:
+
+- 用软件实现 Trackman 部分功能（杆头轨迹、攻击角）
+- 成本优势：开源免费 vs $5,000+ 雷达系统
+- 差异化：竞品 (Sportsbox, OnForm) 都没有球杆追踪
+
+**为什么放在 Phase 4+**:
+
+1. **需要高帧率视频** — 普通手机 30fps 不够，需 120fps+
+2. **增加系统复杂度** — MVP 阶段应聚焦核心功能
+3. **MediaPipe + IMU + EMG 已有足够差异化**
+
+### 5.4 不推荐的方案
 
 | 工具 | 不推荐原因 |
 |------|------------|
@@ -356,6 +390,14 @@ python -m rerun_demos.human_pose_tracking
 - [定价](https://foxglove.dev/pricing)
 - [Rerun vs Foxglove](https://foxglove.dev/robotics/rerun-vs-foxglove)
 - [Robot Report: $40M B轮](https://www.therobotreport.com/foxglove-raises-40m-scale-data-platform-roboticists/)
+
+### TAPIR (Phase 4+)
+
+- [论文 (arXiv)](https://arxiv.org/abs/2306.08637)
+- [DeepMind 官方页面](https://deepmind-tapir.github.io/)
+- [GitHub (google-deepmind/tapnet)](https://github.com/google-deepmind/tapnet)
+- [Rerun 集成](https://github.com/rerun-io/tapnet)
+- [技术博客](https://deepmind-tapir.github.io/blogpost.html)
 
 ### 其他工具
 
