@@ -65,7 +65,7 @@
 graph TD
     A[研究与标准] --> B[system-design.md]
     A --> C[swing-comparison.md]
-    A --> D[00-glossary.md]
+    A --> D[biomechanics-glossary.md]
 
     B --> E[规则引擎 9 条规则]
     C --> F[DTW 对比算法]
@@ -81,7 +81,7 @@ graph TD
 |------|------|---------|
 | [系统设计](../system-design.md) | MVP 管道架构 | 规则阈值的科学依据 |
 | [挥杆对比策略](../swing-comparison.md) | 四种对比方法 | 职业参考数据来源 |
-| [术语表](../00-glossary.md) | 基础传感器术语 | 补充生物力学专业术语 |
+| [术语表](biomechanics-glossary.md) | 生物力学术语 | 140+ 专业术语定义 |
 
 ---
 

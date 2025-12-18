@@ -49,9 +49,11 @@ python mvp_prototype.py
 ## 下一步
 
 1. **理解架构**: 阅读 [系统设计](system-design.md) 了解 MVP 管道
-2. **深入对比算法**: 阅读 [挥杆对比策略](swing-comparison.md) 了解参考模型
-3. **连接真实硬件**: 替换 Mock 为 BLE IMU 数据
-4. **移植 Flutter**: 构建移动端 App ([开发指南](../platform/mobile/development.md))
+2. **理解挥杆阶段**: 阅读 [8阶段挥杆分解](swing-phases-8.md) 了解相位检测
+3. **理解反馈模式**: 阅读 [实时反馈规范](real-time-feedback-spec.md) 了解三种反馈模式
+4. **深入对比算法**: 阅读 [挥杆对比策略](swing-comparison.md) 了解参考模型
+5. **连接真实硬件**: 替换 Mock 为 BLE IMU 数据
+6. **移植 Flutter**: 构建移动端 App ([开发指南](../platform/mobile/development.md))
 
 ---
 

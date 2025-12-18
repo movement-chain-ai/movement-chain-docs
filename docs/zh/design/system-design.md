@@ -16,17 +16,18 @@
 
     | 顺序 | 文档 | 内容 |
     |:----:|------|------|
-    | 1️⃣ | **本文档** (system-design.md) | 架构总览、数据流、4层管道 |
-    | 2️⃣ | [ML 基础入门](ml-basics.md) | 什么需要 ML、什么用物理公式，代码示例 |
-    | 3️⃣ | [SDK 选型指南](sdk-selection.md) | 所有库的安装命令、Stars、代码片段 |
-    | 4️⃣ | [快速开始](getting-started.md) | 无需硬件即可测试，Mock 数据设置 |
-    | 5️⃣ | [MVP 原型代码](../platform/mvp-prototype-code.md) | 完整可运行的代码示例 |
+    | 1️⃣ | **本文档** (system-design.md) | 架构总览、数据流、规则引擎 |
+    | 2️⃣ | [8阶段挥杆分解](swing-phases-8.md) | 挥杆相位检测方法与代码 |
+    | 3️⃣ | [实时反馈规范](real-time-feedback-spec.md) | 三种反馈模式与延迟要求 |
+    | 4️⃣ | [ML 基础入门](ml-basics.md) | 什么需要 ML、什么用物理公式 |
+    | 5️⃣ | [SDK 选型指南](sdk-selection.md) | 所有库的安装命令、Stars |
+    | 6️⃣ | [快速开始](getting-started.md) | 无需硬件即可测试，Mock 数据 |
 
     **快速参考**:
 
     - [决策摘要](decisions-summary.md) - 所有 ADR 一页速查
-    - [术语表](00-glossary.md) - IMU、EMG 等术语定义
     - [挥杆对比策略](swing-comparison.md) - 如何对比两次挥杆
+    - [生物力学基准值](research/biomechanics-benchmarks.md) - 阈值来源
 
 ---
 
@@ -571,7 +572,7 @@ graph LR
 
 - [快速开始](getting-started.md) - 无需硬件即可测试
 - [决策摘要](decisions-summary.md) - 关键ADR概览
-- [术语表](00-glossary.md) - IMU、EMG 等术语定义
+- [术语表](research/biomechanics-glossary.md) - IMU、EMG 等术语定义
 - [MVP原型代码](../platform/mvp-prototype-code.md) - 完整可运行代码
 
 ---

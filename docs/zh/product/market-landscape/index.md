@@ -66,7 +66,6 @@
 ### 综合分析
 
 - [用户痛点分析](pain-points.md) - 跨竞品痛点总结、产品弃用研究
-- [商业系统分析](competitors/commercial-systems.md) - Peloton, Mirror, Tempo 等商业系统
 - [市场规模详情](competitors/market-size.md) - 详细市场规模、趋势、机会
 
 ---

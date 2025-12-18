@@ -108,7 +108,6 @@ nav:
               - product/market-landscape/competitors/vision-based.md
               - product/market-landscape/competitors/multi-sensor.md
               - product/market-landscape/competitors/smart-clothing.md
-              - product/market-landscape/competitors/commercial-systems.md
               - product/market-landscape/competitors/market-size.md
       - product/product-strategy.md
 
@@ -118,6 +117,8 @@ nav:
       - design/getting-started.md
       - design/sdk-selection.md
       - design/swing-comparison.md
+      - design/swing-phases-8.md
+      - design/real-time-feedback-spec.md
       - design/decisions-summary.md
       - 研究与标准:
           - design/research/index.md
@@ -174,3 +175,5 @@ nav:
   - 参考资料:
       - reference/index.md
       - reference/academic-datasets.md
+      - reference/golf-research.md
+      - reference/open-source-tools.md
