@@ -17,15 +17,12 @@ graph LR
     end
 
     subgraph B ["B 类 - 高尔夫教练"]
-        B1[" B <br/>高尔夫教练"]
     end
 
     subgraph C ["C 类 - 球场、俱乐部、高尔夫学院"]
-        C1[" C <br/>球场、俱乐部<br/>高尔夫学院"]
     end
 
     subgraph D ["D 类 - 专业高尔夫运动员"]
-        D1[" D <br/>专业运动员"]
     end
 
     A ~~~ B
@@ -35,9 +32,9 @@ graph LR
     style A1 fill:#22c55e,color:#fff,stroke:#16a34a,stroke-width:2px
     style A2 fill:#22c55e,color:#fff,stroke:#16a34a,stroke-width:2px
     style A3 fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
-    style B1 fill:#22c55e,color:#fff,stroke:#16a34a,stroke-width:2px
-    style C1 fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
-    style D1 fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
+    style B fill:#22c55e,color:#fff,stroke:#16a34a,stroke-width:2px
+    style C fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
+    style D fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
 ```
 
 **核心逻辑：**
