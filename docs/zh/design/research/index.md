@@ -25,6 +25,7 @@
 | [生物力学基准值](biomechanics-benchmarks.md) | 职业/业余选手的研究验证基准 | 规则引擎阈值参考 |
 | [传感器指标映射](sensor-metric-mapping.md) | 三模态系统可测量的指标 | 产品差异化定位 |
 | [竞品指标对比](competitor-metrics-comparison.md) | OnForm/Sportsbox vs 我们的指标覆盖 | **竞争分析、MVP范围** |
+| [可视化工具评估](visualization-tools-evaluation.md) | Rerun/Foxglove/PlotJuggler 对比 | **开发工具选型** |
 
 另见: [个性化规范](../personalization-spec.md) - 基于上述研究的阈值调整规范
 
