@@ -59,7 +59,7 @@
 ## 相关文档
 
 - [系统设计](../design/system-design.md)
-- [竞品分析](../product/market-landscape/index.md)
+- [竞品分析](../product/competitors/imu-based.md)
 - [开发平台](../platform/index.md)
 
 ---

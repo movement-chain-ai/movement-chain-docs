@@ -46,10 +46,8 @@ product/
 ├── market-size.md              # 市场分析
 ├── pain-points.md              # 市场痛点
 ├── user-personas.md            # 用户画像
-├── entry-strategy.md           # 进入策略 (原 unique-value.md)
+├── entry-strategy.md           # 进入策略
 ├── product-strategy.md         # 产品战略
-├── market-landscape/
-│   └── index.md                # 市场研究中心
 └── competitors/
     ├── imu-based.md            # IMU方案竞品
     ├── vision-based.md         # 视觉方案竞品
