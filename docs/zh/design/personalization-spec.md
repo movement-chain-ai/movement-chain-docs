@@ -309,9 +309,9 @@ def get_thresholds(user_profile):
 
 ## 8. 相关文档
 
-- [系统设计](../system-design.md) - MVP 核心管道总览
-- [ML 基础入门](../ml-basics.md) - 机器学习基础概念
-- [快速开始](../getting-started.md) - 无硬件测试指南
+- [系统设计](system-design.md) - MVP 核心管道总览
+- [ML 基础入门](ml-basics.md) - 机器学习基础概念
+- [快速开始](getting-started.md) - 无硬件测试指南
 
 **待创建文档**（Phase 2 后补充）:
 

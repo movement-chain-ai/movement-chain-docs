@@ -94,6 +94,8 @@ extra:
 nav:
   - 首页: index.md
 
+  - 文档导航: DOCUMENTATION_MAP.md
+
   - 风险管理: risk-management.md
 
   - 产品战略:
@@ -103,29 +105,30 @@ nav:
       - 市场研究:
           - product/market-landscape/index.md
           - product/market-landscape/pain-points.md
+          - product/market-landscape/market-size.md
           - 竞品分析:
               - product/market-landscape/competitors/imu-based.md
               - product/market-landscape/competitors/vision-based.md
               - product/market-landscape/competitors/multi-sensor.md
               - product/market-landscape/competitors/smart-clothing.md
-              - product/market-landscape/competitors/market-size.md
       - product/product-strategy.md
 
   - 系统设计:
+      - design/index.md
       - design/system-design.md
-      - design/ml-basics.md
-      - design/getting-started.md
-      - design/sdk-selection.md
-      - design/swing-comparison.md
-      - design/swing-phases-8.md
+      - design/swing-phases.md
       - design/real-time-feedback-spec.md
+      - design/swing-comparison.md
+      - design/personalization-spec.md
+      - design/getting-started.md
+      - design/ml-basics.md
+      - design/sdk-selection.md
       - design/decisions-summary.md
       - 研究与标准:
           - design/research/index.md
           - 生物力学术语表: design/research/biomechanics-glossary.md
           - 生物力学基准值: design/research/biomechanics-benchmarks.md
           - 传感器指标映射: design/research/sensor-metric-mapping.md
-          - 个性化规范: design/research/personalization-spec.md
       - 架构决策 (ADR):
           - design/decisions/index.md
           - design/decisions/0001-multi-repo-structure.md

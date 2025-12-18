@@ -398,7 +398,7 @@ class SwingPhaseDetector:
 
 ```mermaid
 graph TD
-    A[swing-phases-8.md] --> B[system-design.md]
+    A[swing-phases.md] --> B[system-design.md]
     A --> C[real-time-feedback-spec.md]
     A --> D[swing-comparison.md]
 

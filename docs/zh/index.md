@@ -49,7 +49,7 @@
 | 系统设计 | [MVP 核心管道](design/system-design.md) |
 | 技术决策 | [架构决策记录 (ADR)](design/decisions/index.md) |
 | 快速开始 | [无需硬件测试](design/getting-started.md) |
-| 术语定义 | [术语表](design/00-glossary.md) |
+| 术语定义 | [生物力学术语表](design/research/biomechanics-glossary.md) |
 
 ---
 

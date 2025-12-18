@@ -556,7 +556,7 @@ def generate_dynamic_feedback(template, **kwargs):
 ```mermaid
 graph TD
     A[real-time-feedback-spec.md] --> B[system-design.md]
-    A --> C[swing-phases-8.md]
+    A --> C[swing-phases.md]
     A --> D[research/biomechanics-benchmarks.md]
 
     B --> E[规则引擎]
@@ -569,7 +569,7 @@ graph TD
 | 相关文档 | 内容 | 本文档使用 |
 |---------|------|-----------|
 | [系统设计](system-design.md) | MVP 管道架构 | 规则引擎阈值 |
-| [挥杆 8 阶段](swing-phases-8.md) | 阶段检测 | 阶段触发点 |
+| [挥杆 8 阶段](swing-phases.md) | 阶段检测 | 阶段触发点 |
 | [生物力学基准](research/biomechanics-benchmarks.md) | 指标阈值 | 问题判断标准 |
 | [传感器映射](research/sensor-metric-mapping.md) | 传感器能力 | 检测方法选择 |
 

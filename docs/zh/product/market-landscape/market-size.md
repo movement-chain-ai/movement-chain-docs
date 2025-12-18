@@ -312,9 +312,9 @@ Phase 3: 扩展 (12-24 个月)
 ## 相关资源
 
 - [市场研究中心](../index.md)
-- [IMU 方案竞品](imu-based.md)
-- [视觉方案竞品](vision-based.md)
-- [产品战略](../../product-strategy.md)
+- [IMU 方案竞品](competitors/imu-based.md)
+- [视觉方案竞品](competitors/vision-based.md)
+- [产品战略](../product-strategy.md)
 
 ---
 

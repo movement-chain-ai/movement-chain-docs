@@ -290,14 +290,14 @@ flowchart LR
 
 ### 技术规格
 
-- [8阶段挥杆分解](../design/swing-phases-8.md) - 挥杆相位检测的技术实现
+- [8阶段挥杆分解](../design/swing-phases.md) - 挥杆相位检测的技术实现
 - [实时反馈规范](../design/real-time-feedback-spec.md) - 三种反馈模式的延迟与实现
 - [系统设计](../design/system-design.md) - MVP技术架构
 
 ### 市场与商业
 
 - [用户痛点分析](market-landscape/pain-points.md) - 用户研究洞察
-- [市场规模与路线图](market-landscape/competitors/market-size.md) - 定价、路线图、风险评估
+- [市场规模与路线图](market-landscape/market-size.md) - 定价、路线图、风险评估
 
 ---
 

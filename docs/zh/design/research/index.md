@@ -13,7 +13,8 @@
 | [生物力学术语表](biomechanics-glossary.md) | 140+ 高尔夫生物力学术语定义 | 团队沟通标准、UI 翻译参考 |
 | [生物力学基准值](biomechanics-benchmarks.md) | 职业/业余选手的研究验证基准 | 规则引擎阈值参考 |
 | [传感器指标映射](sensor-metric-mapping.md) | 三模态系统可测量的指标 | 产品差异化定位 |
-| [个性化规范](personalization-spec.md) | 按性别/年龄/体型调整阈值 | Phase 2+ 个性化功能 |
+
+另见: [个性化规范](../personalization-spec.md) - 基于上述研究的阈值调整规范
 
 ---
 
@@ -96,7 +97,7 @@ graph TD
 ### 对于产品经理
 
 1. 用 [传感器映射](sensor-metric-mapping.md) 理解差异化优势
-2. 用 [个性化规范](personalization-spec.md) 规划功能路线图
+2. 用 [个性化规范](../personalization-spec.md) 规划功能路线图
 
 ### 对于硬件工程师
 
