@@ -1,4 +1,4 @@
-# Movement Chain AI 产品战略中心
+# Movement Chain AI 商业计划
 
 > **一句话定位**: 从练习场到球场，全程陪伴的AI助手
 
