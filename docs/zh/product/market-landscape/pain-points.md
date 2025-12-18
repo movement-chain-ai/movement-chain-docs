@@ -4,7 +4,7 @@
 
 ## 执行摘要
 
-通过对 IMU 类产品（SwingMotion、HackMotion、deWiz）、视觉类产品（Sportsbox AI、V1 Golf）、发射监测器（Garmin R10、Rapsodo、Mevo+）、球场辅助工具（Arccos、Shot Scope）以及社交/社区类产品（GHIN、TheGrint、GolfLync、Golf GameBook）的用户反馈分析：
+通过对 IMU 类产品（SwingMotion、HackMotion、deWiz）、视觉类产品（Sportsbox AI、V1 Golf）、发射监测器（Garmin R10、Rapsodo、Mevo+）、球场辅助工具（Arccos、Shot Scope）以及社交/社区类产品（GHIN、TheGrint、GolfLync、Golf GameBook）的用户反馈分析发现：
 
 ### 三大核心发现
 
