@@ -43,7 +43,7 @@
 ```text
 product/
 ├── index.md                    # Navigation hub
-├── market-size.md              # 市场分析
+├── market-analysis.md          # 市场分析
 ├── pain-points.md              # 市场痛点
 ├── user-personas.md            # 用户画像
 ├── entry-strategy.md           # 进入策略
@@ -150,7 +150,7 @@ reference/
 ```text
 1. product/entry-strategy.md    → Why we're different
 2. product/product-strategy.md  → Market positioning
-3. product/market-size.md → Market opportunity
+3. product/market-analysis.md → Market opportunity
 ```
 
 ### For Engineers (45 min)

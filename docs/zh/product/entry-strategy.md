@@ -194,7 +194,7 @@ Phase 3: 扩展 (12-24 个月)
 ## 相关文档
 
 - [产品战略](product-strategy.md) - 详细设计决策和系统架构
-- [市场分析](market-size.md) - 市场规模与增长数据
+- [市场分析](market-analysis.md) - 市场规模与增长数据
 - [竞品分析](competitors/imu-based.md) - 竞品对比
 
 ---

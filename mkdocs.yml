@@ -100,7 +100,7 @@ nav:
 
   - 产品战略:
       - product/index.md
-      - 市场分析: product/market-size.md
+      - 市场分析: product/market-analysis.md
       - 市场痛点: product/pain-points.md
       - 用户画像: product/user-personas.md
       - 进入策略: product/entry-strategy.md
