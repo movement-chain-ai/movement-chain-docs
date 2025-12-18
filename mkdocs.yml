@@ -100,16 +100,17 @@ nav:
 
   - 产品战略:
       - product/index.md
-      - 市场研究中心: product/market-landscape/index.md
-      - 市场分析: product/market-landscape/market-size.md
-      - 市场痛点: product/market-landscape/pain-points.md
+      - 市场研究中心:
+          - product/market-landscape/index.md
+          - 市场分析: product/market-landscape/market-size.md
+          - 市场痛点: product/market-landscape/pain-points.md
+          - 竞品分析:
+              - product/market-landscape/competitors/imu-based.md
+              - product/market-landscape/competitors/vision-based.md
+              - product/market-landscape/competitors/multi-sensor.md
+              - product/market-landscape/competitors/smart-clothing.md
       - 用户画像: product/user-personas.md
       - 进入策略: product/unique-value.md
-      - 竞品分析:
-          - product/market-landscape/competitors/imu-based.md
-          - product/market-landscape/competitors/vision-based.md
-          - product/market-landscape/competitors/multi-sensor.md
-          - product/market-landscape/competitors/smart-clothing.md
       - product/product-strategy.md
 
   - 系统设计:
