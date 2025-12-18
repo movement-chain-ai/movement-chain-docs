@@ -6,27 +6,27 @@
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px'}}}%%
-graph TB
-    subgraph A ["A 类：目标用户 💰"]
-        direction TB
-        A1["🟢 A1 核心利润<br/>愿意持续付费<br/>追求长期进步<br/>接受系统化训练"]
-        A2["🟡 A2 可以要<br/>一次性分析<br/>偶尔复购<br/>价格敏感"]
-        A3["🔴 A3 主动挡掉<br/>只想免费<br/>质疑多付费低"]
-        A1 --> A2
-        A2 --> A3
+graph LR
+    subgraph A ["A 类：目标用户"]
+        direction BT
+        A3["⚪ A3 主动挡掉<br/>只想免费<br/>质疑多付费低"]
+        A2["🟡 A2 可以要💰<br/>一次性分析<br/>偶尔复购<br/>价格敏感"]
+        A1["🟢 A1 核心利润💰<br/>愿意持续付费<br/>追求长期进步<br/>接受系统化训练"]
+        A3 --> A2
+        A2 --> A1
     end
 
-    subgraph B ["B 类：战略用户 🤝"]
+    subgraph B ["B 类：战略用户"]
         B1["🔵 高尔夫教练<br/>不反对 + 偶尔推荐<br/>课后辅助工具"]
     end
 
-    subgraph C ["C 类：暂不考虑 ⏸️"]
+    subgraph C ["C 类：暂不考虑"]
         C1["⚪ 球场<br/>俱乐部<br/>高尔夫学院"]
     end
 
     style A1 fill:#22c55e,color:#fff,stroke:#16a34a,stroke-width:2px
     style A2 fill:#eab308,color:#000,stroke:#ca8a04,stroke-width:2px
-    style A3 fill:#ef4444,color:#fff,stroke:#dc2626,stroke-width:2px
+    style A3 fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
     style B1 fill:#3b82f6,color:#fff,stroke:#2563eb,stroke-width:2px
     style C1 fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
 ```
@@ -41,9 +41,7 @@ graph TB
 
 ### 1.2 用户分层详情
 
-#### A 类用户（目标用户｜赚钱的）
-
-**普通高尔夫玩家**
+#### A 类用户 - 普通高尔夫玩家
 
 | 分类 | 特征 | 策略 |
 |------|------|------|
@@ -51,9 +49,9 @@ graph TB
 | 🟡 **A2 类用户（可以要）** | 一次性分析、偶尔复购、对价格有点敏感 | 标准化产品，不要花太多人工 |
 | 🔴 **A3 类用户（要主动挡掉）** | 只想要免费建议、不断质疑专业性、要求多付费低 | 不服务，就是最好的服务 |
 
-#### B 类用户（战略用户｜不一定赚钱，但很重要）
+#### B 类用户 - 高尔夫教练
 
-**高尔夫教练** - 要的是他们"不反对 + 偶尔推荐"
+要的是他们"不反对 + 偶尔推荐"
 
 作为：
 
