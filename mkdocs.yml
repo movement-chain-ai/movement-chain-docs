@@ -100,9 +100,9 @@ nav:
 
   - 产品战略:
       - product/index.md
+      - 市场分析: product/market-size.md
       - 市场研究中心:
           - product/market-landscape/index.md
-          - 市场分析: product/market-landscape/market-size.md
           - 市场痛点: product/market-landscape/pain-points.md
           - 竞品分析:
               - product/market-landscape/competitors/imu-based.md

@@ -96,7 +96,7 @@
 
 ---
 
-### 2. 2024年市场规模和年复合增长率[CAGR](../../reference/business-glossary.md#cagr年复合增长率) 
+### 2. 2024年市场规模和年复合增长率[CAGR](../reference/business-glossary.md#cagr年复合增长率) 
 
 | # | 类别 | 2024 规模 | CAGR| 数据来源 |
 |---|------|----------|------|---------|
@@ -328,10 +328,10 @@ Phase 3: 扩展 (12-24 个月)
 
 ## 相关资源
 
-- [市场研究中心](../index.md)
-- [IMU 方案竞品](competitors/imu-based.md)
-- [视觉方案竞品](competitors/vision-based.md)
-- [产品战略](../product-strategy.md)
+- [市场研究中心](market-landscape/index.md)
+- [IMU 方案竞品](market-landscape/competitors/imu-based.md)
+- [视觉方案竞品](market-landscape/competitors/vision-based.md)
+- [产品战略](product-strategy.md)
 
 ---
 

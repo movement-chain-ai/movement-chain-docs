@@ -152,7 +152,7 @@ reference/
 ```text
 1. product/unique-value.md      → Why we're different
 2. product/product-strategy.md  → Market positioning
-3. product/market-landscape/market-size.md → Market opportunity
+3. product/market-size.md → Market opportunity
 ```
 
 ### For Engineers (45 min)
