@@ -17,16 +17,21 @@ graph LR
     end
 
     subgraph B ["B 类 - 高尔夫教练"]
+        B1[" B <br/>高尔夫教练"]
     end
 
     subgraph C ["C 类 - 球场、俱乐部、高尔夫学院"]
+        C1[" C <br/>球场、俱乐部<br/>高尔夫学院"]
     end
 
+    A --> B
+    B --> C
+
     style A1 fill:#22c55e,color:#fff,stroke:#16a34a,stroke-width:2px
-    style A2 fill:#eab308,color:#000,stroke:#ca8a04,stroke-width:2px
+    style A2 fill:#22c55e,color:#fff,stroke:#16a34a,stroke-width:2px
     style A3 fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
-    style B fill:#3b82f6,color:#fff,stroke:#2563eb,stroke-width:2px
-    style C fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
+    style B1 fill:#22c55e,color:#fff,stroke:#16a34a,stroke-width:2px
+    style C1 fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
 ```
 
 **核心逻辑：**
