@@ -108,13 +108,16 @@ nav:
           - product/competitors/vision-based.md
           - product/competitors/multi-sensor.md
           - product/competitors/smart-clothing.md
-      - 商业模式: product/business-model.md
-      - 定价策略: product/pricing-strategy.md
-      - 单位经济学: product/unit-economics.md
-      - 渠道策略: product/channel-strategy.md
+      - 商业模式（待补充）: product/business-model.md
+      - 定价策略（待补充）: product/pricing-strategy.md
+      - 单位经济学（待补充）: product/unit-economics.md
+      - 渠道策略（待补充）: product/channel-strategy.md
       - 进入策略: product/entry-strategy.md
-      - 市场时机: product/market-timing.md
+      - 市场时机（待补充）: product/market-timing.md
       - 产品战略: product/product-strategy.md
+      - 法规与合规（待补充）: product/regulatory.md
+      - 知识产权（待补充）: product/ip-strategy.md
+      - 退出策略（待补充）: product/exit-strategy.md
 
   - 系统设计:
       - design/index.md

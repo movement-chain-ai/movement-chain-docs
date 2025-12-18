@@ -1,4 +1,4 @@
-# 商业模式
+# 商业模式（待补充）
 
 > 商业模式画布 (Business Model Canvas)
 
