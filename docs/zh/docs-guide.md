@@ -43,23 +43,23 @@
 ```text
 product/
 ├── index.md                    # Navigation hub
-├── user-personas.md            # Target users (Amy, Bob, Charlie)
-├── unique-value.md             # Differentiation: 三模态 + 慢动作模式
-├── product-strategy.md         # Positioning, MVP features, market map
-└── market-landscape/
-    ├── index.md                # Market research overview
-    ├── pain-points.md          # 100+ user pain points from forums
-    ├── market-size.md          # $4.2B market, TAM/SAM/SOM
-    └── competitors/
-        ├── imu-based.md        # K-VEST, GEARS, HackMotion
-        ├── vision-based.md     # V1 Golf, Sportsbox AI
-        ├── multi-sensor.md     # Arccos, Dewesoft
-        └── smart-clothing.md   # Hongyue, Athos
+├── market-size.md              # 市场分析
+├── pain-points.md              # 市场痛点
+├── user-personas.md            # 用户画像
+├── entry-strategy.md           # 进入策略 (原 unique-value.md)
+├── product-strategy.md         # 产品战略
+├── market-landscape/
+│   └── index.md                # 市场研究中心
+└── competitors/
+    ├── imu-based.md            # IMU方案竞品
+    ├── vision-based.md         # 视觉方案竞品
+    ├── multi-sensor.md         # 多传感器竞品
+    └── smart-clothing.md       # 智能服装竞品
 ```
 
 **Key Documents**:
 
-- `unique-value.md` — Why we're different (EMG + slow motion innovation)
+- `entry-strategy.md` — Why we're different (EMG + slow motion innovation)
 - `product-strategy.md` — MVP definition and market positioning
 
 ---
@@ -150,7 +150,7 @@ reference/
 ### For Investors (15 min)
 
 ```text
-1. product/unique-value.md      → Why we're different
+1. product/entry-strategy.md    → Why we're different
 2. product/product-strategy.md  → Market positioning
 3. product/market-size.md → Market opportunity
 ```
