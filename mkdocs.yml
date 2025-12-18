@@ -94,7 +94,7 @@ extra:
 nav:
   - 首页: index.md
 
-  - 文档导航: DOCUMENTATION_MAP.md
+  - 文档导航: README.md
 
   - 风险管理: risk-management.md
 
