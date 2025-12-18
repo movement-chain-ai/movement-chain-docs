@@ -2,7 +2,33 @@
 
 ## 一、用户分层
 
-### 1.1 用户分层
+### 1.1 用户分层金字塔
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'fontSize': '14px'}}}%%
+graph TB
+    subgraph pyramid [" "]
+        direction TB
+        A1["🟢 A1 核心利润<br/>愿意持续付费<br/>追求长期进步"]
+        A2["🟡 A2 可以要<br/>一次性分析、偶尔复购"]
+        A3["🔴 A3 主动挡掉<br/>只想免费、质疑多付费低"]
+        B["🔵 B 战略用户<br/>高尔夫教练<br/>不反对 + 偶尔推荐"]
+        C["⚪ C 暂不考虑<br/>球场、俱乐部、学院"]
+    end
+
+    A1 --- A2
+    A2 --- A3
+    A3 --- B
+    B --- C
+
+    style A1 fill:#22c55e,color:#fff,stroke:#16a34a,stroke-width:2px
+    style A2 fill:#eab308,color:#000,stroke:#ca8a04,stroke-width:2px
+    style A3 fill:#ef4444,color:#fff,stroke:#dc2626,stroke-width:2px
+    style B fill:#3b82f6,color:#fff,stroke:#2563eb,stroke-width:2px
+    style C fill:#9ca3af,color:#000,stroke:#6b7280,stroke-width:2px
+```
+
+### 1.2 用户分层详情
 
 #### A 类用户（目标用户｜赚钱的）
 
@@ -35,7 +61,7 @@
 - 俱乐部
 - 高尔夫学院
 
-### 1.2 结论
+### 1.3 结论
 
 !!! success "核心用户定义"
     **我们的核心用户: A1 - 非教练的认真玩家**
