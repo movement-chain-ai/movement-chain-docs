@@ -256,8 +256,8 @@ BLE: 4.2/5.0
 
 ## 相关资源
 
-- [IMU 传感器技术](../../../components/imu/hardware.md)
-- [IMU 供应商](../../../components/imu/hardware.md)
+- [IMU 传感器技术](../../components/imu/hardware.md)
+- [IMU 供应商](../../components/imu/hardware.md)
 - [视觉方案竞品](vision-based.md)
 - [多传感器方案](multi-sensor.md)
 

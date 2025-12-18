@@ -32,7 +32,7 @@
 !!! info "详细技术规范"
     教练录制设备、双视角要求、5 个关键检查点的检测方法和评估标准详见：
 
-    **[挥杆对比策略 - 视频录制规范 & 检查点](../../../design/swing-comparison.md#视频录制规范-video-recording-standards)**
+    **[挥杆对比策略 - 视频录制规范 & 检查点](../../design/swing-comparison.md#视频录制规范-video-recording-standards)**
 
 ### 快速参考
 
@@ -310,7 +310,7 @@ OnForm 使用 **Lifting Network** 从单目视频推断 3D 姿态:
 
 **关键洞察**: OnForm 在视频分析领先，但 **EMG 肌肉数据是我们的独特价值，没有任何竞品拥有**。
 
-> 详细技术选型对比见: [ADR-0003 Flutter 跨平台开发](../../../design/decisions/0003-flutter-mobile.md) | [ADR-0006 ONNX Runtime 部署](../../../design/decisions/0006-onnx-runtime-deployment.md)
+> 详细技术选型对比见: [ADR-0003 Flutter 跨平台开发](../../design/decisions/0003-flutter-mobile.md) | [ADR-0006 ONNX Runtime 部署](../../design/decisions/0006-onnx-runtime-deployment.md)
 
 ---
 
@@ -496,8 +496,8 @@ Phase 3: 多视角融合 (远期)
 
 ## 相关资源
 
-- [视觉/摄像头传感器](../../../components/vision/hardware.md)
-- [姿态估计指南](../../../components/vision/software.md)
+- [视觉/摄像头传感器](../../components/vision/hardware.md)
+- [姿态估计指南](../../components/vision/software.md)
 - [IMU 方案竞品](imu-based.md)
 - [多传感器方案](multi-sensor.md)
 

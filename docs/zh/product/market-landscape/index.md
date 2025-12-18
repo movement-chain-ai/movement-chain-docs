@@ -47,7 +47,7 @@
 | **V1 Golf** | $69.99 | 老牌选择 | 10年历史、职业库对比 |
 | **Sportsbox** | $79.99 | 3D分析 | AI 3D姿态、高端定位 |
 
-详见: [视觉方案竞品 - 教练应用对比](competitors/vision-based.md#教练应用对比-coach-app-comparison)
+详见: [视觉方案竞品 - 教练应用对比](../competitors/vision-based.md#教练应用对比-coach-app-comparison)
 
 ---
 
@@ -55,10 +55,10 @@
 
 ### 竞品详情
 
-- [IMU 方案](competitors/imu-based.md) - SwingMotion, HackMotion 详细分析
-- [视觉方案](competitors/vision-based.md) - **OnForm, Sportsbox AI, V1 Golf** + 教练工作流
-- [多传感器方案](competitors/multi-sensor.md) - K-Motion 详细分析
-- [智能服装](competitors/smart-clothing.md) - Athos, WHOOP (非高尔夫专用)
+- [IMU 方案](../competitors/imu-based.md) - SwingMotion, HackMotion 详细分析
+- [视觉方案](../competitors/vision-based.md) - **OnForm, Sportsbox AI, V1 Golf** + 教练工作流
+- [多传感器方案](../competitors/multi-sensor.md) - K-Motion 详细分析
+- [智能服装](../competitors/smart-clothing.md) - Athos, WHOOP (非高尔夫专用)
 
 ### 综合分析
 
