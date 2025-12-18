@@ -31,6 +31,10 @@
 │   ──────────        External URLs only (no original content)                │
 │                     Audience: Everyone (fact-checking)                      │
 │                                                                             │
+│   archive/          Historical documents                                    │
+│   ────────          Deprecated docs kept for reference                      │
+│                     Not in navigation                                       │
+│                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -66,8 +70,14 @@ product/
 
 ```text
 design/
-├── index.md                    # Navigation hub (NEW)
-├── system-design.md            # Core MVP pipeline (THE main document)
+├── index.md                    # Navigation hub
+├── implementation-roadmap.md   # ⭐ 总纲 - START HERE
+├── briefs/                     # Role-specific onboarding
+│   ├── index.md                # Brief overview
+│   ├── software-engineer.md    # For Python/ML engineers
+│   ├── mobile-developer.md     # For Flutter developers
+│   ├── hardware-engineer.md    # For embedded engineers
+│   └── golf-advisor.md         # For golf coaches/experts
 ├── swing-phases.md             # 8-phase GolfDB standard
 ├── real-time-feedback-spec.md  # 3 feedback modes specification
 ├── swing-comparison.md         # DTW and 4 comparison methods
@@ -88,7 +98,8 @@ design/
 
 **Key Documents**:
 
-- `system-design.md` — Start here for technical understanding
+- `implementation-roadmap.md` — ⭐ **Start here** for technical understanding (replaces system-design.md)
+- `briefs/` — Role-specific guides for new team members
 - `swing-phases.md` — How we segment a golf swing
 - `real-time-feedback-spec.md` — The 3 feedback modes innovation
 
@@ -150,24 +161,35 @@ reference/
 ```text
 1. product/entry-strategy.md    → Why we're different
 2. product/product-strategy.md  → Market positioning
-3. product/market-analysis.md → Market opportunity
+3. product/market-analysis.md   → Market opportunity
+```
+
+### For New Team Members (Role-Based)
+
+```text
+1. design/implementation-roadmap.md  → ⭐ Start here (总纲)
+2. Then read YOUR role brief:
+   - Software Engineer  → design/briefs/software-engineer.md
+   - Mobile Developer   → design/briefs/mobile-developer.md
+   - Hardware Engineer  → design/briefs/hardware-engineer.md
+   - Golf Advisor       → design/briefs/golf-advisor.md
 ```
 
 ### For Engineers (45 min)
 
 ```text
-1. design/system-design.md      → Architecture overview
-2. design/swing-phases.md       → Algorithm: phase detection
+1. design/implementation-roadmap.md  → Architecture overview (总纲)
+2. design/swing-phases.md            → Algorithm: phase detection
 3. design/real-time-feedback-spec.md → 3 feedback modes
-4. design/getting-started.md    → Test with mock data
+4. design/getting-started.md         → Test with mock data
 ```
 
 ### For Hardware Engineers (20 min)
 
 ```text
-1. components/index.md          → Hardware overview
-2. components/imu/hardware.md   → IMU specs
-3. components/emg/hardware.md   → EMG specs
+1. design/briefs/hardware-engineer.md → Role-specific brief
+2. components/imu/hardware.md         → IMU specs
+3. components/emg/hardware.md         → EMG specs
 4. design/decisions/0002-lsm6dsv16x-imu.md → Why LSM6DSV16X
 ```
 

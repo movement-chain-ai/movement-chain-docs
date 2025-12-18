@@ -124,7 +124,13 @@ nav:
 
   - 系统设计:
       - design/index.md
-      - design/system-design.md
+      - 实施路线图: design/implementation-roadmap.md
+      - 角色Brief:
+          - design/briefs/index.md
+          - 软件工程师: design/briefs/software-engineer.md
+          - 移动开发者: design/briefs/mobile-developer.md
+          - 硬件工程师: design/briefs/hardware-engineer.md
+          - 高尔夫顾问: design/briefs/golf-advisor.md
       - design/swing-phases.md
       - design/real-time-feedback-spec.md
       - design/swing-comparison.md
