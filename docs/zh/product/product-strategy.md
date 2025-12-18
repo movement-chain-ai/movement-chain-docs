@@ -296,7 +296,7 @@ flowchart LR
 
 ### 市场与商业
 
-- [用户痛点分析](market-landscape/pain-points.md) - 用户研究洞察
+- [用户痛点分析](pain-points.md) - 用户研究洞察
 - [市场规模与路线图](market-size.md) - 定价、路线图、风险评估
 
 ---
