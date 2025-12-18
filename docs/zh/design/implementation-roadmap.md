@@ -18,23 +18,27 @@
 
 ### 1.2 MVP 范围
 
-| 功能 | MVP Phase 1 | Phase 2 | 备注 |
-|------|:-----------:|:-------:|------|
-| **Mode 1: Setup Check** | ✅ | - | 站位检测，<300ms |
-| **Mode 2: Slow Motion** | ✅ | - | 慢动作实时反馈 |
-| **Mode 3: Full Speed** | ✅ | - | 正常挥杆后分析 |
-| MediaPipe 骨架叠加 | ✅ | - | 33关键点 |
-| 8阶段挥杆检测 | ✅ | - | GolfDB标准 |
-| 6条核心规则 | ✅ | - | P0-P1优先级 |
-| Mock IMU 数据 | ✅ | - | 模拟100Hz |
-| Mock EMG 数据 | ✅ | - | 模拟500Hz |
-| LLM 反馈生成 | ✅ | - | OpenAI API |
-| TTS 语音反馈 | ✅ | - | 系统TTS |
-| Ghost Overlay (静态) | ⚠️ | ✅ | 可简化版 |
-| Ghost Overlay (动态) | - | ✅ | 需DTW对齐 |
-| 真实 IMU 硬件 | - | ✅ | LSM6DSV16X |
-| 真实 EMG 硬件 | - | ✅ | DFRobot |
-| 骨盆 IMU | - | ✅ | 运动链完整分析 |
+| 功能 | MVP Phase 1 | Phase 2 | Phase 3 | 备注 |
+|------|:-----------:|:-------:|:-------:|------|
+| **Mode 1: Setup Check** | ✅ | - | - | 站位检测，<300ms |
+| **Mode 2: Slow Motion** | ✅ | - | - | 慢动作实时反馈 |
+| **Mode 3: Full Speed** | ✅ | - | - | 正常挥杆后分析 |
+| MediaPipe 骨架叠加 | ✅ | - | - | 33关键点 |
+| 8阶段挥杆检测 | ✅ | - | - | GolfDB标准 |
+| 6条核心规则 | ✅ | - | - | P0-P1优先级 |
+| Mock IMU 数据 | ✅ | - | - | 模拟100Hz |
+| Mock EMG 数据 (Core+Forearm) | ✅ | - | - | 模拟500Hz，2通道 |
+| LLM 反馈生成 | ✅ | - | - | OpenAI API |
+| TTS 语音反馈 | ✅ | - | - | 系统TTS |
+| Ghost Overlay (静态) | ⚠️ | ✅ | - | 可简化版 |
+| Ghost Overlay (动态) | - | ✅ | - | 需DTW对齐 |
+| 真实 IMU 硬件 | - | ✅ | - | LSM6DSV16X |
+| 真实 EMG 硬件 (Core+Forearm) | - | ✅ | - | 2通道 DFRobot |
+| 骨盆 IMU | - | ✅ | - | 运动链完整分析 |
+| 臀肌 EMG (Gluteus) | - | ✅ | - | 下杆启动、髋部旋转 |
+| 大腿内侧 EMG (Adductors) | - | ✅ | - | 下盘稳定、重心转移 |
+| 背阔肌 EMG (Lats) | - | - | ✅ | 肩部旋转、拉杆动作 |
+| 三角肌 EMG (Deltoids) | - | - | ✅ | 手臂举起、顶点位置 |
 
 ### 1.3 成功标准
 
