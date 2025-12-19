@@ -212,15 +212,18 @@
 | **7. 击球** | Impact | ~5ms | 杆面接触球，杆头速度达到峰值 |
 | **8. 收杆** | Follow-through/Finish | 0.30-0.50s | 减速，能量消散，保持平衡 |
 
-### 节奏比 Tempo Ratio
+### 节奏比 Tempo Ratio {#节奏比-tempo-ratio}
 
-职业球手的**节奏比**通常为 3:1：
+职业球手的**[节奏比](../../reference/golf-glossary.md#tempo-ratio)**通常为 3:1：
 
 $$
 \text{节奏比} = \frac{\text{上杆时间}}{\text{下杆时间}} = \frac{0.75\,\text{s}}{0.25\,\text{s}} = 3{:}1
 $$
 
 这意味着上杆用时是下杆的 3 倍。这个比例出奇地一致，无论是 Tiger Woods 还是 Rory McIlroy。
+
+!!! tip "关键认知"
+    节奏比是**诊断工具**，不是训练目标。每个人有自己的自然节奏，关键是保持一致。详见 [高尔夫术语表 - 节奏比](../../reference/golf-glossary.md#tempo-ratio)。
 
 ---
 
