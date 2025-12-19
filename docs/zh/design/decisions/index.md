@@ -100,9 +100,9 @@
 |-----|----------|
 | 多仓库结构 | 项目根目录 README |
 | IMU选型 | [硬件规格](../../components/imu/hardware.md) |
-| Flutter | [移动开发](../../platform/mobile/development.md) |
+| Flutter | [移动开发](../../development/mobile/development.md) |
 | 4模块架构 | [系统设计](../system-design.md) |
-| ONNX | [MVP原型代码](../../platform/mvp-prototype-code.md) |
+| ONNX | [移动开发](../../development/mobile/development.md) |
 
 ---
 

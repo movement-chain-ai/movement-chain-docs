@@ -135,9 +135,9 @@
 
 ## 相关文档
 
-- [进入策略](business-plan/entry-strategy.md) - 市场进入策略
-- [法规与合规](business-plan/regulatory.md) - FDA/CE 认证
-- [知识产权](business-plan/ip-strategy.md) - 专利布局
+- [进入策略](entry-strategy.md) - 市场进入策略
+- [法规与合规](regulatory.md) - FDA/CE 认证
+- [知识产权](ip-strategy.md) - 专利布局
 
 ---
 

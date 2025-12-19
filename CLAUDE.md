@@ -52,10 +52,10 @@ Types: `docs`, `feat`, `fix`, `chore`, `style`, `refactor`, `test`, `ci`, `perf`
 
 ```text
 docs/zh/                    # Documentation root (Chinese, single-language)
-├── product/                # WHY - Market value, competitive analysis, MVP spec
+├── business-plan/                # WHY - Market value, competitive analysis, risk management
 ├── design/                 # WHAT - System architecture, ADRs, algorithms
 ├── components/             # HARDWARE - IMU, EMG, Vision, MCU specs
-├── platform/               # HOW - Mobile dev, ML training, prototype code
+├── development/            # HOW - Mobile dev, ML training guides
 ├── reference/              # LINKS - External URLs only (no content)
 └── archive/                # Historical materials (not in nav)
 ```
@@ -64,20 +64,33 @@ docs/zh/                    # Documentation root (Chinese, single-language)
 
 | Folder | Purpose | Audience | Key Files |
 |--------|---------|----------|-----------|
-| `product/` | Business case, market validation | Investors, PMs | MVP spec, competitive analysis |
-| `design/` | Technical architecture | Engineers | system-design.md, ADRs |
+| `business-plan/` | Business case, market validation | Investors, PMs | MVP spec, competitive analysis, risk-management |
+| `design/` | Technical architecture | Engineers | system-design.md, briefs/, specs/, ADRs |
 | `components/` | Hardware specifications | HW engineers | IMU/EMG datasheets, suppliers |
-| `platform/` | Software implementation | SW developers | Flutter guide, prototype code |
+| `development/` | Software implementation | SW developers | Flutter guide, ML training |
 | `reference/` | External links only | Everyone | URLs to papers, datasets |
 
-### design/ Structure (Simplified)
+### design/ Structure
 
 ```text
 design/
-├── system-design.md      # Core MVP pipeline (THE main doc)
-├── research/             # Biomechanics glossary, benchmarks, specs
-└── decisions/            # ADR documents with summary
+├── system-design.md      # Core MVP pipeline (THE hub document)
+├── briefs/               # Role-specific onboarding (software, mobile, hardware, golf)
+├── specs/                # Technical specifications (swing-phases, real-time-feedback, etc.)
+├── guides/               # Developer guides (ml-basics, sdk-selection)
+├── research/             # Biomechanics glossary, benchmarks
+└── decisions/            # ADR documents (0001-0006)
 ```
+
+### Claude Rules Files
+
+Section-specific context in `.claude/rules/`:
+- `docs-workflow.md` - Documentation workflow rules
+- `product.md` - Business & market section context
+- `design.md` - Technical architecture context
+- `components.md` - Hardware specifications context
+- `development.md` - Software implementation context
+- `reference.md` - External links section context
 
 ## Language Configuration
 
@@ -181,10 +194,10 @@ Located in `docs/zh/design/decisions/`. Use sequential numbering (ADR-0007, etc.
 
 ```text
 # Launch in SINGLE message (parallel):
-Task(Explore): "Audit docs/zh/product/ - find orphans, duplicates, broken links"
+Task(Explore): "Audit docs/zh/business-plan/ - find orphans, duplicates, broken links"
 Task(Explore): "Audit docs/zh/design/ - find orphans, duplicates, broken links"
 Task(Explore): "Audit docs/zh/components/ - find orphans, duplicates, broken links"
-Task(Explore): "Audit docs/zh/platform/ - find orphans, duplicates, broken links"
+Task(Explore): "Audit docs/zh/development/ - find orphans, duplicates, broken links"
 
 # Wait for all results, then:
 # 1. Consolidate findings

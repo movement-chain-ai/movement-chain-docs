@@ -138,7 +138,7 @@
 > - [8阶段挥杆检测](specs/swing-phases.md) - 阶段划分算法与代码实现
 > - [挥杆对比策略](specs/swing-comparison.md) - 4种对比方法 (Pro/Personal Best/Statistical/Learned)
 > - [实时反馈规格](specs/real-time-feedback.md) - 3种反馈模式详细规格
-> - [MVP 原型代码](../platform/mvp-prototype-code.md) - 无硬件测试指南
+> - [移动开发](../development/mobile/development.md) - Flutter 开发与测试指南
 
 ### 3.1 Phase 1: Vision Pipeline (Week 1-2)
 

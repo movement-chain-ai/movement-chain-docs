@@ -102,8 +102,6 @@ extra:
 nav:
   - 首页: index.md
 
-  - 文档导航: docs-guide.md
-
   - 商业计划:
       - business-plan/index.md
       - 市场洞察:
@@ -125,7 +123,7 @@ nav:
           - 市场时机（待补充）: business-plan/market-timing.md
       - 产品战略: business-plan/product-strategy.md
       - 合规与风险:
-          - 风险管理: risk-management.md
+          - 风险管理: business-plan/risk-management.md
           - 法规与合规（待补充）: business-plan/regulatory.md
           - 知识产权（待补充）: business-plan/ip-strategy.md
       - 退出策略（待补充）: business-plan/exit-strategy.md
@@ -192,14 +190,13 @@ nav:
           - components/supply-chain/smart-clothing-market.md
           - components/supply-chain/e-skin-odm.md
 
-  - 开发平台:
-      - platform/index.md
-      - platform/mvp-prototype-code.md
+  - 开发指南:
+      - development/index.md
       - 移动应用:
-          - platform/mobile/development.md
+          - development/mobile/development.md
       - ML 训练:
-          - platform/ml-training/datasets.md
-          - platform/ml-training/visual-feedback.md
+          - development/ml-training/datasets.md
+          - development/ml-training/visual-feedback.md
 
   - 参考资料:
       - reference/index.md

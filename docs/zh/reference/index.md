@@ -14,5 +14,5 @@
 
 ## 相关文档
 
-- [ML训练数据集](../platform/ml-training/datasets.md) - 模型训练相关
+- [ML训练数据集](../development/ml-training/datasets.md) - 模型训练相关
 - [系统设计](../design/system-design.md) - 技术架构

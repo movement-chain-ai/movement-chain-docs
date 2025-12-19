@@ -147,7 +147,7 @@ Movement Chain AI 是一个基于计算机视觉和传感器融合的高尔夫�
 
 ### ⭐ 核心必读
 
-1. [移动应用开发指南](../../platform/mobile/development.md)
+1. [移动应用开发指南](../../development/mobile/development.md)
    - Flutter 框架选择理由
    - 性能优化策略
    - BLE 集成完整代码
@@ -270,7 +270,7 @@ Movement Chain AI 是一个基于计算机视觉和传感器融合的高尔夫�
 
 ### Q2: MediaPipe 还是 RTMPose?
 
-**A**: MVP 用 MediaPipe (快速上线)，后续优化阶段迁移到 RTMPose (2-3倍更快)。详见 [移动开发指南 2.1节](../../platform/mobile/development.md#21-model-selection-mediapipe-vs-rtmpose)。
+**A**: MVP 用 MediaPipe (快速上线)，后续优化阶段迁移到 RTMPose (2-3倍更快)。详见 [移动开发指南 2.1节](../../development/mobile/development.md#21-model-selection-mediapipe-vs-rtmpose)。
 
 ### Q3: BLE 硬件什么时候准备好?
 
@@ -278,7 +278,7 @@ Movement Chain AI 是一个基于计算机视觉和传感器融合的高尔夫�
 
 ### Q4: 如何处理不同屏幕尺寸?
 
-**A**: 使用动态缩放因子，基准设计为 iPhone 14 宽度 (390px)。详见 [移动开发指南 3.1节](../../platform/mobile/development.md#31-screen-size-constraints-and-responsive-design)。
+**A**: 使用动态缩放因子，基准设计为 iPhone 14 宽度 (390px)。详见 [移动开发指南 3.1节](../../development/mobile/development.md#31-screen-size-constraints-and-responsive-design)。
 
 ### Q5: 语音反馈支持哪些语言?
 
@@ -288,7 +288,7 @@ Movement Chain AI 是一个基于计算机视觉和传感器融合的高尔夫�
 
 ## 联系方式
 
-- **技术问题**: 查阅 [移动开发指南](../../platform/mobile/development.md) 或联系 Tech Lead
+- **技术问题**: 查阅 [移动开发指南](../../development/mobile/development.md) 或联系 Tech Lead
 - **设计问题**: 查阅 [实时反馈规范](../specs/real-time-feedback.md)
 - **架构决策**: 查阅 [ADR 列表](../decisions/index.md)
 
@@ -296,14 +296,14 @@ Movement Chain AI 是一个基于计算机视觉和传感器融合的高尔夫�
 
 ## 下一步行动
 
-1. **Day 1**: 阅读 [移动开发指南](../../platform/mobile/development.md) 全文 (90分钟)
+1. **Day 1**: 阅读 [移动开发指南](../../development/mobile/development.md) 全文 (90分钟)
 2. **Day 1-2**: 搭建 Flutter 项目，集成 camera + google_mlkit_pose_detection
 3. **Week 1**: 实现实时骨架叠加 + 性能优化
 4. **Week 2**: UI 实现 + 3 种模式切换
 5. **Week 3**: BLE 框架 + 语音反馈集成
 6. **Week 4**: 集成测试 + 性能验证
 
-**准备好了？** 从 [移动开发指南](../../platform/mobile/development.md) 开始吧！
+**准备好了？** 从 [移动开发指南](../../development/mobile/development.md) 开始吧！
 
 ---
 

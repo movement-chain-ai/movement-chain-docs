@@ -140,7 +140,7 @@ Movement Chain AI 是一个结合 **IMU 传感器 + 肌电图 (EMG) + 视觉分�
 
 ### 用户研究
 
-- [**市场痛点**](../../product/pain-points.md)
+- [**市场痛点**](../../business-plan/pain-points.md)
   - 为什么现有产品无法解决"练习场→球场"转化问题
   - 用户最愿意付费的功能
   - 2-4 周"吃灰"问题的深度分析

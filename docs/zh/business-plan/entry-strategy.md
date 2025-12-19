@@ -135,7 +135,7 @@ Phase 3: 扩展 (12-24 个月)
 - [市场分析](market-analysis.md) - 市场规模与增长数据
 - [竞品分析](competitors/imu-based.md) - 竞品对比
 - [单位经济学](unit-economics.md) - 财务预测与盈利模型
-- [风险管理](../risk-management.md) - 风险评估与应对
+- [风险管理](risk-management.md) - 风险评估与应对
 - [渠道策略](channel-strategy.md) - 获客渠道详细规划
 
 ---

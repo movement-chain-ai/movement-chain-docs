@@ -137,10 +137,10 @@ pip install streamlit
 
 ### 参考代码
 
-- [**MVP 原型代码**](../../platform/mvp-prototype-code.md) (30 分钟)
+- **MVP 原型代码** (30 分钟)
   - 完整可运行的 Python 代码
   - 数据采集、特征提取、规则引擎、可视化
-  - **直接复制粘贴即可开始**
+  - **代码示例将在 ML 仓库中提供**
 
 ---
 

@@ -29,7 +29,7 @@ hip_angle = angle_between(keypoints[23], keypoints[24])        # 左右髋
 x_factor = shoulder_angle - hip_angle  # 职业选手: 45-55°
 ```
 
-详见: [视觉软件 - 关键点格式](../components/vision/software.md#关键点格式-keypoint-format)
+详见: [视觉软件 - 关键点格式](../../components/vision/software.md#关键点格式-keypoint-format)
 
 ---
 
@@ -62,7 +62,7 @@ class FullBodyIMUMock:
             lead_time_ms = 50  # 髋领先手腕 50ms
 ```
 
-详见: [IMU 硬件规格](../components/imu/hardware.md)
+详见: [IMU 硬件规格](../../components/imu/hardware.md)
 
 ---
 
@@ -100,7 +100,7 @@ def detect_compensation(emg_data):
     return "正常发力顺序"
 ```
 
-详见: [EMG 硬件规格](../components/emg/hardware.md)
+详见: [EMG 硬件规格](../../components/emg/hardware.md)
 
 ---
 
@@ -474,7 +474,7 @@ def normalize_pose(keypoints):
 | [fastdtw](https://pypi.org/project/fastdtw/) | 速度快 O(N) vs O(N²) | `pip install fastdtw` |
 | [tslearn](https://tslearn.readthedocs.io/) | 时序 ML 集成 | `pip install tslearn` |
 
-详见: [视觉反馈 - DTW 实现](../platform/ml-training/visual-feedback.md#3-通过动态时间规整-dtw-的时间对齐-temporal-alignment-via-dynamic-time-warping)
+详见: [视觉反馈 - DTW 实现](../../development/ml-training/visual-feedback.md#3-通过动态时间规整-dtw-的时间对齐-temporal-alignment-via-dynamic-time-warping)
 
 ---
 
@@ -538,7 +538,7 @@ def normalize_pose(keypoints):
 ## 相关文档
 
 - [系统设计](../system-design.md) - 整体 MVP 管道架构
-- [视觉反馈](../../platform/ml-training/visual-feedback.md) - DTW 实现代码, UI 模式
+- [视觉反馈](../../development/ml-training/visual-feedback.md) - DTW 实现代码, UI 模式
 - [视觉软件](../../components/vision/software.md) - 关键点格式, RTMPose vs MediaPipe
 - [SDK 选型指南](../guides/sdk-selection.md) - dtw-python 等库选择
 - [术语表](../research/biomechanics-glossary.md) - X-Factor, Kinetic Chain 等定义

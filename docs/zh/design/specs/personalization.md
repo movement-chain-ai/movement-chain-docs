@@ -311,7 +311,7 @@ def get_thresholds(user_profile):
 
 - [系统设计](../system-design.md) - MVP 核心管道总览
 - [ML 基础入门](../guides/ml-basics.md) - 机器学习基础概念
-- [MVP 原型代码](../../platform/mvp-prototype-code.md) - 无硬件测试指南
+- [移动开发](../../development/mobile/development.md) - Flutter 开发与测试指南
 
 **待创建文档**（Phase 2 后补充）:
 

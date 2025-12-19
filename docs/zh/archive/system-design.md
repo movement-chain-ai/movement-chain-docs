@@ -21,7 +21,7 @@
     | 3️⃣ | [实时反馈规范](../design/specs/real-time-feedback.md) | 三种反馈模式与延迟要求 |
     | 4️⃣ | [ML 基础入门](../design/guides/ml-basics.md) | 什么需要 ML、什么用物理公式 |
     | 5️⃣ | [SDK 选型指南](../design/guides/sdk-selection.md) | 所有库的安装命令、Stars |
-    | 6️⃣ | [MVP 原型代码](../platform/mvp-prototype-code.md) | 无需硬件即可测试，Mock 数据 |
+    | 6️⃣ | MVP 原型代码 (见移动开发文档) | 无需硬件即可测试，Mock 数据 |
 
     **快速参考**:
 
@@ -572,7 +572,7 @@ graph LR
 
 - [ADR决策记录](../design/decisions/index.md) - 关键ADR概览
 - [术语表](../design/research/biomechanics-glossary.md) - IMU、EMG 等术语定义
-- [MVP原型代码](../platform/mvp-prototype-code.md) - 无需硬件即可测试
+- 代码示例将在 ML 仓库中提供
 
 ---
 
