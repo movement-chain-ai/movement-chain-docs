@@ -306,9 +306,9 @@ $$
 **X-Factor (X因子)** = 肩部旋转角度 − 髋部旋转角度
 
 <figure markdown="span">
-  ![X-Factor 俯视图](../../images/x-factor-top-view.jpg){ width="300" }
   ![X-Factor 旋转角度](../../images/x-factor-rotation.jpg){ width="300" }
-  <figcaption>左：俯视图显示肩髋角度差形成 X 形 | 右：肩部（上）与髋部（下）的旋转角度线</figcaption>
+  ![X-Factor 俯视图](../../images/x-factor-top-view.jpg){ width="300" }
+  <figcaption>俯视图显示肩髋角度差形成 X 形 </figcaption>
 </figure>
 
 ```text
