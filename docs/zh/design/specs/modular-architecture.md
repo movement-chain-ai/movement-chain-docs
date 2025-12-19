@@ -880,71 +880,62 @@ FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模�
 
 MVP 使用**完整的 4 层架构**，只是将真实硬件替换为模拟数据源：
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         MVP 架构 (与 §2.1 完全一致)                           │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                              │
-│  📥 INPUT LAYER (输入层)                                                     │
-│  ─────────────────────────────────────────────────────────────               │
-│  📷 Camera (真实)        🔄 Mock IMU (JSON)      💪 Mock EMG (JSON)          │
-│      │                        │                        │                     │
-│      ▼                        ▼                        ▼                     │
-│                                                                              │
-│  ⚙️ EXTRACTION LAYER (提取层)                                                │
-│  ─────────────────────────────────────────────────────────────               │
-│  ┌────────────────┐    ┌────────────────┐    ┌────────────────┐             │
-│  │ POSE Block     │    │ IMU Block      │    │ EMG Block      │             │
-│  │ MediaPipe      │    │ 相位检测       │    │ 激活时序       │             │
-│  │ 33 keypoints   │    │ 峰值速度       │    │ 激活强度       │             │
-│  │ + 5 features   │    │ 节奏计算       │    │ 疲劳检测       │             │
-│  └───────┬────────┘    └───────┬────────┘    └───────┬────────┘             │
-│          │                     │                     │                       │
-│          ▼                     ▼                     ▼                       │
-│       PoseResult[]          IMUFeatures          EMGFeatures                 │
-│          │                     │                     │                       │
-│          │                     └──────────┬──────────┘                       │
-│          │                                │                                  │
-│  🧠 ANALYSIS LAYER (分析层)               │                                  │
-│  ─────────────────────────────────────────────────────────────               │
-│          │                                │                                  │
-│          ▼                                ▼                                  │
-│  ┌────────────────┐              ┌────────────────┐                          │
-│  │ CLASSIFIER     │              │ FUSION Block   │                          │
-│  │ Block          │──────────────│ Simple Merge   │                          │
-│  │ SwingNet       │              │ 交叉验证       │                          │
-│  │ 8 phases       │              │ 异常检测       │                          │
-│  └───────┬────────┘              └───────┬────────┘                          │
-│          │                               │                                   │
-│          ▼                               ▼                                   │
-│    ClassifierResult               FusionResult                               │
-│                                                                              │
-│  📤 OUTPUT LAYER (输出层) — 最终输出: FusionResult                           │
-│  ─────────────────────────────────────────────────────────────               │
-│  ┌──────────────────────────────────────────────────────────────────────┐   │
-│  │ FusionResult {                                                        │   │
-│  │   phases: [{label, start_ms, end_ms, confidence}],  ← 8 阶段         │   │
-│  │   metrics: {x_factor, tempo_ratio, peak_velocity, ...}, ← 12 指标    │   │
-│  │   anomalies: [{type, severity, description}],       ← 异常检测       │   │
-│  │   overall_confidence: float,                        ← 融合置信度     │   │
-│  │   feedback: [{rule, message_cn, message_en}]        ← 自然语言建议   │   │
-│  │ }                                                                     │   │
-│  └──────────────────────────────────────────────────────────────────────┘   │
-│                                                                              │
-└─────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph INPUT["📥 输入层 INPUT LAYER"]
+        CAM["📷 Camera<br/>30fps 视频帧<br/><b>✅ 真实</b>"]
+        IMU_IN["🔄 Mock IMU<br/>JSON 文件<br/><b>📄 模拟</b>"]
+        EMG_IN["💪 Mock EMG<br/>JSON 文件<br/><b>📄 模拟</b>"]
+    end
 
-图例:
-  (真实) = 实际硬件/数据     Mock = 模拟数据 (JSON 文件)
-  Block  = 可替换的积木块    ────→ = 数据流
+    subgraph EXTRACT["⚙️ 提取层 EXTRACTION LAYER"]
+        POSE["🦴 POSE Block<br/>MediaPipe<br/>33 关键点 + 特征"]
+        IMU_BLK["📊 IMU Block<br/>相位 + 峰值速度 + 节奏"]
+        EMG_BLK["🔋 EMG Block<br/>激活时序 + 强度"]
+    end
+
+    subgraph ANALYZE["🧠 分析层 ANALYSIS LAYER"]
+        CLASSIFIER["🎯 CLASSIFIER Block<br/>SwingNet 8 阶段"]
+        FUSION["🔗 FUSION Block<br/>Simple Merge + 交叉验证"]
+    end
+
+    subgraph OUTPUT["📤 输出层 OUTPUT LAYER"]
+        RESULT["📋 FusionResult<br/>phases + metrics + anomalies + feedback"]
+    end
+
+    CAM --> POSE
+    IMU_IN --> IMU_BLK
+    EMG_IN --> EMG_BLK
+
+    POSE --> CLASSIFIER
+    POSE --> FUSION
+    IMU_BLK --> FUSION
+    EMG_BLK --> FUSION
+    CLASSIFIER --> FUSION
+
+    FUSION --> RESULT
 ```
 
-!!! success "MVP 核心原则"
-    **架构不变，数据源可换**:
+**FusionResult 输出结构** (见 [§2.6 接口契约](#26-积木块接口契约)):
 
-    - 输入层: Camera 真实，IMU/EMG 用 Mock JSON
-    - 提取层: 3 个 Block 接口不变，内部实现可替换
-    - 分析层: CLASSIFIER + FUSION 逻辑相同
-    - 输出层: FusionResult 结构固定 (见 §2.6 接口契约)
+```text
+FusionResult {
+    phases: [{label, start_ms, end_ms, confidence}],   // 8 阶段 + 时间边界
+    metrics: {x_factor, tempo_ratio, peak_velocity, ...}, // 12 指标
+    anomalies: [{type, severity, description}],        // 异常检测
+    overall_confidence: float,                         // 融合置信度
+    feedback: [{rule, message_cn, message_en}]         // 自然语言建议
+}
+```
+
+!!! success "MVP 核心原则: 架构不变，数据源可换"
+
+    | 层级 | MVP 实现 | 后续升级 |
+    |-----|---------|---------|
+    | **输入层** | Camera 真实 + Mock IMU/EMG JSON | → 真实 LSM6DSV16X + DFRobot EMG |
+    | **提取层** | 3 个 Block 接口不变 | 内部实现可替换 |
+    | **分析层** | SwingNet + Simple Merge | → BiGRU + Kalman Filter |
+    | **输出层** | FusionResult 结构固定 | 不变 |
 
 ### 5.2 模拟数据验证全管道
 
@@ -1162,6 +1153,10 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|
+| 2.4 | 2025-12-19 | §5.1 改用 Mermaid 图 |
+| | | • §5.1: 从 ASCII 改为 Mermaid，与 §2.1 格式一致 |
+| | | • 输入层节点标注 ✅真实 / 📄模拟 区分数据源 |
+| | | • FusionResult 结构单独展示，链接到 §2.6 接口契约 |
 | 2.3 | 2025-12-19 | 架构一致性清理 |
 | | | • §5.1: 重写 MVP 架构图，与 §2.1 完全一致 (4层架构 + FusionResult 输出) |
 | | | • 删除旧 §6 (Pipeline Modes) — 与 §5 重复 |
