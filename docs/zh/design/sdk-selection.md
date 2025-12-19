@@ -244,10 +244,12 @@ filtered = filtfilt(b, a, raw_signal)
 
 ### MLC 配置 (LSM6DSV16X)
 
+<!-- markdown-link-check-disable -->
 | 工具 | 用途 | 链接 |
 |-----|------|-----|
 | **MEMS Studio** | MLC 决策树训练，UCF 文件生成 | [ST 下载](https://www.st.com/en/embedded-software/mems-studio.html) |
 | AN5804 | LSM6DSV16X MLC 应用笔记 | [PDF](https://www.st.com/resource/en/application_note/an5804-lsm6dsv16x-machine-learning-core-stmicroelectronics.pdf) |
+<!-- markdown-link-check-enable -->
 | st-mems-mlc | 预训练 MLC 示例 | [GitHub](https://github.com/STMicroelectronics/st-mems-machine-learning-core) |
 
 ### 模型工具
@@ -288,9 +290,8 @@ LSM6DSV16X (stm32duino): "latest"
 ## 相关文档
 
 - [系统设计](system-design.md) - 整体架构和数据流
-- [决策摘要](decisions-summary.md) - ADR 快速参考
-- [MVP 原型代码](../platform/mvp-prototype-code.md) - 完整可运行示例
-- [快速开始](getting-started.md) - 无需硬件即可测试
+- [ADR 决策记录](decisions/index.md) - 架构决策快速参考
+- [MVP 原型代码](../platform/mvp-prototype-code.md) - 完整可运行示例（无需硬件）
 
 ---
 

@@ -82,10 +82,8 @@ design/
 ├── real-time-feedback-spec.md  # 3 feedback modes specification
 ├── swing-comparison.md         # DTW and 4 comparison methods
 ├── personalization-spec.md     # User-specific threshold adjustments
-├── getting-started.md          # Test without hardware (mock data)
 ├── ml-basics.md                # When to use ML vs physics
 ├── sdk-selection.md            # Library choices with installation
-├── decisions-summary.md        # ADR quick reference
 ├── research/
 │   ├── index.md                # Research overview
 │   ├── biomechanics-glossary.md    # 140+ terms
@@ -181,7 +179,7 @@ reference/
 1. design/system-design.md           → Architecture overview (总纲)
 2. design/swing-phases.md            → Algorithm: phase detection
 3. design/real-time-feedback-spec.md → 3 feedback modes
-4. design/getting-started.md         → Test with mock data
+4. platform/mvp-prototype-code.md    → Test with mock data
 ```
 
 ### For Hardware Engineers (20 min)

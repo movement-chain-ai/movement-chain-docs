@@ -48,7 +48,7 @@
 |-------|------|
 | 系统设计 | [MVP 核心管道](design/system-design.md) |
 | 技术决策 | [架构决策记录 (ADR)](design/decisions/index.md) |
-| 快速开始 | [无需硬件测试](design/getting-started.md) |
+| 快速开始 | [MVP 原型代码](platform/mvp-prototype-code.md) |
 | 术语定义 | [生物力学术语表](design/research/biomechanics-glossary.md) |
 
 ---

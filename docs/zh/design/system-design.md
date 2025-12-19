@@ -138,7 +138,7 @@
 > - [8阶段挥杆检测](swing-phases.md) - 阶段划分算法与代码实现
 > - [挥杆对比策略](swing-comparison.md) - 4种对比方法 (Pro/Personal Best/Statistical/Learned)
 > - [实时反馈规格](real-time-feedback-spec.md) - 3种反馈模式详细规格
-> - [快速入门](getting-started.md) - 无硬件测试指南
+> - [MVP 原型代码](../platform/mvp-prototype-code.md) - 无硬件测试指南
 
 ### 3.1 Phase 1: Vision Pipeline (Week 1-2)
 
@@ -252,6 +252,7 @@ flowchart LR
 
 | 层级 | 技术 | 决策依据 |
 |------|------|----------|
+| **项目结构** | 多仓库 (5 repos) | [ADR-0001](decisions/0001-multi-repo-structure.md) |
 | **移动端** | Flutter 3.x | [ADR-0003](decisions/0003-flutter-mobile.md) |
 | **姿态估计** | MediaPipe Pose (ThinkSys plugin) | iOS可用，33关键点 |
 | **MCU** | ESP32-S3 | [ADR-0005](decisions/0005-esp32-s3-microcontroller.md) |

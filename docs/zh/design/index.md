@@ -19,7 +19,7 @@
 
 | 文档 | 内容 | 阅读时间 |
 |------|------|---------|
-| [快速开始](getting-started.md) | 无需硬件，Mock 数据测试 | 10分钟 |
+| [MVP 原型代码](../platform/mvp-prototype-code.md) | 无需硬件，Mock 数据测试 | 10分钟 |
 | [ML 基础入门](ml-basics.md) | 什么需要 ML，什么用物理公式 | 15分钟 |
 | [SDK 选型指南](sdk-selection.md) | 所有库的安装命令与选型理由 | 10分钟 |
 
@@ -34,8 +34,7 @@
 
 | 文档 | 内容 |
 |------|------|
-| [决策摘要](decisions-summary.md) | 所有 ADR 一页速查 |
-| [ADR 列表](decisions/index.md) | 完整架构决策记录 |
+| [ADR 决策记录](decisions/index.md) | 所有 ADR 概览、详解、贡献指南 |
 
 ---
 
@@ -45,7 +44,7 @@
 graph TD
     A[系统设计<br/>system-design.md] --> B[8阶段挥杆<br/>swing-phases.md]
     B --> C[实时反馈规范<br/>real-time-feedback-spec.md]
-    C --> D[快速开始<br/>getting-started.md]
+    C --> D[MVP原型代码<br/>platform/mvp-prototype-code.md]
 
     A --> E[挥杆对比策略<br/>swing-comparison.md]
     E --> F[研究与标准<br/>research/index.md]

@@ -75,10 +75,8 @@ docs/zh/                    # Documentation root (Chinese, single-language)
 ```text
 design/
 ├── system-design.md      # Core MVP pipeline (THE main doc)
-├── getting-started.md    # Test without hardware
-├── decisions-summary.md  # ADR quick reference
 ├── research/             # Biomechanics glossary, benchmarks, specs
-└── decisions/            # Full ADR documents
+└── decisions/            # ADR documents with summary
 ```
 
 ## Language Configuration
