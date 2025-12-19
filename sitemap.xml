@@ -5,14 +5,6 @@
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/docs-guide/</loc>
-         <lastmod>2025-12-19</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/risk-management/</loc>
-         <lastmod>2025-12-19</lastmod>
-    </url>
-    <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/archive/system-design/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
@@ -62,6 +54,10 @@
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/regulatory/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/risk-management/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
@@ -273,23 +269,19 @@
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/platform/</loc>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/development/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/platform/mvp-prototype-code/</loc>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/development/ml-training/datasets/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/platform/ml-training/datasets/</loc>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/development/ml-training/visual-feedback/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/platform/ml-training/visual-feedback/</loc>
-         <lastmod>2025-12-19</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/platform/mobile/development/</loc>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/development/mobile/development/</loc>
          <lastmod>2025-12-19</lastmod>
     </url>
     <url>
