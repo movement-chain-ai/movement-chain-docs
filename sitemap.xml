@@ -2,290 +2,318 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/docs-guide/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/risk-management/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/archive/system-design/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/business-model/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/channel-strategy/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/entry-strategy/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/exit-strategy/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/ip-strategy/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/market-analysis/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/market-timing/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/pain-points/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/pricing-strategy/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/product-strategy/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/regulatory/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/unit-economics/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/user-personas/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/competitors/imu-based/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/competitors/multi-sensor/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/competitors/smart-clothing/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/business-plan/competitors/vision-based/</loc>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/emg/hardware/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/emg/suppliers/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/flexible-sensors/hardware/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/flexible-sensors/suppliers/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/imu/hardware/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/imu/suppliers/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/mcu/hardware/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/mcu/suppliers/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/pressure-sensors/hardware/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/pressure-sensors/suppliers/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/supply-chain/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/supply-chain/china-sensors/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/supply-chain/china-wearables/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/supply-chain/e-skin-odm/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/supply-chain/mvp-suppliers/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/supply-chain/smart-clothing-market/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/vision/hardware/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/components/vision/software/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/decisions-summary/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/getting-started/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/ml-basics/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/personalization-spec/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/real-time-feedback-spec/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/sdk-selection/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/swing-comparison/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/swing-phases/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/system-design/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/briefs/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/briefs/golf-advisor/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/briefs/hardware-engineer/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/briefs/mobile-developer/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/briefs/software-engineer/</loc>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/decisions/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/decisions/0001-multi-repo-structure/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/decisions/0002-lsm6dsv16x-imu/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/decisions/0003-flutter-mobile/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/decisions/0004-simplified-4-module-architecture/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/decisions/0005-esp32-s3-microcontroller/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/decisions/0006-onnx-runtime-deployment/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/guides/ml-basics/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/guides/sdk-selection/</loc>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/research/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/research/biomechanics-101/</loc>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/research/biomechanics-benchmarks/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/research/biomechanics-glossary/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/research/competitor-metrics-comparison/</loc>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/research/sensor-metric-mapping/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/research/visualization-tools-evaluation/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/personalization/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/real-time-feedback/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/swing-comparison/</loc>
+         <lastmod>2025-12-19</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/swing-phases/</loc>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/platform/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/platform/mvp-prototype-code/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/platform/ml-training/datasets/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/platform/ml-training/visual-feedback/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/platform/mobile/development/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/business-model/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/channel-strategy/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/entry-strategy/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/exit-strategy/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/ip-strategy/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/market-analysis/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/market-timing/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/pain-points/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/pricing-strategy/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/product-strategy/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/regulatory/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/unit-economics/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/user-personas/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/competitors/imu-based/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/competitors/multi-sensor/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/competitors/smart-clothing/</loc>
-         <lastmod>2025-12-18</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/product/competitors/vision-based/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/reference/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/reference/academic-datasets/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/reference/business-glossary/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/reference/golf-glossary/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/reference/golf-research/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/reference/open-source-tools/</loc>
-         <lastmod>2025-12-18</lastmod>
+         <lastmod>2025-12-19</lastmod>
     </url>
 </urlset>
