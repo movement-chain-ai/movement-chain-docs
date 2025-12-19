@@ -37,4 +37,4 @@
 ## 相关文档
 
 - [高尔夫术语表](golf-glossary.md) - 高尔夫专业术语
-- [市场分析](../product/market-analysis.md) - 市场规模数据
+- [市场分析](../business-plan/market-analysis.md) - 市场规模数据

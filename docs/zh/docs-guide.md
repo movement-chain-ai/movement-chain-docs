@@ -11,8 +11,8 @@
 │                      MOVEMENT CHAIN AI DOCUMENTATION                        │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
-│   product/          WHY we build this                                       │
-│   ────────          Market opportunity, users, value proposition            │
+│   business-plan/    WHY we build this                                       │
+│   ──────────────    Market opportunity, users, value proposition            │
 │                     Audience: Investors, PMs, Business                      │
 │                                                                             │
 │   design/           WHAT we build                                           │
@@ -42,10 +42,10 @@
 
 ## Section Details
 
-### product/ — Business Case
+### business-plan/ — Business Case
 
 ```text
-product/
+business-plan/
 ├── index.md                    # Navigation hub
 ├── market-analysis.md          # 市场分析
 ├── pain-points.md              # 市场痛点
@@ -159,9 +159,9 @@ reference/
 ### For Investors (15 min)
 
 ```text
-1. product/entry-strategy.md    → Why we're different
-2. product/product-strategy.md  → Market positioning
-3. product/market-analysis.md   → Market opportunity
+1. business-plan/entry-strategy.md    → Why we're different
+2. business-plan/product-strategy.md  → Market positioning
+3. business-plan/market-analysis.md   → Market opportunity
 ```
 
 ### For New Team Members (Role-Based)
@@ -199,9 +199,15 @@ reference/
 
 | Pattern | Example | Use For |
 |---------|---------|---------|
+<<<<<<< HEAD
 | `index.md` | `product/index.md` | Section navigation hub |
 | `<topic>.md` | `specs/swing-phases.md` | Single topic document |
 | `<topic>.md` in specs/ | `specs/real-time-feedback.md` | Formal specifications |
+=======
+| `index.md` | `business-plan/index.md` | Section navigation hub |
+| `<topic>.md` | `swing-phases.md` | Single topic document |
+| `<topic>-spec.md` | `real-time-feedback-spec.md` | Formal specifications |
+>>>>>>> e94c977 (重命名 product/ 为 business-plan/)
 | `<number>-<name>.md` | `0002-lsm6dsv16x-imu.md` | ADRs (sequential) |
 | `hardware.md` / `suppliers.md` | `imu/hardware.md` | Component docs |
 

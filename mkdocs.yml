@@ -105,30 +105,30 @@ nav:
   - 文档导航: docs-guide.md
 
   - 商业计划:
-      - product/index.md
+      - business-plan/index.md
       - 市场洞察:
-          - 市场分析: product/market-analysis.md
-          - 市场痛点: product/pain-points.md
-          - 用户画像: product/user-personas.md
+          - 市场分析: business-plan/market-analysis.md
+          - 市场痛点: business-plan/pain-points.md
+          - 用户画像: business-plan/user-personas.md
           - 竞品分析:
-              - product/competitors/imu-based.md
-              - product/competitors/vision-based.md
-              - product/competitors/multi-sensor.md
-              - product/competitors/smart-clothing.md
+              - business-plan/competitors/imu-based.md
+              - business-plan/competitors/vision-based.md
+              - business-plan/competitors/multi-sensor.md
+              - business-plan/competitors/smart-clothing.md
       - 商业模式:
-          - 商业模式画布（待补充）: product/business-model.md
-          - 定价策略（待补充）: product/pricing-strategy.md
-          - 单位经济学: product/unit-economics.md
+          - 商业模式画布（待补充）: business-plan/business-model.md
+          - 定价策略（待补充）: business-plan/pricing-strategy.md
+          - 单位经济学: business-plan/unit-economics.md
       - 进入市场:
-          - 进入策略: product/entry-strategy.md
-          - 渠道策略（待补充）: product/channel-strategy.md
-          - 市场时机（待补充）: product/market-timing.md
-      - 产品战略: product/product-strategy.md
+          - 进入策略: business-plan/entry-strategy.md
+          - 渠道策略（待补充）: business-plan/channel-strategy.md
+          - 市场时机（待补充）: business-plan/market-timing.md
+      - 产品战略: business-plan/product-strategy.md
       - 合规与风险:
           - 风险管理: risk-management.md
-          - 法规与合规（待补充）: product/regulatory.md
-          - 知识产权（待补充）: product/ip-strategy.md
-      - 退出策略（待补充）: product/exit-strategy.md
+          - 法规与合规（待补充）: business-plan/regulatory.md
+          - 知识产权（待补充）: business-plan/ip-strategy.md
+      - 退出策略（待补充）: business-plan/exit-strategy.md
 
   - 系统设计:
       - design/index.md

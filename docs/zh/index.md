@@ -34,7 +34,7 @@
 
 | 章节 | 内容 | 读者 |
 |-----|------|-----|
-| [产品战略](product/index.md) | MVP规格、路线图、市场验证、竞品分析 | 投资人、产品经理 |
+| [商业计划](business-plan/index.md) | MVP规格、路线图、市场验证、竞品分析 | 投资人、产品经理 |
 | [系统设计](design/system-design.md) | AI架构、融合算法、ADR决策 | 架构师、工程师 |
 | [硬件组件](components/index.md) | IMU/EMG/Vision规格、供应商 | 硬件工程师 |
 | [开发平台](platform/index.md) | Flutter移动端、ML训练管道 | 开发者 |
