@@ -392,6 +392,7 @@ class StatisticalReference:
 你的挥杆 → CNN/Transformer → 潜在空间 → 比较嵌入向量
 ```
 
+<!-- markdown-link-check-disable-next-line -->
 **使用者**: [SwingNet/GolfDB](https://github.com/wmcnally/golfdb), [GolfMate](https://www.researchgate.net/publication/374686675)
 
 **工作原理**:
@@ -489,7 +490,7 @@ def normalize_pose(keypoints):
 │  1. 记录用户前 10 次挥杆                                     │
 │  2. 用户标记"最佳"挥杆 或 系统选择最高分                     │
 │  3. 未来挥杆通过 DTW 与个人最佳比较                          │
-│  4. 规则引擎标记具体问题 (X-Factor < 30°, 核心激活弱等)      │
+│  4. 规则引擎标记具体问题 (X-Factor < 20°, 核心激活弱等)      │
 │                                                              │
 │  参考数据: 个人最佳 + 规则阈值                               │
 │                                                              │
