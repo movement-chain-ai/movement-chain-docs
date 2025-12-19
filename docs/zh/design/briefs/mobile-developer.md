@@ -168,7 +168,7 @@ Movement Chain AI 是一个基于计算机视觉和传感器融合的高尔夫�
 
 ### 系统设计
 
-1. [实施路线图](../implementation-roadmap.md)
+1. [系统设计](../system-design.md)
    - MVP 管道架构
    - 传感器融合策略
    - 规则引擎阈值

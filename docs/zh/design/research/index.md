@@ -77,7 +77,7 @@
 
 ```mermaid
 graph TD
-    A[研究与标准] --> B[implementation-roadmap.md]
+    A[研究与标准] --> B[system-design.md]
     A --> C[swing-comparison.md]
     A --> D[biomechanics-glossary.md]
 
@@ -93,7 +93,7 @@ graph TD
 
 | 文档 | 内容 | 本节提供 |
 |------|------|---------|
-| [实施路线图](../implementation-roadmap.md) | MVP 范围与规划 | 规则阈值的科学依据 |
+| [系统设计](../system-design.md) | MVP 范围与规划 | 规则阈值的科学依据 |
 | [挥杆对比策略](../swing-comparison.md) | 四种对比方法 | 职业参考数据来源 |
 | [术语表](biomechanics-glossary.md) | 生物力学术语 | 140+ 专业术语定义 |
 

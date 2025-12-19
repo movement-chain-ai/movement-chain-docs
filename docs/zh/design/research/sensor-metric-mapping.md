@@ -549,7 +549,7 @@ def calculate_activation_ratio(mock_emg):
 
 ## 7. 相关文档 Related Documents
 
-- [实施路线图](../implementation-roadmap.md): MVP 技术架构和构建顺序
+- [系统设计](../system-design.md): MVP 技术架构和构建顺序
 - [挥杆对比分析](../swing-comparison.md): Pro vs Amateur 的生物力学差异
 - [生物力学术语表](./biomechanics-glossary.md): 技术术语定义
 - [生物力学基准值](./biomechanics-benchmarks.md): 文献验证的正常范围

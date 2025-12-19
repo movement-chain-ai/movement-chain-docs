@@ -71,7 +71,7 @@ product/
 ```text
 design/
 ├── index.md                    # Navigation hub
-├── implementation-roadmap.md   # ⭐ 总纲 - START HERE
+├── system-design.md            # ⭐ 总纲 - START HERE
 ├── briefs/                     # Role-specific onboarding
 │   ├── index.md                # Brief overview
 │   ├── software-engineer.md    # For Python/ML engineers
@@ -98,7 +98,7 @@ design/
 
 **Key Documents**:
 
-- `implementation-roadmap.md` — ⭐ **Start here** for technical understanding (replaces system-design.md)
+- `system-design.md` — ⭐ **Start here** for technical understanding
 - `briefs/` — Role-specific guides for new team members
 - `swing-phases.md` — How we segment a golf swing
 - `real-time-feedback-spec.md` — The 3 feedback modes innovation
@@ -167,7 +167,7 @@ reference/
 ### For New Team Members (Role-Based)
 
 ```text
-1. design/implementation-roadmap.md  → ⭐ Start here (总纲)
+1. design/system-design.md  → ⭐ Start here (总纲)
 2. Then read YOUR role brief:
    - Software Engineer  → design/briefs/software-engineer.md
    - Mobile Developer   → design/briefs/mobile-developer.md
@@ -178,7 +178,7 @@ reference/
 ### For Engineers (45 min)
 
 ```text
-1. design/implementation-roadmap.md  → Architecture overview (总纲)
+1. design/system-design.md           → Architecture overview (总纲)
 2. design/swing-phases.md            → Algorithm: phase detection
 3. design/real-time-feedback-spec.md → 3 feedback modes
 4. design/getting-started.md         → Test with mock data

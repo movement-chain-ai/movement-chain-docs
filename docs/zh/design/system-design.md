@@ -1,10 +1,24 @@
-# 实施路线图 Implementation Roadmap
+# 系统设计 System Design
 
-> **文档角色**: 总纲 - 将所有详细规格文档串联成可执行的实施计划
+> **文档角色**: 总纲 (Hub) - 系统核心设计文档，所有详细规格文档的入口
 >
 > **目标读者**: 技术负责人、新加入的团队成员、投资者
 >
-> **阅读时间**: 20分钟
+> **阅读时间**: 25分钟
+
+---
+
+## 0. 背景知识 (阅读前提)
+
+在深入系统设计前，建议先了解高尔夫生物力学基础：
+
+| 文档 | 内容 | 阅读时间 |
+|------|------|----------|
+| **[📖 生物力学入门](research/biomechanics-101.md)** | 7章从零开始学习高尔夫生物力学 | ~90分钟 |
+| **[📚 生物力学术语表](research/biomechanics-glossary.md)** | 140+ 专业术语定义，团队沟通标准 | 按需查阅 |
+| **[📊 生物力学基准值](research/biomechanics-benchmarks.md)** | 职业/业余选手研究验证的基准数据 | ~15分钟 |
+
+> 💡 **快速入口**: 如果时间有限，至少读完 [生物力学入门](research/biomechanics-101.md) 的第1-3章。
 
 ---
 
@@ -17,6 +31,8 @@
 **核心差异化**: EMG 肌肉激活检测 — 竞品只能告诉你"什么错了"，我们能告诉你"为什么错了"。
 
 ### 1.2 MVP 范围
+
+> 📐 **架构决策**: 4模块架构设计详见 [ADR-0004](decisions/0004-simplified-4-module-architecture.md)
 
 | 功能 | MVP Phase 1 | Phase 2 | Phase 3 | 备注 |
 |------|:-----------:|:-------:|:-------:|------|
@@ -64,6 +80,8 @@
 
 基于 [传感器指标映射](research/sensor-metric-mapping.md) 和 [生物力学基准值](research/biomechanics-benchmarks.md)。
 
+> 🔍 **竞品对比**: 与 OnForm/Sportsbox 的指标差异见 [竞品指标对比](research/competitor-metrics-comparison.md)
+
 #### Vision 指标 (MediaPipe 33关键点)
 
 | 指标 | 检测方法 | 阈值 | 来源 |
@@ -93,6 +111,8 @@
 
 ### 2.2 MVP 规则引擎 (6条)
 
+> 📋 **详细规格**: 规则的完整触发逻辑、反馈模式、延迟要求见 [实时反馈规格](real-time-feedback-spec.md)
+
 #### P0 - 严重问题 (必须修正)
 
 | # | 规则 | 条件 | 反馈示例 |
@@ -112,6 +132,13 @@
 ---
 
 ## 3. 构建顺序
+
+> **相关文档**:
+>
+> - [8阶段挥杆检测](swing-phases.md) - 阶段划分算法与代码实现
+> - [挥杆对比策略](swing-comparison.md) - 4种对比方法 (Pro/Personal Best/Statistical/Learned)
+> - [实时反馈规格](real-time-feedback-spec.md) - 3种反馈模式详细规格
+> - [快速入门](getting-started.md) - 无硬件测试指南
 
 ### 3.1 Phase 1: Vision Pipeline (Week 1-2)
 
@@ -216,6 +243,11 @@ flowchart LR
 
 ## 4. 技术栈
 
+> **相关文档**:
+>
+> - [SDK 选型](sdk-selection.md) - MediaPipe/NeuroKit2/imufusion 等 SDK 对比
+> - [机器学习基础](ml-basics.md) - 挥杆分析 ML 模型入门
+
 ### 4.1 确认的技术选型
 
 | 层级 | 技术 | 决策依据 |
@@ -278,7 +310,7 @@ flowchart LR
 
 #### 第一步: 理解总体架构
 
-- **[本文档]** implementation-roadmap.md ← 你在这里
+- **[本文档]** system-design.md ← 你在这里
 
 #### 第二步: 理解核心算法
 
@@ -303,9 +335,22 @@ flowchart LR
 
 ---
 
-## 7. 待解决问题
+## 7. 未来路线图 (Phase 2+)
 
-### 7.1 需要验证的假设
+MVP 完成后的技术储备和扩展方向：
+
+| 方向 | 文档 | 内容 |
+|------|------|------|
+| **个性化调优** | [个性化规格](personalization-spec.md) | 按性别/年龄/体型调整阈值 |
+| **调试可视化** | [可视化工具评估](research/visualization-tools-evaluation.md) | Rerun 多模态调试、TAPIR 球杆追踪 |
+
+> 💡 **亮点发现**: [Rerun.io](https://rerun.io) 支持 Vision+IMU+EMG 同时间轴可视化，是我们的首选调试工具。[TAPIR](https://github.com/google-deepmind/tapnet) 可实现球杆头追踪，用软件替代 $5000+ 的 Trackman 雷达。
+
+---
+
+## 8. 待解决问题
+
+### 8.1 需要验证的假设
 
 | 假设 | 验证方法 | 负责人 |
 |------|----------|--------|
@@ -314,7 +359,7 @@ flowchart LR
 | 用户能理解LLM生成的反馈 | 用户测试 | 产品 |
 | 6条规则覆盖主要问题 | 教练评审 | 高尔夫顾问 |
 
-### 7.2 需要做的决策
+### 8.2 需要做的决策
 
 | 决策 | 选项 | 截止日期 |
 |------|------|----------|
@@ -322,7 +367,7 @@ flowchart LR
 | LLM Provider | OpenAI / Claude / 本地 | Week 4 |
 | 是否支持录制保存 | Yes / No | Week 5 |
 
-### 7.3 已知风险
+### 8.3 已知风险
 
 | 风险 | 影响 | 缓解措施 |
 |------|------|----------|
@@ -332,7 +377,7 @@ flowchart LR
 
 ---
 
-## 8. 版本历史
+## 9. 版本历史
 
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|

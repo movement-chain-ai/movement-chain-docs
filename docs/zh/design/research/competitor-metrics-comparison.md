@@ -469,7 +469,7 @@ EMG 疲劳指标:
 
 - [传感器指标映射](sensor-metric-mapping.md) - 三模态系统能力
 - [生物力学基准值](biomechanics-benchmarks.md) - 职业/业余对比数据
-- [实施路线图](../implementation-roadmap.md) - MVP 范围定义
+- [系统设计](../system-design.md) - MVP 范围定义
 
 ---
 
