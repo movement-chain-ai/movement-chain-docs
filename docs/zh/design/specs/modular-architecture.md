@@ -205,6 +205,28 @@ flowchart TB
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
+!!! tip "🔧 调试工具: Rerun 时间轴验证"
+
+    **问题**: 如何验证三个传感器是否真的对齐到 <10ms?
+
+    **Rerun 解决方案**:
+    ```text
+    ┌─────────────────────────────────────────────────────────────┐
+    │  Rerun 时间轴视图                                           │
+    ├─────────────────────────────────────────────────────────────┤
+    │  📷 Vision:  [帧45] ─────────────●──────── (Top 检测)       │
+    │  🔄 IMU:     ─────────────────●────────── (gyro_z 零交叉)  │
+    │  💪 EMG:     ───────────────●──────────── (核心激活起始)    │
+    │                             ↑                               │
+    │                      如果三个●不在同一垂直线 → 同步有问题    │
+    └─────────────────────────────────────────────────────────────┘
+    ```
+
+    拖动时间轴到 Impact 时刻，三个传感器的事件点应该对齐。
+    偏差 >10ms 说明时间同步需要调整。
+
+    > 详见 [可视化工具评估](../research/visualization-tools-evaluation.md)
+
 ### 2.5 融合引擎: 三大机制
 
 !!! info "融合不是简单叠加，而是三种机制的协同"
@@ -252,6 +274,20 @@ flowchart TB
   │  EMG = 因果检查 (肌肉是否正确激活?)                         │
   └─────────────────────────────────────────────────────────────┘
 ```
+
+!!! tip "🔧 调试工具: 可视化交叉验证"
+
+    **问题**: 如何确认 Vision 和 IMU 的阶段检测是否一致?
+
+    **Rerun 解决方案**:
+
+    | 通道 | 显示内容 | 验证点 |
+    |-----|---------|-------|
+    | 视频通道 | 骨架叠加 + 阶段标签 | 身体"看起来"像 Top 吗? |
+    | IMU 曲线 | gyro_z 波形 + 零交叉标记 | 角速度是否过零? |
+    | 置信度曲线 | 融合置信度 0-1 | 不一致时置信度会下降 |
+
+    当 Vision 说 "Top" 但 IMU 还在运动 → 置信度曲线会下降 → 一眼看出问题
 
 #### 机制 3: 异常检测 (Anomaly Detection)
 
@@ -428,6 +464,19 @@ flowchart TB
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
+!!! tip "🔧 调试工具: 验证反馈时机"
+
+    **问题**: 反馈是否在正确的时刻触发?
+
+    **Rerun 调试流程**:
+
+    1. 录制一次挥杆到 `.rrd` 文件
+    2. 在时间轴上标记:
+        - 规则触发时刻 (如 `ARMS_BEFORE_CORE` 在 T=720ms 触发)
+        - 对应的 EMG 激活时刻 (Core=640ms, Forearm=580ms)
+    3. 验证规则逻辑是否正确
+    4. 反复回放同一录制，调优阈值直到反馈时机合理
+
 ### 2.9 研究验证的阈值参考
 
 所有阈值来自文献研究，详见 [生物力学基准值](../research/biomechanics-benchmarks.md):
@@ -485,6 +534,21 @@ flowchart TB
 - 33 关键点足够计算 X-Factor、肩转、髋转
 - 不需要任何训练数据
 
+!!! tip "🔧 调试工具: MediaPipe 骨架可视化"
+
+    Rerun 官方提供 [human_pose_tracking](https://rerun.io/examples/video-image/human_pose_tracking) 示例:
+
+    ```bash
+    pip install rerun-sdk
+    python -m rerun_demos.human_pose_tracking
+    ```
+
+    可验证:
+
+    - 33 关键点是否完整检测
+    - 关键点 visibility 是否足够 (遮挡问题)
+    - X-Factor 等特征计算是否正确 (叠加角度线)
+
 !!! note "备选方案"
 
     | 方案 | 精度 | 速度 | 何时考虑 |
@@ -523,6 +587,27 @@ flowchart TB
 - 峰值角速度: 800-1500°/s (职业范围)
 - 节奏比: 2.5-3.5:1 (理想范围)
 - 噪声模型: 高斯噪声 + 漂移模拟
+
+!!! tip "🔧 调试工具: IMU 曲线与阶段对齐"
+
+    **问题**: 模拟 IMU 数据的峰值/零交叉点是否正确?
+
+    **Rerun 解决方案**:
+
+    ```text
+    gyro_z (°/s)
+         │
+    1200 ┤                    ●─── Impact 峰值
+         │                   ╱│
+     600 ┤                  ╱ │
+         │                 ╱  │
+       0 ┤────────────●───╱───┴──── Top (零交叉)
+         │   Address   ╲ ╱
+    -600 ┤              V
+         └────────────────────────────→ time
+    ```
+
+    Rerun 曲线视图可以自动检测峰值和零交叉，与视频帧同步验证
 
 #### 3.2.1 模拟 IMU 数据生成
 
@@ -584,6 +669,28 @@ class SimulatedIMUFrame:
 - 正确模式: Core 先于 Forearm 激活 (>20ms)
 - 错误模式: Forearm 先于 Core (模拟"手臂先动"问题)
 - 包络处理: RMS 平滑后归一化到 0-100%
+
+!!! tip "🔧 调试工具: EMG 激活时序可视化"
+
+    **问题**: 如何验证 Core 真的比 Forearm 先激活?
+
+    **Rerun 解决方案**:
+
+    ```text
+    EMG 包络 (归一化)
+      1.0│      Core (红)     Forearm (蓝)
+         │        ┌──╮           ┌──╮
+      0.5│       ╱    ╲         ╱    ╲
+         │      ╱      ╲       ╱      ╲
+      0.0├─────●────────╲─────●────────╲────→ time
+              ↑ Core     ╲    ↑ Forearm
+              onset       ╲   onset
+              (570ms)      ╲  (720ms)
+                            ╲
+                         gap = 150ms ✓
+    ```
+
+    两条 EMG 曲线叠加显示，onset 标记一目了然
 
 #### 3.3.1 模拟 EMG 数据生成
 
@@ -711,6 +818,22 @@ FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模�
 | 假蓄力检测 | `detect_false_coil()` | X-Factor 高但核心肌群未激活 | Vision + EMG |
 | 力量链验证 | `verify_force_chain()` | 三模态数据一致性验证 | Vision + IMU + EMG |
 | 诊断入口 | `run_fusion_diagnostics()` | 整合所有诊断，返回主要反馈 | All |
+
+!!! tip "🔧 调试工具: 诊断规则验证"
+
+    **问题**: 规则是否在正确的条件下触发?
+
+    **Rerun 调试流程**:
+
+    1. 录制一个 "ARMS_BEFORE_CORE" 问题挥杆
+    2. 在 Rerun 中标记:
+        - EMG Core onset: 640ms
+        - EMG Forearm onset: 580ms
+        - 规则触发时刻: 720ms
+    3. 验证: `timing_gap = 580 - 640 = -60ms < 0` → 规则应该触发 ✓
+    4. 如果规则没触发 → 检查阈值设置
+
+    保存 `.rrd` 文件作为回归测试用例
 
 **诊断严重度分级**:
 
@@ -844,6 +967,21 @@ Real EMG ───────────┼→ Weighted Fusion → 12 Metrics 
 训练数据: ~1000 videos (for BiGRU/LSTM)
 硬件: 手机 + LSM6DSV16X + DFRobot EMG
 ```
+
+!!! info "💡 Rerun 集成时机建议"
+
+    基于 [system-design.md §3](../system-design.md#3-构建顺序) 的构建顺序:
+
+    | 开发阶段 | 周数 | Rerun 使用场景 | 优先级 |
+    |---------|-----|---------------|--------|
+    | **Phase 1: Vision Pipeline** | Week 1-2 | 验证 MediaPipe 骨架叠加、X-Factor 计算 | ⭐ 必须 |
+    | **Phase 2: Mock Sensor** | Week 3 | 可视化 IMU/EMG 模拟数据与视频的时间对齐 | ⭐ 必须 |
+    | **Phase 3: Rule Engine** | Week 4 | 调优规则阈值、录制问题场景反复回放 | ⭐ 必须 |
+    | **Phase 4: Feedback** | Week 5 | 验证反馈触发时机与动作阶段同步 | 🔵 推荐 |
+    | **Phase 5: Mobile App** | Week 6-7 | 对比移动端 vs 桌面端的检测结果 | 🔵 推荐 |
+    | **Phase 6: User Testing** | Week 8 | 录制用户测试问题 .rrd 分享调试 | 🔵 推荐 |
+
+    **建议**: 从 Phase 1 第一天就集成 Rerun，不要等到出问题再加
 
 ---
 
@@ -1079,7 +1217,71 @@ Vision + Real IMU + Real EMG → [Kalman Filter] → Output
 
 ---
 
-## 10. 相关文档 Related Documents
+## 10. Rerun 调试工具汇总 Debugging Tools Summary
+
+本文档多处提到 [Rerun](https://rerun.io/) 作为多模态数据调试工具。本节汇总所有调试场景。
+
+### 10.1 快速开始
+
+```bash
+# 安装
+pip install rerun-sdk
+
+# 验证 MediaPipe 姿态可视化 (官方示例)
+python -m rerun_demos.human_pose_tracking
+
+# 在你的代码中使用
+import rerun as rr
+rr.init("movement-chain", spawn=True)
+rr.log("video/frame", rr.Image(frame))
+rr.log("imu/gyro_z", rr.Scalar(gyro_z))
+rr.log("emg/core", rr.Scalar(core_activation))
+```
+
+### 10.2 调试场景速查表
+
+| 场景 | 相关章节 | Rerun 功能 | 解决的问题 |
+|------|---------|-----------|-----------|
+| **时间同步验证** | [§2.4](#24-时间同步策略) | 时间轴视图 + 多通道对齐 | 验证 Vision/IMU/EMG 是否 <10ms 对齐 |
+| **交叉验证可视化** | [§2.5](#机制-2-双重三重验证-cross-validation) | 曲线叠加 + 置信度通道 | 验证 Vision 和 IMU 阶段检测一致性 |
+| **反馈时机验证** | [§2.8](#28-用户反馈翻译层) | 录制 .rrd + 反复回放 | 验证规则触发时机是否正确 |
+| **MediaPipe 骨架** | [§3.1](#31-pose-block) | 官方 human_pose_tracking | 验证 33 关键点检测和特征计算 |
+| **IMU 曲线分析** | [§3.2](#32-imu-block) | 峰值/零交叉自动检测 | 验证模拟/真实 IMU 数据质量 |
+| **EMG 激活时序** | [§3.3](#33-emg-block) | 双曲线叠加 + onset 标记 | 验证 Core 是否先于 Forearm 激活 |
+| **诊断规则调试** | [§4.2.1](#421-核心诊断算法) | 标记触发点 + 回归测试 | 验证 ARMS_BEFORE_CORE 等规则逻辑 |
+
+### 10.3 开发阶段使用建议
+
+```text
+Phase 1 (Week 1-2): Vision Pipeline
+├── 必须: 验证 MediaPipe 骨架叠加
+├── 必须: 验证 X-Factor 等特征计算
+└── 建议: 建立第一批 .rrd 测试用例
+
+Phase 2 (Week 3): Mock Sensor
+├── 必须: 可视化 IMU/EMG 模拟数据与视频对齐
+└── 必须: 验证时间同步 <10ms
+
+Phase 3 (Week 4): Rule Engine
+├── 必须: 调优规则阈值
+├── 必须: 录制"正确"和"错误"挥杆对比
+└── 建议: 保存问题场景 .rrd 文件
+
+Phase 4+ (Week 5-8): Integration & Testing
+├── 推荐: 验证移动端 vs 桌面端检测一致性
+└── 推荐: 分享 .rrd 给团队成员协作调试
+```
+
+### 10.4 详细评估
+
+关于 Rerun 的完整技术评估、竞品对比、未来 TAPIR 球杆追踪规划，详见:
+
+- **[可视化工具评估](../research/visualization-tools-evaluation.md)** — 为什么选择 Rerun 而非 Foxglove/PlotJuggler
+- **[system-design.md §7](../system-design.md#7-未来规划)** — 项目整体技术路线图
+
+---
+
+## 11. 相关文档 Related Documents
 
 ### 核心文档
 
@@ -1107,10 +1309,16 @@ Vision + Real IMU + Real EMG → [Kalman Filter] → Output
 
 ---
 
-## 11. 版本历史
+## 12. 版本历史
 
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|
+| 2.2 | 2025-12-19 | Rerun 调试工具集成 |
+| | | • §2.4, §2.5, §2.8: 新增时间同步、交叉验证、反馈验证的 Rerun 调试 tip |
+| | | • §3.1, §3.2, §3.3: 新增 POSE/IMU/EMG Block 的 Rerun 可视化 tip |
+| | | • §4.2.1: 新增诊断规则调试流程 |
+| | | • §5.3: 新增开发阶段 Rerun 集成时机表 |
+| | | • §10: 新增 Rerun 调试工具汇总章节 (快速开始、场景速查表、阶段建议) |
 | 2.1 | 2025-12-19 | 补充完整性更新 |
 | | | • §2.10: 新增竞品能力对比表 (OnForm, Sportsbox, K-VEST, GEARS) |
 | | | • §2.11: 新增 16 指标系统能力矩阵 |
