@@ -1,8 +1,19 @@
 # 高尔夫术语表
 
+> 本文档包含 Movement Chain AI 产品相关的高尔夫术语定义
+
 ---
 
-## 差点 (Handicap)
+## 术语索引
+
+| # | 术语 | 英文 | 简要说明 |
+|---|------|------|----------|
+| 1 | [差点](#1-差点-handicap) | Handicap | 球员水平指标，数字越小越好 |
+| 2 | [节奏比](#2-节奏比-tempo-ratio) | Tempo Ratio | 上杆/下杆时间比值，职业标准 3:1 |
+
+---
+
+## 1. 差点 (Handicap) {#1-差点-handicap}
 
 **一句话定义：** 差点就是你比标准杆多打的杆数，数字越小水平越高。
 
@@ -75,7 +86,7 @@
 
 ---
 
-## 节奏比 (Tempo Ratio) {#tempo-ratio}
+## 2. 节奏比 (Tempo Ratio) {#2-节奏比-tempo-ratio}
 
 **一句话定义：** 节奏比是上杆时间与下杆时间的比值，职业球手通常为 3:1。
 
@@ -120,3 +131,15 @@ $$
 - **关注过渡区**：上杆顶点到下杆启动的转换，最容易打乱节奏
 
 > 详细生物力学分析见：[生物力学入门 - 节奏比](../design/research/biomechanics-101.md#节奏比-tempo-ratio)
+
+---
+
+## 相关文档
+
+- [商业术语表](business-glossary.md) - 商业相关术语
+- [生物力学入门](../design/research/biomechanics-101.md) - 挥杆生物力学基础
+- [生物力学术语表](../design/research/biomechanics-glossary.md) - 专业生物力学术语
+
+---
+
+**最后更新**: 2025年12月18日
