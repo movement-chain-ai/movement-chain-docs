@@ -153,7 +153,7 @@ Movement Chain AI 是一个基于计算机视觉和传感器融合的高尔夫�
    - BLE 集成完整代码
    - 商业 App 对标分析 (Peloton, Nike Training Club)
 
-2. [实时反馈规范](../real-time-feedback-spec.md)
+2. [实时反馈规范](../specs/real-time-feedback.md)
    - 3 种反馈模式详细设计
    - 延迟预算分解 (170ms 总延迟)
    - 语音反馈库规范
@@ -173,7 +173,7 @@ Movement Chain AI 是一个基于计算机视觉和传感器融合的高尔夫�
    - 传感器融合策略
    - 规则引擎阈值
 
-2. [挥杆 8 阶段定义](../swing-phases.md)
+2. [挥杆 8 阶段定义](../specs/swing-phases.md)
    - 阶段检测算法
    - 时间窗口与触发条件
 
@@ -289,7 +289,7 @@ Movement Chain AI 是一个基于计算机视觉和传感器融合的高尔夫�
 ## 联系方式
 
 - **技术问题**: 查阅 [移动开发指南](../../platform/mobile/development.md) 或联系 Tech Lead
-- **设计问题**: 查阅 [实时反馈规范](../real-time-feedback-spec.md)
+- **设计问题**: 查阅 [实时反馈规范](../specs/real-time-feedback.md)
 - **架构决策**: 查阅 [ADR 列表](../decisions/index.md)
 
 ---

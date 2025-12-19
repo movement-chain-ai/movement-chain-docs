@@ -183,6 +183,7 @@
 **有效性 Effectiveness:**
 
 - **颜色约定 Color conventions:** "红色代表'错误'，绿色代表'正确'"在运动学习中广泛受到尊重 ([Springer, 2012](https://link.springer.com/article/10.3758/s13423-012-0333-8))
+<!-- markdown-link-check-disable-next-line -->
 - **肌肉激活颜色提示 Muscle activation color cues:** "显著增强了网球发球技能的学习，改善了肌肉协调" ([tandfonline.com, 2025](https://www.tandfonline.com/doi/full/10.1080/02640414.2025.2534276))
 
 **研究中的实施示例 Implementation Examples from Research:**
@@ -405,7 +406,7 @@ def align_movements_with_dtw(user_trajectory, reference_trajectory):
     return best_path, distance, aligned_user
 ```
 
-> **扩展阅读**: DTW 在挥杆分析中的完整应用 (四种参考模型、全身数据采集) 见 [挥杆对比策略](../../design/swing-comparison.md)
+> **扩展阅读**: DTW 在挥杆分析中的完整应用 (四种参考模型、全身数据采集) 见 [挥杆对比策略](../../design/specs/swing-comparison.md)
 
 ---
 

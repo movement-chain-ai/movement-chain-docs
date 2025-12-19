@@ -62,7 +62,7 @@
 !!! tip "创新: 慢动作模式"
     用户以慢速执行挥杆，系统可在动作过程中提供实时反馈。解决了"正常挥杆太快无法实时纠正"的难题。
 
-> 详细技术规格见: [实时反馈规范](../design/real-time-feedback-spec.md)
+> 详细技术规格见: [实时反馈规范](../design/specs/real-time-feedback.md)
 
 ---
 

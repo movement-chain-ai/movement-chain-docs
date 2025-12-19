@@ -78,12 +78,14 @@ design/
 │   ├── mobile-developer.md     # For Flutter developers
 │   ├── hardware-engineer.md    # For embedded engineers
 │   └── golf-advisor.md         # For golf coaches/experts
-├── swing-phases.md             # 8-phase GolfDB standard
-├── real-time-feedback-spec.md  # 3 feedback modes specification
-├── swing-comparison.md         # DTW and 4 comparison methods
-├── personalization-spec.md     # User-specific threshold adjustments
-├── ml-basics.md                # When to use ML vs physics
-├── sdk-selection.md            # Library choices with installation
+├── specs/                      # Technical specifications
+│   ├── swing-phases.md         # 8-phase GolfDB standard
+│   ├── real-time-feedback.md   # 3 feedback modes specification
+│   ├── swing-comparison.md     # DTW and 4 comparison methods
+│   └── personalization.md      # User-specific threshold adjustments
+├── guides/                     # Developer guides
+│   ├── ml-basics.md            # When to use ML vs physics
+│   └── sdk-selection.md        # Library choices with installation
 ├── research/
 │   ├── index.md                # Research overview
 │   ├── biomechanics-glossary.md    # 140+ terms
@@ -98,8 +100,8 @@ design/
 
 - `system-design.md` — ⭐ **Start here** for technical understanding
 - `briefs/` — Role-specific guides for new team members
-- `swing-phases.md` — How we segment a golf swing
-- `real-time-feedback-spec.md` — The 3 feedback modes innovation
+- `specs/swing-phases.md` — How we segment a golf swing
+- `specs/real-time-feedback.md` — The 3 feedback modes innovation
 
 ---
 
@@ -177,8 +179,8 @@ reference/
 
 ```text
 1. design/system-design.md           → Architecture overview (总纲)
-2. design/swing-phases.md            → Algorithm: phase detection
-3. design/real-time-feedback-spec.md → 3 feedback modes
+2. design/specs/swing-phases.md      → Algorithm: phase detection
+3. design/specs/real-time-feedback.md → 3 feedback modes
 4. platform/mvp-prototype-code.md    → Test with mock data
 ```
 
@@ -198,8 +200,8 @@ reference/
 | Pattern | Example | Use For |
 |---------|---------|---------|
 | `index.md` | `product/index.md` | Section navigation hub |
-| `<topic>.md` | `swing-phases.md` | Single topic document |
-| `<topic>-spec.md` | `real-time-feedback-spec.md` | Formal specifications |
+| `<topic>.md` | `specs/swing-phases.md` | Single topic document |
+| `<topic>.md` in specs/ | `specs/real-time-feedback.md` | Formal specifications |
 | `<number>-<name>.md` | `0002-lsm6dsv16x-imu.md` | ADRs (sequential) |
 | `hardware.md` / `suppliers.md` | `imu/hardware.md` | Component docs |
 

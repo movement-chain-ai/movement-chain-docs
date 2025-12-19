@@ -4,7 +4,7 @@
 >
 > **阅读对象**: 算法工程师、后端开发
 >
-> **相关文档**: [挥杆对比策略](../design/swing-comparison.md) - 全身数据采集设计与四种对比方法
+> **相关文档**: [挥杆对比策略](../design/specs/swing-comparison.md) - 全身数据采集设计与四种对比方法
 
 ---
 
@@ -106,7 +106,7 @@ class IMUMockGenerator:
     - pelvis: 骨盆 - 髋部旋转，先于手腕启动
     - upper_back: 上背 - 肩膀旋转，X-Factor 来源
 
-    设计依据: docs/zh/design/swing-comparison.md#imu-放置位置-研究验证
+    设计依据: docs/zh/design/specs/swing-comparison.md#imu-放置位置-研究验证
     """
 
     # 传感器位置及其特征参数
@@ -203,7 +203,7 @@ class EMGMockGenerator:
     - glutes: 臀大肌 - 重心转移，持续激活
     - lats: 背阔肌 - 上杆-下杆过渡，峰值在顶点
 
-    设计依据: docs/zh/design/swing-comparison.md#emg-肌群-高尔夫力量链
+    设计依据: docs/zh/design/specs/swing-comparison.md#emg-肌群-高尔夫力量链
     """
 
     # 肌群及其激活特征
@@ -348,7 +348,7 @@ class PoseMockGenerator:
 
     用于在没有摄像头的情况下测试管道，生成合理的高尔夫挥杆姿态序列。
 
-    设计依据: docs/zh/design/swing-comparison.md#mediapipe-33-关键点-按高尔夫相关性
+    设计依据: docs/zh/design/specs/swing-comparison.md#mediapipe-33-关键点-按高尔夫相关性
     """
 
     # MediaPipe 33 关键点名称

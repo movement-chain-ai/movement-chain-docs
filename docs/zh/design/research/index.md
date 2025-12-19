@@ -27,7 +27,7 @@
 | [竞品指标对比](competitor-metrics-comparison.md) | OnForm/Sportsbox vs 我们的指标覆盖 | **竞争分析、MVP范围** |
 | [可视化工具评估](visualization-tools-evaluation.md) | Rerun/Foxglove/PlotJuggler 对比 | **开发工具选型** |
 
-另见: [个性化规范](../personalization-spec.md) - 基于上述研究的阈值调整规范
+另见: [个性化规范](../specs/personalization.md) - 基于上述研究的阈值调整规范
 
 ---
 
@@ -78,7 +78,7 @@
 ```mermaid
 graph TD
     A[研究与标准] --> B[system-design.md]
-    A --> C[swing-comparison.md]
+    A --> C[specs/swing-comparison.md]
     A --> D[biomechanics-glossary.md]
 
     B --> E[规则引擎 9 条规则]
@@ -94,7 +94,7 @@ graph TD
 | 文档 | 内容 | 本节提供 |
 |------|------|---------|
 | [系统设计](../system-design.md) | MVP 范围与规划 | 规则阈值的科学依据 |
-| [挥杆对比策略](../swing-comparison.md) | 四种对比方法 | 职业参考数据来源 |
+| [挥杆对比策略](../specs/swing-comparison.md) | 四种对比方法 | 职业参考数据来源 |
 | [术语表](biomechanics-glossary.md) | 生物力学术语 | 140+ 专业术语定义 |
 
 ---
@@ -110,7 +110,7 @@ graph TD
 ### 对于产品经理
 
 1. 用 [传感器映射](sensor-metric-mapping.md) 理解差异化优势
-2. 用 [个性化规范](../personalization-spec.md) 规划功能路线图
+2. 用 [个性化规范](../specs/personalization.md) 规划功能路线图
 
 ### 对于硬件工程师
 

@@ -109,14 +109,14 @@ pip install streamlit
 
 ### 核心算法 ⭐
 
-- [**8 阶段挥杆检测**](../swing-phases.md) (20 分钟)
+- [**8 阶段挥杆检测**](../specs/swing-phases.md) (20 分钟)
   - 定义 8 个标准阶段及其检测方法
   - 包含完整检测代码和精度对比
   - **这是你的主要参考文档**
 
 ### 对比策略
 
-- [**挥杆对比方法**](../swing-comparison.md) (15 分钟)
+- [**挥杆对比方法**](../specs/swing-comparison.md) (15 分钟)
   - 4 种对比方法: 职业参考、个人最佳、统计参考、学习嵌入
   - DTW (Dynamic Time Warping) 实现
   - MVP 推荐: 规则引擎 + 个人最佳

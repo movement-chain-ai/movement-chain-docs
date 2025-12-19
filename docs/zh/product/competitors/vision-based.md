@@ -32,7 +32,7 @@
 !!! info "详细技术规范"
     教练录制设备、双视角要求、5 个关键检查点的检测方法和评估标准详见：
 
-    **[挥杆对比策略 - 视频录制规范 & 检查点](../../design/swing-comparison.md#视频录制规范-video-recording-standards)**
+    **[挥杆对比策略 - 视频录制规范 & 检查点](../../design/specs/swing-comparison.md#视频录制规范-video-recording-standards)**
 
 ### 快速参考
 

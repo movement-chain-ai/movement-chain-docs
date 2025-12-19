@@ -4,7 +4,7 @@
 >
 > **与 ADR 区别**: ADR 记录难以逆转的架构决策（硬件、框架），本文档记录相对容易更换的库选择（1-5 天工作量）
 >
-> **硬件/架构决策**: 见 [decisions/](decisions/index.md)
+> **硬件/架构决策**: 见 [decisions/](../decisions/index.md)
 
 ---
 
@@ -289,9 +289,9 @@ LSM6DSV16X (stm32duino): "latest"
 
 ## 相关文档
 
-- [系统设计](system-design.md) - 整体架构和数据流
-- [ADR 决策记录](decisions/index.md) - 架构决策快速参考
-- [MVP 原型代码](../platform/mvp-prototype-code.md) - 完整可运行示例（无需硬件）
+- [系统设计](../system-design.md) - 整体架构和数据流
+- [ADR 决策记录](../decisions/index.md) - 架构决策快速参考
+- [MVP 原型代码](../../platform/mvp-prototype-code.md) - 完整可运行示例（无需硬件）
 
 ---
 

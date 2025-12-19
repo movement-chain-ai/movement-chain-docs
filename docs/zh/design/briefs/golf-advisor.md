@@ -128,7 +128,7 @@ Movement Chain AI 是一个结合 **IMU 传感器 + 肌电图 (EMG) + 视觉分�
 
 ### 技术细节
 
-- [**挥杆 8 阶段细分**](../swing-phases.md)
+- [**挥杆 8 阶段细分**](../specs/swing-phases.md)
   - 每个阶段的详细定义
   - 检测方法和代码逻辑
   - 可检测的问题类型

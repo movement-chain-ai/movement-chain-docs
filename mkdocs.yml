@@ -139,12 +139,14 @@ nav:
           - 移动开发者: design/briefs/mobile-developer.md
           - 硬件工程师: design/briefs/hardware-engineer.md
           - 高尔夫顾问: design/briefs/golf-advisor.md
-      - design/swing-phases.md
-      - design/real-time-feedback-spec.md
-      - design/swing-comparison.md
-      - design/personalization-spec.md
-      - design/ml-basics.md
-      - design/sdk-selection.md
+      - 技术规格:
+          - 挥杆阶段: design/specs/swing-phases.md
+          - 实时反馈: design/specs/real-time-feedback.md
+          - 挥杆对比: design/specs/swing-comparison.md
+          - 个性化: design/specs/personalization.md
+      - 开发指南:
+          - ML 基础: design/guides/ml-basics.md
+          - SDK 选型: design/guides/sdk-selection.md
       - 研究与标准:
           - design/research/index.md
           - 生物力学入门: design/research/biomechanics-101.md

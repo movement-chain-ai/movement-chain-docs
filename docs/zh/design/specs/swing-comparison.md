@@ -537,11 +537,11 @@ def normalize_pose(keypoints):
 
 ## 相关文档
 
-- [系统设计](system-design.md) - 整体 MVP 管道架构
-- [视觉反馈](../platform/ml-training/visual-feedback.md) - DTW 实现代码, UI 模式
-- [视觉软件](../components/vision/software.md) - 关键点格式, RTMPose vs MediaPipe
-- [SDK 选型指南](sdk-selection.md) - dtw-python 等库选择
-- [术语表](research/biomechanics-glossary.md) - X-Factor, Kinetic Chain 等定义
+- [系统设计](../system-design.md) - 整体 MVP 管道架构
+- [视觉反馈](../../platform/ml-training/visual-feedback.md) - DTW 实现代码, UI 模式
+- [视觉软件](../../components/vision/software.md) - 关键点格式, RTMPose vs MediaPipe
+- [SDK 选型指南](../guides/sdk-selection.md) - dtw-python 等库选择
+- [术语表](../research/biomechanics-glossary.md) - X-Factor, Kinetic Chain 等定义
 
 ---
 
