@@ -1,0 +1,1134 @@
+# 模块化架构设计 Modular Architecture
+
+> **文档目的**: 定义 Movement Chain AI 的 LEGO 积木式模块化架构
+>
+> **核心理念**: 每个组件独立可替换，MVP 快速验证，渐进式升级
+>
+> **阅读时间**: 25 分钟
+
+---
+
+## 1. LEGO 哲学 Philosophy
+
+### 1.1 竞争壁垒: What/When/Why 价值层次
+
+!!! abstract "核心洞察: 为什么三模态融合是护城河"
+
+    ```text
+    ┌─────────────────────────────────────────────────────────────────────────────┐
+    │                    三模态系统的价值层次 VALUE HIERARCHY                       │
+    ├─────────────────────────────────────────────────────────────────────────────┤
+    │                                                                             │
+    │   竞品 (Vision-only):      "你的 X-Factor 是 22°"                           │
+    │                            → 用户知道 WHAT 错了                             │
+    │                                                                             │
+    │   竞品 (Vision+IMU):       "你的 X-Factor 是 22°，时序也有问题"              │
+    │                            → 用户知道 WHAT 和 WHEN                          │
+    │                                                                             │
+    │   你的系统 (Vision+IMU+EMG):                                                │
+    │                            "你的 X-Factor 是 22°，因为你的核心在手臂         │
+    │                             之后 40ms 才激活。专注于在下杆前收紧腹肌。"       │
+    │                            → 用户知道 WHAT, WHEN, 和 WHY                    │
+    │                                                                             │
+    │   ═══════════════════════════════════════════════════════════════════════  │
+    │                                                                             │
+    │   Vision = WHAT (空间位置 — 身体在哪里)                                      │
+    │   IMU    = WHEN (精确时序 — ±0.6ms 精度)                                    │
+    │   EMG    = WHY  (肌肉激活 — 为什么会这样动)                                  │
+    │                                                                             │
+    │   ⚡ 关键: 只有三模态融合才能检测"假性蓄力" (False Coil)                     │
+    │      — X-Factor 看起来正常 (45°)，但 EMG 显示核心从未激活                    │
+    │      — 这是竞品永远无法检测的问题                                            │
+    │                                                                             │
+    └─────────────────────────────────────────────────────────────────────────────┘
+    ```
+
+### 1.2 科学验证: 为什么这个方法正确
+
+我们的架构选择得到了最新研究的验证:
+
+!!! success "CaddieSet 研究 (CVPR 2025) — 关键发现"
+
+    **结论**: 对于高尔夫挥杆分析，特征工程 + 简单模型 **优于** 端到端深度学习
+
+    | 模型 | 球速预测 MSE | 方法 |
+    |------|-------------|------|
+    | Random Forest | **8.80** | Pose → 特征工程 → 传统ML |
+    | XGBoost | 10.15 | Pose → 特征工程 → 传统ML |
+    | Vision Transformer | 28.41 | 原始图像 → 深度学习 |
+    | MobileNet V3 | 32.32 | 原始图像 → 深度学习 |
+
+    **对我们架构的意义**:
+
+    - ✅ MediaPipe → 特征提取 (X-Factor, Tempo) → 分类器 = **科学验证的正确路径**
+    - ✅ 不需要复杂的 Video Transformer
+    - ✅ 高尔夫是**生物力学约束**的运动 — 领域特征比像素更有效
+    - ✅ 可解释的特征 → 可解释的反馈 (用户能理解为什么)
+
+### 1.3 LEGO 核心原则
+
+1. **模块独立** — 每个模块是独立的"积木块"，可以单独替换，接口保持稳定
+2. **快速验证** — MVP 用最简单的积木快速搭建，验证完整管道和用户价值
+3. **延迟决策** — 不提前设计"终态"，根据真实用户数据决定升级方向
+4. **数据驱动** — 复杂度来自训练数据，不来自代码 (AI 能写代码，但数据需要积累)
+5. **融合优先** — 单传感器准确性不如跨传感器验证重要
+
+### 1.4 技术不确定性管理
+
+我们面临多个技术不确定性:
+
+| 不确定性 | 选项 | MVP 策略 | 升级触发条件 |
+|---------|------|---------|-------------|
+| **分类器选择** | SwingNet vs BiGRU vs Transformer | SwingNet (预训练) | 积累 1000+ 视频后评估 |
+| **姿态估计** | MediaPipe vs RTMPose vs Custom | MediaPipe (最易集成) | 精度不足时升级 |
+| **传感器数据** | 真实 vs 模拟 IMU/EMG | 模拟 (验证管道) | 硬件就绪后替换 |
+| **融合方法** | Simple vs Rule-based vs ML | Simple Merge | 有足够融合数据后升级 |
+
+!!! tip "解决方案"
+    把这些不确定性封装成**可替换的积木块**，通过定义清晰的接口契约，让替换成本最小化。
+
+---
+
+## 2. 架构总览 Architecture Overview
+
+### 2.1 系统架构图
+
+```mermaid
+flowchart TB
+    subgraph INPUT["📥 输入层 INPUT LAYER"]
+        CAM["📷 Camera<br/>30fps 视频帧"]
+        IMU_IN["🔄 IMU<br/>1666Hz 角速度/加速度"]
+        EMG_IN["💪 EMG<br/>1000Hz 肌电信号"]
+    end
+
+    subgraph EXTRACT["⚙️ 提取层 EXTRACTION LAYER"]
+        POSE["🦴 POSE Block<br/>33 关键点 + 特征"]
+        IMU_BLK["📊 IMU Block<br/>相位 + 峰值速度 + 节奏"]
+        EMG_BLK["🔋 EMG Block<br/>激活时序 + 强度"]
+    end
+
+    subgraph ANALYZE["🧠 分析层 ANALYSIS LAYER"]
+        CLASSIFIER["🎯 CLASSIFIER Block<br/>8 阶段识别"]
+        FUSION["🔗 FUSION Block<br/>三模态融合引擎"]
+    end
+
+    subgraph OUTPUT["📤 输出层 OUTPUT LAYER"]
+        PHASES["🎬 8 Phases<br/>+ 置信度"]
+        METRICS["📊 12 Metrics<br/>+ 阈值判断"]
+        ANOMALY["⚠️ Anomalies<br/>+ 严重程度"]
+        FEEDBACK["💬 Feedback<br/>自然语言建议"]
+    end
+
+    CAM --> POSE
+    IMU_IN --> IMU_BLK
+    EMG_IN --> EMG_BLK
+
+    POSE --> CLASSIFIER
+    POSE --> FUSION
+    IMU_BLK --> FUSION
+    EMG_BLK --> FUSION
+
+    CLASSIFIER --> PHASES
+    FUSION --> METRICS
+    FUSION --> ANOMALY
+    FUSION --> FEEDBACK
+
+    click POSE "#31-pose-block"
+    click IMU_BLK "#32-imu-block"
+    click EMG_BLK "#33-emg-block"
+    click CLASSIFIER "#41-classifier-block"
+    click FUSION "#42-fusion-block"
+```
+
+### 2.2 架构层级说明
+
+| 层级 | 职责 | 积木块 | 关键输出 |
+|-----|------|--------|---------|
+| **📥 输入层** | 数据采集 | Camera, IMU, EMG (真实或模拟) | 原始传感器流 |
+| **⚙️ 提取层** | 特征提取 | [POSE](#31-pose-block), [IMU](#32-imu-block), [EMG](#33-emg-block) | 结构化特征 |
+| **🧠 分析层** | 智能分析 | [CLASSIFIER](#41-classifier-block), [FUSION](#42-fusion-block) | 阶段 + 指标 + 异常 |
+| **📤 输出层** | 结果输出 | 8阶段, 12指标, 异常标记, 自然语言反馈 | 用户可理解的建议 |
+
+### 2.3 Video-Only 模式能力边界
+
+!!! warning "重要: Video-Only 模式的局限性"
+
+    没有硬件时，系统只能提供部分能力:
+
+    | 能力 | Video-Only | 有硬件 (IMU+EMG) | 差异原因 |
+    |------|------------|-----------------|---------|
+    | **精确击球时刻** | ❌ ±33ms | ✅ ±0.6ms | 相机帧率限制 |
+    | **杆头速度** | ❌ 无法测量 | ⚠️ 间接推断 | 高速运动模糊 |
+    | **肌肉激活序列** | ❌ **不可能** | ✅ 直接测量 | 需要 EMG |
+    | **力链因果分析** | ❌ **不可能** | ✅ 直接验证 | 需要 EMG |
+    | **疲劳检测** | ❌ **不可能** | ✅ 振幅衰减 | 需要 EMG |
+    | **假性蓄力检测** | ❌ **不可能** | ✅ Vision+EMG 交叉 | 需要 EMG |
+    | X-Factor | ✅ ±3° | ✅ ±3° | Vision 足够 |
+    | 挥杆节奏 | ⚠️ ±2 帧 | ✅ <10ms | IMU 更精确 |
+    | 身体姿态角度 | ✅ ±5° | ✅ ±5° | Vision 足够 |
+
+    **结论**: Video-Only 是**入门级体验**，完整价值需要硬件支持。
+
+### 2.4 时间同步策略
+
+三模态融合的**基础**是精确的时间对齐:
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         时间同步策略 TIME SYNCHRONIZATION                    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   为什么 IMU 是主时钟 (MASTER CLOCK):                                        │
+│   ─────────────────────────────────────                                     │
+│   • IMU: 1666Hz = 0.6ms 分辨率 (最高)                                       │
+│   • EMG: 1000Hz = 1.0ms 分辨率                                              │
+│   • Vision: 30Hz = 33.3ms 分辨率 (最低)                                     │
+│                                                                             │
+│   对齐策略:                                                                  │
+│   ─────────────────────────────────────                                     │
+│   • Vision 30fps → 线性插值到 1666Hz (填补帧间空白)                          │
+│   • EMG 1000Hz → 三次样条插值上采样到 1666Hz                                 │
+│   • IMU 1666Hz → 主参考轴 (不变换)                                          │
+│                                                                             │
+│   ⚠️ 关键要求:                                                              │
+│   ─────────────────────────────────────                                     │
+│   • 时间同步误差 MUST < 10ms                                                │
+│   • 如果 > 10ms，交叉验证失去意义                                           │
+│   • 相位检测时间戳将不可靠                                                   │
+│                                                                             │
+│   实现方式:                                                                  │
+│   ─────────────────────────────────────                                     │
+│   • ESP32-S3 使用统一时钟源 (micros())                                      │
+│   • BLE 传输包含发送时间戳                                                   │
+│   • 手机端计算网络延迟并补偿                                                 │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 2.5 融合引擎: 三大机制
+
+!!! info "融合不是简单叠加，而是三种机制的协同"
+
+#### 机制 1: 互补性 (Complementarity)
+
+每个传感器测量其他传感器**无法测量**的内容:
+
+```text
+┌──────────────┐   ┌──────────────┐   ┌──────────────┐
+│    Vision    │   │     IMU      │   │     EMG      │
+├──────────────┤   ├──────────────┤   ├──────────────┤
+│ X-Factor    ✅│   │ X-Factor    ❌│   │ X-Factor    ❌│
+│ 身体姿态    ✅│   │ 身体姿态    ❌│   │ 身体姿态    ❌│
+│ 空间位置    ✅│   │ 空间位置    ❌│   │ 空间位置    ❌│
+│             │   │              │   │              │
+│ 击球时刻    ❌│   │ 击球时刻    ✅│   │ 击球时刻    ❌│
+│ 峰值速度    ❌│   │ 峰值速度    ✅│   │ 峰值速度    ❌│
+│ 3D 旋转     ❌│   │ 3D 旋转     ✅│   │ 3D 旋转     ❌│
+│             │   │              │   │              │
+│ 肌肉激活    ❌│   │ 肌肉激活    ❌│   │ 肌肉激活    ✅│
+│ 疲劳检测    ❌│   │ 疲劳检测    ❌│   │ 疲劳检测    ✅│
+│ 力链因果    ❌│   │ 力链因果    ❌│   │ 力链因果    ✅│
+└──────────────┘   └──────────────┘   └──────────────┘
+
+→ 融合 = 完整画面，不是部分视图
+```
+
+#### 机制 2: 双重/三重验证 (Cross-Validation)
+
+同一事件被多个传感器测量 → 捕获错误:
+
+```text
+示例: 检测 "Top of Backswing"
+
+  Vision 说: Frame 45 (±2帧 = ±66ms)
+  IMU 说:    T = 1.523s (gyro_z 零交叉, ±0.6ms)
+
+  如果 |vision_time - imu_time| > 100ms → 标记为检测错误
+  如果两者一致 → 高置信度时间戳
+
+  ┌─────────────────────────────────────────────────────────────┐
+  │  Ground Truth = IMU (更精确)                                │
+  │  Vision = 完整性检查 (身体是否"看起来"像 Top?)               │
+  │  EMG = 因果检查 (肌肉是否正确激活?)                         │
+  └─────────────────────────────────────────────────────────────┘
+```
+
+#### 机制 3: 异常检测 (Anomaly Detection)
+
+传感器间的**矛盾**揭示隐藏问题:
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         异常检测场景 ANOMALY SCENARIOS                       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   场景 1: 假性蓄力 (FALSE COIL) — 竞品无法检测!                              │
+│   ─────────────────────────────────────────────────────                     │
+│   IF: Vision 显示正常 X-Factor (45°)                                        │
+│   BUT: EMG 显示核心激活 < 50%                                               │
+│   THEN: "假性蓄力" — 看起来对但肌肉没参与                                   │
+│   → 用户反馈: "转肩看起来够了，但核心没发力。专注于收紧腹肌。"               │
+│                                                                             │
+│   场景 2: 代偿动作 (COMPENSATION)                                           │
+│   ─────────────────────────────────────────────────────                     │
+│   IF: IMU 显示快速旋转 (高角速度)                                           │
+│   BUT: EMG 显示核心未激活，前臂先于核心激活                                  │
+│   THEN: "代偿" — 速度来自错误的力量源                                       │
+│   → 用户反馈: "速度来自手臂，缺乏核心力量。让身体带动，别用手打。"           │
+│                                                                             │
+│   场景 3: 传感器故障                                                        │
+│   ─────────────────────────────────────────────────────                     │
+│   IF: Vision 显示大幅运动                                                   │
+│   BUT: IMU 显示静止                                                         │
+│   THEN: 传感器可能脱落或故障                                                │
+│   → 系统反馈: "请检查 IMU 传感器是否正确佩戴"                               │
+│                                                                             │
+│   ⚡ 关键洞察:                                                              │
+│   没有融合，你会认为挥杆基于单一指标是"好的"                                 │
+│   有了融合，你能捕获隐藏问题                                                 │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 2.6 积木块接口契约
+
+每个积木块有明确的输入/输出契约，确保可替换性:
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         积木块接口契约 BLOCK INTERFACE CONTRACTS             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   [POSE Block]                                                              │
+│   ─────────────────────────────────────────────────────                     │
+│   Input:  VideoFrame { rgb: [H, W, 3], timestamp_ms: int }                 │
+│   Output: PoseResult {                                                      │
+│       keypoints: [33 × {x: float, y: float, z: float, visibility: float}], │
+│       timestamp_ms: int,                                                    │
+│       features: {                                                           │
+│           x_factor: float,      // 肩髋分离角 (度)                          │
+│           s_factor: float,      // 肩部倾斜角 (度)                          │
+│           o_factor: float,      // 骨盆倾斜角 (度)                          │
+│           sway: float,          // 髋部侧移 (归一化)                        │
+│           lift: float           // 髋部抬升 (归一化)                        │
+│       }                                                                     │
+│   }                                                                         │
+│                                                                             │
+│   [IMU Block]                                                               │
+│   ─────────────────────────────────────────────────────                     │
+│   Input:  RawIMU { gyro: [x,y,z] °/s, accel: [x,y,z] g, timestamp_us: int }│
+│   Output: IMUFeatures {                                                     │
+│       phase: string,            // 当前检测到的阶段 (Address/Top/Impact/...)│
+│       phase_confidence: float,  // 阶段置信度 [0-1]                         │
+│       peak_velocity: float,     // 峰值角速度 (°/s)                         │
+│       tempo_ratio: float,       // 上杆/下杆时间比                          │
+│       timestamp_ms: int                                                     │
+│   }                                                                         │
+│                                                                             │
+│   [EMG Block]                                                               │
+│   ─────────────────────────────────────────────────────                     │
+│   Input:  RawEMG { channels: {core: [mV], forearm: [mV]}, timestamp_ms: int}│
+│   Output: EMGFeatures {                                                     │
+│       onset_times: {core_ms: int, forearm_ms: int},                        │
+│       activation_pct: {core: float, forearm: float},  // [0-1]             │
+│       timing_gap_ms: int,       // forearm_onset - core_onset              │
+│       fatigue_ratio: float,     // 当前/初始激活强度比                      │
+│       timestamp_ms: int                                                     │
+│   }                                                                         │
+│                                                                             │
+│   [CLASSIFIER Block]                                                        │
+│   ─────────────────────────────────────────────────────                     │
+│   Input:  PoseSequence [N × PoseResult]                                    │
+│   Output: ClassifierResult {                                                │
+│       phases: [N × {label: int, confidence: float}],  // 0-7 每帧          │
+│       phase_boundaries: [{phase: int, start_ms: int, end_ms: int}]         │
+│   }                                                                         │
+│                                                                             │
+│   [FUSION Block]                                                            │
+│   ─────────────────────────────────────────────────────                     │
+│   Input:  {                                                                 │
+│       pose: PoseResult[],                                                   │
+│       imu: IMUFeatures,                                                     │
+│       emg: EMGFeatures,                                                     │
+│       classifier: ClassifierResult                                          │
+│   }                                                                         │
+│   Output: FusionResult {                                                    │
+│       phases: [{label: str, start_ms: int, end_ms: int, confidence: float}],│
+│       metrics: {x_factor, tempo_ratio, core_forearm_gap, peak_velocity, ...}│
+│       anomalies: [{type: str, severity: str, description: str}],           │
+│       overall_confidence: float,                                            │
+│       feedback: [{rule: str, message_cn: str, message_en: str}]            │
+│   }                                                                         │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 2.7 置信度计算逻辑
+
+融合提升置信度的核心算法:
+
+| 验证条件 | 置信度变化 | 结果示例 |
+|---------|-----------|---------|
+| **基准** | 0.5 | 单传感器 |
+| Vision-IMU 阶段一致 | +0.25 | 双重验证 |
+| Vision-IMU 阶段不一致 | -0.15 | 需人工检查 |
+| EMG 序列正确 | +0.25 | 三重验证 |
+| EMG 无数据 | +0.0 | 保持 |
+| EMG 序列异常 | -0.10 | 标记问题 |
+
+**置信度示例**:
+
+- Vision=Top, IMU=Top, EMG=Correct → **1.0** (最高)
+- Vision=Top, IMU=Top, EMG=None → **0.75**
+- Vision=Top, IMU=Mid, EMG=None → **0.35** (需检查)
+
+!!! tip "算法实现"
+    完整 Python 代码见 [传感器指标映射 §7](../research/sensor-metric-mapping.md#7-融合置信度计算-fusion-confidence)
+
+### 2.8 用户反馈翻译层
+
+原始数据 → 规则引擎 → 自然语言反馈:
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    用户反馈翻译层 FEEDBACK TRANSLATION                       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   原始数据 → 规则触发 → 自然语言 → TTS/UI                                   │
+│                                                                             │
+│   示例 1: 运动链倒序                                                        │
+│   ─────────────────────────────────────────────────────                     │
+│   数据: emg_core_forearm_gap = -40ms                                        │
+│   规则: ARMS_BEFORE_CORE (P0 严重)                                          │
+│   CN: "让身体带动，别用手打"                                                │
+│   EN: "Let your body lead, don't swing with your arms"                     │
+│                                                                             │
+│   示例 2: X-Factor 不足                                                     │
+│   ─────────────────────────────────────────────────────                     │
+│   数据: x_factor = 22° (低于 35° 阈值)                                      │
+│   规则: LOW_X_FACTOR (P1 重要)                                              │
+│   CN: "肩膀多转一点，你的背还没拧紧"                                        │
+│   EN: "Turn your shoulders more - you haven't coiled your back yet"        │
+│                                                                             │
+│   示例 3: 假性蓄力 (只有三模态能检测!)                                       │
+│   ─────────────────────────────────────────────────────                     │
+│   数据: x_factor = 45° (正常) + emg_core_activation = 0.3 (低于 0.5)        │
+│   规则: FALSE_COIL (P0 严重)                                                │
+│   CN: "看起来转够了，但核心没发力。专注于收紧腹肌再下杆。"                   │
+│   EN: "Your turn looks good but your core isn't engaged. Focus on          │
+│        tightening your abs before starting the downswing."                 │
+│                                                                             │
+│   示例 4: 疲劳预警                                                          │
+│   ─────────────────────────────────────────────────────                     │
+│   数据: emg_fatigue_ratio = 0.65 (低于 0.7 阈值)                            │
+│   规则: FATIGUE_WARNING (P1 重要)                                           │
+│   CN: "你累了，休息一下再练，避免受伤"                                      │
+│   EN: "You're fatigued. Take a break to prevent injury."                   │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 2.9 研究验证的阈值参考
+
+所有阈值来自文献研究，详见 [生物力学基准值](../research/biomechanics-benchmarks.md):
+
+| 指标 | 阈值/范围 | 来源 | 用途 |
+|------|----------|------|------|
+| **X-Factor** | 35-55° (职业) | TPI Research | LOW_X_FACTOR 规则 |
+| **X-Factor Stretch** | >10° 增量 | Literature | 蓄力质量评估 |
+| **节奏比** | 2.5-3.5:1 | Research | TEMPO 规则 |
+| **核心-前臂时间差** | >20ms | EMG Studies | ARMS_BEFORE_CORE 规则 |
+| **峰值角速度** | 800-1500°/s | Pro Range | 爆发力评估 |
+| **疲劳阈值** | <70% 初始激活 | EMG Research | FATIGUE_WARNING 规则 |
+| **EMG 核心激活** | >50% MVC | Research | FALSE_COIL 规则 |
+
+### 2.10 竞品能力对比 & 系统能力矩阵
+
+!!! abstract "详细内容已移至单一来源"
+    为避免重复维护，详细的竞品对比和能力矩阵表已整合到:
+
+    - **[传感器指标映射 §1](../research/sensor-metric-mapping.md#1-系统能力矩阵-capability-matrix)** — 系统能力矩阵
+    - **[传感器指标映射 §2](../research/sensor-metric-mapping.md#2-竞品能力对比-competitor-comparison)** — 竞品能力对比
+
+**核心差异化速览**:
+
+| 能力维度 | Vision系统 | IMU系统 | 你的系统 (Vision+IMU+EMG) |
+|---------|-----------|---------|--------------------------|
+| **看到什么 (What)** | ✅✅ 最强 | ⚠️ 需多传感器 | ✅✅ 最强 |
+| **测量速度 (How Fast)** | ❌ 低频 | ✅✅ 最强 | ✅✅ 最强 |
+| **解释原因 (Why)** | ❌ 无法解释 | ⚠️ 间接推断 | ✅✅ **直接观测肌肉激活** |
+
+**独特能力 (UNIQUE)**: 肌肉激活时序、肌肉激活强度、力链序列验证、疲劳检测 — 竞品均无法实现。
+
+---
+
+## 3. ⚙️ 提取层 EXTRACTION LAYER
+
+从原始传感器数据中提取结构化特征。每个 Block 负责一种数据源。
+
+### 3.1 POSE Block
+
+**职责**: 从视频帧提取人体 33 个关键点坐标
+
+**MVP 选择**: MediaPipe BlazePose
+
+| 属性 | 值 |
+|-----|-----|
+| 精度 | AP 65% |
+| 速度 | 30 FPS |
+| 训练数据 | 0 (预训练) |
+| 平台 | iOS / Android 原生支持 |
+
+**选择理由**:
+
+- 开箱即用，ThinkSys Flutter plugin 已封装
+- 33 关键点足够计算 X-Factor、肩转、髋转
+- 不需要任何训练数据
+
+!!! note "备选方案"
+
+    | 方案 | 精度 | 速度 | 何时考虑 |
+    |-----|------|------|---------|
+    | RTMPose | AP 75.8% | 25 FPS | 需要更高精度 |
+    | ViTPose++ | AP 81% | 15 FPS | 精度优先，速度可接受 |
+    | Custom Model | 待定 | 待定 | 积累大量高尔夫数据后 |
+
+#### 3.1.1 可计算的特征
+
+| 特征 | 计算方法 | 关键点 | 用途 |
+|-----|---------|--------|------|
+| **X-Factor** | 肩部连线角 - 骨盆连线角 | 11,12,23,24 | 蓄力评估 |
+| **X-Factor Stretch** | 下杆期最大 X-Factor - Top 时 X-Factor | 同上 | 蓄力质量 |
+| **S-Factor** | 肩部倾斜角 | 11,12 | 姿态评估 |
+| **O-Factor** | 骨盆倾斜角 | 23,24 | 下盘稳定 |
+| **Sway/Lift** | 髋部中心位移 vs Address | 23,24 | 重心控制 |
+
+!!! tip "详细算法实现"
+    计算代码见 [传感器指标映射 §3.1](../research/sensor-metric-mapping.md#31-vision-检测-mediapipe-33-landmarks)
+
+### 3.2 IMU Block
+
+**职责**: 从惯性测量单元提取角速度、加速度等时序特征
+
+**MVP 选择**: 模拟数据 (Simulated JSON)
+
+| 属性 | 值 |
+|-----|-----|
+| 数据源 | JSON 文件 (基于研究论文) 或从 Pose 数据生成 |
+| 采样率 | 100Hz (模拟) / 1666Hz (真实) |
+| 用途 | 开发调试，验证完整管道，无需等待硬件 |
+
+**模拟数据设计**:
+
+- 峰值角速度: 800-1500°/s (职业范围)
+- 节奏比: 2.5-3.5:1 (理想范围)
+- 噪声模型: 高斯噪声 + 漂移模拟
+
+#### 3.2.1 模拟 IMU 数据生成
+
+**原理**: 用 MediaPipe 关键点序列**导数**近似 IMU 角速度
+
+| 函数 | 输入 | 输出 |
+|-----|------|------|
+| `simulate_imu_from_pose()` | MediaPipe 33 关键点序列 | `List[SimulatedIMUFrame]` |
+
+**数据结构**:
+
+```python
+@dataclass
+class SimulatedIMUFrame:
+    timestamp_ms: int        # 时间戳
+    gyro_z: float            # 主轴角速度 (°/s)
+    gyro_magnitude: float    # 合成角速度
+    accel_magnitude: float   # 合成加速度
+    phase_hint: str          # 预期阶段 (TOP/IMPACT/...)
+```
+
+!!! tip "完整算法实现"
+    详细代码和测试场景见 [传感器指标映射 §8.1](../research/sensor-metric-mapping.md#81-从-pose-数据生成模拟-imu)
+
+!!! note "真实硬件选项 (Phase 2+)"
+
+    | 方案 | 精度 | 硬件 | 何时引入 |
+    |-----|------|------|---------|
+    | Single Wrist IMU | ±9-15ms | LSM6DSV16X | 硬件原型完成 |
+    | Dual IMU | ±5ms | Wrist + Pelvis | 运动链分析 |
+    | Multi-point (4+) | ±2ms | 完整穿戴 | 完整运动链 |
+
+#### 3.2.3 真实 IMU 检测能力
+
+| 特征 | 描述 | 阈值参考 | 用途 |
+|-----|------|---------|------|
+| **Peak Angular Velocity** | 杆头最大角速度 | Pro: 800-1500°/s | 爆发力评估 |
+| **Kinematic Sequence** | 运动链时序 | Pelvis→Torso→Arm→Club | 动力传递验证 |
+| **Tempo Ratio** | 上杆/下杆时间比 | 理想: 2.5-3.5:1 | 节奏评估 |
+| **Transition Timing** | 转换点精度 | ±0.6ms 可检测 | 力量爆发点 |
+
+!!! tip "详细算法实现"
+    峰值检测、运动链验证代码见 [传感器指标映射 §3.2](../research/sensor-metric-mapping.md#32-imu-检测-lsm6dsv16x--1666hz)
+
+### 3.3 EMG Block
+
+**职责**: 从肌电传感器提取肌肉激活时序和强度
+
+**MVP 选择**: 模拟数据 (Simulated JSON)
+
+| 属性 | 值 |
+|-----|-----|
+| 数据源 | JSON 文件 (基于研究论文) 或根据阶段时间戳生成 |
+| 通道数 | 2 (Core + Forearm) |
+| 采样率 | 500Hz (模拟) / 1000Hz (真实) |
+
+**模拟数据设计**:
+
+- 正确模式: Core 先于 Forearm 激活 (>20ms)
+- 错误模式: Forearm 先于 Core (模拟"手臂先动"问题)
+- 包络处理: RMS 平滑后归一化到 0-100%
+
+#### 3.3.1 模拟 EMG 数据生成
+
+**原理**: 根据已知生物力学时序生成**符合真实模式**的 EMG 信号
+
+| 模式 | 描述 | 时序特征 |
+|------|------|---------|
+| `CORRECT` | 正确运动链 | Core 先于 Forearm >20ms |
+| `ARMS_FIRST` | 错误 — 手臂先动 | Forearm 先于 Core |
+| `FALSE_COIL` | 假性蓄力 | 时序正确，Core <50% |
+| `FATIGUED` | 疲劳模式 | 整体激活衰减 |
+
+**核心函数**: `simulate_emg_from_phases(phase_timestamps, pattern) → SimulatedEMGResult`
+
+!!! warning "False Coil 是竞争护城河"
+    假性蓄力 (False Coil) 是**只有三模态融合才能检测**的问题:
+
+    - Vision 看到: X-Factor = 45° ✅ (正常)
+    - IMU 看到: 正常旋转时序 ✅
+    - EMG 看到: Core activation = 30% ❌ (过低)
+
+    结论: 球员"装"出了正确的姿势，但核心肌群没有真正参与。
+    这是 Vision-only 竞品永远无法检测的问题。
+
+!!! tip "完整算法实现"
+    详细代码和测试场景见 [传感器指标映射 §8.2](../research/sensor-metric-mapping.md#82-从阶段时间戳生成模拟-emg)
+
+!!! note "真实硬件选项 (Phase 2+)"
+
+    | 方案 | 通道 | 肌肉群 | 何时引入 |
+    |-----|------|-------|---------|
+    | 2-channel | 2 | Core + Forearm | 硬件原型 |
+    | 4-channel | 4 | + Gluteus, Adductors | 下肢分析 |
+    | 6-channel | 6 | + Lats, Deltoids | 完整上身 |
+
+#### 3.3.2 EMG 电极布局规划
+
+MVP 阶段使用 2 通道 (Core + Forearm)，后续渐进扩展：
+
+| 阶段 | 通道 | 肌群覆盖 | 可检测能力 |
+|-----|------|---------|-----------|
+| **Phase 1** | 2 | 腹直肌 + 前臂屈肌 | False Coil, 核心激活时序 |
+| **Phase 2** | 4 | + 臀大肌, 内收肌 | 下肢驱动, 髋部稳定 |
+| **Phase 3** | 6 | + 背阔肌, 三角肌 | 完整力链验证 |
+
+!!! tip "详细布局图"
+    电极放置位置、选择依据见 [传感器指标映射 §6](../research/sensor-metric-mapping.md#6-emg-传感器布局规划-emg-sensor-placement-plan)
+
+#### 3.3.4 真实 EMG 检测能力
+
+| 特征 | 描述 | 信号处理 | 用途 |
+|-----|------|---------|------|
+| **Muscle Onset** | 肌肉激活起始时间 | 阈值检测 (10% MVC) | 运动链时序 |
+| **Peak Activation** | 最大肌电幅值 | RMS 包络 | 力量输出评估 |
+| **Fatigue Detection** | 肌肉疲劳指标 | 频谱中值下降 | 训练负荷监控 |
+| **Co-activation** | 拮抗肌同时激活 | 双通道比较 | 动作效率分析 |
+
+!!! tip "详细算法实现"
+    信号处理、特征提取代码见 [传感器指标映射 §3.3](../research/sensor-metric-mapping.md#33-emg-检测-unique-capability)
+
+---
+
+## 4. 🧠 分析层 ANALYSIS LAYER
+
+对提取的特征进行智能分析，识别挥杆阶段并融合多模态数据。
+
+### 4.1 CLASSIFIER Block
+
+**职责**: 根据关键点序列识别挥杆的 8 个阶段
+
+**MVP 选择**: SwingNet
+
+| 属性 | 值 |
+|-----|-----|
+| 准确率 | 71.5% |
+| 训练数据 | 0 (GolfDB 预训练) |
+| 推理速度 | 5ms |
+| 来源 | [wmcnally/golfdb](https://github.com/wmcnally/golfdb) |
+
+**选择理由**:
+
+- GolfDB 预训练权重，0 训练成本
+- 71.5% 准确率对 MVP 验证足够
+- 后续可替换为其他模型
+
+!!! note "备选方案 (需要训练数据)"
+
+    | 方案 | 准确率 | 训练数据 | 速度 | 何时考虑 |
+    |-----|-------|---------|------|---------|
+    | Random Forest | ~65% | ~500 videos | <1ms | 快速 baseline |
+    | BiGRU | ~80% | ~1000 videos | 3ms | 积累 1000 视频后 |
+    | BiLSTM | ~82% | ~1000 videos | 5ms | 需要更稳定 |
+    | Transformer | ~88% | ~10000+ | 10ms | 大量数据后 |
+    | Hybrid Trans-LSTM | 92.1% | ~10000+ | 12ms | 追求最高精度 |
+
+    **研究发现 (CaddieSet CVPR 2025)**: 关节特征 + 时序模型 (MSE 8.80) 优于纯视觉 Transformer (MSE 32.32)
+
+### 4.2 FUSION Block
+
+**职责**: 融合 Vision + IMU + EMG 三模态数据，交叉验证并检测异常
+
+**MVP 选择**: Simple Merge
+
+| 属性 | 值 |
+|-----|-----|
+| 方法 | 简单合并各传感器特征 |
+| 复杂度 | 低 |
+| 用途 | 快速验证管道 |
+
+**融合三原则**:
+
+1. **互补性** — Vision (空间姿态) + IMU (精确时序) + EMG (肌肉状态)
+2. **交叉验证** — Vision "Top" + IMU zero-crossing → 确认; 不一致 → 降低置信度
+3. **异常检测** — 传感器间矛盾 → 标记异常 (穿戴问题/传感器故障)
+
+#### 4.2.1 核心诊断算法
+
+FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模态融合才能实现。
+
+> **实现代码**: 见 [传感器指标映射 §9 融合诊断算法](../research/sensor-metric-mapping.md#9-融合诊断算法-fusion-diagnostic-algorithms)
+
+| 算法 | 函数名 | 检测内容 | 所需传感器 |
+|-----|-------|---------|-----------|
+| 运动链序列验证 | `validate_kinematic_sequence()` | Core 是否先于 Forearm 激活 | EMG |
+| 假蓄力检测 | `detect_false_coil()` | X-Factor 高但核心肌群未激活 | Vision + EMG |
+| 力量链验证 | `verify_force_chain()` | 三模态数据一致性验证 | Vision + IMU + EMG |
+| 诊断入口 | `run_fusion_diagnostics()` | 整合所有诊断，返回主要反馈 | All |
+
+**诊断严重度分级**:
+
+| 级别 | 含义 | 示例 |
+|-----|-----|------|
+| P0_CRITICAL | 必须修正，影响挥杆效果 | `ARMS_BEFORE_CORE`, `FALSE_COIL` |
+| P1_IMPORTANT | 建议修正，影响一致性 | `LOW_X_FACTOR`, `WEAK_CORE_LEAD` |
+| P2_MINOR | 可选优化 | `PHASE_MISMATCH` |
+| INFO | 仅供参考 | 正确序列确认 |
+
+#### 4.2.2 诊断规则速查表
+
+| 规则 ID | 严重度 | 触发条件 | 需要的传感器 |
+|--------|--------|---------|-------------|
+| `ARMS_BEFORE_CORE` | P0 | Forearm 先于 Core 激活 | EMG |
+| `FALSE_COIL` | P0 | X-Factor ≥35° 但 Core <50% | Vision + EMG |
+| `COMPENSATION_DETECTED` | P0 | 峰值速度高但 Core 激活低 | IMU + EMG |
+| `LOW_X_FACTOR` | P1 | X-Factor <35° | Vision |
+| `WEAK_CORE_LEAD` | P1 | Core 领先 Forearm <20ms | EMG |
+| `PHASE_MISMATCH` | P2 | Vision 和 IMU 阶段不一致 | Vision + IMU |
+
+!!! success "三模态独有能力"
+    以上规则中，**P0 级别的三个规则都需要 EMG 数据**。
+    这意味着:
+
+    - Vision-only 竞品只能检测 `LOW_X_FACTOR` (P1)
+    - Vision+IMU 竞品可以检测 `PHASE_MISMATCH` (P2)
+    - **只有 Vision+IMU+EMG 能检测全部 P0 问题**
+
+!!! note "备选融合方法"
+
+    | 方案 | 复杂度 | 何时考虑 |
+    |-----|-------|---------|
+    | Rule-based | 中 | 明确传感器优先级后 |
+    | Weighted Average | 中 | 已知各传感器可靠性 |
+    | Kalman Filter | 高 | 需要实时平滑 |
+    | ML Fusion | 高 | 有足够融合训练数据 |
+
+---
+
+## 5. MVP 策略 MVP Strategy
+
+### 5.1 最小可行管道
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         MVP 最小可行管道                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  📷 Camera (真实)                                                            │
+│      │                                                                       │
+│      ▼                                                                       │
+│  ┌────────────────┐                                                          │
+│  │ MediaPipe Pose │ ← 预训练，0训练成本                                      │
+│  │ 33 keypoints   │                                                          │
+│  └───────┬────────┘                                                          │
+│          │                                                                   │
+│          ▼                                                                   │
+│  ┌────────────────┐                                                          │
+│  │ SwingNet       │ ← 预训练，0训练成本                                      │
+│  │ 8 phases       │                                                          │
+│  └───────┬────────┘                                                          │
+│          │                                                                   │
+│     ┌────┴────┐                                                              │
+│     │         │                                                              │
+│     ▼         ▼                                                              │
+│  ┌────────┐ ┌─────────────────┐                                              │
+│  │ Phases │ │ Simple Merge    │                                              │
+│  │ 0-7    │ │ Vision + Mock   │                                              │
+│  └────────┘ └────────┬────────┘                                              │
+│                      │                                                       │
+│              ┌───────┴───────┐                                               │
+│              │               │                                               │
+│              ▼               ▼                                               │
+│         ┌─────────┐    ┌─────────────┐                                       │
+│         │ Mock IMU │    │ Mock EMG    │                                       │
+│         │ JSON     │    │ JSON        │                                       │
+│         └─────────┘    └─────────────┘                                       │
+│                                                                              │
+│  输出: 8阶段 + 12指标 + 6条规则评估                                          │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 5.2 模拟数据验证全管道
+
+**核心思路**: 真实 MediaPipe + 模拟 IMU/EMG = 完整管道验证
+
+```text
+为什么用模拟数据？
+────────────────
+1. 硬件还没准备好，但软件管道可以先开发
+2. 模拟数据可以控制"正确/错误"模式，测试规则引擎
+3. 真实硬件到位后，只需替换 IMU/EMG 积木块
+4. 降低并行开发的耦合度 (软件不等硬件)
+```
+
+### 5.3 渐进式升级路径
+
+```text
+Phase 1: Video-Only MVP
+─────────────────────────
+Camera → MediaPipe → SwingNet → 8 Phases + Vision Metrics
+训练数据: 0
+硬件: 手机摄像头
+
+Phase 2: Add Mock Sensors
+─────────────────────────
+Camera → MediaPipe ─┬→ SwingNet → 8 Phases
+Mock IMU JSON ──────┤
+Mock EMG JSON ──────┼→ Simple Fusion → 12 Metrics + 6 Rules
+                    └→ Rule Engine → Feedback
+训练数据: 0
+硬件: 手机摄像头
+
+Phase 3: Real IMU Integration
+─────────────────────────────
+Camera → MediaPipe ─┬→ SwingNet → 8 Phases
+Real IMU ───────────┤
+Mock EMG JSON ──────┼→ Rule Fusion → 12 Metrics + 6 Rules
+                    └→ Cross-Validation → Anomaly Detection
+训练数据: 0
+硬件: 手机 + LSM6DSV16X
+
+Phase 4: Full Sensor Fusion
+───────────────────────────
+Camera → MediaPipe ─┬→ BiGRU/LSTM → 8 Phases (更高精度)
+Real IMU ───────────┤
+Real EMG ───────────┼→ Weighted Fusion → 12 Metrics + 6 Rules
+                    └→ Cross-Validation → Anomaly Detection
+训练数据: ~1000 videos (for BiGRU/LSTM)
+硬件: 手机 + LSM6DSV16X + DFRobot EMG
+```
+
+---
+
+## 6. 完整管道模式 Pipeline Modes
+
+### Mode 1: Video-Only (仅视觉)
+
+```text
+适用场景: 无硬件，纯手机分析
+──────────────────────────────
+
+输入:                   处理:                    输出:
+──────                  ──────                   ──────
+📷 Camera Frame         MediaPipe Pose           8 Phases
+    │                       │                        │
+    └──────────────────────>│                        │
+                            ▼                        │
+                       33 keypoints                  │
+                            │                        │
+                            ▼                        │
+                    ┌───────────────┐                │
+                    │   SwingNet    │                │
+                    │   Classifier  │                │
+                    └───────┬───────┘                │
+                            │                        │
+                            ▼                        ▼
+                    ┌───────────────┐        ┌───────────────┐
+                    │ Vision Metrics│        │ Phase Output  │
+                    │ X-Factor      │        │ [0,1,2,3,4,   │
+                    │ Shoulder Turn │        │  5,6,7]       │
+                    │ Hip Turn      │        └───────────────┘
+                    │ S-Factor      │
+                    │ Sway/Lift     │
+                    └───────────────┘
+
+可计算指标: 6/12 (Vision only)
+可用规则: 2/6 (X-Factor, Tempo by video)
+```
+
+### Mode 2: Hardware (真实传感器)
+
+```text
+适用场景: MVP 硬件原型
+─────────────────────────
+
+输入:                   处理:                    输出:
+──────                  ──────                   ──────
+📷 Camera Frame ───────> MediaPipe ──────────┐
+                                              │
+🔄 IMU Data ────────────> IMU Block ─────────┼──> FUSION ──> 12 Metrics
+                          • Zero-crossing    │       │
+                          • Peak velocity    │       │
+                          • Tempo calc       │       ▼
+                                              │    ┌───────────────┐
+💪 EMG Data ────────────> EMG Block ─────────┤    │ Rule Engine   │
+                          • RMS envelope     │    │ 6 Rules       │
+                          • Onset detection  │    └───────┬───────┘
+                          • Core/Forearm     │            │
+                                              │            ▼
+                                              │    ┌───────────────┐
+                                              └───>│ Cross-Check   │
+                                                   │ Vision vs IMU │
+                                                   │ Anomaly Flags │
+                                                   └───────────────┘
+
+可计算指标: 12/12 (全部)
+可用规则: 6/6 (全部)
+异常检测: ✅ 可用
+```
+
+### Mode 3: Full Fusion (完整融合)
+
+```text
+适用场景: 生产版本
+───────────────────
+
+                    ┌─────────────────────────────────────────────────────────┐
+                    │                    FUSION ENGINE                         │
+                    ├─────────────────────────────────────────────────────────┤
+                    │                                                          │
+📷 Vision ──────────┤  1. Complementarity (互补)                              │
+   33 keypoints     │     Vision: 空间姿态                                    │
+   @30fps           │     IMU: 精确时序 (50x more precise)                    │
+                    │     EMG: 肌肉激活模式                                    │
+                    │                                                          │
+🔄 IMU ─────────────┤  2. Cross-Validation (交叉验证)                         │
+   6-axis @1666Hz   │     Vision "Top" + IMU zero-crossing → ✅ 确认          │
+   gyro + accel     │     Vision "Top" + IMU still moving → ⚠️ 降低置信度     │
+                    │                                                          │
+💪 EMG ─────────────┤  3. Anomaly Detection (异常检测)                        │
+   2-6ch @1000Hz    │     Vision "Impact" + EMG no activation → 🚨 穿戴问题   │
+   Core, Forearm    │     IMU "Static" + Vision "Moving" → 🚨 传感器故障      │
+                    │                                                          │
+                    ├─────────────────────────────────────────────────────────┤
+                    │                        OUTPUT                            │
+                    │  • 8 Phases (IMU-refined timing)                         │
+                    │  • 12 Metrics (multi-modal)                              │
+                    │  • 6 Rules (EMG-powered diagnosis)                       │
+                    │  • Confidence Scores                                     │
+                    │  • Anomaly Flags                                         │
+                    └─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 7. 数据需求对比 Data Requirements
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         训练数据需求对比                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  模型类型           训练视频数      训练时间      MVP 可用性                │
+│  ────────────────   ──────────────  ────────────  ────────────────          │
+│                                                                              │
+│  SwingNet           0 (预训练)      0             ✅ 直接用                 │
+│      │                                                                       │
+│      ▼                                                                       │
+│  Random Forest      ~500            ~1小时        ✅ 快速 baseline          │
+│      │                                                                       │
+│      ▼                                                                       │
+│  BiGRU              ~1,000          ~4小时        ⚠️ 需收集                 │
+│      │                                                                       │
+│      ▼                                                                       │
+│  BiLSTM             ~1,000          ~6小时        ⚠️ 需收集                 │
+│      │                                                                       │
+│      ▼                                                                       │
+│  小型 Transformer   ~5,000          ~12小时       ❌ 大量数据               │
+│      │                                                                       │
+│      ▼                                                                       │
+│  大型 Transformer   ~10,000+        ~24小时+      ❌ 非 MVP                 │
+│      │                                                                       │
+│      ▼                                                                       │
+│  Hybrid Trans-LSTM  ~10,000+        ~30小时+      ❌ 非 MVP                 │
+│                                                                              │
+│  ───────────────────────────────────────────────────────────────────────    │
+│                                                                              │
+│  关键洞察:                                                                   │
+│  • 代码复杂度不是瓶颈 (AI 能写)                                             │
+│  • 数据收集和标注才是瓶颈                                                   │
+│  • MVP 应选择 0 训练成本的方案 (SwingNet)                                   │
+│  • 积累 1000 视频后可升级到 BiGRU/LSTM                                      │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 8. 积木替换示例 Block Replacement
+
+### 8.1 替换 CLASSIFIER Block
+
+```text
+当前 (MVP):
+Camera → MediaPipe → [SwingNet] → 8 Phases
+
+替换后 (v2):
+Camera → MediaPipe → [BiGRU] → 8 Phases
+
+需要做的事:
+1. 收集 ~1000 个标注视频
+2. 训练 BiGRU 模型 (~4小时)
+3. 导出 ONNX 格式
+4. 替换 classifier.onnx 文件
+5. 其他代码不变
+```
+
+### 8.2 替换 IMU Block
+
+```text
+当前 (MVP):
+Mock IMU JSON → [Simulated IMU Block] → 6 Features
+
+替换后 (Phase 2):
+Real LSM6DSV16X → [Real IMU Block] → 6 Features
+
+需要做的事:
+1. 完成硬件原型 (ESP32-S3 + LSM6DSV16X)
+2. 实现 BLE 数据传输
+3. 替换数据源 (JSON → BLE Stream)
+4. 特征提取逻辑不变
+```
+
+### 8.3 替换 FUSION Block
+
+```text
+当前 (MVP):
+Vision + Mock IMU + Mock EMG → [Simple Merge] → Output
+
+替换后 (v3):
+Vision + Real IMU + Real EMG → [Kalman Filter] → Output
+
+需要做的事:
+1. 确认传感器数据质量
+2. 标定传感器噪声模型
+3. 实现 Kalman Filter
+4. 调整融合权重
+```
+
+---
+
+## 9. 技术选型理由 Technology Rationale
+
+### 9.1 为什么 MediaPipe 而不是 RTMPose？
+
+| 因素 | MediaPipe | RTMPose |
+|-----|-----------|---------|
+| iOS 支持 | ✅ 原生 | ⚠️ 需要转换 |
+| 准确率 | AP 65% | AP 75.8% |
+| 速度 | 30 FPS | 25 FPS |
+| 集成难度 | 低 (Flutter plugin) | 高 (自己封装) |
+| MVP 决策 | ✅ 选择 | 后续升级 |
+
+### 9.2 为什么 SwingNet 而不是自己训练？
+
+| 因素 | SwingNet | 自己训练 |
+|-----|----------|---------|
+| 训练数据 | 0 | ~1000+ videos |
+| 开发时间 | 0 | ~2 weeks |
+| 准确率 | 71.5% | 不确定 |
+| 风险 | 低 | 高 |
+| MVP 决策 | ✅ 选择 | 后续验证后考虑 |
+
+### 9.3 为什么模拟 IMU/EMG 而不是等硬件？
+
+| 因素 | 模拟数据 | 等硬件 |
+|-----|---------|-------|
+| 开发进度 | 并行 | 串行 (阻塞) |
+| 测试可控性 | 高 (可控制正/错模式) | 低 |
+| 硬件依赖 | 无 | 强 |
+| 替换成本 | 低 (替换数据源) | - |
+| MVP 决策 | ✅ 选择 | Phase 2 |
+
+---
+
+## 10. 相关文档 Related Documents
+
+### 核心文档
+
+| 文档 | 内容 | 关系 |
+|------|------|------|
+| [系统设计](../system-design.md) | MVP 4 模块架构 | 本文档的父文档 |
+| [传感器指标映射](../research/sensor-metric-mapping.md) | 算法实现代码 | §3.1-3.3 的详细实现 |
+| [挥杆阶段](swing-phases.md) | 8 阶段检测 | CLASSIFIER Block 输出 |
+| [生物力学术语表](../research/biomechanics-glossary.md) | 术语定义 | 高尔夫专业术语 |
+
+### 技术决策 (ADRs)
+
+| 决策 | 内容 | 相关 Block |
+|------|------|-----------|
+| [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md) | LSM6DSV16X 选型 | IMU Block |
+| [ADR-0004](../decisions/0004-simplified-4-module-architecture.md) | 4 模块简化 | 整体架构 |
+| [ADR-0006](../decisions/0006-onnx-runtime-deployment.md) | ONNX 部署 | CLASSIFIER Block |
+
+### 实现指南
+
+| 文档 | 内容 | 适合 |
+|------|------|------|
+| [ML 基础](../guides/ml-basics.md) | ML 概念入门 | 无 ML 背景读者 |
+| [实时反馈](real-time-feedback.md) | 反馈系统设计 | OUTPUT Block 实现 |
+
+---
+
+## 11. 版本历史
+
+| 版本 | 日期 | 修改内容 |
+|------|------|----------|
+| 2.1 | 2025-12-19 | 补充完整性更新 |
+| | | • §2.10: 新增竞品能力对比表 (OnForm, Sportsbox, K-VEST, GEARS) |
+| | | • §2.11: 新增 16 指标系统能力矩阵 |
+| | | • §3.1.1: Vision 可计算特征表 + 链接 sensor-metric-mapping |
+| | | • §3.2.3: IMU 真实检测能力表 + 链接 |
+| | | • §3.3.3: EMG 电极布局规划表 + 链接 |
+| | | • §3.3.4: EMG 真实检测能力表 + 链接 |
+| | | • §10: 重构相关文档为分类结构 |
+| 2.0 | 2025-12-19 | 重大更新: 基于 AI 讨论深度整合 |
+| | | • §1: 新增竞争壁垒 (What/When/Why), CaddieSet 研究验证 |
+| | | • §2: 新增 Video-Only 局限性, 时间同步策略, 融合三机制 |
+| | | • §2: 新增积木块接口契约, 置信度算法, 反馈翻译层 |
+| | | • §3.2: 新增 IMU 模拟数据生成代码 (simulate_imu_from_pose) |
+| | | • §3.3: 新增 EMG 模拟数据生成代码 (simulate_emg_from_phases) |
+| | | • §4.2: 新增核心诊断算法 (运动链验证, 假性蓄力检测, 力链三重验证) |
+| 1.0 | 2025-12-19 | 初始版本，定义 LEGO 积木式架构 |
+
+---
+
+**最后更新**: 2025-12-19
+**维护者**: Movement Chain AI Team

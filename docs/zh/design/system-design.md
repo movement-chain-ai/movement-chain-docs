@@ -263,11 +263,15 @@ flowchart LR
 
 ### 4.2 MVP 简化策略
 
+> 📐 **详细设计**: LEGO 积木式模块化架构详见 [模块化架构设计](specs/modular-architecture.md)
+
 | 组件 | MVP方案 | 后期升级 |
 |------|---------|----------|
 | 姿态估计 | MediaPipe Pose | RTMPose → ViTPose++ |
+| 阶段分类 | SwingNet (预训练) | BiGRU → Transformer |
 | EMG处理 | NeuroKit2 | 自定义滤波 |
 | 分析引擎 | 规则引擎 IF-THEN | ML分类器 |
+| 传感器融合 | Simple Merge | Kalman Filter → ML Fusion |
 | 可视化 | OpenCV + MediaPipe | Unity 3D |
 | 语音反馈 | 系统TTS | OpenAI TTS |
 
@@ -315,6 +319,7 @@ flowchart LR
 
 #### 第二步: 理解核心算法
 
+- **[模块化架构](specs/modular-architecture.md)** - LEGO 积木式设计，各模块升级路径
 - **[8阶段检测](specs/swing-phases.md)** - 挥杆阶段识别算法，含代码
 - **[挥杆对比](specs/swing-comparison.md)** - 4种对比方法，DTW算法
 - **[实时反馈](specs/real-time-feedback.md)** - 3种反馈模式规格

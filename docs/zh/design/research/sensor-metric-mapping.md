@@ -2,7 +2,7 @@
 
 > **文档目的**: 定义三模态系统 (Vision + IMU + EMG) 可测量的研究验证指标
 > **核心价值**: EMG 提供的肌肉激活检测是独特差异化优势，竞品无法实现
-> **最后更新**: 2025-12-18
+> **最后更新**: 2025-12-19
 
 ---
 
@@ -547,9 +547,829 @@ def calculate_activation_ratio(mock_emg):
 
 ---
 
-## 7. 相关文档 Related Documents
+## 7. 融合置信度计算 Fusion Confidence
+
+三模态融合提升置信度的核心算法:
+
+```python
+def calculate_fusion_confidence(
+    vision_phase: str,
+    imu_phase: str,
+    emg_sequence_correct: Optional[bool]
+) -> float:
+    """
+    融合置信度计算
+
+    基准: 0.5 (单传感器)
+    双重验证一致: +0.25
+    三重验证一致: +0.25
+    传感器矛盾: -0.15
+    """
+    confidence = 0.5  # baseline
+
+    # 双重验证: Vision 和 IMU 一致
+    if vision_phase == imu_phase:
+        confidence += 0.25  # 提升 25%
+    else:
+        confidence -= 0.15  # 降低 15%, 需要人工检查
+
+    # 三重验证: EMG 序列正确
+    if emg_sequence_correct is True:
+        confidence += 0.25  # 提升 25%
+    elif emg_sequence_correct is None:
+        confidence += 0.0   # 无 EMG 数据, 保持
+    else:
+        confidence -= 0.10  # EMG 显示异常, 略微降低
+
+    return min(max(confidence, 0.0), 1.0)  # clamp to [0, 1]
+
+# 示例:
+# Vision=Top, IMU=Top, EMG=Correct → confidence = 1.0 (最高)
+# Vision=Top, IMU=Top, EMG=None    → confidence = 0.75
+# Vision=Top, IMU=Mid, EMG=None    → confidence = 0.35 (需检查)
+```
+
+---
+
+## 8. 模拟数据生成 Simulation Data Generation
+
+MVP 阶段硬件未就绪时，使用模拟数据验证完整管道。
+
+### 8.1 从 Pose 数据生成模拟 IMU
+
+核心思路: 用 MediaPipe 的关键点序列**导数**来近似 IMU 角速度
+
+```python
+import numpy as np
+from dataclasses import dataclass
+from typing import List, Optional
+
+@dataclass
+class SimulatedIMUFrame:
+    """模拟的单帧 IMU 数据"""
+    timestamp_ms: int
+    gyro_z: float       # 主轴角速度 (°/s)
+    gyro_magnitude: float
+    accel_magnitude: float
+    phase_hint: str     # 用于验证的预期阶段
+
+
+def simulate_imu_from_pose(
+    landmarks_sequence: List[dict],
+    fps: int = 30,
+    add_noise: bool = True,
+    noise_std: float = 5.0
+) -> List[SimulatedIMUFrame]:
+    """
+    从 MediaPipe 姿态关键点序列生成模拟 IMU 数据
+
+    原理:
+    ─────
+    1. 计算肩膀中心点的 x 位置随时间变化 → 近似上身旋转
+    2. 对位置序列求导 → 角速度
+    3. 检测零交叉点 → Top of Backswing
+    4. 检测峰值 → Impact
+
+    参数:
+    ─────
+    landmarks_sequence: MediaPipe 33 关键点序列
+                       每帧格式: {keypoints: [{x, y, z, visibility}, ...]}
+    fps: 视频帧率
+    add_noise: 是否添加高斯噪声 (模拟真实传感器)
+    noise_std: 噪声标准差
+
+    返回:
+    ─────
+    List[SimulatedIMUFrame]: 每帧的模拟 IMU 数据
+    """
+    results = []
+    dt = 1.0 / fps  # 帧间时间间隔 (秒)
+
+    # 提取肩膀中心点位置序列 (关键点 11=左肩, 12=右肩)
+    shoulder_x_positions = []
+    for frame in landmarks_sequence:
+        kp = frame['keypoints']
+        left_shoulder = kp[11]
+        right_shoulder = kp[12]
+        shoulder_center_x = (left_shoulder['x'] + right_shoulder['x']) / 2
+        shoulder_x_positions.append(shoulder_center_x)
+
+    shoulder_x = np.array(shoulder_x_positions)
+
+    # 计算角速度 (一阶导数)
+    # 假设 x 位置变化映射到旋转角度: 0.5 弧度 ≈ 28.6° 全幅旋转
+    # 缩放因子将归一化坐标映射到合理的角速度范围
+    ROTATION_SCALE = 1500.0  # 将 [0,1] 变化映射到 ~1500°/s 峰值
+    angular_velocity = np.gradient(shoulder_x, dt) * ROTATION_SCALE
+
+    # 计算加速度 (二阶导数)
+    angular_accel = np.gradient(angular_velocity, dt)
+
+    # 识别关键事件点
+    peak_idx = np.argmax(np.abs(angular_velocity))
+    zero_crossings = np.where(np.diff(np.sign(angular_velocity)))[0]
+
+    for i, (gyro_z, accel_z) in enumerate(zip(angular_velocity, angular_accel)):
+        timestamp_ms = int(i * dt * 1000)
+
+        # 添加传感器噪声
+        if add_noise:
+            gyro_z += np.random.normal(0, noise_std)
+            accel_z += np.random.normal(0, noise_std * 0.1)
+
+        # 推断阶段 (用于验证，不是最终判断)
+        if i in zero_crossings and gyro_z < 50:
+            phase_hint = "TOP"  # 零交叉 = Top of Backswing
+        elif i == peak_idx:
+            phase_hint = "IMPACT"  # 峰值 = Impact
+        elif i < peak_idx and gyro_z > 0:
+            phase_hint = "BACKSWING"
+        elif i > peak_idx:
+            phase_hint = "FOLLOW_THROUGH"
+        else:
+            phase_hint = "DOWNSWING"
+
+        results.append(SimulatedIMUFrame(
+            timestamp_ms=timestamp_ms,
+            gyro_z=float(gyro_z),
+            gyro_magnitude=float(np.abs(gyro_z)),
+            accel_magnitude=float(np.abs(accel_z)),
+            phase_hint=phase_hint
+        ))
+
+    return results
+
+
+# 使用示例
+# frames = simulate_imu_from_pose(mediapipe_output, fps=30)
+# for f in frames:
+#     print(f"{f.timestamp_ms}ms: gyro_z={f.gyro_z:.1f}°/s, phase={f.phase_hint}")
+```
+
+### 8.2 从阶段时间戳生成模拟 EMG
+
+核心思路: 根据已知的生物力学时序生成**符合真实模式**的 EMG 信号
+
+```python
+import numpy as np
+from dataclasses import dataclass
+from typing import Dict, List, Tuple
+from enum import Enum
+
+class EMGPattern(Enum):
+    """EMG 生成模式"""
+    CORRECT = "correct"          # 正确: Core 先于 Forearm >20ms
+    ARMS_FIRST = "arms_first"    # 错误: Forearm 先于 Core
+    FALSE_COIL = "false_coil"    # 假性蓄力: Core 激活过低 (<50%)
+    FATIGUED = "fatigued"        # 疲劳: 整体激活衰减
+
+
+@dataclass
+class EMGSimulationConfig:
+    """EMG 模拟配置参数"""
+    sample_rate_hz: int = 500
+    core_onset_offset_ms: int = -30   # 相对于 Top 的偏移 (负=提前)
+    forearm_onset_offset_ms: int = 20  # 相对于 Downswing 的偏移
+    core_peak_activation: float = 0.8  # 峰值激活 [0-1]
+    forearm_peak_activation: float = 0.7
+    fatigue_decay: float = 1.0         # 疲劳衰减系数 [0-1]
+
+
+@dataclass
+class SimulatedEMGResult:
+    """模拟 EMG 输出"""
+    core_onset_ms: int
+    forearm_onset_ms: int
+    timing_gap_ms: int           # forearm - core (正常应 > 20ms)
+    core_activation_pct: float   # 峰值激活百分比
+    forearm_activation_pct: float
+    is_sequence_correct: bool
+    pattern_detected: str        # "CORRECT", "ARMS_FIRST", "FALSE_COIL", etc.
+    raw_signal: Dict[str, np.ndarray]  # 原始波形 (用于可视化)
+
+
+def simulate_emg_from_phases(
+    phase_timestamps: Dict[str, int],
+    pattern: EMGPattern = EMGPattern.CORRECT,
+    config: EMGSimulationConfig = None
+) -> SimulatedEMGResult:
+    """
+    根据已知阶段时间戳生成模拟 EMG 数据
+
+    原理:
+    ─────
+    1. 根据 TOP 和 DOWNSWING 时间戳确定肌肉激活时机
+    2. 生成高斯调制的激活包络
+    3. 根据 pattern 参数调整时序和强度
+
+    参数:
+    ─────
+    phase_timestamps: 阶段时间戳字典
+                     e.g., {"TOP": 600, "DOWNSWING": 700, "IMPACT": 850}
+    pattern: 生成模式 (正确/手臂先动/假性蓄力/疲劳)
+    config: 详细配置参数
+
+    返回:
+    ─────
+    SimulatedEMGResult: 包含时序、激活强度、诊断结果
+    """
+    if config is None:
+        config = EMGSimulationConfig()
+
+    top_ms = phase_timestamps.get("TOP", 600)
+    downswing_ms = phase_timestamps.get("DOWNSWING", 700)
+    impact_ms = phase_timestamps.get("IMPACT", 850)
+
+    # 根据模式调整时序和强度
+    if pattern == EMGPattern.CORRECT:
+        # 正确模式: Core 在 Top 前 30ms 激活, Forearm 在 Downswing 后 20ms
+        core_onset = top_ms + config.core_onset_offset_ms  # 负偏移 = 提前
+        forearm_onset = downswing_ms + config.forearm_onset_offset_ms
+        core_activation = config.core_peak_activation
+        forearm_activation = config.forearm_peak_activation
+
+    elif pattern == EMGPattern.ARMS_FIRST:
+        # 错误模式: Forearm 先于 Core 激活
+        forearm_onset = top_ms - 20   # Forearm 提前
+        core_onset = top_ms + 40      # Core 延后
+        core_activation = config.core_peak_activation
+        forearm_activation = config.forearm_peak_activation
+
+    elif pattern == EMGPattern.FALSE_COIL:
+        # 假性蓄力: 时序正确，但 Core 激活不足
+        core_onset = top_ms + config.core_onset_offset_ms
+        forearm_onset = downswing_ms + config.forearm_onset_offset_ms
+        core_activation = 0.3   # 低于 50% 阈值
+        forearm_activation = config.forearm_peak_activation
+
+    elif pattern == EMGPattern.FATIGUED:
+        # 疲劳模式: 整体激活衰减
+        core_onset = top_ms + config.core_onset_offset_ms
+        forearm_onset = downswing_ms + config.forearm_onset_offset_ms
+        core_activation = config.core_peak_activation * 0.6
+        forearm_activation = config.forearm_peak_activation * 0.6
+
+    # 计算时序差
+    timing_gap = forearm_onset - core_onset
+
+    # 判断序列是否正确 (Core 应先于 Forearm >20ms)
+    is_correct = timing_gap > 20 and core_activation > 0.5
+
+    # 生成原始信号波形 (用于可视化)
+    duration_ms = impact_ms + 200
+    n_samples = int(duration_ms * config.sample_rate_hz / 1000)
+    t = np.linspace(0, duration_ms, n_samples)
+
+    def generate_activation_envelope(onset_ms: int, peak: float, duration_ms: int = 150):
+        """生成高斯调制的激活包络"""
+        envelope = np.zeros(n_samples)
+        onset_idx = int(onset_ms * config.sample_rate_hz / 1000)
+        duration_samples = int(duration_ms * config.sample_rate_hz / 1000)
+
+        if 0 <= onset_idx < n_samples:
+            # 高斯上升 + 指数衰减
+            for i in range(duration_samples):
+                if onset_idx + i < n_samples:
+                    # 快速上升, 慢速衰减
+                    rise = 1 - np.exp(-i / 20)
+                    decay = np.exp(-max(0, i - 50) / 100)
+                    envelope[onset_idx + i] = peak * rise * decay
+
+        # 添加随机噪声
+        noise = np.random.normal(0, 0.05, n_samples)
+        return np.clip(envelope + noise, 0, 1)
+
+    core_signal = generate_activation_envelope(core_onset, core_activation)
+    forearm_signal = generate_activation_envelope(forearm_onset, forearm_activation)
+
+    # 检测到的模式
+    if timing_gap <= 0:
+        pattern_detected = "ARMS_BEFORE_CORE"
+    elif core_activation < 0.5:
+        pattern_detected = "FALSE_COIL"
+    elif core_activation < 0.7:
+        pattern_detected = "FATIGUE_WARNING"
+    else:
+        pattern_detected = "CORRECT"
+
+    return SimulatedEMGResult(
+        core_onset_ms=int(core_onset),
+        forearm_onset_ms=int(forearm_onset),
+        timing_gap_ms=int(timing_gap),
+        core_activation_pct=float(core_activation),
+        forearm_activation_pct=float(forearm_activation),
+        is_sequence_correct=is_correct,
+        pattern_detected=pattern_detected,
+        raw_signal={"core": core_signal, "forearm": forearm_signal}
+    )
+
+
+# 使用示例
+# result = simulate_emg_from_phases(
+#     {"TOP": 600, "DOWNSWING": 700, "IMPACT": 850},
+#     pattern=EMGPattern.ARMS_FIRST
+# )
+# print(f"Core onset: {result.core_onset_ms}ms")
+# print(f"Forearm onset: {result.forearm_onset_ms}ms")
+# print(f"Gap: {result.timing_gap_ms}ms → {result.pattern_detected}")
+```
+
+### 8.3 预生成的测试场景
+
+#### IMU 测试场景
+
+```json
+{
+  "scenario": "good_swing",
+  "description": "职业级挥杆 - 用于测试正常检测路径",
+  "imu_frames": [
+    {"t_ms": 0,    "gyro_z": 0,     "phase": "ADDRESS"},
+    {"t_ms": 100,  "gyro_z": 200,   "phase": "TAKEAWAY"},
+    {"t_ms": 300,  "gyro_z": 400,   "phase": "BACKSWING"},
+    {"t_ms": 600,  "gyro_z": 50,    "phase": "TOP"},
+    {"t_ms": 700,  "gyro_z": -600,  "phase": "DOWNSWING"},
+    {"t_ms": 850,  "gyro_z": -1200, "phase": "IMPACT"},
+    {"t_ms": 1000, "gyro_z": -400,  "phase": "FOLLOW_THROUGH"}
+  ],
+  "expected_metrics": {
+    "peak_velocity_dps": 1200,
+    "tempo_ratio": 3.0,
+    "backswing_duration_ms": 600,
+    "downswing_duration_ms": 250
+  }
+}
+```
+
+#### EMG 测试场景
+
+```json
+[
+  {
+    "scenario": "correct_sequence",
+    "description": "正确运动链 - Core 先于 Forearm 激活",
+    "phase_timestamps": {"TOP": 600, "DOWNSWING": 700, "IMPACT": 850},
+    "expected": {
+      "core_onset_ms": 570,
+      "forearm_onset_ms": 720,
+      "timing_gap_ms": 150,
+      "pattern": "CORRECT"
+    }
+  },
+  {
+    "scenario": "arms_first_error",
+    "description": "错误运动链 - 手臂先于核心 (常见业余问题)",
+    "phase_timestamps": {"TOP": 600, "DOWNSWING": 700, "IMPACT": 850},
+    "expected": {
+      "core_onset_ms": 640,
+      "forearm_onset_ms": 580,
+      "timing_gap_ms": -60,
+      "pattern": "ARMS_BEFORE_CORE"
+    }
+  },
+  {
+    "scenario": "false_coil",
+    "description": "假性蓄力 - X-Factor 正常但核心未激活 (只有三模态能检测!)",
+    "phase_timestamps": {"TOP": 600, "DOWNSWING": 700, "IMPACT": 850},
+    "expected": {
+      "timing_gap_ms": 150,
+      "core_activation_pct": 0.3,
+      "pattern": "FALSE_COIL"
+    },
+    "note": "Vision-only 系统会认为这是正确的挥杆"
+  }
+]
+```
+
+---
+
+## 9. 融合诊断算法 Fusion Diagnostic Algorithms
+
+FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模态融合才能实现。
+
+### 9.1 基础数据结构
+
+```python
+from dataclasses import dataclass
+from typing import Optional, List, Tuple
+from enum import Enum
+
+class DiagnosticSeverity(Enum):
+    """诊断严重程度"""
+    P0_CRITICAL = "P0"   # 必须修正，影响挥杆效果
+    P1_IMPORTANT = "P1"  # 建议修正，影响一致性
+    P2_MINOR = "P2"      # 可选优化
+    INFO = "INFO"        # 仅供参考
+
+
+@dataclass
+class DiagnosticResult:
+    """诊断结果"""
+    rule_id: str
+    severity: DiagnosticSeverity
+    triggered: bool
+    message_cn: str
+    message_en: str
+    confidence: float
+    evidence: dict  # 支持诊断的数据点
+```
+
+### 9.2 算法 1: 运动链序列验证
+
+```python
+def validate_kinematic_sequence(
+    imu_body_rotation_onset_ms: int,
+    emg_core_onset_ms: int,
+    emg_forearm_onset_ms: int,
+    threshold_core_lead_ms: int = 20
+) -> DiagnosticResult:
+    """
+    运动链序列验证
+
+    生物力学原理:
+    ──────────────
+    正确的力量传递序列: Ground → Core → Torso → Arms → Club
+
+    验证规则:
+    ──────────────
+    1. Core (核心肌群) 应在身体旋转前 10-30ms 激活
+    2. Core 应在 Forearm (前臂) 之前至少 20ms 激活
+    3. 如果 Forearm 先于 Core → "用手打球" 错误
+
+    参数:
+    ──────────────
+    imu_body_rotation_onset_ms: IMU 检测到的身体旋转开始时间
+    emg_core_onset_ms: EMG 检测到的核心激活时间
+    emg_forearm_onset_ms: EMG 检测到的前臂激活时间
+    threshold_core_lead_ms: 核心应领先的最小毫秒数 (默认 20ms)
+
+    返回:
+    ──────────────
+    DiagnosticResult: 包含诊断结果和反馈信息
+    """
+    # 计算时序差
+    core_to_body_gap = imu_body_rotation_onset_ms - emg_core_onset_ms
+    core_to_forearm_gap = emg_forearm_onset_ms - emg_core_onset_ms
+
+    evidence = {
+        "core_onset_ms": emg_core_onset_ms,
+        "forearm_onset_ms": emg_forearm_onset_ms,
+        "body_rotation_onset_ms": imu_body_rotation_onset_ms,
+        "core_to_body_gap_ms": core_to_body_gap,
+        "core_to_forearm_gap_ms": core_to_forearm_gap
+    }
+
+    # 诊断逻辑
+    if core_to_forearm_gap < 0:
+        # 错误: 前臂先于核心
+        return DiagnosticResult(
+            rule_id="ARMS_BEFORE_CORE",
+            severity=DiagnosticSeverity.P0_CRITICAL,
+            triggered=True,
+            message_cn="让身体带动，别用手打。前臂比核心早激活了 {}ms。".format(abs(core_to_forearm_gap)),
+            message_en="Let your body lead, don't swing with your arms. "
+                       "Forearm activated {}ms before core.".format(abs(core_to_forearm_gap)),
+            confidence=0.9,
+            evidence=evidence
+        )
+
+    elif core_to_forearm_gap < threshold_core_lead_ms:
+        # 警告: 核心领先不足
+        return DiagnosticResult(
+            rule_id="WEAK_CORE_LEAD",
+            severity=DiagnosticSeverity.P1_IMPORTANT,
+            triggered=True,
+            message_cn="核心启动稍慢，尝试在下杆前更早收紧腹肌。",
+            message_en="Core activation is slightly delayed. "
+                       "Try engaging your abs earlier before the downswing.",
+            confidence=0.7,
+            evidence=evidence
+        )
+
+    else:
+        # 正确: 运动链序列正确
+        return DiagnosticResult(
+            rule_id="KINEMATIC_SEQUENCE_OK",
+            severity=DiagnosticSeverity.INFO,
+            triggered=False,
+            message_cn="运动链序列正确 ✓",
+            message_en="Kinematic sequence is correct ✓",
+            confidence=0.95,
+            evidence=evidence
+        )
+```
+
+### 9.3 算法 2: 假性蓄力检测
+
+```python
+def detect_false_coil(
+    vision_x_factor_degrees: float,
+    emg_core_activation_pct: float,
+    x_factor_threshold: float = 35.0,
+    core_activation_threshold: float = 0.5
+) -> DiagnosticResult:
+    """
+    假性蓄力检测 — 只有三模态能检测的问题!
+
+    什么是假性蓄力 (False Coil)?
+    ────────────────────────────
+    球员"装"出了正确的 X-Factor 角度，但核心肌群没有真正参与。
+    这导致:
+    - 看起来转够了，但没有真正蓄力
+    - 力量不是从核心传递出去
+    - 击球距离和一致性下降
+
+    为什么只有三模态能检测?
+    ────────────────────────────
+    - Vision 看到: X-Factor = 45° ✅ (看起来正常)
+    - IMU 看到: 正常旋转时序 ✅ (时间正确)
+    - EMG 看到: Core activation = 30% ❌ (核心没发力!)
+
+    Vision-only 系统会说: "你的挥杆看起来不错"
+    我们的系统会说: "你的转肩看起来够了，但核心没发力"
+
+    参数:
+    ──────────────
+    vision_x_factor_degrees: Vision 测量的 X-Factor 角度
+    emg_core_activation_pct: EMG 测量的核心激活百分比 [0-1]
+    x_factor_threshold: X-Factor 正常阈值 (默认 35°)
+    core_activation_threshold: 核心激活正常阈值 (默认 50%)
+
+    返回:
+    ──────────────
+    DiagnosticResult: 包含诊断结果和反馈信息
+    """
+    evidence = {
+        "x_factor_degrees": vision_x_factor_degrees,
+        "core_activation_pct": emg_core_activation_pct,
+        "x_factor_threshold": x_factor_threshold,
+        "core_threshold": core_activation_threshold
+    }
+
+    # 假性蓄力条件: X-Factor 正常 + 核心激活不足
+    x_factor_looks_ok = vision_x_factor_degrees >= x_factor_threshold
+    core_not_engaged = emg_core_activation_pct < core_activation_threshold
+
+    if x_factor_looks_ok and core_not_engaged:
+        # 检测到假性蓄力!
+        return DiagnosticResult(
+            rule_id="FALSE_COIL",
+            severity=DiagnosticSeverity.P0_CRITICAL,
+            triggered=True,
+            message_cn="看起来转够了 ({:.0f}°)，但核心只有 {:.0f}% 激活。"
+                       "专注于收紧腹肌再下杆，让核心真正参与蓄力。".format(
+                           vision_x_factor_degrees,
+                           emg_core_activation_pct * 100
+                       ),
+            message_en="Your turn looks good ({:.0f}°) but core is only at {:.0f}% activation. "
+                       "Focus on tightening your abs before starting the downswing.".format(
+                           vision_x_factor_degrees,
+                           emg_core_activation_pct * 100
+                       ),
+            confidence=0.95,
+            evidence=evidence
+        )
+
+    elif not x_factor_looks_ok:
+        # X-Factor 本身就不足，不是假性蓄力问题
+        return DiagnosticResult(
+            rule_id="LOW_X_FACTOR",
+            severity=DiagnosticSeverity.P1_IMPORTANT,
+            triggered=True,
+            message_cn="肩膀多转一点，X-Factor 只有 {:.0f}° (建议 >35°)。".format(vision_x_factor_degrees),
+            message_en="Turn your shoulders more. X-Factor is only {:.0f}° (target >35°).".format(
+                vision_x_factor_degrees
+            ),
+            confidence=0.85,
+            evidence=evidence
+        )
+
+    else:
+        # 正常: X-Factor 足够，核心参与
+        return DiagnosticResult(
+            rule_id="COIL_OK",
+            severity=DiagnosticSeverity.INFO,
+            triggered=False,
+            message_cn="蓄力正常 ✓ X-Factor {:.0f}°, 核心激活 {:.0f}%".format(
+                vision_x_factor_degrees, emg_core_activation_pct * 100
+            ),
+            message_en="Coil looks good ✓ X-Factor {:.0f}°, core at {:.0f}%".format(
+                vision_x_factor_degrees, emg_core_activation_pct * 100
+            ),
+            confidence=0.9,
+            evidence=evidence
+        )
+```
+
+### 9.4 算法 3: 力链三重验证
+
+```python
+def verify_force_chain(
+    vision_phase: str,
+    imu_phase: str,
+    emg_sequence_correct: bool,
+    imu_peak_velocity_dps: float,
+    emg_core_activation_pct: float
+) -> Tuple[float, List[DiagnosticResult]]:
+    """
+    力链三重验证 — 融合置信度计算 + 异常检测
+
+    验证逻辑:
+    ──────────────
+    1. Vision-IMU 交叉验证: 阶段检测一致性
+    2. EMG 因果验证: 肌肉激活序列正确性
+    3. 物理一致性: 高速度应伴随高激活
+
+    参数:
+    ──────────────
+    vision_phase: Vision 检测的当前阶段
+    imu_phase: IMU 检测的当前阶段
+    emg_sequence_correct: EMG 显示运动链序列是否正确
+    imu_peak_velocity_dps: IMU 峰值角速度 (°/s)
+    emg_core_activation_pct: EMG 核心激活百分比 [0-1]
+
+    返回:
+    ──────────────
+    Tuple[float, List[DiagnosticResult]]:
+        - 融合置信度 [0-1]
+        - 诊断结果列表
+    """
+    diagnostics = []
+    confidence = 0.5  # 基准置信度
+
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    # 验证 1: Vision-IMU 阶段一致性
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    if vision_phase == imu_phase:
+        confidence += 0.25  # 双重验证一致
+        diagnostics.append(DiagnosticResult(
+            rule_id="PHASE_CROSS_VALIDATION_OK",
+            severity=DiagnosticSeverity.INFO,
+            triggered=False,
+            message_cn=f"阶段检测一致: Vision={vision_phase}, IMU={imu_phase} ✓",
+            message_en=f"Phase detection consistent: Vision={vision_phase}, IMU={imu_phase} ✓",
+            confidence=0.95,
+            evidence={"vision_phase": vision_phase, "imu_phase": imu_phase}
+        ))
+    else:
+        confidence -= 0.15  # 不一致，降低置信度
+        diagnostics.append(DiagnosticResult(
+            rule_id="PHASE_MISMATCH",
+            severity=DiagnosticSeverity.P2_MINOR,
+            triggered=True,
+            message_cn=f"阶段检测不一致: Vision={vision_phase}, IMU={imu_phase}。"
+                       f"使用 IMU 结果 (更精确)。",
+            message_en=f"Phase detection mismatch: Vision={vision_phase}, IMU={imu_phase}. "
+                       f"Using IMU (more precise).",
+            confidence=0.6,
+            evidence={"vision_phase": vision_phase, "imu_phase": imu_phase}
+        ))
+
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    # 验证 2: EMG 运动链序列
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    if emg_sequence_correct:
+        confidence += 0.25  # 三重验证一致
+    else:
+        confidence -= 0.10  # EMG 异常
+
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    # 验证 3: 物理一致性 (高速度 + 低激活 = 代偿)
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    HIGH_VELOCITY_THRESHOLD = 800  # °/s
+    MIN_CORE_FOR_HIGH_VELOCITY = 0.6
+
+    if imu_peak_velocity_dps > HIGH_VELOCITY_THRESHOLD:
+        if emg_core_activation_pct < MIN_CORE_FOR_HIGH_VELOCITY:
+            # 异常: 高速度但核心激活不足 → 代偿动作
+            diagnostics.append(DiagnosticResult(
+                rule_id="COMPENSATION_DETECTED",
+                severity=DiagnosticSeverity.P0_CRITICAL,
+                triggered=True,
+                message_cn="速度来自手臂，缺乏核心力量。峰值速度 {:.0f}°/s 但核心只有 {:.0f}%。"
+                           "让身体带动，不要靠手打。".format(
+                               imu_peak_velocity_dps, emg_core_activation_pct * 100
+                           ),
+                message_en="Speed is coming from arms, lacking core power. "
+                           "Peak velocity {:.0f}°/s but core at only {:.0f}%. "
+                           "Let your body lead.".format(
+                               imu_peak_velocity_dps, emg_core_activation_pct * 100
+                           ),
+                confidence=0.85,
+                evidence={
+                    "peak_velocity_dps": imu_peak_velocity_dps,
+                    "core_activation_pct": emg_core_activation_pct
+                }
+            ))
+            confidence -= 0.10  # 代偿动作降低整体置信度
+
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    # 最终置信度 (clamp to [0, 1])
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    final_confidence = max(0.0, min(1.0, confidence))
+
+    return final_confidence, diagnostics
+```
+
+### 9.5 完整融合流程
+
+```python
+def run_fusion_diagnostics(
+    vision_data: dict,
+    imu_data: dict,
+    emg_data: dict
+) -> dict:
+    """
+    运行完整的融合诊断流程
+
+    参数:
+    ──────────────
+    vision_data: {"phase": str, "x_factor": float, ...}
+    imu_data: {"phase": str, "peak_velocity_dps": float, "body_rotation_onset_ms": int}
+    emg_data: {"core_onset_ms": int, "forearm_onset_ms": int, "core_activation_pct": float}
+
+    返回:
+    ──────────────
+    dict: {
+        "overall_confidence": float,
+        "diagnostics": List[DiagnosticResult],
+        "primary_feedback": str
+    }
+    """
+    all_diagnostics = []
+
+    # 1. 运动链序列验证
+    kinematic_result = validate_kinematic_sequence(
+        imu_body_rotation_onset_ms=imu_data.get("body_rotation_onset_ms", 700),
+        emg_core_onset_ms=emg_data.get("core_onset_ms", 570),
+        emg_forearm_onset_ms=emg_data.get("forearm_onset_ms", 720)
+    )
+    all_diagnostics.append(kinematic_result)
+
+    # 2. 假性蓄力检测
+    false_coil_result = detect_false_coil(
+        vision_x_factor_degrees=vision_data.get("x_factor", 45.0),
+        emg_core_activation_pct=emg_data.get("core_activation_pct", 0.8)
+    )
+    all_diagnostics.append(false_coil_result)
+
+    # 3. 力链三重验证
+    emg_sequence_ok = kinematic_result.rule_id == "KINEMATIC_SEQUENCE_OK"
+    confidence, chain_diagnostics = verify_force_chain(
+        vision_phase=vision_data.get("phase", "TOP"),
+        imu_phase=imu_data.get("phase", "TOP"),
+        emg_sequence_correct=emg_sequence_ok,
+        imu_peak_velocity_dps=imu_data.get("peak_velocity_dps", 1000),
+        emg_core_activation_pct=emg_data.get("core_activation_pct", 0.8)
+    )
+    all_diagnostics.extend(chain_diagnostics)
+
+    # 选择最重要的反馈 (P0 > P1 > P2)
+    critical_issues = [d for d in all_diagnostics if d.triggered and d.severity == DiagnosticSeverity.P0_CRITICAL]
+    important_issues = [d for d in all_diagnostics if d.triggered and d.severity == DiagnosticSeverity.P1_IMPORTANT]
+
+    if critical_issues:
+        primary_feedback = critical_issues[0].message_cn
+    elif important_issues:
+        primary_feedback = important_issues[0].message_cn
+    else:
+        primary_feedback = "挥杆看起来不错 ✓"
+
+    return {
+        "overall_confidence": confidence,
+        "diagnostics": all_diagnostics,
+        "primary_feedback": primary_feedback
+    }
+```
+
+### 9.6 诊断规则速查表
+
+| 规则 ID | 严重度 | 触发条件 | 需要的传感器 |
+|--------|--------|---------|-------------|
+| `ARMS_BEFORE_CORE` | P0 | Forearm 先于 Core 激活 | EMG |
+| `FALSE_COIL` | P0 | X-Factor ≥35° 但 Core <50% | Vision + EMG |
+| `COMPENSATION_DETECTED` | P0 | 峰值速度高但 Core 激活低 | IMU + EMG |
+| `LOW_X_FACTOR` | P1 | X-Factor <35° | Vision |
+| `WEAK_CORE_LEAD` | P1 | Core 领先 Forearm <20ms | EMG |
+| `PHASE_MISMATCH` | P2 | Vision 和 IMU 阶段不一致 | Vision + IMU |
+
+!!! success "三模态独有能力"
+    以上规则中，**P0 级别的三个规则都需要 EMG 数据**。
+    这意味着:
+
+    - Vision-only 竞品只能检测 `LOW_X_FACTOR` (P1)
+    - Vision+IMU 竞品可以检测 `PHASE_MISMATCH` (P2)
+    - **只有 Vision+IMU+EMG 能检测全部 P0 问题**
+
+---
+
+## 10. 相关文档 Related Documents
 
 - [系统设计](../system-design.md): MVP 技术架构和构建顺序
+- [模块化架构](../specs/modular-architecture.md): LEGO 积木式架构设计
 - [挥杆对比分析](../specs/swing-comparison.md): Pro vs Amateur 的生物力学差异
 - [生物力学术语表](./biomechanics-glossary.md): 技术术语定义
 - [生物力学基准值](./biomechanics-benchmarks.md): 文献验证的正常范围
@@ -562,3 +1382,7 @@ def calculate_activation_ratio(mock_emg):
 2. Vision 的 33ms 采样间隔不足以检测 <10ms 的激活差异，需 IMU/EMG 补充
 3. 单个 IMU 无法测量全身姿态，Phase 2 需增加骨盆 IMU
 4. 地面反作用力需专用测力台，MVP 阶段不支持
+
+---
+
+**最后更新**: 2025-12-19
