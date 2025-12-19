@@ -362,9 +362,9 @@ X-Factor 代表了你在上杆顶点时**躯干被"拧紧"的程度**。
 
 ---
 
-## 2.3 X-Factor Stretch：职业球手的秘密武器
+## 2.3 X-Factor Stretch：职业球手的秘密武器 {#23-x-factor-stretch职业球手的秘密武器}
 
-这是区分职业与业余球手的**关键指标之一**。
+这是区分职业与业余球手的**关键指标之一**。详见 [高尔夫术语表 - X-Factor Stretch](../../reference/golf-glossary.md#5-x-factor-stretch)。
 
 ### 什么是 X-Factor Stretch？
 
