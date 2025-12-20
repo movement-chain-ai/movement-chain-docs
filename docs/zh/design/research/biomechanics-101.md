@@ -425,10 +425,19 @@ X-Factor 代表了你在上杆顶点时**躯干被"拧紧"的程度**。
 
 **中文解释**: 骨盆倾斜应该保持相对稳定（5-10°），过大的变化会影响稳定性。
 
-<figure markdown="span">
-  ![S-O Factor 上杆顶点](../../images/s-o-factor-top.png){ width="350" }
-  ![S-O Factor 收杆](../../images/s-o-factor-follow-through.png){ width="350" }
-</figure>
+<div class="grid cards" markdown>
+
+-   ![S-O Factor 上杆顶点](../../images/s-o-factor-top.png)
+
+    **上杆顶点**
+
+-   ![S-O Factor 收杆](../../images/s-o-factor-follow-through.png)
+
+    **收杆位置**
+
+</div>
+
+> 红色线 = S-Factor（肩部倾斜），蓝色线 = O-Factor（骨盆倾斜）。注意蓝色线（O-Factor）保持相对稳定。
 
 ### 倾斜角度基准值
 
