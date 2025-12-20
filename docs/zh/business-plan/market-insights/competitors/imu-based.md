@@ -63,6 +63,67 @@ BLE: 4.2/5.0
 
 ---
 
+### MOXI (Swing Motion 多传感器版) ⭐⭐⭐⭐
+
+!!! info "SwingMotion 的专业升级版"
+    双 IMU 传感器系统，提供躯干运动分析
+
+![MOXI 产品套装](../../../images/moxi-kit.webp)
+
+| 参数 | 规格 |
+|-----|------|
+| **价格** | $499+ |
+| **传感器** | 2 × 9 轴 IMU |
+| **佩戴位置** | 胸部背心 + 腰部绑带 |
+| **数据** | 躯干旋转、侧弯、前倾 |
+| **App** | iOS / Android |
+
+![MOXI 传感器与 APP 界面](../../../images/MOXI_Sensor_APP.webp)
+
+**核心功能**:
+
+- 躯干旋转 (Rotation) 测量
+- 侧弯 (Side Bend) 分析
+- 前倾 (Forward Bend) 监测
+- AI Tips 智能建议
+- 挥杆阶段分析 (Address / Top / Impact)
+
+**官网**: [swingmotion.app/moxi](https://swingmotion.app)
+
+**技术分析**:
+
+```text
+传感器: 2 × 9 轴 IMU
+同步: 蓝牙无线同步
+佩戴: 背心式设计，舒适稳定
+算法: 躯干运动学解算
+```
+
+**竞争优势**:
+
+- 比单 IMU 方案更全面的躯干数据
+- 背心设计佩戴稳定
+- 价格比 K-Motion 低很多
+
+**MOXI vs 其他设备对比**:
+
+![MOXI 与其他设备对比](../../../images/moxi-vs-others.png)
+
+| 对比维度 | MOXI | 其他设备 |
+|---------|------|---------|
+| **传感器数量** | 双传感器 (Enhanced Precision) | 单传感器或无 |
+| **训练模块** | 4 种模式: Wrist, Torso, Hip, Body Separation | 单一模式或有限选项 |
+| **练习模式** | 3 种: Wrist Control, Torso Movement, Hip Movement | 基础或单一模式 |
+| **App 订阅** | 免费，无需订阅 | 可能需要付费订阅 |
+
+**我们的差异**:
+
+- MOXI 无法测量肌肉激活
+- 无 EMG 数据，无法分析发力时序
+- 无视觉数据，无法获取全身姿态
+
+---
+
 ### HackMotion ⭐⭐⭐⭐⭐
 
 !!! info "手腕角度专家"
@@ -256,8 +317,8 @@ BLE: 4.2/5.0
 
 ## 相关资源
 
-- [IMU 传感器技术](../../components/imu/hardware.md)
-- [IMU 供应商](../../components/imu/hardware.md)
+- [IMU 传感器技术](../../../components/imu/hardware.md)
+- [IMU 供应商](../../../components/imu/hardware.md)
 - [视觉方案竞品](vision-based.md)
 - [多传感器方案](multi-sensor.md)
 

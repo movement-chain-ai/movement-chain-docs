@@ -135,7 +135,7 @@ $$
 - **Tour Tempo 方法**：使用节拍器，常用节拍 21/7（上杆21拍，下杆7拍）
 - **关注过渡区**：上杆顶点到下杆启动的转换，最容易打乱节奏
 
-> 详细生物力学分析见：[生物力学入门 - 节奏比](../design/research/biomechanics-101.md#节奏比-tempo-ratio)
+> 详细生物力学分析见：[生物力学入门 - 节奏比](../design/foundations/biomechanics-101.md#节奏比-tempo-ratio)
 
 ---
 
@@ -182,7 +182,7 @@ $$
     2. **算法复用**：动作分析只需一套逻辑，通过配置切换左右手模式
     3. **数据通用性**：标注和指标报告对两种球员通用，无需维护两套术语
 
-> 详细生物力学分析见：[生物力学入门 - 引导侧与后侧](../design/research/biomechanics-101.md#14-引导侧与后侧-lead-side--trail-side)
+> 详细生物力学分析见：[生物力学入门 - 引导侧与后侧](../design/foundations/biomechanics-101.md#14-引导侧与后侧-lead-side--trail-side)
 
 ---
 
@@ -309,7 +309,7 @@ X-Factor Stretch：15-25%          5-10%
 
     这些指标帮助球手优化挥杆效率，间接提升杆头速度。
 
-> 详细生物力学分析见：[生物力学入门 - 杆头速度](../design/research/biomechanics-101.md#杆头速度-线速度)
+> 详细生物力学分析见：[生物力学入门 - 杆头速度](../design/foundations/biomechanics-101.md#杆头速度-线速度)
 
 ---
 
@@ -413,7 +413,7 @@ X-Factor Stretch 利用了运动生物力学中的核心原理：
 
     这是区分业余与职业挥杆的**核心指标之一**。
 
-> 详细生物力学分析见：[生物力学入门 - X-Factor Stretch](../design/research/biomechanics-101.md#23-x-factor-stretch职业球手的秘密武器)
+> 详细生物力学分析见：[生物力学入门 - X-Factor Stretch](../design/foundations/biomechanics-101.md#23-x-factor-stretch职业球手的秘密武器)
 
 ---
 
@@ -632,15 +632,15 @@ TBP 反映了**角动量传递的时机**：
 
     TBP 是诊断**运动链时序问题**的核心指标。
 
-> 详细生物力学分析见：[生物力学入门 - 运动链时序](../design/research/biomechanics-101.md)
+> 详细生物力学分析见：[生物力学入门 - 运动链时序](../design/foundations/biomechanics-101.md)
 
 ---
 
 ## 相关文档
 
 - [商业术语表](business-glossary.md) - 商业相关术语
-- [生物力学入门](../design/research/biomechanics-101.md) - 挥杆生物力学基础
-- [生物力学术语表](../design/research/biomechanics-glossary.md) - 专业生物力学术语
+- [生物力学入门](../design/foundations/biomechanics-101.md) - 挥杆生物力学基础
+- [生物力学术语表](../design/foundations/biomechanics-glossary.md) - 专业生物力学术语
 
 ---
 

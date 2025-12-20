@@ -86,7 +86,7 @@
 
 ---
 
-### 1.2 2024年市场规模和年复合增长率[CAGR](../reference/business-glossary.md#cagr年复合增长率)
+### 1.2 2024年市场规模和年复合增长率[CAGR](../../reference/business-glossary.md#cagr年复合增长率)
 
 | # | 类别 | 2024 规模 | CAGR| 数据来源 |
 |---|------|----------|------|---------|
@@ -212,7 +212,7 @@
 
 - [IMU 方案竞品](competitors/imu-based.md)
 - [视觉方案竞品](competitors/vision-based.md)
-- [产品战略](product-strategy.md)
+- [产品战略](../product-strategy.md)
 
 ---
 

@@ -41,7 +41,7 @@
 
 ## 相关文档
 
-- [进入策略](entry-strategy.md) - 市场进入策略
+- [进入策略](../go-to-market/entry-strategy.md) - 市场进入策略
 - [定价策略](pricing-strategy.md) - 产品定价逻辑
 
 ---

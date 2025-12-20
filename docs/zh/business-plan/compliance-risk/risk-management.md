@@ -135,7 +135,7 @@
 
 ## 相关文档
 
-- [进入策略](entry-strategy.md) - 市场进入策略
+- [进入策略](../go-to-market/entry-strategy.md) - 市场进入策略
 - [法规与合规](regulatory.md) - FDA/CE 认证
 - [知识产权](ip-strategy.md) - 专利布局
 

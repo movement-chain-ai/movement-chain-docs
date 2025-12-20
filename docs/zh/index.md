@@ -79,9 +79,9 @@
 
 ### 投资人 (15 min)
 
-1. [进入策略](business-plan/entry-strategy.md) → 差异化定位
+1. [进入策略](business-plan/go-to-market/entry-strategy.md) → 差异化定位
 2. [产品战略](business-plan/product-strategy.md) → MVP 规格
-3. [市场分析](business-plan/market-analysis.md) → 市场机会
+3. [市场分析](business-plan/market-insights/market-analysis.md) → 市场机会
 
 ### 新团队成员 (按角色)
 

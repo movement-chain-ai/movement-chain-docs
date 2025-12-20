@@ -246,7 +246,7 @@ def compare_swings(swing_a, swing_b):
 
 - [8 相位挥杆分解](../design/specs/swing-phases.md) - 系统实现
 - [实时反馈规范](../design/specs/real-time-feedback.md) - 反馈模式
-- [传感器指标映射](../design/research/sensor-metric-mapping.md) - IMU/EMG 指标
+- [传感器指标映射](../design/architecture/sensor-metric-mapping.md) - IMU/EMG 指标
 - [学术数据集](academic-datasets.md) - 通用运动数据集
 
 ---

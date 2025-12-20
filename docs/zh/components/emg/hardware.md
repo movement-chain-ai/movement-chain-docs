@@ -272,7 +272,7 @@ EMG 信号链路:
 ## 相关资源
 
 - [EMG 供应商](suppliers.md)
-- [竞品分析](../../business-plan/competitors/imu-based.md) - 无 EMG 竞品
+- [竞品分析](../../business-plan/market-insights/competitors/imu-based.md) - 无 EMG 竞品
 
 ---
 

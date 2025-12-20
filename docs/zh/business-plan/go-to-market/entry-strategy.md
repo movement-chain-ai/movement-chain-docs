@@ -62,7 +62,7 @@
 !!! tip "创新: 慢动作模式"
     用户以慢速执行挥杆，系统可在动作过程中提供实时反馈。解决了"正常挥杆太快无法实时纠正"的难题。
 
-> 详细技术规格见: [实时反馈规范](../design/specs/real-time-feedback.md)
+> 详细技术规格见: [实时反馈规范](../../design/specs/real-time-feedback.md)
 
 ---
 
@@ -131,11 +131,11 @@ Phase 3: 扩展 (12-24 个月)
 
 ## 相关文档
 
-- [产品战略](product-strategy.md) - 详细设计决策和系统架构
-- [市场分析](market-analysis.md) - 市场规模与增长数据
-- [竞品分析](competitors/imu-based.md) - 竞品对比
-- [单位经济学](unit-economics.md) - 财务预测与盈利模型
-- [风险管理](risk-management.md) - 风险评估与应对
+- [产品战略](../product-strategy.md) - 详细设计决策和系统架构
+- [市场分析](../market-insights/market-analysis.md) - 市场规模与增长数据
+- [竞品分析](../market-insights/competitors/imu-based.md) - 竞品对比
+- [单位经济学](../business-model/unit-economics.md) - 财务预测与盈利模型
+- [风险管理](../compliance-risk/risk-management.md) - 风险评估与应对
 - [渠道策略](channel-strategy.md) - 获客渠道详细规划
 
 ---

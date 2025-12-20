@@ -58,8 +58,8 @@
 
 ## 相关文档
 
-- [系统设计](../design/system-design.md)
-- [竞品分析](../business-plan/competitors/imu-based.md)
+- [系统设计](../design/architecture/system-design.md)
+- [竞品分析](../business-plan/market-insights/competitors/imu-based.md)
 - [开发指南](../development/index.md)
 
 ---
