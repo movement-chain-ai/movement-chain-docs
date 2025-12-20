@@ -2,7 +2,7 @@
 
 > **文档状态**: 草稿 v1.1
 > **最后更新**: 2025-12-20
-> **关联文档**: [模块化架构](modular-architecture.md) | [实时反馈](real-time-feedback.md) | [生物力学基准](../research/biomechanics-benchmarks.md)
+> **关联文档**: [模块化架构](modular-architecture.md) | [实时反馈](../specs/real-time-feedback.md) | [生物力学基准](../foundations/biomechanics-benchmarks.md)
 
 ---
 
@@ -791,9 +791,9 @@ P2 (最后):   优化建议 (BALANCE)
 ### B. 相关文档
 
 - [模块化架构](modular-architecture.md) - 系统模块详细设计
-- [实时反馈规格](real-time-feedback.md) - 反馈时延和模式详解
-- [生物力学基准](../research/biomechanics-benchmarks.md) - 完整阈值表
-- [传感器指标映射](../research/sensor-metric-mapping.md) - 数据计算公式
+- [实时反馈规格](../specs/real-time-feedback.md) - 反馈时延和模式详解
+- [生物力学基准](../foundations/biomechanics-benchmarks.md) - 完整阈值表
+- [传感器指标映射](./sensor-metric-mapping.md) - 数据计算公式
 
 ---
 

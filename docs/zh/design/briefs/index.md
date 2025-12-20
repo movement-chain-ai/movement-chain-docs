@@ -39,13 +39,13 @@
 
 1. 先读你的Brief文档
 2. 按Brief中列出的顺序阅读链接文档
-3. 如遇到术语不理解，查阅 [`design/research/biomechanics-glossary.md`](../research/biomechanics-glossary.md)
+3. 如遇到术语不理解，查阅 [`design/research/biomechanics-glossary.md`](../foundations/biomechanics-glossary.md)
 
 ### 3. 参考完整路线图（可选）
 
 如果需要了解项目全貌或跨角色协作细节，可阅读主文档：
 
-- **[系统设计](../system-design.md)** - 项目级实施路线图（包含所有角色的完整视图）
+- **[系统设计](../architecture/system-design.md)** - 项目级实施路线图（包含所有角色的完整视图）
 
 ---
 
@@ -104,4 +104,4 @@
 
 ---
 
-**返回**: [系统设计](../system-design.md) | [Design Docs](../index.md)
+**返回**: [系统设计](../architecture/system-design.md) | [Design Docs](../index.md)

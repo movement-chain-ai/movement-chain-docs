@@ -289,7 +289,7 @@ LSM6DSV16X (stm32duino): "latest"
 
 ## 相关文档
 
-- [系统设计](../system-design.md) - 整体架构和数据流
+- [系统设计](../architecture/system-design.md) - 整体架构和数据流
 - [ADR 决策记录](../decisions/index.md) - 架构决策快速参考
 - [移动开发](../../development/mobile/development.md) - Flutter 开发指南
 

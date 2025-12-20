@@ -12,7 +12,7 @@ Technical architecture and decision documentation for Movement Chain AI MVP. Bri
 
 ## Hub-Spoke Architecture
 
-**Hub**: `system-design.md` - Core 4-module MVP pipeline (Assessment → Diagnosis → Correction → Tracking)
+**Hub**: `architecture/system-design.md` - Core 4-module MVP pipeline (Assessment → Diagnosis → Correction → Tracking)
 
 All other design documents reference the hub. The hub is the single source of truth for system architecture.
 
@@ -20,11 +20,15 @@ All other design documents reference the hub. The hub is the single source of tr
 
 | Folder | Purpose | When to Use |
 |--------|---------|-------------|
+| `foundations/` | Biomechanics prerequisites | Read first, before understanding system design |
+| `architecture/` | Core system design (4 docs) | Understanding MVP architecture |
+| `specs/` | Detailed specifications | Reference when implementing features |
 | `briefs/` | Role-specific onboarding | Adding new team members, role clarification |
-| `specs/` | Feature specifications | Detailed requirements for system-design.md modules |
 | `guides/` | Developer tutorials | Implementation patterns, SDK selection |
-| `research/` | Biomechanics foundations | Sensor choices, algorithm validation |
+| `research/` | Competitive/tool analysis | Evaluating alternatives |
 | `decisions/` | ADRs (sequential) | Technology selections, architecture choices |
+
+**Reading order**: `foundations/` → `architecture/` → `specs/` (as needed)
 
 ## Content Rules
 
@@ -54,8 +58,9 @@ All other design documents reference the hub. The hub is the single source of tr
 
 ## Key Interdependencies
 
-- `system-design.md` ↔ All ADRs (decisions shape architecture)
-- `specs/swing-phases.md` ↔ `research/biomechanics-glossary.md` (terminology)
+- `architecture/system-design.md` ↔ All ADRs (decisions shape architecture)
+- `architecture/modular-architecture.md` ↔ `architecture/data-pipeline-and-ai.md` (block design + data flow)
+- `specs/swing-phases.md` ↔ `foundations/biomechanics-glossary.md` (terminology)
 - `guides/ml-basics.md` ↔ `decisions/ADR-0006-onnx-runtime.md` (ML deployment)
 - `briefs/*` ↔ `specs/*` (role-based feature ownership)
 

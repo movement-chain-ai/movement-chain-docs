@@ -101,7 +101,7 @@
 | 多仓库结构 | 项目根目录 README |
 | IMU选型 | [硬件规格](../../components/imu/hardware.md) |
 | Flutter | [移动开发](../../development/mobile/development.md) |
-| 4模块架构 | [系统设计](../system-design.md) |
+| 4模块架构 | [系统设计](../architecture/system-design.md) |
 | ONNX | [移动开发](../../development/mobile/development.md) |
 
 ---
@@ -134,4 +134,4 @@
 
 ---
 
-**返回**: [系统设计](../system-design.md) | [Design Docs](../index.md)
+**返回**: [系统设计](../architecture/system-design.md) | [Design Docs](../index.md)

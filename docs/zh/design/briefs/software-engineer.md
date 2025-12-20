@@ -60,7 +60,7 @@ Movement Chain AI 是一个高尔夫挥杆分析系统，融合 **Vision (MediaP
 
 **核心任务**:
 
-1. **实现 6 条规则** (详见 [系统设计](../system-design.md)):
+1. **实现 6 条规则** (详见 [系统设计](../architecture/system-design.md)):
    - **P0 严重问题**:
      - 规则 1: EMG 前臂先于核心激活 (gap < -20ms) → "从核心启动"
      - 规则 2: EMG Forearm/Core ratio > 1.3 → "感觉核心在发力"
@@ -123,14 +123,14 @@ pip install streamlit
 
 ### 基准数据
 
-- [**生物力学基准值**](../research/biomechanics-benchmarks.md) (10 分钟)
+- [**生物力学基准值**](../foundations/biomechanics-benchmarks.md) (10 分钟)
   - 职业 vs 业余球手数据对比
   - 规则引擎阈值来源
   - X-Factor, 节奏比, 峰值角速度等指标
 
 ### 传感器能力
 
-- [**传感器指标映射**](../research/sensor-metric-mapping.md) (10 分钟)
+- [**传感器指标映射**](../architecture/sensor-metric-mapping.md) (10 分钟)
   - Vision/IMU/EMG 各能检测什么
   - 竞品能力对比
   - **EMG 是我们的独特优势**

@@ -419,7 +419,7 @@ flowchart TB
 - Vision=Top, IMU=Mid, EMG=None → **0.35** (需检查)
 
 !!! tip "算法实现"
-    完整 Python 代码见 [传感器指标映射 §7](../research/sensor-metric-mapping.md#7-融合置信度计算-fusion-confidence)
+    完整 Python 代码见 [传感器指标映射 §7](./sensor-metric-mapping.md#7-融合置信度计算-fusion-confidence)
 
 ### 2.8 用户反馈翻译层
 
@@ -479,7 +479,7 @@ flowchart TB
 
 ### 2.9 研究验证的阈值参考
 
-所有阈值来自文献研究，详见 [生物力学基准值](../research/biomechanics-benchmarks.md):
+所有阈值来自文献研究，详见 [生物力学基准值](../foundations/biomechanics-benchmarks.md):
 
 | 指标 | 阈值/范围 | 来源 | 用途 |
 |------|----------|------|------|
@@ -496,8 +496,8 @@ flowchart TB
 !!! abstract "详细内容已移至单一来源"
     为避免重复维护，详细的竞品对比和能力矩阵表已整合到:
 
-    - **[传感器指标映射 §1](../research/sensor-metric-mapping.md#1-系统能力矩阵-capability-matrix)** — 系统能力矩阵
-    - **[传感器指标映射 §2](../research/sensor-metric-mapping.md#2-竞品能力对比-competitor-comparison)** — 竞品能力对比
+    - **[传感器指标映射 §1](./sensor-metric-mapping.md#1-系统能力矩阵-capability-matrix)** — 系统能力矩阵
+    - **[传感器指标映射 §2](./sensor-metric-mapping.md#2-竞品能力对比-competitor-comparison)** — 竞品能力对比
 
 **核心差异化速览**:
 
@@ -568,7 +568,7 @@ flowchart TB
 | **Sway/Lift** | 髋部中心位移 vs Address | 23,24 | 重心控制 |
 
 !!! tip "详细算法实现"
-    计算代码见 [传感器指标映射 §3.1](../research/sensor-metric-mapping.md#31-vision-检测-mediapipe-33-landmarks)
+    计算代码见 [传感器指标映射 §3.1](./sensor-metric-mapping.md#31-vision-检测-mediapipe-33-landmarks)
 
 ### 3.2 IMU Block
 
@@ -630,7 +630,7 @@ class SimulatedIMUFrame:
 ```
 
 !!! tip "完整算法实现"
-    详细代码和测试场景见 [传感器指标映射 §8.1](../research/sensor-metric-mapping.md#81-从-pose-数据生成模拟-imu)
+    详细代码和测试场景见 [传感器指标映射 §8.1](./sensor-metric-mapping.md#81-从-pose-数据生成模拟-imu)
 
 !!! note "真实硬件选项 (Phase 2+)"
 
@@ -650,7 +650,7 @@ class SimulatedIMUFrame:
 | **Transition Timing** | 转换点精度 | ±0.6ms 可检测 | 力量爆发点 |
 
 !!! tip "详细算法实现"
-    峰值检测、运动链验证代码见 [传感器指标映射 §3.2](../research/sensor-metric-mapping.md#32-imu-检测-lsm6dsv16x--1666hz)
+    峰值检测、运动链验证代码见 [传感器指标映射 §3.2](./sensor-metric-mapping.md#32-imu-检测-lsm6dsv16x--1666hz)
 
 ### 3.3 EMG Block
 
@@ -716,7 +716,7 @@ class SimulatedIMUFrame:
     这是 Vision-only 竞品永远无法检测的问题。
 
 !!! tip "完整算法实现"
-    详细代码和测试场景见 [传感器指标映射 §8.2](../research/sensor-metric-mapping.md#82-从阶段时间戳生成模拟-emg)
+    详细代码和测试场景见 [传感器指标映射 §8.2](./sensor-metric-mapping.md#82-从阶段时间戳生成模拟-emg)
 
 !!! note "真实硬件选项 (Phase 2+)"
 
@@ -737,7 +737,7 @@ MVP 阶段使用 2 通道 (Core + Forearm)，后续渐进扩展：
 | **Phase 3** | 6 | + 背阔肌, 三角肌 | 完整力链验证 |
 
 !!! tip "详细布局图"
-    电极放置位置、选择依据见 [传感器指标映射 §6](../research/sensor-metric-mapping.md#6-emg-传感器布局规划-emg-sensor-placement-plan)
+    电极放置位置、选择依据见 [传感器指标映射 §6](./sensor-metric-mapping.md#6-emg-传感器布局规划-emg-sensor-placement-plan)
 
 #### 3.3.4 真实 EMG 检测能力
 
@@ -749,7 +749,7 @@ MVP 阶段使用 2 通道 (Core + Forearm)，后续渐进扩展：
 | **Co-activation** | 拮抗肌同时激活 | 双通道比较 | 动作效率分析 |
 
 !!! tip "详细算法实现"
-    信号处理、特征提取代码见 [传感器指标映射 §3.3](../research/sensor-metric-mapping.md#33-emg-检测-unique-capability)
+    信号处理、特征提取代码见 [传感器指标映射 §3.3](./sensor-metric-mapping.md#33-emg-检测-unique-capability)
 
 ---
 
@@ -829,7 +829,7 @@ Impact = gyro_z 正向峰值 (最大旋转速度)
 
 FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模态融合才能实现。
 
-> **实现代码**: 见 [传感器指标映射 §9 融合诊断算法](../research/sensor-metric-mapping.md#9-融合诊断算法-fusion-diagnostic-algorithms)
+> **实现代码**: 见 [传感器指标映射 §9 融合诊断算法](./sensor-metric-mapping.md#9-融合诊断算法-fusion-diagnostic-algorithms)
 
 | 算法 | 函数名 | 检测内容 | 所需传感器 |
 |-----|-------|---------|-----------|
@@ -1073,7 +1073,7 @@ Real EMG ───────────┼→ Weighted Fusion → Advanced Di
 
 !!! info "💡 Rerun 集成时机建议"
 
-    基于 [system-design.md §3](../system-design.md#3-构建顺序) 的构建顺序:
+    基于 [system-design.md §3](./system-design.md#3-构建顺序) 的构建顺序:
 
     | 开发阶段 | 周数 | Rerun 使用场景 | 优先级 |
     |---------|-----|---------------|--------|
@@ -1201,7 +1201,7 @@ Phase 4+ (Week 5-8): Integration & Testing
 关于 Rerun 的完整技术评估、竞品对比、未来 TAPIR 球杆追踪规划，详见:
 
 - **[可视化工具评估](../research/visualization-tools-evaluation.md)** — 为什么选择 Rerun 而非 Foxglove/PlotJuggler
-- **[system-design.md §7](../system-design.md#7-未来规划)** — 项目整体技术路线图
+- **[system-design.md §7](./system-design.md#7-未来规划)** — 项目整体技术路线图
 
 ---
 
@@ -1211,10 +1211,10 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 | 文档 | 内容 | 关系 |
 |------|------|------|
-| [系统设计](../system-design.md) | MVP 4 模块架构 | 本文档的父文档 |
-| [传感器指标映射](../research/sensor-metric-mapping.md) | 算法实现代码 | §3.1-3.3 的详细实现 |
-| [挥杆阶段](swing-phases.md) | 8 阶段检测 | CLASSIFIER Block 输出 |
-| [生物力学术语表](../research/biomechanics-glossary.md) | 术语定义 | 高尔夫专业术语 |
+| [系统设计](./system-design.md) | MVP 4 模块架构 | 本文档的父文档 |
+| [传感器指标映射](./sensor-metric-mapping.md) | 算法实现代码 | §3.1-3.3 的详细实现 |
+| [挥杆阶段](../specs/swing-phases.md) | 8 阶段检测 | CLASSIFIER Block 输出 |
+| [生物力学术语表](../foundations/biomechanics-glossary.md) | 术语定义 | 高尔夫专业术语 |
 
 ### 技术决策 (ADRs)
 
@@ -1229,7 +1229,7 @@ Phase 4+ (Week 5-8): Integration & Testing
 | 文档 | 内容 | 适合 |
 |------|------|------|
 | [ML 基础](../guides/ml-basics.md) | ML 概念入门 | 无 ML 背景读者 |
-| [实时反馈](real-time-feedback.md) | 反馈系统设计 | OUTPUT Block 实现 |
+| [实时反馈](../specs/real-time-feedback.md) | 反馈系统设计 | OUTPUT Block 实现 |
 
 ---
 

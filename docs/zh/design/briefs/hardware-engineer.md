@@ -111,7 +111,7 @@
 
 ### 采样率要求
 
-- [传感器指标映射](../research/sensor-metric-mapping.md)
+- [传感器指标映射](../architecture/sensor-metric-mapping.md)
   - IMU 100Hz 用于运动链时序 (<10ms 精度)
   - EMG 1000Hz 用于肌肉激活检测 (<5ms 精度)
   - Vision 30fps 用于身体角度测量

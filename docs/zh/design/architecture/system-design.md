@@ -14,11 +14,11 @@
 
 | 文档 | 内容 | 阅读时间 |
 |------|------|----------|
-| **[📖 生物力学入门](research/biomechanics-101.md)** | 7章从零开始学习高尔夫生物力学 | ~90分钟 |
-| **[📚 生物力学术语表](research/biomechanics-glossary.md)** | 140+ 专业术语定义，团队沟通标准 | 按需查阅 |
-| **[📊 生物力学基准值](research/biomechanics-benchmarks.md)** | 职业/业余选手研究验证的基准数据 | ~15分钟 |
+| **[📖 生物力学入门](../foundations/biomechanics-101.md)** | 7章从零开始学习高尔夫生物力学 | ~90分钟 |
+| **[📚 生物力学术语表](../foundations/biomechanics-glossary.md)** | 140+ 专业术语定义，团队沟通标准 | 按需查阅 |
+| **[📊 生物力学基准值](../foundations/biomechanics-benchmarks.md)** | 职业/业余选手研究验证的基准数据 | ~15分钟 |
 
-> 💡 **快速入口**: 如果时间有限，至少读完 [生物力学入门](research/biomechanics-101.md) 的第1-3章。
+> 💡 **快速入口**: 如果时间有限，至少读完 [生物力学入门](../foundations/biomechanics-101.md) 的第1-3章。
 
 ---
 
@@ -32,7 +32,7 @@
 
 ### 1.2 MVP 范围
 
-> 📐 **架构决策**: 4模块架构设计详见 [ADR-0004](decisions/0004-simplified-4-module-architecture.md)
+> 📐 **架构决策**: 4模块架构设计详见 [ADR-0004](../decisions/0004-simplified-4-module-architecture.md)
 
 | 功能 | MVP Phase 1 | Phase 2 | Phase 3 | 备注 |
 |------|:-----------:|:-------:|:-------:|------|
@@ -78,9 +78,9 @@
 
 ### 2.1 MVP 测量指标 (12个)
 
-基于 [传感器指标映射](research/sensor-metric-mapping.md) 和 [生物力学基准值](research/biomechanics-benchmarks.md)。
+基于 [传感器指标映射](./sensor-metric-mapping.md) 和 [生物力学基准值](../foundations/biomechanics-benchmarks.md)。
 
-> 🔍 **竞品对比**: 与 OnForm/Sportsbox 的指标差异见 [竞品指标对比](research/competitor-metrics-comparison.md)
+> 🔍 **竞品对比**: 与 OnForm/Sportsbox 的指标差异见 [竞品指标对比](../research/competitor-metrics-comparison.md)
 
 #### Vision 指标 (MediaPipe 33关键点)
 
@@ -111,7 +111,7 @@
 
 ### 2.2 MVP 规则引擎 (6条)
 
-> 📋 **详细规格**: 规则的完整触发逻辑、反馈模式、延迟要求见 [实时反馈规格](specs/real-time-feedback.md)
+> 📋 **详细规格**: 规则的完整触发逻辑、反馈模式、延迟要求见 [实时反馈规格](../specs/real-time-feedback.md)
 
 #### P0 - 严重问题 (必须修正)
 
@@ -135,10 +135,10 @@
 
 > **相关文档**:
 >
-> - [8阶段挥杆检测](specs/swing-phases.md) - 阶段划分算法与代码实现
-> - [挥杆对比策略](specs/swing-comparison.md) - 4种对比方法 (Pro/Personal Best/Statistical/Learned)
-> - [实时反馈规格](specs/real-time-feedback.md) - 3种反馈模式详细规格
-> - [移动开发](../development/mobile/development.md) - Flutter 开发与测试指南
+> - [8阶段挥杆检测](../specs/swing-phases.md) - 阶段划分算法与代码实现
+> - [挥杆对比策略](../specs/swing-comparison.md) - 4种对比方法 (Pro/Personal Best/Statistical/Learned)
+> - [实时反馈规格](../specs/real-time-feedback.md) - 3种反馈模式详细规格
+> - [移动开发](../../development/mobile/development.md) - Flutter 开发与测试指南
 
 ### 3.1 Phase 1: Vision Pipeline (Week 1-2)
 
@@ -245,25 +245,25 @@ flowchart LR
 
 > **相关文档**:
 >
-> - [SDK 选型](guides/sdk-selection.md) - MediaPipe/NeuroKit2/imufusion 等 SDK 对比
-> - [机器学习基础](guides/ml-basics.md) - 挥杆分析 ML 模型入门
+> - [SDK 选型](../guides/sdk-selection.md) - MediaPipe/NeuroKit2/imufusion 等 SDK 对比
+> - [机器学习基础](../guides/ml-basics.md) - 挥杆分析 ML 模型入门
 
 ### 4.1 确认的技术选型
 
 | 层级 | 技术 | 决策依据 |
 |------|------|----------|
-| **项目结构** | 多仓库 (5 repos) | [ADR-0001](decisions/0001-multi-repo-structure.md) |
-| **移动端** | Flutter 3.x | [ADR-0003](decisions/0003-flutter-mobile.md) |
+| **项目结构** | 多仓库 (5 repos) | [ADR-0001](../decisions/0001-multi-repo-structure.md) |
+| **移动端** | Flutter 3.x | [ADR-0003](../decisions/0003-flutter-mobile.md) |
 | **姿态估计** | MediaPipe Pose (ThinkSys plugin) | iOS可用，33关键点 |
-| **MCU** | ESP32-S3 | [ADR-0005](decisions/0005-esp32-s3-microcontroller.md) |
-| **IMU** | LSM6DSV16X | [ADR-0002](decisions/0002-lsm6dsv16x-imu.md) |
-| **ML推理** | ONNX Runtime Mobile | [ADR-0006](decisions/0006-onnx-runtime-deployment.md) |
+| **MCU** | ESP32-S3 | [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) |
+| **IMU** | LSM6DSV16X | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md) |
+| **ML推理** | ONNX Runtime Mobile | [ADR-0006](../decisions/0006-onnx-runtime-deployment.md) |
 | **LLM** | OpenAI GPT-4o-mini | 成本低，速度快 |
 | **TTS** | flutter_tts (系统) | 开箱即用 |
 
 ### 4.2 MVP 简化策略
 
-> 📐 **详细设计**: LEGO 积木式模块化架构详见 [模块化架构设计](specs/modular-architecture.md)
+> 📐 **详细设计**: LEGO 积木式模块化架构详见 [模块化架构设计](./modular-architecture.md)
 
 | 组件 | MVP方案 | 后期升级 |
 |------|---------|----------|
@@ -305,7 +305,7 @@ flowchart LR
 ### 5.4 基准数据
 
 - **GolfDB**: 1400个标注挥杆视频
-- **研究数据**: 职业/业余基准值 (见 [biomechanics-benchmarks.md](research/biomechanics-benchmarks.md))
+- **研究数据**: 职业/业余基准值 (见 [biomechanics-benchmarks.md](../foundations/biomechanics-benchmarks.md))
 
 ---
 
@@ -319,25 +319,25 @@ flowchart LR
 
 #### 第二步: 理解核心算法
 
-- **[模块化架构](specs/modular-architecture.md)** - LEGO 积木式设计，各模块升级路径
-- **[8阶段检测](specs/swing-phases.md)** - 挥杆阶段识别算法，含代码
-- **[挥杆对比](specs/swing-comparison.md)** - 4种对比方法，DTW算法
-- **[实时反馈](specs/real-time-feedback.md)** - 3种反馈模式规格
+- **[模块化架构](./modular-architecture.md)** - LEGO 积木式设计，各模块升级路径
+- **[8阶段检测](../specs/swing-phases.md)** - 挥杆阶段识别算法，含代码
+- **[挥杆对比](../specs/swing-comparison.md)** - 4种对比方法，DTW算法
+- **[实时反馈](../specs/real-time-feedback.md)** - 3种反馈模式规格
 
 #### 第三步: 理解数据来源
 
-- **[传感器映射](research/sensor-metric-mapping.md)** - 哪个传感器测什么
-- **[生物力学基准](research/biomechanics-benchmarks.md)** - 阈值数据来源
-- **[生物力学术语](research/biomechanics-glossary.md)** - 140+术语定义
+- **[传感器映射](./sensor-metric-mapping.md)** - 哪个传感器测什么
+- **[生物力学基准](../foundations/biomechanics-benchmarks.md)** - 阈值数据来源
+- **[生物力学术语](../foundations/biomechanics-glossary.md)** - 140+术语定义
 
 #### 角色专属入口
 
 | 角色 | Brief | 主要任务 |
 |------|-------|----------|
-| 软件工程师 | [briefs/software-engineer.md](briefs/software-engineer.md) | 算法管道实现 |
-| 移动开发者 | [briefs/mobile-developer.md](briefs/mobile-developer.md) | Flutter App |
-| 硬件工程师 | [briefs/hardware-engineer.md](briefs/hardware-engineer.md) | 传感器原型 |
-| 高尔夫顾问 | [briefs/golf-advisor.md](briefs/golf-advisor.md) | 规则验证 |
+| 软件工程师 | [briefs/software-engineer.md](../briefs/software-engineer.md) | 算法管道实现 |
+| 移动开发者 | [briefs/mobile-developer.md](../briefs/mobile-developer.md) | Flutter App |
+| 硬件工程师 | [briefs/hardware-engineer.md](../briefs/hardware-engineer.md) | 传感器原型 |
+| 高尔夫顾问 | [briefs/golf-advisor.md](../briefs/golf-advisor.md) | 规则验证 |
 
 ---
 
@@ -347,8 +347,8 @@ MVP 完成后的技术储备和扩展方向：
 
 | 方向 | 文档 | 内容 |
 |------|------|------|
-| **个性化调优** | [个性化规格](specs/personalization.md) | 按性别/年龄/体型调整阈值 |
-| **调试可视化** | [可视化工具评估](research/visualization-tools-evaluation.md) | Rerun 多模态调试、TAPIR 球杆追踪 |
+| **个性化调优** | [个性化规格](../specs/personalization.md) | 按性别/年龄/体型调整阈值 |
+| **调试可视化** | [可视化工具评估](../research/visualization-tools-evaluation.md) | Rerun 多模态调试、TAPIR 球杆追踪 |
 
 > 💡 **亮点发现**: [Rerun.io](https://rerun.io) 支持 Vision+IMU+EMG 同时间轴可视化，是我们的首选调试工具。[TAPIR](https://github.com/google-deepmind/tapnet) 可实现球杆头追踪，用软件替代 $5000+ 的 Trackman 雷达。
 

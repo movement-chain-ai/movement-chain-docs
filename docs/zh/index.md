@@ -38,27 +38,28 @@
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
 │   business-plan/    WHY we build this                                       │
-│   ────────          Market opportunity, users, value proposition            │
-│                     Audience: Investors, PMs, Business                      │
+│   ────────────      Market opportunity, users, value proposition            │
 │                                                                             │
 │   design/           WHAT we build                                           │
-│   ───────           Architecture, algorithms, specifications                │
-│                     Audience: Engineers, Tech Leads                         │
+│   ───────           ├── foundations/    生物力学基础 (先读)                  │
+│                     ├── architecture/   核心架构 (4篇必读)                   │
+│                     ├── specs/          详细规格 (按需参考)                  │
+│                     ├── briefs/         角色入口                            │
+│                     └── decisions/      ADR 技术决策                        │
 │                                                                             │
 │   components/       WITH what hardware                                      │
 │   ───────────       IMU, EMG, MCU specs, suppliers                          │
-│                     Audience: Hardware Engineers                            │
 │                                                                             │
 │   development/      HOW to implement                                        │
 │   ────────────      Flutter, ML training, development guides                │
-│                     Audience: Software Developers                           │
 │                                                                             │
 │   reference/        WHERE to find more                                      │
 │   ──────────        External URLs only (no original content)                │
-│                     Audience: Everyone (fact-checking)                      │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
+
+**设计文档阅读顺序**: `foundations/` → `architecture/` → `specs/` (按需)
 
 ---
 
@@ -67,7 +68,7 @@
 | 章节 | 内容 | 读者 |
 |-----|------|-----|
 | [商业计划](business-plan/index.md) | MVP规格、路线图、市场验证、竞品分析 | 投资人、产品经理 |
-| [系统设计](design/system-design.md) | AI架构、融合算法、ADR决策 | 架构师、工程师 |
+| [系统设计](design/index.md) | 生物力学基础 → 核心架构 → 详细规格 | 架构师、工程师 |
 | [硬件组件](components/index.md) | IMU/EMG/Vision规格、供应商 | 硬件工程师 |
 | [开发指南](development/index.md) | Flutter移动端、ML训练管道 | 开发者 |
 | [参考资料](reference/index.md) | 学术数据集、外部资源 | 研究人员 |
@@ -84,18 +85,20 @@
 
 ### 新团队成员 (按角色)
 
-1. [系统设计](design/system-design.md) → ⭐ **从这里开始**
-2. 然后阅读你的角色 Brief:
+1. [生物力学入门](design/foundations/biomechanics-101.md) → ⭐ **先读基础** (90分钟)
+2. [系统设计](design/architecture/system-design.md) → 理解 MVP 架构
+3. 然后阅读你的角色 Brief:
    - 软件工程师 → [design/briefs/software-engineer.md](design/briefs/software-engineer.md)
    - 移动开发者 → [design/briefs/mobile-developer.md](design/briefs/mobile-developer.md)
    - 硬件工程师 → [design/briefs/hardware-engineer.md](design/briefs/hardware-engineer.md)
    - 高尔夫顾问 → [design/briefs/golf-advisor.md](design/briefs/golf-advisor.md)
 
-### 工程师 (45 min)
+### 工程师 (2-3 小时)
 
-1. [系统设计](design/system-design.md) → 架构总纲
-2. [挥杆阶段](design/specs/swing-phases.md) → 相位检测算法
-3. [实时反馈](design/specs/real-time-feedback.md) → 3 种反馈模式
+1. [生物力学入门](design/foundations/biomechanics-101.md) → 物理与生理基础
+2. [系统设计](design/architecture/system-design.md) → 架构总纲
+3. [模块化架构](design/architecture/modular-architecture.md) → LEGO 积木块设计
+4. [数据流与反馈](design/architecture/data-pipeline-and-ai.md) → Kinematic Prompts
 
 ---
 
@@ -103,9 +106,9 @@
 
 | 想了解 | 文档 |
 |-------|------|
-| 系统设计 | [MVP 核心管道](design/system-design.md) |
+| 系统设计 | [MVP 核心管道](design/architecture/system-design.md) |
 | 技术决策 | [架构决策记录 (ADR)](design/decisions/index.md) |
-| 术语定义 | [生物力学术语表](design/research/biomechanics-glossary.md) |
+| 术语定义 | [生物力学术语表](design/foundations/biomechanics-glossary.md) |
 | 开源工具 | [开源工具与代码库](reference/open-source-tools.md) |
 
 ---

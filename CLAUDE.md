@@ -65,7 +65,7 @@ docs/zh/                    # Documentation root (Chinese, single-language)
 | Folder | Purpose | Audience | Key Files |
 |--------|---------|----------|-----------|
 | `business-plan/` | Business case, market validation | Investors, PMs | MVP spec, competitive analysis, risk-management |
-| `design/` | Technical architecture | Engineers | system-design.md, briefs/, specs/, ADRs |
+| `design/` | Technical architecture | Engineers | foundations/, architecture/, specs/, ADRs |
 | `components/` | Hardware specifications | HW engineers | IMU/EMG datasheets, suppliers |
 | `development/` | Software implementation | SW developers | Flutter guide, ML training |
 | `reference/` | External links only | Everyone | URLs to papers, datasets |
@@ -74,13 +74,23 @@ docs/zh/                    # Documentation root (Chinese, single-language)
 
 ```text
 design/
-├── system-design.md      # Core MVP pipeline (THE hub document)
+├── foundations/          # LEVEL 1: Biomechanics prerequisites (read first)
+│   ├── biomechanics-101.md       # 90-min tutorial
+│   ├── biomechanics-glossary.md  # 140+ terms
+│   └── biomechanics-benchmarks.md # Pro/amateur data
+├── architecture/         # LEVEL 2: Core system design (4 essential docs)
+│   ├── system-design.md          # Hub document (MVP overview)
+│   ├── modular-architecture.md   # LEGO block design
+│   ├── data-pipeline-and-ai.md   # Data flow & feedback
+│   └── sensor-metric-mapping.md  # Algorithm implementations
+├── specs/                # LEVEL 3: Detailed specifications (reference)
 ├── briefs/               # Role-specific onboarding (software, mobile, hardware, golf)
-├── specs/                # Technical specifications (swing-phases, real-time-feedback, etc.)
 ├── guides/               # Developer guides (ml-basics, sdk-selection)
-├── research/             # Biomechanics glossary, benchmarks
+├── research/             # Competitive analysis, tool evaluations
 └── decisions/            # ADR documents (0001-0006)
 ```
+
+**Reading order**: `foundations/` → `architecture/` → `specs/` (as needed)
 
 ### Claude Rules Files
 

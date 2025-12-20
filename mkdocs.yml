@@ -130,29 +130,33 @@ nav:
 
   - 系统设计:
       - design/index.md
-      - 系统设计: design/system-design.md
+      - 生物力学基础:
+          - design/foundations/index.md
+          - 入门教程: design/foundations/biomechanics-101.md
+          - 术语表: design/foundations/biomechanics-glossary.md
+          - 基准值: design/foundations/biomechanics-benchmarks.md
+      - 核心架构:
+          - design/architecture/index.md
+          - 系统设计: design/architecture/system-design.md
+          - 模块化架构: design/architecture/modular-architecture.md
+          - 数据流与反馈: design/architecture/data-pipeline-and-ai.md
+          - 传感器指标映射: design/architecture/sensor-metric-mapping.md
+      - 详细规格:
+          - 挥杆阶段: design/specs/swing-phases.md
+          - 实时反馈: design/specs/real-time-feedback.md
+          - 挥杆对比: design/specs/swing-comparison.md
+          - 个性化: design/specs/personalization.md
       - 角色Brief:
           - design/briefs/index.md
           - 软件工程师: design/briefs/software-engineer.md
           - 移动开发者: design/briefs/mobile-developer.md
           - 硬件工程师: design/briefs/hardware-engineer.md
           - 高尔夫顾问: design/briefs/golf-advisor.md
-      - 技术规格:
-          - 模块化架构: design/specs/modular-architecture.md
-          - 数据流与反馈架构: design/specs/data-pipeline-and-ai.md
-          - 挥杆阶段: design/specs/swing-phases.md
-          - 实时反馈: design/specs/real-time-feedback.md
-          - 挥杆对比: design/specs/swing-comparison.md
-          - 个性化: design/specs/personalization.md
       - 开发指南:
           - ML 基础: design/guides/ml-basics.md
           - SDK 选型: design/guides/sdk-selection.md
-      - 研究与标准:
+      - 竞品与工具评估:
           - design/research/index.md
-          - 生物力学入门: design/research/biomechanics-101.md
-          - 生物力学术语表: design/research/biomechanics-glossary.md
-          - 生物力学基准值: design/research/biomechanics-benchmarks.md
-          - 传感器指标映射: design/research/sensor-metric-mapping.md
           - 竞品指标对比: design/research/competitor-metrics-comparison.md
           - 可视化工具评估: design/research/visualization-tools-evaluation.md
       - 架构决策 (ADR):

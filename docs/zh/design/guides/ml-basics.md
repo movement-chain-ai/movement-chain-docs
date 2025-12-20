@@ -296,7 +296,7 @@ ONNX = 一个模型格式 (需要配合推理引擎)
 
 ## 相关文档
 
-- [系统设计](../system-design.md) - IMU/EMG 完整处理代码
+- [系统设计](../architecture/system-design.md) - IMU/EMG 完整处理代码
 - [SDK 选型](sdk-selection.md) - MediaPipe、NeuroKit2 等工具
 - [ADR-0006 ONNX Runtime](../decisions/0006-onnx-runtime-deployment.md) - 为什么选 ONNX
 
