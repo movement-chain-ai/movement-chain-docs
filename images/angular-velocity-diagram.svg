@@ -125,6 +125,6 @@
 
   <text x="250" y="450" font-family="Arial" font-size="12" fill="#333">v₁ = v₂ &lt; v₃</text>
   <text x="250" y="470" font-family="Arial" font-size="12" fill="#E53935">r 越大 → v 越大</text>
-  <text x="250" y="490" font-family="Arial" font-size="12" fill="#E53935">∴ 杆头速度最大</text>
+  <text x="250" y="490" font-family="Arial" font-size="12" fill="#E53935">∴ 手的线速度最大</text>
 
 </svg>
