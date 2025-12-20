@@ -306,7 +306,7 @@ $$
 **X-Factor (X因子)** = 肩部旋转角度 − 髋部旋转角度
 
 <figure markdown="span">
-  ![X-Factor 旋转角度](../../images/x-factor-rotation.jpg){ width="300" }
+  ![X-Factor 旋转角度](../../images/x-factor-rotation.png){ width="300" }
   <figcaption>俯视图显示肩髋角度差形成 X 形 </figcaption>
 </figure>
 
@@ -369,7 +369,7 @@ X-Factor 代表了你在上杆顶点时**躯干被"拧紧"的程度**。
 3. 这导致 X-Factor **进一步增加**
 
 <figure markdown="span">
-  ![X-Factor-Stretch](../../images/x-factor-stretch.jpg){ width="300" }
+  ![X-Factor-Stretch](../../images/x-factor-stretch.png){ width="300" }
 </figure>
 
 ```text
