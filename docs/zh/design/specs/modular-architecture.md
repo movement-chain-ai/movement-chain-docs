@@ -79,7 +79,7 @@
 
 | 不确定性 | 选项 | MVP 策略 | 升级触发条件 |
 |---------|------|---------|-------------|
-| **分类器选择** | SwingNet vs BiGRU vs Transformer | SwingNet (预训练) | 积累 1000+ 视频后评估 |
+| **分类器选择** | Simple Rules vs SwingNet vs BiGRU | Simple Rules (IMU 峰值/零交叉) | 需要完整 8 阶段划分时 |
 | **姿态估计** | MediaPipe vs RTMPose vs Custom | MediaPipe (最易集成) | 精度不足时升级 |
 | **传感器数据** | 真实 vs 模拟 IMU/EMG | 模拟 (验证管道) | 硬件就绪后替换 |
 | **融合方法** | Simple vs Rule-based vs ML | Simple Merge | 有足够融合数据后升级 |
@@ -761,30 +761,49 @@ MVP 阶段使用 2 通道 (Core + Forearm)，后续渐进扩展：
 
 **职责**: 根据关键点序列识别挥杆的 8 个阶段
 
-**MVP 选择**: SwingNet
+**MVP 选择**: Simple Rules (基于 IMU 信号)
 
 | 属性 | 值 |
 |-----|-----|
-| 准确率 | 71.5% |
-| 训练数据 | 0 (GolfDB 预训练) |
-| 推理速度 | 5ms |
-| 来源 | [wmcnally/golfdb](https://github.com/wmcnally/golfdb) |
+| 方法 | IMU gyro_z 信号分析 |
+| Top 检测 | gyro_z 零交叉点 (方向反转) |
+| Impact 检测 | gyro_z 峰值点 (最大角速度) |
+| 训练数据 | 0 (纯规则) |
+| 精度 | ±0.6ms (IMU 原生精度) |
 
 **选择理由**:
 
-- GolfDB 预训练权重，0 训练成本
-- 71.5% 准确率对 MVP 验证足够
-- 后续可替换为其他模型
+- **无需训练数据** — 纯物理信号分析
+- **更高精度** — IMU 1666Hz vs Vision 30Hz
+- **可解释性强** — 零交叉和峰值点有明确物理意义
+- **调试简单** — Rerun 中一眼可见峰值和零交叉
 
-!!! note "备选方案 (需要训练数据)"
+```text
+Phase 检测原理 (Simple Rules):
+───────────────────────────────
+gyro_z (°/s)
+     │
+1200 ┤                    ●─── Impact (峰值点)
+     │                   ╱│
+ 600 ┤                  ╱ │
+     │                 ╱  │
+   0 ┤────────────●───╱───┴──── Top (零交叉点)
+     │   Address   ╲ ╱
+-600 ┤              V
+     └────────────────────────────→ time
+
+Top = gyro_z 从负→正 零交叉 (上杆结束，下杆开始)
+Impact = gyro_z 正向峰值 (最大旋转速度)
+```
+
+!!! note "备选方案 (Phase 2+)"
 
     | 方案 | 准确率 | 训练数据 | 速度 | 何时考虑 |
     |-----|-------|---------|------|---------|
+    | **SwingNet** | 71.5% | 0 (预训练) | 5ms | 需要完整 8 阶段划分时 |
     | Random Forest | ~65% | ~500 videos | <1ms | 快速 baseline |
     | BiGRU | ~80% | ~1000 videos | 3ms | 积累 1000 视频后 |
-    | BiLSTM | ~82% | ~1000 videos | 5ms | 需要更稳定 |
     | Transformer | ~88% | ~10000+ | 10ms | 大量数据后 |
-    | Hybrid Trans-LSTM | 92.1% | ~10000+ | 12ms | 追求最高精度 |
 
     **研究发现 (CaddieSet CVPR 2025)**: 关节特征 + 时序模型 (MSE 8.80) 优于纯视觉 Transformer (MSE 32.32)
 
@@ -876,7 +895,58 @@ FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模�
 
 ## 5. MVP 策略 MVP Strategy
 
-### 5.1 MVP 架构图 (与 §2.1 一致)
+### 5.1 MVP 核心输出: 时间对齐的融合数据
+
+!!! abstract "🎯 MVP 的核心价值: Time-Aligned FusionResult"
+
+    **MVP 的最重要输出不是"完美的分析结果"，而是验证三模态数据能否精确对齐。**
+
+    ```text
+    ┌─────────────────────────────────────────────────────────────────────────────┐
+    │                    MVP 核心输出: 时间对齐的 FusionResult                      │
+    ├─────────────────────────────────────────────────────────────────────────────┤
+    │                                                                             │
+    │   在 Rerun 时间轴上同步显示:                                                 │
+    │                                                                             │
+    │   📷 MediaPipe: ──●──●──●──●──●──●──●──●──●──●── (30fps 骨架)              │
+    │                           ↓ Top              ↓ Impact                       │
+    │   🔄 Mock IMU:  ─────────────●───────────────●──── (峰值/零交叉)            │
+    │                           ↓                  ↓                              │
+    │   💪 Mock EMG:  ─────────●─────────────────●────── (Core/Forearm onset)     │
+    │                         ↓                                                   │
+    │                    Core onset 应该在 Top 之前                                │
+    │                                                                             │
+    │   ═══════════════════════════════════════════════════════════════════════  │
+    │                                                                             │
+    │   ✅ MVP 验证目标:                                                          │
+    │   1. 三条数据流能否对齐到 <10ms?                                            │
+    │   2. IMU 峰值是否对应视频中的 Impact 帧?                                    │
+    │   3. EMG Core onset 是否在 Top 之前?                                        │
+    │   4. 计算的 X-Factor 是否与骨架角度一致?                                    │
+    │                                                                             │
+    │   这些问题只有在 Rerun 中才能直观验证！                                      │
+    │                                                                             │
+    └─────────────────────────────────────────────────────────────────────────────┘
+    ```
+
+### 5.2 MVP 模式聚焦: Mode 3 (Full Speed)
+
+!!! info "MVP 只实现 Mode 3，其他模式放到 Phase 2/3"
+
+    | 模式 | 名称 | 实时性 | MVP | 原因 |
+    |-----|------|--------|-----|------|
+    | **Mode 3** | Full Speed | ❌ 后处理 | ✅ MVP | 无实时约束，最易调试 |
+    | Mode 1 | Setup Check | ⚠️ 准实时 | Phase 2 | 需要静态姿态检测 |
+    | Mode 2 | Slow Motion | ✅ 实时 | Phase 3 | 实时处理复杂度高 |
+
+    **为什么先做 Mode 3?**
+
+    1. **无实时约束** — 可以反复回放同一录制，逐帧调试
+    2. **完整数据** — 录制完成后数据完整，不会丢帧
+    3. **Rerun 友好** — 录制 .rrd 文件分享给团队协作
+    4. **优先验证核心价值** — 时间对齐是否正确比实时性更重要
+
+### 5.3 MVP 架构图
 
 MVP 使用**完整的 4 层架构**，只是将真实硬件替换为模拟数据源：
 
@@ -895,12 +965,13 @@ flowchart TB
     end
 
     subgraph ANALYZE["🧠 分析层 ANALYSIS LAYER"]
-        CLASSIFIER["🎯 CLASSIFIER Block<br/>SwingNet 8 阶段"]
+        CLASSIFIER["🎯 CLASSIFIER Block<br/>Simple Rules<br/>(Top/Impact 检测)"]
         FUSION["🔗 FUSION Block<br/>Simple Merge + 交叉验证"]
     end
 
     subgraph OUTPUT["📤 输出层 OUTPUT LAYER"]
         RESULT["📋 FusionResult<br/>phases + metrics + anomalies + feedback"]
+        RERUN["🔧 Rerun 可视化<br/>时间对齐验证"]
     end
 
     CAM --> POSE
@@ -909,18 +980,20 @@ flowchart TB
 
     POSE --> CLASSIFIER
     POSE --> FUSION
+    IMU_BLK --> CLASSIFIER
     IMU_BLK --> FUSION
     EMG_BLK --> FUSION
     CLASSIFIER --> FUSION
 
     FUSION --> RESULT
+    RESULT --> RERUN
 ```
 
 **FusionResult 输出结构** (见 [§2.6 接口契约](#26-积木块接口契约)):
 
 ```text
 FusionResult {
-    phases: [{label, start_ms, end_ms, confidence}],   // 8 阶段 + 时间边界
+    phases: [{label, start_ms, end_ms, confidence}],   // Top/Impact 时间边界
     metrics: {x_factor, tempo_ratio, peak_velocity, ...}, // 12 指标
     anomalies: [{type, severity, description}],        // 异常检测
     overall_confidence: float,                         // 融合置信度
@@ -934,10 +1007,10 @@ FusionResult {
     |-----|---------|---------|
     | **输入层** | Camera 真实 + Mock IMU/EMG JSON | → 真实 LSM6DSV16X + DFRobot EMG |
     | **提取层** | 3 个 Block 接口不变 | 内部实现可替换 |
-    | **分析层** | SwingNet + Simple Merge | → BiGRU + Kalman Filter |
-    | **输出层** | FusionResult 结构固定 | 不变 |
+    | **分析层** | Simple Rules + Simple Merge | → SwingNet/BiGRU + Kalman Filter |
+    | **输出层** | FusionResult → Rerun 可视化 | → App UI + TTS |
 
-### 5.2 模拟数据验证全管道
+### 5.4 模拟数据验证全管道
 
 **核心思路**: 真实 MediaPipe + 模拟 IMU/EMG = 完整管道验证
 
@@ -950,41 +1023,52 @@ FusionResult {
 4. 降低并行开发的耦合度 (软件不等硬件)
 ```
 
-### 5.3 渐进式升级路径
+### 5.5 渐进式升级路径
 
 ```text
-Phase 1: Video-Only MVP
-─────────────────────────
-Camera → MediaPipe → SwingNet → 8 Phases + Vision Metrics
+Phase 1: MVP (Mode 3 Only)
+──────────────────────────
+Camera → MediaPipe ─┬→ Simple Rules → Top/Impact 检测
+Mock IMU JSON ──────┤  (IMU 峰值/零交叉)
+Mock EMG JSON ──────┼→ Simple Fusion → FusionResult
+                    └→ Rerun 可视化 → 时间对齐验证
+
 训练数据: 0
 硬件: 手机摄像头
+核心验证: 三模态数据能否对齐到 <10ms?
 
-Phase 2: Add Mock Sensors
-─────────────────────────
-Camera → MediaPipe ─┬→ SwingNet → 8 Phases
-Mock IMU JSON ──────┤
-Mock EMG JSON ──────┼→ Simple Fusion → 12 Metrics + 6 Rules
-                    └→ Rule Engine → Feedback
-训练数据: 0
-硬件: 手机摄像头
-
-Phase 3: Real IMU Integration
-─────────────────────────────
-Camera → MediaPipe ─┬→ SwingNet → 8 Phases
-Real IMU ───────────┤
+Phase 2: Real IMU + Mode 1
+──────────────────────────
+Camera → MediaPipe ─┬→ Simple Rules → Top/Impact (更精确)
+Real IMU ───────────┤  (真实 1666Hz 信号)
 Mock EMG JSON ──────┼→ Rule Fusion → 12 Metrics + 6 Rules
                     └→ Cross-Validation → Anomaly Detection
+
 训练数据: 0
 硬件: 手机 + LSM6DSV16X
+新增: Mode 1 (Setup Check) 静态姿态检测
 
-Phase 4: Full Sensor Fusion
-───────────────────────────
-Camera → MediaPipe ─┬→ BiGRU/LSTM → 8 Phases (更高精度)
+Phase 3: Real EMG + Mode 2
+──────────────────────────
+Camera → MediaPipe ─┬→ Simple Rules → Top/Impact
 Real IMU ───────────┤
-Real EMG ───────────┼→ Weighted Fusion → 12 Metrics + 6 Rules
+Real EMG ───────────┼→ Rule Fusion → 12 Metrics + 6 Rules
                     └→ Cross-Validation → Anomaly Detection
-训练数据: ~1000 videos (for BiGRU/LSTM)
+
+训练数据: 0
 硬件: 手机 + LSM6DSV16X + DFRobot EMG
+新增: Mode 2 (Slow Motion) 实时反馈
+
+Phase 4+: Advanced ML
+─────────────────────
+Camera → MediaPipe ─┬→ SwingNet/BiGRU → 8 Phases (完整阶段)
+Real IMU ───────────┤
+Real EMG ───────────┼→ Weighted Fusion → Advanced Diagnostics
+                    └→ TAPIR → 球杆追踪 (可选)
+
+训练数据: ~1000 videos (for BiGRU)
+硬件: 完整穿戴设备
+新增: 完整 8 阶段划分, 球杆追踪
 ```
 
 !!! info "💡 Rerun 集成时机建议"
@@ -1153,6 +1237,13 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|
+| 2.5 | 2025-12-19 | MVP 策略重大调整 |
+| | | • §4.1: CLASSIFIER Block MVP 改用 Simple Rules (IMU 峰值/零交叉)，移除 SwingNet |
+| | | • §5.1: 新增 "MVP 核心输出: 时间对齐的融合数据" — 强调 Rerun 可视化验证 |
+| | | • §5.2: 新增 "MVP 模式聚焦: Mode 3" — Mode 1/2 移至 Phase 2/3 |
+| | | • §5.3: 架构图更新 — CLASSIFIER 改为 Simple Rules，新增 Rerun 可视化节点 |
+| | | • §5.5: 渐进式升级路径重写 — 对齐 Mode 1/2/3 开发顺序 |
+| | | • §1.4: 更新技术不确定性表 — 分类器选项修正 |
 | 2.4 | 2025-12-19 | §5.1 改用 Mermaid 图 |
 | | | • §5.1: 从 ASCII 改为 Mermaid，与 §2.1 格式一致 |
 | | | • 输入层节点标注 ✅真实 / 📄模拟 区分数据源 |
