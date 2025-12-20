@@ -1946,6 +1946,8 @@
       
         
       
+        
+      
     
     
     
@@ -1985,6 +1987,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specs/modular-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块化架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -5237,6 +5267,9 @@
 </tbody>
 </table>
 <h3 id="42-mvp">4.2 MVP 简化策略<a class="headerlink" href="#42-mvp" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>📐 <strong>详细设计</strong>: LEGO 积木式模块化架构详见 <a href="../specs/modular-architecture/">模块化架构设计</a></p>
+</blockquote>
 <table>
 <thead>
 <tr>
@@ -5252,6 +5285,11 @@
 <td>RTMPose → ViTPose++</td>
 </tr>
 <tr>
+<td>阶段分类</td>
+<td>SwingNet (预训练)</td>
+<td>BiGRU → Transformer</td>
+</tr>
+<tr>
 <td>EMG处理</td>
 <td>NeuroKit2</td>
 <td>自定义滤波</td>
@@ -5260,6 +5298,11 @@
 <td>分析引擎</td>
 <td>规则引擎 IF-THEN</td>
 <td>ML分类器</td>
+</tr>
+<tr>
+<td>传感器融合</td>
+<td>Simple Merge</td>
+<td>Kalman Filter → ML Fusion</td>
 </tr>
 <tr>
 <td>可视化</td>
@@ -5365,6 +5408,7 @@
 </ul>
 <h4 id="_3">第二步: 理解核心算法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <ul>
+<li><strong><a href="../specs/modular-architecture/">模块化架构</a></strong> - LEGO 积木式设计，各模块升级路径</li>
 <li><strong><a href="../specs/swing-phases/">8阶段检测</a></strong> - 挥杆阶段识别算法，含代码</li>
 <li><strong><a href="../specs/swing-comparison/">挥杆对比</a></strong> - 4种对比方法，DTW算法</li>
 <li><strong><a href="../specs/real-time-feedback/">实时反馈</a></strong> - 3种反馈模式规格</li>
