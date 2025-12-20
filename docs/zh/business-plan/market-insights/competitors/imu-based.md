@@ -4,19 +4,19 @@
 
 ---
 
-## 市场概况
+## 1. 市场概况
 
 !!! info "IMU 方案是主流"
     市场上 70%+ 的高尔夫挥杆分析产品采用纯 IMU 方案
 
-### 优势
+### 1.1 优势
 
 - ✅ 便携、轻量
 - ✅ 实时反馈
 - ✅ 无需摄像头
 - ✅ 成本可控
 
-### 劣势
+### 1.2 劣势
 
 - ❌ 无法测量肌肉激活
 - ❌ 位置累积漂移
@@ -24,107 +24,74 @@
 
 ---
 
-## 主要竞品
+## 2. 主要竞品
 
-### SwingMotion ⭐⭐⭐⭐
+### 2.1 MOXI (SwingMotion) ⭐⭐⭐⭐
 
-!!! success "消费级代表"
+!!! success "消费级多传感器系统"
+
+**官网**: [swingmotion.app](https://swingmotion.app)
 
 | 参数 | 规格 |
 |-----|------|
 | **价格** | $358 |
-| **传感器** | 9 轴 IMU |
-| **佩戴位置** | 手套夹持 |
-| **数据** | 挥杆速度、轨迹、节奏 |
-| **App** | iOS / Android |
-
-**核心功能**:
-
-- 挥杆速度测量
-- 挥杆平面分析
-- 节奏和节拍
-- 历史对比
-
-**官网**: [swingmotion.app](https://swingmotion.app)
-
-**技术分析**:
-
-```text
-传感器: 可能使用 ICM-20948 或类似 9 轴 IMU
-采样率: ~100 Hz
-BLE: 4.2/5.0
-算法: 四元数融合 + 挥杆检测
-```
-
-**用户评价**:
-
-- 优点: 设置简单、数据直观
-- 缺点: 偶尔漂移、手腕角度精度有限
-
----
-
-### MOXI (Swing Motion 多传感器版) ⭐⭐⭐⭐
-
-!!! info "SwingMotion 的专业升级版"
-    双 IMU 传感器系统，提供躯干运动分析
+| **传感器** | 2 × 9 轴 IMU |
+| **佩戴配件** | 腰带 + 背心 + 腕带 + 手掌带 |
+| **App** | iOS / Android (免费，无订阅) |
 
 ![MOXI 产品套装](../../../images/moxi-kit.webp)
 
-| 参数 | 规格 |
-|-----|------|
-| **价格** | $499+ |
-| **传感器** | 2 × 9 轴 IMU |
-| **佩戴位置** | 胸部背心 + 腰部绑带 |
-| **数据** | 躯干旋转、侧弯、前倾 |
-| **App** | iOS / Android |
+#### 佩戴配件
+
+| 配件 | 英文 | 用途 |
+|-----|------|------|
+| **腰带** | Hip Belt | 髋部旋转检测 |
+| **背心** | Torso Vest | 躯干旋转/侧弯/前倾检测 |
+| **腕带** | Wrist Strap | 手腕角度检测 |
+| **手掌带** | Palm Strap | 手部动作检测 |
 
 ![MOXI 传感器与 APP 界面](../../../images/MOXI_Sensor_APP.webp)
 
-**核心功能**:
+#### 核心功能
 
 - 躯干旋转 (Rotation) 测量
 - 侧弯 (Side Bend) 分析
 - 前倾 (Forward Bend) 监测
 - AI Tips 智能建议
 - 挥杆阶段分析 (Address / Top / Impact)
+- 4 种训练模式: Wrist, Torso, Hip, Body Separation
+- 3 种练习模式: Wrist Control, Torso Movement, Hip Movement
 
-**官网**: [swingmotion.app/moxi](https://swingmotion.app)
-
-**技术分析**:
+#### 技术分析
 
 ```text
-传感器: 2 × 9 轴 IMU
+传感器: 2 × 9 轴 IMU (可能 ICM-20948 或类似)
 同步: 蓝牙无线同步
-佩戴: 背心式设计，舒适稳定
-算法: 躯干运动学解算
+算法: 四元数融合 + 躯干运动学解算
+App 订阅: 免费，无需订阅
 ```
 
-**竞争优势**:
-
-- 比单 IMU 方案更全面的躯干数据
-- 背心设计佩戴稳定
-- 价格比 K-Motion 低很多
-
-**MOXI vs 其他设备对比**:
+#### MOXI vs 其他设备对比
 
 ![MOXI 与其他设备对比](../../../images/moxi-vs-others.png)
 
-| 对比维度 | MOXI | 其他设备 |
-|---------|------|---------|
-| **传感器数量** | 双传感器 (Enhanced Precision) | 单传感器或无 |
-| **训练模块** | 4 种模式: Wrist, Torso, Hip, Body Separation | 单一模式或有限选项 |
-| **练习模式** | 3 种: Wrist Control, Torso Movement, Hip Movement | 基础或单一模式 |
-| **App 订阅** | 免费，无需订阅 | 可能需要付费订阅 |
+#### 竞争优势
 
-**我们的差异**:
+- 多传感器系统，覆盖手腕、躯干、髋部
+- 背心设计佩戴稳定
+- 价格比 K-Motion 低很多 ($358 vs $3,000+)
+- App 免费无订阅
+- Golf Magazine Top 250 教练使用
 
-- MOXI 无法测量肌肉激活
+#### 我们的差异
+
+- 无法测量肌肉激活
 - 无 EMG 数据，无法分析发力时序
 - 无视觉数据，无法获取全身姿态
 
 ---
 
-### HackMotion ⭐⭐⭐⭐⭐
+### 2.2 HackMotion ⭐⭐⭐⭐⭐
 
 !!! info "手腕角度专家"
     最专注于手腕运动学分析
@@ -168,7 +135,7 @@ BLE: 4.2/5.0
 
 ---
 
-### deWiz ⭐⭐⭐⭐
+### 2.3 deWiz ⭐⭐⭐⭐
 
 | 参数 | 规格 |
 |-----|------|
@@ -193,7 +160,7 @@ BLE: 4.2/5.0
 
 ---
 
-### K-Motion ⭐⭐⭐
+### 2.4 K-Motion ⭐⭐⭐
 
 !!! warning "专业级 - 高价"
 
@@ -236,21 +203,21 @@ BLE: 4.2/5.0
 
 ---
 
-## 技术对比
+## 3. 技术对比
 
-### 传感器配置
+### 3.1 传感器配置
 
 | 产品 | IMU 数量 | 位置 | 同步 |
 |-----|---------|------|-----|
-| SwingMotion | 1 | 手套 | - |
+| MOXI (SwingMotion) | 2 | 躯干/髋部/手腕 | 无线 |
 | HackMotion | 1 | 手背 | - |
 | deWiz | 2 | 手 + 杆 | 有线/无线 |
 | K-Motion | 4 | 全身 | 无线 |
 | **我们** | 1-2 | 手/臂 | 无线 |
 
-### 数据指标
+### 3.2 数据指标
 
-| 指标 | SwingMotion | HackMotion | deWiz | K-Motion | **我们** |
+| 指标 | MOXI | HackMotion | deWiz | K-Motion | **我们** |
 |-----|-------------|------------|-------|----------|---------|
 | 挥杆速度 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 手腕角度 | ⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐ | ⭐⭐ |
@@ -258,11 +225,11 @@ BLE: 4.2/5.0
 | 肌肉激活 | ❌ | ❌ | ❌ | ❌ | ⭐⭐⭐ |
 | 节奏分析 | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ |
 
-### BOM 成本估算
+### 3.3 BOM 成本估算
 
 | 产品 | 估计 BOM | 售价 | 毛利率 |
 |-----|---------|------|-------|
-| SwingMotion | $35-50 | $358 | ~85% |
+| MOXI (SwingMotion) | $50-80 | $358 | ~80% |
 | HackMotion | $40-60 | $345 | ~83% |
 | deWiz | $60-80 | $499 | ~85% |
 | K-Motion | $200-300 | $3,000 | ~90% |
@@ -270,33 +237,28 @@ BLE: 4.2/5.0
 
 ---
 
-## 用户评价汇总
+## 4. 用户评价汇总
 
-### SwingMotion
-
-> "Easy to use, data is clear. Sometimes drifts after many swings."
-> — Amazon 4.2/5
-
-### HackMotion
+### 4.1 HackMotion
 
 > "Best wrist tracker on the market. Really helped fix my flip."
 > — Golf Digest
 
-### deWiz
+### 4.2 deWiz
 
 > "Unique approach with the length metric. Learning curve is steep."
 > — MyGolfSpy
 
-### K-Motion
+### 4.3 K-Motion
 
 > "Professional-grade but overkill for most amateurs. Price is prohibitive."
 > — GolfWRX
 
 ---
 
-## 我们的机会
+## 5. 我们的机会
 
-### 差异化切入点
+### 5.1 差异化切入点
 
 | 竞品缺失 | 我们的方案 |
 |---------|-----------|
@@ -305,7 +267,7 @@ BLE: 4.2/5.0
 | **数据融合** | 三模态协同分析 |
 | **中国市场** | 本土化 + 中文 |
 
-### 定价策略
+### 5.2 定价策略
 
 | 对标 | 价格 | 我们的定位 |
 |-----|------|-----------|
@@ -315,7 +277,7 @@ BLE: 4.2/5.0
 
 ---
 
-## 相关资源
+## 6. 相关资源
 
 - [IMU 传感器技术](../../../components/imu/hardware.md)
 - [IMU 供应商](../../../components/imu/hardware.md)
