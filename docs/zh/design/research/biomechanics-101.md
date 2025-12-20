@@ -307,7 +307,6 @@ $$
 
 <figure markdown="span">
   ![X-Factor 旋转角度](../../images/x-factor-rotation.jpg){ width="300" }
-  ![X-Factor 俯视图](../../images/x-factor-top-view.jpg){ width="300" }
   <figcaption>俯视图显示肩髋角度差形成 X 形 </figcaption>
 </figure>
 
@@ -431,13 +430,21 @@ X-Factor 代表了你在上杆顶点时**躯干被"拧紧"的程度**。
 
     **上杆顶点**
 
--   ![S-O Factor 收杆](../../images/s-o-factor-follow-through.png)
+-   ![S-O Factor 击球瞬间](../../images/s-o-factor-impact.png)
 
-    **收杆位置**
+    **击球瞬间**
+
+-   ![S-O Factor 收杆中段](../../images/s-o-factor-follow-through.png)
+
+    **收杆中段**
+
+-   ![S-O Factor 收杆完成](../../images/s-o-factor-finish.png)
+
+    **收杆完成**
 
 </div>
 
-> 红色线 = S-Factor（肩部倾斜），蓝色线 = O-Factor（骨盆倾斜）。注意蓝色线（O-Factor）保持相对稳定。
+> 红色线 = S-Factor（肩部倾斜），蓝色线 = O-Factor（骨盆倾斜）。注意蓝色线（O-Factor）在整个挥杆过程中保持相对稳定。
 
 ### 倾斜角度基准值
 
