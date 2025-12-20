@@ -139,6 +139,7 @@ nav:
           - 高尔夫顾问: design/briefs/golf-advisor.md
       - 技术规格:
           - 模块化架构: design/specs/modular-architecture.md
+          - 数据流与反馈架构: design/specs/data-pipeline-and-ai.md
           - 挥杆阶段: design/specs/swing-phases.md
           - 实时反馈: design/specs/real-time-feedback.md
           - 挥杆对比: design/specs/swing-comparison.md
