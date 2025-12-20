@@ -4036,7 +4036,7 @@
   <a href="#_20" class="md-nav__link">
     <span class="md-ellipsis">
       
-        影响杆头速度的因素
+        影响因素
       
     </span>
   </a>
@@ -4083,7 +4083,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
+  <a href="#_24" class="md-nav__link">
     <span class="md-ellipsis">
       
         计算示例
@@ -4105,7 +4105,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
+  <a href="#_25" class="md-nav__link">
     <span class="md-ellipsis">
       
         物理原理
@@ -4116,7 +4116,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
+  <a href="#_26" class="md-nav__link">
     <span class="md-ellipsis">
       
         基准值
@@ -4165,7 +4165,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_24" class="md-nav__link">
+  <a href="#_27" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -4622,7 +4622,7 @@
   <a href="#_20" class="md-nav__link">
     <span class="md-ellipsis">
       
-        影响杆头速度的因素
+        影响因素
       
     </span>
   </a>
@@ -4669,7 +4669,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
+  <a href="#_24" class="md-nav__link">
     <span class="md-ellipsis">
       
         计算示例
@@ -4691,7 +4691,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
+  <a href="#_25" class="md-nav__link">
     <span class="md-ellipsis">
       
         物理原理
@@ -4702,7 +4702,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
+  <a href="#_26" class="md-nav__link">
     <span class="md-ellipsis">
       
         基准值
@@ -4751,7 +4751,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_24" class="md-nav__link">
+  <a href="#_27" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -5170,44 +5170,185 @@
 </tr>
 </tbody>
 </table>
-<h3 id="_20">影响杆头速度的因素<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<h3 id="_20">影响因素<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<p>杆头速度由以下公式决定：</p>
+<div class="arithmatex">\[
+v_{杆头} = \omega \times r
+\]</div>
+<h4 id="1">1. 角速度 ω（主要因素）<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<p>角速度受<strong>两个机制</strong>影响：</p>
+<h5 id="a">机制 A：角动量传递效率<a class="headerlink" href="#a" title="Permanent link">&para;</a></h5>
+<div class="arithmatex">\[
+\omega = \frac{L}{I}
+\]</div>
 <table>
 <thead>
 <tr>
 <th>因素</th>
-<th>说明</th>
-<th>影响程度</th>
+<th>如何影响 ω</th>
+<th>物理原理</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>运动链效率</strong></td>
-<td>能量从核心传递到杆头的顺序和时机</td>
-<td>15-25%</td>
+<td><strong>运动链时序</strong></td>
+<td>I 依次减小 → ω 增大</td>
+<td>骨盆→躯干→手臂→杆头，每传递一次 I 减小</td>
 </tr>
 <tr>
-<td><strong>X-Factor</strong></td>
-<td>肩髋分离角度越大，蓄力越多</td>
-<td>极强相关 (r=0.90)</td>
+<td><strong>近端减速</strong></td>
+<td>加速角动量传递</td>
+<td>躯干刹车 → 手臂加速</td>
 </tr>
 <tr>
-<td><strong>延迟释放 (Lag)</strong></td>
-<td>保持手腕角度到最后时刻释放</td>
-<td>10-15%</td>
-</tr>
-<tr>
-<td><strong>身体柔韧性</strong></td>
-<td>旋转幅度和蓄力能力</td>
-<td>基础条件</td>
+<td><strong>肌肉放松</strong></td>
+<td>减少传递损耗</td>
+<td>紧张会"锁住"关节，阻碍传递</td>
 </tr>
 </tbody>
 </table>
+<h5 id="b">机制 B：能量输入<a class="headerlink" href="#b" title="Permanent link">&para;</a></h5>
+<div class="arithmatex">\[
+\omega = \sqrt{\frac{2E}{I}}
+\]</div>
+<table>
+<thead>
+<tr>
+<th>因素</th>
+<th>如何影响 E</th>
+<th>物理原理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>X-Factor</strong></td>
+<td>储存弹性势能</td>
+<td><span class="arithmatex">\(E = \frac{1}{2}k\theta^2\)</span>，躯干扭紧</td>
+</tr>
+<tr>
+<td><strong>X-Factor Stretch</strong></td>
+<td>额外 +20% 能量</td>
+<td>转换期再蓄力 + SSC 效应</td>
+</tr>
+<tr>
+<td><strong>肌肉做功</strong></td>
+<td>持续输入能量</td>
+<td>下杆过程中肌肉发力</td>
+</tr>
+<tr>
+<td><strong>地面反作用力</strong></td>
+<td>启动能量来源</td>
+<td>脚蹬地产生初始力矩</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-r">2. 旋转半径 r（次要因素）<a class="headerlink" href="#2-r" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[
+v = \omega \times r
+\]</div>
+<table>
+<thead>
+<tr>
+<th>因素</th>
+<th>如何影响 r</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>手臂伸展</strong></td>
+<td>r 增大 → v 增大</td>
+<td>但过度伸展会增加 I，降低 ω</td>
+</tr>
+<tr>
+<td><strong>球杆长度</strong></td>
+<td>固定值</td>
+<td>一号木 r 最大</td>
+</tr>
+<tr>
+<td><strong>身高/臂长</strong></td>
+<td>个体差异</td>
+<td>高个子有天然优势</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_21">综合公式<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[
+v_{杆头} = \sqrt{\frac{2(E_{弹性} + W_{肌肉})}{I_{杆头}}} \times r
+\]</div>
+<h4 id="_22">各因素影响程度<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>因素</th>
+<th>影响对象</th>
+<th style="text-align: center;">重要程度</th>
+<th style="text-align: center;">可训练性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>运动链时序</strong></td>
+<td>I 减小效率</td>
+<td style="text-align: center;">⭐⭐⭐⭐⭐</td>
+<td style="text-align: center;">高</td>
+</tr>
+<tr>
+<td><strong>X-Factor Stretch</strong></td>
+<td>E 储存量</td>
+<td style="text-align: center;">⭐⭐⭐⭐⭐</td>
+<td style="text-align: center;">高</td>
+</tr>
+<tr>
+<td><strong>地面反作用力</strong></td>
+<td>L 产生量</td>
+<td style="text-align: center;">⭐⭐⭐⭐</td>
+<td style="text-align: center;">中</td>
+</tr>
+<tr>
+<td><strong>X-Factor</strong></td>
+<td>E 储存量</td>
+<td style="text-align: center;">⭐⭐⭐</td>
+<td style="text-align: center;">中</td>
+</tr>
+<tr>
+<td><strong>核心力量</strong></td>
+<td>E 输入量</td>
+<td style="text-align: center;">⭐⭐⭐</td>
+<td style="text-align: center;">高</td>
+</tr>
+<tr>
+<td><strong>手臂半径 r</strong></td>
+<td>杆头速度</td>
+<td style="text-align: center;">⭐⭐</td>
+<td style="text-align: center;">低</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_23">为什么职业球手更快？<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>职业球手                          业余球手
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>─────────────────────────────────────────────
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>地面反作用力：充分利用              利用不足
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    ↓ 产生更多 L                     ↓ L 较少
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>X-Factor Stretch：15-25%          5-10%
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    ↓ 储存更多 E                     ↓ E 较少
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>运动链时序：精准                   混乱
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    ↓ I 高效减小                     ↓ 传递损耗
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>肌肉：适时发力+放松                全程紧张
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    ↓ 能量顺畅传递                   ↓ 能量被&quot;锁住&quot;
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>─────────────────────────────────────────────
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>结果：120+ mph                     85-95 mph
+</span></code></pre></div>
+<p><strong>核心结论</strong>：杆头速度 = 角动量传递效率 × 能量输入 × 旋转半径。三者中，<strong>传递效率</strong>最关键，也最可训练。</p>
+<blockquote>
+<p>详细物理概念见：<a href="../physics-glossary/">物理学术语表</a></p>
+</blockquote>
 <h3 id="movement-chain-ai">与 Movement Chain AI 的关系<a class="headerlink" href="#movement-chain-ai" title="Permanent link">&para;</a></h3>
 <div class="admonition tip">
 <p class="admonition-title">我们的系统如何帮助提升杆头速度</p>
 <p>我们不直接测量杆头速度（需要雷达如 TrackMan），但通过分析：</p>
 <ul>
-<li><strong>运动链时序</strong> — 是否按正确顺序发力（可提升 15-25%）</li>
+<li><strong>运动链时序</strong> — 是否按正确顺序发力</li>
 <li><strong>节奏比</strong> — 是否有足够的蓄力和爆发</li>
 <li><strong>X-Factor</strong> — 躯干拧紧程度</li>
 </ul>
@@ -5242,13 +5383,13 @@
 </tr>
 </tbody>
 </table>
-<h3 id="_21">计算示例<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>时刻              肩膀     骨盆     X-Factor
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>─────────────────────────────────────────────
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>上杆顶点 (Top)     90°      45°      45°  ← X-Factor at Top
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>转换期峰值         92°      37°      55°  ← X-Factor 峰值
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>X-Factor Stretch = 55° − 45° = 10°（或 +22%）
+<h3 id="_24">计算示例<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>时刻              肩膀     骨盆     X-Factor
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>─────────────────────────────────────────────
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>上杆顶点 (Top)     90°      45°      45°  ← X-Factor at Top
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>转换期峰值         92°      37°      55°  ← X-Factor 峰值
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>X-Factor Stretch = 55° − 45° = 10°（或 +22%）
 </span></code></pre></div>
 <h3 id="stretch">为什么会产生 Stretch？<a class="headerlink" href="#stretch" title="Permanent link">&para;</a></h3>
 <p>转换期发生了一个<strong>反直觉的动作</strong>：</p>
@@ -5257,12 +5398,12 @@
 <li>肩膀还在继续向后（惯性滞后）</li>
 <li>躯干被<strong>进一步拧紧</strong>，储存额外弹性势能</li>
 </ol>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>普通挥杆：上杆蓄力 → 下杆释放
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>职业挥杆：上杆蓄力 → 转换期再蓄力 → 下杆释放
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>                      ↑
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>                这就是 Stretch
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>普通挥杆：上杆蓄力 → 下杆释放
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>职业挥杆：上杆蓄力 → 转换期再蓄力 → 下杆释放
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>                      ↑
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>                这就是 Stretch
 </span></code></pre></div>
-<h3 id="_22">物理原理<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<h3 id="_25">物理原理<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
 <p>把躯干想象成一根<strong>扭转弹簧</strong>：</p>
 <div class="arithmatex">\[
 E = \frac{1}{2} k \theta^2
@@ -5273,7 +5414,7 @@ E = \frac{1}{2} k \theta^2
 </ul>
 <p><strong>关键</strong>：能量与角度的<strong>平方</strong>成正比。角度增加 10%，能量增加约 23%。</p>
 <p>这就是为什么 Stretch 虽然只有几度，但对爆发力贡献很大——它发生在能量即将释放的临界点。</p>
-<h3 id="_23">基准值<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<h3 id="_26">基准值<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5330,7 +5471,7 @@ E = \frac{1}{2} k \theta^2
 </blockquote>
 <h3 id="-ssc">拉伸-缩短循环 (SSC)<a class="headerlink" href="#-ssc" title="Permanent link">&para;</a></h3>
 <p>X-Factor Stretch 利用了运动生物力学中的核心原理：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>肌肉先被拉长（离心收缩）→ 快速缩短（向心收缩）= 更大爆发力
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>肌肉先被拉长（离心收缩）→ 快速缩短（向心收缩）= 更大爆发力
 </span></code></pre></div>
 <p>这个机制存在于几乎所有爆发力运动中：</p>
 <table>
@@ -5378,7 +5519,7 @@ E = \frac{1}{2} k \theta^2
 <p>详细生物力学分析见：<a href="../../design/research/biomechanics-101/#23-x-factor-stretch职业球手的秘密武器">生物力学入门 - X-Factor Stretch</a></p>
 </blockquote>
 <hr />
-<h2 id="_24">相关文档<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
+<h2 id="_27">相关文档<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../business-glossary/">商业术语表</a> - 商业相关术语</li>
 <li><a href="../../design/research/biomechanics-101/">生物力学入门</a> - 挥杆生物力学基础</li>
