@@ -412,6 +412,10 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 │   ├── 如果 Vision 显示 X-Factor 正常，但 EMG 显示激活序列错误 → 警告"假性蓄力"   │
 │   └── 如果 EMG 显示疲劳，但用户继续练习 → 建议"休息以防受伤"                     │
 └─────────────────────────────────────────────────────────────────────────────┘
+
+!!! tip "时间对齐实现"
+    Phase 2 时间对齐的具体实现方案（NTP 预同步 + Impact 验证）详见
+    [模块化架构 §2.4.1](modular-architecture.md#241-时间同步实现方案)。
 ```
 
 **融合优势**:
