@@ -341,11 +341,19 @@ X-Factor 代表了你在上杆顶点时**躯干被"拧紧"的程度**。
     转换期峰值         92°        37°        55°  ← X-Factor 峰值
     ```
     - **X-Factor (at Top)** = 上杆顶点时的 `肩膀旋转 − 髋部旋转` = 45°
+
     - **X-Factor Stretch** = 转换期峰值 − 顶点值 = `55° − 45° = 10°`
 
-<figure markdown="span">
-  ![X-Factor-Stretch](../../images/x-factor-stretch.png){ width="300" }
-</figure>
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+  <figure style="margin: 0; text-align: center;">
+    <img src="../../images/x-factor-rotation.png" alt="X-Factor 旋转角度" width="300">
+    <figcaption>X-Factor 旋转角度</figcaption>
+  </figure>
+  <figure style="margin: 0; text-align: center;">
+    <img src="../../images/x-factor-stretch.png" alt="X-Factor Stretch" width="300">
+    <figcaption>X-Factor Stretch</figcaption>
+  </figure>
+</div>
 
 ```
 
@@ -549,9 +557,6 @@ X-Factor 代表了你在上杆顶点时**躯干被"拧紧"的程度**。
 ---
 
 ## 3.5 肌肉激活与运动链
-
-!!! info "EMG 的独特价值"
-    IMU 只能测量**峰值角速度**（结果），EMG 能测量**肌肉激活**（原因）。这让我们能诊断"为什么"动作出问题。
 
 **关键理解**：肌肉激活是**因**，峰值角速度是**果**。
 
