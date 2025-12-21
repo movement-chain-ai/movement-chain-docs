@@ -344,18 +344,10 @@ X-Factor 代表了你在上杆顶点时**躯干被"拧紧"的程度**。
 
     - **X-Factor Stretch** = 转换期峰值 − 顶点值 = `55° − 45° = 10°`
 
-<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-  <figure style="margin: 0; text-align: center;">
-    <img src="../../images/x-factor-rotation.png" alt="X-Factor 旋转角度" width="300">
-    <figcaption>X-Factor 旋转角度</figcaption>
-  </figure>
-  <figure style="margin: 0; text-align: center;">
-    <img src="../../images/x-factor-stretch.png" alt="X-Factor Stretch" width="300">
-    <figcaption>X-Factor Stretch</figcaption>
-  </figure>
-</div>
+| X-Factor 旋转角度 | X-Factor Stretch |
+|:--:|:--:|
+| ![X-Factor 旋转角度](../../images/x-factor-rotation.png){ width="300" } | ![X-Factor Stretch](../../images/x-factor-stretch.png){ width="300" } |
 
-```
 
 ### X-Factor Stretch 基准值
 
