@@ -227,6 +227,129 @@ flowchart TB
 
     > 详见 [可视化工具评估](../research/visualization-tools-evaluation.md)
 
+#### 2.4.1 时间同步实现方案
+
+!!! warning "MVP 阶段说明"
+
+    使用 **Mock 数据**时，时间同步自动完成（所有数据由同一代码生成，共享时钟）。
+    本节内容适用于**真实硬件集成阶段**。
+
+##### 推荐方案: NTP 预同步 + Impact 验证
+
+这是行业标准方法，被大多数运动分析应用采用。代码量约 40-50 行，无需额外硬件。
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    时间同步实现: NTP + IMPACT 验证                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   STEP 1: NTP 预同步 (录制前)                                               │
+│   ────────────────────────────                                              │
+│   • 手机自动从 NTP 服务器同步时间 (iOS/Android 内置)                         │
+│   • ESP32 通过 BLE 从手机获取当前时间并设置内部时钟                           │
+│   • 所有设备共享同一时间基准                                                 │
+│   • 精度: ~1-10ms                                                           │
+│                                                                             │
+│   STEP 2: 传感器端时间戳 (录制中)                                           │
+│   ─────────────────────────────                                             │
+│   • IMU/EMG: ESP32 使用 micros() 在数据采集时立即打时间戳                    │
+│   • Vision: 手机摄像头使用系统时钟 (已 NTP 同步)                             │
+│   • ⚠️ 关键: 时间戳在传感器端生成，BLE 传输延迟不影响时间戳准确性             │
+│                                                                             │
+│   STEP 3: Impact 验证 (录制后)                                              │
+│   ───────────────────────────                                               │
+│   • IMU: 检测峰值角速度 → impact_imu (精度 ±5ms)                            │
+│   • Vision: 检测球离开瞬间 → impact_vision                                  │
+│   • 计算偏移: offset = impact_imu - impact_vision                           │
+│   • 校正: video.timestamps += offset                                        │
+│   • 若 |offset| > 20ms → 标记需检查                                         │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+##### 为什么 EMG 不参与时间对齐
+
+```text
+肌电机械延迟 (Electromechanical Delay, EMD)
+────────────────────────────────────────────
+
+EMG 信号 ─→ 神经指令 ─→ 钙离子释放 ─→ 肌纤维收缩 ─→ 动作发生
+            ↑                                        ↑
+            EMG 检测                                 IMU/Vision 检测
+
+时间差: 30-100ms
+
+结论: EMG 是诊断数据，不是同步参考。使用 IMU 建立时间轴后，再分析 EMG。
+```
+
+##### 替代方案对比
+
+| 方案 | 精度 | 复杂度 | 适用性 | 说明 |
+|------|------|--------|--------|------|
+| **NTP + Impact 验证** | <10ms | 低 (~50行代码) | ✅ MVP 推荐 | 零额外硬件，手机内置 NTP |
+| 硬件 TTL 触发 | <150µs | 高 | ❌ | 需同步盒、有线连接，不便携 |
+| BLE 时间戳对交换 | <1ms | 中 | ⏳ V2 | 需固件开发，精度更高 |
+| Chrony | <1ms | - | ❌ 不可控 | 移动端无法选择时钟协议 |
+
+!!! warning "注意: NTP 时钟跳变"
+
+    NTP 校正可能导致时钟**向后跳** (例如 100ms → 95ms)。
+
+    **解决方案**: 使用单调时钟计算相对时间:
+
+    ```python
+    # Python
+    import time
+    duration = time.monotonic() - start_monotonic  # 永远非负
+
+    # ESP32
+    uint32_t duration = micros() - start_micros;  // 使用差值，避免跳变影响
+    ```
+
+##### 参考实现 (硬件集成阶段)
+
+```python
+class TimeAlignmentManager:
+    """时间对齐管理器 - 硬件集成阶段使用"""
+
+    def find_imu_impact(self, gyro_z: np.ndarray, timestamps: np.ndarray) -> float:
+        """从 IMU 陀螺仪数据检测击球时刻"""
+        peak_idx = np.argmax(np.abs(gyro_z))
+        return timestamps[peak_idx]
+
+    def find_video_impact(self, frames: list, fps: float) -> float:
+        """从视频检测击球时刻 (球离开或杆头最低点)"""
+        # 简化实现: 使用运动检测找到最大变化帧
+        motion_scores = [self._compute_motion(frames[i], frames[i+1])
+                        for i in range(len(frames)-1)]
+        impact_frame = np.argmax(motion_scores)
+        return impact_frame / fps
+
+    def validate_and_correct(self, imu_data: dict, video_data: dict) -> dict:
+        """验证并校正时间对齐"""
+        imu_impact = self.find_imu_impact(imu_data['gyro_z'], imu_data['timestamps'])
+        video_impact = self.find_video_impact(video_data['frames'], video_data['fps'])
+
+        offset = imu_impact - video_impact
+
+        result = {
+            'offset_ms': offset * 1000,
+            'aligned': abs(offset) <= 0.020,  # <20ms 视为对齐
+            'action': 'none' if abs(offset) <= 0.010 else 'corrected'
+        }
+
+        if abs(offset) > 0.010:  # >10ms 需要校正
+            video_data['timestamps'] = [t + offset for t in video_data['timestamps']]
+
+        return result
+```
+
+> **研究来源**:
+>
+> - [BLE 多通道生物信号同步 (PMC10144216)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10144216/) - 实现 <1ms 精度
+> - [Twist-n-Sync 陀螺仪同步 (PMC7795013)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7795013/) - 16µs 精度，Google Research
+> - [Golf Swing IMU 分段 (PMC7472298)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7472298/) - Impact 检测精度 ±5-16ms
+
 ### 2.5 融合引擎: 三大机制
 
 !!! info "融合不是简单叠加，而是三种机制的协同"
