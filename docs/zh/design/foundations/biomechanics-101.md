@@ -1432,7 +1432,7 @@ OTT **不一定**导致距离损失：
 
 **定义**: 下杆早期手腕角度过早释放，如同"甩鱼竿"
 
-| Casting (错误) | 正确释放 |
+| ❌ Casting (错误) | ✅ 正确释放 |
 |:--:|:--:|
 | ![Casting 错误](../../images/casting-wrong.png){ width="350" } | ![正确释放](../../images/casting-correct.png){ width="350" } |
 
