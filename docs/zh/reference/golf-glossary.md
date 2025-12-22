@@ -647,7 +647,7 @@ TBP 反映了**角动量传递的时机**：
 
 ### 杆面结构
 
-![球杆结构图](../images/club-structure.jpg){ width="300" }
+![球杆结构图](../images/club-structure.jpg){ width="600" }
 
 ### 杆面角度的三种状态
 
