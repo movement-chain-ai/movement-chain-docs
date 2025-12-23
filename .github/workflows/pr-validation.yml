@@ -99,29 +99,36 @@ jobs:
             exit 1
           fi
 
-      # Step 8: Validate mkdocs.yml syntax
-      - name: Validate MkDocs configuration
+      # Step 8: Validate mkdocs.yml syntax (both Chinese and English)
+      - name: Validate MkDocs configurations
         id: yaml-validation
         continue-on-error: true
         run: |
-          echo "Validating mkdocs.yml syntax..."
+          echo "Validating MkDocs configuration files..."
 
           # Install PyYAML for validation
           pip install pyyaml
 
-          # Validate YAML syntax
+          # Validate Chinese config
+          echo "Checking mkdocs.yml (Chinese)..."
           python -c "import yaml; yaml.safe_load(open('mkdocs.yml'))"
+          zh_result=$?
 
-          if [ $? -eq 0 ]; then
+          # Validate English config
+          echo "Checking mkdocs.en.yml (English)..."
+          python -c "import yaml; yaml.safe_load(open('mkdocs.en.yml'))"
+          en_result=$?
+
+          if [ $zh_result -eq 0 ] && [ $en_result -eq 0 ]; then
             echo "result=success" >> $GITHUB_OUTPUT
-            echo "✅ MkDocs configuration is valid" >> $GITHUB_STEP_SUMMARY
+            echo "✅ Both MkDocs configurations are valid" >> $GITHUB_STEP_SUMMARY
           else
             echo "result=failure" >> $GITHUB_OUTPUT
             echo "❌ MkDocs configuration validation failed" >> $GITHUB_STEP_SUMMARY
             exit 1
           fi
 
-      # Step 9: Build documentation with Zensical
+      # Step 9: Build documentation with Zensical (both languages)
       - name: Build documentation (Zensical)
         id: build-docs
         continue-on-error: true
@@ -129,19 +136,29 @@ jobs:
           echo "Building documentation with Zensical..."
           echo "## Build Results" >> $GITHUB_STEP_SUMMARY
 
-          # Build with Zensical
-          if zensical build; then
-            echo "result=success" >> $GITHUB_OUTPUT
-            echo "✅ Documentation built successfully" >> $GITHUB_STEP_SUMMARY
-
-            # Count generated files
-            file_count=$(find site -type f | wc -l)
-            echo "📊 Generated $file_count files" >> $GITHUB_STEP_SUMMARY
-          else
+          # Build Chinese site
+          echo "Building Chinese site..."
+          if ! zensical build; then
             echo "result=failure" >> $GITHUB_OUTPUT
-            echo "❌ Documentation build failed - see logs for details" >> $GITHUB_STEP_SUMMARY
+            echo "❌ Chinese documentation build failed" >> $GITHUB_STEP_SUMMARY
             exit 1
           fi
+
+          # Build English site
+          echo "Building English site..."
+          if ! zensical build -f mkdocs.en.yml; then
+            echo "result=failure" >> $GITHUB_OUTPUT
+            echo "❌ English documentation build failed" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+          echo "result=success" >> $GITHUB_OUTPUT
+          echo "✅ Both documentation sites built successfully" >> $GITHUB_STEP_SUMMARY
+
+          # Count generated files
+          zh_count=$(find site -maxdepth 2 -type f | wc -l)
+          en_count=$(find site/en -type f 2>/dev/null | wc -l || echo "0")
+          echo "📊 Chinese site: ~$zh_count files | English site: $en_count files" >> $GITHUB_STEP_SUMMARY
 
       # Step 10: Upload build artifacts for review
       - name: Upload build artifacts
@@ -153,7 +170,7 @@ jobs:
           retention-days: 1
           if-no-files-found: warn
 
-      # Step 11: Check for broken internal references
+      # Step 11: Check for broken internal references (both configs)
       - name: Validate internal references
         id: internal-refs
         continue-on-error: true
@@ -161,40 +178,44 @@ jobs:
           echo "Checking for broken internal references..."
           echo "## Internal Reference Check" >> $GITHUB_STEP_SUMMARY
 
-          # Simple check for broken internal links in navigation
+          # Check navigation references for both configs
           python << 'EOF'
           import yaml
-          import os
+          import sys
           from pathlib import Path
 
-          with open('mkdocs.yml', 'r') as f:
-              config = yaml.safe_load(f)
+          def check_config(config_file):
+              print(f"\nChecking {config_file}...")
+              with open(config_file, 'r') as f:
+                  config = yaml.safe_load(f)
 
-          # Get docs_dir from config, default to 'docs'
-          docs_dir = config.get('docs_dir', 'docs')
+              docs_dir = config.get('docs_dir', 'docs')
 
-          def check_nav_item(item, path=[]):
-              if isinstance(item, dict):
-                  for key, value in item.items():
-                      if isinstance(value, str) and value.endswith('.md'):
-                          file_path = Path(docs_dir) / value
-                          if not file_path.exists():
-                              print(f"❌ Missing file referenced in nav: {value}")
-                              return False
-                      elif isinstance(value, list):
-                          for sub_item in value:
-                              if not check_nav_item(sub_item, path + [key]):
+              def check_nav_item(item, path=[]):
+                  if isinstance(item, dict):
+                      for key, value in item.items():
+                          if isinstance(value, str) and value.endswith('.md'):
+                              file_path = Path(docs_dir) / value
+                              if not file_path.exists():
+                                  print(f"❌ [{config_file}] Missing: {value}")
                                   return False
-              return True
+                          elif isinstance(value, list):
+                              for sub_item in value:
+                                  if not check_nav_item(sub_item, path + [key]):
+                                      return False
+                  return True
 
-          nav = config.get('nav', [])
-          all_valid = all(check_nav_item(item) for item in nav)
+              nav = config.get('nav', [])
+              return all(check_nav_item(item) for item in nav)
 
-          if all_valid:
-              print("✅ All navigation references are valid")
-              exit(0)
+          zh_valid = check_config('mkdocs.yml')
+          en_valid = check_config('mkdocs.en.yml')
+
+          if zh_valid and en_valid:
+              print("\n✅ All navigation references are valid")
+              sys.exit(0)
           else:
-              exit(1)
+              sys.exit(1)
           EOF
 
           if [ $? -eq 0 ]; then

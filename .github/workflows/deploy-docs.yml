@@ -7,6 +7,7 @@ on:
     paths:
       - 'docs/**'
       - 'mkdocs.yml'
+      - 'mkdocs.en.yml'
       - '.github/workflows/deploy-docs.yml'
   workflow_dispatch:  # Allow manual triggering
 
@@ -56,8 +57,19 @@ jobs:
         run: |
           zensical --version
 
-      - name: Build documentation site
+      - name: Build Chinese documentation site
         run: zensical build --clean
+
+      - name: Build English documentation site
+        run: zensical build -f mkdocs.en.yml
+
+      - name: Verify both builds
+        run: |
+          echo "=== Chinese site (root) ==="
+          ls -la site/ | head -10
+          echo ""
+          echo "=== English site (site/en/) ==="
+          ls -la site/en/ | head -10
 
       - name: Add .nojekyll file
         run: touch ./site/.nojekyll

@@ -8,6 +8,7 @@ docs_dir: docs/zh
 
 theme:
   name: material
+  language: zh
   palette:
     - scheme: default
       primary: indigo
@@ -98,6 +99,13 @@ extra:
     provider: mike
     default: latest
     alias: true
+  alternate:
+    - name: 中文
+      link: /
+      lang: zh
+    - name: English
+      link: /en/
+      lang: en
 
 nav:
   - 首页: index.md

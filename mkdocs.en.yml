@@ -1,0 +1,112 @@
+site_name: Movement Chain AI Documentation
+site_description: Architecture documentation for multimodal AI movement training system
+site_author: Movement Chain AI Team
+site_url: https://movement-chain-ai.github.io/movement-chain-docs/en/
+repo_name: movement-chain-ai/movement-chain-docs
+repo_url: https://github.com/movement-chain-ai/movement-chain-docs
+docs_dir: docs/en
+site_dir: site/en
+
+theme:
+  name: material
+  language: en
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
+    - navigation.instant
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+
+markdown_extensions:
+  # Code highlighting
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  # Tables and lists
+  - tables
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+  # Admonitions and callouts
+  - admonition
+  - pymdownx.details
+
+  # Content formatting
+  - pymdownx.betterem:
+      smart_enable: none
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.keys
+
+  # Math support
+  - pymdownx.arithmatex:
+      generic: true
+
+  # Metadata and structure
+  - meta
+  - attr_list
+  - md_in_html
+  - footnotes
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/movement-chain-ai
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/movement-chain-ai
+  version:
+    provider: mike
+    default: latest
+    alias: true
+  alternate:
+    - name: 中文
+      link: /
+      lang: zh
+    - name: English
+      link: /en/
+      lang: en
+
+nav:
+  - Home: index.md
