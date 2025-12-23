@@ -2456,6 +2456,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="决策">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stmicroelectronics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关于 STMicroelectronics（意法半导体）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsm6dsv16x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LSM6DSV16X 型号命名解读
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4173,6 +4201,8 @@
       
         
       
+        
+      
     
     
     
@@ -4265,6 +4295,34 @@
     
   
     物理学术语表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/engineering-glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工程术语表
   
 
     
@@ -4442,6 +4500,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="决策">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stmicroelectronics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关于 STMicroelectronics（意法半导体）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsm6dsv16x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LSM6DSV16X 型号命名解读
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4741,18 +4827,68 @@
 <p><strong>日期:</strong> 2025-12-01
 <strong>状态:</strong> 已接受</p>
 <h2 id="_1">背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Movement Chain AI 需要一个高性能的 6 轴惯性测量单元（IMU，Inertial Measurement Unit），能够以 100Hz 捕获人体运动数据，用于区块链验证的健身跟踪和运动分析。之前流行的 Bosch BNO055 传感器已经停产，因此需要选择一个现代化的替代品，满足以下要求：</p>
+<p>Movement Chain AI 需要一个高性能的 6 轴<a href="../../../reference/engineering-glossary/#1-imu-惯性测量单元">惯性测量单元（IMU）</a>，能够以 100Hz <a href="../../../reference/engineering-glossary/#3-采样率-sampling-rate">采样率</a>捕获人体运动数据，用于区块链验证的健身跟踪和运动分析。之前流行的 Bosch BNO055 传感器已经停产，因此需要选择一个现代化的替代品，满足以下要求：</p>
 <ul>
 <li><strong>采样率:</strong> 最低 100Hz 以实现准确的运动捕获</li>
-<li><strong>精度:</strong> 专业级校准，在 45+ 分钟锻炼期间漂移最小</li>
+<li><strong>精度:</strong> 专业级校准，在 45+ 分钟锻炼期间<a href="../../../reference/engineering-glossary/#4-漂移-drift">漂移</a>最小</li>
 <li><strong>功耗效率:</strong> 低功耗以适用于可穿戴应用</li>
-<li><strong>处理能力:</strong> 边缘 AI 能力，用于设备端运动分类</li>
-<li><strong>集成性:</strong> 与 ESP32 生态系统兼容的 I2C/SPI 接口</li>
+<li><strong>处理能力:</strong> <a href="../../../reference/engineering-glossary/#5-边缘-ai-edge-ai">边缘 AI</a> 能力，用于设备端运动分类</li>
+<li><strong>集成性:</strong> 与 ESP32 生态系统兼容的 <a href="../../../reference/engineering-glossary/#6-i2c--spi-通信协议">I2C/SPI</a> 接口</li>
 <li><strong>市场定位:</strong> 必须是当前一代（2025 年）传感器，具有长期可用性</li>
 </ul>
-<p>BNO055 的停产及其在长时间会话（&gt;30 分钟）中已知的漂移问题，为升级到 2025 年最佳 IMU 技术创造了机会。</p>
+<p>BNO055 的停产及其已知的在长时间会话中（&gt;30 分钟）的漂移问题，为升级到 2025 年最佳 IMU 技术创造了机会。</p>
 <h2 id="_2">决策<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>选择 <strong>STMicroelectronics LSM6DSV16X</strong> 作为 Movement Chain AI 硬件的主要 IMU 传感器。</p>
+<h3 id="stmicroelectronics">关于 STMicroelectronics（意法半导体）<a class="headerlink" href="#stmicroelectronics" title="Permanent link">&para;</a></h3>
+<p>STMicroelectronics（意法半导体）是全球领先的半导体公司，由意大利 SGS Microelettronica 和法国 Thomson Semiconducteurs 于 1987 年合并成立。公司总部位于瑞士日内瓦，是全球第八大半导体制造商，在 MEMS（微机电系统）传感器领域处于领导地位，尤其在消费电子、汽车和工业应用的运动传感器市场占据重要份额。</p>
+<h3 id="lsm6dsv16x">LSM6DSV16X 型号命名解读<a class="headerlink" href="#lsm6dsv16x" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LSM</strong></td>
+<td>产品线标识</td>
+<td>ST 的 MEMS 运动传感器产品系列</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td>6 轴</td>
+<td>3 轴加速度计 + 3 轴陀螺仪</td>
+</tr>
+<tr>
+<td><strong>DS</strong></td>
+<td>Digital Sensor</td>
+<td>数字传感器（内置 ADC，直接输出数字信号）</td>
+</tr>
+<tr>
+<td><strong>V</strong></td>
+<td>新一代架构</td>
+<td>相比 LSM6DS 系列的升级版本</td>
+</tr>
+<tr>
+<td><strong>16</strong></td>
+<td>±16g</td>
+<td>加速度计最大量程（可选 ±2/±4/±8/±16g）</td>
+</tr>
+<tr>
+<td><strong>X</strong></td>
+<td>扩展功能</td>
+<td>包含 MLC（机器学习核心）、FSM（有限状态机）、Qvar（静电感应）等高级功能</td>
+</tr>
+</tbody>
+</table>
+<p><strong>同系列型号对比：</strong></p>
+<ul>
+<li><strong>LSM6DSV16X</strong>: ±16g 加速度计，带 MLC/FSM/Qvar（本项目选用）</li>
+<li><strong>LSM6DSV32X</strong>: ±32g 加速度计，适用于高冲击运动（拳击、极限运动）</li>
+<li><strong>LSM6DSO</strong>: 上一代产品，无 MLC，适用于成本敏感应用</li>
+</ul>
 <h2 id="_3">理由<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="_4">卓越的长时间会话性能<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>LSM6DSV16X 在长时间锻炼会话中展现出卓越的稳定性，漂移重置时间超过 45 分钟，而 BNO055 的文档记录显示其在 15-20 分钟后就会降级。这对于区块链验证的健身会话至关重要，因为数据完整性必须在整个小时级锻炼过程中保持。</p>
