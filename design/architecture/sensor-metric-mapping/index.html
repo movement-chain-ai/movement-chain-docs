@@ -18,7 +18,7 @@
         <link rel="prev" href="../data-pipeline-and-ai/">
       
       
-        <link rel="next" href="../../specs/swing-phases/">
+        <link rel="next" href="../key-decisions-2025-12/">
       
       
         
@@ -1455,6 +1455,8 @@
       
         
       
+        
+      
     
     
     
@@ -1700,10 +1702,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-imu-lsm6dsv16x-1666hz" class="md-nav__link">
+  <a href="#32-imu-lsm6dsv16x-1666hz-768khz" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2 IMU 检测 (LSM6DSV16X @ 1666Hz)
+        3.2 IMU 检测 (LSM6DSV16X @ 1666Hz, 最高支持 7.68kHz)
       
     </span>
   </a>
@@ -1979,6 +1981,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../key-decisions-2025-12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025-12 关键决策
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -4466,10 +4496,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-imu-lsm6dsv16x-1666hz" class="md-nav__link">
+  <a href="#32-imu-lsm6dsv16x-1666hz-768khz" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2 IMU 检测 (LSM6DSV16X @ 1666Hz)
+        3.2 IMU 检测 (LSM6DSV16X @ 1666Hz, 最高支持 7.68kHz)
       
     </span>
   </a>
@@ -4765,7 +4795,7 @@
 <blockquote>
 <p><strong>文档目的</strong>: 定义三模态系统 (Vision + IMU + EMG) 可测量的研究验证指标
 <strong>核心价值</strong>: EMG 提供的肌肉激活检测是独特差异化优势，竞品无法实现
-<strong>最后更新</strong>: 2025-12-19</p>
+<strong>最后更新</strong>: 2025-12-23</p>
 </blockquote>
 <hr />
 <h2 id="1-capability-matrix">1. 系统能力矩阵 Capability Matrix<a class="headerlink" href="#1-capability-matrix" title="Permanent link">&para;</a></h2>
@@ -4881,7 +4911,7 @@
 <tr>
 <td><strong>运动链时序 Kinematic Sequence Timing</strong></td>
 <td>⚠️ 33ms精度</td>
-<td>✅ &lt;10ms</td>
+<td>✅ &lt;1ms (1666Hz)</td>
 <td>✅ Phase 2</td>
 <td>✅ &lt;5ms</td>
 <td>✅✅ 高精度</td>
@@ -5063,7 +5093,15 @@
 <li>节奏比 (低精度)</li>
 </ul>
 <hr />
-<h3 id="32-imu-lsm6dsv16x-1666hz">3.2 IMU 检测 (LSM6DSV16X @ 1666Hz)<a class="headerlink" href="#32-imu-lsm6dsv16x-1666hz" title="Permanent link">&para;</a></h3>
+<h3 id="32-imu-lsm6dsv16x-1666hz-768khz">3.2 IMU 检测 (LSM6DSV16X @ 1666Hz, 最高支持 7.68kHz)<a class="headerlink" href="#32-imu-lsm6dsv16x-1666hz-768khz" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">LSM6DSV16X 规格 (2025-12 验证)</p>
+<ul>
+<li><strong>ODR 范围</strong>: 7.5Hz ~ 7.68kHz (远超我们使用的 1666Hz)</li>
+<li><strong>内部同步精度</strong>: 6.25 μs (加速度计/陀螺仪硬件同步)</li>
+<li><strong>MVP 选择</strong>: 1666Hz (平衡精度与功耗)</li>
+</ul>
+</div>
 <p><strong>优势</strong>: 高频采样，精确测量角速度和加速度
 <strong>劣势</strong>: 单个 IMU 只能测量局部运动，需多个传感器才能重建全身姿态</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 峰值角速度检测</span>
@@ -5139,6 +5177,19 @@
 </ul>
 <hr />
 <h3 id="33-emg-unique-capability">3.3 EMG 检测 (UNIQUE CAPABILITY)<a class="headerlink" href="#33-emg-unique-capability" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">传感器选型 (2025-12 验证)</p>
+<p><strong>推荐</strong>: MyoWare 2.0 + Link Shield (DEV-18425)</p>
+<ul>
+<li>无线缆噪声问题，适合高速挥杆 (100mph)</li>
+<li>Link Shield 是必需品 (MyoWare 无焊孔)</li>
+</ul>
+<p><strong>不推荐高速运动</strong>: DFRobot SEN0240</p>
+<ul>
+<li>线缆在高速挥杆时产生运动伪影</li>
+<li>仅适用静态测量场景</li>
+</ul>
+</div>
 <p><strong>优势</strong>: 直接观测肌肉激活，解释"为什么"
 <strong>劣势</strong>: 需要皮肤接触，受汗水/毛发影响</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 肌肉激活时序检测</span>
@@ -5339,25 +5390,27 @@
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│   ├── IMU (1666Hz): 提取角速度/加速度 → 计算峰值速度, 节奏比                    │
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>│   └── EMG (1000Hz): 提取激活时序 → 计算肌肉启动时间, 激活强度                   │
 </span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>│                                                                              │
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>│   Phase 2: 时间对齐                                                           │
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>│   ├── 以 IMU 为基准时钟 (最高采样率)                                           │
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>│   ├── Vision 帧插值到 1666Hz (线性插值)                                        │
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>│   └── EMG 重采样到 1666Hz (降采样)                                            │
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>│                                                                              │
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>│   Phase 3: 特征融合                                                           │
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>│   ├── 运动链时序 = IMU (身体启动) + EMG (肌肉启动) 双重验证                      │
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>│   ├── X-Factor Stretch = Vision (角度差) + EMG (核心激活) 相关性分析            │
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>│   └── 力链验证 = Vision (姿态) + IMU (速度) + EMG (激活序列) 三重验证            │
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>│                                                                              │
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>│   Phase 4: 异常检测                                                           │
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>│   ├── 如果 EMG 显示核心未激活，但 IMU 显示高速转体 → 警告&quot;代偿动作&quot;              │
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>│   ├── 如果 Vision 显示 X-Factor 正常，但 EMG 显示激活序列错误 → 警告&quot;假性蓄力&quot;   │
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>│   └── 如果 EMG 显示疲劳，但用户继续练习 → 建议&quot;休息以防受伤&quot;                     │
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>└─────────────────────────────────────────────────────────────────────────────┘
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>!!! tip &quot;时间对齐实现&quot;
-</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>    Phase 2 时间对齐的具体实现方案（NTP 预同步 + Impact 验证）详见
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>    [模块化架构 §2.4.1](modular-architecture.md#241-时间同步实现方案)。
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>│   Phase 2: 时间对齐 (Sensor Hub 架构)                                       │
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>│   ├── Sensor Hub: 同部位 IMU/EMG 共享 ESP32 时钟 (硬件级微秒同步)            │
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>│   ├── 以 IMU 为基准时钟 (最高采样率)                                         │
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>│   ├── Vision 帧插值到 1666Hz (线性插值)                                      │
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>│   ├── EMG 重采样到 1666Hz (降采样)                                           │
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>│   └── 跨设备对齐: 使用 Impact 时刻作为同步锚点                               │
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>│                                                                              │
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>│   Phase 3: 特征融合                                                           │
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>│   ├── 运动链时序 = IMU (身体启动) + EMG (肌肉启动) 双重验证                      │
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>│   ├── X-Factor Stretch = Vision (角度差) + EMG (核心激活) 相关性分析            │
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>│   └── 力链验证 = Vision (姿态) + IMU (速度) + EMG (激活序列) 三重验证            │
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>│                                                                              │
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>│   Phase 4: 异常检测                                                           │
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>│   ├── 如果 EMG 显示核心未激活，但 IMU 显示高速转体 → 警告&quot;代偿动作&quot;              │
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>│   ├── 如果 Vision 显示 X-Factor 正常，但 EMG 显示激活序列错误 → 警告&quot;假性蓄力&quot;   │
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>│   └── 如果 EMG 显示疲劳，但用户继续练习 → 建议&quot;休息以防受伤&quot;                     │
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>└─────────────────────────────────────────────────────────────────────────────┘
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>!!! tip &quot;时间对齐实现&quot;
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>    Phase 2 时间对齐的具体实现方案（NTP 预同步 + Impact 验证）详见
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>    [模块化架构 §2.4.1](modular-architecture.md#241-时间同步实现方案)。
 </span></code></pre></div>
 <p><strong>融合优势</strong>:</p>
 <ul>
@@ -5536,7 +5589,7 @@
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">mock_emg</span> <span class="o">=</span> <span class="p">{</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="c1"># Phase 1 (MVP) - 必须实现</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="s2">&quot;core_obliques&quot;</span><span class="p">:</span> <span class="p">{</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="s2">&quot;signal&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>           <span class="c1"># 500Hz 采样</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="s2">&quot;signal&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>           <span class="c1"># 1000Hz 采样 (MyoWare 2.0 推荐配置)</span>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        <span class="s2">&quot;onset_time_ms&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>        <span class="c1"># 激活起始时间</span>
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="s2">&quot;peak_amplitude_mv&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>  <span class="c1"># 峰值幅度</span>
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>        <span class="s2">&quot;rms_mv&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>             <span class="c1"># RMS 均值</span>
@@ -6394,6 +6447,7 @@
 <ul>
 <li><a href="../system-design/">系统设计</a>: MVP 技术架构和构建顺序</li>
 <li><a href="../modular-architecture/">模块化架构</a>: LEGO 积木式架构设计</li>
+<li><a href="../key-decisions-2025-12/">关键决策 2025-12</a>: 传感器选型和 Sensor Hub 同步策略</li>
 <li><a href="../../specs/swing-comparison/">挥杆对比分析</a>: Pro vs Amateur 的生物力学差异</li>
 <li><a href="../../foundations/biomechanics-glossary/">生物力学术语表</a>: 技术术语定义</li>
 <li><a href="../../foundations/biomechanics-benchmarks/">生物力学基准值</a>: 文献验证的正常范围</li>

@@ -1455,6 +1455,8 @@
       
         
       
+        
+      
     
     
     
@@ -1798,6 +1800,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#43-sensor-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Sensor Hub 架构 (关键创新)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2044,6 +2057,34 @@
     
   
     传感器指标映射
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../key-decisions-2025-12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025-12 关键决策
   
 
     
@@ -4721,6 +4762,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#43-sensor-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Sensor Hub 架构 (关键创新)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5447,13 +5499,18 @@
 </tr>
 <tr>
 <td><strong>MCU</strong></td>
-<td>ESP32-S3</td>
-<td><a href="../../decisions/0005-esp32-s3-microcontroller/">ADR-0005</a></td>
+<td>XIAO ESP32S3</td>
+<td>Seeed 113991114, Sensor Hub 架构</td>
 </tr>
 <tr>
 <td><strong>IMU</strong></td>
-<td>LSM6DSV16X</td>
-<td><a href="../../decisions/0002-lsm6dsv16x-imu/">ADR-0002</a></td>
+<td>Adafruit LSM6DSV16X</td>
+<td>ADA-5783, 更好的 Arduino 库</td>
+</tr>
+<tr>
+<td><strong>EMG</strong></td>
+<td>MyoWare 2.0 + Link Shield</td>
+<td>SparkFun DEV-21265 + DEV-18425</td>
 </tr>
 <tr>
 <td><strong>ML推理</strong></td>
@@ -5522,6 +5579,72 @@
 </tr>
 </tbody>
 </table>
+<h3 id="43-sensor-hub">4.3 Sensor Hub 架构 (关键创新)<a class="headerlink" href="#43-sensor-hub" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>📐 <strong>时间同步策略</strong>: 详细规格见 <a href="../data-pipeline-and-ai/">数据管道与AI</a> §1.2</p>
+</blockquote>
+<p><strong>核心问题</strong>: BLE 协议存在 15-30ms 抖动 (2025-12 研究验证),无法通过软件完全消除。</p>
+<p><strong>解决方案</strong>: 同一身体部位的 IMU + EMG 共享同一个 ESP32 时钟源</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────────────┐
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                    Sensor Hub 架构                               │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├─────────────────────────────────────────────────────────────────┤
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│                                                                 │
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   ✅ 正确架构:                                                   │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   ┌───────────────────────┐     ┌───────────────────────┐       │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   │     ESP32 #1          │     │      ESP32 #2         │       │
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   │  (手臂 Sensor Hub)    │     │   (核心 Sensor Hub)    │       │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   │ ┌─────────┬─────────┐ │     │ ┌─────────┬─────────┐ │       │
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   │ │手腕 IMU │前臂 EMG │ │     │ │核心 EMG │腰部 IMU │ │       │
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   │ │ (I2C)   │ (ADC)   │ │     │ │ (ADC)   │ (I2C)   │ │       │
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   │ └─────────┴─────────┘ │     │ └─────────┴─────────┘ │       │
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   │   同一时钟 ✅          │     │   同一时钟 ✅          │       │
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   └───────────┬───────────┘     └───────────┬───────────┘       │
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│               └─────────────┬───────────────┘                   │
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│                             ↓ BLE                               │
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│                         ┌────────┐                              │
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│                         │ iPhone │                              │
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│                         └────────┘                              │
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│                                                                 │
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>└─────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<p><strong>同步精度</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>目标精度</th>
+<th>实际可达</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同一 ESP32 (IMU+EMG)</td>
+<td>&lt;100 μs</td>
+<td>&lt;10 μs</td>
+<td>esp<em>timer</em>get_time()</td>
+</tr>
+<tr>
+<td>跨 ESP32 (手臂↔核心)</td>
+<td>&lt;1 ms</td>
+<td>69-477 μs</td>
+<td>Impact 事件对齐</td>
+</tr>
+<tr>
+<td>跨设备 (ESP32↔Vision)</td>
+<td>&lt;10 ms</td>
+<td>&lt;5 ms</td>
+<td>Impact 帧对齐</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键优势</strong>:
+- 使用 ESP32 源端微秒级时间戳 (而非手机接收时间)
+- 不同 Sensor Hub 通过 Impact 事件对齐消除 BLE 抖动
+- 避免每个传感器独立 BLE 连接导致的时钟漂移</p>
+<blockquote>
+<p>详见 <a href="../key-decisions-2025-12/#43-硬件购买清单--2025-12-23-验证">关键决策 2025-12</a></p>
+</blockquote>
 <hr />
 <h2 id="5">5. 测试策略<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
 <h3 id="51">5.1 单元测试<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
@@ -5615,13 +5738,15 @@
 <h4 id="_3">第二步: 理解核心算法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong><a href="../modular-architecture/">模块化架构</a></strong> - LEGO 积木式设计，各模块升级路径</li>
+<li><strong><a href="../data-pipeline-and-ai/">数据管道与AI</a></strong> - 数据流、传感器融合、时间同步策略</li>
+<li><strong><a href="../sensor-metric-mapping/">传感器映射</a></strong> - 哪个传感器测什么</li>
+<li><strong><a href="../key-decisions-2025-12/">2025年12月关键决策</a></strong> - Sensor Hub架构、硬件选型、时间同步策略</li>
 <li><strong><a href="../../specs/swing-phases/">8阶段检测</a></strong> - 挥杆阶段识别算法，含代码</li>
 <li><strong><a href="../../specs/swing-comparison/">挥杆对比</a></strong> - 4种对比方法，DTW算法</li>
 <li><strong><a href="../../specs/real-time-feedback/">实时反馈</a></strong> - 3种反馈模式规格</li>
 </ul>
 <h4 id="_4">第三步: 理解数据来源<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <ul>
-<li><strong><a href="../sensor-metric-mapping/">传感器映射</a></strong> - 哪个传感器测什么</li>
 <li><strong><a href="../../foundations/biomechanics-benchmarks/">生物力学基准</a></strong> - 阈值数据来源</li>
 <li><strong><a href="../../foundations/biomechanics-glossary/">生物力学术语</a></strong> - 140+术语定义</li>
 </ul>
@@ -5758,7 +5883,7 @@
 <tr>
 <td>MediaPipe iOS性能不足</td>
 <td>帧率低</td>
-<td>降低分辨率，使用GPU</td>
+<td>降低分辨率,使用GPU</td>
 </tr>
 <tr>
 <td>EMG真实数据与Mock差异大</td>
@@ -5769,6 +5894,26 @@
 <td>用户不接受穿戴设备</td>
 <td>产品定位失败</td>
 <td>先验证纯Vision版本</td>
+</tr>
+<tr>
+<td>BLE 抖动 15-30ms</td>
+<td>时间同步误差</td>
+<td>Sensor Hub + Impact 对齐方案</td>
+</tr>
+<tr>
+<td>MyoWare 2.0 Link Shield</td>
+<td>无法焊接</td>
+<td>DEV-18425 是必需品</td>
+</tr>
+<tr>
+<td>DFRobot EMG 线缆噪声</td>
+<td>信号质量</td>
+<td>仅适用静态测量</td>
+</tr>
+<tr>
+<td>WitMotion IMU BLE</td>
+<td>时间同步</td>
+<td>必须通过 I2C 连接 ESP32</td>
 </tr>
 </tbody>
 </table>
@@ -5788,10 +5933,15 @@
 <td>2025-12-18</td>
 <td>初始版本，整合所有详细规格</td>
 </tr>
+<tr>
+<td>1.1</td>
+<td>2025-12-23</td>
+<td>增加 Sensor Hub 架构, 更新硬件选型, 澄清 BLE 时间同步策略</td>
+</tr>
 </tbody>
 </table>
 <hr />
-<p><strong>最后更新</strong>: 2025-12-18
+<p><strong>最后更新</strong>: 2025-12-23
 <strong>维护者</strong>: Movement Chain AI Team</p>
 
 

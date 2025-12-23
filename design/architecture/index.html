@@ -1455,6 +1455,8 @@
       
         
       
+        
+      
     
     
     
@@ -1603,6 +1605,34 @@
     
   
     传感器指标映射
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="key-decisions-2025-12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2025-12 关键决策
   
 
     
@@ -4098,6 +4128,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#2025-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键决策 2025-12
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4198,33 +4239,48 @@
 <hr />
 <h2 id="_3">阅读顺序<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│  1. system-design.md (25分钟) ─── Hub 文档                         │
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│     └── MVP 全貌：4模块架构、12指标、6规则、技术栈                    │
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│  0. key-decisions-2025-12.md (30分钟) ─── 关键决策汇总              │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│     └── 2025年12月技术决策：Sensor Hub、BLE抖动、六边形架构          │
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│                                                                     │
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  2. modular-architecture.md (25分钟) ─── 结构设计                  │
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│     └── LEGO 积木块：Input→Extraction→Analysis→Output              │
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  1. system-design.md (25分钟) ─── Hub 文档                         │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│     └── MVP 全貌：4模块架构、12指标、6规则、技术栈                    │
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│                                                                     │
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│  3. data-pipeline-and-ai.md (20分钟) ─── 数据流设计                │
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│     └── 时间对齐、Kinematic Prompts、反馈生成                        │
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│  2. modular-architecture.md (25分钟) ─── 结构设计                  │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│     └── LEGO 积木块：Input→Extraction→Analysis→Output              │
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│                                                                     │
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│  4. sensor-metric-mapping.md (参考) ─── 算法实现                   │
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│     └── Python 代码：特征计算、融合诊断、模拟数据生成                 │
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>└─────────────────────────────────────────────────────────────────────┘
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│  3. data-pipeline-and-ai.md (20分钟) ─── 数据流设计                │
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│     └── 时间对齐、Kinematic Prompts、反馈生成                        │
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│                                                                     │
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│  4. sensor-metric-mapping.md (参考) ─── 算法实现                   │
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│     └── Python 代码：特征计算、融合诊断、模拟数据生成                 │
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>└─────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <hr />
 <h2 id="_4">文档关系图<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>graph TD
-    SYS[system-design.md&lt;br/&gt;Hub 文档] --&gt; MOD[modular-architecture.md&lt;br/&gt;积木块设计]
+    KEY[key-decisions-2025-12.md&lt;br/&gt;关键决策] --&gt; SYS[system-design.md&lt;br/&gt;Hub 文档]
+    SYS --&gt; MOD[modular-architecture.md&lt;br/&gt;积木块设计]
     SYS --&gt; DATA[data-pipeline-and-ai.md&lt;br/&gt;数据流与反馈]
     MOD --&gt; SENS[sensor-metric-mapping.md&lt;br/&gt;算法实现]
     DATA --&gt; SENS
 
+    style KEY fill:#ffe0b2
     style SYS fill:#e1f5fe
     style MOD fill:#f3e5f5
     style DATA fill:#e8f5e9
     style SENS fill:#fff3e0</code></pre>
 <hr />
 <h2 id="_5">文档概览<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="2025-12"><a href="key-decisions-2025-12/">关键决策 2025-12</a><a class="headerlink" href="#2025-12" title="Permanent link">&para;</a></h3>
+<p><strong>阅读时间</strong>: ~30 分钟 | <strong>决策汇总</strong> | <strong>必读</strong></p>
+<p>2025年12月的关键技术决策汇总：</p>
+<ul>
+<li><strong>Sensor Hub 架构</strong>: 同一部位传感器共享 ESP32 时钟,实现微秒级同步</li>
+<li><strong>BLE 时间抖动</strong>: 15-30ms 抖动问题及解决方案 (ESP32 源端时间戳)</li>
+<li><strong>硬件购买清单</strong>: MyoWare 2.0 + Link Shield + Adafruit LSM6DSV16X</li>
+<li><strong>六边形架构</strong>: Ports &amp; Adapters 模式确认</li>
+<li><strong>时间同步精度</strong>: 同 ESP32 &lt;10μs, 跨设备 69-477μs</li>
+</ul>
 <h3 id="_6"><a href="system-design/">系统设计</a><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p><strong>阅读时间</strong>: ~25 分钟 | <strong>Hub 文档</strong> | <strong>必读</strong></p>
 <p>MVP 的单一事实来源：</p>
@@ -4276,6 +4332,21 @@
 </thead>
 <tbody>
 <tr>
+<td>Sensor Hub</td>
+<td>同一部位传感器共享 ESP32 时钟</td>
+<td>key-decisions-2025-12.md</td>
+</tr>
+<tr>
+<td>Impact 对齐</td>
+<td>使用击球瞬间作为 T=0 参考点</td>
+<td>key-decisions-2025-12.md</td>
+</tr>
+<tr>
+<td>BLE 抖动</td>
+<td>15-30ms 连接间隔随机延迟</td>
+<td>key-decisions-2025-12.md</td>
+</tr>
+<tr>
 <td>X-Factor</td>
 <td>肩-髋分离角</td>
 <td>system-design.md §2</td>
@@ -4307,7 +4378,7 @@
 <ul>
 <li>需要详细规格？请看 <a href="../specs/">详细规格</a></li>
 <li>需要角色入口？请看 <a href="../briefs/">角色 Brief</a></li>
-<li>需要技术决策背景？请看 <a href="../decisions/">ADR</a></li>
+<li>需要技术决策背景？请看 <a href="key-decisions-2025-12/">关键决策</a> 和 <a href="../decisions/">ADR</a></li>
 </ul>
 
 
