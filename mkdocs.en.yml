@@ -110,3 +110,27 @@ extra:
 
 nav:
   - Home: index.md
+
+  - Business Plan:
+      - Product Strategy: business-plan/product-strategy.md
+
+  - System Design:
+      - Foundations:
+          - Biomechanics 101: design/foundations/biomechanics-101.md
+      - Core Architecture:
+          - System Design: design/architecture/system-design.md
+          - Modular Architecture: design/architecture/modular-architecture.md
+          - Data Pipeline & AI: design/architecture/data-pipeline-and-ai.md
+          - Sensor-Metric Mapping: design/architecture/sensor-metric-mapping.md
+          - Architecture Decisions (Dec 2025): design/architecture/architecture-decisions-2025-12-23.md
+
+  - Hardware Components:
+      - components/index.md
+      - IMU Sensors:
+          - Hardware Specs: components/imu/hardware.md
+      - EMG Sensors:
+          - Hardware Specs: components/emg/hardware.md
+      - Microcontroller:
+          - Hardware Specs: components/mcu/hardware.md
+      - Supply Chain:
+          - MVP Suppliers: components/supply-chain/mvp-suppliers.md
