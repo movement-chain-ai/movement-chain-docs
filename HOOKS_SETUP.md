@@ -13,6 +13,7 @@ That's it! The hooks are now active and will run automatically on commits and pu
 ## What Got Installed?
 
 ### Dependencies
+
 - **Husky v9**: Modern Git hooks manager
 - **Commitlint**: Enforces Conventional Commits format
 - **lint-staged**: Runs linters on staged files only
@@ -29,7 +30,7 @@ That's it! The hooks are now active and will run automatically on commits and pu
 
 Your commits must follow the Conventional Commits format:
 
-```
+```text
 <type>(<scope>): <subject>
 
 [optional body]
@@ -67,12 +68,14 @@ git commit -m "documentation changes"  # Invalid type
 ## Hook Behavior
 
 ### commit-msg Hook
+
 - **Triggers**: On every commit
 - **Duration**: < 1 second
 - **Blocks commit**: YES (if message format is invalid)
 - **Can bypass**: `git commit --no-verify`
 
 ### pre-commit Hook
+
 - **Triggers**: Before creating commit
 - **Duration**: < 10 seconds (only checks changed files)
 - **Checks**:
@@ -83,6 +86,7 @@ git commit -m "documentation changes"  # Invalid type
 - **Can bypass**: `git commit --no-verify`
 
 ### pre-push Hook
+
 - **Triggers**: Before pushing to remote
 - **Duration**: 30-60 seconds (checks all documentation)
 - **Checks**:
@@ -152,12 +156,15 @@ chmod +x .husky/commit-msg .husky/pre-commit .husky/pre-push .husky/_/husky.sh
 ## Configuration Files
 
 ### commitlint.config.js
+
 Configures commit message rules and valid types.
 
 ### .markdownlint.json
+
 Configures markdown linting rules (relaxed for documentation).
 
 ### package.json
+
 - `prepare` script: Automatically runs `husky` to set up hooks
 - `lint-staged`: Configures which linters run on which files
 

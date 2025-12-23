@@ -8,12 +8,12 @@
 
 | # | 术语 | 英文 | 简要说明 |
 |---|------|------|----------|
-| 1 | [六边形架构](#1-六边形架构-hexagonal-architecture) | Hexagonal Architecture | Ports & Adapters，核心逻辑与外部系统解耦 |
-| 2 | [ONNX Runtime](#2-onnx-runtime) | ONNX Runtime | 微软开源的跨平台 ML 推理引擎 |
+| 1 | [六边形架构](#六边形架构-hexagonal-architecture) | Hexagonal Architecture | Ports & Adapters，核心逻辑与外部系统解耦 |
+| 2 | [ONNX Runtime](#onnx-runtime) | ONNX Runtime | 微软开源的跨平台 ML 推理引擎 |
 
 ---
 
-## 1. 六边形架构 (Hexagonal Architecture) {#1-六边形架构-hexagonal-architecture}
+## 六边形架构 (Hexagonal Architecture)
 
 **定义：** 六边形架构（又称 Ports & Adapters）是一种软件架构模式，核心思想是将业务逻辑与外部系统（数据库、UI、硬件）解耦。
 
@@ -42,7 +42,7 @@ Cockburn 选择六边形是因为：
 
 ### 核心概念
 
-```
+```text
                     ┌─────────────────────┐
                     │                     │
     ┌───────────┐   │   ┌───────────┐     │   ┌───────────┐
@@ -65,9 +65,9 @@ Cockburn 选择六边形是因为：
 
 ### 关键规则
 
-**依赖方向：外部 → 核心**
+#### 依赖方向：外部 → 核心
 
-```
+```text
 ❌ 错误：核心代码 import 具体硬件库
 ✅ 正确：核心定义接口，适配器实现接口
 ```
@@ -100,9 +100,7 @@ Cockburn 选择六边形是因为：
 
 ---
 
----
-
-## 2. ONNX Runtime {#2-onnx-runtime}
+## ONNX Runtime
 
 **定义：** ONNX Runtime 是微软开源的跨平台机器学习推理引擎，用于高效运行 ONNX 格式的模型。
 

@@ -317,6 +317,7 @@ flowchart LR
 | 跨设备 (ESP32↔Vision) | <10 ms | <5 ms | Impact 帧对齐 |
 
 **关键优势**:
+
 - 使用 ESP32 源端微秒级时间戳 (而非手机接收时间)
 - 不同 Sensor Hub 通过 Impact 事件对齐消除 BLE 抖动
 - 避免每个传感器独立 BLE 连接导致的时钟漂移
