@@ -43,7 +43,7 @@ Each component folder follows this structure:
 
 ### ❌ DO NOT Include
 
-- Software implementation details → move to `platform/`
+- Software implementation details → move to `development/`
 - System integration logic → move to `design/system-design.md`
 - Algorithm explanations → move to `design/research/`
 - Decision rationale → link to ADRs instead
@@ -51,7 +51,7 @@ Each component folder follows this structure:
 ## Cross-References
 
 - **Why this component?** → Link to ADRs in `design/decisions/`
-- **How to use it?** → Link to `platform/` for software integration
+- **How to use it?** → Link to `development/` for software integration
 - **System context?** → Link to `design/system-design.md`
 
 ## Key ADRs

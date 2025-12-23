@@ -66,9 +66,9 @@ Check all internal markdown links resolve:
 Each section's index.md should link to all files in that section:
 
 ```text
-docs/zh/product/index.md should link to:
-  - docs/zh/product/*.md
-  - docs/zh/product/**/index.md
+docs/zh/business-plan/index.md should link to:
+  - docs/zh/business-plan/*.md
+  - docs/zh/business-plan/**/index.md
 ```
 
 ### 5. Cross-Reference Reciprocity

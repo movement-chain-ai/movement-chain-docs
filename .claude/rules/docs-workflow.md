@@ -43,12 +43,12 @@ When adding new content, use skills in this order:
 
 | Section | Content Type | Audience |
 |---------|--------------|----------|
-| `product/` | Business, market, MVP | Investors, PMs |
+| `business-plan/` | Business, market, MVP | Investors, PMs |
 | `design/` | Architecture, algorithms | Engineers |
 | `design/research/` | Background research | Engineers |
 | `design/decisions/` | ADRs only | Tech leads |
 | `components/` | Hardware specs | Hardware engineers |
-| `platform/` | Software implementation | Developers |
+| `development/` | Software implementation | Developers |
 | `reference/` | **URLs ONLY** - no content | Fact-checkers |
 
 ## Subagent Strategy
@@ -57,10 +57,10 @@ For large tasks (10+ files or multiple sections), spawn parallel subagents:
 
 ```text
 Main Agent
-    ├── Subagent: product/ audit
+    ├── Subagent: business-plan/ audit
     ├── Subagent: design/ audit
     ├── Subagent: components/ audit
-    └── Subagent: platform/ audit
+    └── Subagent: development/ audit
 
 Each subagent:
 1. Uses docs-duplicate-checker for its section

@@ -14,7 +14,7 @@
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────┐
-│  0. key-decisions-2025-12.md (30分钟) ─── 关键决策汇总              │
+│  0. architecture-decisions-2025-12-23.md (30分钟) ─── 关键决策汇总              │
 │     └── 2025年12月技术决策：Sensor Hub、BLE抖动、六边形架构          │
 │                                                                     │
 │  1. system-design.md (25分钟) ─── Hub 文档                         │
@@ -37,7 +37,7 @@
 
 ```mermaid
 graph TD
-    KEY[key-decisions-2025-12.md<br/>关键决策] --> SYS[system-design.md<br/>Hub 文档]
+    KEY[architecture-decisions-2025-12-23.md<br/>关键决策] --> SYS[system-design.md<br/>Hub 文档]
     SYS --> MOD[modular-architecture.md<br/>积木块设计]
     SYS --> DATA[data-pipeline-and-ai.md<br/>数据流与反馈]
     MOD --> SENS[sensor-metric-mapping.md<br/>算法实现]
@@ -54,7 +54,7 @@ graph TD
 
 ## 文档概览
 
-### [关键决策 2025-12](key-decisions-2025-12.md)
+### [关键决策 2025-12](architecture-decisions-2025-12-23.md)
 
 **阅读时间**: ~30 分钟 | **决策汇总** | **必读**
 
@@ -119,9 +119,9 @@ LEGO 积木块架构：
 
 | 概念 | 定义 | 文档位置 |
 |------|------|---------|
-| Sensor Hub | 同一部位传感器共享 ESP32 时钟 | key-decisions-2025-12.md |
-| Impact 对齐 | 使用击球瞬间作为 T=0 参考点 | key-decisions-2025-12.md |
-| BLE 抖动 | 15-30ms 连接间隔随机延迟 | key-decisions-2025-12.md |
+| Sensor Hub | 同一部位传感器共享 ESP32 时钟 | architecture-decisions-2025-12-23.md |
+| Impact 对齐 | 使用击球瞬间作为 T=0 参考点 | architecture-decisions-2025-12-23.md |
+| BLE 抖动 | 15-30ms 连接间隔随机延迟 | architecture-decisions-2025-12-23.md |
 | X-Factor | 肩-髋分离角 | system-design.md §2 |
 | Kinematic Prompts | 传感器→LLM 的桥梁 | data-pipeline-and-ai.md §2 |
 | False Coil | X-Factor 正常但核心未激活 | modular-architecture.md §4.2.2 |
@@ -134,4 +134,4 @@ LEGO 积木块架构：
 
 - 需要详细规格？请看 [详细规格](../specs/)
 - 需要角色入口？请看 [角色 Brief](../briefs/)
-- 需要技术决策背景？请看 [关键决策](key-decisions-2025-12.md) 和 [ADR](../decisions/)
+- 需要技术决策背景？请看 [关键决策](architecture-decisions-2025-12-23.md) 和 [ADR](../decisions/)

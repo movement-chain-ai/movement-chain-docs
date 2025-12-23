@@ -122,7 +122,7 @@ What technology/approach/architecture was chosen?}
 - Data-driven where possible (benchmarks, research)
 - Honest about trade-offs
 - Explain why THIS choice over alternatives
-- Reference project goals (from product/ docs)
+- Reference project goals (from business-plan/ docs)
 
 ### Consequences Section
 

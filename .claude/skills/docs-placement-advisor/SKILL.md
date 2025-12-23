@@ -19,11 +19,11 @@ Read these files to understand section purposes:
 ```text
 mkdocs.yml                           # Full navigation structure
 docs/zh/index.md                     # Project overview
-docs/zh/product/index.md             # Product section scope
+docs/zh/business-plan/index.md       # Business Plan section scope
 docs/zh/design/index.md              # Design section scope
 docs/zh/design/decisions/index.md    # ADR scope and format
 docs/zh/components/index.md          # Components section scope
-docs/zh/platform/index.md            # Platform section scope
+docs/zh/development/index.md         # Development section scope
 docs/zh/reference/index.md           # Reference section scope
 ```
 
@@ -31,12 +31,12 @@ docs/zh/reference/index.md           # Reference section scope
 
 | Section | Purpose | Audience | Content Type |
 |---------|---------|----------|--------------|
-| `product/` | Business strategy, market, MVP | Investors, PMs | WHY we're building |
+| `business-plan/` | Business strategy, market, MVP | Investors, PMs | WHY we're building |
 | `design/` | System architecture, algorithms | Engineers | HOW it works |
 | `design/research/` | Background research informing design | Engineers | Research findings |
 | `design/decisions/` | Architecture Decision Records | Tech leads | Formal decisions |
 | `components/` | Hardware specs, suppliers | Hardware engineers | WHAT we're using |
-| `platform/` | Software implementation | Developers | Code-level details |
+| `development/` | Software implementation | Developers | Code-level details |
 | `reference/` | External citations | Fact-checkers | URLs ONLY |
 
 ## Decision Tree
@@ -45,10 +45,10 @@ docs/zh/reference/index.md           # Reference section scope
 START: What type of content is this?
 │
 ├─► Business/market analysis?
-│   └─► product/
-│       ├─► Market research → product/market/
-│       ├─► Competitive analysis → product/competitive/
-│       └─► MVP/roadmap → product/
+│   └─► business-plan/
+│       ├─► Market research → business-plan/market-insights/
+│       ├─► Competitive analysis → business-plan/market-insights/competitors/
+│       └─► MVP/roadmap → business-plan/
 │
 ├─► Technical decision with alternatives?
 │   └─► design/decisions/ (use adr-writer skill)
@@ -71,10 +71,10 @@ START: What type of content is this?
 │       └─► Supply chain → components/supply-chain/
 │
 ├─► Software implementation details?
-│   └─► platform/
-│       ├─► Mobile app → platform/mobile/
-│       ├─► ML training → platform/ml-training/
-│       └─► Cloud/backend → platform/cloud/
+│   └─► development/
+│       ├─► Mobile app → development/mobile/
+│       ├─► ML training → development/ml-training/
+│       └─► Cloud/backend → development/cloud/
 │
 └─► External URL for fact-checking?
     └─► reference/ (URL only, NO content)

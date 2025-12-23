@@ -65,7 +65,7 @@ MediaPipe Pose
 + # ONNX Runtime 延迟到 Phase 2 引入
 ```
 
-**相关决策**: 详见 [2025年12月关键技术决策](key-decisions-2025-12.md) §1.2
+**相关决策**: 详见 [2025年12月关键技术决策](architecture-decisions-2025-12-23.md) §1.2
 
 ---
 

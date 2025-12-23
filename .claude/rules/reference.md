@@ -36,6 +36,7 @@ Brief 1-2 sentence description of what this resource provides.
 ### 3. Quality Criteria
 
 Links must be:
+
 - **Authoritative**: Official docs, peer-reviewed papers, maintained repos
 - **Stable**: Prefer DOI links, official GitHub repos, archived versions
 - **Relevant**: Directly applicable to golf swing analysis, IMU/EMG, or business context
@@ -62,7 +63,8 @@ reference/
 ## When to Use Other Sections
 
 If you need to write original content:
+
 - **Algorithms/specs** → `design/`
-- **Implementation guides** → `platform/`
-- **Market analysis** → `product/`
+- **Implementation guides** → `development/`
+- **Market analysis** → `business-plan/`
 - **Hardware details** → `components/`

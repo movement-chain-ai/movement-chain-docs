@@ -121,11 +121,11 @@ Use terms from `00-glossary.md` consistently:
 1. **Create file** at recommended path
 
 2. **Use section template**:
-   - product/ → business-focused, market context
+   - business-plan/ → business-focused, market context
    - design/ → technical architecture, diagrams
    - design/research/ → research findings, citations
    - components/ → specs tables, supplier info
-   - platform/ → implementation details, code examples
+   - development/ → implementation details, code examples
 
 3. **Update mkdocs.yml nav**:
 

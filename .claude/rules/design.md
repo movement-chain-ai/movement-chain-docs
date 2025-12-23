@@ -67,6 +67,7 @@ All other design documents reference the hub. The hub is the single source of tr
 ## Maintenance
 
 When updating:
+
 1. Check if system-design.md needs updating (hub changes ripple)
 2. Update cross-references in affected specs/guides
 3. Add ADR if architectural decision is made

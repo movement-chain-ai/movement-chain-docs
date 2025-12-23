@@ -38,7 +38,7 @@ The `docs/zh/development/` section focuses on **HOW to implement** the Movement 
 - Raw prototype code (belongs in `movement-chain-ml` repo)
 - System architecture (see `design/system-design.md`)
 - Hardware specifications (see `components/`)
-- Business requirements (see `product/`)
+- Business requirements (see `business-plan/`)
 
 ## Cross-References
 

@@ -81,10 +81,10 @@ movement-chain-ai-docs/
 ├── package.json                  # Node.js dependencies for git hooks
 └── docs/zh/                      # Documentation source (Chinese)
     ├── index.md                  # Landing page
-    ├── product/                  # Product strategy, MVP spec, roadmap
+    ├── business-plan/            # Business strategy, market, MVP spec
     ├── design/                   # System design, ADRs in decisions/
     ├── components/               # Hardware specs (IMU, EMG, Vision, MCU)
-    ├── platform/                 # Mobile dev, ML training
+    ├── development/              # Mobile dev, ML training
     ├── reference/                # Reference materials, academic datasets
     └── archive/                  # Historical research (not in nav)
 ```

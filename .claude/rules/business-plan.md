@@ -64,11 +64,13 @@ paths: "docs/zh/business-plan/**/*.md"
 ### Cross-References
 
 When referencing technical capabilities:
+
 - Link to `design/system-design.md` for MVP pipeline
 - Link to `components/` for hardware cost basis
 - Link to ADRs for technology choices (e.g., "Why LSM6DSV16X?" → ADR-0002)
 
 When business docs need technical context:
+
 ```markdown
 详见[系统设计](../design/system-design.md#传感器融合)了解技术实现
 ```
@@ -83,6 +85,7 @@ When business docs need technical context:
 ## Competitor Analysis Format
 
 Use standardized comparison tables:
+
 ```markdown
 | 产品 | 价格 | 传感器类型 | 实时反馈 | 便携性 | 目标用户 |
 ```
@@ -90,6 +93,7 @@ Use standardized comparison tables:
 ## Validation Checklist
 
 Before committing product changes:
+
 - [ ] Metrics have sources (market research, competitor websites)
 - [ ] Financial models use realistic assumptions
 - [ ] Competitive data is current (check update dates)

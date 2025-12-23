@@ -321,7 +321,7 @@ flowchart LR
 - 不同 Sensor Hub 通过 Impact 事件对齐消除 BLE 抖动
 - 避免每个传感器独立 BLE 连接导致的时钟漂移
 
-> 详见 [关键决策 2025-12](./key-decisions-2025-12.md#43-硬件购买清单--2025-12-23-验证)
+> 详见 [关键决策 2025-12](./architecture-decisions-2025-12-23.md#43-硬件购买清单--2025-12-23-验证)
 
 ---
 
@@ -370,7 +370,7 @@ flowchart LR
 - **[模块化架构](./modular-architecture.md)** - LEGO 积木式设计，各模块升级路径
 - **[数据管道与AI](./data-pipeline-and-ai.md)** - 数据流、传感器融合、时间同步策略
 - **[传感器映射](./sensor-metric-mapping.md)** - 哪个传感器测什么
-- **[2025年12月关键决策](./key-decisions-2025-12.md)** - Sensor Hub架构、硬件选型、时间同步策略
+- **[2025年12月关键决策](./architecture-decisions-2025-12-23.md)** - Sensor Hub架构、硬件选型、时间同步策略
 - **[8阶段检测](../specs/swing-phases.md)** - 挥杆阶段识别算法，含代码
 - **[挥杆对比](../specs/swing-comparison.md)** - 4种对比方法，DTW算法
 - **[实时反馈](../specs/real-time-feedback.md)** - 3种反馈模式规格

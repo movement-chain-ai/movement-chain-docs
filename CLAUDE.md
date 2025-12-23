@@ -12,7 +12,7 @@ Movement Chain AI documentation site - built with **Zensical** (MIT-licensed sta
 
 ```bash
 # Prerequisites (first time setup)
-pip install zensical
+pip install zensical          # or: pip install -r requirements.txt
 npm install
 
 # Serve documentation locally (default port 8000)
@@ -48,6 +48,22 @@ Types: `docs`, `feat`, `fix`, `chore`, `style`, `refactor`, `test`, `ci`, `perf`
 - `git commit --no-verify` - skip pre-commit/commit-msg
 - `git push --no-verify` - skip pre-push
 
+## Start Here: Critical Architecture Files
+
+**For system understanding, read these 5 files in `docs/zh/design/architecture/`:**
+
+| File | Purpose | Why Critical |
+|------|---------|--------------|
+| `system-design.md` | **Hub document** - MVP overview | Single source of truth; all other docs reference this |
+| `modular-architecture.md` | LEGO block design | Defines the 4-module pipeline (Assessment → Diagnosis → Correction → Tracking) |
+| `data-pipeline-and-ai.md` | Data flow & feedback loop | How sensor data becomes actionable insights |
+| `sensor-metric-mapping.md` | Algorithm implementations | Maps sensors to biomechanics metrics |
+| `architecture-decisions-2025-12-23.md` | **Latest decisions** - Dec 2025 | Hexagonal architecture, directory structure, 2025 best practices |
+
+**Reading order**: `foundations/` (biomechanics prereqs) → `architecture/` (start with `system-design.md`, then others) → `specs/` (as needed)
+
+> **Note**: `architecture-decisions-2025-12-23.md` contains implementation decisions cross-validated with 2025 research. Read this for the "why" behind architecture choices.
+
 ## Documentation Structure
 
 ```text
@@ -78,11 +94,12 @@ design/
 │   ├── biomechanics-101.md       # 90-min tutorial
 │   ├── biomechanics-glossary.md  # 140+ terms
 │   └── biomechanics-benchmarks.md # Pro/amateur data
-├── architecture/         # LEVEL 2: Core system design (4 essential docs)
+├── architecture/         # LEVEL 2: Core system design (5 essential docs)
 │   ├── system-design.md          # Hub document (MVP overview)
 │   ├── modular-architecture.md   # LEGO block design
 │   ├── data-pipeline-and-ai.md   # Data flow & feedback
-│   └── sensor-metric-mapping.md  # Algorithm implementations
+│   ├── sensor-metric-mapping.md  # Algorithm implementations
+│   └── architecture-decisions-2025-12-23.md  # Latest architecture decisions
 ├── specs/                # LEVEL 3: Detailed specifications (reference)
 ├── briefs/               # Role-specific onboarding (software, mobile, hardware, golf)
 ├── guides/               # Developer guides (ml-basics, sdk-selection)
@@ -95,8 +112,9 @@ design/
 ### Claude Rules Files
 
 Section-specific context in `.claude/rules/`:
+
 - `docs-workflow.md` - Documentation workflow rules
-- `product.md` - Business & market section context
+- `business-plan.md` - Business & market section context
 - `design.md` - Technical architecture context
 - `components.md` - Hardware specifications context
 - `development.md` - Software implementation context
@@ -183,6 +201,15 @@ Located in `docs/zh/design/decisions/`. Use sequential numbering (ADR-0007, etc.
 - ST.com documentation links (datasheets, MEMS Studio) return Status 0 in automated link checks but are valid - they block automated requests
 - Some pre-existing research files in `archive/` have dead external links; use `--no-verify` when pushing if unrelated to your changes
 - Link checker config in `.markdown-link-check.json`: 20s timeout, retry on 429, localhost URLs ignored
+- Orphan folders exist (`docs/zh/product/`, `docs/zh/platform/`) - these are not in nav and may be legacy; content migrated to `business-plan/` and `development/`
+
+## Deployment
+
+Auto-deploys to GitHub Pages via `.github/workflows/deploy-docs.yml` when pushing to `main`:
+
+- **Triggers**: Changes to `docs/`, `mkdocs.yml`, or the workflow file
+- **Live site**: <https://movement-chain-ai.github.io/movement-chain-docs/>
+- **CI uses**: `requirements.txt` (includes zensical + mkdocs-material dependencies)
 
 ## Parallel Execution Strategy
 

@@ -36,7 +36,7 @@
 
 | 文档 | 内容 | 决策类型 |
 |------|------|---------|
-| [2025年12月关键决策](key-decisions-2025-12.md) | 六边形架构确认、ONNX延迟、Python+Rust策略、UV/Polars选型 | 技术验证 + SDK选型 |
+| [2025年12月关键决策](architecture-decisions-2025-12-23.md) | 六边形架构确认、ONNX延迟、Python+Rust策略、UV/Polars选型 | 技术验证 + SDK选型 |
 
 > **说明**: 关键决策简报记录技术讨论和验证过程，比 ADR 更灵活。当决策需要正式化时，会提升为 ADR。
 
@@ -124,7 +124,7 @@
 |------|------|------|---------|
 | EMG 传感器选型 | Phase 2 | 待定 | DFRobot EMG 为候选 |
 | BLE 协议 Schema | MVP1 | 待定 | 固件/移动端协调 |
-| 云端 vs 边缘推理策略 | Phase 2+ | 已初步讨论 | [key-decisions §5](key-decisions-2025-12.md#5-部署策略决策) |
+| 云端 vs 边缘推理策略 | Phase 2+ | 已初步讨论 | [key-decisions §5](architecture-decisions-2025-12-23.md#5-部署策略决策) |
 | 数据隐私架构 | Phase 2 | 待定 | GDPR/CCPA 合规 |
 
 ---

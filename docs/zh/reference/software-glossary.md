@@ -166,8 +166,8 @@ PyTorch 训练模型               ONNX Runtime Mobile
 
 ## 相关文档
 
-- [关键决策 2025-12 § 六边形架构](../design/architecture/key-decisions-2025-12.md#11-六边形架构-hexagonal-architecture--确认) - 为什么选择六边形架构
-- [关键决策 2025-12 § ONNX Runtime](../design/architecture/key-decisions-2025-12.md#12-onnx-runtime-延迟引入--确认) - ONNX Runtime 延迟引入策略
+- [关键决策 2025-12 § 六边形架构](../design/architecture/architecture-decisions-2025-12-23.md#11-六边形架构-hexagonal-architecture--确认) - 为什么选择六边形架构
+- [关键决策 2025-12 § ONNX Runtime](../design/architecture/architecture-decisions-2025-12-23.md#12-onnx-runtime-延迟引入--确认) - ONNX Runtime 延迟引入策略
 - [系统设计](../design/architecture/system-design.md) - 整体架构
 - [工程术语表](engineering-glossary.md) - 嵌入式系统、传感器术语
 
