@@ -102,10 +102,10 @@ extra:
     alias: true
   alternate:
     - name: 中文
-      link: /
+      link: /movement-chain-docs/
       lang: zh
     - name: English
-      link: /en/
+      link: /movement-chain-docs/en/
       lang: en
 
 nav:
