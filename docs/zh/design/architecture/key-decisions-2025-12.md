@@ -12,6 +12,8 @@
 
 ### 1.1 六边形架构 (Hexagonal Architecture) ✅ 确认
 
+> 术语解释见：[软件架构术语表 § 六边形架构](../../reference/software-glossary.md#1-六边形架构-hexagonal-architecture)
+
 **决策**: 采用六边形架构 (Ports & Adapters) 作为长期架构模式
 
 **决策背景**:

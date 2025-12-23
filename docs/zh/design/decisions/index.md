@@ -22,7 +22,7 @@
 | ADR | 决策 | 状态 | 核心理由 |
 |-----|------|-----|---------|
 | [0001](0001-multi-repo-structure.md) | 多仓库结构 | ✅ 已接受 | 独立部署、团队分工、技术栈隔离 |
-| [0002](0002-lsm6dsv16x-imu.md) | LSM6DSV16X IMU | ✅ 已接受 | 45+分钟漂移稳定、内置MLC |
+| [0002](0002-lsm6dsv16x-imu.md) | IMU 传感器选型 | ✅ 已接受 | 45+分钟漂移稳定、内置MLC |
 | [0003](0003-flutter-mobile.md) | Flutter 移动端 | ✅ 已接受 | 跨平台、快速迭代、热重载 |
 | [0004](0004-simplified-4-module-architecture.md) | 4模块架构 | ✅ 已接受 | MVP精简、3-4个月可交付 |
 | [0005](0005-esp32-s3-microcontroller.md) | ESP32-S3 | ✅ 已接受 | BLE5.0、低功耗、成本优势 |
@@ -39,7 +39,7 @@
 
 ### 硬件栈
 
-- [ADR-0002: LSM6DSV16X IMU 选型](0002-lsm6dsv16x-imu.md) - 运动传感器选择，替代已停产的 BNO055
+- [ADR-0002: IMU 传感器选型](0002-lsm6dsv16x-imu.md) - IMU传感器选择LSM6DSV16X，替代已停产的 BNO055
 - [ADR-0005: ESP32-S3 微控制器](0005-esp32-s3-microcontroller.md) - 嵌入式固件的 MCU 平台
 
 ### 软件栈
