@@ -2,7 +2,7 @@
 
 > **文档目的**: 定义三模态系统 (Vision + IMU + EMG) 可测量的研究验证指标
 > **核心价值**: EMG 提供的肌肉激活检测是独特差异化优势，竞品无法实现
-> **最后更新**: 2025-12-19
+> **最后更新**: 2025-12-23
 
 ---
 
@@ -24,7 +24,7 @@
 | **骨盆侧移/前推/抬升 Pelvis Sway/Thrust/Lift** | ✅ 3D轨迹 | ❌ | ❌ | ❌ | ✅ 已覆盖 |
 | **节奏比 Tempo Ratio** | ⚠️ 低频 33ms | ✅ 高频 <10ms | ✅ Phase 2 | ❌ | ✅ 已覆盖 |
 | **峰值角速度 Peak Angular Velocity** | ❌ 不支持 | ✅ 直接测量 | ✅ Phase 2 | ❌ | ✅ 已覆盖 |
-| **运动链时序 Kinematic Sequence Timing** | ⚠️ 33ms精度 | ✅ <10ms | ✅ Phase 2 | ✅ <5ms | ✅✅ 高精度 |
+| **运动链时序 Kinematic Sequence Timing** | ⚠️ 33ms精度 | ✅ <1ms (1666Hz) | ✅ Phase 2 | ✅ <5ms | ✅✅ 高精度 |
 | **肌肉激活时序 Muscle Activation Timing** | ❌ 不支持 | ❌ 不支持 | ❌ 不支持 | ✅ <5ms | ✅ **UNIQUE** |
 | **肌肉激活强度 Muscle Activation Intensity** | ❌ 不支持 | ❌ 不支持 | ❌ 不支持 | ✅ mV信号 | ✅ **UNIQUE** |
 | **力链序列 Force Chain Sequence** | ❌ 不支持 | ⚠️ 间接 | ⚠️ 间接 | ✅ 直接验证 | ✅ **UNIQUE** |
@@ -154,7 +154,12 @@ def calculate_obliquity(landmarks, is_shoulder=True):
 
 ---
 
-### 3.2 IMU 检测 (LSM6DSV16X @ 1666Hz)
+### 3.2 IMU 检测 (LSM6DSV16X @ 1666Hz, 最高支持 7.68kHz)
+
+!!! info "LSM6DSV16X 规格 (2025-12 验证)"
+    - **ODR 范围**: 7.5Hz ~ 7.68kHz (远超我们使用的 1666Hz)
+    - **内部同步精度**: 6.25 μs (加速度计/陀螺仪硬件同步)
+    - **MVP 选择**: 1666Hz (平衡精度与功耗)
 
 **优势**: 高频采样，精确测量角速度和加速度
 **劣势**: 单个 IMU 只能测量局部运动，需多个传感器才能重建全身姿态
@@ -235,6 +240,17 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
 ---
 
 ### 3.3 EMG 检测 (UNIQUE CAPABILITY)
+
+!!! note "传感器选型 (2025-12 验证)"
+    **推荐**: MyoWare 2.0 + Link Shield (DEV-18425)
+
+    - 无线缆噪声问题，适合高速挥杆 (100mph)
+    - Link Shield 是必需品 (MyoWare 无焊孔)
+
+    **不推荐高速运动**: DFRobot SEN0240
+
+    - 线缆在高速挥杆时产生运动伪影
+    - 仅适用静态测量场景
 
 **优势**: 直接观测肌肉激活，解释"为什么"
 **劣势**: 需要皮肤接触，受汗水/毛发影响
@@ -397,10 +413,12 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 │   ├── IMU (1666Hz): 提取角速度/加速度 → 计算峰值速度, 节奏比                    │
 │   └── EMG (1000Hz): 提取激活时序 → 计算肌肉启动时间, 激活强度                   │
 │                                                                              │
-│   Phase 2: 时间对齐                                                           │
-│   ├── 以 IMU 为基准时钟 (最高采样率)                                           │
-│   ├── Vision 帧插值到 1666Hz (线性插值)                                        │
-│   └── EMG 重采样到 1666Hz (降采样)                                            │
+│   Phase 2: 时间对齐 (Sensor Hub 架构)                                       │
+│   ├── Sensor Hub: 同部位 IMU/EMG 共享 ESP32 时钟 (硬件级微秒同步)            │
+│   ├── 以 IMU 为基准时钟 (最高采样率)                                         │
+│   ├── Vision 帧插值到 1666Hz (线性插值)                                      │
+│   ├── EMG 重采样到 1666Hz (降采样)                                           │
+│   └── 跨设备对齐: 使用 Impact 时刻作为同步锚点                               │
 │                                                                              │
 │   Phase 3: 特征融合                                                           │
 │   ├── 运动链时序 = IMU (身体启动) + EMG (肌肉启动) 双重验证                      │
@@ -513,7 +531,7 @@ MVP 阶段使用 Mock 数据时，建议预留 **4 通道** 数据结构，便�
 mock_emg = {
     # Phase 1 (MVP) - 必须实现
     "core_obliques": {
-        "signal": [...],           # 500Hz 采样
+        "signal": [...],           # 1000Hz 采样 (MyoWare 2.0 推荐配置)
         "onset_time_ms": 0,        # 激活起始时间
         "peak_amplitude_mv": 0.0,  # 峰值幅度
         "rms_mv": 0.0,             # RMS 均值
@@ -1374,6 +1392,7 @@ def run_fusion_diagnostics(
 
 - [系统设计](./system-design.md): MVP 技术架构和构建顺序
 - [模块化架构](./modular-architecture.md): LEGO 积木式架构设计
+- [关键决策 2025-12](./key-decisions-2025-12.md): 传感器选型和 Sensor Hub 同步策略
 - [挥杆对比分析](../specs/swing-comparison.md): Pro vs Amateur 的生物力学差异
 - [生物力学术语表](../foundations/biomechanics-glossary.md): 技术术语定义
 - [生物力学基准值](../foundations/biomechanics-benchmarks.md): 文献验证的正常范围

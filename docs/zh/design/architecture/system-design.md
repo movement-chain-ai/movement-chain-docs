@@ -255,8 +255,9 @@ flowchart LR
 | **项目结构** | 多仓库 (5 repos) | [ADR-0001](../decisions/0001-multi-repo-structure.md) |
 | **移动端** | Flutter 3.x | [ADR-0003](../decisions/0003-flutter-mobile.md) |
 | **姿态估计** | MediaPipe Pose (ThinkSys plugin) | iOS可用，33关键点 |
-| **MCU** | ESP32-S3 | [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) |
-| **IMU** | LSM6DSV16X | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md) |
+| **MCU** | XIAO ESP32S3 | Seeed 113991114, Sensor Hub 架构 |
+| **IMU** | Adafruit LSM6DSV16X | ADA-5783, 更好的 Arduino 库 |
+| **EMG** | MyoWare 2.0 + Link Shield | SparkFun DEV-21265 + DEV-18425 |
 | **ML推理** | ONNX Runtime Mobile | [ADR-0006](../decisions/0006-onnx-runtime-deployment.md) |
 | **LLM** | OpenAI GPT-4o-mini | 成本低，速度快 |
 | **TTS** | flutter_tts (系统) | 开箱即用 |
@@ -274,6 +275,53 @@ flowchart LR
 | 传感器融合 | Simple Merge | Kalman Filter → ML Fusion |
 | 可视化 | OpenCV + MediaPipe | Unity 3D |
 | 语音反馈 | 系统TTS | OpenAI TTS |
+
+### 4.3 Sensor Hub 架构 (关键创新)
+
+> 📐 **时间同步策略**: 详细规格见 [数据管道与AI](./data-pipeline-and-ai.md) §1.2
+
+**核心问题**: BLE 协议存在 15-30ms 抖动 (2025-12 研究验证),无法通过软件完全消除。
+
+**解决方案**: 同一身体部位的 IMU + EMG 共享同一个 ESP32 时钟源
+
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│                    Sensor Hub 架构                               │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   ✅ 正确架构:                                                   │
+│   ┌───────────────────────┐     ┌───────────────────────┐       │
+│   │     ESP32 #1          │     │      ESP32 #2         │       │
+│   │  (手臂 Sensor Hub)    │     │   (核心 Sensor Hub)    │       │
+│   │ ┌─────────┬─────────┐ │     │ ┌─────────┬─────────┐ │       │
+│   │ │手腕 IMU │前臂 EMG │ │     │ │核心 EMG │腰部 IMU │ │       │
+│   │ │ (I2C)   │ (ADC)   │ │     │ │ (ADC)   │ (I2C)   │ │       │
+│   │ └─────────┴─────────┘ │     │ └─────────┴─────────┘ │       │
+│   │   同一时钟 ✅          │     │   同一时钟 ✅          │       │
+│   └───────────┬───────────┘     └───────────┬───────────┘       │
+│               └─────────────┬───────────────┘                   │
+│                             ↓ BLE                               │
+│                         ┌────────┐                              │
+│                         │ iPhone │                              │
+│                         └────────┘                              │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**同步精度**:
+
+| 场景 | 目标精度 | 实际可达 | 方法 |
+|------|---------|---------|------|
+| 同一 ESP32 (IMU+EMG) | <100 μs | <10 μs | esp_timer_get_time() |
+| 跨 ESP32 (手臂↔核心) | <1 ms | 69-477 μs | Impact 事件对齐 |
+| 跨设备 (ESP32↔Vision) | <10 ms | <5 ms | Impact 帧对齐 |
+
+**关键优势**:
+- 使用 ESP32 源端微秒级时间戳 (而非手机接收时间)
+- 不同 Sensor Hub 通过 Impact 事件对齐消除 BLE 抖动
+- 避免每个传感器独立 BLE 连接导致的时钟漂移
+
+> 详见 [关键决策 2025-12](./key-decisions-2025-12.md#43-硬件购买清单--2025-12-23-验证)
 
 ---
 
@@ -320,13 +368,15 @@ flowchart LR
 #### 第二步: 理解核心算法
 
 - **[模块化架构](./modular-architecture.md)** - LEGO 积木式设计，各模块升级路径
+- **[数据管道与AI](./data-pipeline-and-ai.md)** - 数据流、传感器融合、时间同步策略
+- **[传感器映射](./sensor-metric-mapping.md)** - 哪个传感器测什么
+- **[2025年12月关键决策](./key-decisions-2025-12.md)** - Sensor Hub架构、硬件选型、时间同步策略
 - **[8阶段检测](../specs/swing-phases.md)** - 挥杆阶段识别算法，含代码
 - **[挥杆对比](../specs/swing-comparison.md)** - 4种对比方法，DTW算法
 - **[实时反馈](../specs/real-time-feedback.md)** - 3种反馈模式规格
 
 #### 第三步: 理解数据来源
 
-- **[传感器映射](./sensor-metric-mapping.md)** - 哪个传感器测什么
 - **[生物力学基准](../foundations/biomechanics-benchmarks.md)** - 阈值数据来源
 - **[生物力学术语](../foundations/biomechanics-glossary.md)** - 140+术语定义
 
@@ -377,9 +427,13 @@ MVP 完成后的技术储备和扩展方向：
 
 | 风险 | 影响 | 缓解措施 |
 |------|------|----------|
-| MediaPipe iOS性能不足 | 帧率低 | 降低分辨率，使用GPU |
+| MediaPipe iOS性能不足 | 帧率低 | 降低分辨率,使用GPU |
 | EMG真实数据与Mock差异大 | 规则需重调 | Phase 2验证 |
 | 用户不接受穿戴设备 | 产品定位失败 | 先验证纯Vision版本 |
+| BLE 抖动 15-30ms | 时间同步误差 | Sensor Hub + Impact 对齐方案 |
+| MyoWare 2.0 Link Shield | 无法焊接 | DEV-18425 是必需品 |
+| DFRobot EMG 线缆噪声 | 信号质量 | 仅适用静态测量 |
+| WitMotion IMU BLE | 时间同步 | 必须通过 I2C 连接 ESP32 |
 
 ---
 
@@ -388,8 +442,9 @@ MVP 完成后的技术储备和扩展方向：
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|
 | 1.0 | 2025-12-18 | 初始版本，整合所有详细规格 |
+| 1.1 | 2025-12-23 | 增加 Sensor Hub 架构, 更新硬件选型, 澄清 BLE 时间同步策略 |
 
 ---
 
-**最后更新**: 2025-12-18
+**最后更新**: 2025-12-23
 **维护者**: Movement Chain AI Team

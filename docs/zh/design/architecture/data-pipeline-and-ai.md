@@ -1,8 +1,8 @@
 # 数据流与反馈架构
 
-> **文档状态**: 草稿 v1.1
-> **最后更新**: 2025-12-20
-> **关联文档**: [模块化架构](modular-architecture.md) | [实时反馈](../specs/real-time-feedback.md) | [生物力学基准](../foundations/biomechanics-benchmarks.md)
+> **文档状态**: 草稿 v1.2
+> **最后更新**: 2025-12-23
+> **关联文档**: [模块化架构](modular-architecture.md) | [实时反馈](../specs/real-time-feedback.md) | [生物力学基准](../foundations/biomechanics-benchmarks.md) | [关键决策 2025-12](./key-decisions-2025-12.md)
 
 ---
 
@@ -105,12 +105,12 @@ LANDMARKS = {
 }
 ```
 
-#### IMU (1666Hz)
+#### IMU (1666Hz, 最高支持 7.68kHz)
 
 ```python
 @dataclass
 class IMUFrame:
-    timestamp_us: int      # 微秒时间戳
+    timestamp_us: int      # 微秒时间戳 - 来自 ESP32 esp_timer_get_time()
     gyro_x: float          # 角速度 X (°/s)
     gyro_y: float          # 角速度 Y (°/s)
     gyro_z: float          # 角速度 Z (°/s) ← 主要旋转轴
@@ -124,12 +124,27 @@ class IMUFrame:
 ```python
 @dataclass
 class EMGFrame:
-    timestamp_ms: int      # 毫秒时间戳
+    timestamp_us: int      # 微秒时间戳 - 来自 ESP32 esp_timer_get_time()
     core_mV: float         # 核心肌群电压 (mV)
     forearm_mV: float      # 前臂肌群电压 (mV)
 ```
 
 #### 时间同步策略
+
+!!! warning "BLE 时间抖动 - 关键风险 (2025-12 验证)"
+    **❌ 错误方法**: 使用 iPhone 接收时间作为传感器时间戳
+
+    - BLE 连接间隔抖动: ±15-30ms (随机)
+    - 这个抖动会掩盖真实的 20-50ms 肌肉激活差异
+    - Downswing 阶段仅 200-400ms,30ms 误差 = 7.5-15% 相位错误
+
+    **✅ 正确方法**: ESP32 源端时间戳 + Sensor Hub 架构
+
+    - 同一身体部位的 IMU + EMG 共享同一个 ESP32 时钟
+    - 使用 `esp_timer_get_time()` 在采集时立即打微秒时间戳
+    - 跨设备使用 Impact 事件对齐
+
+    详见 [关键决策 2025-12](./key-decisions-2025-12.md#78-视频与传感器同步方案)
 
 ```text
 IMU 是主时钟 (Master Clock):
@@ -143,6 +158,43 @@ IMU 是主时钟 (Master Clock):
 !!! tip "实现细节"
     时间同步的具体实现方案（NTP 预同步 + Impact 验证）详见
     [模块化架构 §2.4.1](modular-architecture.md#241-时间同步实现方案)。
+
+#### Sensor Hub 架构 (2025-12 推荐)
+
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│                    Sensor Hub 时间同步架构                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   层级 1: Sensor Hub 内部同步 (同一 ESP32)                       │
+│   ───────────────────────────────────                       │
+│   ESP32 #1 (手臂):          ESP32 #2 (核心):                    │
+│     ├── IMU (I2C)              ├── IMU (I2C)                   │
+│     └── EMG (ADC)              └── EMG (ADC)                   │
+│   esp_timer_get_time()       esp_timer_get_time()              │
+│   精度: <10 μs               精度: <10 μs                       │
+│                                                                 │
+│   层级 2: 跨 Sensor Hub 对齐 (Impact 事件)                       │
+│   ───────────────────────────────────────                       │
+│   1. 各 Sensor Hub 独立记录(带 ESP32 源时间戳)                   │
+│   2. 挥杆后,使用 Impact 时刻作为 T=0 对齐                        │
+│   精度: 69-477 μs (取决于 IMU ODR)                              │
+│                                                                 │
+│   层级 3: Vision 对齐                                           │
+│   ───────────────────────────────────────                       │
+│   Vision 30fps → 使用 Impact 帧对齐到传感器 T=0                  │
+│   精度: ±16.7ms (30fps 帧间隔)                                  │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**同步精度总结**:
+
+| 场景 | 目标精度 | 实际可达 | 方法 |
+|------|---------|---------|------|
+| 同一 ESP32 (IMU+EMG) | <100 μs | <10 μs | esp_timer_get_time() |
+| 跨 ESP32 (手臂↔核心) | <1 ms | 69-477 μs | Impact 对齐 |
+| 跨设备 (ESP32↔Vision) | <10 ms | <5 ms | Impact 帧对齐 |
 
 ---
 
@@ -801,6 +853,8 @@ P2 (最后):   优化建议 (BALANCE)
 
 ---
 
-文档版本: v1.1 | 作者: Movement Chain AI Team | 最后更新: 2025-12-20
+文档版本: v1.2 | 作者: Movement Chain AI Team | 最后更新: 2025-12-23
+
+**v1.2 更新**: 新增 BLE 时间抖动警告、Sensor Hub 架构、ESP32 源端时间戳方案
 
 **v1.1 更新**: 新增三层混合架构、Kinematic Prompts 规范、模型选择指南、研究来源

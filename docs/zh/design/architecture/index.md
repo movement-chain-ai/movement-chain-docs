@@ -14,6 +14,9 @@
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────┐
+│  0. key-decisions-2025-12.md (30分钟) ─── 关键决策汇总              │
+│     └── 2025年12月技术决策：Sensor Hub、BLE抖动、六边形架构          │
+│                                                                     │
 │  1. system-design.md (25分钟) ─── Hub 文档                         │
 │     └── MVP 全貌：4模块架构、12指标、6规则、技术栈                    │
 │                                                                     │
@@ -34,11 +37,13 @@
 
 ```mermaid
 graph TD
-    SYS[system-design.md<br/>Hub 文档] --> MOD[modular-architecture.md<br/>积木块设计]
+    KEY[key-decisions-2025-12.md<br/>关键决策] --> SYS[system-design.md<br/>Hub 文档]
+    SYS --> MOD[modular-architecture.md<br/>积木块设计]
     SYS --> DATA[data-pipeline-and-ai.md<br/>数据流与反馈]
     MOD --> SENS[sensor-metric-mapping.md<br/>算法实现]
     DATA --> SENS
 
+    style KEY fill:#ffe0b2
     style SYS fill:#e1f5fe
     style MOD fill:#f3e5f5
     style DATA fill:#e8f5e9
@@ -48,6 +53,18 @@ graph TD
 ---
 
 ## 文档概览
+
+### [关键决策 2025-12](key-decisions-2025-12.md)
+
+**阅读时间**: ~30 分钟 | **决策汇总** | **必读**
+
+2025年12月的关键技术决策汇总：
+
+- **Sensor Hub 架构**: 同一部位传感器共享 ESP32 时钟,实现微秒级同步
+- **BLE 时间抖动**: 15-30ms 抖动问题及解决方案 (ESP32 源端时间戳)
+- **硬件购买清单**: MyoWare 2.0 + Link Shield + Adafruit LSM6DSV16X
+- **六边形架构**: Ports & Adapters 模式确认
+- **时间同步精度**: 同 ESP32 <10μs, 跨设备 69-477μs
 
 ### [系统设计](system-design.md)
 
@@ -102,6 +119,9 @@ LEGO 积木块架构：
 
 | 概念 | 定义 | 文档位置 |
 |------|------|---------|
+| Sensor Hub | 同一部位传感器共享 ESP32 时钟 | key-decisions-2025-12.md |
+| Impact 对齐 | 使用击球瞬间作为 T=0 参考点 | key-decisions-2025-12.md |
+| BLE 抖动 | 15-30ms 连接间隔随机延迟 | key-decisions-2025-12.md |
 | X-Factor | 肩-髋分离角 | system-design.md §2 |
 | Kinematic Prompts | 传感器→LLM 的桥梁 | data-pipeline-and-ai.md §2 |
 | False Coil | X-Factor 正常但核心未激活 | modular-architecture.md §4.2.2 |
@@ -114,4 +134,4 @@ LEGO 积木块架构：
 
 - 需要详细规格？请看 [详细规格](../specs/)
 - 需要角色入口？请看 [角色 Brief](../briefs/)
-- 需要技术决策背景？请看 [ADR](../decisions/)
+- 需要技术决策背景？请看 [关键决策](key-decisions-2025-12.md) 和 [ADR](../decisions/)

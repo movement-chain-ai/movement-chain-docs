@@ -72,6 +72,7 @@
 3. **延迟决策** — 不提前设计"终态"，根据真实用户数据决定升级方向
 4. **数据驱动** — 复杂度来自训练数据，不来自代码 (AI 能写代码，但数据需要积累)
 5. **融合优先** — 单传感器准确性不如跨传感器验证重要
+6. **六边形架构** — Ports & Adapters 模式，硬件依赖通过接口隔离
 
 ### 1.4 技术不确定性管理
 
@@ -234,6 +235,9 @@ flowchart TB
     使用 **Mock 数据**时，时间同步自动完成（所有数据由同一代码生成，共享时钟）。
     本节内容适用于**真实硬件集成阶段**。
 
+!!! warning "BLE 传输抖动"
+    BLE 连接间隔抖动 ±15-30ms，时间戳必须在 ESP32 源端生成，不受传输延迟影响。
+
 ##### 推荐方案: NTP 预同步 + Impact 验证
 
 这是行业标准方法，被大多数运动分析应用采用。代码量约 40-50 行，无需额外硬件。
@@ -349,6 +353,39 @@ class TimeAlignmentManager:
 > - [BLE 多通道生物信号同步 (PMC10144216)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10144216/) - 实现 <1ms 精度
 > - [Twist-n-Sync 陀螺仪同步 (PMC7795013)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7795013/) - 16µs 精度，Google Research
 > - [Golf Swing IMU 分段 (PMC7472298)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7472298/) - Impact 检测精度 ±5-16ms
+
+#### 2.4.2 Sensor Hub 架构 (2025-12 推荐)
+
+!!! success "同一身体部位共享时钟 — 微秒级同步"
+
+    **核心原则**: 同一身体部位的 IMU + EMG 使用同一个 ESP32 作为 Sensor Hub，共享微秒级时钟，消除 BLE 抖动影响。
+
+    ```text
+    ┌───────────────────────┐     ┌───────────────────────┐
+    │     ESP32 #1          │     │      ESP32 #2         │
+    │  (手臂 Sensor Hub)    │     │   (核心 Sensor Hub)    │
+    │ ┌─────────┬─────────┐ │     │ ┌─────────┬─────────┐ │
+    │ │手腕 IMU │前臂 EMG │ │     │ │核心 EMG │腰部 IMU │ │
+    │ │ (I2C)   │ (ADC)   │ │     │ │ (ADC)   │ (I2C)   │ │
+    │ └────┬────┴────┬────┘ │     │ └────┬────┴────┬────┘ │
+    │      └─────────┘      │     │      └─────────┘      │
+    │   esp_timer_get_time()│     │   esp_timer_get_time()│
+    │   (微秒级同步 ✅)     │     │   (微秒级同步 ✅)     │
+    └───────────┬───────────┘     └───────────┬───────────┘
+                │ BLE                         │ BLE
+                │ (±15-30ms 抖动)             │ (±15-30ms 抖动)
+                └────────┬────────────────────┘
+                         ▼
+                    [ 手机 App ]
+                    Impact 对齐消除抖动
+    ```
+
+    **优势**:
+    - ✅ 同一部位传感器共享 ESP32 时钟 → 微秒级同步
+    - ✅ 跨部位用 Impact 事件对齐 → 消除 BLE 抖动 (±15-30ms)
+    - ✅ 减少 BLE 设备数量 → 更稳定的连接
+
+    > 详见 [关键决策 2025-12 §7.8](./key-decisions-2025-12.md#78-视频与传感器同步方案)
 
 ### 2.5 融合引擎: 三大机制
 
@@ -757,11 +794,15 @@ class SimulatedIMUFrame:
 
 !!! note "真实硬件选项 (Phase 2+)"
 
+    **推荐硬件**: Adafruit LSM6DSV16X (ADA-5783) — 45+ 分钟漂移稳定性
+
     | 方案 | 精度 | 硬件 | 何时引入 |
     |-----|------|------|---------|
     | Single Wrist IMU | ±9-15ms | LSM6DSV16X | 硬件原型完成 |
     | Dual IMU | ±5ms | Wrist + Pelvis | 运动链分析 |
     | Multi-point (4+) | ±2ms | 完整穿戴 | 完整运动链 |
+
+    ⚠️ **WitMotion WT901 警告**: 必须禁用其 BLE，通过 I2C 连接 ESP32 使用
 
 #### 3.2.3 真实 IMU 检测能力
 
@@ -842,6 +883,14 @@ class SimulatedIMUFrame:
     详细代码和测试场景见 [传感器指标映射 §8.2](./sensor-metric-mapping.md#82-从阶段时间戳生成模拟-emg)
 
 !!! note "真实硬件选项 (Phase 2+)"
+
+    🔴 **CRITICAL**: MyoWare 2.0 没有焊孔，只有 Snap 扣。Link Shield (DEV-18425) 是**必需品**！
+
+    **推荐套装** (每个身体部位):
+    - 1x MyoWare 2.0 Muscle Sensor (~$40)
+    - 1x MyoWare 2.0 Link Shield ($4.50) ← 必需！
+
+    ⚠️ **警告**: DFRobot SEN0240 有线缆噪声问题，仅适用静态测量，不适合高速挥杆。
 
     | 方案 | 通道 | 肌肉群 | 何时引入 |
     |-----|------|-------|---------|
@@ -1179,7 +1228,8 @@ Real EMG ───────────┼→ Rule Fusion → 12 Metrics + 6 
                     └→ Cross-Validation → Anomaly Detection
 
 训练数据: 0
-硬件: 手机 + LSM6DSV16X + DFRobot EMG
+硬件: 手机 + LSM6DSV16X + MyoWare 2.0 + Link Shield
+架构: Sensor Hub (同一部位传感器共享 ESP32 时钟)
 新增: Mode 2 (Slow Motion) 实时反馈
 
 Phase 4+: Advanced ML
@@ -1360,6 +1410,13 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|
+| 2.6 | 2025-12-23 | 硬件与架构更新 (基于 key-decisions-2025-12.md) |
+| | | • §1.3: 新增原则 #6 "六边形架构" — Ports & Adapters 模式 |
+| | | • §2.4.1: 新增 BLE 传输抖动警告 (±15-30ms) |
+| | | • §2.4.2: 新增 Sensor Hub 架构 — 同一部位传感器共享 ESP32 时钟 |
+| | | • §3.2: 更新 IMU 硬件推荐 — Adafruit LSM6DSV16X (ADA-5783) + WitMotion 警告 |
+| | | • §3.3: 更新 EMG 硬件推荐 — MyoWare 2.0 + Link Shield 必需品 + DFRobot 警告 |
+| | | • §5.5: Phase 3 描述更新 — 架构变更为 Sensor Hub 模式 |
 | 2.5 | 2025-12-19 | MVP 策略重大调整 |
 | | | • §4.1: CLASSIFIER Block MVP 改用 Simple Rules (IMU 峰值/零交叉)，移除 SwingNet |
 | | | • §5.1: 新增 "MVP 核心输出: 时间对齐的融合数据" — 强调 Rerun 可视化验证 |
@@ -1400,5 +1457,5 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 ---
 
-**最后更新**: 2025-12-19
+**最后更新**: 2025-12-23
 **维护者**: Movement Chain AI Team
