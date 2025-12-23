@@ -4199,7 +4199,68 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#2-onnx-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ONNX Runtime
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. ONNX Runtime">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#onnx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是 ONNX？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onnx-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么用 ONNX Runtime？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#movement-chain-ai_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 Movement Chain AI 中的应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        同类推理引擎对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -4250,6 +4311,12 @@
 <td><a href="#1-六边形架构-hexagonal-architecture">六边形架构</a></td>
 <td>Hexagonal Architecture</td>
 <td>Ports &amp; Adapters，核心逻辑与外部系统解耦</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="#2-onnx-runtime">ONNX Runtime</a></td>
+<td>ONNX Runtime</td>
+<td>微软开源的跨平台 ML 推理引擎</td>
 </tr>
 </tbody>
 </table>
@@ -4413,9 +4480,149 @@
 </table>
 <p>这三个本质上是同一思想的不同表述：<strong>核心业务逻辑不依赖外部技术细节</strong>。</p>
 <hr />
-<h2 id="_8">相关文档<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="2-onnx-runtime">2. ONNX Runtime<a class="headerlink" href="#2-onnx-runtime" title="Permanent link">&para;</a></h2>
+<p><strong>定义：</strong> ONNX Runtime 是微软开源的跨平台机器学习推理引擎，用于高效运行 ONNX 格式的模型。</p>
+<hr />
+<h3 id="onnx">什么是 ONNX？<a class="headerlink" href="#onnx" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>全称</strong></td>
+<td>Open Neural Network Exchange</td>
+</tr>
+<tr>
+<td><strong>性质</strong></td>
+<td>开放的 ML 模型格式标准</td>
+</tr>
+<tr>
+<td><strong>作用</strong></td>
+<td>让模型在不同框架间通用</td>
+</tr>
+</tbody>
+</table>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>训练框架              ONNX 格式              推理引擎
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>─────────────         ────────────           ─────────────
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>PyTorch      ──┐                      ┌──► ONNX Runtime
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>TensorFlow   ──┼──► model.onnx ───────┼──► TensorRT
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Keras        ──┤                      ├──► CoreML
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Scikit-learn ──┘                      └──► OpenVINO
+</span></code></pre></div>
+<h3 id="onnx-runtime">为什么用 ONNX Runtime？<a class="headerlink" href="#onnx-runtime" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>优势</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>跨平台</strong></td>
+<td>Windows / Linux / macOS / iOS / Android / Web</td>
+</tr>
+<tr>
+<td><strong>高性能</strong></td>
+<td>针对各平台 CPU/GPU 优化，比原生框架推理更快</td>
+</tr>
+<tr>
+<td><strong>体积小</strong></td>
+<td>移动端 ~1.5MB，不需要完整 PyTorch/TensorFlow</td>
+</tr>
+<tr>
+<td><strong>硬件加速</strong></td>
+<td>支持 CUDA、DirectML、CoreML、NNAPI 等</td>
+</tr>
+</tbody>
+</table>
+<h3 id="movement-chain-ai_1">在 Movement Chain AI 中的应用<a class="headerlink" href="#movement-chain-ai_1" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>训练阶段 (服务器)              部署阶段 (手机)
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>────────────────────           ────────────────────
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>PyTorch 训练模型               ONNX Runtime Mobile
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        │                              │
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        ▼                              ▼
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>   swing_model.pt  ──导出──►  swing_model.onnx
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        │                              │
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        └─────────────────────►  推理 10-20ms/帧
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>推理引擎</th>
+<th>模型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MVP1</strong></td>
+<td>TFLite (MediaPipe 内置)</td>
+<td>BlazePose</td>
+<td>开箱即用</td>
+</tr>
+<tr>
+<td><strong>Phase 2</strong></td>
+<td>ONNX Runtime</td>
+<td>RTMPose</td>
+<td>更高精度</td>
+</tr>
+<tr>
+<td><strong>Phase 3</strong></td>
+<td>ONNX Runtime</td>
+<td>自定义模型</td>
+<td>高尔夫特化</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">同类推理引擎对比<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>引擎</th>
+<th>开发者</th>
+<th>模型格式</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ONNX Runtime</strong></td>
+<td>Microsoft</td>
+<td>.onnx</td>
+<td>跨平台通用</td>
+</tr>
+<tr>
+<td><strong>TFLite</strong></td>
+<td>Google</td>
+<td>.tflite</td>
+<td>TensorFlow 生态</td>
+</tr>
+<tr>
+<td><strong>TensorRT</strong></td>
+<td>NVIDIA</td>
+<td>.plan</td>
+<td>GPU 极致优化</td>
+</tr>
+<tr>
+<td><strong>CoreML</strong></td>
+<td>Apple</td>
+<td>.mlmodel</td>
+<td>Apple 设备专用</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_9">相关文档<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../design/architecture/key-decisions-2025-12/#11-六边形架构-hexagonal-architecture--确认">关键决策 2025-12 § 六边形架构</a> - 为什么选择六边形架构</li>
+<li><a href="../../design/architecture/key-decisions-2025-12/#12-onnx-runtime-延迟引入--确认">关键决策 2025-12 § ONNX Runtime</a> - ONNX Runtime 延迟引入策略</li>
 <li><a href="../../design/architecture/system-design/">系统设计</a> - 整体架构</li>
 <li><a href="../engineering-glossary/">工程术语表</a> - 嵌入式系统、传感器术语</li>
 </ul>
