@@ -2564,6 +2564,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#36-6-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 选择 6 轴而非 9 轴
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4581,6 +4592,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#36-6-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 选择 6 轴而非 9 轴
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4824,9 +4846,8 @@
 </tr>
 </tbody>
 </table>
-<p><strong>同系列型号对比：</strong></p>
+<p><strong>同系列其他型号：</strong></p>
 <ul>
-<li><strong>LSM6DSV16X</strong>: ±16g 加速度计，带 MLC/FSM/Qvar（本项目选用）</li>
 <li><strong>LSM6DSV32X</strong>: ±32g 加速度计，适用于高冲击运动（拳击、极限运动）</li>
 <li><strong>LSM6DSO</strong>: 上一代产品，无 MLC，适用于成本敏感应用</li>
 </ul>
@@ -4950,6 +4971,61 @@
 <p>传感器的先进架构通过并行处理通道提供冗余和增强的准确性，实现了对数据完整性至关重要的容错操作。</p>
 <h3 id="35">3.5 成本性能平衡<a class="headerlink" href="#35" title="Permanent link">&para;</a></h3>
 <p>在低批量（1000+ 单位）时，每单位成本为 $6-8，LSM6DSV16X 比中档替代品贵 33-60%，但对于专业级运动分析平台来说，其专业级精度证明了投资的合理性，因为数据完整性至关重要。</p>
+<h3 id="36-6-9">3.6 选择 6 轴而非 9 轴<a class="headerlink" href="#36-6-9" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>规格</th>
+<th>组成</th>
+<th>额外传感器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>6 轴</strong></td>
+<td>加速度计 + 陀螺仪</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>9 轴</strong></td>
+<td>加速度计 + 陀螺仪 + 磁力计</td>
+<td>3 轴磁力计（电子罗盘）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么不需要磁力计：</strong></p>
+<table>
+<thead>
+<tr>
+<th>因素</th>
+<th>6 轴</th>
+<th>9 轴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>磁干扰</strong></td>
+<td>✅ 不受影响</td>
+<td>❌ 球杆金属、手表、场地铁栏杆都会干扰</td>
+</tr>
+<tr>
+<td><strong>室内/室外一致性</strong></td>
+<td>✅ 一致</td>
+<td>❌ 室内磁场更复杂</td>
+</tr>
+<tr>
+<td><strong>功耗</strong></td>
+<td>✅ 更低</td>
+<td>❌ 磁力计额外耗电</td>
+</tr>
+<tr>
+<td><strong>成本</strong></td>
+<td>✅ 更低</td>
+<td>❌ 多一个传感器</td>
+</tr>
+</tbody>
+</table>
+<p>高尔夫挥杆分析需要的是<strong>相对运动</strong>（角速度、加速度变化），不需要知道"面朝北还是南"。我们用视觉（摄像头）提供空间参考，比磁力计更可靠。</p>
 <h2 id="_4">四、后果<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <h3 id="41">4.1 积极影响<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
 <ul>
