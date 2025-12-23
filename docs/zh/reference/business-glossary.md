@@ -66,4 +66,6 @@ BOM 成本 = 所有零部件采购成本之和，是计算产品毛利的基础�
 ## 相关文档
 
 - [高尔夫术语表](golf-glossary.md) - 高尔夫专业术语
+- [物理学术语表](physics-glossary.md) - 力学概念（角速度、角动量等）
+- [工程术语表](engineering-glossary.md) - 嵌入式系统、传感器工程术语
 - [市场分析](../business-plan/market-insights/market-analysis.md) - 市场规模数据

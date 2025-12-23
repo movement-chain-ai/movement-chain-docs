@@ -5,20 +5,41 @@
 
 ## 背景
 
-Movement Chain AI 需要一个高性能的 6 轴惯性测量单元（IMU，Inertial Measurement Unit），能够以 100Hz 捕获人体运动数据，用于区块链验证的健身跟踪和运动分析。之前流行的 Bosch BNO055 传感器已经停产，因此需要选择一个现代化的替代品，满足以下要求：
+Movement Chain AI 需要一个高性能的 6 轴[惯性测量单元（IMU）](../../reference/engineering-glossary.md#1-imu-惯性测量单元)，能够以 100Hz [采样率](../../reference/engineering-glossary.md#3-采样率-sampling-rate)捕获人体运动数据，用于区块链验证的健身跟踪和运动分析。之前流行的 Bosch BNO055 传感器已经停产，因此需要选择一个现代化的替代品，满足以下要求：
 
 - **采样率:** 最低 100Hz 以实现准确的运动捕获
-- **精度:** 专业级校准，在 45+ 分钟锻炼期间漂移最小
+- **精度:** 专业级校准，在 45+ 分钟锻炼期间[漂移](../../reference/engineering-glossary.md#4-漂移-drift)最小
 - **功耗效率:** 低功耗以适用于可穿戴应用
-- **处理能力:** 边缘 AI 能力，用于设备端运动分类
-- **集成性:** 与 ESP32 生态系统兼容的 I2C/SPI 接口
+- **处理能力:** [边缘 AI](../../reference/engineering-glossary.md#5-边缘-ai-edge-ai) 能力，用于设备端运动分类
+- **集成性:** 与 ESP32 生态系统兼容的 [I2C/SPI](../../reference/engineering-glossary.md#6-i2c--spi-通信协议) 接口
 - **市场定位:** 必须是当前一代（2025 年）传感器，具有长期可用性
 
-BNO055 的停产及其在长时间会话（>30 分钟）中已知的漂移问题，为升级到 2025 年最佳 IMU 技术创造了机会。
+BNO055 的停产及其已知的在长时间会话中（>30 分钟）的漂移问题，为升级到 2025 年最佳 IMU 技术创造了机会。
 
 ## 决策
 
 选择 **STMicroelectronics LSM6DSV16X** 作为 Movement Chain AI 硬件的主要 IMU 传感器。
+
+### 关于 STMicroelectronics（意法半导体）
+
+STMicroelectronics（意法半导体）是全球领先的半导体公司，由意大利 SGS Microelettronica 和法国 Thomson Semiconducteurs 于 1987 年合并成立。公司总部位于瑞士日内瓦，是全球第八大半导体制造商，在 MEMS（微机电系统）传感器领域处于领导地位，尤其在消费电子、汽车和工业应用的运动传感器市场占据重要份额。
+
+### LSM6DSV16X 型号命名解读
+
+| 字段 | 含义 | 说明 |
+|------|------|------|
+| **LSM** | 产品线标识 | ST 的 MEMS 运动传感器产品系列 |
+| **6** | 6 轴 | 3 轴加速度计 + 3 轴陀螺仪 |
+| **DS** | Digital Sensor | 数字传感器（内置 ADC，直接输出数字信号） |
+| **V** | 新一代架构 | 相比 LSM6DS 系列的升级版本 |
+| **16** | ±16g | 加速度计最大量程（可选 ±2/±4/±8/±16g） |
+| **X** | 扩展功能 | 包含 MLC（机器学习核心）、FSM（有限状态机）、Qvar（静电感应）等高级功能 |
+
+**同系列型号对比：**
+
+- **LSM6DSV16X**: ±16g 加速度计，带 MLC/FSM/Qvar（本项目选用）
+- **LSM6DSV32X**: ±32g 加速度计，适用于高冲击运动（拳击、极限运动）
+- **LSM6DSO**: 上一代产品，无 MLC，适用于成本敏感应用
 
 ## 理由
 

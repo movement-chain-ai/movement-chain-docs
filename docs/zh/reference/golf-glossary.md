@@ -867,10 +867,12 @@ Draw 派: Tiger Woods, Rory McIlroy, Ben Hogan
 
 ## 相关文档
 
+- [物理学术语表](physics-glossary.md) - 力学概念（角速度、角动量等）
+- [工程术语表](engineering-glossary.md) - 嵌入式系统、传感器工程术语
 - [商业术语表](business-glossary.md) - 商业相关术语
 - [生物力学入门](../design/foundations/biomechanics-101.md) - 挥杆生物力学基础
 - [生物力学术语表](../design/foundations/biomechanics-glossary.md) - 专业生物力学术语
 
 ---
 
-**最后更新**: 2025年12月20日
+**最后更新**: 2025年12月23日
