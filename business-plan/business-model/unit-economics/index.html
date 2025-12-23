@@ -875,10 +875,38 @@
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 定价方案对比
+        1. 定价方案与成本组成
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="1. 定价方案与成本组成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 成本结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 定价方案对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4325,10 +4353,38 @@
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 定价方案对比
+        1. 定价方案与成本组成
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="1. 定价方案与成本组成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 成本结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 定价方案对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4568,8 +4624,84 @@
 <p>每台设备的成本、毛利与盈亏分析</p>
 </blockquote>
 <hr />
-<h2 id="1">1. 定价方案对比<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<p>我们分析了 <strong>2 种硬件模式的5 种定价方案</strong>（年销售 1,000 台）：</p>
+<h2 id="1">1. 定价方案与成本组成<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 成本结构<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>总成本
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── 固定成本（与销量无关）
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   ├── 研发投入（一次性）: $153k / $196k
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── 年度营销: $70k
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   └── 年度运营: $15k
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── 可变成本（随销量变化，每台）
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    ├── BOM 成本: $76 / $162
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    ├── 支付手续费 3%
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    ├── 国际运费: $15-$18
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    └── 包装物流人工: $5-$6
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>项目</th>
+<th>IMU 版</th>
+<th>EMG 版</th>
+<th>性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BOM</strong></td>
+<td>硬件物料</td>
+<td>$76</td>
+<td>$162</td>
+<td>每台</td>
+</tr>
+<tr>
+<td><strong>可变成本</strong></td>
+<td>支付手续费</td>
+<td>售价 × 3%</td>
+<td>售价 × 3%</td>
+<td>每台</td>
+</tr>
+<tr>
+<td></td>
+<td>国际运费</td>
+<td>$15</td>
+<td>$18</td>
+<td>每台</td>
+</tr>
+<tr>
+<td></td>
+<td>包装物流人工</td>
+<td>$5</td>
+<td>$6</td>
+<td>每台</td>
+</tr>
+<tr>
+<td><strong>固定成本</strong></td>
+<td>研发投入</td>
+<td>$153,000</td>
+<td>$196,000</td>
+<td>一次性</td>
+</tr>
+<tr>
+<td></td>
+<td>年度营销</td>
+<td>$70,000</td>
+<td>$70,000</td>
+<td>每年</td>
+</tr>
+<tr>
+<td></td>
+<td>年度运营</td>
+<td>$15,000</td>
+<td>$15,000</td>
+<td>每年</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12">1.2 定价方案对比<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>我们分析了 <strong>2 种硬件模式的 5 种定价方案</strong>（年销售 1,000 台）：</p>
 <table>
 <thead>
 <tr>
