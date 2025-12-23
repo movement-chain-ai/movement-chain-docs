@@ -5257,6 +5257,35 @@
 </tr>
 </tbody>
 </table>
+<div class="admonition info">
+<p class="admonition-title">固定成本分摊标准</p>
+<p><strong>分摊基准：年销量 1,000 台</strong></p>
+<table>
+<thead>
+<tr>
+<th>硬件模式</th>
+<th>总固定成本</th>
+<th>分摊计算</th>
+<th>每台分摊</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>纯 IMU</td>
+<td>$238,000</td>
+<td>$238,000 ÷ 1,000</td>
+<td><strong>$238</strong></td>
+</tr>
+<tr>
+<td>IMU + EMG</td>
+<td>$281,000</td>
+<td>$281,000 ÷ 1,000</td>
+<td><strong>$281</strong></td>
+</tr>
+</tbody>
+</table>
+<p>固定成本包括：研发投入 + 年度营销费用（详见<a href="#3-固定成本">第3节</a>）</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">定价选择要点</p>
 <ul>
@@ -5374,56 +5403,56 @@
 <thead>
 <tr>
 <th>产品</th>
-<th>估计 BOM</th>
 <th>售价</th>
-<th>毛利率</th>
+<th>传感器</th>
+<th>特点</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>MOXI (SwingMotion)</td>
-<td>$50-80</td>
-<td>$358</td>
-<td>~80%</td>
+<td>HackMotion</td>
+<td>$345</td>
+<td>1 IMU</td>
+<td>手腕角度专精</td>
 </tr>
 <tr>
-<td>HackMotion</td>
-<td>$40-60</td>
-<td>$345</td>
-<td>~83%</td>
+<td>MOXI (SwingMotion)</td>
+<td>$358</td>
+<td>2 IMU</td>
+<td>躯干+髋部</td>
 </tr>
 <tr>
 <td>deWiz</td>
-<td>$60-80</td>
 <td>$499</td>
-<td>~85%</td>
+<td>2 IMU</td>
+<td>手+杆，长度分析</td>
 </tr>
 <tr>
 <td>K-Motion</td>
-<td>$200-300</td>
-<td>$3,000</td>
-<td>~90%</td>
+<td>$3,000+</td>
+<td>4 IMU</td>
+<td>专业全身</td>
 </tr>
 <tr>
 <td><strong>我们 (IMU only)</strong></td>
-<td>$76</td>
-<td>$399</td>
-<td>~73%</td>
+<td><strong>$399</strong></td>
+<td>4 IMU</td>
+<td>全身 + 视觉</td>
 </tr>
 <tr>
 <td><strong>我们 (IMU + EMG)</strong></td>
-<td>$162</td>
-<td>$549</td>
-<td>~63%</td>
+<td><strong>$549</strong></td>
+<td>4 IMU + 2 EMG</td>
+<td>全身 + 视觉 + 肌肉</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">定价策略</p>
 <ul>
-<li>IMU 版 <span class="arithmatex">\(399：与 HackMotion (\)</span>345) / MOXI ($358) 同档竞争</li>
-<li>EMG 版 <span class="arithmatex">\(549：比 deWiz (\)</span>499) 略高，但功能更强</li>
-<li>比 K-Motion ($3,000) 便宜 5-6 倍</li>
+<li><strong>$399</strong>：与 HackMotion / MOXI 同档，但传感器更多（4 vs 1-2）</li>
+<li><strong>$549</strong>：比 deWiz 略高，但增加 EMG 差异化</li>
+<li>比 K-Motion 便宜 <strong>5-8 倍</strong>，功能更丰富</li>
 </ul>
 </div>
 <hr />
