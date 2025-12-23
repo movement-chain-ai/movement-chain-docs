@@ -153,6 +153,8 @@ movement-chain-ml/
 + # ONNX 延迟到 Phase 2 引入
 ```
 
+> 📖 **术语解释**: [ONNX Runtime](../../reference/software-glossary.md#2-onnx-runtime) - 微软开源的跨平台 ML 推理引擎
+
 ---
 
 ### 1.3 CaddieSet 研究验证 ✅ 架构方向正确
