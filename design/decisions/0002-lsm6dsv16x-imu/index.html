@@ -4769,7 +4769,7 @@
 
 <h1 id="adr-0002-imu">ADR 0002: IMU 传感器选型<a class="headerlink" href="#adr-0002-imu" title="Permanent link">&para;</a></h1>
 <h2 id="_1">一、背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Movement Chain AI 需要一个高性能的 6 轴<a href="../../../reference/engineering-glossary/#1-imu-惯性测量单元">惯性测量单元（IMU）</a>，能够以最低 100Hz <a href="../../../reference/engineering-glossary/#3-采样率-sampling-rate">采样率</a>捕获人体运动数据，用于区块链验证的健身跟踪和运动分析。之前流行的 Bosch BNO055 传感器已经停产，且存在使用 15-20 分钟后漂移明显加剧的问题（无法支撑完整的锻炼时长），因此需要选择一个现代化的替代品，满足以下要求：</p>
+<p>Movement Chain AI 需要一个高性能的 6 轴<a href="../../../reference/engineering-glossary/#1-imu-惯性测量单元">惯性测量单元（IMU）</a>，能够以最低 100Hz <a href="../../../reference/engineering-glossary/#3-采样率-sampling-rate">采样率</a>捕获人体运动数据，用于专业级健身跟踪和运动分析。之前流行的 Bosch BNO055 传感器已经停产，且存在使用 15-20 分钟后漂移明显加剧的问题（无法支撑完整的锻炼时长），因此需要选择一个现代化的替代品，满足以下要求：</p>
 <ul>
 <li><strong>采样率:</strong> 最低 100Hz 以实现准确的运动捕获</li>
 <li><strong>精度:</strong> 专业级校准，在 45+ 分钟锻炼期间<a href="../../../reference/engineering-glossary/#4-漂移-drift">漂移</a>最小</li>
@@ -4930,13 +4930,13 @@
 </ul>
 <h2 id="_3">三、理由<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <h3 id="31">3.1 卓越的长时间会话性能<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
-<p>LSM6DSV16X 在长时间锻炼会话中展现出卓越的稳定性，漂移重置时间超过 45 分钟，而 BNO055 的文档记录显示其在 15-20 分钟后就会降级。这对于区块链验证的健身会话至关重要，因为数据完整性必须在整个小时级锻炼过程中保持。</p>
+<p>LSM6DSV16X 在长时间锻炼会话中展现出卓越的稳定性，漂移重置时间超过 45 分钟，而 BNO055 的文档记录显示其在 15-20 分钟后就会降级。这对于专业级运动分析至关重要，因为数据完整性必须在整个小时级锻炼过程中保持。</p>
 <h3 id="32-mlc">3.2 机器学习核心 (MLC) 集成<a class="headerlink" href="#32-mlc" title="Permanent link">&para;</a></h3>
 <p>嵌入式机器学习核心 (Machine Learning Core) 实现了设备端运动分类，无需向微控制器流式传输原始数据，显著降低功耗并实现：</p>
 <ul>
 <li>实时运动识别（深蹲、俯卧撑、跑步等）</li>
 <li>用于姿势纠正的异常检测</li>
-<li>在提交到区块链之前的隐私保护边缘 AI 处理</li>
+<li>隐私保护的边缘 AI 处理</li>
 </ul>
 <h3 id="33-2025">3.3 2025 市场领导地位<a class="headerlink" href="#33-2025" title="Permanent link">&para;</a></h3>
 <p>作为 STMicroelectronics 在 2024-2025 产品线中的旗舰 IMU，LSM6DSV16X 代表了当前一代传感器技术，具有：</p>
@@ -4947,16 +4947,16 @@
 <li>在专业运动可穿戴设备和医疗设备中广泛采用</li>
 </ul>
 <h3 id="34">3.4 三通道架构<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
-<p>传感器的先进架构通过并行处理通道提供冗余和增强的准确性，实现了对区块链数据验证至关重要的容错操作。</p>
+<p>传感器的先进架构通过并行处理通道提供冗余和增强的准确性，实现了对数据完整性至关重要的容错操作。</p>
 <h3 id="35">3.5 成本性能平衡<a class="headerlink" href="#35" title="Permanent link">&para;</a></h3>
-<p>在低批量（1000+ 单位）时，每单位成本为 $6-8，LSM6DSV16X 比中档替代品贵 33-60%，但对于区块链验证的健身平台来说，其专业级精度证明了投资的合理性，因为数据完整性至关重要。</p>
+<p>在低批量（1000+ 单位）时，每单位成本为 $6-8，LSM6DSV16X 比中档替代品贵 33-60%，但对于专业级运动分析平台来说，其专业级精度证明了投资的合理性，因为数据完整性至关重要。</p>
 <h2 id="_4">四、后果<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <h3 id="41">4.1 积极影响<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>延长会话准确性:</strong> 45+ 分钟的漂移稳定性使得无需校准中断即可完整捕获锻炼会话</li>
 <li><strong>边缘 AI 能力:</strong> MLC 通过设备端运动分类减少 MCU 负载 40-60%</li>
 <li><strong>面向未来的架构:</strong> 三通道设计和 ST 的积极开发路线图确保 5+ 年的竞争性能</li>
-<li><strong>专业级数据:</strong> 精度规格满足区块链验证运动数据的要求，可承受第三方审计</li>
+<li><strong>专业级数据:</strong> 精度规格满足高精度运动数据的要求，可承受第三方审计</li>
 <li><strong>低功耗:</strong> 在 104Hz 时典型工作电流为 0.55mA，在可穿戴形式因素下实现多日电池寿命</li>
 <li><strong>灵活接口:</strong> I2C（最高 1MHz）和 SPI（最高 10MHz）支持提供集成灵活性</li>
 </ul>
@@ -5001,7 +5001,7 @@
 <li><strong>优势:</strong> 良好性能、更低成本、在消费可穿戴设备中经过验证的可靠性</li>
 <li><strong>被拒绝的原因:</strong></li>
 <li>没有嵌入式 ML 能力，需要连续 MCU 处理</li>
-<li>中档精度不足以用于区块链验证数据</li>
+<li>中档精度不足以用于专业级运动分析</li>
 <li>漂移特性仅比已停产的 BNO055 略好</li>
 <li>25-30 分钟稳定操作窗口不足以完成完整的锻炼会话</li>
 </ul>
@@ -5014,7 +5014,7 @@
 <li>消费级定位（智能手机/健身手环）vs 专业运动可穿戴设备</li>
 <li>与 LSM6DSV16X 的专用 MLC 相比，ML 能力有限</li>
 <li>Bosch 停产 BNO055 引发对长期产品线稳定性的担忧</li>
-<li>精度规格低于区块链数据验证要求</li>
+<li>精度规格低于专业级运动分析要求</li>
 </ul>
 <h3 id="63-c-tdk-invensense-mpu6050">6.3 方案 C: TDK InvenSense MPU6050<a class="headerlink" href="#63-c-tdk-invensense-mpu6050" title="Permanent link">&para;</a></h3>
 <ul>
