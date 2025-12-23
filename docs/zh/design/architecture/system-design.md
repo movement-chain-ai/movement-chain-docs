@@ -258,7 +258,7 @@ flowchart LR
 | **MCU** | XIAO ESP32S3 | Seeed 113991114, Sensor Hub 架构 |
 | **IMU** | Adafruit LSM6DSV16X | ADA-5783, 更好的 Arduino 库 |
 | **EMG** | MyoWare 2.0 + Link Shield | SparkFun DEV-21265 + DEV-18425 |
-| **ML推理** | ONNX Runtime Mobile | [ADR-0006](../decisions/0006-onnx-runtime-deployment.md) |
+| **ML推理** | TFLite (MediaPipe 内置) | MVP1 用 TFLite; ONNX Runtime 延迟到 Phase 2 ([ADR-0006](../decisions/0006-onnx-runtime-deployment.md)) |
 | **LLM** | OpenAI GPT-4o-mini | 成本低，速度快 |
 | **TTS** | flutter_tts (系统) | 开箱即用 |
 
