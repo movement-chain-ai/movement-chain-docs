@@ -90,7 +90,7 @@ PyTorch / TensorFlow              推理引擎 (TFLite, ONNX Runtime)
 | **Phase 2** | ONNX Runtime | RTMPose | 更高精度，跨平台 |
 | **Phase 3** | ONNX Runtime | 自定义模型 | 高尔夫特化 |
 
-> 详见：[关键决策 2025-12 § ONNX Runtime](../design/architecture/key-decisions-2025-12.md#12-onnx-runtime-延迟引入--确认)
+> 详见：[关键决策 2025-12 § ONNX Runtime](../design/architecture/architecture-decisions-2025-12-23.md#12-onnx-runtime-延迟引入--确认)
 
 ---
 
@@ -156,7 +156,7 @@ MediaPipe (Google 的 ML 解决方案)
 | **MVP1** | TFLite (via MediaPipe) | 快速验证，降低复杂度 |
 | **Phase 2+** | ONNX Runtime | 更灵活，支持自定义模型 |
 
-> 详见：[关键决策 2025-12 § ONNX Runtime 延迟引入](../design/architecture/key-decisions-2025-12.md#12-onnx-runtime-延迟引入--确认)
+> 详见：[关键决策 2025-12 § ONNX Runtime 延迟引入](../design/architecture/architecture-decisions-2025-12-23.md#12-onnx-runtime-延迟引入--确认)
 
 ---
 
@@ -220,7 +220,7 @@ PyTorch 训练模型               ONNX Runtime Mobile
 | **TensorRT** | NVIDIA | .plan | GPU 极致优化 |
 | **CoreML** | Apple | .mlmodel | Apple 设备专用 |
 
-> 详见：[关键决策 2025-12 § ONNX Runtime](../design/architecture/key-decisions-2025-12.md#12-onnx-runtime-延迟引入--确认)
+> 详见：[关键决策 2025-12 § ONNX Runtime](../design/architecture/architecture-decisions-2025-12-23.md#12-onnx-runtime-延迟引入--确认)
 
 ---
 
@@ -228,7 +228,7 @@ PyTorch 训练模型               ONNX Runtime Mobile
 
 - [软件架构术语表](software-glossary.md) - 六边形架构等设计模式
 - [工程术语表](engineering-glossary.md) - Edge AI 相关概念
-- [关键决策 2025-12](../design/architecture/key-decisions-2025-12.md) - 技术选型决策
+- [关键决策 2025-12](../design/architecture/architecture-decisions-2025-12-23.md) - 技术选型决策
 - [系统设计](../design/architecture/system-design.md) - 整体架构
 
 ---

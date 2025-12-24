@@ -101,7 +101,7 @@ Cockburn 选择六边形是因为：
 
 ## 相关文档
 
-- [关键决策 2025-12 § 六边形架构](../design/architecture/key-decisions-2025-12.md#11-六边形架构-hexagonal-architecture--确认) - 为什么选择六边形架构
+- [关键决策 2025-12 § 六边形架构](../design/architecture/architecture-decisions-2025-12-23.md#11-六边形架构-hexagonal-architecture--确认) - 为什么选择六边形架构
 - [机器学习术语表](ml-glossary.md) - 推理引擎、ONNX Runtime、TFLite 等
 - [系统设计](../design/architecture/system-design.md) - 整体架构
 - [工程术语表](engineering-glossary.md) - 嵌入式系统、传感器术语
