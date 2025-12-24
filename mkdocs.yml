@@ -27,6 +27,7 @@ theme:
     - navigation.tracking
     - navigation.indexes
     - navigation.instant
+    - navigation.expand
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -219,6 +220,7 @@ nav:
       - reference/physics-glossary.md
       - reference/engineering-glossary.md
       - reference/software-glossary.md
+      - reference/ml-glossary.md
       - reference/business-glossary.md
       - reference/academic-datasets.md
       - reference/golf-research.md

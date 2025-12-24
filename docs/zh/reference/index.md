@@ -10,6 +10,7 @@
 | [物理学术语表](physics-glossary.md) | 力学概念（角速度、角动量、转动惯量等） |
 | [工程术语表](engineering-glossary.md) | 嵌入式系统/传感器术语（采样率、IMU、漂移、边缘 AI 等） |
 | [软件架构术语表](software-glossary.md) | 软件设计模式（六边形架构、Clean Architecture 等） |
+| [机器学习术语表](ml-glossary.md) | ML 术语（推理引擎、TFLite、模型部署等） |
 | [商业术语表](business-glossary.md) | 商业术语（CAGR、BOM 等） |
 
 ## 学术资源

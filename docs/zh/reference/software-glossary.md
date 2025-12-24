@@ -9,7 +9,6 @@
 | # | 术语 | 英文 | 简要说明 |
 |---|------|------|----------|
 | 1 | [六边形架构](#六边形架构-hexagonal-architecture) | Hexagonal Architecture | Ports & Adapters，核心逻辑与外部系统解耦 |
-| 2 | [ONNX Runtime](#onnx-runtime) | ONNX Runtime | 微软开源的跨平台 ML 推理引擎 |
 
 ---
 
@@ -100,72 +99,10 @@ Cockburn 选择六边形是因为：
 
 ---
 
-## ONNX Runtime
-
-**定义：** ONNX Runtime 是微软开源的跨平台机器学习推理引擎，用于高效运行 ONNX 格式的模型。
-
----
-
-### 什么是 ONNX？
-
-| 项目 | 内容 |
-|------|------|
-| **全称** | Open Neural Network Exchange |
-| **性质** | 开放的 ML 模型格式标准 |
-| **作用** | 让模型在不同框架间通用 |
-
-```text
-训练框架              ONNX 格式              推理引擎
-─────────────         ────────────           ─────────────
-PyTorch      ──┐                      ┌──► ONNX Runtime
-TensorFlow   ──┼──► model.onnx ───────┼──► TensorRT
-Keras        ──┤                      ├──► CoreML
-Scikit-learn ──┘                      └──► OpenVINO
-```
-
-### 为什么用 ONNX Runtime？
-
-| 优势 | 说明 |
-|------|------|
-| **跨平台** | Windows / Linux / macOS / iOS / Android / Web |
-| **高性能** | 针对各平台 CPU/GPU 优化，比原生框架推理更快 |
-| **体积小** | 移动端 ~1.5MB，不需要完整 PyTorch/TensorFlow |
-| **硬件加速** | 支持 CUDA、DirectML、CoreML、NNAPI 等 |
-
-### 在 Movement Chain AI 中的应用
-
-```text
-训练阶段 (服务器)              部署阶段 (手机)
-────────────────────           ────────────────────
-PyTorch 训练模型               ONNX Runtime Mobile
-        │                              │
-        ▼                              ▼
-   swing_model.pt  ──导出──►  swing_model.onnx
-        │                              │
-        └─────────────────────►  推理 10-20ms/帧
-```
-
-| 阶段 | 推理引擎 | 模型 | 说明 |
-|------|---------|------|------|
-| **MVP1** | TFLite (MediaPipe 内置) | BlazePose | 开箱即用 |
-| **Phase 2** | ONNX Runtime | RTMPose | 更高精度 |
-| **Phase 3** | ONNX Runtime | 自定义模型 | 高尔夫特化 |
-
-### 同类推理引擎对比
-
-| 引擎 | 开发者 | 模型格式 | 特点 |
-|------|--------|---------|------|
-| **ONNX Runtime** | Microsoft | .onnx | 跨平台通用 |
-| **TFLite** | Google | .tflite | TensorFlow 生态 |
-| **TensorRT** | NVIDIA | .plan | GPU 极致优化 |
-| **CoreML** | Apple | .mlmodel | Apple 设备专用 |
-
----
-
 ## 相关文档
 
-- [关键决策 2025-12 § 六边形架构](../design/architecture/architecture-decisions-2025-12-23.md#11-六边形架构-hexagonal-architecture--确认) - 为什么选择六边形架构
-- [关键决策 2025-12 § ONNX Runtime](../design/architecture/architecture-decisions-2025-12-23.md#12-onnx-runtime-延迟引入--确认) - ONNX Runtime 延迟引入策略
+- [关键决策 2025-12 § 六边形架构](../design/architecture/key-decisions-2025-12.md#11-六边形架构-hexagonal-architecture--确认) - 为什么选择六边形架构
+- [机器学习术语表](ml-glossary.md) - 推理引擎、ONNX Runtime、TFLite 等
 - [系统设计](../design/architecture/system-design.md) - 整体架构
 - [工程术语表](engineering-glossary.md) - 嵌入式系统、传感器术语
 
