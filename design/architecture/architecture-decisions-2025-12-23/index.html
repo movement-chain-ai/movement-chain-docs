@@ -1829,17 +1829,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#import-polars-as-pl-imu-imu_df-plread_parquetimu_dataparquet-result-imu_df-sorttimestamp_ms-with_columns-plcolgyro_zrolling_meanwindow_size10aliasgyro_z_smooth-impact-with_columns-plcolgyro_z_smooth-plcolgyro_z_smoothmaxaliasis_peak-group_byphase-agg-plcolgyro_zmaxaliaspeak_velocity-plcoltimestamp_msminaliasstart_ms-plcoltimestamp_msmaxaliasend_ms" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        import polars as pl # 读取 IMU 数据 imu_df = pl.read_parquet(&quot;imu_data.parquet&quot;) # 时序处理管道 (链式、可读、高效) result = ( imu_df .sort(&quot;timestamp_ms&quot;) # 滑动窗口平滑 .with_columns( pl.col(&quot;gyro_z&quot;).rolling_mean(window_size=10).alias(&quot;gyro_z_smooth&quot;) ) # 找到峰值 (Impact 检测) .with_columns( (pl.col(&quot;gyro_z_smooth&quot;) == pl.col(&quot;gyro_z_smooth&quot;).max()).alias(&quot;is_peak&quot;) ) # 按阶段分组统计 .group_by(&quot;phase&quot;) .agg([ pl.col(&quot;gyro_z&quot;).max().alias(&quot;peak_velocity&quot;), pl.col(&quot;timestamp_ms&quot;).min().alias(&quot;start_ms&quot;), pl.col(&quot;timestamp_ms&quot;).max().alias(&quot;end_ms&quot;), ]) )
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#3-sdk" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4892,17 +4881,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#import-polars-as-pl-imu-imu_df-plread_parquetimu_dataparquet-result-imu_df-sorttimestamp_ms-with_columns-plcolgyro_zrolling_meanwindow_size10aliasgyro_z_smooth-impact-with_columns-plcolgyro_z_smooth-plcolgyro_z_smoothmaxaliasis_peak-group_byphase-agg-plcolgyro_zmaxaliaspeak_velocity-plcoltimestamp_msminaliasstart_ms-plcoltimestamp_msmaxaliasend_ms" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        import polars as pl # 读取 IMU 数据 imu_df = pl.read_parquet(&quot;imu_data.parquet&quot;) # 时序处理管道 (链式、可读、高效) result = ( imu_df .sort(&quot;timestamp_ms&quot;) # 滑动窗口平滑 .with_columns( pl.col(&quot;gyro_z&quot;).rolling_mean(window_size=10).alias(&quot;gyro_z_smooth&quot;) ) # 找到峰值 (Impact 检测) .with_columns( (pl.col(&quot;gyro_z_smooth&quot;) == pl.col(&quot;gyro_z_smooth&quot;).max()).alias(&quot;is_peak&quot;) ) # 按阶段分组统计 .group_by(&quot;phase&quot;) .agg([ pl.col(&quot;gyro_z&quot;).max().alias(&quot;peak_velocity&quot;), pl.col(&quot;timestamp_ms&quot;).min().alias(&quot;start_ms&quot;), pl.col(&quot;timestamp_ms&quot;).max().alias(&quot;end_ms&quot;), ]) )
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#3-sdk" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5425,7 +5403,7 @@
 <p><strong>关键发现</strong>: MediaPipe 自带 <a href="../../../reference/ml-glossary/#2-tflite-tensorflow-lite">TFLite</a>推理引擎 ，ONNX Runtime 对于 MVP1 是<strong>冗余的</strong></p>
 <p><strong>技术分析</strong>:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>│                    ONNX vs TFLite 分析 INFERENCE ENGINE ANALYSIS             │
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>│                    ONNX vs TFLite 分析              │
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│                                                                             │
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   MediaPipe 内部架构:                                                        │
@@ -5605,7 +5583,7 @@
 <p>📖 <strong>术语解释</strong>: <a href="../../../reference/software-glossary/#2-rust">Rust</a> — 高性能系统编程语言 | <a href="../../../reference/software-glossary/#3-rust-backed-sdks">Rust-backed SDKs</a> — 底层用 Rust/C++ 实现的高性能库</p>
 </blockquote>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>│                    Python vs Rust 深度分析 LANGUAGE DECISION                 │
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>│                    Python vs Rust 深度分析                  │
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│                                                                             │
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>│   纯 Rust 方案:                                                              │
@@ -5801,7 +5779,7 @@
 </span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <p><strong>传感器数据处理示例</strong>:</p>
-<h2 id="import-polars-as-pl-imu-imu_df-plread_parquetimu_dataparquet-result-imu_df-sorttimestamp_ms-with_columns-plcolgyro_zrolling_meanwindow_size10aliasgyro_z_smooth-impact-with_columns-plcolgyro_z_smooth-plcolgyro_z_smoothmaxaliasis_peak-group_byphase-agg-plcolgyro_zmaxaliaspeak_velocity-plcoltimestamp_msminaliasstart_ms-plcoltimestamp_msmaxaliasend_ms"><div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># 读取 IMU 数据</span>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">imu_df</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;imu_data.parquet&quot;</span><span class="p">)</span>
@@ -5826,7 +5804,8 @@
 </span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;timestamp_ms&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;end_ms&quot;</span><span class="p">),</span>
 </span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>    <span class="p">])</span>
 </span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="p">)</span>
-</span></code></pre></div><a class="headerlink" href="#import-polars-as-pl-imu-imu_df-plread_parquetimu_dataparquet-result-imu_df-sorttimestamp_ms-with_columns-plcolgyro_zrolling_meanwindow_size10aliasgyro_z_smooth-impact-with_columns-plcolgyro_z_smooth-plcolgyro_z_smoothmaxaliasis_peak-group_byphase-agg-plcolgyro_zmaxaliaspeak_velocity-plcoltimestamp_msminaliasstart_ms-plcoltimestamp_msmaxaliasend_ms" title="Permanent link">&para;</a></h2>
+</span></code></pre></div>
+<hr />
 <h2 id="3-sdk">3. SDK 依赖决策<a class="headerlink" href="#3-sdk" title="Permanent link">&para;</a></h2>
 <h3 id="31-mvp1">3.1 MVP1 精简依赖列表<a class="headerlink" href="#31-mvp1" title="Permanent link">&para;</a></h3>
 <p><strong>设计原则</strong>: 最小依赖集，每个依赖都有明确理由</p>
