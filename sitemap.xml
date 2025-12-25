@@ -237,22 +237,6 @@
          <lastmod>2025-12-25</lastmod>
     </url>
     <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/foundations/</loc>
-         <lastmod>2025-12-25</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/foundations/biomechanics-101/</loc>
-         <lastmod>2025-12-25</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/foundations/biomechanics-benchmarks/</loc>
-         <lastmod>2025-12-25</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/foundations/biomechanics-glossary/</loc>
-         <lastmod>2025-12-25</lastmod>
-    </url>
-    <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/guides/ml-basics/</loc>
          <lastmod>2025-12-25</lastmod>
     </url>
@@ -342,6 +326,22 @@
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/reference/software-glossary/</loc>
+         <lastmod>2025-12-25</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/reference/foundations/</loc>
+         <lastmod>2025-12-25</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/reference/foundations/biomechanics-101/</loc>
+         <lastmod>2025-12-25</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/reference/foundations/biomechanics-benchmarks/</loc>
+         <lastmod>2025-12-25</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/reference/foundations/biomechanics-glossary/</loc>
          <lastmod>2025-12-25</lastmod>
     </url>
 </urlset>
