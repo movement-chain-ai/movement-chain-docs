@@ -5600,7 +5600,7 @@
 </tbody>
 </table>
 <blockquote>
-<p>📖 <strong>术语解释</strong>: <a href="../../../reference/ml-glossary/#4-mse-均方误差">MSE (Mean Squared Error)</a> — 预测误差的平方均值，越小越好。</p>
+<p>📖 <strong>备注</strong>: <a href="../../../reference/ml-glossary/#4-mse-均方误差">MSE (Mean Squared Error)</a> — 预测误差的平方均值，越小越好。</p>
 </blockquote>
 <h4 id="_2">为什么会这样？<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
 <p>高尔夫挥杆是<strong>生物力学约束运动</strong>——动作受人体结构限制，有明确的物理规律：</p>
@@ -5646,20 +5646,14 @@
 </table>
 <hr />
 <h2 id="2">2. 语言与工具链决策<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>📖 <strong>技术栈总览</strong>详见 <a href="../../architecture/system-design/#41-技术栈总览">系统设计 § 4.1</a></p>
-</blockquote>
 <h3 id="21-python-rust-混合策略">2.1 Python + Rust-backed SDKs 混合策略<a class="headerlink" href="#21-python-rust-混合策略" title="Permanent link">&para;</a></h3>
 <p><strong>决策背景</strong>:</p>
-<p>在 2025 最新实践调研中，Rust 频繁出现在高性能 ML 系统讨论中。</p>
+<p>在 2025 最新实践调研中，<a href="../../../reference/software-glossary/#2-rust">Rust</a> 频繁出现在高性能 ML 系统讨论中。</p>
 <p>需要回答的问题：当前 Python 开发，<strong>未来是否需要用 Rust 重写核心逻辑来提升性能</strong>？</p>
 <p>答案：<strong>MVP 阶段不需要</strong>——我们使用的 SDK（MediaPipe、ONNX Runtime）底层已经是 C++/Rust 实现，性能瓶颈已被解决。只有当 Python 业务代码本身成为瓶颈时才需要考虑重写，这在 MVP 阶段不太可能发生。</p>
 <p><strong>分析结论</strong>: <strong>Python + <a href="../../../reference/software-glossary/#3-rust-backed-sdks">Rust-backed SDKs</a></strong> 是最佳策略</p>
-<blockquote>
-<p>📖 <strong>术语解释</strong>: <a href="../../../reference/software-glossary/#2-rust">Rust</a> — 高性能系统编程语言 | <a href="../../../reference/software-glossary/#3-rust-backed-sdks">Rust-backed SDKs</a> — 底层用 Rust/C++ 实现的高性能库</p>
-</blockquote>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>│                    Python vs Rust 深度分析                  │
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>│                    Python vs Rust                                           │
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│                                                                             │
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>│   纯 Rust 方案:                                                              │
@@ -5778,9 +5772,6 @@
 <hr />
 <h3 id="22-uv-替代-poetry">2.2 UV 替代 Poetry<a class="headerlink" href="#22-uv-替代-poetry" title="Permanent link">&para;</a></h3>
 <p><strong>决策</strong>: 使用 UV 作为 Python <a href="../../../reference/software-glossary/#4-包管理器-package-manager">包管理器</a></p>
-<blockquote>
-<p>📖 <strong>术语解释</strong>: <a href="../../../reference/software-glossary/#4-包管理器-package-manager">包管理器</a> — 管理项目依赖的工具（pip、Poetry、uv）</p>
-</blockquote>
 <p><strong>2025 趋势验证</strong>:</p>
 <table>
 <thead>
@@ -6834,7 +6825,7 @@
 </span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>│                                                                             │
 </span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
-<h4 id="ble-2025-12">⚠️ BLE 时间<a href="../../../reference/engineering-glossary/#10-ble-抖动-ble-jitter">抖动</a>问题 (2025-12 研究验证)<a class="headerlink" href="#ble-2025-12" title="Permanent link">&para;</a></h4>
+<h4 id="ble-2025-12">⚠️ <a href="../../../reference/engineering-glossary/#10-ble-抖动-ble-jitter">BLE 时间抖动问题</a> (2025-12 研究验证)<a class="headerlink" href="#ble-2025-12" title="Permanent link">&para;</a></h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>│              BLE CONNECTION INTERVAL JITTER - 关键风险                       │
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
@@ -7619,6 +7610,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><strong><a href="../../architecture/system-design/">system-design.md</a></strong></td>
+<td><strong>MVP 系统设计总览</strong></td>
+<td><strong>⭐ Hub 文档</strong></td>
+</tr>
 <tr>
 <td><strong><a href="../../architecture/data-pipeline-and-ai/">data-pipeline-and-ai.md</a></strong></td>
 <td><strong>数据流与时间同步</strong></td>
