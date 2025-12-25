@@ -268,7 +268,7 @@
 │   ────────────      市场机会、用户画像、价值主张                              │
 │                                                                             │
 │   design/           WHAT we build                                           │
-│   ───────           ├── foundations/    生物力学基础 (先读)                  │
+│   ───────           ├── foundations/    高尔夫生物力学基础 (先读)                  │
 │                     ├── architecture/   核心架构 (5篇必读)                   │
 │                     ├── specs/          详细规格 (按需参考)                  │
 │                     ├── briefs/         角色入口                            │

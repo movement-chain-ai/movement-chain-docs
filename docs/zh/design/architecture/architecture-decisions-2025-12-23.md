@@ -1136,7 +1136,7 @@ build-backend = "hatchling.build"
 │   │   ├── market-insights/         # 市场分析、竞品                            │
 │   │   └── go-to-market/            # 上市策略                                 │
 │   ├── design/                  # WHAT: 技术架构                               │
-│   │   ├── foundations/         # 生物力学基础 (先读这个)                        │
+│   │   ├── foundations/         # 高尔夫生物力学基础 (先读这个)                        │
 │   │   ├── architecture/        # 系统设计 (4 个核心文档)                        │
 │   │   ├── specs/               # 详细规格                                     │
 │   │   └── decisions/           # ADR 架构决策记录                              │
