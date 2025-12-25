@@ -27,7 +27,7 @@
 
     - [ADR 决策记录](../design/decisions/index.md) - 所有 ADR 一页速查
     - [挥杆对比策略](../design/specs/swing-comparison.md) - 如何对比两次挥杆
-    - [生物力学基准值](../design/foundations/biomechanics-benchmarks.md) - 阈值来源
+    - [生物力学基准值](../reference/foundations/biomechanics-benchmarks.md) - 阈值来源
 
 ---
 
@@ -571,7 +571,7 @@ graph LR
 ## 相关文档
 
 - [ADR决策记录](../design/decisions/index.md) - 关键ADR概览
-- [术语表](../design/foundations/biomechanics-glossary.md) - IMU、EMG 等术语定义
+- [术语表](../reference/foundations/biomechanics-glossary.md) - IMU、EMG 等术语定义
 - 代码示例将在 ML 仓库中提供
 
 ---

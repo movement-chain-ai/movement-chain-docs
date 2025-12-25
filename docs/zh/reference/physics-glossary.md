@@ -46,7 +46,7 @@ $$
 - 肩膀、手臂、球杆具有**相同的角速度** ω
 - 但距离旋转中心越远，**线速度越大**（v = ω × r）
 
-> 详细图解见：[生物力学入门](../design/foundations/biomechanics-101.md)
+> 详细图解见：[生物力学入门](foundations/biomechanics-101.md)
 
 ---
 
@@ -460,8 +460,8 @@ $$
 - [高尔夫术语表](golf-glossary.md) - 高尔夫专业术语
 - [商业术语表](business-glossary.md) - 商业相关术语
 - [工程术语表](engineering-glossary.md) - 嵌入式系统、传感器工程术语
-- [生物力学入门](../design/foundations/biomechanics-101.md) - 挥杆生物力学基础
-- [生物力学术语表](../design/foundations/biomechanics-glossary.md) - 专业生物力学术语
+- [生物力学入门](foundations/biomechanics-101.md) - 挥杆生物力学基础
+- [生物力学术语表](foundations/biomechanics-glossary.md) - 专业生物力学术语
 
 ---
 

@@ -115,8 +115,6 @@ nav:
       - Product Strategy: business-plan/product-strategy.md
 
   - System Design:
-      - Foundations:
-          - Biomechanics 101: design/foundations/biomechanics-101.md
       - Core Architecture:
           - System Design: design/architecture/system-design.md
           - Modular Architecture: design/architecture/modular-architecture.md

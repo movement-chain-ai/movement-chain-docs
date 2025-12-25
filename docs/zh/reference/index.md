@@ -25,4 +25,4 @@
 
 - [ML 训练数据集](../development/ml-training/datasets.md) - 模型训练相关
 - [系统设计](../design/architecture/system-design.md) - 技术架构
-- [生物力学入门](../design/foundations/biomechanics-101.md) - 挥杆生物力学基础
+- [生物力学入门](foundations/biomechanics-101.md) - 挥杆生物力学基础
