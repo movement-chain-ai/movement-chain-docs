@@ -110,7 +110,7 @@ nav:
   - 首页: index.md
 
   - 前置知识:
-      - prerequisites/index.md
+      - 概览: prerequisites/index.md
       - 高尔夫生物力学基础:
           - 概览: prerequisites/foundations/index.md
           - 入门教程: prerequisites/foundations/biomechanics-101.md
@@ -119,7 +119,7 @@ nav:
       - ML 基础: prerequisites/ml-basics.md
 
   - 商业计划:
-      - business-plan/index.md
+      - 概览: business-plan/index.md
       - 市场洞察:
           - 市场分析: business-plan/market-insights/market-analysis.md
           - 市场痛点: business-plan/market-insights/pain-points.md
@@ -145,9 +145,9 @@ nav:
       - 退出策略（待补充）: business-plan/exit-strategy.md
 
   - 技术设计:
-      - design/index.md
+      - 概览: design/index.md
       - 核心架构:
-          - design/architecture/index.md
+          - 概览: design/architecture/index.md
           - 系统设计: design/architecture/system-design.md
           - 模块化架构: design/architecture/modular-architecture.md
           - 数据流与反馈: design/architecture/data-pipeline-and-ai.md
@@ -159,7 +159,7 @@ nav:
           - 挥杆对比: design/specs/swing-comparison.md
           - 个性化: design/specs/personalization.md
       - 角色指南:
-          - design/briefs/index.md
+          - 概览: design/briefs/index.md
           - 软件工程师: design/briefs/software-engineer.md
           - 移动开发者: design/briefs/mobile-developer.md
           - 硬件工程师: design/briefs/hardware-engineer.md
@@ -167,11 +167,11 @@ nav:
       - 开发指南:
           - SDK 选型: design/guides/sdk-selection.md
       - 竞品与工具评估:
-          - design/research/index.md
+          - 概览: design/research/index.md
           - 竞品指标对比: design/research/competitor-metrics-comparison.md
           - 可视化工具评估: design/research/visualization-tools-evaluation.md
       - 架构决策 (ADR):
-          - design/decisions/index.md
+          - 概览: design/decisions/index.md
           - design/decisions/0001-multi-repo-structure.md
           - design/decisions/0002-lsm6dsv16x-imu.md
           - design/decisions/0003-flutter-mobile.md
@@ -180,7 +180,7 @@ nav:
           - design/decisions/0006-onnx-runtime-deployment.md
 
   - 硬件组件:
-      - components/index.md
+      - 概览: components/index.md
       - IMU 惯性测量:
           - components/imu/hardware.md
           - components/imu/suppliers.md
@@ -200,7 +200,7 @@ nav:
           - components/pressure-sensors/hardware.md
           - components/pressure-sensors/suppliers.md
       - 供应链与 ODM/OEM:
-          - components/supply-chain/index.md
+          - 概览: components/supply-chain/index.md
           - components/supply-chain/china-sensors.md
           - components/supply-chain/china-wearables.md
           - components/supply-chain/mvp-suppliers.md
@@ -208,7 +208,7 @@ nav:
           - components/supply-chain/e-skin-odm.md
 
   - 开发指南:
-      - development/index.md
+      - 概览: development/index.md
       - 移动应用:
           - development/mobile/development.md
       - ML 训练:
@@ -216,7 +216,7 @@ nav:
           - development/ml-training/visual-feedback.md
 
   - 参考资料:
-      - reference/index.md
+      - 概览: reference/index.md
       - reference/golf-glossary.md
       - reference/physics-glossary.md
       - reference/engineering-glossary.md
