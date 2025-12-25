@@ -11,6 +11,7 @@
 | 1 | [推理引擎](#1-推理引擎-inference-engine) | Inference Engine | 运行训练好的模型进行预测的软件库 |
 | 2 | [TFLite](#2-tflite-tensorflow-lite) | TensorFlow Lite | Google 的轻量级推理引擎 |
 | 3 | [ONNX Runtime](#3-onnx-runtime) | ONNX Runtime | 微软开源的跨平台推理引擎 |
+| 4 | [MSE](#4-mse-均方误差) | Mean Squared Error | 回归模型的评估指标，衡量预测误差 |
 
 ---
 
@@ -224,6 +225,99 @@ PyTorch 训练模型               ONNX Runtime Mobile
 
 ---
 
+## 4. MSE (均方误差) {#4-mse-均方误差}
+
+**定义：** MSE (Mean Squared Error，均方误差) 是机器学习中用于评估回归模型预测准确性的指标，属于统计学/机器学习范畴。
+
+---
+
+### 公式
+
+$$
+\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$
+
+| 符号 | 含义 |
+|------|------|
+| $y_i$ | 真实值（Ground Truth） |
+| $\hat{y}_i$ | 模型预测值 |
+| $n$ | 样本数量 |
+
+### 直观理解
+
+```text
+MSE 的计算步骤：
+1. 计算每个样本的误差：预测值 - 真实值
+2. 对误差取平方（消除正负抵消）
+3. 对所有平方误差取平均
+```
+
+**MSE 越小 = 预测越准确**
+
+### 具体例子：球速预测
+
+假设模型预测 3 次挥杆的球速：
+
+| 挥杆 | 真实球速 (mph) | 预测球速 (mph) | 误差 | 误差² |
+|------|----------------|----------------|------|-------|
+| 1 | 150 | 152 | +2 | 4 |
+| 2 | 160 | 157 | -3 | 9 |
+| 3 | 155 | 156 | +1 | 1 |
+
+$$
+\text{MSE} = \frac{4 + 9 + 1}{3} = 4.67
+$$
+
+平均误差 ≈ √4.67 ≈ **2.2 mph**（约 1.4% 误差）
+
+### 相关指标
+
+| 指标 | 英文 | 公式 | 特点 |
+|------|------|------|------|
+| **MSE** | Mean Squared Error | $\frac{1}{n}\sum(y-\hat{y})^2$ | 对大误差敏感（平方放大） |
+| **RMSE** | Root MSE | $\sqrt{\text{MSE}}$ | 与原始单位相同，更直观 |
+| **MAE** | Mean Absolute Error | $\frac{1}{n}\sum|y-\hat{y}|$ | 对异常值更鲁棒 |
+| **R²** | R-squared | $1 - \frac{SS_{res}}{SS_{tot}}$ | 解释方差比例，0~1 |
+
+### 在 Movement Chain AI 中的应用
+
+#### CaddieSet 研究验证
+
+[CaddieSet](../design/architecture/architecture-decisions-2025-12-23.md#13-caddieset-研究验证--证明架构方向正确) (CVPR 2025) 使用 MSE 评估球速预测模型：
+
+| 模型 | 技术路线 | 球速预测 MSE | 平均误差 |
+|------|----------|--------------|----------|
+| Random Forest | 特征工程 + ML | **8.80** | ~3 mph (~2%) |
+| XGBoost | 特征工程 + ML | 10.15 | ~3.2 mph |
+| Vision Transformer | 端到端 DL | 28.41 | ~5.3 mph |
+| MobileNet V3 | 端到端 DL | 32.32 | ~5.7 mph |
+
+**结论**：特征工程 + 传统 ML 的 MSE 比端到端深度学习低 3-4 倍，验证了我们的架构方向。
+
+#### 球速预测流程
+
+```text
+视频 → 姿态估计 → 特征提取 → ML模型 → 球速预测
+        │          │        │        │
+     33个关键点  生物力学特征  Random   MSE 评估
+               - X-Factor   Forest   预测精度
+               - 节奏比
+               - 手腕角度
+```
+
+### 所属领域
+
+```text
+统计学 / 机器学习
+├── 模型评估指标 ← MSE 在这里
+│   ├── 回归任务: MSE, RMSE, MAE, R²
+│   └── 分类任务: Accuracy, Precision, Recall, F1, AUC
+└── 损失函数 (Loss Function)
+    └── MSE 也常用作训练时的损失函数
+```
+
+---
+
 ## 相关文档
 
 - [软件架构术语表](software-glossary.md) - 六边形架构等设计模式
@@ -233,4 +327,4 @@ PyTorch 训练模型               ONNX Runtime Mobile
 
 ---
 
-**最后更新**: 2025年12月23日
+**最后更新**: 2025年12月24日

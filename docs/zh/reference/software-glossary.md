@@ -1,6 +1,6 @@
 # 软件架构术语表
 
-> 软件设计模式、架构风格相关术语
+> 软件设计模式、架构风格、编程语言相关术语
 
 ---
 
@@ -8,11 +8,13 @@
 
 | # | 术语 | 英文 | 简要说明 |
 |---|------|------|----------|
-| 1 | [六边形架构](#六边形架构-hexagonal-architecture) | Hexagonal Architecture | Ports & Adapters，核心逻辑与外部系统解耦 |
+| 1 | [六边形架构](#1-六边形架构-hexagonal-architecture) | Hexagonal Architecture | Ports & Adapters，核心逻辑与外部系统解耦 |
+| 2 | [Rust](#2-rust) | Rust | 高性能系统编程语言，注重内存安全 |
+| 3 | [Rust-backed SDKs](#3-rust-backed-sdks) | Rust-backed SDKs | 底层用 Rust/C++ 实现的高性能库 |
 
 ---
 
-## 六边形架构 (Hexagonal Architecture)
+## 1. 六边形架构 (Hexagonal Architecture) {#1-六边形架构-hexagonal-architecture}
 
 **定义：** 六边形架构（又称 Ports & Adapters）是一种软件架构模式，核心思想是将业务逻辑与外部系统（数据库、UI、硬件）解耦。
 
@@ -99,6 +101,154 @@ Cockburn 选择六边形是因为：
 
 ---
 
+## 2. Rust {#2-rust}
+
+**定义：** Rust 是一门现代系统编程语言，由 Mozilla 于 2010 年开发，以**内存安全**和**高性能**著称。
+
+---
+
+### 基本信息
+
+| 项目 | 内容 |
+|------|------|
+| **发布年份** | 2015（1.0 版本） |
+| **开发者** | Mozilla → Rust Foundation |
+| **定位** | 系统编程（替代 C/C++） |
+| **核心特性** | 无 GC 的内存安全、零成本抽象、并发安全 |
+
+### 为什么 Rust 重要？
+
+| 特性 | 说明 |
+|------|------|
+| **内存安全** | 编译期检查，无野指针、无内存泄漏 |
+| **高性能** | 无垃圾回收（GC），性能接近 C/C++ |
+| **并发安全** | 编译期防止数据竞争 |
+| **现代工具链** | Cargo 包管理器、优秀的错误提示 |
+
+### Rust vs 其他语言
+
+| 对比 | Rust | Python | C++ |
+|------|------|--------|-----|
+| **性能** | ⭐⭐⭐ 极高 | ⭐ 较低 | ⭐⭐⭐ 极高 |
+| **内存安全** | ⭐⭐⭐ 编译期保证 | ⭐⭐⭐ GC 管理 | ⭐ 手动管理 |
+| **学习曲线** | ⭐ 陡峭 | ⭐⭐⭐ 平缓 | ⭐⭐ 中等 |
+| **开发速度** | ⭐⭐ 中等 | ⭐⭐⭐ 快 | ⭐⭐ 中等 |
+
+### 在 Movement Chain AI 中的定位
+
+我们**不直接写 Rust**，而是使用 **Rust-backed SDKs**（见下节）。
+
+```text
+我们的策略:
+─────────────────────────────────────
+✅ 用 Python 写业务逻辑（快速开发）
+✅ 调用 Rust/C++ 实现的库（高性能）
+❌ 不自己写 Rust（除非 Python 成为瓶颈）
+```
+
+> 详见：[关键决策 2025-12 § Python & Rust](../design/architecture/architecture-decisions-2025-12-23.md#21-python--rust-决策--混合策略)
+
+---
+
+## 3. Rust-backed SDKs {#3-rust-backed-sdks}
+
+**定义：** Rust-backed SDKs 是指**底层用 Rust 或 C++ 实现**、但提供 Python 等高级语言接口的库。
+
+---
+
+### 核心概念
+
+```text
+你写的代码 (Python):
+─────────────────────
+import mediapipe as mp      ← 看起来像纯 Python
+pose = mp.solutions.pose    ← 用起来像纯 Python
+
+实际执行时:
+─────────────────────
+Python 代码 (接口层)
+      │
+      ▼
+ C++/Rust 代码 (核心计算)   ← 这就是 "backed"
+      │
+      ▼
+ 高速执行
+```
+
+### 这不是前端/后端
+
+| 概念 | 说明 |
+|------|------|
+| **前端** | 浏览器中的 JavaScript（❌ 不是这个） |
+| **后端** | 服务器 API（❌ 不是这个） |
+| **Rust-backed** | 库的内部实现语言（✅ 是这个） |
+
+### 常见的 Rust-backed SDKs
+
+| 库 | Python 接口 | 底层实现 | 用途 |
+|----|-------------|----------|------|
+| **MediaPipe** | `mediapipe` | C++ | 姿态估计 |
+| **ONNX Runtime** | `onnxruntime` | C++/Rust | ML 推理 |
+| **Polars** | `polars` | Rust | 数据处理（替代 Pandas） |
+| **NumPy** | `numpy` | C/Fortran | 数值计算 |
+| **PyTorch** | `torch` | C++ | 深度学习 |
+
+### 为什么用这种策略？
+
+```text
+纯 Python:
+──────────
+Python 代码 → Python 解释器 → 慢（100x）
+
+Rust-backed:
+──────────
+Python 代码 → Rust/C++ 引擎 → 快（1x）
+     ↑
+  开发简单        ↑
+              性能高
+```
+
+| 优势 | 说明 |
+|------|------|
+| **开发效率** | Python 写代码快、易调试 |
+| **运行性能** | 底层 Rust/C++ 执行快 |
+| **最佳平衡** | 两全其美 |
+
+### 什么时候需要"用 Rust 重写"？
+
+"用 Rust 重写"是指：**自己用 Rust 实现业务逻辑**，而不是调用现成的库。
+
+| 场景 | 是否需要重写 |
+|------|-------------|
+| 用 MediaPipe 做姿态估计 | ❌ 不需要，底层已优化 |
+| 用 ONNX Runtime 跑模型 | ❌ 不需要，底层已优化 |
+| **你写的 Python 业务逻辑**成为性能瓶颈 | ⚠️ 可能需要 |
+
+```text
+例如，你写了一个传感器融合算法:
+
+def fuse_sensors(imu, video):
+    # 复杂计算...每秒调用 100 次
+    return result
+
+如果这段代码太慢（比如 20ms，超过 10ms 预算）:
+─────────────────────────────────────────────────
+方案 1: 优化 Python 代码（优先）
+方案 2: 用 NumPy 向量化（次选）
+方案 3: 用 Rust 重写这个函数（最后手段）← 这就是"用 Rust 重写"
+```
+
+### 在 Movement Chain AI 中的应用
+
+| 阶段 | 策略 | 说明 |
+|------|------|------|
+| **MVP** | Python + Rust-backed SDKs | 快速验证产品 |
+| **优化期** | 识别瓶颈，按需重写 | 只重写真正慢的部分 |
+
+> 详见：[关键决策 2025-12 § Python & Rust](../design/architecture/architecture-decisions-2025-12-23.md#21-python--rust-决策--混合策略)
+
+---
+
 ## 相关文档
 
 - [关键决策 2025-12 § 六边形架构](../design/architecture/architecture-decisions-2025-12-23.md#11-六边形架构-hexagonal-architecture--确认) - 为什么选择六边形架构
@@ -108,4 +258,4 @@ Cockburn 选择六边形是因为：
 
 ---
 
-**最后更新**: 2025年12月23日
+**最后更新**: 2025年12月24日
