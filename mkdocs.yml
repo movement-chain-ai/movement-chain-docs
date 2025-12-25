@@ -112,7 +112,7 @@ nav:
   - 前置知识:
       - prerequisites/index.md
       - 高尔夫生物力学基础:
-          - prerequisites/foundations/index.md
+          - 概览: prerequisites/foundations/index.md
           - 入门教程: prerequisites/foundations/biomechanics-101.md
           - 术语表: prerequisites/foundations/biomechanics-glossary.md
           - 基准值: prerequisites/foundations/biomechanics-benchmarks.md
