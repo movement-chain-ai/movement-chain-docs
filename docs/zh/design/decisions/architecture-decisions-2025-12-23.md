@@ -10,7 +10,7 @@
 
 ## 1. 架构决策
 
-### 1.1 六边形架构 (Hexagonal Architecture) 
+### 1.1 六边形架构 (Hexagonal Architecture) {#11-六边形架构-hexagonal-architecture}
 
 > 术语解释见：[软件架构术语表 § 六边形架构](../../reference/software-glossary.md#1-六边形架构-hexagonal-architecture)
 
@@ -106,7 +106,7 @@ movement-chain-ml/
 
 ---
 
-### 1.2 [ONNX Runtime](../../reference/ml-glossary.md#3-onnx-runtime)[推理引擎](../../reference/ml-glossary.md#1-推理引擎-inference-engine)延迟引入 
+### 1.2 ONNX Runtime 延迟引入 {#12-onnx-runtime-延迟引入}
 
 **关键发现**: MediaPipe 自带 [TFLite](../../reference/ml-glossary.md#2-tflite-tensorflow-lite)推理引擎 ，ONNX Runtime 对于 MVP1 是**冗余的**
 
@@ -155,7 +155,7 @@ movement-chain-ml/
 
 ---
 
-### 1.3 CaddieSet 研究证明架构方向正确
+### 1.3 CaddieSet 研究证明架构方向正确 {#13-caddieset-研究验证}
 
 **CaddieSet** 是发表在 CVPR 2025（计算机视觉顶级会议）的高尔夫挥杆分析研究。研究者对比了两种技术路线：
 
@@ -213,7 +213,7 @@ Movement Chain AI 架构（与 CaddieSet 研究一致）：
 
 > 📖 **技术栈总览**详见 [系统设计 § 4.1](../architecture/system-design.md#41-技术栈总览)
 
-### 2.1 Python + Rust-backed SDKs 混合策略
+### 2.1 Python + Rust-backed SDKs 混合策略 {#21-python-rust-混合策略}
 
 **决策背景**:
 
@@ -532,7 +532,7 @@ build-backend = "hatchling.build"
 
 ---
 
-### 4.3 硬件购买清单 ✅ 2025-12-23 验证
+### 4.3 硬件购买清单 {#43-硬件购买清单}
 
 > **验证方法**: 多 AI 交叉验证 + SparkFun/Adafruit/DigiKey 官网确认 + 实际组装可行性分析
 > **文档状态**: 工程师评审版 (Engineer Review Ready)
@@ -1088,7 +1088,7 @@ build-backend = "hatchling.build"
 
 ---
 
-## 5. 部署策略决策
+## 5. 部署策略决策 {#5-部署策略决策}
 
 ### 5.1 本地优先 → AWS 云端 
 

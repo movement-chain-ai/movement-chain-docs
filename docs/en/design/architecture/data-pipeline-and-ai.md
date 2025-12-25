@@ -144,7 +144,7 @@ class EMGFrame:
     - Use `esp_timer_get_time()` to stamp microsecond timestamp immediately at acquisition
     - Cross-device alignment using Impact event
 
-    Details see [Key Decisions 2025-12](./architecture-decisions-2025-12-23.md#78-video-sensor-sync-solution)
+    Details see [Key Decisions 2025-12](../decisions/architecture-decisions-2025-12-23.md#45-视频与传感器同步方案)
 
 ```text
 IMU is Master Clock:

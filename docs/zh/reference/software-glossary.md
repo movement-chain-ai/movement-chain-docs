@@ -149,7 +149,7 @@ Cockburn 选择六边形是因为：
 ❌ 不自己写 Rust（除非 Python 成为瓶颈）
 ```
 
-> 详见：[关键决策 2025-12 § Python & Rust](../design/decisions/architecture-decisions-2025-12-23.md#21-python--rust-决策--混合策略)
+> 详见：[关键决策 2025-12 § Python & Rust](../design/decisions/architecture-decisions-2025-12-23.md#21-python-rust-混合策略)
 
 ---
 
@@ -248,7 +248,7 @@ def fuse_sensors(imu, video):
 | **MVP** | Python + Rust-backed SDKs | 快速验证产品 |
 | **优化期** | 识别瓶颈，按需重写 | 只重写真正慢的部分 |
 
-> 详见：[关键决策 2025-12 § Python & Rust](../design/decisions/architecture-decisions-2025-12-23.md#21-python--rust-决策--混合策略)
+> 详见：[关键决策 2025-12 § Python & Rust](../design/decisions/architecture-decisions-2025-12-23.md#21-python-rust-混合策略)
 
 ---
 
@@ -550,7 +550,7 @@ AWS Lambda (云端)
 
 ## 相关文档
 
-- [关键决策 2025-12 § 六边形架构](../design/decisions/architecture-decisions-2025-12-23.md#11-六边形架构-hexagonal-architecture--确认) - 为什么选择六边形架构
+- [关键决策 2025-12 § 六边形架构](../design/decisions/architecture-decisions-2025-12-23.md#11-六边形架构-hexagonal-architecture) - 为什么选择六边形架构
 - [关键决策 2025-12 § UV 替代 Poetry](../design/decisions/architecture-decisions-2025-12-23.md#22-uv-替代-poetry) - 包管理器选型决策
 - [关键决策 2025-12 § Polars 替代 Pandas](../design/decisions/architecture-decisions-2025-12-23.md#23-polars-替代-pandas) - 数据处理库选型决策
 - [关键决策 2025-12 § 部署策略](../design/decisions/architecture-decisions-2025-12-23.md#5-部署策略决策) - 边缘计算与云端部署决策

@@ -387,7 +387,7 @@ class TimeAlignmentManager:
     - ✅ Cross-part use Impact event alignment → eliminate BLE jitter (±15-30ms)
     - ✅ Reduce BLE device count → more stable connection
 
-    > See [Key Decisions 2025-12 §7.8](./architecture-decisions-2025-12-23.md#78-video-sensor-sync-solution)
+    > See [Key Decisions 2025-12 §4.5](../decisions/architecture-decisions-2025-12-23.md#45-视频与传感器同步方案)
 
 ### 2.5 Fusion Engine: Three Mechanisms
 

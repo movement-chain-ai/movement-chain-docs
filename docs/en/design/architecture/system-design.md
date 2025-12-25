@@ -322,7 +322,7 @@ flowchart LR
 - Different Sensor Hubs eliminate BLE jitter via Impact event alignment
 - Avoid clock drift from each sensor having independent BLE connection
 
-> Details see [Key Decisions 2025-12](./architecture-decisions-2025-12-23.md#43-hardware-purchase-list--2025-12-23-validation)
+> Details see [Key Decisions 2025-12](../decisions/architecture-decisions-2025-12-23.md#43-硬件购买清单)
 
 ---
 
