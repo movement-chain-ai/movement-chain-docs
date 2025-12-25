@@ -150,7 +150,7 @@ keypoints, scores = tracker(image)
 
 **GitHub**: [https://github.com/Tau-J/rtmlib](https://github.com/Tau-J/rtmlib)
 
-#### 关键点格式 (Keypoint Format)
+#### 关键点格式 (Keypoint Format) {#关键点格式-keypoint-format}
 
 **17个 COCO 关键点**:
 

@@ -91,7 +91,7 @@ Flutter 3.x 与 Dart 已被选为 Movement Chain AI 的主要移动开发框架�
 
 ## 2. Pose Estimation on Mobile 移动端姿态估计
 
-### 2.1 Model Selection: MediaPipe vs RTMPose 模型选择：MediaPipe对比RTMPose
+### 2.1 Model Selection: MediaPipe vs RTMPose 模型选择：MediaPipe对比RTMPose {#21-model-selection-mediapipe-vs-rtmpose}
 
 **For MVP (Current) MVP阶段（当前）**: **MediaPipe Pose** ✅
 

@@ -415,7 +415,7 @@ class TimeAlignmentManager:
 → 融合 = 完整画面，不是部分视图
 ```
 
-#### 机制 2: 双重/三重验证 (Cross-Validation)
+#### 机制 2: 双重/三重验证 (Cross-Validation) {#机制-2-双重三重验证-cross-validation}
 
 同一事件被多个传感器测量 → 捕获错误:
 

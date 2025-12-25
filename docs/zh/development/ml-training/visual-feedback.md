@@ -337,7 +337,7 @@ def calculate_optimal_viewpoint(movement_trajectory):
 
 ---
 
-#### 3. 通过动态时间规整 (DTW) 的时间对齐 (Temporal Alignment via Dynamic Time Warping)
+#### 3. 通过动态时间规整 (DTW) 的时间对齐 (Temporal Alignment via Dynamic Time Warping) {#3-通过动态时间规整-dtw-的时间对齐-temporal-alignment-via-dynamic-time-warping}
 
 **问题 Problem:** 用户和参考表演者以不同的速度执行相同的运动。直接逐帧比较没有意义。
 

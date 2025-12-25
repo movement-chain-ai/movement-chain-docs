@@ -6,7 +6,7 @@
 
 ---
 
-## 全身数据采集 Full-Body Data Collection
+## 全身数据采集 Full-Body Data Collection {#全身数据采集-full-body-data-collection}
 
 ### MediaPipe 33 关键点 (按高尔夫相关性)
 
@@ -104,7 +104,7 @@ def detect_compensation(emg_data):
 
 ---
 
-## 视频录制规范 Video Recording Standards
+## 视频录制规范 Video Recording Standards {#视频录制规范-video-recording-standards}
 
 ### 教练标准设备 (行业参考)
 
