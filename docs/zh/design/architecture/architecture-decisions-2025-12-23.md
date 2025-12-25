@@ -10,7 +10,7 @@
 
 ## 1. 架构决策
 
-### 1.1 六边形架构 (Hexagonal Architecture) ✅ 确认
+### 1.1 六边形架构 (Hexagonal Architecture) 
 
 > 术语解释见：[软件架构术语表 § 六边形架构](../../reference/software-glossary.md#1-六边形架构-hexagonal-architecture)
 
@@ -106,7 +106,7 @@ movement-chain-ml/
 
 ---
 
-### 1.2 [ONNX Runtime](../../reference/ml-glossary.md#3-onnx-runtime) 延迟引入 ✅ 确认
+### 1.2 [ONNX Runtime](../../reference/ml-glossary.md#3-onnx-runtime) 延迟引入 
 
 **关键发现**: MediaPipe 自带 [TFLite](../../reference/ml-glossary.md#2-tflite-tensorflow-lite) [推理引擎](../../reference/ml-glossary.md#1-推理引擎-inference-engine)，ONNX Runtime 对于 MVP1 是**冗余的**
 
@@ -215,7 +215,42 @@ Movement Chain AI 架构（与 CaddieSet 研究一致）：
 
 ## 2. 语言与工具链决策
 
-### 2.1 Python & Rust  ✅ 混合策略
+### 技术栈总览
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    Movement Chain AI 完整技术栈                              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐                  │
+│   │   前端      │     │   后端      │     │   嵌入式    │                  │
+│   │  (移动端)   │     │  (ML服务)   │     │  (传感器)   │                  │
+│   ├─────────────┤     ├─────────────┤     ├─────────────┤                  │
+│   │  Flutter    │     │  Python     │     │  ESP32-S3   │                  │
+│   │  (Dart)     │     │  3.11+      │     │  (C/C++)    │                  │
+│   └─────────────┘     └─────────────┘     └─────────────┘                  │
+│         │                   │                   │                          │
+│         ▼                   ▼                   ▼                          │
+│   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐                  │
+│   │ MLKit Pose  │     │ MediaPipe   │     │ ESP-IDF     │                  │
+│   │ flutter_blue│     │ FastAPI     │     │ FreeRTOS    │                  │
+│   │ camera      │     │ Polars      │     │ I2C/SPI     │                  │
+│   │ riverpod    │     │ scikit-learn│     │ BLE 5.0     │                  │
+│   └─────────────┘     └─────────────┘     └─────────────┘                  │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+| 层级 | 技术 | 语言 | 用途 |
+|------|------|------|------|
+| **前端 (移动端)** | Flutter + google_mlkit + flutter_blue_plus | Dart | iOS/Android 应用、摄像头采集、BLE 连接 |
+| **后端 (ML 服务)** | Python + FastAPI + MediaPipe | Python 3.11+ | 姿态估计、特征提取、ML 推理 |
+| **嵌入式 (传感器)** | ESP32-S3 + ESP-IDF + FreeRTOS | C/C++ | IMU 数据采集、BLE 传输 |
+| **硬件设计** | KiCad | - | PCB 设计、原理图 |
+
+---
+
+### 2.1 Python & Rust 混合策略
 
 **决策背景**:
 
@@ -289,7 +324,7 @@ Movement Chain AI 架构（与 CaddieSet 研究一致）：
 
 ---
 
-### 2.2 UV 替代 Poetry ✅ 确认
+### 2.2 UV 替代 Poetry 
 
 **决策**: 使用 UV 作为 Python 包管理器
 
@@ -329,7 +364,7 @@ uv add mediapipe opencv-python numpy scipy polars pydantic rerun-sdk imufusion n
 
 ---
 
-### 2.3 Polars 替代 Pandas ✅ 确认
+### 2.3 Polars 替代 Pandas 
 
 **决策**: 使用 Polars 处理时序传感器数据
 
@@ -405,7 +440,7 @@ result = (
 
 ---
 
-### 2.4 前端技术栈 ✅ Flutter
+### 2.4 前端技术栈 Flutter
 
 **决策**: 使用 Flutter 作为移动端开发框架
 
