@@ -6,7 +6,7 @@
 
 ---
 
-## 什么是 ML？一句话解释
+## 1. 什么是 ML？一句话解释
 
 ```text
 机器学习 = 让电脑从数据中"学习"规律，而不是人工写规则
@@ -17,12 +17,12 @@
 
 ---
 
-## 训练 vs 推理
+## 2. 训练 vs 推理
 
 !!! info "最常见的 ML 误区"
     很多人以为"用 ML"就要"训练模型"。实际上，我们可以**用别人训练好的模型**，自己只做推理。
 
-### 类比理解
+### 2.1 类比理解
 
 ```text
 训练 (Training) = 教小孩认字
@@ -38,7 +38,7 @@
 └── 用户每次挥杆都在做推理
 ```
 
-### 我们的策略
+### 2.2 我们的策略
 
 | 层 | 任务 | 是否需要训练 | 说明 |
 |----|-----|-------------|------|
@@ -51,7 +51,7 @@
 
 ---
 
-## 五层 ML 应用地图
+## 3. 五层 ML 应用地图
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -105,9 +105,9 @@
 
 ---
 
-## IMU 数据: 不需要 ML
+## 4. IMU 数据: 不需要 ML
 
-### 原始数据长什么样
+### 4.1 原始数据长什么样
 
 ```python
 # IMU 每 10ms 输出一次
@@ -122,7 +122,7 @@
 }
 ```
 
-### 用物理公式计算特征
+### 4.2 用物理公式计算特征
 
 | 指标 | 公式 | 说明 |
 |-----|------|------|
@@ -131,7 +131,7 @@
 | **节奏比** | 上杆时间 / 下杆时间 | 理想 3:1 |
 | **击球瞬间** | accel_z 突然飙升 | 加速度峰值 |
 
-### Python 代码
+### 4.3 Python 代码
 
 ```python
 import numpy as np
@@ -158,16 +158,16 @@ def extract_imu_features(gyro_z, timestamps):
     }
 ```
 
-### 研究验证
+### 4.4 研究验证
 
 > "IMU 与 3D 动捕系统对比，绝对平均差异仅 0.61-1.67 度"
 > — [IMU Validation Study (PMC10611231)](https://pmc.ncbi.nlm.nih.gov/articles/PMC10611231/)
 
 ---
 
-## EMG 数据: 不需要 ML
+## 5. EMG 数据: 不需要 ML
 
-### 原始数据长什么样
+### 5.1 原始数据长什么样
 
 ```python
 # EMG 每 5ms 输出一次 (200Hz)
@@ -178,7 +178,7 @@ def extract_imu_features(gyro_z, timestamps):
 }
 ```
 
-### 信号处理流程
+### 5.2 信号处理流程
 
 ```text
 原始EMG → 滤波 → 整流 → RMS包络 → 归一化 → 特征
@@ -189,7 +189,7 @@ def extract_imu_features(gyro_z, timestamps):
 4. 归一化: 0-100%
 ```
 
-### Python 代码
+### 5.3 Python 代码
 
 ```python
 import neurokit2 as nk  # pip install neurokit2
@@ -213,16 +213,16 @@ def check_activation_sequence(forearm_onset, core_onset):
     return core_onset < forearm_onset  # True = 正确
 ```
 
-### 研究依据
+### 5.4 研究依据
 
 > "有效球员呈现一致的'雪崩模式': 右菱形肌先激活，然后右斜方肌..."
 > — [EMG Golf Study (PMC4851105)](https://pmc.ncbi.nlm.nih.gov/articles/PMC4851105/)
 
 ---
 
-## 开源工具汇总
+## 6. 开源工具汇总
 
-### 可直接使用 (不需要训练)
+### 6.1 可直接使用 (不需要训练)
 
 !!! success "一键安装所有依赖"
     ```bash
@@ -238,7 +238,7 @@ def check_activation_sequence(forearm_onset, core_onset):
 | **NumPy** | 27k⭐ | 零点交叉、基础计算 | `pip install numpy` |
 | **OpenCV** | 80k⭐ | 视频处理 | `pip install opencv-python` |
 
-### 有预训练模型 (可选)
+### 6.2 有预训练模型 (可选)
 
 | 工具 | Stars | 功能 | 链接 |
 |-----|-------|------|------|
@@ -246,7 +246,7 @@ def check_activation_sequence(forearm_onset, core_onset):
 | **RTMPose** | 35k⭐ | 高精度姿态估计 (AP 75.8%) | [open-mmlab/mmpose](https://github.com/open-mmlab/mmpose) |
 | **YOLO11-Pose** | 60k⭐ | 超快姿态估计 (200+ FPS) | [ultralytics/ultralytics](https://github.com/ultralytics/ultralytics) |
 
-### 高尔夫挥杆分析参考仓库
+### 6.3 高尔夫挥杆分析参考仓库
 
 | 仓库 | Stars | 功能 | 技术栈 |
 |-----|-------|------|--------|
@@ -257,7 +257,7 @@ def check_activation_sequence(forearm_onset, core_onset):
 
 ---
 
-## MediaPipe vs ONNX
+## 7. MediaPipe vs ONNX
 
 !!! question "常见困惑: MediaPipe 和 ONNX 是什么关系？"
 
@@ -280,7 +280,7 @@ ONNX = 一个模型格式 (需要配合推理引擎)
 
 ---
 
-## 我们 vs 竞品的 ML 使用对比
+## 8. 我们 vs 竞品的 ML 使用对比
 
 | 层 | OnForm | 我们 | 差异 |
 |----|--------|-----|------|
@@ -294,7 +294,7 @@ ONNX = 一个模型格式 (需要配合推理引擎)
 
 ---
 
-## 相关文档
+## 9. 相关文档
 
 - [系统设计](../architecture/system-design.md) - IMU/EMG 完整处理代码
 - [SDK 选型](sdk-selection.md) - MediaPipe、NeuroKit2 等工具
@@ -302,7 +302,7 @@ ONNX = 一个模型格式 (需要配合推理引擎)
 
 ---
 
-## 研究来源
+## 10. 研究来源
 
 - [IMU Validation for Golf Swing](https://pmc.ncbi.nlm.nih.gov/articles/PMC10611231/)
 - [EMG Golf Swing Activation Patterns](https://pmc.ncbi.nlm.nih.gov/articles/PMC4851105/)
