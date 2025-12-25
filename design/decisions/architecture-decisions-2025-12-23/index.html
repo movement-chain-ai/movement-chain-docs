@@ -6818,22 +6818,22 @@
 本节仅做决策确认，详细实现请参考权威文档。</p>
 </blockquote>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>│                    时间同步决策 TIME SYNCHRONIZATION DECISION                │
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>│                    时间同步决策 TIME SYNCHRONIZATION DECISION                 │
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>│                                                                             │
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>│   ⚠️ 采样率澄清:                                                            │
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>│   ⚠️ 采样率澄清:                                                              │
 </span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>│   • IMU 内部采样: 最高 7680Hz (LSM6DSV16X 支持 7.68kHz ODR)                 │
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>│   • 实际使用: 1666Hz (低功耗平衡)                                           │
-</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>│   • BLE 传输频率: 100Hz (降采样后发送)                                       │
-</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>│   → 三个数字都正确，只是描述不同层级                                         │
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>│   • IMU 内部采样: 最高 7680Hz (LSM6DSV16X 支持 7.68kHz ODR)                    │
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>│   • 实际使用: 1666Hz (低功耗平衡)                                              │
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>│   • BLE 传输频率: 100Hz (降采样后发送)                                         │
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>│   → 三个数字都正确，只是描述不同层级                                             │
 </span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>│                                                                             │
-</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>│   核心决策: IMU 作为 Master Clock                                           │
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>│   核心决策: IMU 作为 Master Clock                                             │
 </span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>│   • Vision 30fps  → 线性插值到 IMU 时间轴                                   │
-</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>│   • EMG 1000Hz    → 三次样条插值到 IMU 时间轴                               │
-</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>│   • IMU 1666Hz    → 参考轴 (不变)                                           │
-</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>│   → 理由: IMU 采样率最高，作为时间基准最稳定                                 │
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>│   • Vision 30fps  → 线性插值到 IMU 时间轴                                      │
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>│   • EMG 1000Hz    → 三次样条插值到 IMU 时间轴                                   │
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>│   • IMU 1666Hz    → 参考轴 (不变)                                             │
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>│   → 理由: IMU 采样率最高，作为时间基准最稳定                                      │
 </span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>│                                                                             │
 </span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -6842,119 +6842,119 @@
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>│              BLE CONNECTION INTERVAL JITTER - 关键风险                       │
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>│                                                                             │
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>│   ❌ 错误方法: 用 iPhone 接收时间作为传感器时间戳                             │
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>│   ❌ 错误方法: 用 iPhone 接收时间作为传感器时间戳                                 │
 </span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>│   问题: BLE 连接间隔抖动 ±15-30ms                                           │
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>│   问题: BLE 连接间隔抖动 ±15-30ms                                              │
 </span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>│                                                                             │
-</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>│   ESP32 发送时刻        iPhone 接收时刻        抖动误差                      │
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>│   ESP32 发送时刻        iPhone 接收时刻        抖动误差                         │
 </span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>│   ────────────────      ────────────────      ────────────                  │
 </span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>│   T = 0ms               T = 17ms              +17ms                         │
 </span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>│   T = 10ms              T = 38ms              +28ms                         │
 </span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>│   T = 20ms              T = 45ms              +25ms                         │
 </span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>│   T = 30ms              T = 52ms              +22ms                         │
 </span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>│                                                                             │
-</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>│   → 这个 15-30ms 随机抖动会「掩盖」真实的 20-50ms 肌肉激活差异!              │
-</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>│   → Dowswing 阶段仅 200-400ms，30ms 误差 = 7.5-15% 相位错误                 │
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>│   → 这个 15-30ms 随机抖动会「掩盖」真实的 20-50ms 肌肉激活差异!                    │
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>│   → Dowswing 阶段仅 200-400ms，30ms 误差 = 7.5-15% 相位错误                    │
 </span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>│                                                                             │
 </span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>│   研究来源:                                                                  │
-</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>│   • PMC 2023: BLE 连接间隔 7.5-4000ms，实测抖动 ±15ms                       │
-</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>│   • arXiv 2025: 多设备 BLE 同步误差可达 30ms+                               │
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>│   • PMC 2023: BLE 连接间隔 7.5-4000ms，实测抖动 ±15ms                          │
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>│   • arXiv 2025: 多设备 BLE 同步误差可达 30ms+                                  │
 </span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>│                                                                             │
 </span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <h4 id="esp32-impact">✅ 正确同步方法: ESP32 源端时间戳 + Impact 对齐<a class="headerlink" href="#esp32-impact" title="Permanent link">&para;</a></h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>│                    正确的时间同步方案 (2025-12 验证)                          │
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>│                    正确的时间同步方案 (2025-12 验证)                            │
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>│                                                                             │
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>│   方案 1: ESP32 源端微秒时间戳 (Sensor Hub 架构)                             │
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>│   方案 1: ESP32 源端微秒时间戳 (Sensor Hub 架构)                                │
 </span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>│   核心: 同一身体部位的 IMU + EMG 共享同一个 ESP32 时钟                       │
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>│   核心: 同一身体部位的 IMU + EMG 共享同一个 ESP32 时钟                           │
 </span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>│                                                                             │
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>│   ESP32 #1 (Arm)        ESP32 #2 (Core)       ESP32 #3 (Leg)               │
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>│   ┌───────────────┐     ┌───────────────┐     ┌───────────────┐            │
-</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>│   │ LSM6DSV16X    │     │ LSM6DSV16X    │     │ LSM6DSV16X    │            │
-</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>│   │ MyoWare 2.0   │     │ MyoWare 2.0   │     │ MyoWare 2.0   │            │
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>│   │     │         │     │     │         │     │     │         │            │
-</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>│   │ 同一时钟源    │     │ 同一时钟源    │     │ 同一时钟源    │            │
-</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>│   │ esp_timer()   │     │ esp_timer()   │     │ esp_timer()   │            │
-</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>│   └───────┬───────┘     └───────┬───────┘     └───────┬───────┘            │
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>│   ESP32 #1 (Arm)        ESP32 #2 (Core)       ESP32 #3 (Leg)                │
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>│   ┌───────────────┐     ┌───────────────┐     ┌───────────────┐             │
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>│   │ LSM6DSV16X    │     │ LSM6DSV16X    │     │ LSM6DSV16X    │             │
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>│   │ MyoWare 2.0   │     │ MyoWare 2.0   │     │ MyoWare 2.0   │             │
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>│   │     │         │     │     │         │     │     │         │             │
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>│   │ 同一时钟源      │     │ 同一时钟源     │     │   同一时钟源    │             │
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>│   │ esp_timer()   │     │ esp_timer()   │     │ esp_timer()   │             │
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>│   └───────┬───────┘     └───────┬───────┘     └───────┬───────┘             │
 </span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>│           │                     │                     │                     │
 </span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>│           └──────────── BLE ────┴─────────── BLE ─────┘                     │
-</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>│                    (抖动无影响，时间戳在源端已打好)                           │
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>│                    (抖动无影响，时间戳在源端已打好)                              │
 </span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>│                                                                             │
 </span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>│   代码示例 (firmware):                                                       │
 </span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>│   uint64_t sample_time_us = esp_timer_get_time();  // 微秒精度              │
+</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>│   uint64_t sample_time_us = esp_timer_get_time();  // 微秒精度               │
 </span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>│   imu_data.timestamp_us = sample_time_us;                                   │
 </span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>│   emg_data.timestamp_us = sample_time_us;                                   │
-</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>│   // BLE 传输后，时间戳仍然准确，不受抖动影响                                 │
+</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>│   // BLE 传输后，时间戳仍然准确，不受抖动影响                                     │
 </span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>│                                                                             │
-</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>│   方案 2: Impact 对齐 (跨设备校正)                                           │
+</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>│   方案 2: Impact 对齐 (跨设备校正)                                             │
 </span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a>│   原理: 使用挥杆击球瞬间 (Impact) 作为 T=0 参考点                            │
+</span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a>│   原理: 使用挥杆击球瞬间 (Impact) 作为 T=0 参考点                                │
 </span><span id="__span-19-31"><a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>│                                                                             │
-</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a>│   录制后处理:                                                                │
-</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a>│   1. 找 IMU gyro_z 峰值时刻 → impact_imu_us                                 │
-</span><span id="__span-19-34"><a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a>│   2. 找 Vision 击球帧 → impact_vision_frame                                 │
-</span><span id="__span-19-35"><a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a>│   3. 找 EMG 峰值时刻 → impact_emg_us                                        │
-</span><span id="__span-19-36"><a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>│   4. 所有时间轴对齐到 T=0                                                    │
+</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a>│   录制后处理:                                                                 │
+</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a>│   1. 找 IMU gyro_z 峰值时刻 → impact_imu_us                                   │
+</span><span id="__span-19-34"><a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a>│   2. 找 Vision 击球帧 → impact_vision_frame                                  │
+</span><span id="__span-19-35"><a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a>│   3. 找 EMG 峰值时刻 → impact_emg_us                                          │
+</span><span id="__span-19-36"><a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>│   4. 所有时间轴对齐到 T=0                                                      │
 </span><span id="__span-19-37"><a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a>│                                                                             │
 </span><span id="__span-19-38"><a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a>│   优势:                                                                      │
-</span><span id="__span-19-39"><a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>│   • 完全消除 BLE 传输抖动                                                    │
-</span><span id="__span-19-40"><a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a>│   • 不依赖 NTP 预同步                                                        │
-</span><span id="__span-19-41"><a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a>│   • 适用于多设备场景                                                         │
+</span><span id="__span-19-39"><a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>│   • 完全消除 BLE 传输抖动                                                      │
+</span><span id="__span-19-40"><a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a>│   • 不依赖 NTP 预同步                                                         │
+</span><span id="__span-19-41"><a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a>│   • 适用于多设备场景                                                           │
 </span><span id="__span-19-42"><a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a>│                                                                             │
 </span><span id="__span-19-43"><a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <h4 id="_4">精度分析<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>│                    同步精度分析 (理论 vs 实测)                               │
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>│                    同步精度分析 (理论 vs 实测)                                 │
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>│                                                                             │
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>│   LSM6DSV16X 内部同步精度:                                                   │
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>│   LSM6DSV16X 内部同步精度:                                                    │
 </span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>│   • 加速度计/陀螺仪同步: 6.25 μs (来自 ST 数据手册)                          │
-</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>│   • FIFO 批处理延迟: 可预测，可补偿                                          │
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>│   • 加速度计/陀螺仪同步: 6.25 μs (来自 ST 数据手册)                              │
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>│   • FIFO 批处理延迟: 可预测，可补偿                                             │
 </span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>│                                                                             │
-</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>│   ESP32 源端时间戳精度:                                                      │
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>│   ESP32 源端时间戳精度:                                                       │
 </span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>│   ─────────────────────────────────────                                     │
 </span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>│   • esp_timer_get_time() 精度: ~1 μs                                        │
-</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>│   • 同一 ESP32 上 IMU+EMG 同步: &lt;10 μs                                      │
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>│   • 同一 ESP32 上 IMU+EMG 同步: &lt;10 μs                                        │
 </span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>│                                                                             │
-</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>│   跨设备同步 (ESP32 #1 ↔ ESP32 #2):                                         │
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>│   跨设备同步 (ESP32 #1 ↔ ESP32 #2):                                           │
 </span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>│   • Impact 对齐后: 69-477 μs (取决于 IMU ODR)                               │
-</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>│   • 计算: 1/(2×ODR) = 1/(2×7680) = 65 μs (最佳情况)                         │
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>│   • Impact 对齐后: 69-477 μs (取决于 IMU ODR)                                 │
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>│   • 计算: 1/(2×ODR) = 1/(2×7680) = 65 μs (最佳情况)                           │
 </span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>│                                                                             │
-</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>│   精度目标更新:                                                              │
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>│   精度目标更新:                                                               │
 </span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>│   │ 场景                    │ 目标精度    │ 实际可达   │ 状态  │            │
-</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>│   │─────────────────────────│─────────────│───────────│───────│            │
-</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>│   │ 同一 ESP32 (IMU+EMG)    │ &lt;100 μs    │ &lt;10 μs    │ ✅    │            │
-</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>│   │ 跨 ESP32 (Arm↔Core↔Leg) │ &lt;1 ms      │ 69-477 μs │ ✅    │            │
-</span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>│   │ 跨设备 (ESP32↔iPhone)   │ &lt;10 ms     │ &lt;5 ms     │ ✅    │            │
+</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>│   │ 场景                    │ 目标精度    │ 实际可达   │ 状态  │                │
+</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>│   │─────────────────────────│─────────────│───────────│───────│             │
+</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>│   │ 同一 ESP32 (IMU+EMG)    │ &lt;100 μs    │ &lt;10 μs    │ ✅    │               │
+</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>│   │ 跨 ESP32 (Arm↔Core↔Leg) │ &lt;1 ms      │ 69-477 μs │ ✅    │              │
+</span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>│   │ 跨设备 (ESP32↔iPhone)   │ &lt;10 ms     │ &lt;5 ms     │ ✅    │               │
 </span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>│                                                                             │
-</span><span id="__span-20-28"><a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>│   结论: 通过 Sensor Hub + Impact 对齐，精度远超 &lt;10ms 目标                   │
+</span><span id="__span-20-28"><a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>│   结论: 通过 Sensor Hub + Impact 对齐，精度远超 &lt;10ms 目标                       │
 </span><span id="__span-20-29"><a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>│                                                                             │
 </span><span id="__span-20-30"><a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <h4 id="multi-unit-sync-topology-2025-12-23">多单元时间同步拓扑 (Multi-Unit Sync Topology) ✅ 2025-12-23<a class="headerlink" href="#multi-unit-sync-topology-2025-12-23" title="Permanent link">&para;</a></h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>│               多单元时间同步 — 3 个独立 Sensor Hub                            │
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>│               多单元时间同步 — 3 个独立 Sensor Hub                             │
 </span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>│                                                                             │
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>│   问题: 每个 Sensor Hub 是独立的 ESP32，各有自己的时钟                       │
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>│         如何让 3 个独立时钟对齐？                                            │
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>│   问题: 每个 Sensor Hub 是独立的 ESP32，各有自己的时钟                           │
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>│         如何让 3 个独立时钟对齐？                                               │
 </span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>│                                                                             │
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>│   ┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐          │
-</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>│   │  ESP32 #1       │   │  ESP32 #2       │   │  ESP32 #3       │          │
-</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>│   │  手臂 (Arm)     │   │  核心 (Core)    │   │  腿部 (Leg)     │          │
-</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>│   │ ┌─────┬───────┐ │   │ ┌─────┬───────┐ │   │ ┌─────┬───────┐ │          │
-</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>│   │ │ IMU │  EMG  │ │   │ │ IMU │  EMG  │ │   │ │ IMU │  EMG  │ │          │
-</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>│   │ └─────┴───────┘ │   │ └─────┴───────┘ │   │ └─────┴───────┘ │          │
-</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>│   │   时钟 A        │   │   时钟 B        │   │   时钟 C        │          │
-</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>│   └────────┬────────┘   └────────┬────────┘   └────────┬────────┘          │
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>│   ┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐           │
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>│   │  ESP32 #1       │   │  ESP32 #2       │   │  ESP32 #3       │           │
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>│   │  手臂 (Arm)      │   │  核心 (Core)    │   │   腿部 (Leg)     │           │
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>│   │ ┌─────┬───────┐ │   │ ┌─────┬───────┐ │   │ ┌─────┬───────┐ │           │
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>│   │ │ IMU │  EMG  │ │   │ │ IMU │  EMG  │ │   │ │ IMU │  EMG  │ │           │
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>│   │ └─────┴───────┘ │   │ └─────┴───────┘ │   │ └─────┴───────┘ │           │
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>│   │   时钟 A        │   │   时钟 B        │   │   时钟 C        │             │
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>│   └────────┬────────┘   └────────┬────────┘   └────────┬────────┘           │
 </span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>│            │                     │                     │                    │
 </span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>│            └──────────── BLE ────┴──────────── BLE ────┘                    │
 </span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>│                                  ↓                                          │
