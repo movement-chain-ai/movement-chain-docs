@@ -53,6 +53,22 @@
 
 ---
 
+### AI 辅助开发 AI Assistant
+
+使用 Claude Agent SDK 提升开发效率。
+
+| 文档 | 描述 |
+|-----|------|
+| [Agent SDK 指南](ai-assistant/agent-sdk-guide.md) | 从 CLI 到可编程 Agent 的进阶路径 |
+
+**核心概念**:
+
+- Workflow vs Agent 模式
+- Orchestrator-Workers 多 Agent 协作
+- Skills 技能系统
+
+---
+
 ## 系统架构
 
 ```text

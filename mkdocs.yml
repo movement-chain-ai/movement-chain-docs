@@ -215,6 +215,8 @@ nav:
       - ML 训练:
           - development/ml-training/datasets.md
           - development/ml-training/visual-feedback.md
+      - AI 辅助开发:
+          - Agent SDK 指南: development/ai-assistant/agent-sdk-guide.md
 
   - 参考资料与术语:
       - 概览: reference/index.md
