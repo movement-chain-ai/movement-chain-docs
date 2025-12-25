@@ -1945,7 +1945,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         推荐阅读顺序
@@ -5042,7 +5042,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         推荐阅读顺序
@@ -5856,51 +5856,13 @@
 </tr>
 </tbody>
 </table>
-<h4 id="_3">技术选型理由<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>选择</th>
-<th>理由</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Flutter</strong></td>
-<td>一套代码 → iOS + Android，开发效率高</td>
-</tr>
-<tr>
-<td><strong>Python</strong></td>
-<td>ML 生态最强，MediaPipe/scikit-learn 都是 Python</td>
-</tr>
-<tr>
-<td><strong>ESP32-S3</strong></td>
-<td>便宜 ($4)、有 BLE、有 AI 加速、社区成熟</td>
-</tr>
-<tr>
-<td><strong>LSM6DSV16X</strong></td>
-<td>专业级 IMU，45+ 分钟不漂移，内置 ML 核心</td>
-</tr>
-<tr>
-<td><strong>ADS1292</strong></td>
-<td>医疗级 EMG 模拟前端，2 通道够用</td>
-</tr>
-<tr>
-<td><strong>KiCad</strong></td>
-<td>免费开源，功能完整，可用 Git 管理</td>
-</tr>
-<tr>
-<td><em>数据库/部署</em></td>
-<td><em>待定</em></td>
-</tr>
-</tbody>
-</table>
 <h3 id="42-mvp">4.2 MVP 核心选型<a class="headerlink" href="#42-mvp" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
 <th>层级</th>
 <th>技术</th>
+<th>选型理由</th>
 <th>决策依据</th>
 </tr>
 </thead>
@@ -5908,47 +5870,74 @@
 <tr>
 <td><strong>项目结构</strong></td>
 <td>多仓库 (5 repos)</td>
+<td>独立部署、独立版本控制</td>
 <td><a href="../../decisions/0001-multi-repo-structure/">ADR-0001</a></td>
 </tr>
 <tr>
 <td><strong>移动端</strong></td>
 <td>Flutter 3.x</td>
+<td>一套代码 → iOS + Android，开发效率高</td>
 <td><a href="../../decisions/0003-flutter-mobile/">ADR-0003</a></td>
 </tr>
 <tr>
+<td><strong>后端</strong></td>
+<td>Python 3.11+</td>
+<td>ML 生态最强，MediaPipe/scikit-learn 都是 Python</td>
+<td>-</td>
+</tr>
+<tr>
 <td><strong>姿态估计</strong></td>
-<td>MediaPipe Pose (ThinkSys plugin)</td>
-<td>iOS可用，33关键点</td>
+<td>MediaPipe Pose</td>
+<td>iOS 可用，33 关键点</td>
+<td>ThinkSys plugin</td>
 </tr>
 <tr>
 <td><strong>MCU</strong></td>
 <td>XIAO ESP32S3</td>
-<td>Seeed 113991114, Sensor Hub 架构</td>
+<td>便宜 ($4)、有 BLE、有 AI 加速、社区成熟</td>
+<td>Seeed 113991114</td>
 </tr>
 <tr>
 <td><strong>IMU</strong></td>
 <td>Adafruit LSM6DSV16X</td>
-<td>ADA-5783, 更好的 Arduino 库</td>
+<td>专业级 45+ 分钟不漂移，内置 ML 核心</td>
+<td>ADA-5783</td>
 </tr>
 <tr>
 <td><strong>EMG</strong></td>
 <td>MyoWare 2.0 + Link Shield</td>
-<td>SparkFun DEV-21265 + DEV-18425</td>
+<td>消费级 EMG，2 通道够用</td>
+<td>SparkFun DEV-21265</td>
 </tr>
 <tr>
-<td><strong>ML推理</strong></td>
+<td><strong>PCB 设计</strong></td>
+<td>KiCad</td>
+<td>免费开源，功能完整，可用 Git 管理</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>ML 推理</strong></td>
 <td>TFLite (MediaPipe 内置)</td>
-<td>MVP1 用 TFLite; ONNX Runtime 延迟到 Phase 2 (<a href="../../decisions/0006-onnx-runtime-deployment/">ADR-0006</a>)</td>
+<td>MVP1 开箱即用; Phase 2 升级 ONNX Runtime</td>
+<td><a href="../../decisions/0006-onnx-runtime-deployment/">ADR-0006</a></td>
 </tr>
 <tr>
 <td><strong>LLM</strong></td>
 <td>OpenAI GPT-4o-mini</td>
 <td>成本低，速度快</td>
+<td>-</td>
 </tr>
 <tr>
 <td><strong>TTS</strong></td>
 <td>flutter_tts (系统)</td>
-<td>开箱即用</td>
+<td>开箱即用，免费</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>数据库/部署</strong></td>
+<td><em>待定</em></td>
+<td>-</td>
+<td>-</td>
 </tr>
 </tbody>
 </table>
@@ -6222,12 +6211,12 @@
 </ul>
 <hr />
 <h2 id="6">6. 文档索引<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
-<h3 id="_4">推荐阅读顺序<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<h4 id="_5">第一步: 理解总体架构<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<h3 id="_3">推荐阅读顺序<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h4 id="_4">第一步: 理解总体架构<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>[本文档]</strong> system-design.md ← 你在这里</li>
 </ul>
-<h4 id="_6">第二步: 理解核心算法<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<h4 id="_5">第二步: 理解核心算法<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong><a href="../modular-architecture/">模块化架构</a></strong> - LEGO 积木式设计，各模块升级路径</li>
 <li><strong><a href="../data-pipeline-and-ai/">数据管道与AI</a></strong> - 数据流、传感器融合、时间同步策略</li>
@@ -6237,12 +6226,12 @@
 <li><strong><a href="../../specs/swing-comparison/">挥杆对比</a></strong> - 4种对比方法，DTW算法</li>
 <li><strong><a href="../../specs/real-time-feedback/">实时反馈</a></strong> - 3种反馈模式规格</li>
 </ul>
-<h4 id="_7">第三步: 理解数据来源<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<h4 id="_6">第三步: 理解数据来源<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong><a href="../../foundations/biomechanics-benchmarks/">生物力学基准</a></strong> - 阈值数据来源</li>
 <li><strong><a href="../../foundations/biomechanics-glossary/">生物力学术语</a></strong> - 140+术语定义</li>
 </ul>
-<h4 id="_8">角色专属入口<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<h4 id="_7">角色专属入口<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
