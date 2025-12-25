@@ -146,6 +146,12 @@ nav:
 
   - 技术设计:
       - 概览: design/index.md
+      - 角色指南:
+          - 概览: design/briefs/index.md
+          - 软件工程师: design/briefs/software-engineer.md
+          - 移动开发者: design/briefs/mobile-developer.md
+          - 硬件工程师: design/briefs/hardware-engineer.md
+          - 高尔夫顾问: design/briefs/golf-advisor.md
       - 核心架构:
           - 概览: design/architecture/index.md
           - 系统设计: design/architecture/system-design.md
@@ -171,12 +177,6 @@ nav:
       - 竞品研究:
           - 概览: design/research/index.md
           - 竞品指标对比: design/research/competitor-metrics-comparison.md
-      - 角色指南:
-          - 概览: design/briefs/index.md
-          - 软件工程师: design/briefs/software-engineer.md
-          - 移动开发者: design/briefs/mobile-developer.md
-          - 硬件工程师: design/briefs/hardware-engineer.md
-          - 高尔夫顾问: design/briefs/golf-advisor.md
 
   - 硬件组件:
       - 概览: components/index.md
