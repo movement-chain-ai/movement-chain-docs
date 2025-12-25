@@ -227,7 +227,8 @@ Movement Chain AI 架构（与 CaddieSet 研究一致）：
 │   │  (移动端)   │     │  (ML服务)   │     │ (MCU+传感器)│                  │
 │   ├─────────────┤     ├─────────────┤     ├─────────────┤                  │
 │   │  Flutter    │     │  Python     │     │  ESP32-S3   │ ← MCU (大脑)    │
-│   │  (Dart)     │     │  3.11+      │     │  LSM6DSV16X │ ← IMU (传感器)  │
+│   │  (Dart)     │     │  3.11+      │     │  LSM6DSV16X │ ← IMU (运动)    │
+│   │             │     │             │     │  ADS1292    │ ← EMG (肌电)    │
 │   └─────────────┘     └─────────────┘     └─────────────┘                  │
 │         │                   │                   │                          │
 │         ▼                   ▼                   ▼                          │
@@ -245,12 +246,13 @@ Movement Chain AI 架构（与 CaddieSet 研究一致）：
 |------|------|------|------|
 | **前端 (移动端)** | Flutter + google_mlkit + flutter_blue_plus | Dart | iOS/Android 应用、摄像头采集、BLE 连接 |
 | **后端 (ML 服务)** | Python + FastAPI + MediaPipe | Python 3.11+ | 姿态估计、特征提取、ML 推理 |
-| **嵌入式 (MCU)** | ESP32-S3 (微控制器) + LSM6DSV16X (IMU 传感器) | C/C++ | 读取 IMU 数据、BLE 传输到手机 |
+| **嵌入式 (MCU)** | ESP32-S3 (微控制器) | C/C++ | 读取传感器、数据处理、BLE 传输 |
+| **传感器** | LSM6DSV16X (IMU) + ADS1292 (EMG) | - | 运动数据 + 肌电信号采集 |
 | **硬件设计** | KiCad | - | PCB 设计、原理图 |
 
 ---
 
-### 2.1 Python & Rust 混合策略
+### 2.1 Python + Rust-backed SDKs 混合策略
 
 **决策背景**:
 
