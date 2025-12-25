@@ -141,7 +141,7 @@ $$
 - **Tour Tempo 方法**：使用节拍器，常用节拍 21/7（上杆21拍，下杆7拍）
 - **关注过渡区**：上杆顶点到下杆启动的转换，最容易打乱节奏
 
-> 详细生物力学分析见：[生物力学入门 - 节奏比](foundations/biomechanics-101.md#节奏比-tempo-ratio)
+> 详细生物力学分析见：[生物力学入门 - 节奏比](../prerequisites/foundations/biomechanics-101.md#节奏比-tempo-ratio)
 
 ---
 
@@ -188,7 +188,7 @@ $$
     2. **算法复用**：动作分析只需一套逻辑，通过配置切换左右手模式
     3. **数据通用性**：标注和指标报告对两种球员通用，无需维护两套术语
 
-> 详细生物力学分析见：[生物力学入门 - 引导侧与后侧](foundations/biomechanics-101.md#14-引导侧与后侧-lead-side--trail-side)
+> 详细生物力学分析见：[生物力学入门 - 引导侧与后侧](../prerequisites/foundations/biomechanics-101.md#14-引导侧与后侧-lead-side--trail-side)
 
 ---
 
@@ -315,7 +315,7 @@ X-Factor Stretch：15-25%          5-10%
 
     这些指标帮助球手优化挥杆效率，间接提升杆头速度。
 
-> 详细生物力学分析见：[生物力学入门 - 杆头速度](foundations/biomechanics-101.md#杆头速度-线速度)
+> 详细生物力学分析见：[生物力学入门 - 杆头速度](../prerequisites/foundations/biomechanics-101.md#杆头速度-线速度)
 
 ---
 
@@ -419,7 +419,7 @@ X-Factor Stretch 利用了运动生物力学中的核心原理：
 
     这是区分业余与职业挥杆的**核心指标之一**。
 
-> 详细生物力学分析见：[生物力学入门 - X-Factor Stretch](foundations/biomechanics-101.md#23-x-factor-stretch职业球手的秘密武器)
+> 详细生物力学分析见：[生物力学入门 - X-Factor Stretch](../prerequisites/foundations/biomechanics-101.md#23-x-factor-stretch职业球手的秘密武器)
 
 ---
 
@@ -638,7 +638,7 @@ TBP 反映了**角动量传递的时机**：
 
     TBP 是诊断**运动链时序问题**的核心指标。
 
-> 详细生物力学分析见：[生物力学入门 - 运动链时序](foundations/biomechanics-101.md)
+> 详细生物力学分析见：[生物力学入门 - 运动链时序](../prerequisites/foundations/biomechanics-101.md)
 
 ---
 
@@ -864,7 +864,7 @@ Draw 派: Tiger Woods, Rory McIlroy, Ben Hogan
 
     通过纠正挥杆动作，间接改善球路问题。
 
-> Over-the-Top 分析见：[生物力学入门 - Over-the-Top](foundations/biomechanics-101.md#63-over-the-top-外侧下杆)
+> Over-the-Top 分析见：[生物力学入门 - Over-the-Top](../prerequisites/foundations/biomechanics-101.md#63-over-the-top-外侧下杆)
 
 ---
 
@@ -873,8 +873,8 @@ Draw 派: Tiger Woods, Rory McIlroy, Ben Hogan
 - [物理学术语表](physics-glossary.md) - 力学概念（角速度、角动量等）
 - [工程术语表](engineering-glossary.md) - 嵌入式系统、传感器工程术语
 - [商业术语表](business-glossary.md) - 商业相关术语
-- [生物力学入门](foundations/biomechanics-101.md) - 挥杆生物力学基础
-- [生物力学术语表](foundations/biomechanics-glossary.md) - 专业生物力学术语
+- [生物力学入门](../prerequisites/foundations/biomechanics-101.md) - 挥杆生物力学基础
+- [生物力学术语表](../prerequisites/foundations/biomechanics-glossary.md) - 专业生物力学术语
 
 ---
 

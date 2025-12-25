@@ -306,7 +306,7 @@
 
 ### 软件工程师 (2-3 小时)
 
-1. [生物力学入门](reference/foundations/biomechanics-101.md) → 领域知识 (90 分钟)
+1. [生物力学入门](prerequisites/foundations/biomechanics-101.md) → 领域知识 (90 分钟)
 2. [系统设计](design/architecture/system-design.md) → 4 模块流水线
 3. [模块化架构](design/architecture/modular-architecture.md) → LEGO 积木块设计
 4. [数据流与反馈](design/architecture/data-pipeline-and-ai.md) → Kinematic Prompts
@@ -314,7 +314,7 @@
 
 ### 新团队成员 (按角色)
 
-1. [生物力学入门](reference/foundations/biomechanics-101.md) → ⭐ **必读基础** (90 分钟)
+1. [生物力学入门](prerequisites/foundations/biomechanics-101.md) → ⭐ **必读基础** (90 分钟)
 2. [系统设计](design/architecture/system-design.md) → 理解 MVP 架构
 3. 然后阅读你的角色 Brief:
     - 软件工程师 → [design/briefs/software-engineer.md](design/briefs/software-engineer.md)
@@ -331,7 +331,7 @@
 | MVP 核心架构 | [系统设计](design/architecture/system-design.md) |
 | 2025 最新技术决策 | [架构决策 2025-12-23](design/architecture/architecture-decisions-2025-12-23.md) |
 | 技术选型记录 | [ADR 索引](design/decisions/index.md) |
-| 生物力学术语 | [术语表 (140+ 词条)](reference/foundations/biomechanics-glossary.md) |
+| 生物力学术语 | [术语表 (140+ 词条)](prerequisites/foundations/biomechanics-glossary.md) |
 | 竞品分析 | [IMU 竞品](business-plan/market-insights/competitors/imu-based.md) / [Vision 竞品](business-plan/market-insights/competitors/vision-based.md) |
 | 开源工具 | [工具与代码库](reference/open-source-tools.md) |
 

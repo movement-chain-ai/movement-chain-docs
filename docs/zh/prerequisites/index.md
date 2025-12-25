@@ -34,7 +34,7 @@ Movement Chain AI 融合了多个领域：
 
 | 顺序 | 文档 | 内容 | 时间 |
 |:----:|------|------|:----:|
-| 1 | [生物力学入门](../reference/foundations/biomechanics-101.md) | 挥杆物理学、运动链、8个阶段 | 90 分钟 |
+| 1 | [生物力学入门](foundations/biomechanics-101.md) | 挥杆物理学、运动链、8个阶段 | 90 分钟 |
 | 2 | [高尔夫术语表](../reference/golf-glossary.md) | 差点、节奏比、杆头速度等 | 30 分钟 |
 | 3 | [物理学术语表](../reference/physics-glossary.md) | 角速度、角动量、转动惯量 | 20 分钟 |
 
@@ -56,7 +56,7 @@ Movement Chain AI 融合了多个领域：
 |------|------|------|
 | **8 个挥杆阶段** | Address → Takeaway → ... → Follow-through | [挥杆阶段](../design/specs/swing-phases.md) |
 | **节奏比 3:1** | 上杆:下杆时间比，职业球手标准 | [高尔夫术语表](../reference/golf-glossary.md#2-节奏比-tempo-ratio) |
-| **X-Factor** | 肩膀与髋部旋转差，爆发力来源 | [生物力学入门](../reference/foundations/biomechanics-101.md) |
+| **X-Factor** | 肩膀与髋部旋转差，爆发力来源 | [生物力学入门](foundations/biomechanics-101.md) |
 
 ### 传感器技术
 
@@ -81,7 +81,7 @@ Movement Chain AI 融合了多个领域：
 | 领域 | 术语表 | 词条数 |
 |------|--------|:------:|
 | 高尔夫 | [高尔夫术语表](../reference/golf-glossary.md) | 25+ |
-| 生物力学 | [生物力学术语表](../reference/foundations/biomechanics-glossary.md) | 140+ |
+| 生物力学 | [生物力学术语表](foundations/biomechanics-glossary.md) | 140+ |
 | 物理学 | [物理学术语表](../reference/physics-glossary.md) | 15+ |
 | 工程 | [工程术语表](../reference/engineering-glossary.md) | 10+ |
 | 软件 | [软件术语表](../reference/software-glossary.md) | 6+ |

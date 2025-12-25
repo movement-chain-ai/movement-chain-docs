@@ -109,7 +109,13 @@ extra:
 nav:
   - 首页: index.md
 
-  - 前置知识: prerequisites/index.md
+  - 前置知识:
+      - prerequisites/index.md
+      - 生物力学基础:
+          - prerequisites/foundations/index.md
+          - 入门教程: prerequisites/foundations/biomechanics-101.md
+          - 术语表: prerequisites/foundations/biomechanics-glossary.md
+          - 基准值: prerequisites/foundations/biomechanics-benchmarks.md
 
   - 商业计划:
       - business-plan/index.md
@@ -211,11 +217,6 @@ nav:
 
   - 参考资料:
       - reference/index.md
-      - 生物力学基础:
-          - reference/foundations/index.md
-          - 入门教程: reference/foundations/biomechanics-101.md
-          - 术语表: reference/foundations/biomechanics-glossary.md
-          - 基准值: reference/foundations/biomechanics-benchmarks.md
       - reference/golf-glossary.md
       - reference/physics-glossary.md
       - reference/engineering-glossary.md
