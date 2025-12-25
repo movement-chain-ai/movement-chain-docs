@@ -73,4 +73,4 @@
 
 ## 下一步
 
-完成基础阅读后，请前往 [核心架构](../../design/architecture/) 了解系统设计。
+完成基础阅读后，请前往 [核心架构](../../design/architecture/index.md) 了解系统设计。
