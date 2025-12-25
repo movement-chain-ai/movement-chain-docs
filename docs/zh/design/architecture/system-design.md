@@ -342,31 +342,22 @@ flowchart LR
 | **[I2C/SPI](../../reference/engineering-glossary.md#6-i2c--spi-通信协议)** | MCU 与传感器的通信协议 |
 | **BLE 5.0** | 与手机的无线通信 |
 
-#### 技术选型理由
-
-| 选择 | 理由 |
-|------|------|
-| **Flutter** | 一套代码 → iOS + Android，开发效率高 |
-| **Python** | ML 生态最强，MediaPipe/scikit-learn 都是 Python |
-| **ESP32-S3** | 便宜 ($4)、有 BLE、有 AI 加速、社区成熟 |
-| **LSM6DSV16X** | 专业级 IMU，45+ 分钟不漂移，内置 ML 核心 |
-| **ADS1292** | 医疗级 EMG 模拟前端，2 通道够用 |
-| **KiCad** | 免费开源，功能完整，可用 Git 管理 |
-| *数据库/部署* | *待定* |
-
 ### 4.2 MVP 核心选型
 
-| 层级 | 技术 | 决策依据 |
-|------|------|----------|
-| **项目结构** | 多仓库 (5 repos) | [ADR-0001](../decisions/0001-multi-repo-structure.md) |
-| **移动端** | Flutter 3.x | [ADR-0003](../decisions/0003-flutter-mobile.md) |
-| **姿态估计** | MediaPipe Pose (ThinkSys plugin) | iOS可用，33关键点 |
-| **MCU** | XIAO ESP32S3 | Seeed 113991114, Sensor Hub 架构 |
-| **IMU** | Adafruit LSM6DSV16X | ADA-5783, 更好的 Arduino 库 |
-| **EMG** | MyoWare 2.0 + Link Shield | SparkFun DEV-21265 + DEV-18425 |
-| **ML推理** | TFLite (MediaPipe 内置) | MVP1 用 TFLite; ONNX Runtime 延迟到 Phase 2 ([ADR-0006](../decisions/0006-onnx-runtime-deployment.md)) |
-| **LLM** | OpenAI GPT-4o-mini | 成本低，速度快 |
-| **TTS** | flutter_tts (系统) | 开箱即用 |
+| 层级 | 技术 | 选型理由 | 决策依据 |
+|------|------|----------|----------|
+| **项目结构** | 多仓库 (5 repos) | 独立部署、独立版本控制 | [ADR-0001](../decisions/0001-multi-repo-structure.md) |
+| **移动端** | Flutter 3.x | 一套代码 → iOS + Android，开发效率高 | [ADR-0003](../decisions/0003-flutter-mobile.md) |
+| **后端** | Python 3.11+ | ML 生态最强，MediaPipe/scikit-learn 都是 Python | - |
+| **姿态估计** | MediaPipe Pose | iOS 可用，33 关键点 | ThinkSys plugin |
+| **MCU** | XIAO ESP32S3 | 便宜 ($4)、有 BLE、有 AI 加速、社区成熟 | Seeed 113991114 |
+| **IMU** | Adafruit LSM6DSV16X | 专业级 45+ 分钟不漂移，内置 ML 核心 | ADA-5783 |
+| **EMG** | MyoWare 2.0 + Link Shield | 消费级 EMG，2 通道够用 | SparkFun DEV-21265 |
+| **PCB 设计** | KiCad | 免费开源，功能完整，可用 Git 管理 | - |
+| **ML 推理** | TFLite (MediaPipe 内置) | MVP1 开箱即用; Phase 2 升级 ONNX Runtime | [ADR-0006](../decisions/0006-onnx-runtime-deployment.md) |
+| **LLM** | OpenAI GPT-4o-mini | 成本低，速度快 | - |
+| **TTS** | flutter_tts (系统) | 开箱即用，免费 | - |
+| **数据库/部署** | *待定* | - | - |
 
 ### 4.3 MVP 简化策略
 
