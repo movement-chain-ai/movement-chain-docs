@@ -5798,9 +5798,10 @@
 </blockquote>
 <p><strong>4. 部署/DevOps</strong></p>
 <blockquote>
-<p>⚠️ <strong>待定</strong></p>
+<p>⚠️ <strong>待定</strong> (MVP 完全本地运行)</p>
 <p>相关决策：
-- CI/CD 策略见 <a href="../../decisions/0001-multi-repo-structure/">ADR-0001 多仓库结构</a></p>
+- CI/CD 策略见 <a href="../../decisions/0001-multi-repo-structure/">ADR-0001 多仓库结构</a>
+- 部署策略见 <a href="../architecture-decisions-2025-12-23/#5-部署策略决策">关键决策 2025-12 § 部署策略</a></p>
 </blockquote>
 <p><strong>5. 嵌入式 (MCU + 传感器)</strong></p>
 <table>
@@ -6062,7 +6063,7 @@
 <blockquote>
 <p>📐 <strong>时间同步策略</strong>: 详细规格见 <a href="../data-pipeline-and-ai/">数据管道与AI</a> §1.2</p>
 </blockquote>
-<p><strong>核心问题</strong>: BLE 协议存在 15-30ms 抖动 (2025-12 研究验证),无法通过软件完全消除。</p>
+<p><strong>核心问题</strong>: BLE 协议存在 15-30ms <a href="../../../reference/engineering-glossary/#10-ble-抖动-ble-jitter">抖动</a> (2025-12 研究验证),无法通过软件完全消除。</p>
 <p><strong>解决方案</strong>: 同一身体部位的 IMU + EMG 共享同一个 ESP32 时钟源</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>┌─────────────────────────────────────────────────────────────────┐
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>│                    Sensor Hub 架构                               │

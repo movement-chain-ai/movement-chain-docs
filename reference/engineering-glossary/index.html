@@ -4648,7 +4648,79 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#10-ble-ble-jitter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. BLE 抖动 (BLE Jitter)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. BLE 抖动 (BLE Jitter)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是抖动？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        抖动的来源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么这是问题？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensor-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解决方案：Sensor Hub 架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        跨设备时间对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -5429,7 +5501,79 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#10-ble-ble-jitter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. BLE 抖动 (BLE Jitter)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. BLE 抖动 (BLE Jitter)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是抖动？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        抖动的来源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么这是问题？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensor-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解决方案：Sensor Hub 架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        跨设备时间对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -5528,6 +5672,12 @@
 <td><a href="#9-kicad">KiCad</a></td>
 <td>KiCad</td>
 <td>开源 EDA 软件，用于 PCB 设计</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="#10-ble-抖动-ble-jitter">BLE 抖动</a></td>
+<td>BLE Jitter</td>
+<td>蓝牙低功耗传输的时间不确定性，15-30ms</td>
 </tr>
 </tbody>
 </table>
@@ -6607,7 +6757,101 @@ f_s \geq 2 \times 500 = 1000 \text{ Hz}
 </tbody>
 </table>
 <hr />
-<h2 id="_17">相关文档<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<h2 id="10-ble-ble-jitter">10. BLE 抖动 (BLE Jitter)<a class="headerlink" href="#10-ble-ble-jitter" title="Permanent link">&para;</a></h2>
+<p><strong>定义：</strong> BLE 抖动是指蓝牙低功耗 (Bluetooth Low Energy) 协议在数据传输时的时间不确定性，典型值为 15-30ms。</p>
+<hr />
+<h3 id="_17">什么是抖动？<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>抖动 (Jitter) 是指信号传输延迟的<strong>变化量</strong>，而非延迟本身。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>理想情况（无抖动）:
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ESP32 发送数据 ──────────────────&gt; 手机接收（延迟固定 10ms）
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>ESP32 发送数据 ──────────────────&gt; 手机接收（延迟固定 10ms）
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>实际情况（有抖动）:
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>ESP32 发送数据 ──────────────────&gt; 手机接收（延迟 8ms）
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>ESP32 发送数据 ──────────────────&gt; 手机接收（延迟 25ms）  ← 抖动!
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>ESP32 发送数据 ──────────────────&gt; 手机接收（延迟 15ms）
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>ESP32 发送数据 ──────────────────&gt; 手机接收（延迟 30ms）  ← 抖动!
+</span></code></pre></div>
+<h3 id="_18">抖动的来源<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>原因</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>连接间隔</strong></td>
+<td>BLE 每 7.5-4000ms 才有一次传输窗口</td>
+</tr>
+<tr>
+<td><strong>跳频机制</strong></td>
+<td>BLE 在 37 个信道间跳转，时间不固定</td>
+</tr>
+<tr>
+<td><strong>重传机制</strong></td>
+<td>数据丢失时需重传，增加延迟</td>
+</tr>
+<tr>
+<td><strong>多设备竞争</strong></td>
+<td>多个 ESP32 共享带宽时互相影响</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_19">为什么这是问题？<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>对于高尔夫挥杆分析，BLE 抖动会破坏<strong>多传感器时间同步</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>数值</th>
+<th>问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下杆时间</td>
+<td>200-300ms</td>
+<td>BLE 抖动占 5-15%</td>
+</tr>
+<tr>
+<td>Impact 瞬间</td>
+<td>~0.5ms</td>
+<td>抖动是 Impact 的 30-60 倍</td>
+</tr>
+<tr>
+<td>肌肉激活顺序</td>
+<td>10-50ms 差异</td>
+<td>抖动可能颠倒顺序</td>
+</tr>
+</tbody>
+</table>
+<p>如果前臂 ESP32 和手腕 ESP32 的数据有 30ms 时间偏差，肌肉激活顺序分析就会<strong>完全错误</strong>。</p>
+<h3 id="sensor-hub">解决方案：Sensor Hub 架构<a class="headerlink" href="#sensor-hub" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>方案 1（有问题）: 每个传感器独立 ESP32
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>├── ESP32-A (前臂 EMG) ──BLE抖动──&gt; 手机
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>├── ESP32-B (前臂 IMU) ──BLE抖动──&gt; 手机
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>└── 两者时间无法精确对齐 ❌
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>方案 2（推荐）: Sensor Hub 架构
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>├── ESP32-A (前臂 EMG + IMU) ──&gt; 共享同一时钟源 ✅
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>└── 同一 ESP32 内的数据时间戳完全同步
+</span></code></pre></div>
+<p><strong>核心思想</strong>：同一身体部位的 IMU + EMG 放在同一个 ESP32 上，共享时钟源。</p>
+<h3 id="_20">跨设备时间对齐<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<p>不同 ESP32 之间仍有 BLE 抖动，通过 <strong>Impact 事件对齐</strong>解决：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ESP32-前臂:  ─────────────┤ Impact ├─────────────
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ESP32-手腕:  ─────────────┤ Impact ├─────────────
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>                          ↑
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>                    以此为锚点对齐
+</span></code></pre></div>
+<p>Impact（击球瞬间）产生明显的加速度峰值，可作为跨设备的<strong>时间同步锚点</strong>。</p>
+<blockquote>
+<p>详见：<a href="../../design/architecture/architecture-decisions-2025-12-23/#78-多单元时间同步拓扑-multi-unit-sync-topology--2025-12-23">关键决策 2025-12 § 时间同步</a></p>
+</blockquote>
+<hr />
+<h2 id="_21">相关文档<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../physics-glossary/">物理学术语表</a> - 力学概念（角速度、角动量等）</li>
 <li><a href="../business-glossary/">商业术语表</a> - 商业相关术语</li>

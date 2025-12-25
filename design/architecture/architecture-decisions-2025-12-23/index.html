@@ -1955,7 +1955,7 @@
   <a href="#51-aws" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.1 本地优先 → AWS 云端 ✅ 确认
+        5.1 本地优先 → AWS 云端
       
     </span>
   </a>
@@ -5018,7 +5018,7 @@
   <a href="#51-aws" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.1 本地优先 → AWS 云端 ✅ 确认
+        5.1 本地优先 → AWS 云端
       
     </span>
   </a>
@@ -5431,19 +5431,19 @@
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   MediaPipe 内部架构:                                                        │
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│   ─────────────────────────────────────                                     │
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│   MediaPipe Pose                                                            │
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│       └── BlazePose Model                                                  │
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│           └── TFLite Runtime (内置)  ← 无需额外推理引擎!                     │
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│       └── BlazePose Model                                                   │
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│           └── TFLite Runtime (内置)  ← 无需额外推理引擎!                        │
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│                                                                             │
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│   原计划 vs 新发现:                                                          │
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│   原计划 vs 新发现:                                                           │
 </span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│   原计划: MediaPipe → 转换 → ONNX Runtime → 推理                            │
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│   新发现: MediaPipe → TFLite (内置) → 直接推理 ✅                            │
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│   原计划: MediaPipe → 转换 → ONNX Runtime → 推理                               │
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│   新发现: MediaPipe → TFLite (内置) → 直接推理 ✅                              │
 </span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│                                                                             │
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>│   ONNX 仍然需要的场景:                                                       │
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>│   ONNX 仍然需要的场景:                                                        │
 </span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>│   • RTMPose 部署 (PyTorch → ONNX)                                          │
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>│   • 自定义高尔夫模型 (训练后转换)                                            │
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>│   • 跨平台统一推理 (Web/iOS/Android)                                        │
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>│   • RTMPose 部署 (PyTorch → ONNX)                                            │
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>│   • 自定义高尔夫模型 (训练后转换)                                               │
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>│   • 跨平台统一推理 (Web/iOS/Android)                                          │
 </span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>│                                                                             │
 </span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -5610,43 +5610,43 @@
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│                                                                             │
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>│   纯 Rust 方案:                                                              │
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>│   优点:                                                                     │
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>│   • 极致性能 (无 GC, 零成本抽象)                                            │
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>│   • 内存安全 (编译期检查)                                                    │
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>│   • 单二进制部署                                                             │
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>│   缺点:                                                                     │
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>│   • 学习曲线陡峭 (6-12 个月精通)                                            │
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>│   • ML 生态不成熟 (MediaPipe 无 Rust 绑定)                                  │
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>│   • 迭代速度慢 (编译时间 + 类型系统)                                         │
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>│   • LLM 集成困难 (Python SDK 为主)                                          │
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>│   优点:                                                                      │
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>│   • 极致性能 (无 GC, 零成本抽象)                                               │
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>│   • 内存安全 (编译期检查)                                                      │
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>│   • 单二进制部署                                                              │
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>│   缺点:                                                                      │
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>│   • 学习曲线陡峭 (6-12 个月精通)                                               │
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>│   • ML 生态不成熟 (MediaPipe 无 Rust 绑定)                                     │
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>│   • 迭代速度慢 (编译时间 + 类型系统)                                            │
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>│   • LLM 集成困难 (Python SDK 为主)                                            │
 </span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>│                                                                             │
 </span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>│   纯 Python 方案:                                                            │
 </span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>│   优点:                                                                     │
-</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>│   • 快速迭代 (动态类型, REPL)                                               │
-</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>│   • ML 生态最成熟 (MediaPipe, TensorFlow, PyTorch)                         │
-</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>│   • LLM 集成简单 (所有主流 SDK)                                             │
-</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>│   缺点:                                                                     │
-</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>│   • 性能瓶颈 (GIL, 解释执行)                                                │
-</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>│   • 内存效率差 (pandas DataFrame 尤其)                                      │
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>│   优点:                                                                      │
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>│   • 快速迭代 (动态类型, REPL)                                                  │
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>│   • ML 生态最成熟 (MediaPipe, TensorFlow, PyTorch)                            │
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>│   • LLM 集成简单 (所有主流 SDK)                                                │
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>│   缺点:                                                                      │
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>│   • 性能瓶颈 (GIL, 解释执行)                                                   │
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>│   • 内存效率差 (pandas DataFrame 尤其)                                         │
 </span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>│                                                                             │
-</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>│   混合策略 (我们的选择):                                                     │
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>│   混合策略 (我们的选择):                                                       │
 </span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>│   Python 层 (高层编排 + 快速迭代):                                           │
-</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>│   • MediaPipe API 调用                                                      │
-</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>│   • 传感器数据编排                                                           │
-</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>│   • 规则引擎逻辑                                                             │
-</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>│   • LLM 集成 (Phase 2)                                                      │
-</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>│   • 业务逻辑快速迭代                                                         │
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>│   Python 层 (高层编排 + 快速迭代):                                             │
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>│   • MediaPipe API 调用                                                       │
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>│   • 传感器数据编排                                                            │
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>│   • 规则引擎逻辑                                                              │
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>│   • LLM 集成 (Phase 2)                                                       │
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>│   • 业务逻辑快速迭代                                                           │
 </span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>│                                                                             │
-</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>│   Rust-backed 层 (底层性能 + 零学习成本):                                    │
-</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>│   • polars      → 时序数据处理 (比 pandas 快 10-50x)                        │
-</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>│   • imufusion   → IMU 传感器融合算法 (C++ 核心)                             │
-</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>│   • pydantic v2 → 数据验证 (Rust 核心, 比 v1 快 5-50x)                      │
-</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>│   • UV          → 包管理 (比 pip 快 10-100x)                                │
-</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>│   • orjson      → JSON 序列化 (比 stdlib 快 10x)                            │
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>│   Rust-backed 层 (底层性能 + 零学习成本):                                       │
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>│   • polars      → 时序数据处理 (比 pandas 快 10-50x)                           │
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>│   • imufusion   → IMU 传感器融合算法 (C++ 核心)                                │
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>│   • pydantic v2 → 数据验证 (Rust 核心, 比 v1 快 5-50x)                         │
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>│   • UV          → 包管理 (比 pip 快 10-100x)                                  │
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>│   • orjson      → JSON 序列化 (比 stdlib 快 10x)                              │
 </span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>│                                                                             │
-</span><span id="__span-5-43"><a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>│   ⚡ 结论: 获得 Rust 性能，保持 Python 生态和迭代速度                         │
+</span><span id="__span-5-43"><a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>│   ⚡ 结论: 获得 Rust 性能，保持 Python 生态和迭代速度                              │
 </span><span id="__span-5-44"><a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>│                                                                             │
 </span><span id="__span-5-45"><a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -5793,9 +5793,9 @@
 </span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>│   性能对比 (1M 行 IMU 数据):                                                   │
 </span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>│   ─────────────────────────────────────                                     │
 </span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>│   操作                    Pandas      Polars      提升                       │
-</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>│   读取 parquet            1.2s        0.08s       15x                         │
-</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>│   滑动窗口均值             0.8s        0.05s       16x                         │
-</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>│   分组聚合                0.5s        0.03s       17x                         │
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>│   读取 parquet            1.2s        0.08s       15x                        │
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>│   滑动窗口均值             0.8s        0.05s       16x                        │
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>│   分组聚合                0.5s        0.03s       17x                        │
 </span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>│   峰值检测                0.3s        0.02s       15x                         │
 </span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>│                                                                             │
 </span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>└─────────────────────────────────────────────────────────────────────────────┘
@@ -5970,7 +5970,7 @@
 </tr>
 <tr>
 <td><code>anthropic</code> / <code>openai</code></td>
-<td>Phase 2 LLM 功能</td>
+<td>Phase 2 <a href="../../../reference/ml-glossary/#5-llm-大语言模型">LLM</a> 功能</td>
 <td>自然语言反馈时</td>
 </tr>
 <tr>
@@ -5984,31 +5984,34 @@
 <h2 id="4">4. 硬件与固件决策<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <h3 id="41-firmware-arduino">4.1 Firmware 和 Arduino<a class="headerlink" href="#41-firmware-arduino" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>│                    Firmware 概念澄清 FIRMWARE CLARIFICATION                  │
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>│                                 概念澄清                                     │
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>│                                                                             │
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>│   Firmware (固件):                                                          │
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>│   Firmware (固件):                                                           │
 </span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>│   定义: 运行在微控制器上的软件程序                                            │
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>│   位置: 烧录到 ESP32-S3 的 Flash 中                                         │
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>│   功能: 读取传感器、处理数据、BLE 传输                                       │
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>│   定义: 运行在微控制器上的软件程序                                               │
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>│   位置: 烧录到 ESP32-S3 的 Flash 中                                           │
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>│   功能: 读取传感器、处理数据、BLE 传输                                           │
 </span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>│                                                                             │
 </span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>│   Arduino:                                                                  │
 </span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>│   定义: 编写固件的开发框架 (不是硬件!)                                        │
-</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>│   包含:                                                                     │
-</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>│   • Arduino IDE (开发环境)                                                  │
-</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>│   • Arduino Core (HAL 抽象层)                                               │
-</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>│   • Arduino 库生态 (BLE, I2C, SPI...)                                      │
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>│   定义: 编写固件的开发框架 (不是硬件!)                                           │
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>│   包含:                                                                      │
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>│   • Arduino IDE (开发环境)                                                   │
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>│   • Arduino Core (HAL 抽象层)                                                │
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>│   • Arduino 库生态 (BLE, I2C, SPI...)                                        │
 </span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>│                                                                             │
-</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>│   关系:                                                                     │
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>│   关系:                                                                      │
 </span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>│   Arduino 框架 → 用于编写 → Firmware → 运行在 → ESP32-S3                    │
-</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>│                                                                             │
-</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>│                            │
-</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>│                                                                             │
-</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>└─────────────────────────────────────────────────────────────────────────────┘
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>│   Arduino 框架 → 用于编写 → Firmware → 运行在 → ESP32-S3                       │ 
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
+<p>我们的选择:                                                             <br />
+│   ─────────────────────────────────────                                   <br />
+│   • 硬件: ESP32-S3 (ADR-0005)                                            <br />
+│   • 框架: Arduino Core for ESP32                                         <br />
+│   • IDE: PlatformIO (比 Arduino IDE 更专业)                              <br />
+│   • 传感器: LSM6DSV16X (ADR-0002), DFRobot EMG   </p>
 <h3 id="42-mock">4.2 Mock 数据策略 ✅ 已有完整文档<a class="headerlink" href="#42-mock" title="Permanent link">&para;</a></h3>
 <p><strong>现状</strong>: <code>sensor-metric-mapping.md §8</code> 已包含完整的 Mock 数据生成代码</p>
 <table>
@@ -6072,19 +6075,19 @@
 </blockquote>
 <h4 id="sensor-hub">Sensor Hub 架构 (推荐)<a class="headerlink" href="#sensor-hub" title="Permanent link">&para;</a></h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>│                    Sensor Hub 架构 (同一部位共享时钟)                         │
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>│                    Sensor Hub 架构 (同一部位共享时钟)                          │
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>│                                                                             │
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>│   ✅ 正确架构 (3 单元):                                                      │
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>│   ┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐          │
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>│   │    ESP32 #1     │   │    ESP32 #2     │   │    ESP32 #3     │          │
-</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>│   │  手臂 (Arm)     │   │  核心 (Core)    │   │  腿部 (Leg)     │          │
-</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>│   │ ┌─────┬───────┐ │   │ ┌─────┬───────┐ │   │ ┌─────┬───────┐ │          │
-</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>│   │ │ IMU │  EMG  │ │   │ │ IMU │  EMG  │ │   │ │ IMU │  EMG  │ │          │
-</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>│   │ │(I2C)│ (ADC) │ │   │ │(I2C)│ (ADC) │ │   │ │(I2C)│ (ADC) │ │          │
-</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>│   │ └─────┴───────┘ │   │ └─────┴───────┘ │   │ └─────┴───────┘ │          │
-</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>│   │   同一时钟 ✅    │   │   同一时钟 ✅    │   │   同一时钟 ✅    │          │
-</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>│   └────────┬────────┘   └────────┬────────┘   └────────┬────────┘          │
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>│   ✅ 正确架构 (3 单元):                                                       │
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>│   ┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐           │
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>│   │    ESP32 #1     │   │    ESP32 #2     │   │    ESP32 #3     │           │
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>│   │  手臂 (Arm)      │   │  核心 (Core)    │   │   腿部 (Leg)     │           │
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>│   │ ┌─────┬───────┐ │   │ ┌─────┬───────┐ │   │ ┌─────┬───────┐ │           │
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>│   │ │ IMU │  EMG  │ │   │ │ IMU │  EMG  │ │   │ │ IMU │  EMG  │ │           │
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>│   │ │(I2C)│ (ADC) │ │   │ │(I2C)│ (ADC) │ │   │ │(I2C)│ (ADC) │ │           │
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>│   │ └─────┴───────┘ │   │ └─────┴───────┘ │   │ └─────┴───────┘ │           │
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>│   │   同一时钟 ✅    │   │   同一时钟 ✅     │   │   同一时钟 ✅    │           │
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>│   └────────┬────────┘   └────────┬────────┘   └────────┬────────┘           │
 </span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>│            │                     │                     │                    │
 </span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>│            └──────────── BLE ────┴──────────── BLE ────┘                    │
 </span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>│                                  ↓                                          │
@@ -6093,126 +6096,126 @@
 </span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>│                            │  Camera  │                                     │
 </span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>│                            └──────────┘                                     │
 </span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>│                                                                             │
-</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>│   优势:                                                                     │
-</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>│   • 同一部位传感器共享 ESP32 时钟 → 微秒级同步                               │
-</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>│   • 不同部位用 Impact 对齐 → 消除 BLE 抖动影响                              │
-</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>│   • 每个单元都有 IMU → 可检测 Impact 事件做跨单元同步                        │
-</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>│   • 减少 BLE 设备数量 → 更稳定                                              │
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>│   优势:                                                                      │
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>│   • 同一部位传感器共享 ESP32 时钟 → 微秒级同步                                   │
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>│   • 不同部位用 Impact瞬间(击球)进行对齐 → 消除 BLE 抖动影响                       │
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>│   • 每个单元都有 IMU → 可检测 Impact 事件做跨单元同步                             │
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>│   • 减少 BLE 设备数量 → 更稳定                                                 │
 </span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>│                                                                             │
-</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>│   ⚠️ 关键: 每个 Sensor Hub 都必须有 IMU (见 §7.8 多单元时间同步拓扑)         │
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>│   ⚠️ 关键: 每个 Sensor Hub 都必须有 IMU (见 §7.8 多单元时间同步拓扑)              │
 </span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>│                                                                             │
 </span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <h4 id="definitive-wiring-map">🔌 确定性接线图 (Definitive Wiring Map)<a class="headerlink" href="#definitive-wiring-map" title="Permanent link">&para;</a></h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>│                    单 Sensor Hub 接线图 (每个身体部位)                        │
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>│                    单 Sensor Hub 接线图 (每个身体部位)                          │
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>│                                                                             │
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>│       [ 3.7V LiPo Battery ]                                                │
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>│       [ 3.7V LiPo Battery ]                                                 │
 </span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>│               │                                                             │
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>│               │ (红+ / 黑- 线)                                              │
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>│               │ (红+ / 黑- 线)                                               │
 </span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>│               v                                                             │
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>│    ┌─────────────────────────┐                                             │
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>│    │ Seeed XIAO ESP32S3      │                                             │
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>│    │ (背面电池焊盘 BAT+/BAT-) │                                             │
-</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>│    └──────┬───────────┬──────┘                                             │
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>│    ┌─────────────────────────┐                                              │
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>│    │ Seeed XIAO ESP32S3      │                                              │
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>│    │ (背面电池焊盘 BAT+/BAT-)  │                                              │
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>│    └──────┬───────────┬──────┘                                              │
 </span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>│           │           │                                                     │
 </span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>│           │           │                                                     │
 </span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>│   I2C Bus │           │ Analog Signal                                       │
-</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>│ (Data/Clk)│           │ (0 - 3.3V)                                         │
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>│ (Data/Clk)│           │ (0 - 3.3V)                                          │
 </span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>│           │           │                                                     │
-</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>│    ┌──────▼─────┐   ┌─▼──────────────┐                                     │
-</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>│    │ LSM6DSV16X │   │ MyoWare 2.0    │                                     │
-</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>│    │   (IMU)    │   │ + Link Shield  │ ← 必须有 Link Shield!               │
-</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>│    └────────────┘   └────────────────┘                                     │
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>│    ┌──────▼─────┐   ┌─▼──────────────┐                                      │
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>│    │ LSM6DSV16X │   │ MyoWare 2.0    │                                      │
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>│    │   (IMU)    │   │ + Link Shield  │ ← 必须有 Link Shield!                 │
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>│    └────────────┘   └────────────────┘                                      │
 </span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>│                            │                                                │
-</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>│                     [ Snap-on 电极 ]                                        │
-</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>│                     [   (贴皮肤)    ]                                        │
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>│                     [ Snap-on 电极 ]                                         │
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>│                     [   (贴皮肤)   ]                                         │
 </span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>│                                                                             │
-</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>│   ═══════════════════════════════════════════════════════════════════════  │
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>│   ═══════════════════════════════════════════════════════════════════════   │
 </span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>│   详细接线:                                                                  │
-</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>│   ═══════════════════════════════════════════════════════════════════════  │
+</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>│   ═══════════════════════════════════════════════════════════════════════   │
 </span><span id="__span-13-29"><a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a>│                                                                             │
-</span><span id="__span-13-30"><a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>│   1. 电源分配 (Power Distribution)                                          │
-</span><span id="__span-13-31"><a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a>│      Battery (红 +)  → XIAO (背面 BAT+ 焊盘)                                │
-</span><span id="__span-13-32"><a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a>│      Battery (黑 -)  → XIAO (背面 BAT- 焊盘)                                │
+</span><span id="__span-13-30"><a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>│   1. 电源分配 (Power Distribution)                                           │
+</span><span id="__span-13-31"><a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a>│      Battery (红 +)  → XIAO (背面 BAT+ 焊盘)                                  │
+</span><span id="__span-13-32"><a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a>│      Battery (黑 -)  → XIAO (背面 BAT- 焊盘)                                  │
 </span><span id="__span-13-33"><a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>│                                                                             │
-</span><span id="__span-13-34"><a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>│   2. IMU 连接 (I2C)                                                         │
-</span><span id="__span-13-35"><a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a>│      LSM6DSV16X (VIN) → XIAO (3V3 Pin)                                     │
-</span><span id="__span-13-36"><a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>│      LSM6DSV16X (GND) → XIAO (GND Pin)                                     │
-</span><span id="__span-13-37"><a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a>│      LSM6DSV16X (SDA) → XIAO (D4 Pin / GPIO5)                              │
-</span><span id="__span-13-38"><a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a>│      LSM6DSV16X (SCL) → XIAO (D5 Pin / GPIO6)                              │
+</span><span id="__span-13-34"><a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>│   2. IMU 连接 (I2C)                                                          │
+</span><span id="__span-13-35"><a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a>│      LSM6DSV16X (VIN) → XIAO (3V3 Pin)                                      │
+</span><span id="__span-13-36"><a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>│      LSM6DSV16X (GND) → XIAO (GND Pin)                                      │
+</span><span id="__span-13-37"><a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a>│      LSM6DSV16X (SDA) → XIAO (D4 Pin / GPIO5)                               │
+</span><span id="__span-13-38"><a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a>│      LSM6DSV16X (SCL) → XIAO (D5 Pin / GPIO6)                               │
 </span><span id="__span-13-39"><a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a>│                                                                             │
-</span><span id="__span-13-40"><a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a>│   3. EMG 连接 (Analog) - 通过 Link Shield                                   │
-</span><span id="__span-13-41"><a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a>│      ⚠️ 先把 Link Shield 扣到 MyoWare 顶部的 Snap 连接器上                  │
-</span><span id="__span-13-42"><a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a>│      Link Shield (+)   → XIAO (3V3 Pin)                                    │
-</span><span id="__span-13-43"><a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a>│      Link Shield (-)   → XIAO (GND Pin)                                    │
-</span><span id="__span-13-44"><a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a>│      Link Shield (SIG) → XIAO (A0 / D0 Pin / GPIO1)                        │
+</span><span id="__span-13-40"><a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a>│   3. EMG 连接 (Analog) - 通过 Link Shield                                    │
+</span><span id="__span-13-41"><a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a>│      ⚠️ 先把 Link Shield 扣到 MyoWare 顶部的 Snap 连接器上                      │
+</span><span id="__span-13-42"><a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a>│      Link Shield (+)   → XIAO (3V3 Pin)                                     │
+</span><span id="__span-13-43"><a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a>│      Link Shield (-)   → XIAO (GND Pin)                                     │
+</span><span id="__span-13-44"><a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a>│      Link Shield (SIG) → XIAO (A0 / D0 Pin / GPIO1)                         │
 </span><span id="__span-13-45"><a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a>│                                                                             │
 </span><span id="__span-13-46"><a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a>│   电压安全:                                                                  │
-</span><span id="__span-13-47"><a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a>│   • XIAO 3.3V 输出 → MyoWare 3.3V 输入 ✅                                   │
-</span><span id="__span-13-48"><a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a>│   • MyoWare 输出 0-3.3V → ESP32 ADC 限制 3.3V ✅                            │
-</span><span id="__span-13-49"><a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a>│   • 无需电压转换器!                                                          │
+</span><span id="__span-13-47"><a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a>│   • XIAO 3.3V 输出 → MyoWare 3.3V 输入 ✅                                    │
+</span><span id="__span-13-48"><a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a>│   • MyoWare 输出 0-3.3V → ESP32 ADC 限制 3.3V ✅                             │
+</span><span id="__span-13-49"><a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a>│   • 无需电压转换器!                                                           │
 </span><span id="__span-13-50"><a id="__codelineno-13-50" name="__codelineno-13-50" href="#__codelineno-13-50"></a>│                                                                             │
 </span><span id="__span-13-51"><a id="__codelineno-13-51" name="__codelineno-13-51" href="#__codelineno-13-51"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <h4 id="critical-hardware-warnings">🚨 关键硬件警告 (Critical Hardware Warnings)<a class="headerlink" href="#critical-hardware-warnings" title="Permanent link">&para;</a></h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>│  🔴 CRITICAL: Link Shield 是必需品，不是可选配件!                            │
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>│  🔴 CRITICAL: Link Shield 是必需品，不是可选配件!                               │
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>│                                                                             │
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>│  问题: MyoWare 2.0 传感器没有焊孔，只有 Snap 扣 (像夹克纽扣)                  │
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>│  问题: MyoWare 2.0 传感器没有焊孔，只有 Snap 扣 (像夹克纽扣)                      │
 </span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>│                                                                             │
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>│       MyoWare 2.0 顶部:                    MyoWare 2.0 底部:                │
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>│       ┌─────────────┐                      ┌─────────────┐                 │
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>│       │  ○    ○    ○ │ ← Snap 连接器        │ ○   ○   ○  │ ← 电极 Snap     │
-</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>│       │             │    (无焊孔!)          │             │                 │
-</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>│       │  [芯片区域] │                      │  [皮肤接触] │                 │
-</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>│       └─────────────┘                      └─────────────┘                 │
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>│       MyoWare 2.0 顶部:                    MyoWare 2.0 底部:                 │
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>│       ┌─────────────┐                      ┌─────────────┐                  │
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>│       │ ○    ○    ○ │ ← Snap 连接器         │ ○   ○   ○   │ ← 电极 Snap       │
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>│       │             │    (无焊孔!)          │             │                  │
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>│       │  [芯片区域]  │                      │   [皮肤接触]  │                  │
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>│       └─────────────┘                      └─────────────┘                  │
 </span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>│                                                                             │
-</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>│  解决方案: Link Shield (DEV-18425) 是一个小&quot;帽子&quot;                           │
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>│  解决方案: Link Shield (DEV-18425) 是一个小&quot;帽子&quot;                              │
 </span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>│       ┌─────────────┐                                                       │
-</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>│       │  ●    ●    ● │ ← Snap 扣到 MyoWare 顶部                             │
-</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>│       │ [+] [-] [S] │ ← 焊孔! 可以焊线!                                     │
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>│       │ ●    ●    ● │ ← Snap 扣到 MyoWare 顶部                               │
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>│       │ [+] [-] [S] │ ← 焊孔! 可以焊线!                                       │
 </span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>│       └─────────────┘                                                       │
 </span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>│                                                                             │
-</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>│  ❌ 没有 Link Shield: 必须直接焊到金属 Snap 上 → 极难 + 可能熔化塑料          │
-</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>│  ✅ 有 Link Shield: 扣上 → 焊 3 根线 → 完成                                  │
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>│  ❌ 没有 Link Shield: 必须直接焊到金属 Snap 上 → 极难 + 可能熔化塑料              │
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>│  ✅ 有 Link Shield: 扣上 → 焊 3 根线 → 完成                                    │
 </span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>│                                                                             │
 </span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>├─────────────────────────────────────────────────────────────────────────────┤
-</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>│  🟠 WARNING: DFRobot SEN0240 有线缆噪声问题                                  │
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>│  🟠 WARNING: DFRobot SEN0240 有线缆噪声问题                                   │
 </span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a>│                                                                             │
-</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>│  DFRobot SEN0240 结构:                                                      │
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>│  DFRobot SEN0240 结构:                                                       │
 </span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>│       ┌──────────┐                                                          │
-</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>│       │ 主板     │───────[ 长电缆 ]───────[ 电极贴片 ]                       │
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>│       │ 主板      │───────[ 长电缆 ]───────[ 电极贴片 ]                         │
 </span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>│       └──────────┘                                                          │
 </span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>│                         ↑                                                   │
-</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a>│              100mph 挥杆时线缆甩动 → 电气噪声                                 │
+</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a>│              100mph 挥杆时线缆甩动 → 电气噪声                                   │
 </span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>│                                                                             │
 </span><span id="__span-14-34"><a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a>│  MyoWare 2.0 结构:                                                          │
 </span><span id="__span-14-35"><a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a>│       ┌──────────────────┐                                                  │
-</span><span id="__span-14-36"><a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a>│       │ 主板 + 电极一体化 │ ← 直接贴在肌肉上，无线缆甩动                      │
+</span><span id="__span-14-36"><a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a>│       │ 主板 + 电极一体化  │ ← 直接贴在肌肉上，无线缆甩动                          │
 </span><span id="__span-14-37"><a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a>│       └──────────────────┘                                                  │
 </span><span id="__span-14-38"><a id="__codelineno-14-38" name="__codelineno-14-38" href="#__codelineno-14-38"></a>│                                                                             │
 </span><span id="__span-14-39"><a id="__codelineno-14-39" name="__codelineno-14-39" href="#__codelineno-14-39"></a>│  结论:                                                                       │
-</span><span id="__span-14-40"><a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a>│  • 高速运动 (高尔夫、网球) → 优先 MyoWare 2.0 (无线缆)                       │
-</span><span id="__span-14-41"><a id="__codelineno-14-41" name="__codelineno-14-41" href="#__codelineno-14-41"></a>│  • 静态测量 (健身房、康复) → DFRobot SEN0240 可接受                          │
+</span><span id="__span-14-40"><a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a>│  • 高速运动 (高尔夫、网球) → 优先 MyoWare 2.0 (无线缆)                           │
+</span><span id="__span-14-41"><a id="__codelineno-14-41" name="__codelineno-14-41" href="#__codelineno-14-41"></a>│  • 静态测量 (健身房、康复) → DFRobot SEN0240 可接受                              │
 </span><span id="__span-14-42"><a id="__codelineno-14-42" name="__codelineno-14-42" href="#__codelineno-14-42"></a>│                                                                             │
 </span><span id="__span-14-43"><a id="__codelineno-14-43" name="__codelineno-14-43" href="#__codelineno-14-43"></a>├─────────────────────────────────────────────────────────────────────────────┤
-</span><span id="__span-14-44"><a id="__codelineno-14-44" name="__codelineno-14-44" href="#__codelineno-14-44"></a>│  🟠 WARNING: WitMotion IMU 的 BLE 功能会破坏同步!                            │
+</span><span id="__span-14-44"><a id="__codelineno-14-44" name="__codelineno-14-44" href="#__codelineno-14-44"></a>│  🟠 WARNING: WitMotion IMU 的 BLE 功能会破坏同步!                              │
 </span><span id="__span-14-45"><a id="__codelineno-14-45" name="__codelineno-14-45" href="#__codelineno-14-45"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-14-46"><a id="__codelineno-14-46" name="__codelineno-14-46" href="#__codelineno-14-46"></a>│                                                                             │
-</span><span id="__span-14-47"><a id="__codelineno-14-47" name="__codelineno-14-47" href="#__codelineno-14-47"></a>│  ❌ 错误用法: WitMotion BLE → 手机, ESP32 EMG → 手机                         │
-</span><span id="__span-14-48"><a id="__codelineno-14-48" name="__codelineno-14-48" href="#__codelineno-14-48"></a>│              两个独立时钟源 → 无法精确同步!                                   │
+</span><span id="__span-14-47"><a id="__codelineno-14-47" name="__codelineno-14-47" href="#__codelineno-14-47"></a>│  ❌ 错误用法: WitMotion BLE → 手机, ESP32 EMG → 手机                           │
+</span><span id="__span-14-48"><a id="__codelineno-14-48" name="__codelineno-14-48" href="#__codelineno-14-48"></a>│              两个独立时钟源 → 无法精确同步!                                      │
 </span><span id="__span-14-49"><a id="__codelineno-14-49" name="__codelineno-14-49" href="#__codelineno-14-49"></a>│                                                                             │
-</span><span id="__span-14-50"><a id="__codelineno-14-50" name="__codelineno-14-50" href="#__codelineno-14-50"></a>│  ✅ 正确用法: WitMotion → I2C/UART → ESP32 → 手机                           │
-</span><span id="__span-14-51"><a id="__codelineno-14-51" name="__codelineno-14-51" href="#__codelineno-14-51"></a>│              共享 ESP32 时钟 → 微秒级同步 ✅                                  │
-</span><span id="__span-14-52"><a id="__codelineno-14-52" name="__codelineno-14-52" href="#__codelineno-14-52"></a>│                                                                             │
-</span><span id="__span-14-53"><a id="__codelineno-14-53" name="__codelineno-14-53" href="#__codelineno-14-53"></a>│  如果选择 WitMotion WT901:                                                   │
-</span><span id="__span-14-54"><a id="__codelineno-14-54" name="__codelineno-14-54" href="#__codelineno-14-54"></a>│  • 禁用其 BLE 功能                                                           │
-</span><span id="__span-14-55"><a id="__codelineno-14-55" name="__codelineno-14-55" href="#__codelineno-14-55"></a>│  • 通过 UART (TX/RX) 或 I2C 连接到 ESP32                                    │
-</span><span id="__span-14-56"><a id="__codelineno-14-56" name="__codelineno-14-56" href="#__codelineno-14-56"></a>│  • 让 ESP32 统一打时间戳                                                     │
+</span><span id="__span-14-50"><a id="__codelineno-14-50" name="__codelineno-14-50" href="#__codelineno-14-50"></a>│  ✅ 正确用法: WitMotion → I2C/UART → ESP32 → 手机                              │
+</span><span id="__span-14-51"><a id="__codelineno-14-51" name="__codelineno-14-51" href="#__codelineno-14-51"></a>│              共享 ESP32 时钟 → 微秒级同步 ✅                                    │
+</span><span id="__span-14-52"><a id="__codelineno-14-52" name="__codelineno-14-52" href="#__codelineno-14-52"></a>│                                                                              │
+</span><span id="__span-14-53"><a id="__codelineno-14-53" name="__codelineno-14-53" href="#__codelineno-14-53"></a>│  如果选择 WitMotion WT901:                                                    │
+</span><span id="__span-14-54"><a id="__codelineno-14-54" name="__codelineno-14-54" href="#__codelineno-14-54"></a>│  • 禁用其 BLE 功能                                                            │
+</span><span id="__span-14-55"><a id="__codelineno-14-55" name="__codelineno-14-55" href="#__codelineno-14-55"></a>│  • 通过 UART (TX/RX) 或 I2C 连接到 ESP32                                      │
+</span><span id="__span-14-56"><a id="__codelineno-14-56" name="__codelineno-14-56" href="#__codelineno-14-56"></a>│  • 让 ESP32 统一打时间戳                                                       │
 </span><span id="__span-14-57"><a id="__codelineno-14-57" name="__codelineno-14-57" href="#__codelineno-14-57"></a>│                                                                             │
 </span><span id="__span-14-58"><a id="__codelineno-14-58" name="__codelineno-14-58" href="#__codelineno-14-58"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -6453,46 +6456,46 @@
 </blockquote>
 <h4 id="phased-purchase">🧪 分阶段购买建议 (Phased Purchase)<a class="headerlink" href="#phased-purchase" title="Permanent link">&para;</a></h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>│                    分阶段购买策略 (降低风险)                                   │
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>│                    分阶段购买策略 (降低风险)                                    │
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>│                                                                             │
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>│   Phase 1: &quot;桌面测试套件&quot; (~$30)                                            │
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>│   Phase 1: &quot;桌面测试套件&quot; (~$30)                                              │
 </span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>│   目的: 验证 IMU + ESP32 + BLE 数据管道                                     │
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>│   目的: 验证 IMU + ESP32 + BLE 数据管道                                        │
 </span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>│                                                                             │
 </span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>│   购买清单:                                                                  │
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>│   • 1x XIAO ESP32S3               $7.49                                    │
-</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>│   • 1x Adafruit LSM6DSV16X        $15.00                                   │
-</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>│   • 1x 面包板 (Breadboard)         $5.00                                    │
-</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>│   • 1x 杜邦线套装                   $3.00                                    │
-</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>│   ───────────────────────────────────────                                  │
-</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>│   总计: ~$30                                                                │
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>│   • 1x XIAO ESP32S3               $7.49                                     │
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>│   • 1x Adafruit LSM6DSV16X        $15.00                                    │
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>│   • 1x 面包板 (Breadboard)         $5.00                                     │
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>│   • 1x 杜邦线套装                   $3.00                                     │
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>│   ───────────────────────────────────────                                   │
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>│   总计: ~$30                                                                 │
 </span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>│                                                                             │
 </span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>│   验证目标:                                                                  │
 </span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>│   ✅ ESP32 BLE 连接 iPhone                                                  │
-</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>│   ✅ 读取 IMU 加速度/陀螺仪数据                                              │
-</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>│   ✅ 100Hz 数据流稳定性                                                      │
-</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>│   ✅ 绑在手套上测试挥杆数据                                                   │
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>│   ✅ 读取 IMU 加速度/陀螺仪数据                                                │
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>│   ✅ 100Hz 数据流稳定性                                                       │
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>│   ✅ 绑在手套上测试挥杆数据                                                     │
 </span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>│                                                                             │
-</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>│   Phase 2: 完整 Sensor Hub (~$170 增量)                                     │
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>│   Phase 2: 完整 Sensor Hub (~$170 增量)                                      │
 </span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>│   前提: Phase 1 数据管道验证成功                                             │
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>│   前提: Phase 1 数据管道验证成功                                                │
 </span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>│                                                                             │
 </span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>│   购买清单:                                                                  │
-</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>│   • 2x MyoWare 2.0                 $80.00                                  │
-</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a>│   • 2x Link Shield (必需!)         $9.00                                   │
-</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a>│   • 1x 额外 XIAO ESP32S3          $7.49                                    │
-</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a>│   • 1x 额外 LSM6DSV16X            $15.00                                   │
-</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a>│   • 2x LiPo 电池                   $16.00                                   │
-</span><span id="__span-15-33"><a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a>│   • 线材/绑带/电极                  $41.00                                   │
-</span><span id="__span-15-34"><a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a>│   ───────────────────────────────────────                                  │
-</span><span id="__span-15-35"><a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a>│   总计: ~$170                                                               │
+</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>│   • 2x MyoWare 2.0                 $80.00                                   │
+</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a>│   • 2x Link Shield (必需!)         $9.00                                     │
+</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a>│   • 1x 额外 XIAO ESP32S3          $7.49                                      │
+</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a>│   • 1x 额外 LSM6DSV16X            $15.00                                     │
+</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a>│   • 2x LiPo 电池                   $16.00                                    │
+</span><span id="__span-15-33"><a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a>│   • 线材/绑带/电极                  $41.00                                    │
+</span><span id="__span-15-34"><a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a>│   ───────────────────────────────────────                                   │
+</span><span id="__span-15-35"><a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a>│   总计: ~$170                                                                │
 </span><span id="__span-15-36"><a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a>│                                                                             │
-</span><span id="__span-15-37"><a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a>│   验证目标:                                                                  │
-</span><span id="__span-15-38"><a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a>│   ✅ IMU + EMG 同步采集                                                      │
-</span><span id="__span-15-39"><a id="__codelineno-15-39" name="__codelineno-15-39" href="#__codelineno-15-39"></a>│   ✅ 双 Sensor Hub 同时工作                                                  │
-</span><span id="__span-15-40"><a id="__codelineno-15-40" name="__codelineno-15-40" href="#__codelineno-15-40"></a>│   ✅ Impact 对齐算法验证                                                     │
-</span><span id="__span-15-41"><a id="__codelineno-15-41" name="__codelineno-15-41" href="#__codelineno-15-41"></a>│   ✅ 肌肉激活序列检测                                                        │
+</span><span id="__span-15-37"><a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a>│   验证目标:                                                                   │
+</span><span id="__span-15-38"><a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a>│   ✅ IMU + EMG 同步采集                                                       │
+</span><span id="__span-15-39"><a id="__codelineno-15-39" name="__codelineno-15-39" href="#__codelineno-15-39"></a>│   ✅ 双 Sensor Hub 同时工作                                                   │
+</span><span id="__span-15-40"><a id="__codelineno-15-40" name="__codelineno-15-40" href="#__codelineno-15-40"></a>│   ✅ Impact 对齐算法验证                                                      │
+</span><span id="__span-15-41"><a id="__codelineno-15-41" name="__codelineno-15-41" href="#__codelineno-15-41"></a>│   ✅ 肌肉激活序列检测                                                          │
 </span><span id="__span-15-42"><a id="__codelineno-15-42" name="__codelineno-15-42" href="#__codelineno-15-42"></a>│                                                                             │
 </span><span id="__span-15-43"><a id="__codelineno-15-43" name="__codelineno-15-43" href="#__codelineno-15-43"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -6708,7 +6711,7 @@
 </table>
 <hr />
 <h2 id="5">5. 部署策略决策<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
-<h3 id="51-aws">5.1 本地优先 → AWS 云端 ✅ 确认<a class="headerlink" href="#51-aws" title="Permanent link">&para;</a></h3>
+<h3 id="51-aws">5.1 本地优先 → AWS 云端<a class="headerlink" href="#51-aws" title="Permanent link">&para;</a></h3>
 <p><strong>决策</strong>: MVP 完全本地运行，Phase 2+ 考虑 AWS 后端</p>
 <p><strong>阶段规划</strong>:</p>
 <table>
@@ -6742,7 +6745,7 @@
 </tbody>
 </table>
 <h3 id="52-aws-vs-cloudflare-workers">5.2 AWS vs Cloudflare Workers 对比<a class="headerlink" href="#52-aws-vs-cloudflare-workers" title="Permanent link">&para;</a></h3>
-<p><strong>结论</strong>: ML 推理选 AWS，边缘 API 可选 Cloudflare</p>
+<p><strong>结论</strong>: ML 推理选 AWS，<a href="../../../reference/software-glossary/#6-边缘计算-edge-computing">边缘</a> API 可选 Cloudflare</p>
 <table>
 <thead>
 <tr>
@@ -6778,7 +6781,7 @@
 <td>AWS ✅</td>
 </tr>
 <tr>
-<td><strong>全球边缘</strong></td>
+<td><strong><a href="../../../reference/software-glossary/#6-边缘计算-edge-computing">全球边缘</a></strong></td>
 <td>✅ 最强</td>
 <td>⚠️ 区域性</td>
 <td>CF ✅ (API 网关)</td>
@@ -6863,7 +6866,7 @@
 <td>Phase 3</td>
 </tr>
 <tr>
-<td>LLM 反馈</td>
+<td><a href="../../../reference/ml-glossary/#5-llm-大语言模型">LLM 反馈</a></td>
 <td>规则引擎足够 MVP</td>
 <td>Phase 2</td>
 </tr>
@@ -6888,108 +6891,108 @@
 <h2 id="7">7. 多仓库详细职责<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
 <h3 id="71-movement-chain-ml-python">7.1 movement-chain-ml (Python)<a class="headerlink" href="#71-movement-chain-ml-python" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>│   movement-chain-ml — ML 管道与融合引擎                                      │
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>│   movement-chain-ml — ML 管道与融合引擎                                       │
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>│                                                                             │
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>│   你用的现成库 (pip install):                                                │
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>│   你用的现成库 (pip install):                                                 │
 </span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>│   ──────────────────────────────                                            │
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>│   • MediaPipe (Google) — 姿态估计，33 关键点                                 │
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>│   • imufusion (Sebastian Madgwick) — IMU 传感器融合算法                      │
-</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>│   • neurokit2 — EMG 信号处理                                                │
-</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>│   • polars — 时序数据处理 (Rust-backed)                                     │
-</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>│   • pydantic — 数据验证 (Rust-backed)                                       │
-</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>│   • rerun-sdk — 多模态可视化                                                │
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>│   • MediaPipe (Google) — 姿态估计，33 关键点                                   │
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>│   • imufusion (Sebastian Madgwick) — IMU 传感器融合算法                        │
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>│   • neurokit2 — EMG 信号处理                                                  │
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>│   • polars — 时序数据处理 (Rust-backed)                                       │
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>│   • pydantic — 数据验证 (Rust-backed)                                         │
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>│   • rerun-sdk — 多模态可视化                                                  │
 </span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>│                                                                             │
-</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>│   你需要写的代码:                                                            │
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>│   你需要写的代码:                                                              │
 </span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>│   ──────────────────────────────                                            │
-</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>│   • 六边形架构的 core/services/ — 融合逻辑、规则引擎                         │
-</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>│   • 适配器 adapters/ — 连接 MediaPipe、Mock 数据、真实 BLE                   │
-</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>│   • Mock 数据生成 — 测试用假数据                                             │
-</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>│   • 分析脚本 scripts/ — analyze_video.py 等命令行工具                        │
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>│   • 六边形架构的 core/services/ — 融合逻辑、规则引擎                             │
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>│   • 适配器 adapters/ — 连接 MediaPipe、Mock 数据、真实 BLE                      │
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>│   • Mock 数据生成 — 测试用假数据                                                │
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>│   • 分析脚本 scripts/ — analyze_video.py 等命令行工具                           │
 </span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>│                                                                             │
 </span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>│   目录结构:                                                                  │
 </span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>│   ──────────────────────────────                                            │
 </span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>│   src/movement_chain/                                                       │
-</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>│   ├── core/                    # APPLICATION CORE (六边形中心)               │
-</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>│   │   ├── entities/            # Pydantic models (Port 数据契约)            │
-</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>│   │   │   ├── pose.py          # PoseResult, Keypoint, VideoFrame          │
-</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>│   │   │   ├── imu.py           # IMUFeatures, RawIMU, Quaternion           │
-</span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>│   │   │   ├── emg.py           # EMGFeatures, MuscleActivation             │
-</span><span id="__span-17-29"><a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>│   │   │   └── fusion.py        # FusionResult, Anomaly, Feedback           │
-</span><span id="__span-17-30"><a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>│   │   ├── ports/               # 抽象接口 (ABC)                             │
-</span><span id="__span-17-31"><a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a>│   │   │   ├── pose_port.py     # class PoseEstimator(ABC)                  │
-</span><span id="__span-17-32"><a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a>│   │   │   ├── imu_port.py      # class IMUProcessor(ABC)                   │
-</span><span id="__span-17-33"><a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a>│   │   │   └── emg_port.py      # class EMGProcessor(ABC)                   │
-</span><span id="__span-17-34"><a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>│   │   └── services/            # 业务逻辑 (不依赖具体适配器)                  │
-</span><span id="__span-17-35"><a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>│   │       ├── fusion_service.py    # 三模态融合                             │
-</span><span id="__span-17-36"><a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>│   │       ├── phase_detector.py    # Top/Impact 检测                        │
-</span><span id="__span-17-37"><a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>│   │       └── rule_engine.py       # ARMS_BEFORE_CORE 等规则                │
-</span><span id="__span-17-38"><a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a>│   └── adapters/                # ADAPTERS (可替换实现)                      │
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>│   ├── core/                    # APPLICATION CORE (六边形中心)                │
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>│   │   ├── entities/            # Pydantic models (Port 数据契约)             │
+</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>│   │   │   ├── pose.py          # PoseResult, Keypoint, VideoFrame           │
+</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>│   │   │   ├── imu.py           # IMUFeatures, RawIMU, Quaternion            │
+</span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>│   │   │   ├── emg.py           # EMGFeatures, MuscleActivation              │
+</span><span id="__span-17-29"><a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>│   │   │   └── fusion.py        # FusionResult, Anomaly, Feedback            │
+</span><span id="__span-17-30"><a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>│   │   ├── ports/               # 抽象接口 (ABC)                              │
+</span><span id="__span-17-31"><a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a>│   │   │   ├── pose_port.py     # class PoseEstimator(ABC)                   │
+</span><span id="__span-17-32"><a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a>│   │   │   ├── imu_port.py      # class IMUProcessor(ABC)                    │
+</span><span id="__span-17-33"><a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a>│   │   │   └── emg_port.py      # class EMGProcessor(ABC)                    │
+</span><span id="__span-17-34"><a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>│   │   └── services/            # 业务逻辑 (不依赖具体适配器)                    │
+</span><span id="__span-17-35"><a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>│   │       ├── fusion_service.py    # 三模态融合                               │
+</span><span id="__span-17-36"><a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>│   │       ├── phase_detector.py    # Top/Impact 检测                         │
+</span><span id="__span-17-37"><a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>│   │       └── rule_engine.py       # ARMS_BEFORE_CORE 等规则                 │
+</span><span id="__span-17-38"><a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a>│   └── adapters/                # ADAPTERS (可替换实现)                        │
 </span><span id="__span-17-39"><a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>│       ├── vision/                                                           │
-</span><span id="__span-17-40"><a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a>│       │   ├── mediapipe_adapter.py  # MVP: implements PoseEstimator        │
-</span><span id="__span-17-41"><a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a>│       │   └── rtmpose_adapter.py    # Phase 2: 更高精度                     │
+</span><span id="__span-17-40"><a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a>│       │   ├── mediapipe_adapter.py  # MVP: implements PoseEstimator         │
+</span><span id="__span-17-41"><a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a>│       │   └── rtmpose_adapter.py    # Phase 2: 更高精度                      │
 </span><span id="__span-17-42"><a id="__codelineno-17-42" name="__codelineno-17-42" href="#__codelineno-17-42"></a>│       ├── imu/                                                              │
-</span><span id="__span-17-43"><a id="__codelineno-17-43" name="__codelineno-17-43" href="#__codelineno-17-43"></a>│       │   ├── mock_imu_adapter.py   # MVP: JSON 文件模拟                    │
-</span><span id="__span-17-44"><a id="__codelineno-17-44" name="__codelineno-17-44" href="#__codelineno-17-44"></a>│       │   └── ble_imu_adapter.py    # Phase 2: 真实 BLE 数据                │
+</span><span id="__span-17-43"><a id="__codelineno-17-43" name="__codelineno-17-43" href="#__codelineno-17-43"></a>│       │   ├── mock_imu_adapter.py   # MVP: JSON 文件模拟                     │
+</span><span id="__span-17-44"><a id="__codelineno-17-44" name="__codelineno-17-44" href="#__codelineno-17-44"></a>│       │   └── ble_imu_adapter.py    # Phase 2: 真实 BLE 数据                 │
 </span><span id="__span-17-45"><a id="__codelineno-17-45" name="__codelineno-17-45" href="#__codelineno-17-45"></a>│       └── emg/                                                              │
-</span><span id="__span-17-46"><a id="__codelineno-17-46" name="__codelineno-17-46" href="#__codelineno-17-46"></a>│           ├── mock_emg_adapter.py   # MVP: JSON 文件模拟                    │
-</span><span id="__span-17-47"><a id="__codelineno-17-47" name="__codelineno-17-47" href="#__codelineno-17-47"></a>│           └── ble_emg_adapter.py    # Phase 2: 真实 BLE 数据                │
+</span><span id="__span-17-46"><a id="__codelineno-17-46" name="__codelineno-17-46" href="#__codelineno-17-46"></a>│           ├── mock_emg_adapter.py   # MVP: JSON 文件模拟                     │
+</span><span id="__span-17-47"><a id="__codelineno-17-47" name="__codelineno-17-47" href="#__codelineno-17-47"></a>│           └── ble_emg_adapter.py    # Phase 2: 真实 BLE 数据                 │
 </span><span id="__span-17-48"><a id="__codelineno-17-48" name="__codelineno-17-48" href="#__codelineno-17-48"></a>│   mock_data/                   # 测试用 JSON 文件                            │
-</span><span id="__span-17-49"><a id="__codelineno-17-49" name="__codelineno-17-49" href="#__codelineno-17-49"></a>│   │   ├── correct_swing.json   # 正确挥杆                                   │
-</span><span id="__span-17-50"><a id="__codelineno-17-50" name="__codelineno-17-50" href="#__codelineno-17-50"></a>│   │   ├── arms_first.json      # 手臂先动错误                               │
-</span><span id="__span-17-51"><a id="__codelineno-17-51" name="__codelineno-17-51" href="#__codelineno-17-51"></a>│   │   └── false_coil.json      # 假性蓄力错误                               │
+</span><span id="__span-17-49"><a id="__codelineno-17-49" name="__codelineno-17-49" href="#__codelineno-17-49"></a>│   │   ├── correct_swing.json   # 正确挥杆                                    │
+</span><span id="__span-17-50"><a id="__codelineno-17-50" name="__codelineno-17-50" href="#__codelineno-17-50"></a>│   │   ├── arms_first.json      # 手臂先动错误                                 │
+</span><span id="__span-17-51"><a id="__codelineno-17-51" name="__codelineno-17-51" href="#__codelineno-17-51"></a>│   │   └── false_coil.json      # 假性蓄力错误                                 │
 </span><span id="__span-17-52"><a id="__codelineno-17-52" name="__codelineno-17-52" href="#__codelineno-17-52"></a>│   scripts/                     # 命令行工具                                  │
-</span><span id="__span-17-53"><a id="__codelineno-17-53" name="__codelineno-17-53" href="#__codelineno-17-53"></a>│   │   └── analyze_video.py     # python -m scripts.analyze_video video.mp4 │
+</span><span id="__span-17-53"><a id="__codelineno-17-53" name="__codelineno-17-53" href="#__codelineno-17-53"></a>│   │   └── analyze_video.py     # python -m scripts.analyze_video video.mp4  │
 </span><span id="__span-17-54"><a id="__codelineno-17-54" name="__codelineno-17-54" href="#__codelineno-17-54"></a>│   tests/                       # pytest 测试                                │
 </span><span id="__span-17-55"><a id="__codelineno-17-55" name="__codelineno-17-55" href="#__codelineno-17-55"></a>│                                                                             │
-</span><span id="__span-17-56"><a id="__codelineno-17-56" name="__codelineno-17-56" href="#__codelineno-17-56"></a>│   MVP1 状态: ✅ 核心仓库，从这里开始                                         │
-</span><span id="__span-17-57"><a id="__codelineno-17-57" name="__codelineno-17-57" href="#__codelineno-17-57"></a>│   关键产出: 融合管道 + Mock 数据验证 + Rerun 可视化                          │
+</span><span id="__span-17-56"><a id="__codelineno-17-56" name="__codelineno-17-56" href="#__codelineno-17-56"></a>│   MVP1 状态: ✅ 核心仓库，从这里开始                                            │
+</span><span id="__span-17-57"><a id="__codelineno-17-57" name="__codelineno-17-57" href="#__codelineno-17-57"></a>│   关键产出: 融合管道 + Mock 数据验证 + Rerun 可视化                              │
 </span><span id="__span-17-58"><a id="__codelineno-17-58" name="__codelineno-17-58" href="#__codelineno-17-58"></a>│                                                                             │
 </span><span id="__span-17-59"><a id="__codelineno-17-59" name="__codelineno-17-59" href="#__codelineno-17-59"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <h3 id="72-movement-chain-firmware-cplatformio">7.2 movement-chain-firmware (C++/PlatformIO)<a class="headerlink" href="#72-movement-chain-firmware-cplatformio" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>│   movement-chain-firmware — ESP32 嵌入式固件                                 │
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>│   movement-chain-firmware — ESP32 嵌入式固件                                  │
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>│                                                                             │
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>│   你用的现成库 (PlatformIO lib_deps):                                        │
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>│   你用的现成库 (PlatformIO lib_deps):                                         │
 </span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>│   ──────────────────────────────                                            │
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>│   • Arduino Core for ESP32 — 开发框架                                       │
-</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>│   • STM32duino LSM6DSV16X — IMU 驱动库                                      │
-</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>│   • NimBLE-Arduino — 轻量 BLE 协议栈                                        │
-</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>│   • ArduinoJson — JSON 序列化                                               │
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>│   • Arduino Core for ESP32 — 开发框架                                        │
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>│   • STM32duino LSM6DSV16X — IMU 驱动库                                       │
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>│   • NimBLE-Arduino — 轻量 BLE 协议栈                                          │
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>│   • ArduinoJson — JSON 序列化                                                │
 </span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>│                                                                             │
-</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>│   你需要写的代码:                                                            │
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>│   你需要写的代码:                                                             │
 </span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>│   ──────────────────────────────                                            │
-</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>│   • main.cpp — 初始化、主循环                                               │
-</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>│   • 传感器读取 — I2C/SPI 配置、采样率设置                                    │
-</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>│   • BLE 服务 — GATT 特征定义、数据打包                                       │
-</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>│   • protocol.h — BLE 消息格式 (与 mobile 共享契约!)                          │
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>│   • main.cpp — 初始化、主循环                                                 │
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>│   • 传感器读取 — I2C/SPI 配置、采样率设置                                       │
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>│   • BLE 服务 — GATT 特征定义、数据打包                                          │
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>│   • protocol.h — BLE 消息格式 (与 mobile 共享契约!)                            │
 </span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>│                                                                             │
 </span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>│   目录结构:                                                                  │
 </span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>│   ──────────────────────────────                                            │
 </span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>│   src/                                                                      │
-</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>│   ├── main.cpp                 # 入口: setup() + loop()                     │
+</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>│   ├── main.cpp                 # 入口: setup() + loop()                      │
 </span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>│   ├── sensors/                                                              │
-</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>│   │   ├── lsm6dsv16x.cpp       # IMU 驱动: 初始化、读取、FIFO               │
-</span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>│   │   └── dfrobot_emg.cpp      # EMG 驱动: ADC 读取、滤波                   │
+</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>│   │   ├── lsm6dsv16x.cpp       # IMU 驱动: 初始化、读取、FIFO                  │
+</span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>│   │   └── dfrobot_emg.cpp      # EMG 驱动: ADC 读取、滤波                      │
 </span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>│   ├── ble/                                                                  │
-</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>│   │   ├── ble_service.cpp      # BLE GATT 服务: 特征、通知                  │
-</span><span id="__span-18-28"><a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>│   │   └── protocol.h           # ⚠️ 共享契约: 消息格式定义                   │
+</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>│   │   ├── ble_service.cpp      # BLE GATT 服务: 特征、通知                    │
+</span><span id="__span-18-28"><a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>│   │   └── protocol.h           # ⚠️ 共享契约: 消息格式定义                     │
 </span><span id="__span-18-29"><a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>│   └── fusion/                                                               │
-</span><span id="__span-18-30"><a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>│       └── onboard_filter.cpp   # (可选) 板上滤波、降采样                     │
-</span><span id="__span-18-31"><a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>│   lib/                         # PlatformIO 库依赖                          │
-</span><span id="__span-18-32"><a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>│   platformio.ini               # 构建配置: board, framework, lib_deps       │
+</span><span id="__span-18-30"><a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>│       └── onboard_filter.cpp   # (可选) 板上滤波、降采样                       │
+</span><span id="__span-18-31"><a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>│   lib/                         # PlatformIO 库依赖                           │
+</span><span id="__span-18-32"><a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>│   platformio.ini               # 构建配置: board, framework, lib_deps        │
 </span><span id="__span-18-33"><a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>│                                                                             │
 </span><span id="__span-18-34"><a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a>│   核心功能:                                                                  │
 </span><span id="__span-18-35"><a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a>│   ──────────────────────────────                                            │
-</span><span id="__span-18-36"><a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a>│   1. 100Hz 读取 IMU (加速度计 + 陀螺仪)                                      │
-</span><span id="__span-18-37"><a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a>│   2. 1000Hz 读取 EMG → 降采样到 100Hz                                       │
-</span><span id="__span-18-38"><a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a>│   3. 打包成 BLE 数据包 (20 bytes/sample)                                    │
-</span><span id="__span-18-39"><a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a>│   4. BLE 5.0 发送到手机 (~2KB/s)                                            │
+</span><span id="__span-18-36"><a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a>│   1. 100Hz 读取 IMU (加速度计 + 陀螺仪)                                        │
+</span><span id="__span-18-37"><a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a>│   2. 1000Hz 读取 EMG → 降采样到 100Hz                                         │
+</span><span id="__span-18-38"><a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a>│   3. 打包成 BLE 数据包 (20 bytes/sample)                                      │
+</span><span id="__span-18-39"><a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a>│   4. BLE 5.0 发送到手机 (~2KB/s)                                              │
 </span><span id="__span-18-40"><a id="__codelineno-18-40" name="__codelineno-18-40" href="#__codelineno-18-40"></a>│                                                                             │
-</span><span id="__span-18-41"><a id="__codelineno-18-41" name="__codelineno-18-41" href="#__codelineno-18-41"></a>│   MVP1 状态: ⏳ Phase 2 才需要 (MVP1 用 Mock 数据)                           │
-</span><span id="__span-18-42"><a id="__codelineno-18-42" name="__codelineno-18-42" href="#__codelineno-18-42"></a>│   关键产出: 稳定的 100Hz BLE 数据流                                          │
+</span><span id="__span-18-41"><a id="__codelineno-18-41" name="__codelineno-18-41" href="#__codelineno-18-41"></a>│   MVP1 状态: ⏳ Phase 2 才需要 (MVP1 用 Mock 数据)                             │
+</span><span id="__span-18-42"><a id="__codelineno-18-42" name="__codelineno-18-42" href="#__codelineno-18-42"></a>│   关键产出: 稳定的 100Hz BLE 数据流                                             │
 </span><span id="__span-18-43"><a id="__codelineno-18-43" name="__codelineno-18-43" href="#__codelineno-18-43"></a>│                                                                             │
 </span><span id="__span-18-44"><a id="__codelineno-18-44" name="__codelineno-18-44" href="#__codelineno-18-44"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -6998,47 +7001,47 @@
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>│   movement-chain-mobile — Flutter 移动应用                                   │
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>│                                                                             │
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>│   你用的现成库 (pubspec.yaml):                                               │
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>│   你用的现成库 (pubspec.yaml):                                                │
 </span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>│   ──────────────────────────────                                            │
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>│   • flutter_blue_plus — BLE 连接                                            │
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>│   • camera — 摄像头控制                                                      │
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>│   • google_mlkit_pose_detection — MediaPipe 姿态估计                        │
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>│   • provider / riverpod — 状态管理                                          │
-</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>│   • fl_chart — 数据可视化                                                   │
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>│   • flutter_blue_plus — BLE 连接                                             │
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>│   • camera — 摄像头控制                                                       │
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>│   • google_mlkit_pose_detection — MediaPipe 姿态估计                         │
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>│   • provider / riverpod — 状态管理                                           │
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>│   • fl_chart — 数据可视化                                                     │
 </span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>│                                                                             │
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>│   你需要写的代码:                                                            │
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>│   你需要写的代码:                                                             │
 </span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>│   ──────────────────────────────                                            │
-</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>│   • UI 页面 — 录制、分析、历史                                               │
-</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>│   • BLE 服务 — 连接 ESP32、解析数据包                                        │
-</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>│   • 摄像头服务 — 录制视频、提取帧                                            │
-</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>│   • ML 服务 — 调用 MediaPipe、同步时间戳                                     │
-</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>│   • 数据模型 — Dart class (与 ML repo entities 对应)                        │
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>│   • UI 页面 — 录制、分析、历史                                                 │
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>│   • BLE 服务 — 连接 ESP32、解析数据包                                          │
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>│   • 摄像头服务 — 录制视频、提取帧                                               │
+</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>│   • ML 服务 — 调用 MediaPipe、同步时间戳                                       │
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>│   • 数据模型 — Dart class (与 ML repo entities 对应)                          │
 </span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>│                                                                             │
 </span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>│   目录结构:                                                                  │
 </span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>│   ──────────────────────────────                                            │
 </span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>│   lib/                                                                      │
-</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>│   ├── main.dart                # 入口                                       │
-</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>│   ├── screens/                 # UI 页面                                    │
-</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>│   │   ├── home_screen.dart     # 首页: 开始录制                             │
-</span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>│   │   ├── record_screen.dart   # 录制: 摄像头 + BLE 同时采集                │
-</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>│   │   ├── analysis_screen.dart # 分析: 显示反馈结果                         │
-</span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>│   │   └── history_screen.dart  # 历史: 过去的挥杆记录                       │
+</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>│   ├── main.dart                # 入口                                        │
+</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>│   ├── screens/                 # UI 页面                                     │
+</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>│   │   ├── home_screen.dart     # 首页: 开始录制                               │
+</span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>│   │   ├── record_screen.dart   # 录制: 摄像头 + BLE 同时采集                   │
+</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>│   │   ├── analysis_screen.dart # 分析: 显示反馈结果                            │
+</span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>│   │   └── history_screen.dart  # 历史: 过去的挥杆记录                          │
 </span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a>│   ├── services/                                                             │
-</span><span id="__span-19-31"><a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>│   │   ├── camera_service.dart  # 摄像头: 录制、帧提取、时间戳               │
-</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a>│   │   ├── ble_service.dart     # BLE: 扫描、连接、数据解析                  │
-</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a>│   │   └── ml_service.dart      # ML: MediaPipe 推理、结果处理               │
-</span><span id="__span-19-34"><a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a>│   ├── models/                  # ⚠️ 共享契约: 与 ML entities 对应           │
+</span><span id="__span-19-31"><a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>│   │   ├── camera_service.dart  # 摄像头: 录制、帧提取、时间戳                   │
+</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a>│   │   ├── ble_service.dart     # BLE: 扫描、连接、数据解析                     │
+</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a>│   │   └── ml_service.dart      # ML: MediaPipe 推理、结果处理                 │
+</span><span id="__span-19-34"><a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a>│   ├── models/                  # ⚠️ 共享契约: 与 ML entities 对应             │
 </span><span id="__span-19-35"><a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a>│   │   ├── pose_result.dart     # 对应 ml/entities/pose.py                   │
 </span><span id="__span-19-36"><a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>│   │   ├── imu_data.dart        # 对应 ml/entities/imu.py                    │
 </span><span id="__span-19-37"><a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a>│   │   └── ble_messages.dart    # 对应 firmware/protocol.h                   │
 </span><span id="__span-19-38"><a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a>│   └── widgets/                 # 可复用 UI 组件                              │
-</span><span id="__span-19-39"><a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>│       ├── pose_overlay.dart    # 骨架叠加显示                               │
-</span><span id="__span-19-40"><a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a>│       └── metric_card.dart     # 指标卡片                                   │
-</span><span id="__span-19-41"><a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a>│   assets/                      # 静态资源                                   │
-</span><span id="__span-19-42"><a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a>│   └── models/                  # TFLite 模型文件 (从 ML repo 导出)          │
+</span><span id="__span-19-39"><a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>│       ├── pose_overlay.dart    # 骨架叠加显示                                 │
+</span><span id="__span-19-40"><a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a>│       └── metric_card.dart     # 指标卡片                                    │
+</span><span id="__span-19-41"><a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a>│   assets/                      # 静态资源                                    │
+</span><span id="__span-19-42"><a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a>│   └── models/                  # TFLite 模型文件 (从 ML repo 导出)            │
 </span><span id="__span-19-43"><a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a>│                                                                             │
-</span><span id="__span-19-44"><a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a>│   MVP1 状态: ⏳ Phase 1.5 开始 (先完成 ML 管道)                              │
-</span><span id="__span-19-45"><a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a>│   关键产出: 用户可用的 iOS/Android 应用                                      │
+</span><span id="__span-19-44"><a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a>│   MVP1 状态: ⏳ Phase 1.5 开始 (先完成 ML 管道)                                │
+</span><span id="__span-19-45"><a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a>│   关键产出: 用户可用的 iOS/Android 应用                                         │
 </span><span id="__span-19-46"><a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a>│                                                                             │
 </span><span id="__span-19-47"><a id="__codelineno-19-47" name="__codelineno-19-47" href="#__codelineno-19-47"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -7047,47 +7050,47 @@
 </span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>│   movement-chain-hardware — PCB 载板设计                                     │
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>│                                                                             │
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>│   ⚠️ 重要澄清: 不是设计芯片，是设计「载板」把现成芯片连在一起                  │
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>│   ⚠️ 重要澄清: 不是设计芯片，是设计「载板」把现成芯片连在一起                        │
 </span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>│                                                                             │
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>│   你买的成品 (现成芯片/模块):                                                 │
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>│   你买的成品 (现成芯片/模块):                                                   │
 </span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>│   ──────────────────────────────                                            │
-</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>│   • LSM6DSV16X 芯片 (ST 生产, ~$6-8) — IMU 传感器                           │
-</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>│   • ESP32-S3-WROOM 模块 (Espressif, ~$3-5) — MCU + WiFi + BLE              │
-</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>│   • DFRobot EMG 传感器 (~$15) — 肌电传感器                                   │
-</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>│   • LDO 稳压器 (TPS73633, ~$0.5) — 3.3V 电源                               │
-</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>│   • 电池充电芯片 (TP4056, ~$0.3) — 锂电池充电                               │
-</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>│   • 各种电阻、电容、连接器 (~$2) — 被动元件                                  │
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>│   • LSM6DSV16X 芯片 (ST 生产, ~$6-8) — IMU 传感器                             │
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>│   • ESP32-S3-WROOM 模块 (Espressif, ~$3-5) — MCU + WiFi + BLE                │
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>│   • DFRobot EMG 传感器 (~$15) — 肌电传感器                                     │
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>│   • LDO 稳压器 (TPS73633, ~$0.5) — 3.3V 电源                                  │
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>│   • 电池充电芯片 (TP4056, ~$0.3) — 锂电池充电                                   │
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>│   • 各种电阻、电容、连接器 (~$2) — 被动元件                                      │
 </span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>│                                                                             │
-</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>│   你需要设计的 (这个仓库存的):                                               │
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>│   你需要设计的 (这个仓库存的):                                                  │
 </span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>│   ──────────────────────────────                                            │
-</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>│   • Carrier Board (载板) — 把上述芯片连接在一起的 PCB                        │
-</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>│   • 电源电路 — 电池 → LDO → 3.3V 给各芯片供电                               │
-</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>│   • I2C/SPI 总线布线 — ESP32 ↔ LSM6DSV16X 连接                             │
-</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>│   • 天线禁区 — BLE/WiFi 天线周围不能有铜                                     │
-</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>│   • 外壳设计 — 3D 打印或注塑模具                                             │
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>│   • Carrier Board (载板) — 把上述芯片连接在一起的 PCB                           │
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>│   • 电源电路 — 电池 → LDO → 3.3V 给各芯片供电                                   │
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>│   • I2C/SPI 总线布线 — ESP32 ↔ LSM6DSV16X 连接                                │
+</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>│   • 天线禁区 — BLE/WiFi 天线周围不能有铜                                        │
+</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>│   • 外壳设计 — 3D 打印或注塑模具                                                │
 </span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>│                                                                             │
 </span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>│   目录结构:                                                                  │
 </span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>│   ──────────────────────────────                                            │
 </span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>│   pcb/                         # KiCad 项目文件                              │
-</span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>│   │   ├── movement-chain.kicad_pro   # 项目配置                             │
-</span><span id="__span-20-28"><a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>│   │   ├── movement-chain.kicad_sch   # 原理图                               │
-</span><span id="__span-20-29"><a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>│   │   └── movement-chain.kicad_pcb   # PCB 布局                             │
-</span><span id="__span-20-30"><a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a>│   schematic/                   # 原理图 PDF 导出 (方便查看)                  │
+</span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>│   │   ├── movement-chain.kicad_pro   # 项目配置                              │
+</span><span id="__span-20-28"><a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>│   │   ├── movement-chain.kicad_sch   # 原理图                                │
+</span><span id="__span-20-29"><a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>│   │   └── movement-chain.kicad_pcb   # PCB 布局                              │
+</span><span id="__span-20-30"><a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a>│   schematic/                   # 原理图 PDF 导出 (方便查看)                    │
 </span><span id="__span-20-31"><a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a>│   bom/                         # Bill of Materials                          │
-</span><span id="__span-20-32"><a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a>│   │   └── bom.csv              # 要买什么、从哪买、多少钱                     │
-</span><span id="__span-20-33"><a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a>│   gerber/                      # 发给 PCB 厂的生产文件                       │
-</span><span id="__span-20-34"><a id="__codelineno-20-34" name="__codelineno-20-34" href="#__codelineno-20-34"></a>│   │   └── *.gbr, *.drl         # JLCPCB/PCBWay 可直接下单                   │
+</span><span id="__span-20-32"><a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a>│   │   └── bom.csv              # 要买什么、从哪买、多少钱                       │
+</span><span id="__span-20-33"><a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a>│   gerber/                      # 发给 PCB 厂的生产文件                         │
+</span><span id="__span-20-34"><a id="__codelineno-20-34" name="__codelineno-20-34" href="#__codelineno-20-34"></a>│   │   └── *.gbr, *.drl         # JLCPCB/PCBWay 可直接下单                     │
 </span><span id="__span-20-35"><a id="__codelineno-20-35" name="__codelineno-20-35" href="#__codelineno-20-35"></a>│   enclosure/                   # 外壳 3D 模型                                │
-</span><span id="__span-20-36"><a id="__codelineno-20-36" name="__codelineno-20-36" href="#__codelineno-20-36"></a>│       └── case.stl             # 3D 打印文件                                │
+</span><span id="__span-20-36"><a id="__codelineno-20-36" name="__codelineno-20-36" href="#__codelineno-20-36"></a>│       └── case.stl             # 3D 打印文件                                 │
 </span><span id="__span-20-37"><a id="__codelineno-20-37" name="__codelineno-20-37" href="#__codelineno-20-37"></a>│                                                                             │
 </span><span id="__span-20-38"><a id="__codelineno-20-38" name="__codelineno-20-38" href="#__codelineno-20-38"></a>│   简单比喻:                                                                  │
 </span><span id="__span-20-39"><a id="__codelineno-20-39" name="__codelineno-20-39" href="#__codelineno-20-39"></a>│   ──────────────────────────────                                            │
-</span><span id="__span-20-40"><a id="__codelineno-20-40" name="__codelineno-20-40" href="#__codelineno-20-40"></a>│   • 你买的是「乐高积木」(现成芯片)                                           │
-</span><span id="__span-20-41"><a id="__codelineno-20-41" name="__codelineno-20-41" href="#__codelineno-20-41"></a>│   • 这个仓库是「乐高说明书」(怎么组装)                                        │
+</span><span id="__span-20-40"><a id="__codelineno-20-40" name="__codelineno-20-40" href="#__codelineno-20-40"></a>│   • 你买的是「乐高积木」(现成芯片)                                               │
+</span><span id="__span-20-41"><a id="__codelineno-20-41" name="__codelineno-20-41" href="#__codelineno-20-41"></a>│   • 这个仓库是「乐高说明书」(怎么组装)                                            │
 </span><span id="__span-20-42"><a id="__codelineno-20-42" name="__codelineno-20-42" href="#__codelineno-20-42"></a>│                                                                             │
-</span><span id="__span-20-43"><a id="__codelineno-20-43" name="__codelineno-20-43" href="#__codelineno-20-43"></a>│   MVP1 状态: ❌ 跳过 (用开发板代替)                                          │
-</span><span id="__span-20-44"><a id="__codelineno-20-44" name="__codelineno-20-44" href="#__codelineno-20-44"></a>│   Phase 2: 设计自定义 PCB，小批量生产                                        │
-</span><span id="__span-20-45"><a id="__codelineno-20-45" name="__codelineno-20-45" href="#__codelineno-20-45"></a>│   关键产出: 可量产的硬件设计                                                 │
+</span><span id="__span-20-43"><a id="__codelineno-20-43" name="__codelineno-20-43" href="#__codelineno-20-43"></a>│   MVP1 状态: ❌ 跳过 (用开发板代替)                                            │
+</span><span id="__span-20-44"><a id="__codelineno-20-44" name="__codelineno-20-44" href="#__codelineno-20-44"></a>│   Phase 2: 设计自定义 PCB，小批量生产                                           │
+</span><span id="__span-20-45"><a id="__codelineno-20-45" name="__codelineno-20-45" href="#__codelineno-20-45"></a>│   关键产出: 可量产的硬件设计                                                    │
 </span><span id="__span-20-46"><a id="__codelineno-20-46" name="__codelineno-20-46" href="#__codelineno-20-46"></a>│                                                                             │
 </span><span id="__span-20-47"><a id="__codelineno-20-47" name="__codelineno-20-47" href="#__codelineno-20-47"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -7096,41 +7099,41 @@
 </span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>│   movement-chain-ai-docs — 项目文档                                          │
 </span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>│                                                                             │
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>│   你用的现成工具:                                                            │
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>│   你用的现成工具:                                                             │
 </span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>│   ──────────────────────────────                                            │
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>│   • Zensical (Material for MkDocs 团队) — 静态站点生成器                     │
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>│   • Mermaid — 流程图、时序图                                                 │
-</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>│   • markdownlint — Markdown 格式检查                                        │
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>│   • Zensical (Material for MkDocs 团队) — 静态站点生成器                       │
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>│   • Mermaid — 流程图、时序图                                                  │
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>│   • markdownlint — Markdown 格式检查                                         │
 </span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>│                                                                             │
-</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>│   你需要写的内容:                                                            │
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>│   你需要写的内容:                                                              │
 </span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>│   ──────────────────────────────                                            │
-</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>│   • 商业计划 — MVP 定义、竞品分析、市场策略                                   │
-</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>│   • 技术设计 — 架构设计、ADR、算法规格                                       │
-</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>│   • 硬件规格 — 传感器选型、供应商信息                                        │
-</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>│   • 开发指南 — 如何贡献、如何部署                                            │
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>│   • 商业计划 — MVP 定义、竞品分析、市场策略                                       │
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>│   • 技术设计 — 架构设计、ADR、算法规格                                           │
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>│   • 硬件规格 — 传感器选型、供应商信息                                            │
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>│   • 开发指南 — 如何贡献、如何部署                                               │
 </span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>│                                                                             │
 </span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>│   目录结构:                                                                  │
 </span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>│   ──────────────────────────────                                            │
 </span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>│   docs/zh/                                                                  │
 </span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>│   ├── business-plan/           # WHY: 商业价值                               │
-</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>│   │   ├── mvp-specifications.md    # MVP 定义                               │
-</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>│   │   ├── market-insights/         # 市场分析、竞品                          │
-</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>│   │   └── go-to-market/            # 上市策略                               │
-</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>│   ├── design/                  # WHAT: 技术架构                             │
-</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>│   │   ├── foundations/         # 生物力学基础 (先读这个)                     │
-</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>│   │   ├── architecture/        # 系统设计 (4 个核心文档)                     │
-</span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>│   │   ├── specs/               # 详细规格                                   │
-</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>│   │   └── decisions/           # ADR 架构决策记录                           │
-</span><span id="__span-21-30"><a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>│   ├── components/              # 硬件规格                                   │
-</span><span id="__span-21-31"><a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>│   │   ├── imu/                 # IMU 传感器                                 │
-</span><span id="__span-21-32"><a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>│   │   └── emg/                 # EMG 传感器                                 │
-</span><span id="__span-21-33"><a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>│   ├── development/             # HOW: 开发指南                              │
-</span><span id="__span-21-34"><a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>│   │   ├── mobile/              # Flutter 开发                               │
-</span><span id="__span-21-35"><a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>│   │   └── ml-training/         # ML 训练                                    │
-</span><span id="__span-21-36"><a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>│   └── reference/               # 外部链接 (只放 URL，不放内容)               │
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>│   │   ├── mvp-specifications.md    # MVP 定义                                │
+</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>│   │   ├── market-insights/         # 市场分析、竞品                            │
+</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>│   │   └── go-to-market/            # 上市策略                                 │
+</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>│   ├── design/                  # WHAT: 技术架构                               │
+</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>│   │   ├── foundations/         # 生物力学基础 (先读这个)                        │
+</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>│   │   ├── architecture/        # 系统设计 (4 个核心文档)                        │
+</span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>│   │   ├── specs/               # 详细规格                                     │
+</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>│   │   └── decisions/           # ADR 架构决策记录                              │
+</span><span id="__span-21-30"><a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>│   ├── components/              # 硬件规格                                     │
+</span><span id="__span-21-31"><a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>│   │   ├── imu/                 # IMU 传感器                                   │
+</span><span id="__span-21-32"><a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>│   │   └── emg/                 # EMG 传感器                                   │
+</span><span id="__span-21-33"><a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>│   ├── development/             # HOW: 开发指南                                │
+</span><span id="__span-21-34"><a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>│   │   ├── mobile/              # Flutter 开发                                │
+</span><span id="__span-21-35"><a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>│   │   └── ml-training/         # ML 训练                                     │
+</span><span id="__span-21-36"><a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>│   └── reference/               # 外部链接 (只放 URL，不放内容)                  │
 </span><span id="__span-21-37"><a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a>│                                                                             │
-</span><span id="__span-21-38"><a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a>│   MVP1 状态: ✅ 持续更新                                                     │
-</span><span id="__span-21-39"><a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a>│   关键产出: 所有设计决策的单一来源 (Single Source of Truth)                   │
+</span><span id="__span-21-38"><a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a>│   MVP1 状态: ✅ 持续更新                                                      │
+</span><span id="__span-21-39"><a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a>│   关键产出: 所有设计决策的单一来源 (Single Source of Truth)                      │
 </span><span id="__span-21-40"><a id="__codelineno-21-40" name="__codelineno-21-40" href="#__codelineno-21-40"></a>│                                                                             │
 </span><span id="__span-21-41"><a id="__codelineno-21-41" name="__codelineno-21-41" href="#__codelineno-21-41"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -7179,18 +7182,18 @@
 </table>
 <h3 id="77">7.7 数据传输流程<a class="headerlink" href="#77" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>│                    数据传输流程 DATA FLOW                                    │
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>│                    数据传输流程 DATA FLOW                                     │
 </span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>│                                                                             │
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>│   [LSM6DSV16X IMU] ──I2C/SPI──→ [ESP32-S3] ──BLE 5.0──→ [Flutter App]      │
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>│   [LSM6DSV16X IMU] ──I2C/SPI──→ [ESP32-S3] ──BLE 5.0──→ [Flutter App]       │
 </span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>│        │                              │                       │             │
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>│        │ 100Hz 采样                   │ 打包+缓冲              │ 接收+解析   │
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>│        │ 100Hz 采样                    │ 打包+缓冲              │ 接收+解析    │
 </span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>│        ↓                              ↓                       ↓             │
-</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>│   加速度计+陀螺仪数据            protocol.h 定义格式      ble_service.dart   │
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>│   加速度计+陀螺仪数据            protocol.h 定义格式        ble_service.dart    │
 </span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>│                                                                             │
-</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>│   BLE 数据包格式 (20 bytes/sample):                                         │
-</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>│   [type:1B][timestamp_ms:4B][gyro_xyz:6B][accel_xyz:6B][emg:2B][crc:1B]    │
-</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>│   → 100Hz × 20B = 2KB/s (BLE 5.0 支持 800+ kbps, 有 40x 余量)              │
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>│   BLE 数据包格式 (20 bytes/sample):                                           │
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>│   [type:1B][timestamp_ms:4B][gyro_xyz:6B][accel_xyz:6B][emg:2B][crc:1B]     │
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>│   → 100Hz × 20B = 2KB/s (BLE 5.0 支持 800+ kbps, 有 40x 余量)                 │
 </span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>│                                                                             │
 </span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -7219,7 +7222,7 @@
 </span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a>│                                                                             │
 </span><span id="__span-23-19"><a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
-<h4 id="ble-2025-12">⚠️ BLE 时间抖动问题 (2025-12 研究验证)<a class="headerlink" href="#ble-2025-12" title="Permanent link">&para;</a></h4>
+<h4 id="ble-2025-12">⚠️ BLE 时间<a href="../../../reference/engineering-glossary/#10-ble-抖动-ble-jitter">抖动</a>问题 (2025-12 研究验证)<a class="headerlink" href="#ble-2025-12" title="Permanent link">&para;</a></h4>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
 </span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>│              BLE CONNECTION INTERVAL JITTER - 关键风险                       │
 </span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>├─────────────────────────────────────────────────────────────────────────────┤

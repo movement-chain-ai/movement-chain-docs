@@ -4498,7 +4498,90 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#6-边缘计算-edge-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 边缘计算 (Edge Computing)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 边缘计算 (Edge Computing)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是"边缘"？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        边缘节点在哪里？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        边缘 vs 云端
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        边缘 API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloudflare-workers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cloudflare Workers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#movement-chain-ai_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 Movement Chain AI 中的应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -5073,7 +5156,90 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#6-边缘计算-edge-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 边缘计算 (Edge Computing)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 边缘计算 (Edge Computing)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是"边缘"？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        边缘节点在哪里？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        边缘 vs 云端
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        边缘 API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cloudflare-workers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cloudflare Workers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#movement-chain-ai_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 Movement Chain AI 中的应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -5148,6 +5314,12 @@
 <td><a href="#5-polars">Polars</a></td>
 <td>Polars</td>
 <td>Rust 实现的高性能数据处理库，替代 Pandas</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="#6-边缘计算-edge-computing">边缘计算</a></td>
+<td>Edge Computing</td>
+<td>在靠近用户的服务器上运行代码，降低延迟</td>
 </tr>
 </tbody>
 </table>
@@ -5905,11 +6077,233 @@
 <p>详见：<a href="../../design/architecture/architecture-decisions-2025-12-23/#23-polars-替代-pandas">关键决策 2025-12 § Polars 替代 Pandas</a></p>
 </blockquote>
 <hr />
-<h2 id="_15">相关文档<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<h2 id="6-边缘计算-edge-computing">6. 边缘计算 (Edge Computing)<a class="headerlink" href="#6-边缘计算-edge-computing" title="Permanent link">&para;</a></h2>
+<p><strong>定义：</strong> 边缘计算是指在<strong>靠近用户的服务器节点</strong>上运行代码，而不是在集中的数据中心。目的是降低网络延迟、提高响应速度。</p>
+<hr />
+<h3 id="_15">什么是"边缘"？<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>"边缘"（Edge）是相对于"中心"（Center）而言的地理概念：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>传统云计算（中心化）:
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>─────────────────────────────────────────────
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>用户 (上海) ────── 跨洋网络 ──────&gt; 美国数据中心
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>                    延迟: 150-300ms
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>边缘计算（分布式）:
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>─────────────────────────────────────────────
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>用户 (上海) ────&gt; 上海边缘节点 ────&gt; 需要时才访问中心
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>                    延迟: 10-50ms
+</span></code></pre></div>
+<h3 id="_16">边缘节点在哪里？<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>提供商</th>
+<th>边缘节点数量</th>
+<th>覆盖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cloudflare</strong></td>
+<td>300+</td>
+<td>全球 100+ 个国家</td>
+</tr>
+<tr>
+<td><strong>AWS CloudFront</strong></td>
+<td>400+</td>
+<td>主要城市</td>
+</tr>
+<tr>
+<td><strong>Fastly</strong></td>
+<td>80+</td>
+<td>主要城市</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vs">边缘 vs 云端<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>对比</th>
+<th>边缘计算</th>
+<th>云端计算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>服务器位置</strong></td>
+<td>靠近用户（城市级）</td>
+<td>集中数据中心（区域级）</td>
+</tr>
+<tr>
+<td><strong>延迟</strong></td>
+<td>10-50ms</td>
+<td>50-300ms</td>
+</tr>
+<tr>
+<td><strong>计算能力</strong></td>
+<td>有限（轻量级任务）</td>
+<td>强大（复杂任务）</td>
+</tr>
+<tr>
+<td><strong>适合场景</strong></td>
+<td>API 网关、缓存、验证</td>
+<td>ML 推理、数据处理</td>
+</tr>
+</tbody>
+</table>
+<h3 id="api_1">边缘 API<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h3>
+<p>边缘 API 是指部署在边缘节点上的轻量级 API 服务，通常用于：</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>API 网关</strong></td>
+<td>请求路由、负载均衡</td>
+</tr>
+<tr>
+<td><strong>认证验证</strong></td>
+<td>JWT 校验、权限检查</td>
+</tr>
+<tr>
+<td><strong>缓存</strong></td>
+<td>静态数据缓存，减少后端压力</td>
+</tr>
+<tr>
+<td><strong>数据预处理</strong></td>
+<td>请求格式转换、参数校验</td>
+</tr>
+</tbody>
+</table>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>边缘 API 的工作流程:
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>─────────────────────────────────────────────
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>用户请求 → 边缘节点 (快速处理) → 需要时才转发 → 云端
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>              │
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>              ├── 认证校验 ✅ (本地完成)
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>              ├── 缓存命中 ✅ (本地返回)
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>              └── 需要 ML 推理 → 转发到云端
+</span></code></pre></div>
+<h3 id="cloudflare-workers">Cloudflare Workers<a class="headerlink" href="#cloudflare-workers" title="Permanent link">&para;</a></h3>
+<p>Cloudflare Workers 是最流行的边缘计算平台之一：</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>运行时</strong></td>
+<td>V8 引擎（JavaScript/WASM）</td>
+</tr>
+<tr>
+<td><strong>冷启动</strong></td>
+<td>0ms（预热实例）</td>
+</tr>
+<tr>
+<td><strong>全球部署</strong></td>
+<td>300+ 节点，自动就近路由</td>
+</tr>
+<tr>
+<td><strong>免费额度</strong></td>
+<td>10 万次请求/天</td>
+</tr>
+</tbody>
+</table>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Cloudflare Workers 的限制:
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>─────────────────────────────────────────────
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>✅ 适合: API 网关、认证、缓存、轻量计算
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>❌ 不适合: ML 推理（内存限制 128MB）、Python 原生
+</span></code></pre></div>
+<h3 id="movement-chain-ai_5">在 Movement Chain AI 中的应用<a class="headerlink" href="#movement-chain-ai_5" title="Permanent link">&para;</a></h3>
+<p><strong>决策</strong>: ML 推理用 AWS，边缘 API 用 Cloudflare</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Phase 3 架构:
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>─────────────────────────────────────────────
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>用户
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>  │
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>  ▼
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>Cloudflare Workers (边缘)
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>  ├── API 网关
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>  ├── JWT 认证
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>  ├── 请求缓存
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>  │
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>  ▼ (需要 ML 时)
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>AWS Lambda (云端)
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>  ├── 姿态估计
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>  ├── 球速预测
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>  └── 挥杆分析
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>服务</th>
+<th>位置</th>
+<th>延迟</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>边缘层</strong></td>
+<td>Cloudflare Workers</td>
+<td>全球 300+ 节点</td>
+<td>~10ms</td>
+</tr>
+<tr>
+<td><strong>云端层</strong></td>
+<td>AWS Lambda</td>
+<td>区域数据中心</td>
+<td>~50-100ms</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么这样分层</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>部署位置</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API 认证</td>
+<td>边缘</td>
+<td>快速拒绝无效请求</td>
+</tr>
+<tr>
+<td>静态数据缓存</td>
+<td>边缘</td>
+<td>减少后端压力</td>
+</tr>
+<tr>
+<td>ML 模型推理</td>
+<td>云端</td>
+<td>需要大内存/GPU</td>
+</tr>
+<tr>
+<td>视频处理</td>
+<td>云端</td>
+<td>需要长时间计算</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>详见：<a href="../../design/architecture/architecture-decisions-2025-12-23/#5-部署策略决策">关键决策 2025-12 § 部署策略</a></p>
+</blockquote>
+<hr />
+<h2 id="_17">相关文档<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../design/architecture/architecture-decisions-2025-12-23/#11-六边形架构-hexagonal-architecture--确认">关键决策 2025-12 § 六边形架构</a> - 为什么选择六边形架构</li>
 <li><a href="../../design/architecture/architecture-decisions-2025-12-23/#22-uv-替代-poetry">关键决策 2025-12 § UV 替代 Poetry</a> - 包管理器选型决策</li>
 <li><a href="../../design/architecture/architecture-decisions-2025-12-23/#23-polars-替代-pandas">关键决策 2025-12 § Polars 替代 Pandas</a> - 数据处理库选型决策</li>
+<li><a href="../../design/architecture/architecture-decisions-2025-12-23/#5-部署策略决策">关键决策 2025-12 § 部署策略</a> - 边缘计算与云端部署决策</li>
 <li><a href="../ml-glossary/">机器学习术语表</a> - 推理引擎、ONNX Runtime、TFLite 等</li>
 <li><a href="../../design/architecture/system-design/">系统设计</a> - 整体架构</li>
 <li><a href="../engineering-glossary/">工程术语表</a> - 嵌入式系统、传感器术语</li>
