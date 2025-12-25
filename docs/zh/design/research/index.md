@@ -2,7 +2,7 @@
 
 > **文档目的**: 竞争分析与开发工具选型
 >
-> **注意**: 生物力学相关内容已移至 [生物力学基础](../foundations/)
+> **注意**: 生物力学相关内容已移至 [生物力学基础](../../prerequisites/foundations/)
 
 ---
 
@@ -17,13 +17,13 @@
 
 ## 生物力学内容已迁移
 
-以下内容现已位于 [生物力学基础](../foundations/) 文件夹:
+以下内容现已位于 [生物力学基础](../../prerequisites/foundations/) 文件夹:
 
 | 新位置 | 内容 |
 |--------|------|
-| [foundations/biomechanics-101.md](../foundations/biomechanics-101.md) | 7 章学习指南 |
-| [foundations/biomechanics-glossary.md](../foundations/biomechanics-glossary.md) | 140+ 术语定义 |
-| [foundations/biomechanics-benchmarks.md](../foundations/biomechanics-benchmarks.md) | 职业/业余基准值 |
+| [foundations/biomechanics-101.md](../../prerequisites/foundations/biomechanics-101.md) | 7 章学习指南 |
+| [foundations/biomechanics-glossary.md](../../prerequisites/foundations/biomechanics-glossary.md) | 140+ 术语定义 |
+| [foundations/biomechanics-benchmarks.md](../../prerequisites/foundations/biomechanics-benchmarks.md) | 职业/业余基准值 |
 
 传感器指标映射现已位于 [核心架构](../architecture/) 文件夹:
 

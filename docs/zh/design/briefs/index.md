@@ -39,7 +39,7 @@
 
 1. 先读你的Brief文档
 2. 按Brief中列出的顺序阅读链接文档
-3. 如遇到术语不理解，查阅 [`design/research/biomechanics-glossary.md`](../foundations/biomechanics-glossary.md)
+3. 如遇到术语不理解，查阅 [`biomechanics-glossary.md`](../../prerequisites/foundations/biomechanics-glossary.md)
 
 ### 3. 参考完整路线图（可选）
 

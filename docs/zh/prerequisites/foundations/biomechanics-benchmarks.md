@@ -383,9 +383,9 @@
 
 ## 14. Related Documents (相关文档)
 
-- [系统设计](../architecture/system-design.md) - MVP 架构设计
-- [机器学习基础](../guides/ml-basics.md) - 特征工程参考
-- [ADR-0006: ONNX Runtime](../decisions/0006-onnx-runtime-deployment.md) - 模型部署决策
+- [系统设计](../../design/architecture/system-design.md) - MVP 架构设计
+- [机器学习基础](../../design/guides/ml-basics.md) - 特征工程参考
+- [ADR-0006: ONNX Runtime](../../design/decisions/0006-onnx-runtime-deployment.md) - 模型部署决策
 - [学术数据集](../../reference/academic-datasets.md) - 训练数据来源
 
 ---

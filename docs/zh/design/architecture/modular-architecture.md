@@ -639,7 +639,7 @@ class TimeAlignmentManager:
 
 ### 2.9 研究验证的阈值参考
 
-所有阈值来自文献研究，详见 [生物力学基准值](../foundations/biomechanics-benchmarks.md):
+所有阈值来自文献研究，详见 [生物力学基准值](../../prerequisites/foundations/biomechanics-benchmarks.md):
 
 | 指标 | 阈值/范围 | 来源 | 用途 |
 |------|----------|------|------|
@@ -1387,7 +1387,7 @@ Phase 4+ (Week 5-8): Integration & Testing
 | [系统设计](./system-design.md) | MVP 4 模块架构 | 本文档的父文档 |
 | [传感器指标映射](./sensor-metric-mapping.md) | 算法实现代码 | §3.1-3.3 的详细实现 |
 | [挥杆阶段](../specs/swing-phases.md) | 8 阶段检测 | CLASSIFIER Block 输出 |
-| [生物力学术语表](../foundations/biomechanics-glossary.md) | 术语定义 | 高尔夫专业术语 |
+| [生物力学术语表](../../prerequisites/foundations/biomechanics-glossary.md) | 术语定义 | 高尔夫专业术语 |
 
 ### 技术决策 (ADRs)
 

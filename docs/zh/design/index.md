@@ -27,11 +27,11 @@
 
 | 文档 | 内容 | 阅读时间 |
 |------|------|---------|
-| [📖 入门教程](foundations/biomechanics-101.md) | 7章从零开始学习高尔夫挥杆物理学 | ~90分钟 |
-| [📚 术语表](foundations/biomechanics-glossary.md) | 140+ 专业术语定义 | 按需查阅 |
-| [📊 基准值](foundations/biomechanics-benchmarks.md) | 职业/业余选手量化对比 | 按需查阅 |
+| [📖 入门教程](../prerequisites/foundations/biomechanics-101.md) | 7章从零开始学习高尔夫挥杆物理学 | ~90分钟 |
+| [📚 术语表](../prerequisites/foundations/biomechanics-glossary.md) | 140+ 专业术语定义 | 按需查阅 |
+| [📊 基准值](../prerequisites/foundations/biomechanics-benchmarks.md) | 职业/业余选手量化对比 | 按需查阅 |
 
-> **新成员必读**: 先完成 [入门教程](foundations/biomechanics-101.md)，再进入核心架构
+> **新成员必读**: 先完成 [入门教程](../prerequisites/foundations/biomechanics-101.md)，再进入核心架构
 
 ### 2️⃣ 核心架构 (技术核心)
 
@@ -130,4 +130,4 @@ graph TD
 
 ---
 
-**下一步**: [从生物力学入门开始 →](foundations/biomechanics-101.md)
+**下一步**: [从生物力学入门开始 →](../prerequisites/foundations/biomechanics-101.md)

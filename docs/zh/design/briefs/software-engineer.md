@@ -123,7 +123,7 @@ pip install streamlit
 
 ### 基准数据
 
-- [**生物力学基准值**](../foundations/biomechanics-benchmarks.md) (10 分钟)
+- [**生物力学基准值**](../../prerequisites/foundations/biomechanics-benchmarks.md) (10 分钟)
   - 职业 vs 业余球手数据对比
   - 规则引擎阈值来源
   - X-Factor, 节奏比, 峰值角速度等指标

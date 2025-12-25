@@ -279,7 +279,7 @@ Flexible sensor arrays conforming to skin or curved surfaces.<br>贴合皮肤或
 
 **我们的架构 Our Architecture**: PyTorch training 训练 → ONNX export 导出 → ONNX Runtime Mobile inference 推理
 
-详见 See: [ONNX Runtime 部署 ADR](../decisions/0006-onnx-runtime-deployment.md)
+详见 See: [ONNX Runtime 部署 ADR](../../design/decisions/0006-onnx-runtime-deployment.md)
 
 ---
 

@@ -414,7 +414,7 @@ graph TD
 | [系统设计](../architecture/system-design.md) | MVP 管道架构 | 阶段检测算法详情 |
 | [实时反馈规范](real-time-feedback.md) | 反馈触发条件 | 阶段检测作为触发点 |
 | [挥杆对比策略](swing-comparison.md) | 对比方法 | 阶段对齐基础 |
-| [生物力学基准](../foundations/biomechanics-benchmarks.md) | 各指标阈值 | 阶段内评估标准 |
+| [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) | 各指标阈值 | 阶段内评估标准 |
 
 ---
 

@@ -64,7 +64,7 @@
 
 ### 2.1 MVP 测量指标 (12个)
 
-基于 [传感器指标映射](./sensor-metric-mapping.md) 和 [生物力学基准值](../foundations/biomechanics-benchmarks.md)。
+基于 [传感器指标映射](./sensor-metric-mapping.md) 和 [生物力学基准值](../../prerequisites/foundations/biomechanics-benchmarks.md)。
 
 > 🔍 **竞品对比**: 与 OnForm/Sportsbox 的指标差异见 [竞品指标对比](../research/competitor-metrics-comparison.md)
 
@@ -498,7 +498,7 @@ Movement Chain AI 的核心创新是**三模态传感器融合**：视频、IMU�
 ### 5.4 基准数据
 
 - **GolfDB**: 1400个标注挥杆视频
-- **研究数据**: 职业/业余基准值 (见 [biomechanics-benchmarks.md](../foundations/biomechanics-benchmarks.md))
+- **研究数据**: 职业/业余基准值 (见 [biomechanics-benchmarks.md](../../prerequisites/foundations/biomechanics-benchmarks.md))
 
 ---
 
@@ -522,8 +522,8 @@ Movement Chain AI 的核心创新是**三模态传感器融合**：视频、IMU�
 
 #### 第三步: 理解数据来源
 
-- **[生物力学基准](../foundations/biomechanics-benchmarks.md)** - 阈值数据来源
-- **[生物力学术语](../foundations/biomechanics-glossary.md)** - 140+术语定义
+- **[生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md)** - 阈值数据来源
+- **[生物力学术语](../../prerequisites/foundations/biomechanics-glossary.md)** - 140+术语定义
 
 #### 角色专属入口
 
