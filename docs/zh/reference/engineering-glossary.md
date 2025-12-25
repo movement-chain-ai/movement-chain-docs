@@ -567,7 +567,7 @@ ESP32-手腕:  ─────────────┤ Impact ├────
 
 Impact（击球瞬间）产生明显的加速度峰值，可作为跨设备的**时间同步锚点**。
 
-> 详见：[关键决策 2025-12 § 时间同步](../decisions/architecture-decisions-2025-12-23.md#45-视频与传感器同步方案)
+> 详见：[关键决策 2025-12 § 时间同步](../design/decisions/architecture-decisions-2025-12-23.md#45-视频与传感器同步方案)
 
 ---
 
