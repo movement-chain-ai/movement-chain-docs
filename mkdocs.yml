@@ -137,7 +137,9 @@ nav:
           - 进入策略: business-plan/go-to-market/entry-strategy.md
           - 渠道策略（待补充）: business-plan/go-to-market/channel-strategy.md
           - 市场时机（待补充）: business-plan/go-to-market/market-timing.md
-      - 产品战略: business-plan/product-strategy.md
+      - 产品战略:
+          - 战略愿景: business-plan/strategic-vision.md
+          - 核心决策: business-plan/product-strategy.md
       - 合规与风险:
           - 风险管理: business-plan/compliance-risk/risk-management.md
           - 法规与合规（待补充）: business-plan/compliance-risk/regulatory.md
