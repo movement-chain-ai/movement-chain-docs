@@ -152,32 +152,31 @@ nav:
           - 模块化架构: design/architecture/modular-architecture.md
           - 数据流与反馈: design/architecture/data-pipeline-and-ai.md
           - 传感器指标映射: design/architecture/sensor-metric-mapping.md
-          - 2025-12 关键决策: design/architecture/architecture-decisions-2025-12-23.md
       - 详细规格:
           - 挥杆阶段: design/specs/swing-phases.md
           - 实时反馈: design/specs/real-time-feedback.md
           - 挥杆对比: design/specs/swing-comparison.md
           - 个性化: design/specs/personalization.md
+      - 技术决策:
+          - 概览: design/decisions/index.md
+          - ADR-0001 多仓库结构: design/decisions/0001-multi-repo-structure.md
+          - ADR-0002 IMU 传感器: design/decisions/0002-lsm6dsv16x-imu.md
+          - ADR-0003 Flutter 移动端: design/decisions/0003-flutter-mobile.md
+          - ADR-0004 4模块架构: design/decisions/0004-simplified-4-module-architecture.md
+          - ADR-0005 ESP32-S3: design/decisions/0005-esp32-s3-microcontroller.md
+          - ADR-0006 ONNX Runtime: design/decisions/0006-onnx-runtime-deployment.md
+          - SDK/库选型: design/decisions/sdk-selection.md
+          - 可视化工具: design/decisions/visualization-tools-evaluation.md
+          - 2025-12 关键决策: design/decisions/architecture-decisions-2025-12-23.md
+      - 竞品研究:
+          - 概览: design/research/index.md
+          - 竞品指标对比: design/research/competitor-metrics-comparison.md
       - 角色指南:
           - 概览: design/briefs/index.md
           - 软件工程师: design/briefs/software-engineer.md
           - 移动开发者: design/briefs/mobile-developer.md
           - 硬件工程师: design/briefs/hardware-engineer.md
           - 高尔夫顾问: design/briefs/golf-advisor.md
-      - 开发指南:
-          - SDK 选型: design/guides/sdk-selection.md
-      - 竞品与工具评估:
-          - 概览: design/research/index.md
-          - 竞品指标对比: design/research/competitor-metrics-comparison.md
-          - 可视化工具评估: design/research/visualization-tools-evaluation.md
-      - 架构决策 (ADR):
-          - 概览: design/decisions/index.md
-          - design/decisions/0001-multi-repo-structure.md
-          - design/decisions/0002-lsm6dsv16x-imu.md
-          - design/decisions/0003-flutter-mobile.md
-          - design/decisions/0004-simplified-4-module-architecture.md
-          - design/decisions/0005-esp32-s3-microcontroller.md
-          - design/decisions/0006-onnx-runtime-deployment.md
 
   - 硬件组件:
       - 概览: components/index.md
