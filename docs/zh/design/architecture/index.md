@@ -133,5 +133,5 @@ LEGO 积木块架构：
 ## 下一步
 
 - 需要详细规格？请看 [详细规格](../specs/)
-- 需要角色入口？请看 [角色 Brief](../briefs/)
+- 需要角色入口？请看 [角色指南](../briefs/)
 - 需要技术决策背景？请看 [关键决策](architecture-decisions-2025-12-23.md) 和 [ADR](../decisions/)

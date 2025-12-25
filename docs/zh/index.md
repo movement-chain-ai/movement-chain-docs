@@ -316,7 +316,7 @@
 
 1. [生物力学入门](prerequisites/foundations/biomechanics-101.md) → ⭐ **必读基础** (90 分钟)
 2. [系统设计](design/architecture/system-design.md) → 理解 MVP 架构
-3. 然后阅读你的角色 Brief:
+3. 然后阅读你的角色指南:
     - 软件工程师 → [design/briefs/software-engineer.md](design/briefs/software-engineer.md)
     - 移动开发者 → [design/briefs/mobile-developer.md](design/briefs/mobile-developer.md)
     - 硬件工程师 → [design/briefs/hardware-engineer.md](design/briefs/hardware-engineer.md)

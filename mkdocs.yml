@@ -158,7 +158,7 @@ nav:
           - 实时反馈: design/specs/real-time-feedback.md
           - 挥杆对比: design/specs/swing-comparison.md
           - 个性化: design/specs/personalization.md
-      - 角色Brief:
+      - 角色指南:
           - design/briefs/index.md
           - 软件工程师: design/briefs/software-engineer.md
           - 移动开发者: design/briefs/mobile-developer.md
