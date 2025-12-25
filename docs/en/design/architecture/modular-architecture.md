@@ -171,7 +171,7 @@ flowchart TB
 
     **Conclusion**: Video-Only is **entry-level experience**, full value requires hardware support.
 
-### 2.4 Time Synchronization Strategy
+### 2.4 Time Synchronization Strategy {#24-time-synchronization-strategy}
 
 The **foundation** of tri-modal fusion is precise time alignment:
 
@@ -230,7 +230,7 @@ The **foundation** of tri-modal fusion is precise time alignment:
 
     > See [Visualization Tools Evaluation](../research/visualization-tools-evaluation.md)
 
-#### 2.4.1 Time Synchronization Implementation
+#### 2.4.1 Time Synchronization Implementation {#241-time-synchronization-implementation}
 
 !!! warning "MVP Phase Note"
 
@@ -490,7 +490,7 @@ Example: Detecting "Top of Backswing"
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 2.6 Building Block Interface Contracts
+### 2.6 Building Block Interface Contracts {#26-building-block-interface-contracts}
 
 Each building block has clear input/output contracts ensuring replaceability:
 
@@ -585,7 +585,7 @@ Core algorithm for how fusion improves confidence:
 !!! tip "Algorithm Implementation"
     Complete Python code see [Sensor Metric Mapping §7](./sensor-metric-mapping.md#7-fusion-confidence)
 
-### 2.8 User Feedback Translation Layer
+### 2.8 User Feedback Translation Layer {#28-user-feedback-translation-layer}
 
 Raw data → Rule engine → Natural language feedback:
 
@@ -1002,7 +1002,7 @@ Impact = gyro_z positive peak (max rotation speed)
 2. **Cross-Validation** — Vision "Top" + IMU zero-crossing → confirm; inconsistent → lower confidence
 3. **Anomaly Detection** — Sensor contradictions → flag anomaly (wearing issue/sensor failure)
 
-#### 4.2.1 Core Diagnostic Algorithms
+#### 4.2.1 Core Diagnostic Algorithms {#421-core-diagnostic-algorithms}
 
 FUSION Block's core value lies in **diagnostic algorithms** — only achievable with tri-modal fusion.
 

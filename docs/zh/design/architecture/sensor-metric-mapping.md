@@ -6,7 +6,7 @@
 
 ---
 
-## 1. 系统能力矩阵 Capability Matrix
+## 1. 系统能力矩阵 Capability Matrix {#1-系统能力矩阵-capability-matrix}
 
 下表展示了文献验证的高尔夫指标与三模态系统各传感器的对应关系。
 
@@ -40,7 +40,7 @@
 
 ---
 
-## 2. 竞品能力对比 Competitor Comparison
+## 2. 竞品能力对比 Competitor Comparison {#2-竞品能力对比-competitor-comparison}
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -84,7 +84,7 @@
 
 ## 3. 检测方法详解 Detection Methods
 
-### 3.1 Vision 检测 (MediaPipe 33 landmarks)
+### 3.1 Vision 检测 (MediaPipe 33 landmarks) {#31-vision-检测-mediapipe-33-landmarks}
 
 **优势**: 直接观测身体姿态，无需复杂校准
 **劣势**: 采样率低 (30fps = 33ms)，无法测量高频运动
@@ -154,7 +154,7 @@ def calculate_obliquity(landmarks, is_shoulder=True):
 
 ---
 
-### 3.2 IMU 检测 (LSM6DSV16X @ 1666Hz, 最高支持 7.68kHz)
+### 3.2 IMU 检测 (LSM6DSV16X @ 1666Hz, 最高支持 7.68kHz) {#32-imu-检测-lsm6dsv16x--1666hz}
 
 !!! info "LSM6DSV16X 规格 (2025-12 验证)"
     - **ODR 范围**: 7.5Hz ~ 7.68kHz (远超我们使用的 1666Hz)
@@ -239,7 +239,7 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
 
 ---
 
-### 3.3 EMG 检测 (UNIQUE CAPABILITY)
+### 3.3 EMG 检测 (UNIQUE CAPABILITY) {#33-emg-检测-unique-capability}
 
 !!! note "传感器选型 (2025-12 验证)"
     **推荐**: MyoWare 2.0 + Link Shield (DEV-18425)
@@ -444,7 +444,7 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 
 ---
 
-## 6. EMG 传感器布局规划 EMG Sensor Placement Plan
+## 6. EMG 传感器布局规划 EMG Sensor Placement Plan {#6-emg-传感器布局规划-emg-sensor-placement-plan}
 
 ### 6.1 关键肌群图 Key Muscle Groups
 
@@ -569,7 +569,7 @@ def calculate_activation_ratio(mock_emg):
 
 ---
 
-## 7. 融合置信度计算 Fusion Confidence
+## 7. 融合置信度计算 Fusion Confidence {#7-融合置信度计算-fusion-confidence}
 
 三模态融合提升置信度的核心算法:
 
@@ -617,7 +617,7 @@ def calculate_fusion_confidence(
 
 MVP 阶段硬件未就绪时，使用模拟数据验证完整管道。
 
-### 8.1 从 Pose 数据生成模拟 IMU
+### 8.1 从 Pose 数据生成模拟 IMU {#81-从-pose-数据生成模拟-imu}
 
 核心思路: 用 MediaPipe 的关键点序列**导数**来近似 IMU 角速度
 
@@ -728,7 +728,7 @@ def simulate_imu_from_pose(
 #     print(f"{f.timestamp_ms}ms: gyro_z={f.gyro_z:.1f}°/s, phase={f.phase_hint}")
 ```
 
-### 8.2 从阶段时间戳生成模拟 EMG
+### 8.2 从阶段时间戳生成模拟 EMG {#82-从阶段时间戳生成模拟-emg}
 
 核心思路: 根据已知的生物力学时序生成**符合真实模式**的 EMG 信号
 
@@ -964,7 +964,7 @@ def simulate_emg_from_phases(
 
 ---
 
-## 9. 融合诊断算法 Fusion Diagnostic Algorithms
+## 9. 融合诊断算法 Fusion Diagnostic Algorithms {#9-融合诊断算法-fusion-diagnostic-algorithms}
 
 FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模态融合才能实现。
 
