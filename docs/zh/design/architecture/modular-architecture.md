@@ -385,7 +385,7 @@ class TimeAlignmentManager:
     - ✅ 跨部位用 Impact 事件对齐 → 消除 BLE 抖动 (±15-30ms)
     - ✅ 减少 BLE 设备数量 → 更稳定的连接
 
-    > 详见 [关键决策 2025-12 §7.8](../decisions/architecture-decisions-2025-12-23.md#78-视频与传感器同步方案)
+    > 详见 [关键决策 2025-12 §4.5](../decisions/architecture-decisions-2025-12-23.md#45-视频与传感器同步方案)
 
 ### 2.5 融合引擎: 三大机制
 
