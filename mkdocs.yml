@@ -144,7 +144,7 @@ nav:
           - 知识产权（待补充）: business-plan/compliance-risk/ip-strategy.md
       - 退出策略（待补充）: business-plan/exit-strategy.md
 
-  - 系统设计:
+  - 技术设计:
       - design/index.md
       - 核心架构:
           - design/architecture/index.md
