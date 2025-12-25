@@ -131,7 +131,7 @@ Based on [Sensor-Metric Mapping](./sensor-metric-mapping.md) and [Biomechanics B
 
 ---
 
-## 3. Build Order
+## 3. Build Order {#3-build-order}
 
 > **Related Documents**:
 >
@@ -392,7 +392,7 @@ flowchart LR
 
 ---
 
-## 7. Future Roadmap (Phase 2+)
+## 7. Future Roadmap (Phase 2+) {#7-future-plans}
 
 Technical reserves and expansion directions after MVP completion:
 
