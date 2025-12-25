@@ -109,6 +109,8 @@ extra:
 nav:
   - 首页: index.md
 
+  - 前置知识: prerequisites/index.md
+
   - 商业计划:
       - business-plan/index.md
       - 市场洞察:
