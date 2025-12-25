@@ -26,7 +26,6 @@ theme:
     - navigation.top
     - navigation.tracking
     - navigation.indexes
-    - navigation.instant
     - search.suggest
     - search.highlight
     - content.code.copy
