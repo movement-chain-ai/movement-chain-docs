@@ -213,7 +213,7 @@ nav:
           - development/ml-training/datasets.md
           - development/ml-training/visual-feedback.md
 
-  - 参考资料:
+  - 参考资料与术语:
       - 概览: reference/index.md
       - reference/golf-glossary.md
       - reference/physics-glossary.md
