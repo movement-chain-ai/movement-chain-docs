@@ -339,7 +339,7 @@ git clone https://github.com/HeleenaRobert/golf-swing-analysis.git
 
 - [高尔夫生物力学研究](golf-research.md) - 学术论文
 - [学术数据集](academic-datasets.md) - 通用运动数据
-- [SDK 选型](../design/guides/sdk-selection.md) - 技术选型决策
+- [SDK 选型](../design/decisions/sdk-selection.md) - 技术选型决策
 - [ML 基础](../prerequisites/ml-basics.md) - 机器学习概念
 
 ---

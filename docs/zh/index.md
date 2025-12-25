@@ -329,7 +329,7 @@
 | 想了解 | 文档 |
 |-------|------|
 | MVP 核心架构 | [系统设计](design/architecture/system-design.md) |
-| 2025 最新技术决策 | [架构决策 2025-12-23](design/architecture/architecture-decisions-2025-12-23.md) |
+| 2025 最新技术决策 | [架构决策 2025-12-23](design/decisions/architecture-decisions-2025-12-23.md) |
 | 技术选型记录 | [ADR 索引](design/decisions/index.md) |
 | 生物力学术语 | [术语表 (140+ 词条)](prerequisites/foundations/biomechanics-glossary.md) |
 | 竞品分析 | [IMU 竞品](business-plan/market-insights/competitors/imu-based.md) / [Vision 竞品](business-plan/market-insights/competitors/vision-based.md) |

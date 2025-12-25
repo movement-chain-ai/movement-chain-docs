@@ -20,7 +20,7 @@
     | 2️⃣ | [8阶段挥杆分解](../design/specs/swing-phases.md) | 挥杆相位检测方法与代码 |
     | 3️⃣ | [实时反馈规范](../design/specs/real-time-feedback.md) | 三种反馈模式与延迟要求 |
     | 4️⃣ | [ML 基础入门](../prerequisites/ml-basics.md) | 什么需要 ML、什么用物理公式 |
-    | 5️⃣ | [SDK 选型指南](../design/guides/sdk-selection.md) | 所有库的安装命令、Stars |
+    | 5️⃣ | [SDK 选型指南](../design/decisions/sdk-selection.md) | 所有库的安装命令、Stars |
     | 6️⃣ | MVP 原型代码 (见移动开发文档) | 无需硬件即可测试，Mock 数据 |
 
     **快速参考**:
@@ -489,7 +489,7 @@ Ghost 是用户最想要的功能之一: 生成一个"理想的灰色图形"，�
 
 **图例:** ✅ 开箱即用 | 🛠️ 需开发
 
-> **详细选型**: 各 SDK/库的对比分析、升级路径、版本锁定见 [SDK/库选型指南](../design/guides/sdk-selection.md)
+> **详细选型**: 各 SDK/库的对比分析、升级路径、版本锁定见 [SDK/库选型指南](../design/decisions/sdk-selection.md)
 
 ---
 
