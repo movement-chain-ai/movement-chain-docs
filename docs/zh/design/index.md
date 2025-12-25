@@ -64,7 +64,7 @@
 
 | 文档 | 内容 |
 |------|------|
-| [ML 基础](guides/ml-basics.md) | 什么需要 ML，什么用物理公式 |
+| [ML 基础](../prerequisites/ml-basics.md) | 什么需要 ML，什么用物理公式 |
 | [SDK 选型](guides/sdk-selection.md) | 所有库的安装命令与选型理由 |
 
 ### 竞品与工具评估

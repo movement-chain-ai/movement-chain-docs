@@ -232,7 +232,7 @@ flowchart LR
 > **相关文档**:
 >
 > - [SDK 选型](../guides/sdk-selection.md) - MediaPipe/NeuroKit2/imufusion 等 SDK 对比
-> - [机器学习基础](../guides/ml-basics.md) - 挥杆分析 ML 模型入门
+> - [机器学习基础](../../prerequisites/ml-basics.md) - 挥杆分析 ML 模型入门
 
 ### 4.1 技术栈总览
 

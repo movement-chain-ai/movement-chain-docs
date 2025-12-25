@@ -1401,7 +1401,7 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 | 文档 | 内容 | 适合 |
 |------|------|------|
-| [ML 基础](../guides/ml-basics.md) | ML 概念入门 | 无 ML 背景读者 |
+| [ML 基础](../../prerequisites/ml-basics.md) | ML 概念入门 | 无 ML 背景读者 |
 | [实时反馈](../specs/real-time-feedback.md) | 反馈系统设计 | OUTPUT Block 实现 |
 
 ---

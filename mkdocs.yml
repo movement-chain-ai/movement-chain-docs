@@ -116,6 +116,7 @@ nav:
           - 入门教程: prerequisites/foundations/biomechanics-101.md
           - 术语表: prerequisites/foundations/biomechanics-glossary.md
           - 基准值: prerequisites/foundations/biomechanics-benchmarks.md
+      - ML 基础: prerequisites/ml-basics.md
 
   - 商业计划:
       - business-plan/index.md
@@ -164,7 +165,6 @@ nav:
           - 硬件工程师: design/briefs/hardware-engineer.md
           - 高尔夫顾问: design/briefs/golf-advisor.md
       - 开发指南:
-          - ML 基础: design/guides/ml-basics.md
           - SDK 选型: design/guides/sdk-selection.md
       - 竞品与工具评估:
           - design/research/index.md

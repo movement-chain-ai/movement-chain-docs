@@ -526,7 +526,7 @@ X-Factor: 45°               ┌─────────────┐      
 | **语音合成** | 语音播报建议 | flutter_tts |
 | **Prompt Engineering** | 设计有效提示词 | 自研 |
 
-> 详见：[ML 基础入门](../design/guides/ml-basics.md) - 第 5 层 NLP 反馈
+> 详见：[ML 基础入门](../prerequisites/ml-basics.md) - 第 5 层 NLP 反馈
 
 ### 所属领域
 
