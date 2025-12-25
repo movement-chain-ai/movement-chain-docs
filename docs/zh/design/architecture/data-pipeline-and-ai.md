@@ -2,7 +2,7 @@
 
 > **文档状态**: 草稿 v1.2
 > **最后更新**: 2025-12-23
-> **关联文档**: [模块化架构](modular-architecture.md) | [实时反馈](../specs/real-time-feedback.md) | [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) | [关键决策 2025-12](./architecture-decisions-2025-12-23.md)
+> **关联文档**: [模块化架构](modular-architecture.md) | [实时反馈](../specs/real-time-feedback.md) | [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) | [关键决策 2025-12](../decisions/architecture-decisions-2025-12-23.md)
 
 ---
 
@@ -144,7 +144,7 @@ class EMGFrame:
     - 使用 `esp_timer_get_time()` 在采集时立即打微秒时间戳
     - 跨设备使用 Impact 事件对齐
 
-    详见 [关键决策 2025-12](./architecture-decisions-2025-12-23.md#78-视频与传感器同步方案)
+    详见 [关键决策 2025-12](../decisions/architecture-decisions-2025-12-23.md#78-视频与传感器同步方案)
 
 ```text
 IMU 是主时钟 (Master Clock):

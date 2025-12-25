@@ -226,7 +226,7 @@ flowchart TB
     拖动时间轴到 Impact 时刻，三个传感器的事件点应该对齐。
     偏差 >10ms 说明时间同步需要调整。
 
-    > 详见 [可视化工具评估](../research/visualization-tools-evaluation.md)
+    > 详见 [可视化工具评估](../decisions/visualization-tools-evaluation.md)
 
 #### 2.4.1 时间同步实现方案
 
@@ -385,7 +385,7 @@ class TimeAlignmentManager:
     - ✅ 跨部位用 Impact 事件对齐 → 消除 BLE 抖动 (±15-30ms)
     - ✅ 减少 BLE 设备数量 → 更稳定的连接
 
-    > 详见 [关键决策 2025-12 §7.8](./architecture-decisions-2025-12-23.md#78-视频与传感器同步方案)
+    > 详见 [关键决策 2025-12 §7.8](../decisions/architecture-decisions-2025-12-23.md#78-视频与传感器同步方案)
 
 ### 2.5 融合引擎: 三大机制
 
@@ -1373,7 +1373,7 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 关于 Rerun 的完整技术评估、竞品对比、未来 TAPIR 球杆追踪规划，详见:
 
-- **[可视化工具评估](../research/visualization-tools-evaluation.md)** — 为什么选择 Rerun 而非 Foxglove/PlotJuggler
+- **[可视化工具评估](../decisions/visualization-tools-evaluation.md)** — 为什么选择 Rerun 而非 Foxglove/PlotJuggler
 - **[system-design.md §7](./system-design.md#7-未来规划)** — 项目整体技术路线图
 
 ---

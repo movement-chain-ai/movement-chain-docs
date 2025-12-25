@@ -1392,7 +1392,7 @@ def run_fusion_diagnostics(
 
 - [系统设计](./system-design.md): MVP 技术架构和构建顺序
 - [模块化架构](./modular-architecture.md): LEGO 积木式架构设计
-- [关键决策 2025-12](./architecture-decisions-2025-12-23.md): 传感器选型和 Sensor Hub 同步策略
+- [关键决策 2025-12](../decisions/architecture-decisions-2025-12-23.md): 传感器选型和 Sensor Hub 同步策略
 - [挥杆对比分析](../specs/swing-comparison.md): Pro vs Amateur 的生物力学差异
 - [生物力学术语表](../../prerequisites/foundations/biomechanics-glossary.md): 技术术语定义
 - [生物力学基准值](../../prerequisites/foundations/biomechanics-benchmarks.md): 文献验证的正常范围
