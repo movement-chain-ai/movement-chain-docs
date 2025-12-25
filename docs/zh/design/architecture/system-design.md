@@ -320,10 +320,11 @@ flowchart LR
 
 **4. 部署/DevOps**
 
-> ⚠️ **待定**
+> ⚠️ **待定** (MVP 完全本地运行)
 
 > 相关决策：
 > - CI/CD 策略见 [ADR-0001 多仓库结构](../decisions/0001-multi-repo-structure.md)
+> - 部署策略见 [关键决策 2025-12 § 部署策略](./architecture-decisions-2025-12-23.md#5-部署策略决策)
 
 **5. 嵌入式 (MCU + 传感器)**
 
@@ -423,7 +424,7 @@ Movement Chain AI 的核心创新是**三模态传感器融合**：视频、IMU�
 
 > 📐 **时间同步策略**: 详细规格见 [数据管道与AI](./data-pipeline-and-ai.md) §1.2
 
-**核心问题**: BLE 协议存在 15-30ms 抖动 (2025-12 研究验证),无法通过软件完全消除。
+**核心问题**: BLE 协议存在 15-30ms [抖动](../../reference/engineering-glossary.md#10-ble-抖动-ble-jitter) (2025-12 研究验证),无法通过软件完全消除。
 
 **解决方案**: 同一身体部位的 IMU + EMG 共享同一个 ESP32 时钟源
 
