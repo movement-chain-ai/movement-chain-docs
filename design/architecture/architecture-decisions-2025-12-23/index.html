@@ -1855,7 +1855,7 @@
   <a href="#31-mvp1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.1 MVP1 精简依赖列表 ✅ 确认
+        3.1 MVP1 精简依赖列表
       
     </span>
   </a>
@@ -1902,10 +1902,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-firmware-vs-arduino" class="md-nav__link">
+  <a href="#41-firmware-arduino" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1 Firmware vs Arduino 概念澄清
+        4.1 Firmware 和 Arduino
       
     </span>
   </a>
@@ -4918,7 +4918,7 @@
   <a href="#31-mvp1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.1 MVP1 精简依赖列表 ✅ 确认
+        3.1 MVP1 精简依赖列表
       
     </span>
   </a>
@@ -4965,10 +4965,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-firmware-vs-arduino" class="md-nav__link">
+  <a href="#41-firmware-arduino" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1 Firmware vs Arduino 概念澄清
+        4.1 Firmware 和 Arduino
       
     </span>
   </a>
@@ -5828,7 +5828,7 @@
 </span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="p">)</span>
 </span></code></pre></div><a class="headerlink" href="#import-polars-as-pl-imu-imu_df-plread_parquetimu_dataparquet-result-imu_df-sorttimestamp_ms-with_columns-plcolgyro_zrolling_meanwindow_size10aliasgyro_z_smooth-impact-with_columns-plcolgyro_z_smooth-plcolgyro_z_smoothmaxaliasis_peak-group_byphase-agg-plcolgyro_zmaxaliaspeak_velocity-plcoltimestamp_msminaliasstart_ms-plcoltimestamp_msmaxaliasend_ms" title="Permanent link">&para;</a></h2>
 <h2 id="3-sdk">3. SDK 依赖决策<a class="headerlink" href="#3-sdk" title="Permanent link">&para;</a></h2>
-<h3 id="31-mvp1">3.1 MVP1 精简依赖列表 ✅ 确认<a class="headerlink" href="#31-mvp1" title="Permanent link">&para;</a></h3>
+<h3 id="31-mvp1">3.1 MVP1 精简依赖列表<a class="headerlink" href="#31-mvp1" title="Permanent link">&para;</a></h3>
 <p><strong>设计原则</strong>: 最小依赖集，每个依赖都有明确理由</p>
 <p><strong>pyproject.toml</strong>:</p>
 <div class="language-toml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">[project]</span>
@@ -5870,6 +5870,7 @@
 <table>
 <thead>
 <tr>
+<th>类别</th>
 <th>SDK</th>
 <th>用途</th>
 <th>关键函数</th>
@@ -5878,55 +5879,64 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>mediapipe</strong></td>
+<td><strong>VISION</strong></td>
+<td>mediapipe</td>
 <td>姿态估计</td>
 <td><code>solutions.pose.Pose()</code></td>
 <td>33 关键点提取</td>
 </tr>
 <tr>
-<td><strong>opencv-python</strong></td>
+<td><strong>VISION</strong></td>
+<td>opencv-python</td>
 <td>视频处理</td>
 <td><code>cv2.VideoCapture()</code></td>
 <td>读取视频帧</td>
 </tr>
 <tr>
-<td><strong>numpy</strong></td>
+<td><strong>SIGNAL</strong></td>
+<td>numpy</td>
 <td>数值计算</td>
 <td>向量/矩阵运算</td>
 <td>所有计算基础</td>
 </tr>
 <tr>
-<td><strong>scipy</strong></td>
+<td><strong>SIGNAL</strong></td>
+<td>scipy</td>
 <td>信号处理</td>
 <td><code>signal.find_peaks()</code></td>
 <td>IMU 峰值/零交叉检测</td>
 </tr>
 <tr>
-<td><strong>neurokit2</strong></td>
+<td><strong>SIGNAL</strong></td>
+<td>neurokit2</td>
 <td>EMG 处理</td>
 <td><code>emg_process()</code></td>
 <td>肌电包络、onset 检测</td>
 </tr>
 <tr>
-<td><strong>imufusion</strong></td>
+<td><strong>SIGNAL</strong></td>
+<td>imufusion</td>
 <td>IMU 融合</td>
 <td><code>Ahrs()</code></td>
 <td>四元数、姿态估计</td>
 </tr>
 <tr>
-<td><strong>polars</strong></td>
+<td><strong>DATA</strong></td>
+<td>polars</td>
 <td>时序数据</td>
 <td>DataFrame 操作</td>
 <td>高性能数据处理</td>
 </tr>
 <tr>
-<td><strong>pydantic</strong></td>
+<td><strong>DATA</strong></td>
+<td>pydantic</td>
 <td>数据验证</td>
 <td><code>BaseModel</code></td>
 <td>Port 接口契约</td>
 </tr>
 <tr>
-<td><strong>rerun-sdk</strong></td>
+<td><strong>DEBUG</strong></td>
+<td>rerun-sdk</td>
 <td>可视化</td>
 <td><code>rr.log()</code></td>
 <td>时间同步验证</td>
@@ -5972,8 +5982,7 @@
 </table>
 <hr />
 <h2 id="4">4. 硬件与固件决策<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
-<h3 id="41-firmware-vs-arduino">4.1 Firmware vs Arduino 概念澄清<a class="headerlink" href="#41-firmware-vs-arduino" title="Permanent link">&para;</a></h3>
-<p><strong>问题</strong>: "Firmware" 和 "Arduino" 是什么关系？</p>
+<h3 id="41-firmware-arduino">4.1 Firmware 和 Arduino<a class="headerlink" href="#41-firmware-arduino" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>│                    Firmware 概念澄清 FIRMWARE CLARIFICATION                  │
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
@@ -5996,14 +6005,9 @@
 </span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>│   ─────────────────────────────────────                                     │
 </span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>│   Arduino 框架 → 用于编写 → Firmware → 运行在 → ESP32-S3                    │
 </span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>│                                                                             │
-</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>│   我们的选择:                                                                │
-</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>│   ─────────────────────────────────────                                     │
-</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>│   • 硬件: ESP32-S3 (ADR-0005)                                              │
-</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>│   • 框架: Arduino Core for ESP32                                           │
-</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>│   • IDE: PlatformIO (比 Arduino IDE 更专业)                                │
-</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>│   • 传感器: LSM6DSV16X (ADR-0002), DFRobot EMG                             │
-</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>│                                                                             │
-</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>└─────────────────────────────────────────────────────────────────────────────┘
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>│                            │
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>│                                                                             │
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <h3 id="42-mock">4.2 Mock 数据策略 ✅ 已有完整文档<a class="headerlink" href="#42-mock" title="Permanent link">&para;</a></h3>
 <p><strong>现状</strong>: <code>sensor-metric-mapping.md §8</code> 已包含完整的 Mock 数据生成代码</p>
