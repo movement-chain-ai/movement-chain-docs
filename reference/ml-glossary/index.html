@@ -4360,7 +4360,90 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#4-mse-均方误差" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. MSE (均方误差)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. MSE (均方误差)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        直观理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        具体例子：球速预测
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#movement-chain-ai_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 Movement Chain AI 中的应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        所属领域
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -4741,7 +4824,90 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#4-mse-均方误差" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. MSE (均方误差)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. MSE (均方误差)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        直观理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        具体例子：球速预测
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关指标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#movement-chain-ai_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 Movement Chain AI 中的应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        所属领域
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -4804,6 +4970,12 @@
 <td><a href="#3-onnx-runtime">ONNX Runtime</a></td>
 <td>ONNX Runtime</td>
 <td>微软开源的跨平台推理引擎</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="#4-mse-均方误差">MSE</a></td>
+<td>Mean Squared Error</td>
+<td>回归模型的评估指标，衡量预测误差</td>
 </tr>
 </tbody>
 </table>
@@ -5246,7 +5418,177 @@
 <p>详见：<a href="../../design/architecture/architecture-decisions-2025-12-23/#12-onnx-runtime-延迟引入--确认">关键决策 2025-12 § ONNX Runtime</a></p>
 </blockquote>
 <hr />
-<h2 id="_8">相关文档<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="4-mse-均方误差">4. MSE (均方误差)<a class="headerlink" href="#4-mse-均方误差" title="Permanent link">&para;</a></h2>
+<p><strong>定义：</strong> MSE (Mean Squared Error，均方误差) 是机器学习中用于评估回归模型预测准确性的指标，属于统计学/机器学习范畴。</p>
+<hr />
+<h3 id="_8">公式<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\]</div>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(y_i\)</span></td>
+<td>真实值（Ground Truth）</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\hat{y}_i\)</span></td>
+<td>模型预测值</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(n\)</span></td>
+<td>样本数量</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">直观理解<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>MSE 的计算步骤：
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>1. 计算每个样本的误差：预测值 - 真实值
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>2. 对误差取平方（消除正负抵消）
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>3. 对所有平方误差取平均
+</span></code></pre></div>
+<p><strong>MSE 越小 = 预测越准确</strong></p>
+<h3 id="_10">具体例子：球速预测<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>假设模型预测 3 次挥杆的球速：</p>
+<table>
+<thead>
+<tr>
+<th>挥杆</th>
+<th>真实球速 (mph)</th>
+<th>预测球速 (mph)</th>
+<th>误差</th>
+<th>误差²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>150</td>
+<td>152</td>
+<td>+2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>160</td>
+<td>157</td>
+<td>-3</td>
+<td>9</td>
+</tr>
+<tr>
+<td>3</td>
+<td>155</td>
+<td>156</td>
+<td>+1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<div class="arithmatex">\[
+\text{MSE} = \frac{4 + 9 + 1}{3} = 4.67
+\]</div>
+<p>平均误差 ≈ √4.67 ≈ <strong>2.2 mph</strong>（约 1.4% 误差）</p>
+<h3 id="_11">相关指标<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>英文</th>
+<th>公式</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MSE</strong></td>
+<td>Mean Squared Error</td>
+<td><span class="arithmatex">\(\frac{1}{n}\sum(y-\hat{y})^2\)</span></td>
+<td>对大误差敏感（平方放大）</td>
+</tr>
+<tr>
+<td><strong>RMSE</strong></td>
+<td>Root MSE</td>
+<td><span class="arithmatex">\(\sqrt{\text{MSE}}\)</span></td>
+<td>与原始单位相同，更直观</td>
+</tr>
+<tr>
+<td><strong>MAE</strong></td>
+<td>Mean Absolute Error</td>
+<td>$\frac{1}{n}\sum</td>
+<td>y-\hat{y}</td>
+</tr>
+<tr>
+<td><strong>R²</strong></td>
+<td>R-squared</td>
+<td><span class="arithmatex">\(1 - \frac{SS_{res}}{SS_{tot}}\)</span></td>
+<td>解释方差比例，0~1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="movement-chain-ai_3">在 Movement Chain AI 中的应用<a class="headerlink" href="#movement-chain-ai_3" title="Permanent link">&para;</a></h3>
+<h4 id="caddieset">CaddieSet 研究验证<a class="headerlink" href="#caddieset" title="Permanent link">&para;</a></h4>
+<p><a href="../../design/architecture/architecture-decisions-2025-12-23/#13-caddieset-研究验证--证明架构方向正确">CaddieSet</a> (CVPR 2025) 使用 MSE 评估球速预测模型：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>技术路线</th>
+<th>球速预测 MSE</th>
+<th>平均误差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Random Forest</td>
+<td>特征工程 + ML</td>
+<td><strong>8.80</strong></td>
+<td>~3 mph (~2%)</td>
+</tr>
+<tr>
+<td>XGBoost</td>
+<td>特征工程 + ML</td>
+<td>10.15</td>
+<td>~3.2 mph</td>
+</tr>
+<tr>
+<td>Vision Transformer</td>
+<td>端到端 DL</td>
+<td>28.41</td>
+<td>~5.3 mph</td>
+</tr>
+<tr>
+<td>MobileNet V3</td>
+<td>端到端 DL</td>
+<td>32.32</td>
+<td>~5.7 mph</td>
+</tr>
+</tbody>
+</table>
+<p><strong>结论</strong>：特征工程 + 传统 ML 的 MSE 比端到端深度学习低 3-4 倍，验证了我们的架构方向。</p>
+<h4 id="_12">球速预测流程<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>视频 → 姿态估计 → 特征提取 → ML模型 → 球速预测
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>        │          │        │        │
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>     33个关键点  生物力学特征  Random   MSE 评估
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>               - X-Factor   Forest   预测精度
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>               - 节奏比
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>               - 手腕角度
+</span></code></pre></div>
+<h3 id="_13">所属领域<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>统计学 / 机器学习
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>├── 模型评估指标 ← MSE 在这里
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>│   ├── 回归任务: MSE, RMSE, MAE, R²
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>│   └── 分类任务: Accuracy, Precision, Recall, F1, AUC
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>└── 损失函数 (Loss Function)
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    └── MSE 也常用作训练时的损失函数
+</span></code></pre></div>
+<hr />
+<h2 id="_14">相关文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../software-glossary/">软件架构术语表</a> - 六边形架构等设计模式</li>
 <li><a href="../engineering-glossary/">工程术语表</a> - Edge AI 相关概念</li>
@@ -5254,7 +5596,7 @@
 <li><a href="../../design/architecture/system-design/">系统设计</a> - 整体架构</li>
 </ul>
 <hr />
-<p><strong>最后更新</strong>: 2025年12月23日</p>
+<p><strong>最后更新</strong>: 2025年12月24日</p>
 
 
 
