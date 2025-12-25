@@ -11,6 +11,8 @@
 | 1 | [六边形架构](#1-六边形架构-hexagonal-architecture) | Hexagonal Architecture | Ports & Adapters，核心逻辑与外部系统解耦 |
 | 2 | [Rust](#2-rust) | Rust | 高性能系统编程语言，注重内存安全 |
 | 3 | [Rust-backed SDKs](#3-rust-backed-sdks) | Rust-backed SDKs | 底层用 Rust/C++ 实现的高性能库 |
+| 4 | [包管理器](#4-包管理器-package-manager) | Package Manager | 管理项目依赖的工具（pip、Poetry、uv） |
+| 5 | [Polars](#5-polars) | Polars | Rust 实现的高性能数据处理库，替代 Pandas |
 
 ---
 
@@ -249,9 +251,189 @@ def fuse_sensors(imu, video):
 
 ---
 
+## 4. 包管理器 (Package Manager) {#4-包管理器-package-manager}
+
+**定义：** 包管理器是帮助管理项目依赖（第三方库）的工具，负责安装、升级、卸载依赖包，并解决版本冲突。
+
+---
+
+### 包管理器的作用
+
+```text
+你的项目需要:
+─────────────────────
+mediapipe==0.10.9
+numpy>=1.24.0
+fastapi==0.109.0
+...
+
+包管理器帮你:
+─────────────────────
+✅ 安装这些库
+✅ 解决版本冲突（A 需要 numpy 1.24，B 需要 numpy 1.26）
+✅ 锁定版本（确保所有人用同样版本）
+✅ 创建隔离环境（不污染系统 Python）
+```
+
+### Python 包管理器对比
+
+| 工具 | 特点 | 速度 | 实现语言 |
+|------|------|------|----------|
+| **pip** | Python 自带，基础功能 | 慢 | Python |
+| **Poetry** | 功能完整，依赖解析好 | 中等 | Python |
+| **uv** | Astral 出品，极快 | **10-100x 快** | Rust |
+
+### uv：新一代包管理器
+
+uv 是 Astral 公司（ruff 的作者）用 Rust 编写的 Python 包管理器：
+
+```text
+Poetry 安装依赖:  45 秒
+uv 安装依赖:      2 秒   ← 快 20 倍
+```
+
+#### 为什么 uv 这么快？
+
+| 原因 | 说明 |
+|------|------|
+| **Rust 实现** | 比 Python 快 100 倍 |
+| **并行下载** | 同时下载多个包 |
+| **智能缓存** | 全局缓存，不重复下载 |
+
+#### uv vs Poetry 命令对比
+
+| 操作 | Poetry | uv |
+|------|--------|-----|
+| 安装依赖 | `poetry install` | `uv sync` |
+| 添加包 | `poetry add numpy` | `uv add numpy` |
+| 运行脚本 | `poetry run python x.py` | `uv run python x.py` |
+| 锁定版本 | `poetry lock` | `uv lock` |
+
+### 在 Movement Chain AI 中的应用
+
+**决策**：使用 uv 作为 Python 包管理器
+
+| 维度 | uv | Poetry | pip |
+|------|-----|--------|-----|
+| **安装速度** | ⭐⭐⭐ 极快 | ⭐⭐ 中等 | ⭐ 慢 |
+| **锁文件** | ✅ 兼容 pip/poetry | ✅ 原生 | ❌ 需手动 |
+| **虚拟环境** | ✅ 自动管理 | ✅ 自动管理 | ❌ 需手动 |
+
+```bash
+# 安装 uv (一次性)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# 创建项目
+uv init movement-chain-ml
+
+# 添加依赖
+uv add mediapipe opencv-python numpy polars
+```
+
+> 详见：[关键决策 2025-12 § UV 替代 Poetry](../design/architecture/architecture-decisions-2025-12-23.md#22-uv-替代-poetry)
+
+---
+
+## 5. Polars {#5-polars}
+
+**定义：** Polars 是用 Rust 编写的高性能数据处理库，用于替代 Pandas 处理表格数据。
+
+---
+
+### Pandas 是什么？
+
+Pandas 是 Python 最流行的数据处理库，用于处理表格数据（类似 Excel）：
+
+```python
+import pandas as pd
+
+# 读取 CSV
+df = pd.read_csv("swing_data.csv")
+
+# 筛选、计算
+df[df["phase"] == "downswing"]["angular_velocity"].mean()
+```
+
+### Polars vs Pandas 对比
+
+| 对比 | Pandas | Polars |
+|------|--------|--------|
+| **实现语言** | Python + C | **Rust** |
+| **速度** | 基准 (1x) | **5-100x 更快** |
+| **内存效率** | 较高 | **更低** |
+| **并行处理** | 手动 | **自动多线程** |
+| **惰性求值** | ❌ 无 | ✅ 支持 |
+| **API 成熟度** | ⭐⭐⭐ 非常成熟 | ⭐⭐ 快速成熟中 |
+
+### 速度对比
+
+```text
+处理 100 万行挥杆数据:
+─────────────────────────────
+Pandas:  3.2 秒
+Polars:  0.15 秒  ← 快 20 倍
+```
+
+### 为什么 Polars 这么快？
+
+| 原因 | 说明 |
+|------|------|
+| **Rust 实现** | 比 Python 快 100 倍 |
+| **零拷贝** | 避免不必要的数据复制 |
+| **SIMD 优化** | 利用 CPU 向量指令 |
+| **惰性求值** | 优化整个查询计划后再执行 |
+| **自动并行** | 自动利用多核 CPU |
+
+### API 对比
+
+| 操作 | Pandas | Polars |
+|------|--------|--------|
+| 读取 CSV | `pd.read_csv("x.csv")` | `pl.read_csv("x.csv")` |
+| 筛选 | `df[df["a"] > 5]` | `df.filter(pl.col("a") > 5)` |
+| 分组聚合 | `df.groupby("a").mean()` | `df.group_by("a").agg(pl.mean("b"))` |
+| 排序 | `df.sort_values("a")` | `df.sort("a")` |
+
+### 在 Movement Chain AI 中的应用
+
+处理传感器数据时，数据量大、需要快速处理：
+
+```text
+三模态数据流:
+─────────────────────────────
+视频:  30 fps × 33 关键点 × 3D = 2970 数值/秒
+IMU:   500 Hz × 6 轴 = 3000 数值/秒
+EMG:   1000 Hz × 2 通道 = 2000 数值/秒
+─────────────────────────────
+总计: ~8000 数值/秒 需要实时处理
+
+Pandas: 可能有延迟
+Polars: 轻松处理 ✅
+```
+
+**决策**：使用 Polars 作为数据处理库
+
+```python
+import polars as pl
+
+# 读取传感器数据
+df = pl.read_csv("sensor_data.csv")
+
+# 计算下杆阶段的平均角速度
+result = (
+    df.filter(pl.col("phase") == "downswing")
+    .select(pl.col("angular_velocity").mean())
+)
+```
+
+> 详见：[关键决策 2025-12 § Polars 替代 Pandas](../design/architecture/architecture-decisions-2025-12-23.md#23-polars-替代-pandas)
+
+---
+
 ## 相关文档
 
 - [关键决策 2025-12 § 六边形架构](../design/architecture/architecture-decisions-2025-12-23.md#11-六边形架构-hexagonal-architecture--确认) - 为什么选择六边形架构
+- [关键决策 2025-12 § UV 替代 Poetry](../design/architecture/architecture-decisions-2025-12-23.md#22-uv-替代-poetry) - 包管理器选型决策
+- [关键决策 2025-12 § Polars 替代 Pandas](../design/architecture/architecture-decisions-2025-12-23.md#23-polars-替代-pandas) - 数据处理库选型决策
 - [机器学习术语表](ml-glossary.md) - 推理引擎、ONNX Runtime、TFLite 等
 - [系统设计](../design/architecture/system-design.md) - 整体架构
 - [工程术语表](engineering-glossary.md) - 嵌入式系统、传感器术语

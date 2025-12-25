@@ -106,9 +106,9 @@ movement-chain-ml/
 
 ---
 
-### 1.2 [ONNX Runtime]推理引擎(../../reference/ml-glossary.md#3-onnx-runtime) 延迟引入 
+### 1.2 [ONNX Runtime](../../reference/ml-glossary.md#3-onnx-runtime)[推理引擎](../../reference/ml-glossary.md#1-推理引擎-inference-engine)延迟引入 
 
-**关键发现**: MediaPipe 自带 [TFLite](../../reference/ml-glossary.md#2-tflite-tensorflow-lite) [推理引擎](../../reference/ml-glossary.md#1-推理引擎-inference-engine)，ONNX Runtime 对于 MVP1 是**冗余的**
+**关键发现**: MediaPipe 自带 [TFLite](../../reference/ml-glossary.md#2-tflite-tensorflow-lite)推理引擎 ，ONNX Runtime 对于 MVP1 是**冗余的**
 
 **技术分析**:
 
@@ -153,13 +153,9 @@ movement-chain-ml/
 + # ONNX 延迟到 Phase 2 引入
 ```
 
-> 📖 **术语解释**: [ONNX Runtime](../../reference/ml-glossary.md#3-onnx-runtime) | [TFLite](../../reference/ml-glossary.md#2-tflite-tensorflow-lite) | [推理引擎](../../reference/ml-glossary.md#1-推理引擎-inference-engine)
-
 ---
 
 ### 1.3 CaddieSet 研究证明架构方向正确
-
-#### 什么是 CaddieSet？
 
 **CaddieSet** 是发表在 CVPR 2025（计算机视觉顶级会议）的高尔夫挥杆分析研究。研究者对比了两种技术路线：
 
@@ -291,9 +287,11 @@ Movement Chain AI 架构（与 CaddieSet 研究一致）：
 
 ---
 
-### 2.2 UV 替代 Poetry 
+### 2.2 UV 替代 Poetry {#22-uv-替代-poetry}
 
-**决策**: 使用 UV 作为 Python 包管理器
+**决策**: 使用 UV 作为 Python [包管理器](../../reference/software-glossary.md#4-包管理器-package-manager)
+
+> 📖 **术语解释**: [包管理器](../../reference/software-glossary.md#4-包管理器-package-manager) — 管理项目依赖的工具（pip、Poetry、uv）
 
 **2025 趋势验证**:
 
@@ -331,46 +329,46 @@ uv add mediapipe opencv-python numpy scipy polars pydantic rerun-sdk imufusion n
 
 ---
 
-### 2.3 Polars 替代 Pandas 
+### 2.3 Polars 替代 Pandas {#23-polars-替代-pandas}
 
-**决策**: 使用 Polars 处理时序传感器数据
+**决策**: 使用 [Polars](../../reference/software-glossary.md#5-polars) 处理时序传感器数据
 
 **为什么 Polars 更适合传感器数据**:
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                    Polars vs Pandas 传感器数据处理对比                        │
+│                    Polars vs Pandas 传感器数据处理对比                         │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
-│   语法一致性 (Polars 优势):                                                  │
+│   语法一致性 (Polars 优势):                                                    │
 │   ─────────────────────────────────────                                     │
-│   Pandas 混乱:                                                              │
-│   df['col']           # 返回 Series                                         │
-│   df[['col']]         # 返回 DataFrame                                      │
-│   df.loc[0]           # 按标签                                              │
-│   df.iloc[0]          # 按位置                                              │
-│   df.col              # 属性访问 (不推荐)                                    │
+│   Pandas 混乱:                                                               │
+│   df['col']           # 返回 Series                                          │
+│   df[['col']]         # 返回 DataFrame                                       │
+│   df.loc[0]           # 按标签                                               │
+│   df.iloc[0]          # 按位置                                               │
+│   df.col              # 属性访问 (不推荐)                                      │
 │                                                                             │
-│   Polars 一致:                                                              │
-│   df.select("col")              # 始终链式                                  │
-│   df.filter(pl.col("x") > 0)    # 表达式 API                               │
-│   df.with_columns(...)          # 添加列                                    │
-│   → 一种模式，减少心智负担                                                   │
+│   Polars 一致:                                                               │
+│   df.select("col")              # 始终链式                                   │
+│   df.filter(pl.col("x") > 0)    # 表达式 API                                 │
+│   df.with_columns(...)          # 添加列                                     │
+│   → 一种模式，减少心智负担                                                      │
 │                                                                             │
-│   时序处理 (传感器关键需求):                                                 │
+│   时序处理 (传感器关键需求):                                                    │
 │   ─────────────────────────────────────                                     │
-│   • 滑动窗口: .rolling_mean(), .rolling_std()                              │
-│   • 重采样: .group_by_dynamic()                                            │
-│   • 插值: .interpolate()                                                   │
-│   → Polars 原生支持，无需额外扩展                                           │
+│   • 滑动窗口: .rolling_mean(), .rolling_std()                                │
+│   • 重采样: .group_by_dynamic()                                              │
+│   • 插值: .interpolate()                                                     │
+│   → Polars 原生支持，无需额外扩展                                               │
 │                                                                             │
-│   性能对比 (1M 行 IMU 数据):                                                 │
+│   性能对比 (1M 行 IMU 数据):                                                   │
 │   ─────────────────────────────────────                                     │
-│   操作                    Pandas      Polars      提升                      │
-│   读取 parquet           1.2s        0.08s       15x                       │
-│   滑动窗口均值            0.8s        0.05s       16x                       │
-│   分组聚合               0.5s        0.03s       17x                       │
-│   峰值检测               0.3s        0.02s       15x                       │
+│   操作                    Pandas      Polars      提升                       │
+│   读取 parquet            1.2s        0.08s       15x                         │
+│   滑动窗口均值             0.8s        0.05s       16x                         │
+│   分组聚合                0.5s        0.03s       17x                         │
+│   峰值检测                0.3s        0.02s       15x                         │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -404,120 +402,6 @@ result = (
     ])
 )
 ```
-
----
-
-### 2.4 前端技术栈 Flutter
-
-**决策**: 使用 Flutter 作为移动端开发框架
-
-**决策背景**:
-
-Movement Chain AI 需要一个跨平台移动应用来：
-- 录制高尔夫挥杆视频
-- 实时姿态估计和分析
-- BLE 连接 IMU 传感器硬件
-- 展示分析结果和反馈
-
-**技术对比**:
-
-| 维度 | Flutter | React Native | Swift/Kotlin (原生) |
-|------|---------|--------------|---------------------|
-| **跨平台** | ✅ iOS + Android + Web | ✅ iOS + Android | ❌ 各自开发 |
-| **性能** | ⭐⭐⭐ 接近原生 | ⭐⭐ 较好 | ⭐⭐⭐ 原生 |
-| **Camera API** | ✅ 成熟 | ⭐⭐ 依赖桥接 | ✅ 最佳支持 |
-| **BLE 支持** | ✅ flutter_blue_plus | ⭐⭐ react-native-ble | ✅ 原生最佳 |
-| **ML 集成** | ✅ google_mlkit | ⭐⭐ 需要桥接 | ✅ CoreML/MLKit |
-| **开发效率** | ⭐⭐⭐ Hot Reload | ⭐⭐⭐ Hot Reload | ⭐⭐ 需重新编译 |
-| **团队成本** | 1 套代码 | 1 套代码 | 2 套代码 |
-
-**选择 Flutter 的原因**:
-
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                    Flutter 优势分析 FRONTEND DECISION                        │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│   1. Google ML 生态整合:                                                     │
-│   ─────────────────────────────────────                                     │
-│   • google_mlkit_pose_detection — MediaPipe 官方 Flutter 插件              │
-│   • 与后端 Python MediaPipe 使用相同的 BlazePose 模型                       │
-│   • 无需模型转换，前后端一致性                                               │
-│                                                                             │
-│   2. 性能满足实时需求:                                                       │
-│   ─────────────────────────────────────                                     │
-│   • Skia 渲染引擎，60fps 骨架叠加无压力                                     │
-│   • Dart AOT 编译，启动快                                                   │
-│   • Platform Channel 调用原生代码，BLE/Camera 无性能损失                    │
-│                                                                             │
-│   3. 插件生态成熟:                                                          │
-│   ─────────────────────────────────────                                     │
-│   • flutter_blue_plus — BLE 5.0 支持，ESP32 连接稳定                        │
-│   • camera — 高帧率录制 (60fps)                                             │
-│   • fl_chart — 数据可视化                                                   │
-│   • provider/riverpod — 状态管理                                            │
-│                                                                             │
-│   4. 单一代码库:                                                             │
-│   ─────────────────────────────────────                                     │
-│   • iOS + Android 共享 95%+ 代码                                            │
-│   • 减少维护成本和一致性问题                                                 │
-│   • 未来可扩展到 Web (Flutter Web)                                          │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
-
-**Flutter 技术栈**:
-
-| 类别 | 库/插件 | 用途 |
-|------|---------|------|
-| **BLE 通信** | flutter_blue_plus | 连接 ESP32 传感器，接收 IMU 数据 |
-| **摄像头** | camera | 高帧率视频录制 (60fps) |
-| **ML 推理** | google_mlkit_pose_detection | 设备端姿态估计 (BlazePose) |
-| **状态管理** | riverpod / provider | 响应式状态管理 |
-| **数据可视化** | fl_chart | 挥杆曲线、指标图表 |
-| **本地存储** | sqflite / hive | 挥杆历史记录 |
-| **HTTP** | dio | 与后端 API 通信 (Phase 2) |
-
-**数据流架构**:
-
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         Flutter App 数据流                                   │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│   ┌──────────────┐        ┌──────────────┐        ┌──────────────┐         │
-│   │   ESP32      │  BLE   │   Flutter    │  API   │   Python     │         │
-│   │   IMU 传感器  │ ─────► │   App        │ ─────► │   Backend    │         │
-│   └──────────────┘        └──────────────┘        └──────────────┘         │
-│         │                        │                        │                 │
-│    100Hz IMU            ┌────────┴────────┐         姿态估计               │
-│    原始数据             │                  │         + ML 分析             │
-│                   ┌─────┴─────┐    ┌─────┴─────┐                          │
-│                   │  Camera   │    │  MLKit    │                           │
-│                   │  60fps    │    │  BlazePose│                           │
-│                   └───────────┘    └───────────┘                           │
-│                         │                │                                  │
-│                         └────────┬───────┘                                  │
-│                                  │                                          │
-│                         ┌────────▼────────┐                                 │
-│                         │   时间戳同步     │                                 │
-│                         │   IMU + Video   │                                 │
-│                         └─────────────────┘                                 │
-│                                                                             │
-│   MVP1: 设备端完成采集 + 基础分析                                            │
-│   Phase 2: 复杂分析上传到 Python 后端                                        │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
-
-**阶段规划**:
-
-| 阶段 | 前端功能 | 说明 |
-|------|----------|------|
-| **MVP1** | 录制 + 基础分析 | Camera 采集、BLE 连接、MLKit 姿态估计 |
-| **Phase 2** | 完整分析流程 | 上传到后端、接收分析结果、历史记录 |
-| **Phase 3** | 高级功能 | 实时反馈、多角度录制、教练模式 |
-
 ---
 
 ## 3. SDK 依赖决策

@@ -316,7 +316,11 @@ flowchart LR
 
 **3. 数据库**
 
+> ⚠️ **待定**
+
 **4. 部署/DevOps**
+
+> ⚠️ **待定**
 
 > 相关决策：
 > - CI/CD 策略见 [ADR-0001 多仓库结构](../decisions/0001-multi-repo-structure.md)
