@@ -406,7 +406,7 @@ result = (
 
 ## 3. SDK 依赖决策
 
-### 3.1 MVP1 精简依赖列表 ✅ 确认
+### 3.1 MVP1 精简依赖列表 
 
 **设计原则**: 最小依赖集，每个依赖都有明确理由
 
@@ -451,17 +451,17 @@ build-backend = "hatchling.build"
 
 ### 3.2 依赖用途详解
 
-| SDK | 用途 | 关键函数 | 为什么需要 |
-|-----|------|---------|-----------|
-| **mediapipe** | 姿态估计 | `solutions.pose.Pose()` | 33 关键点提取 |
-| **opencv-python** | 视频处理 | `cv2.VideoCapture()` | 读取视频帧 |
-| **numpy** | 数值计算 | 向量/矩阵运算 | 所有计算基础 |
-| **scipy** | 信号处理 | `signal.find_peaks()` | IMU 峰值/零交叉检测 |
-| **neurokit2** | EMG 处理 | `emg_process()` | 肌电包络、onset 检测 |
-| **imufusion** | IMU 融合 | `Ahrs()` | 四元数、姿态估计 |
-| **polars** | 时序数据 | DataFrame 操作 | 高性能数据处理 |
-| **pydantic** | 数据验证 | `BaseModel` | Port 接口契约 |
-| **rerun-sdk** | 可视化 | `rr.log()` | 时间同步验证 |
+| 类别 | SDK | 用途 | 关键函数 | 为什么需要 |
+|------|-----|------|---------|-----------|
+| **VISION** | mediapipe | 姿态估计 | `solutions.pose.Pose()` | 33 关键点提取 |
+| **VISION** | opencv-python | 视频处理 | `cv2.VideoCapture()` | 读取视频帧 |
+| **SIGNAL** | numpy | 数值计算 | 向量/矩阵运算 | 所有计算基础 |
+| **SIGNAL** | scipy | 信号处理 | `signal.find_peaks()` | IMU 峰值/零交叉检测 |
+| **SIGNAL** | neurokit2 | EMG 处理 | `emg_process()` | 肌电包络、onset 检测 |
+| **SIGNAL** | imufusion | IMU 融合 | `Ahrs()` | 四元数、姿态估计 |
+| **DATA** | polars | 时序数据 | DataFrame 操作 | 高性能数据处理 |
+| **DATA** | pydantic | 数据验证 | `BaseModel` | Port 接口契约 |
+| **DEBUG** | rerun-sdk | 可视化 | `rr.log()` | 时间同步验证 |
 
 ### 3.3 移除的依赖 (Phase 2+ 引入)
 
@@ -477,9 +477,7 @@ build-backend = "hatchling.build"
 
 ## 4. 硬件与固件决策
 
-### 4.1 Firmware vs Arduino 概念澄清
-
-**问题**: "Firmware" 和 "Arduino" 是什么关系？
+### 4.1 Firmware 和 Arduino
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────┐
