@@ -411,7 +411,7 @@
 
 !!! warning "EMG 传感器注意事项"
     DFRobot SEN0240 存在线缆运动伪影问题，**不适用于高速高尔夫挥杆分析**。
-    推荐使用 **MyoWare 2.0 + Link Shield** 替代，详见 [EMG 硬件选型](../../emg/hardware.md)。
+    推荐使用 **MyoWare 2.0 + Link Shield** 替代，详见 [EMG 硬件选型](../emg/hardware.md)。
 
 **DFRobot 高尔夫可穿戴 MVP 套件**:
 

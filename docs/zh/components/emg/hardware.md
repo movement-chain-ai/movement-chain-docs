@@ -285,7 +285,7 @@ EMG 信号链路:
 
 - [EMG 供应商](suppliers.md)
 - [竞品分析](../../business-plan/market-insights/competitors/imu-based.md) - 无 EMG 竞品
-- [架构决策 2025-12-23](../../design/architecture/architecture-decisions-2025-12-23.md) - MyoWare 2.0 选型依据
+- [架构决策 2025-12-23](../../design/decisions/architecture-decisions-2025-12-23.md) - MyoWare 2.0 选型依据
 
 ---
 

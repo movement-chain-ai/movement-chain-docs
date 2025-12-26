@@ -166,7 +166,7 @@
 
 ### 2.2 Track A — 硬件数据采集
 
-> 📐 **硬件选型决策**: 详见 [ADR-0002 IMU选型](../decisions/0002-imu-selection.md)、[ADR-0005 MCU选型](../decisions/0005-esp32-s3-selection.md)
+> 📐 **硬件选型决策**: 详见 [ADR-0002 IMU选型](../decisions/0002-lsm6dsv16x-imu.md)、[ADR-0005 MCU选型](../decisions/0005-esp32-s3-microcontroller.md)
 
 **目标**: 实现传感器 → ESP32 → BLE → iPhone 的稳定数据传输
 
