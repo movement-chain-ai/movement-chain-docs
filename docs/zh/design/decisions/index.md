@@ -28,6 +28,7 @@
 | [0002](0002-lsm6dsv16x-imu.md) | IMU 传感器 (LSM6DSV16X) | Tier 1 | ✅ | 45+分钟漂移稳定、内置MLC |
 | [0005](0005-esp32-s3-microcontroller.md) | MCU (ESP32-S3) | Tier 1 | ✅ | BLE5.0、低功耗、成本优势 |
 | [0007](0007-swift-ios-native.md) | 移动框架 (Swift iOS) | Tier 2 | ✅ | MediaPipe 原生 SDK、无延迟 |
+| [0008](0008-desktop-to-mobile-architecture.md) | Desktop→Mobile 架构 | Tier 0 | ✅ | Python 开发 → Swift 生产、Phase 3.5 桥接 |
 
 ---
 
