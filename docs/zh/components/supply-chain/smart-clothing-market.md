@@ -226,7 +226,7 @@
 
 **参考来源：**
 
-- [振动马达 & 触觉装置](<https://nidec.com/cn/nidec-copal/product/search/category/B101/M107/S102/NCPL-Vibration> motor and Tactile device)
+- [振动马达 & 触觉装置](https://nidec.com/cn/nidec-copal/product/search/category/B101/M107/S102/)
 
 ---
 
