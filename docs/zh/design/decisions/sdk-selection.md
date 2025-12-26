@@ -37,41 +37,106 @@
 
 ---
 
-## 移动端 (Flutter)
+## 移动端 (Swift iOS)
+
+!!! info "为什么选择 Swift 原生而非 Flutter"
+    MediaPipe 没有官方 Dart/Flutter SDK。Flutter 的 `google_mlkit_pose_detection` 需要通过 Platform Channel 桥接，官方文档明确指出存在 "notable latency"。
+    详见 [ADR-0007 Swift 原生 iOS 开发](0007-swift-ios-native.md)
+
+### 姿态检测 Pose Detection
+
+| 候选方案 | 关键点数 | 性能 | 评估 |
+|---------|---------|------|------|
+| **MediaPipeTasksVision** | 33 | 原生速度 | ✅ 选择 |
+| Apple Vision | ~19 | 原生速度 | ❌ 手腕信息不足 |
+| google_mlkit (Flutter) | 33 | Platform Channel 延迟 | ❌ 不选 |
+
+- **选择**: `MediaPipeTasksVision` (CocoaPods)
+- **安装**: `pod 'MediaPipeTasksVision'`
+- **理由**: Google 官方 iOS SDK，33 个关键点，无桥接延迟
+- **参考**: [MediaPipe iOS 指南](https://developers.google.com/mediapipe/solutions/vision/pose_landmarker/ios)
+
+```swift
+import MediaPipeTasksVision
+
+let options = PoseLandmarkerOptions()
+options.baseOptions.modelAssetPath = "pose_landmarker.task"
+options.runningMode = .liveStream
+let poseLandmarker = try PoseLandmarker(options: options)
+```
 
 ### 相机 Camera
 
-| 候选方案 | 特点 | 生产验证 | 评估 |
-|---------|------|---------|------|
-| **camera** | 官方插件，CameraX/Camera2 | Flutter 团队维护 | ✅ 选择 |
-| camerawesome | 内置 UI，滤镜，多摄像头 | 社区维护 | 备选 |
+| 候选方案 | 特点 | 评估 |
+|---------|------|------|
+| **AVFoundation** | iOS 原生，零开销 | ✅ 选择 |
+| AVKit | 更高级封装 | 备选 |
 
-- **选择**: `camera` (官方)
-- **理由**: 官方维护，CameraX 实现对 Android 设备兼容性更好，支持 60 FPS 视频流
-- **升级触发**: 如需内置 UI 或滤镜功能，考虑 `camerawesome`
+- **选择**: `AVFoundation` (系统框架)
+- **理由**: iOS 原生框架，支持 60/120 FPS 视频捕获，直接访问 CMSampleBuffer
+- **用途**: 实时视频流传入 MediaPipe 进行姿态检测
+
+```swift
+import AVFoundation
+
+let captureSession = AVCaptureSession()
+captureSession.sessionPreset = .high
+
+// 配置 60 FPS
+if let format = device.formats.first(where: {
+    CMFormatDescriptionGetMediaSubType($0.formatDescription) == kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
+}) {
+    try device.lockForConfiguration()
+    device.activeFormat = format
+    device.activeVideoMinFrameDuration = CMTime(value: 1, timescale: 60)
+    device.unlockForConfiguration()
+}
+```
 
 ### 蓝牙 BLE
 
-| 候选方案 | 特点 | 生产验证 | 评估 |
-|---------|------|---------|------|
-| **flutter_reactive_ble** | 响应式 API，连接稳定 | Philips Hue (200万+下载) | ✅ 选择 |
-| flutter_blue_plus | API 简洁，广泛使用 | 社区活跃 | 备选 |
-| flutter_splendid_ble | 完整 central 功能 | 较新 | 观望 |
+| 候选方案 | 特点 | 评估 |
+|---------|------|------|
+| **CoreBluetooth** | iOS 原生，功能完整 | ✅ 选择 |
+| RxBluetoothKit | 响应式封装 | 备选 |
 
-- **选择**: `flutter_reactive_ble`
-- **理由**: 响应式模型适合状态管理，Philips Hue 应用生产验证充分
-- **升级触发**: 如需后台蓝牙恢复功能，考虑 `flutter_blue_plus`
+- **选择**: `CoreBluetooth` (系统框架)
+- **理由**: iOS 原生 BLE 框架，无需第三方依赖
+- **用途**: 与 ESP32 传感器通信
+
+```swift
+import CoreBluetooth
+
+class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
+    private var centralManager: CBCentralManager!
+
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        if central.state == .poweredOn {
+            central.scanForPeripherals(withServices: [sensorServiceUUID])
+        }
+    }
+}
+```
 
 ### 语音反馈 TTS
 
-| 候选方案 | 平台支持 | 离线能力 | 评估 |
-|---------|---------|---------|------|
-| **flutter_tts** | iOS, Android, Web, macOS, Windows | ✅ 支持 | ✅ 选择 |
-| cloud_text_to_speech | Google/Microsoft/Amazon | 需联网 | 云端备选 |
+| 候选方案 | 离线能力 | 评估 |
+|---------|---------|------|
+| **AVSpeechSynthesizer** | ✅ 支持 | ✅ 选择 |
+| OpenAI TTS | 需联网 | 云端备选 |
 
-- **选择**: `flutter_tts`
-- **理由**: 多平台支持，离线可用，成熟稳定
+- **选择**: `AVSpeechSynthesizer` (系统框架)
+- **理由**: iOS 原生 TTS，离线可用，免费
 - **用途**: 挥杆完成后语音反馈 ("82分，节奏很好")
+
+```swift
+import AVFoundation
+
+let synthesizer = AVSpeechSynthesizer()
+let utterance = AVSpeechUtterance(string: "82分，节奏很好")
+utterance.voice = AVSpeechSynthesisVoice(language: "zh-CN")
+synthesizer.speak(utterance)
+```
 
 ---
 
@@ -108,7 +173,7 @@ results = pose.process(rgb_frame)
 
 - **选择**: `NeuroKit2`
 - **理由**: 内置 `emg_simulate()` 支持 Mock 数据，正好匹配"先软件后硬件"策略
-- **注意**: Phase 2 需要将处理逻辑移植到移动端 (Dart) 或嵌入式 (C++)
+- **注意**: Phase 2 需要将处理逻辑移植到移动端 (Swift) 或嵌入式 (C++)
 
 ```bash
 pip install neurokit2
@@ -267,20 +332,20 @@ filtered = filtfilt(b, a, raw_signal)
 MVP 阶段锁定以下版本，避免升级导致的兼容性问题：
 
 ```yaml
-# Python
+# Python (开发调试阶段)
 mediapipe: "0.10.x"
 neurokit2: "0.2.x"
 opencv-python: "4.8.x"
 numpy: "1.24.x"
 
-# Flutter (pubspec.yaml)
-camera: "^0.10.5"
-flutter_reactive_ble: "^5.2.0"
-flutter_tts: "^3.8.0"
-onnxruntime_v2: "^1.16.3"
-tflite_flutter: "^0.10.4"  # 备选
+# Swift iOS (Podfile)
+MediaPipeTasksVision: "~> 0.10"  # Google 官方姿态检测 SDK
+# 系统框架 (无需版本锁定):
+# - AVFoundation (相机)
+# - CoreBluetooth (BLE)
+# - AVSpeechSynthesizer (TTS)
 
-# Arduino
+# Arduino (ESP32)
 ESP32 Arduino Core: "2.0.x"
 LSM6DSV16X (stm32duino): "latest"
 ```
@@ -291,8 +356,9 @@ LSM6DSV16X (stm32duino): "latest"
 
 - [系统设计](../architecture/system-design.md) - 整体架构和数据流
 - [ADR 决策记录](../decisions/index.md) - 架构决策快速参考
-- [移动开发](../../development/mobile/development.md) - Flutter 开发指南
+- [ADR-0007 Swift 原生 iOS 开发](0007-swift-ios-native.md) - 为什么选择 Swift 而非 Flutter
+- [移动开发](../../development/mobile/development.md) - Swift iOS 开发指南
 
 ---
 
-**最后更新**: 2025年12月13日
+**最后更新**: 2025年12月25日

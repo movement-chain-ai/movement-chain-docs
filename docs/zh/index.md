@@ -271,7 +271,6 @@
 │   ───────           ├── foundations/    高尔夫生物力学基础 (先读)                  │
 │                     ├── architecture/   核心架构 (5篇必读)                   │
 │                     ├── specs/          详细规格 (按需参考)                  │
-│                     ├── briefs/         角色入口                            │
 │                     └── decisions/      ADR 技术决策                        │
 │                                                                             │
 │   components/       WITH what hardware                                      │
@@ -312,15 +311,11 @@
 4. [数据流与反馈](design/architecture/data-pipeline-and-ai.md) → Kinematic Prompts
 5. [传感器-指标映射](design/architecture/sensor-metric-mapping.md) → Python 代码示例
 
-### 新团队成员 (按角色)
+### 新团队成员
 
 1. [生物力学入门](prerequisites/foundations/biomechanics-101.md) → ⭐ **必读基础** (90 分钟)
 2. [系统设计](design/architecture/system-design.md) → 理解 MVP 架构
-3. 然后阅读你的角色指南:
-    - 软件工程师 → [design/briefs/software-engineer.md](design/briefs/software-engineer.md)
-    - 移动开发者 → [design/briefs/mobile-developer.md](design/briefs/mobile-developer.md)
-    - 硬件工程师 → [design/briefs/hardware-engineer.md](design/briefs/hardware-engineer.md)
-    - 高尔夫顾问 → [design/briefs/golf-advisor.md](design/briefs/golf-advisor.md)
+3. [模块化架构](design/architecture/modular-architecture.md) → LEGO 积木块设计
 
 ---
 

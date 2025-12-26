@@ -26,11 +26,9 @@ Check existing ADRs to determine next number:
 ```text
 0001-multi-repo-structure.md
 0002-lsm6dsv16x-imu.md
-0003-flutter-mobile.md
-0004-simplified-4-module-architecture.md
 0005-esp32-s3-microcontroller.md
-0006-onnx-runtime-deployment.md
-→ Next: 0007-{decision-name}.md
+0007-swift-ios-native.md
+→ Next: 0008-{decision-name}.md
 ```
 
 ## ADR Template

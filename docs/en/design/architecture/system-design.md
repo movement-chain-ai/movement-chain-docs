@@ -32,7 +32,7 @@ Before diving into system design, we recommend understanding golf biomechanics f
 
 ### 1.2 MVP Scope
 
-> 📐 **Architecture Decision**: 4-module architecture design detailed in [ADR-0004](../decisions/0004-simplified-4-module-architecture.md)
+> **Development Plan**: See Section 2 for MVP development plan and acceptance criteria.
 
 | Feature | MVP Phase 1 | Phase 2 | Phase 3 | Notes |
 |---------|:-----------:|:-------:|:-------:|-------|
@@ -253,14 +253,14 @@ flowchart LR
 | Layer | Technology | Decision Basis |
 |-------|-----------|---------------|
 | **Project Structure** | Multi-repo (5 repos) | [ADR-0001](../decisions/0001-multi-repo-structure.md) |
-| **Mobile** | Flutter 3.x | [ADR-0003](../decisions/0003-flutter-mobile.md) |
-| **Pose Estimation** | MediaPipe Pose (ThinkSys plugin) | iOS available, 33 keypoints |
+| **Mobile** | Swift iOS (Native) | [ADR-0007](../decisions/0007-swift-ios-native.md) |
+| **Pose Estimation** | MediaPipe iOS SDK (MediaPipeTasksVision) | Official Google SDK, 33 keypoints |
 | **MCU** | XIAO ESP32S3 | Seeed 113991114, Sensor Hub architecture |
 | **IMU** | Adafruit LSM6DSV16X | ADA-5783, better Arduino library |
 | **EMG** | MyoWare 2.0 + Link Shield | SparkFun DEV-21265 + DEV-18425 |
-| **ML Inference** | TFLite (MediaPipe built-in) | MVP1 uses TFLite; ONNX Runtime delayed to Phase 2 ([ADR-0006](../decisions/0006-onnx-runtime-deployment.md)) |
+| **ML Inference** | TFLite (MediaPipe built-in) | Out-of-box, no additional inference engine needed |
 | **LLM** | OpenAI GPT-4o-mini | Low cost, fast |
-| **TTS** | flutter_tts (system) | Out-of-box |
+| **TTS** | AVSpeechSynthesizer (iOS) | Native iOS, free |
 
 ### 4.2 MVP Simplification Strategy
 
@@ -380,15 +380,6 @@ flowchart LR
 
 - **[Biomechanics Benchmarks](../foundations/biomechanics-benchmarks.md)** - Threshold data sources
 - **[Biomechanics Glossary](../foundations/biomechanics-glossary.md)** - 140+ term definitions
-
-#### Role-Specific Entry Points
-
-| Role | Brief | Main Tasks |
-|------|-------|-----------|
-| Software Engineer | [briefs/software-engineer.md](../briefs/software-engineer.md) | Algorithm pipeline implementation |
-| Mobile Developer | [briefs/mobile-developer.md](../briefs/mobile-developer.md) | Flutter App |
-| Hardware Engineer | [briefs/hardware-engineer.md](../briefs/hardware-engineer.md) | Sensor prototype |
-| Golf Advisor | [briefs/golf-advisor.md](../briefs/golf-advisor.md) | Rule validation |
 
 ---
 

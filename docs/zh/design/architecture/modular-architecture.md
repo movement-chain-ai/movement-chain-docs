@@ -690,7 +690,7 @@ class TimeAlignmentManager:
 
 **选择理由**:
 
-- 开箱即用，ThinkSys Flutter plugin 已封装
+- 开箱即用，MediaPipeTasksVision iOS SDK 官方支持
 - 33 关键点足够计算 X-Factor、肩转、髋转
 - 不需要任何训练数据
 
@@ -1394,8 +1394,8 @@ Phase 4+ (Week 5-8): Integration & Testing
 | 决策 | 内容 | 相关 Block |
 |------|------|-----------|
 | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md) | LSM6DSV16X 选型 | IMU Block |
-| [ADR-0004](../decisions/0004-simplified-4-module-architecture.md) | 4 模块简化 | 整体架构 |
-| [ADR-0006](../decisions/0006-onnx-runtime-deployment.md) | ONNX 部署 | CLASSIFIER Block |
+| [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) | ESP32-S3 选型 | Sensor Hub |
+| [ADR-0007](../decisions/0007-swift-ios-native.md) | Swift iOS 开发 | Mobile App |
 
 ### 实现指南
 

@@ -227,9 +227,8 @@ alignment.plot(type="threeway")
 
 **Movement Chain AI 使用**：
 
-- 移动端模型部署
-- 统一 iOS/Android 推理
-- 参考 ADR-0006
+- MVP1 使用 MediaPipe 内置 TFLite，无需独立 ONNX Runtime
+- Phase 2+ 考虑 RTMPose 等自定义模型部署时引入
 
 ---
 

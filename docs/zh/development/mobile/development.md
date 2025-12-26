@@ -159,7 +159,7 @@ class PoseEstimator {
 
 ### 2.3 On-Device ML Inference 设备端ML推理
 
-**ONNX Runtime Mobile Integration ONNX Runtime移动集成** (ADR-0006):
+**ONNX Runtime Mobile Integration ONNX Runtime移动集成** (Phase 2+, MVP1 uses MediaPipe built-in TFLite):
 
 ```yaml
 # pubspec.yaml
@@ -474,7 +474,7 @@ void onButtonTap() {
 
 ### 3.3 Performance Targets 性能目标
 
-**Critical Targets 关键目标** (ADR-0003):
+**Critical Targets 关键目标** (ADR-0007):
 
 - **60 FPS sustained 持续60 FPS** on mid-range devices 中端设备 (iPhone 11, Pixel 5)
 - **<500MB peak RAM usage 峰值RAM使用<500MB** during ML + BLE + rendering ML+BLE+渲染期间
@@ -1340,8 +1340,7 @@ class FeedbackOverlay extends ConsumerWidget {
 
 ## Related Decisions 相关决策
 
-- [ADR-0003: Flutter Mobile Framework Flutter移动框架](../../design/decisions/0003-flutter-mobile.md) - Framework selection rationale 框架选择理由
-- [ADR-0006: ONNX Runtime Deployment ONNX Runtime部署](../../design/decisions/0006-onnx-runtime-deployment.md) - ML model deployment strategy ML模型部署策略
+- [ADR-0007: Swift iOS Native Development Swift iOS 原生开发](../../design/decisions/0007-swift-ios-native.md) - Framework selection rationale 框架选择理由
 
 ---
 
@@ -1349,7 +1348,7 @@ class FeedbackOverlay extends ConsumerWidget {
 
 ### Device Targets 设备目标
 
-**Mid-Range Baseline 中端基准** (ADR-0003):
+**Mid-Range Baseline 中端基准** (ADR-0007):
 
 - **iOS**: iPhone 11 (A13 Bionic, 4GB RAM)
 - **Android**: Google Pixel 5 (Snapdragon 765G, 8GB RAM)

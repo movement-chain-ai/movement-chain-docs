@@ -508,19 +508,23 @@ class PostSwingFeedback:
 
 对于需要包含数据的反馈（如具体分数、角度），使用 TTS 动态生成：
 
-```python
-from flutter_tts import FlutterTts  # Flutter 侧
+```swift
+import AVFoundation  // iOS 原生 TTS
 
-def generate_dynamic_feedback(template, **kwargs):
-    """
-    动态生成语音反馈
+class FeedbackSpeaker {
+    private let synthesizer = AVSpeechSynthesizer()
 
-    Examples:
-        generate_dynamic_feedback("X因子{x_factor:.0f}度，不够", x_factor=32)
-        generate_dynamic_feedback("速度{speed:.0f}，很不错", speed=1200)
-    """
-    text = template.format(**kwargs)
-    return text
+    /// 动态生成语音反馈
+    /// - Examples:
+    ///   - generateFeedback("X因子\(xFactor)度，不够")
+    ///   - generateFeedback("速度\(speed)，很不错")
+    func generateFeedback(_ text: String, rate: Float = 0.5) {
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "zh-CN")
+        utterance.rate = rate
+        synthesizer.speak(utterance)
+    }
+}
 ```
 
 ---

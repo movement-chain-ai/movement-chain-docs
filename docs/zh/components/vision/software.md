@@ -3,7 +3,7 @@
 > **Movement Chain AI 姿态估计技术权威指南**
 
 !!! info "框架选型"
-    ONNX Runtime 部署决策详情请参阅 [ADR-0006 ONNX Runtime 部署策略](../../design/decisions/0006-onnx-runtime-deployment.md)
+    移动端开发决策详情请参阅 [ADR-0007 Swift iOS 原生开发](../../design/decisions/0007-swift-ios-native.md)
 
 ---
 
@@ -556,7 +556,7 @@ class PoseEstimator {
 
 ## 相关文档 (Related Documentation)
 
-- **架构决策 Architecture Decisions**: [ADR-0006: ONNX Runtime Deployment](../../design/decisions/0006-onnx-runtime-deployment.md)
+- **架构决策 Architecture Decisions**: [ADR-0007: Swift iOS Native Development](../../design/decisions/0007-swift-ios-native.md)
 
 ---
 

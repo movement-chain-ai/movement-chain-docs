@@ -57,8 +57,7 @@ Each component folder follows this structure:
 ## Key ADRs
 
 - ADR-0002: LSM6DSV16X IMU selection
-- ADR-0003: ESP32-S3 microcontroller choice
-- ADR-0005: ADS1299 EMG sensor (if exists)
+- ADR-0005: ESP32-S3 microcontroller selection
 
 ## Maintenance Notes
 

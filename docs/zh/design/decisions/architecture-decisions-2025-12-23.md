@@ -856,11 +856,11 @@ build-backend = "hatchling.build"
 │                    数据传输流程 DATA FLOW                                     │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
-│   [LSM6DSV16X IMU] ──I2C/SPI──→ [ESP32-S3] ──BLE 5.0──→ [Flutter App]       │
+│   [LSM6DSV16X IMU] ──I2C/SPI──→ [ESP32-S3] ──BLE 5.0──→ [Swift iOS App]     │
 │        │                              │                       │             │
 │        │ 100Hz 采样                    │ 打包+缓冲              │ 接收+解析    │
 │        ↓                              ↓                       ↓             │
-│   加速度计+陀螺仪数据            protocol.h 定义格式        ble_service.dart    │
+│   加速度计+陀螺仪数据            protocol.h 定义格式        BLEService.swift    │
 │                                                                             │
 │   BLE 数据包格式 (20 bytes/sample):                                           │
 │   [type:1B][timestamp_ms:4B][gyro_xyz:6B][accel_xyz:6B][emg:2B][crc:1B]     │
@@ -1289,54 +1289,53 @@ build-backend = "hatchling.build"
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 7.3 movement-chain-mobile (Flutter/Dart)
+### 7.3 movement-chain-mobile-ios (Swift)
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│   movement-chain-mobile — Flutter 移动应用                                   │
+│   movement-chain-mobile-ios — Swift iOS 原生应用                              │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
-│   你用的现成库 (pubspec.yaml):                                                │
+│   你用的现成库 (Podfile / SPM):                                               │
 │   ──────────────────────────────                                            │
-│   • flutter_blue_plus — BLE 连接                                             │
-│   • camera — 摄像头控制                                                       │
-│   • google_mlkit_pose_detection — MediaPipe 姿态估计                         │
-│   • provider / riverpod — 状态管理                                           │
-│   • fl_chart — 数据可视化                                                     │
+│   • CoreBluetooth — BLE 连接 (系统框架)                                       │
+│   • AVFoundation — 摄像头控制 (系统框架)                                       │
+│   • MediaPipeTasksVision — 姿态估计 (官方 iOS SDK)                            │
+│   • Charts — 数据可视化 (或 Swift Charts iOS 16+)                             │
 │                                                                             │
 │   你需要写的代码:                                                             │
 │   ──────────────────────────────                                            │
-│   • UI 页面 — 录制、分析、历史                                                 │
+│   • UI 页面 — 录制、分析、历史 (SwiftUI)                                       │
 │   • BLE 服务 — 连接 ESP32、解析数据包                                          │
 │   • 摄像头服务 — 录制视频、提取帧                                               │
 │   • ML 服务 — 调用 MediaPipe、同步时间戳                                       │
-│   • 数据模型 — Dart class (与 ML repo entities 对应)                          │
+│   • 数据模型 — Swift struct (与 ML repo entities 对应)                        │
 │                                                                             │
 │   目录结构:                                                                  │
 │   ──────────────────────────────                                            │
-│   lib/                                                                      │
-│   ├── main.dart                # 入口                                        │
-│   ├── screens/                 # UI 页面                                     │
-│   │   ├── home_screen.dart     # 首页: 开始录制                               │
-│   │   ├── record_screen.dart   # 录制: 摄像头 + BLE 同时采集                   │
-│   │   ├── analysis_screen.dart # 分析: 显示反馈结果                            │
-│   │   └── history_screen.dart  # 历史: 过去的挥杆记录                          │
-│   ├── services/                                                             │
-│   │   ├── camera_service.dart  # 摄像头: 录制、帧提取、时间戳                   │
-│   │   ├── ble_service.dart     # BLE: 扫描、连接、数据解析                     │
-│   │   └── ml_service.dart      # ML: MediaPipe 推理、结果处理                 │
-│   ├── models/                  # ⚠️ 共享契约: 与 ML entities 对应             │
-│   │   ├── pose_result.dart     # 对应 ml/entities/pose.py                   │
-│   │   ├── imu_data.dart        # 对应 ml/entities/imu.py                    │
-│   │   └── ble_messages.dart    # 对应 firmware/protocol.h                   │
-│   └── widgets/                 # 可复用 UI 组件                              │
-│       ├── pose_overlay.dart    # 骨架叠加显示                                 │
-│       └── metric_card.dart     # 指标卡片                                    │
-│   assets/                      # 静态资源                                    │
-│   └── models/                  # TFLite 模型文件 (从 ML repo 导出)            │
+│   MovementChain/                                                            │
+│   ├── MovementChainApp.swift   # SwiftUI 入口                                │
+│   ├── Views/                   # SwiftUI 视图                                │
+│   │   ├── HomeView.swift       # 首页: 开始录制                               │
+│   │   ├── RecordView.swift     # 录制: 摄像头 + BLE 同时采集                   │
+│   │   ├── AnalysisView.swift   # 分析: 显示反馈结果                            │
+│   │   └── HistoryView.swift    # 历史: 过去的挥杆记录                          │
+│   ├── Services/                                                             │
+│   │   ├── CameraService.swift  # 摄像头: AVFoundation 封装                    │
+│   │   ├── BLEService.swift     # BLE: CoreBluetooth 封装                     │
+│   │   └── PoseService.swift    # ML: MediaPipe 推理、结果处理                 │
+│   ├── Models/                  # ⚠️ 共享契约: 与 ML entities 对应             │
+│   │   ├── PoseResult.swift     # 对应 ml/entities/pose.py                   │
+│   │   ├── IMUData.swift        # 对应 ml/entities/imu.py                    │
+│   │   └── BLEMessages.swift    # 对应 firmware/protocol.h                   │
+│   └── Components/              # 可复用 UI 组件                              │
+│       ├── PoseOverlayView.swift # 骨架叠加显示                                │
+│       └── MetricCard.swift     # 指标卡片                                    │
+│   Resources/                   # 静态资源                                    │
+│   └── pose_landmarker.task     # MediaPipe 模型文件                          │
 │                                                                             │
 │   MVP1 状态: ⏳ Phase 1.5 开始 (先完成 ML 管道)                                │
-│   关键产出: 用户可用的 iOS/Android 应用                                         │
+│   关键产出: 用户可用的 iOS 应用                                                │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -1429,7 +1428,7 @@ build-backend = "hatchling.build"
 │   │   ├── imu/                 # IMU 传感器                                   │
 │   │   └── emg/                 # EMG 传感器                                   │
 │   ├── development/             # HOW: 开发指南                                │
-│   │   ├── mobile/              # Flutter 开发                                │
+│   │   ├── mobile/              # Swift iOS 开发                              │
 │   │   └── ml-training/         # ML 训练                                     │
 │   └── reference/               # 外部链接 (只放 URL，不放内容)                  │
 │                                                                             │
@@ -1524,9 +1523,8 @@ build-backend = "hatchling.build"
 | **[data-pipeline-and-ai.md](../architecture/data-pipeline-and-ai.md)** | **数据流与时间同步** | **⭐ 权威来源** |
 | [modular-architecture.md](../architecture/modular-architecture.md) | LEGO 积木架构 | 六边形对应 |
 | [sensor-metric-mapping.md](../architecture/sensor-metric-mapping.md) | 算法实现代码 | Mock 数据生成 |
-| [ADR-0004](0004-simplified-4-module-architecture.md) | 4 模块架构 | 架构基础 |
 | [ADR-0005](0005-esp32-s3-microcontroller.md) | ESP32-S3 选型 | 硬件决策 |
-| [ADR-0006](0006-onnx-runtime-deployment.md) | ONNX 部署 | 需标注延迟引入 |
+| [ADR-0007](0007-swift-ios-native.md) | Swift iOS 开发 | 移动端决策 |
 | [vision-based.md](../../business-plan/market-insights/competitors/vision-based.md) | 竞品分析 | 2025 更新 |
 
 > **文档优先级**: `data-pipeline-and-ai.md` 是数据流和时间同步的**单一权威来源**。

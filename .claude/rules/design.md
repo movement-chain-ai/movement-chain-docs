@@ -23,7 +23,6 @@ All other design documents reference the hub. The hub is the single source of tr
 | `foundations/` | Biomechanics prerequisites | Read first, before understanding system design |
 | `architecture/` | Core system design (4 docs) | Understanding MVP architecture |
 | `specs/` | Detailed specifications | Reference when implementing features |
-| `briefs/` | Role-specific onboarding | Adding new team members, role clarification |
 | `guides/` | Developer tutorials | Implementation patterns, SDK selection |
 | `research/` | Competitive/tool analysis | Evaluating alternatives |
 | `decisions/` | ADRs (sequential) | Technology selections, architecture choices |
@@ -35,7 +34,6 @@ All other design documents reference the hub. The hub is the single source of tr
 ### Cross-References
 
 - **specs/** MUST link back to relevant system-design.md sections
-- **briefs/** MUST link to system-design.md + role-relevant specs/guides
 - **decisions/** MUST explain impact on system-design.md modules
 - **guides/** MAY link to research/ for theoretical background
 
@@ -61,8 +59,7 @@ All other design documents reference the hub. The hub is the single source of tr
 - `architecture/system-design.md` ↔ All ADRs (decisions shape architecture)
 - `architecture/modular-architecture.md` ↔ `architecture/data-pipeline-and-ai.md` (block design + data flow)
 - `specs/swing-phases.md` ↔ `foundations/biomechanics-glossary.md` (terminology)
-- `guides/ml-basics.md` ↔ `decisions/ADR-0006-onnx-runtime.md` (ML deployment)
-- `briefs/*` ↔ `specs/*` (role-based feature ownership)
+- `guides/ml-basics.md` ↔ `decisions/ADR-0007-swift-ios-native.md` (Mobile development)
 
 ## Maintenance
 
@@ -71,4 +68,3 @@ When updating:
 1. Check if system-design.md needs updating (hub changes ripple)
 2. Update cross-references in affected specs/guides
 3. Add ADR if architectural decision is made
-4. Update briefs/ if role responsibilities change

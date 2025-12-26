@@ -385,7 +385,7 @@
 
 - [系统设计](../../design/architecture/system-design.md) - MVP 架构设计
 - [机器学习基础](../ml-basics.md) - 特征工程参考
-- [ADR-0006: ONNX Runtime](../../design/decisions/0006-onnx-runtime-deployment.md) - 模型部署决策
+- [ADR-0007: Swift iOS](../../design/decisions/0007-swift-ios-native.md) - 移动端开发
 - [学术数据集](../../reference/academic-datasets.md) - 训练数据来源
 
 ---

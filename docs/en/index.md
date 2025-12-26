@@ -270,7 +270,6 @@ Competitors replicating us would need:
 │   ───────           ├── foundations/    Biomechanics basics (read first)    │
 │                     ├── architecture/   Core architecture (5 must-reads)    │
 │                     ├── specs/          Detailed specs (reference as needed)│
-│                     ├── briefs/         Role-specific entry points          │
 │                     └── decisions/      ADR technical decisions             │
 │                                                                             │
 │   components/       WITH what hardware                                      │
@@ -371,11 +370,7 @@ Focus on strategy and differentiators:
 
 1. **Everyone**: Start with [Biomechanics 101](prerequisites/foundations/biomechanics-101.md) (90 min)
 2. **Everyone**: Then [System Design](design/architecture/system-design.md) (30 min)
-3. **Then your role brief**:
-    - Software Engineer → [design/briefs/software-engineer.md](design/briefs/software-engineer.md)
-    - Mobile Developer → [design/briefs/mobile-developer.md](design/briefs/mobile-developer.md)
-    - Hardware Engineer → [design/briefs/hardware-engineer.md](design/briefs/hardware-engineer.md)
-    - Golf Advisor → [design/briefs/golf-advisor.md](design/briefs/golf-advisor.md)
+3. **Everyone**: [Modular Architecture](design/architecture/modular-architecture.md) (25 min)
 
 ---
 

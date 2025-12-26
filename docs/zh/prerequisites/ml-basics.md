@@ -276,7 +276,7 @@ ONNX = 一个模型格式 (需要配合推理引擎)
 └── 两个可以同时用在一个 App 里
 ```
 
-详细选型理由见: [ADR-0006 ONNX Runtime 部署](../design/decisions/0006-onnx-runtime-deployment.md)
+MVP1 使用 MediaPipe 内置的 TFLite 推理引擎，无需额外配置。
 
 ---
 
@@ -298,7 +298,7 @@ ONNX = 一个模型格式 (需要配合推理引擎)
 
 - [系统设计](../design/architecture/system-design.md) - IMU/EMG 完整处理代码
 - [SDK 选型](../design/decisions/sdk-selection.md) - MediaPipe、NeuroKit2 等工具
-- [ADR-0006 ONNX Runtime](../design/decisions/0006-onnx-runtime-deployment.md) - 为什么选 ONNX
+- [ADR-0007 Swift iOS](../design/decisions/0007-swift-ios-native.md) - 移动端开发决策
 
 ---
 

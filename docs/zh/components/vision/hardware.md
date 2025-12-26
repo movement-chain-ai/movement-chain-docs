@@ -445,7 +445,7 @@ class SwingPhaseDetector:
 ## 相关资源
 
 - [姿态估计指南](../vision/software.md)
-- [ADR-0006: ONNX Runtime 部署](../../design/decisions/0006-onnx-runtime-deployment.md)
+- [ADR-0007: Swift iOS 开发](../../design/decisions/0007-swift-ios-native.md)
 - [视觉方案竞品](../../business-plan/market-insights/competitors/vision-based.md)
 
 ---

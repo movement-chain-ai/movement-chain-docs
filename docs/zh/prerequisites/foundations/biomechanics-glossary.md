@@ -277,9 +277,7 @@ Flexible sensor arrays conforming to skin or curved surfaces.<br>贴合皮肤或
 | **Feature Engineering** | 特征工程 | Extracting meaningful features from raw sensor data<br>从原始传感器数据中提取有意义的特征 | Joint angles 关节角度, CoP trajectory 压力中心轨迹, activation timing 激活时机 |
 | **ONNX** | 开放神经网络交换格式 | Universal ML model format for cross-platform deployment<br>跨平台部署的通用机器学习模型格式 | Train 训练: PyTorch → Export 导出: ONNX → Infer 推理: ONNX Runtime Mobile |
 
-**我们的架构 Our Architecture**: PyTorch training 训练 → ONNX export 导出 → ONNX Runtime Mobile inference 推理
-
-详见 See: [ONNX Runtime 部署 ADR](../../design/decisions/0006-onnx-runtime-deployment.md)
+**MVP1 架构**: MediaPipe iOS SDK (内置 TFLite 推理引擎)
 
 ---
 

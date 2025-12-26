@@ -25,11 +25,9 @@
 | ADR | 决策 | 层级 | 状态 | 核心理由 |
 |-----|------|:----:|:----:|---------|
 | [0001](0001-multi-repo-structure.md) | 多仓库结构 | Tier 0 | ✅ | 独立部署、团队分工 |
-| [0004](0004-simplified-4-module-architecture.md) | 4模块架构 | Tier 0 | ✅ | MVP精简、快速交付 |
 | [0002](0002-lsm6dsv16x-imu.md) | IMU 传感器 (LSM6DSV16X) | Tier 1 | ✅ | 45+分钟漂移稳定、内置MLC |
 | [0005](0005-esp32-s3-microcontroller.md) | MCU (ESP32-S3) | Tier 1 | ✅ | BLE5.0、低功耗、成本优势 |
-| [0003](0003-flutter-mobile.md) | 移动框架 (Flutter) | Tier 2 | ✅ | 跨平台、快速迭代 |
-| [0006](0006-onnx-runtime-deployment.md) | 推理引擎 (ONNX Runtime) | Tier 2 | ✅ | RTMPose兼容、跨平台 |
+| [0007](0007-swift-ios-native.md) | 移动框架 (Swift iOS) | Tier 2 | ✅ | MediaPipe 原生 SDK、无延迟 |
 
 ---
 
@@ -39,7 +37,7 @@
 
 | 文档 | 内容 | 层级 |
 |------|------|:----:|
-| [SDK/库选型指南](sdk-selection.md) | MediaPipe、NeuroKit2、flutter_reactive_ble 等 | Tier 3 |
+| [SDK/库选型指南](sdk-selection.md) | MediaPipe、NeuroKit2、CoreBluetooth 等 | Tier 3 |
 | [可视化工具评估](visualization-tools-evaluation.md) | Rerun 调试工具选型 | Tier 4 |
 
 ---

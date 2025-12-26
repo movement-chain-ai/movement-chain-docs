@@ -1399,8 +1399,8 @@ For complete technical evaluation of Rerun, competitor comparison, future TAPIR 
 | Decision | Content | Related Block |
 |------|------|-----------|
 | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md) | LSM6DSV16X selection | IMU Block |
-| [ADR-0004](../decisions/0004-simplified-4-module-architecture.md) | 4-module simplification | Overall architecture |
-| [ADR-0006](../decisions/0006-onnx-runtime-deployment.md) | ONNX deployment | CLASSIFIER Block |
+| [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) | ESP32-S3 selection | Hardware platform |
+| [ADR-0007](../decisions/0007-swift-ios-native.md) | Swift iOS native | Mobile platform |
 
 ### Implementation Guides
 

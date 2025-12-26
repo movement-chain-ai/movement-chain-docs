@@ -10,15 +10,15 @@ The `docs/zh/development/` section focuses on **HOW to implement** the Movement 
 
 ## Target Audience
 
-- **Software Engineers**: Implementing Flutter mobile app
+- **Software Engineers**: Implementing Swift iOS mobile app
 - **ML Engineers**: Training models, dataset preparation
-- **Mobile Developers**: Cross-platform development, UI/UX
+- **Mobile Developers**: iOS native development, UI/UX
 
 ## Tech Stack Covered
 
-- **Mobile**: Flutter (cross-platform, ADR-0003)
-- **ML Framework**: PyTorch (training), ONNX Runtime (on-device inference, ADR-0006)
-- **Languages**: Dart (Flutter), Python (ML training)
+- **Mobile**: Swift iOS native (ADR-0007)
+- **ML Framework**: PyTorch (training), TFLite via MediaPipe (on-device inference)
+- **Languages**: Swift (iOS), Python (ML training)
 - **Visualization**: Skeleton overlays, visual feedback UI
 
 ## Content Guidelines
@@ -44,8 +44,7 @@ The `docs/zh/development/` section focuses on **HOW to implement** the Movement 
 
 - **Architecture Context**: `design/system-design.md` - Core MVP pipeline
 - **Key Decisions**:
-  - `design/decisions/ADR-0003.md` - Flutter选择
-  - `design/decisions/ADR-0006.md` - ONNX Runtime选择
+  - `design/decisions/ADR-0007.md` - Swift iOS native选择
 - **Getting Started**: `design/getting-started.md` - Test without hardware
 
 ## File Organization

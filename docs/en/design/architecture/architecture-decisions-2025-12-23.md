@@ -1516,9 +1516,9 @@ User → Cloudflare Workers (API gateway/cache) → AWS Lambda (ML inference)
 | **[data-pipeline-and-ai.md](../architecture/data-pipeline-and-ai.md)** | **Data flow & time sync** | **⭐ Authoritative source** |
 | [modular-architecture.md](../architecture/modular-architecture.md) | LEGO block architecture | Hexagonal mapping |
 | [sensor-metric-mapping.md](../architecture/sensor-metric-mapping.md) | Algorithm implementation code | Mock data generation |
-| [ADR-0004](0004-simplified-4-module-architecture.md) | 4-module architecture | Architecture foundation |
-| [ADR-0005](0005-esp32-s3-microcontroller.md) | ESP32-S3 selection | Hardware decision |
-| [ADR-0006](0006-onnx-runtime-deployment.md) | ONNX deployment | Note delayed introduction |
+| [ADR-0002](0002-lsm6dsv16x-imu.md) | LSM6DSV16X selection | IMU hardware decision |
+| [ADR-0005](0005-esp32-s3-microcontroller.md) | ESP32-S3 selection | MCU hardware decision |
+| [ADR-0007](0007-swift-ios-native.md) | Swift iOS native | Mobile platform decision |
 | [vision-based.md](../../business-plan/market-insights/competitors/vision-based.md) | Competitor analysis | 2025 update |
 
 > **Documentation Priority**: `data-pipeline-and-ai.md` is the **single authoritative source** for data flow and time synchronization.

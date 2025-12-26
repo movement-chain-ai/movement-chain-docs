@@ -310,7 +310,7 @@ OnForm 使用 **Lifting Network** 从单目视频推断 3D 姿态:
 
 **关键洞察**: OnForm 在视频分析领先，但 **EMG 肌肉数据是我们的独特价值，没有任何竞品拥有**。
 
-> 详细技术选型对比见: [ADR-0003 Flutter 跨平台开发](../../../design/decisions/0003-flutter-mobile.md) | [ADR-0006 ONNX Runtime 部署](../../../design/decisions/0006-onnx-runtime-deployment.md)
+> 详细技术选型见: [ADR-0007 Swift iOS 开发](../../../design/decisions/0007-swift-ios-native.md)
 
 ---
 

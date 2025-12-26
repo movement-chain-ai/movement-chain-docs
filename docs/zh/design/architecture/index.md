@@ -42,7 +42,7 @@ MVP 的单一事实来源：
 - **12 核心指标**: Vision 6 + IMU 4 + EMG 2
 - **6 规则引擎**: P0 关键规则、P1 重要规则
 - **构建顺序**: 6 周 MVP 实现路线图
-- **技术栈**: Flutter、MediaPipe、ESP32-S3、ONNX
+- **技术栈**: Swift iOS、MediaPipe、ESP32-S3、ONNX
 
 ### [模块化架构](modular-architecture.md)
 
@@ -100,4 +100,3 @@ LEGO 积木块架构：
 
 - [技术决策](../decisions/index.md) - 所有选型决策（含关键决策简报）
 - [功能设计规格](../specs/index.md) - 功能规格文档
-- [角色指南](../briefs/index.md) - 按角色的入门文档

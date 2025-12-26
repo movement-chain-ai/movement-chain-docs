@@ -65,15 +65,6 @@
 |------|------|
 | [竞品指标对比](research/competitor-metrics-comparison.md) | OnForm/Sportsbox vs 我们 |
 
-### 角色指南 (新成员入口)
-
-| 角色 | Brief |
-|------|-------|
-| 软件工程师 | [software-engineer.md](briefs/software-engineer.md) |
-| 移动开发者 | [mobile-developer.md](briefs/mobile-developer.md) |
-| 硬件工程师 | [hardware-engineer.md](briefs/hardware-engineer.md) |
-| 高尔夫顾问 | [golf-advisor.md](briefs/golf-advisor.md) |
-
 ---
 
 ## 文档关系图

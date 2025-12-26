@@ -101,7 +101,6 @@ design/
 │   ├── sensor-metric-mapping.md  # Algorithm implementations
 │   └── architecture-decisions-2025-12-23.md  # Latest architecture decisions
 ├── specs/                # LEVEL 3: Detailed specifications (reference)
-├── briefs/               # Role-specific onboarding (software, mobile, hardware, golf)
 ├── guides/               # Developer guides (ml-basics, sdk-selection)
 ├── research/             # Competitive analysis, tool evaluations
 └── decisions/            # ADR documents (0001-0006)
@@ -188,13 +187,12 @@ The `nav` section in `mkdocs.yml` controls site navigation. When adding/moving d
 
 ## Key Technical Decisions (ADRs)
 
-Located in `docs/zh/design/decisions/`. Use sequential numbering (ADR-0007, etc.):
+Located in `docs/zh/design/decisions/`. Use sequential numbering (ADR-0008, etc.):
 
+- **ADR-0001**: Multi-repo structure (independent deployment)
 - **ADR-0002**: LSM6DSV16X IMU (45+ min drift stability)
-- **ADR-0003**: Flutter for cross-platform mobile
-- **ADR-0004**: 4-module architecture (Assessment → Diagnosis → Correction → Tracking)
 - **ADR-0005**: ESP32-S3 microcontroller
-- **ADR-0006**: ONNX Runtime for on-device ML
+- **ADR-0007**: Swift iOS native (MediaPipe native SDK, no bridge latency)
 
 ## Known Issues
 

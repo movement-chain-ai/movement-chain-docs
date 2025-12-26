@@ -5,11 +5,11 @@
 
 ## 背景
 
-Movement Chain AI 系统包含多个不同的技术领域：ESP32-S3 设备的嵌入式固件、基于 Python 的机器学习模型、Flutter 移动应用程序、硬件设计文件和文档。我们需要在单仓库方法（monorepo，使用多个工作空间的单一仓库）和多仓库方法（multi-repo，为每个主要组件使用独立仓库）之间做出选择。
+Movement Chain AI 系统包含多个不同的技术领域：ESP32-S3 设备的嵌入式固件、基于 Python 的机器学习模型、Swift iOS 移动应用程序、硬件设计文件和文档。我们需要在单仓库方法（monorepo，使用多个工作空间的单一仓库）和多仓库方法（multi-repo，为每个主要组件使用独立仓库）之间做出选择。
 
 影响此决策的关键因素：
 
-- 不同的构建系统和工具链（固件用 PlatformIO，ML 用 Python/Poetry，移动端用 Flutter）
+- 不同的构建系统和工具链（固件用 PlatformIO，ML 用 Python/Poetry，移动端用 Xcode/Swift）
 - 不同的发布周期（固件可能独立于移动应用进行更新）
 - 学生团队协作，各自具有不同专业领域
 - 异构代码库的 CI/CD 复杂性
@@ -21,7 +21,7 @@ Movement Chain AI 系统包含多个不同的技术领域：ESP32-S3 设备的�
 
 1. `movement-chain-firmware` - ESP32-S3 嵌入式固件 (PlatformIO/C++)
 2. `movement-chain-ml` - 机器学习模型和训练流程 (Python)
-3. `movement-chain-mobile` - Flutter 移动应用 (Dart/Flutter)
+3. `movement-chain-mobile-ios` - Swift iOS 移动应用 (Swift/Xcode)
 4. `movement-chain-hardware` - 硬件原理图、PCB 设计、BOM (KiCad)
 5. `movement-chain-ai-docs` - 架构文档、ADR、研究笔记
 
@@ -33,7 +33,7 @@ Movement Chain AI 系统包含多个不同的技术领域：ESP32-S3 设备的�
 
 - 固件: PlatformIO 配合 ESP-IDF 依赖
 - ML: Python 3.10+、TensorFlow Lite、scikit-learn
-- 移动端: Flutter SDK、Dart 包
+- 移动端: Xcode、Swift、CocoaPods (MediaPipeTasksVision)
 - 硬件: KiCad、制造文件
 
 在单仓库中统一这些工具将需要复杂的工作空间配置，并在不同目录中使用哪些工具方面造成混淆。
@@ -54,7 +54,7 @@ Movement Chain AI 系统包含多个不同的技术领域：ESP32-S3 设备的�
 
 ### CI/CD 简单性
 
-- 每个仓库都有专注的 CI 流程（例如 PlatformIO 测试 vs Flutter 测试）
+- 每个仓库都有专注的 CI 流程（例如 PlatformIO 测试 vs Xcode 测试）
 - 部署构件范围限定于单个领域
 - 构建失败不会阻塞不相关的组件
 - GitHub Actions 工作流保持简单和可维护
@@ -90,7 +90,7 @@ Movement Chain AI 系统包含多个不同的技术领域：ESP32-S3 设备的�
 **被拒绝的原因:**
 
 - 在已经复杂的构建系统之上增加了复杂性层（单仓库工具）
-- PlatformIO、Flutter 和 Python 对工作空间有不同的期望
+- PlatformIO、Xcode 和 Python 对工作空间有不同的期望
 - CI/CD 会在每次提交时运行所有检查，减慢开发速度
 - 仓库大小会随着硬件二进制文件和 ML 数据集快速增长
 - 学生贡献者需要学习单仓库工具以及领域工具
@@ -122,7 +122,7 @@ Movement Chain AI 系统包含多个不同的技术领域：ESP32-S3 设备的�
 ## 参考资料
 
 - **PlatformIO 文档** - <https://docs.platformio.org/> (固件构建系统)
-- **Flutter 架构** - <https://docs.flutter.dev/app-architecture> (移动开发)
+- **Apple iOS 开发** - <https://developer.apple.com/ios/> (Swift iOS 开发)
 - **TensorFlow Lite for Microcontrollers** - <https://www.tensorflow.org/lite/microcontrollers> (ML 部署)
 - **Monorepo vs Multi-repo 分析** - <https://github.com/joelparkerhenderson/monorepo-vs-polyrepo>
 - **学生项目最佳实践** - IEEE Software Engineering Education (2024)

@@ -102,8 +102,7 @@
 
 - [系统设计](../design/index.md) - 整体架构决策
 - [硬件组件](../components/index.md) - 传感器和MCU
-- [ADR-0003 Flutter 选型](../design/decisions/0003-flutter-mobile.md)
-- [ADR-0006 ONNX Runtime](../design/decisions/0006-onnx-runtime-deployment.md)
+- [ADR-0007 Swift iOS 开发](../design/decisions/0007-swift-ios-native.md)
 
 ---
 
