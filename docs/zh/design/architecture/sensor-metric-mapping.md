@@ -252,6 +252,12 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
     - 线缆在高速挥杆时产生运动伪影
     - 仅适用静态测量场景
 
+!!! info "信号处理基础知识"
+    理解 EMG 检测算法前，请先阅读:
+
+    - [信号处理入门](../../prerequisites/foundations/signal-processing-101.md) — 基线、激活检测、消抖的基础概念
+    - 关键术语: Baseline (基线)、Onset Detection (激活检测)、Debounce (消抖)
+
 **优势**: 直接观测肌肉激活，解释"为什么"
 **劣势**: 需要皮肤接触，受汗水/毛发影响
 
@@ -259,16 +265,28 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
 # 肌肉激活时序检测
 def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
     """
-    检测肌肉激活起始时间
+    检测肌肉激活起始时间 (Onset Detection)
+
+    ⚠️ 前置知识: 理解本算法需要先阅读 signal-processing-101.md
+       - 基线 (Baseline): EMG 静息时不是 0，需要先计算基线
+       - 阈值方法: SD 法 (2-3 倍标准差) 或 %MVC 法
 
     Args:
         emg_signal: EMG 信号 (mV), 已经过滤波和包络提取
         timestamps: 时间戳 (ms)
         threshold: 激活阈值 (mV 或归一化值)
+                   - 简化实现: 固定阈值 0.5
+                   - 推荐实现: baseline_mean + 2*baseline_sd
 
     Returns:
         onset_time: 激活起始时间 (ms)
         onset_intensity: 激活峰值强度 (mV)
+
+    实现改进方向:
+        1. 添加基线窗口计算 (baseline_window_ms: 200-500ms)
+        2. 使用 SD 法阈值 (onset_threshold_sd: 2-3)
+        3. 添加消抖逻辑 (debounce_ms: 10-20ms)
+        详见: signal-processing-101.md §3-§5
     """
     # 寻找信号超过阈值的首次时刻
     onset_idx = np.where(emg_signal > threshold)[0]
@@ -286,6 +304,11 @@ def validate_kinematic_sequence(emg_core, emg_forearm, timestamps, threshold=0.5
     """
     验证核心肌群是否先于手臂激活 (正确的运动链序列)
 
+    ⚠️ 关键参数: 同时激活容差 (Co-activation Tolerance)
+       - 如果 |time_diff| < 5ms，视为"同时激活"
+       - 这是因为 EMG 采样精度限制 (1000Hz = 1ms)
+       - 详见: signal-processing-101.md §3.2
+
     Args:
         emg_core: 核心肌群 EMG 信号 (腹斜肌或竖脊肌)
         emg_forearm: 前臂 EMG 信号 (桡侧腕屈肌或尺侧腕屈肌)
@@ -295,6 +318,7 @@ def validate_kinematic_sequence(emg_core, emg_forearm, timestamps, threshold=0.5
     Returns:
         sequence_correct: True=核心先激活, False=手臂先激活
         time_diff: 激活时间差 (ms, 正值=核心先激活)
+                   ±5ms 范围内视为同时激活
     """
     core_onset, _ = detect_muscle_onset(emg_core, timestamps, threshold)
     forearm_onset, _ = detect_muscle_onset(emg_forearm, timestamps, threshold)

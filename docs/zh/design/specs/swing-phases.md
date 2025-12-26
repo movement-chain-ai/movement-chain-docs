@@ -231,36 +231,72 @@ def detect_mid_downswing(gyro_z, timestamps, top_time, accel_threshold=500):
 
 ---
 
-### Phase 6: Impact (击球)
+### Phase 6: Impact (峰值角速度时刻)
 
 | 属性 | 描述 |
 |-----|------|
 | **时间范围** | 瞬间 (约 5ms 接触时间) |
-| **标志动作** | 杆面触球，峰值角速度 |
-| **检测条件** | IMU 峰值角速度 或 加速度突变 |
+| **标志动作** | **峰值角速度时刻** — 运动学定义，不依赖是否有球 |
+| **检测条件** | IMU 峰值角速度 (主要方法) 或 加速度突变 (备用) |
 | **关键指标** | 杆头速度、髋部打开、手在球前、杆身前倾 |
+
+!!! info "为什么用"峰值角速度"而非"击球"？"
+    **运动学定义 (Kinematic Definition)**:
+
+    - Impact 定义为**峰值角速度时刻**，而非物理击球
+    - 这样无论是否有球、是否击中，检测逻辑都一致
+    - 空挥、打垫、练习挥杆都能正确检测
+
+    详见: [信号处理入门 §6](../../prerequisites/foundations/signal-processing-101.md#6-相位检测-imu-零交叉与峰值)
 
 **检测代码 (最可靠)**:
 
 ```python
 def detect_impact(gyro_z, accel_z, timestamps):
     """
-    检测击球瞬间
-    方法 1: 峰值角速度 (推荐)
-    方法 2: 加速度突变 (备选)
+    检测 Impact 时刻 (峰值角速度)
+
+    ⚠️ 重要: Impact 是运动学定义，不是物理击球
+       - 峰值角速度时刻 = Impact
+       - 无论是否有球、是否击中，检测逻辑一致
+
+    方法 1: 峰值角速度 (推荐) — 最可靠，±9-15ms 精度
+    方法 2: 加速度突变 (备选) — 更精确但需要更高采样率
+
+    边缘情况处理:
+        - 多个峰值 (double_peak): 取第一个超过阈值的峰
+        - 无明显峰值: 返回 None + 触发 swing_abort
+        - 峰值过低 (<300°/s): 可能是假挥杆，标记 low_confidence
     """
     # 方法 1: 峰值角速度
     peak_idx = np.argmax(np.abs(gyro_z))
+    peak_velocity = gyro_z[peak_idx]
+
+    # 边缘情况: 峰值过低
+    MIN_PEAK_VELOCITY = 300  # deg/s
+    if abs(peak_velocity) < MIN_PEAK_VELOCITY:
+        # 可能是假挥杆或检测失败
+        return None, None  # 调用方应处理 swing_abort
 
     # 方法 2: 加速度突变 (更精确但需要更高采样率)
-    accel_diff = np.abs(np.diff(accel_z))
-    shock_idx = np.argmax(accel_diff)
+    if accel_z is not None:
+        accel_diff = np.abs(np.diff(accel_z))
+        shock_idx = np.argmax(accel_diff)
+        # 可用于交叉验证
 
-    # 两种方法应该接近，取平均或选择更可靠的
     impact_time = timestamps[peak_idx]
 
-    return impact_time, gyro_z[peak_idx]
+    return impact_time, peak_velocity
 ```
+
+**边缘情况处理**:
+
+| 情况 | 检测条件 | 处理方式 |
+|-----|---------|---------|
+| `swing_abort` | 峰值角速度 < 300°/s | 返回 None，不计入分析 |
+| `double_peak` | 检测到多个峰值 | 取第一个超过阈值的峰 |
+| `phase_sequence_error` | Top 和 Impact 顺序异常 | 标记为无效挥杆 |
+| `low_confidence` | 峰值 300-500°/s | 正常处理但标记置信度低 |
 
 **可检测问题**:
 

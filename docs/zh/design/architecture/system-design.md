@@ -164,6 +164,62 @@
 
 **合流时机**: Track A 完成稳定 BLE 传输后，将 Mock Data 替换为 Real Data，代码层面几乎不需要改动。
 
+### 2.1.1 MVP 验证范围 (最重要的边界定义)
+
+!!! warning "MVP 测试的是管道集成，不是算法精度"
+    这是最重要的范围边界。理解这一点可以避免过度工程。
+
+#### ✅ MVP 正在测试 (Pipeline Integration)
+
+| 测试项 | 验证标准 | 数据来源 |
+|--------|----------|----------|
+| MediaPipe 处理视频帧 | 30fps 无崩溃 | 真实视频 |
+| BLE 接收 ESP32 数据 | 数据包完整 | 真实硬件 或 模拟器 |
+| 时间戳跨传感器对齐 | ±30ms 容差内 | 混合 (真实+模拟) |
+| 融合逻辑产生输出 | 返回有效结构 | 任意输入 |
+| UI 渲染反馈 | 用户可见 | Pipeline 输出 |
+
+#### ❌ MVP 不测试 (Phase 2+ 范围)
+
+| 延后项 | 原因 | 何时测试 |
+|--------|------|----------|
+| EMG 激活检测精度 (<5ms) | 需要真实肌肉数据 | Phase 2 硬件就绪 |
+| IMU 相位检测鲁棒性 | 需要噪声数据 | Phase 2 硬件就绪 |
+| 阈值校准正确性 | 需要大量样本 | Phase 2 用户测试 |
+| 真实肌肉信号处理 | 需要 MyoWare 硬件 | Phase 2 |
+
+#### 模拟数据策略 Mock Data Strategy
+
+MVP 阶段使用**最简单可行**的模拟数据：
+
+| 传感器 | 数据来源 | 复杂度 |
+|--------|----------|--------|
+| **Vision** | 真实视频 + MediaPipe | 真实数据 |
+| **IMU** | 硬编码时间戳 | `{"top_ms": 600, "impact_ms": 850}` |
+| **EMG** | 硬编码时间戳 | `{"core_onset_ms": 570, "forearm_onset_ms": 720}` |
+
+```python
+# MVP Mock 示例 — 故意简单
+mock_emg = {"core_onset_ms": 570, "forearm_onset_ms": 720}
+mock_imu = {"top_ms": 600, "impact_ms": 850}
+
+# 真实数据
+vision = mediapipe.process(real_video_frame)
+
+# 测试管道是否运行
+result = fusion_pipeline(vision, mock_imu, mock_emg)
+assert result is not None  # MVP 通过!
+```
+
+#### 外部参考数据 External Reference
+
+可使用 OnForm 等应用的分析结果作为 Vision 管道的参照：
+
+1. 录制挥杆视频
+2. 上传到 OnForm → 获取 X-Factor、节奏等计算值
+3. 用同一视频运行 MediaPipe → 比较结果
+4. 误差在合理范围内 → Vision 管道验证通过
+
 ### 2.2 Track A — 硬件数据采集
 
 > 📐 **硬件选型决策**: 详见 [ADR-0002 IMU选型](../decisions/0002-lsm6dsv16x-imu.md)、[ADR-0005 MCU选型](../decisions/0005-esp32-s3-microcontroller.md)
@@ -800,8 +856,9 @@ MVP 完成后的技术储备和扩展方向：
 | 2.1 | 2025-12-25 | 新增 Section 2.6 开发阶段 vs 产品阶段、Mermaid 工作流图、2025 移动端最佳实践 |
 | 2.2 | 2025-12-25 | 修复 Section 1.2 架构图顺序 (改为 top-to-bottom 数据流) |
 | 3.0 | 2025-12-25 | **重大变更**: Flutter → Swift 原生 iOS 开发 (见 [ADR-0007](../decisions/0007-swift-ios-native.md)) |
+| 3.1 | 2025-12-26 | 新增 Section 2.1.1 MVP 验证范围 — 明确 MVP 测试管道集成而非算法精度，定义 Mock 数据策略 |
 
 ---
 
-**最后更新**: 2025-12-25
+**最后更新**: 2025-12-26
 **维护者**: Movement Chain AI Team
