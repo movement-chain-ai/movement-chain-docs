@@ -35,8 +35,8 @@
 
 | 文档 | 描述 | 状态 |
 |------|------|------|
-| [战略愿景](strategic-vision.md) | 公司定位、市场切入、EMG验证逻辑 | ✅ |
-| [产品战略](product-strategy.md) | 六大核心决策、系统架构 | ✅ |
+| [战略愿景](product-strategy/strategic-vision.md) | 公司定位、市场切入、EMG验证逻辑 | ✅ |
+| [产品战略](product-strategy/product-strategy.md) | 六大核心决策、系统架构 | ✅ |
 
 ### 合规与风险
 

@@ -336,9 +336,9 @@ Phase 4: 完整运动生态 (待探索)
 ## 相关文档
 
 - [产品战略](product-strategy.md) - 六大核心决策
-- [市场分析](market-insights/market-analysis.md) - 市场规模数据
-- [用户痛点](market-insights/pain-points.md) - 用户研究洞察
-- [系统设计](../design/architecture/system-design.md) - 技术架构
+- [市场分析](../market-insights/market-analysis.md) - 市场规模数据
+- [用户痛点](../market-insights/pain-points.md) - 用户研究洞察
+- [系统设计](../../design/architecture/system-design.md) - 技术架构
 
 ---
 
