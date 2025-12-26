@@ -636,7 +636,7 @@ graph LR
 
 > 相关决策：
 > - CI/CD 策略见 [ADR-0001 多仓库结构](../decisions/0001-multi-repo-structure.md)
-> - 部署策略见 [关键决策 2025-12 § 部署策略](../decisions/architecture-decisions-2025-12-23.md#5-部署策略决策)
+> - 部署策略见 [关键决策 2025-12 § 部署策略](../decisions/architecture-decisions-2025-12-23.md#deployment-strategy)
 
 #### 4.2.5 嵌入式 (MCU + 传感器)
 

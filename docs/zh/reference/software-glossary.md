@@ -544,7 +544,7 @@ AWS Lambda (云端)
 | ML 模型推理 | 云端 | 需要大内存/GPU |
 | 视频处理 | 云端 | 需要长时间计算 |
 
-> 详见：[关键决策 2025-12 § 部署策略](../design/decisions/architecture-decisions-2025-12-23.md#5-部署策略决策)
+> 详见：[关键决策 2025-12 § 部署策略](../design/decisions/architecture-decisions-2025-12-23.md#deployment-strategy)
 
 ---
 
@@ -553,7 +553,7 @@ AWS Lambda (云端)
 - [关键决策 2025-12 § 六边形架构](../design/decisions/architecture-decisions-2025-12-23.md#11-六边形架构-hexagonal-architecture) - 为什么选择六边形架构
 - [关键决策 2025-12 § UV 替代 Poetry](../design/decisions/architecture-decisions-2025-12-23.md#22-uv-替代-poetry) - 包管理器选型决策
 - [关键决策 2025-12 § Polars 替代 Pandas](../design/decisions/architecture-decisions-2025-12-23.md#23-polars-替代-pandas) - 数据处理库选型决策
-- [关键决策 2025-12 § 部署策略](../design/decisions/architecture-decisions-2025-12-23.md#5-部署策略决策) - 边缘计算与云端部署决策
+- [关键决策 2025-12 § 部署策略](../design/decisions/architecture-decisions-2025-12-23.md#deployment-strategy) - 边缘计算与云端部署决策
 - [机器学习术语表](ml-glossary.md) - 推理引擎、ONNX Runtime、TFLite 等
 - [系统设计](../design/architecture/system-design.md) - 整体架构
 - [工程术语表](engineering-glossary.md) - 嵌入式系统、传感器术语

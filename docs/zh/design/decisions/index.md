@@ -58,7 +58,7 @@
 |------|------|:----:|------|
 | EMG 传感器选型 | Phase 2 | 待定 | DFRobot EMG 为候选 |
 | BLE 协议 Schema | MVP1 | 待定 | 固件/移动端协调 |
-| 云端 vs 边缘推理 | Phase 2+ | 待定 | 见 [关键决策 §5](architecture-decisions-2025-12-23.md#5-部署策略决策) |
+| 云端 vs 边缘推理 | Phase 2+ | 待定 | 见 [关键决策 §5](architecture-decisions-2025-12-23.md#deployment-strategy) |
 
 ---
 
