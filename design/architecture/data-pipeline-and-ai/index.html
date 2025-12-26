@@ -1484,7 +1484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/strategic-vision/" class="md-nav__link">
+      <a href="../../../business-plan/product-strategy/strategic-vision/" class="md-nav__link">
         
   
   
@@ -1512,7 +1512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/product-strategy/" class="md-nav__link">
+      <a href="../../../business-plan/product-strategy/product-strategy/" class="md-nav__link">
         
   
   
@@ -5197,13 +5197,17 @@
 <p>时间同步的具体实现方案（NTP 预同步 + Impact 验证）详见
 <a href="../modular-architecture/#241-时间同步实现方案">模块化架构 §2.4.1</a>。</p>
 </div>
-<h4 id="sensor-hub-2025-12">Sensor Hub 架构 (2025-12 推荐)<a class="headerlink" href="#sensor-hub-2025-12" title="Permanent link">&para;</a></h4>
+<h4 id="sensor-hub-架构-2025-12-推荐">Sensor Hub 时间同步架构 (2025-12 推荐)<a class="headerlink" href="#sensor-hub-架构-2025-12-推荐" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>📐 <strong>物理架构图</strong>: 见 <a href="../modular-architecture/#sensor-hub-architecture">模块化架构 §2.4.2</a> (单一权威来源)</p>
+</blockquote>
+<p>本节聚焦于<strong>时间同步的 3 层级架构</strong>，与物理布局互补：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>┌─────────────────────────────────────────────────────────────────┐
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>│                    Sensor Hub 时间同步架构                       │
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>│                    Sensor Hub 时间同步架构 (3 层级)               │
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>├─────────────────────────────────────────────────────────────────┤
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│                                                                 │
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>│   层级 1: Sensor Hub 内部同步 (同一 ESP32)                       │
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>│   ───────────────────────────────────                       │
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>│   ───────────────────────────────────────                       │
 </span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>│   ESP32 #1 (手臂):          ESP32 #2 (核心):                    │
 </span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>│     ├── IMU (I2C)              ├── IMU (I2C)                   │
 </span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>│     └── EMG (ADC)              └── EMG (ADC)                   │
@@ -5223,7 +5227,7 @@
 </span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>│                                                                 │
 </span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>└─────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
-<p><strong>同步精度总结</strong>:</p>
+<p><strong>同步精度总结</strong> (权威规格):</p>
 <table>
 <thead>
 <tr>

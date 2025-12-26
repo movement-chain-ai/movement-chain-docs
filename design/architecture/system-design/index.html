@@ -1484,7 +1484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/strategic-vision/" class="md-nav__link">
+      <a href="../../../business-plan/product-strategy/strategic-vision/" class="md-nav__link">
         
   
   
@@ -1512,7 +1512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/product-strategy/" class="md-nav__link">
+      <a href="../../../business-plan/product-strategy/product-strategy/" class="md-nav__link">
         
   
   
@@ -6357,71 +6357,20 @@
 </blockquote>
 <h3 id="43-sensor-hub">4.3 Sensor Hub 架构 (关键创新)<a class="headerlink" href="#43-sensor-hub" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>📐 <strong>时间同步策略</strong>: 详细规格见 <a href="../data-pipeline-and-ai/">数据管道与AI</a> §1.2</p>
+<p>📐 <strong>完整架构图与原理</strong>: 见 <a href="../modular-architecture/#sensor-hub-architecture">模块化架构 §2.4.2</a> (单一权威来源)</p>
+<p>📐 <strong>时间同步规格</strong>: 见 <a href="../data-pipeline-and-ai/#sensor-hub-架构-2025-12-推荐">数据管道与AI §1.2</a></p>
 </blockquote>
-<p><strong>核心问题</strong>: BLE 协议存在 15-30ms <a href="../../../reference/engineering-glossary/#10-ble-抖动-ble-jitter">抖动</a> (2025-12 研究验证),无法通过软件完全消除。</p>
-<p><strong>解决方案</strong>: 同一身体部位的 IMU + EMG 共享同一个 ESP32 时钟源</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>┌─────────────────────────────────────────────────────────────────┐
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>│                    Sensor Hub 架构                               │
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>├─────────────────────────────────────────────────────────────────┤
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>│                                                                 │
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>│   ✅ 正确架构:                                                   │
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>│   ┌───────────────────────┐     ┌───────────────────────┐       │
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>│   │     ESP32 #1          │     │      ESP32 #2         │       │
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>│   │  (手臂 Sensor Hub)    │     │   (核心 Sensor Hub)    │       │
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>│   │ ┌─────────┬─────────┐ │     │ ┌─────────┬─────────┐ │       │
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>│   │ │手腕 IMU │前臂 EMG │ │     │ │核心 EMG │腰部 IMU │ │       │
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>│   │ │ (I2C)   │ (ADC)   │ │     │ │ (ADC)   │ (I2C)   │ │       │
-</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>│   │ └─────────┴─────────┘ │     │ └─────────┴─────────┘ │       │
-</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>│   │   同一时钟 ✅          │     │   同一时钟 ✅          │       │
-</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>│   └───────────┬───────────┘     └───────────┬───────────┘       │
-</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>│               └─────────────┬───────────────┘                   │
-</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>│                             ↓ BLE                               │
-</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>│                         ┌────────┐                              │
-</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>│                         │ iPhone │                              │
-</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>│                         └────────┘                              │
-</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>│                                                                 │
-</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>└─────────────────────────────────────────────────────────────────┘
-</span></code></pre></div>
-<p><strong>同步精度</strong>:</p>
-<table>
-<thead>
-<tr>
-<th>场景</th>
-<th>目标精度</th>
-<th>实际可达</th>
-<th>方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>同一 ESP32 (IMU+EMG)</td>
-<td>&lt;100 μs</td>
-<td>&lt;10 μs</td>
-<td>esp<em>timer</em>get_time()</td>
-</tr>
-<tr>
-<td>跨 ESP32 (手臂↔核心)</td>
-<td>&lt;1 ms</td>
-<td>69-477 μs</td>
-<td>Impact 事件对齐</td>
-</tr>
-<tr>
-<td>跨设备 (ESP32↔Vision)</td>
-<td>&lt;10 ms</td>
-<td>&lt;5 ms</td>
-<td>Impact 帧对齐</td>
-</tr>
-</tbody>
-</table>
+<p><strong>核心问题</strong>: BLE 协议存在 15-30ms <a href="../../../reference/engineering-glossary/#10-ble-抖动-ble-jitter">抖动</a> (2025-12 研究验证)，无法通过软件完全消除。</p>
+<p><strong>解决方案</strong>: 同一身体部位的 IMU + EMG 共享同一个 ESP32 时钟源，使用 <code>esp_timer_get_time()</code> 提供微秒级同步。跨 Sensor Hub 通过 Impact 事件对齐。</p>
 <p><strong>关键优势</strong>:</p>
 <ul>
-<li>使用 ESP32 源端微秒级时间戳 (而非手机接收时间)</li>
-<li>不同 Sensor Hub 通过 Impact 事件对齐消除 BLE 抖动</li>
-<li>避免每个传感器独立 BLE 连接导致的时钟漂移</li>
+<li>✅ 同一部位传感器共享 ESP32 时钟 → 微秒级同步</li>
+<li>✅ 每个单元都有 IMU → 可检测 Impact 事件做跨单元同步</li>
+<li>✅ 不同部位用 Impact 瞬间对齐 → 消除 BLE 抖动 (±15-30ms)</li>
+<li>✅ 减少 BLE 设备数量 → 更稳定的连接</li>
 </ul>
 <blockquote>
-<p>详见 <a href="../../decisions/architecture-decisions-2025-12-23/#43-硬件购买清单">关键决策 2025-12</a></p>
+<p>详见 <a href="../../decisions/architecture-decisions-2025-12-23/#43-硬件购买清单">关键决策 2025-12 §4.3</a> 硬件购买清单</p>
 </blockquote>
 <hr />
 <h2 id="5">5. 文档索引<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
