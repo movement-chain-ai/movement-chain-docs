@@ -44,7 +44,7 @@ Movement Chain AI 融合了多个领域：
 |------|----------|
 | **软件工程师** | [软件术语表](../reference/software-glossary.md) → [ML 术语表](../reference/ml-glossary.md) |
 | **硬件工程师** | [工程术语表](../reference/engineering-glossary.md) → [IMU 硬件](../components/imu/hardware.md) |
-| **产品/商务** | [商业术语表](../reference/business-glossary.md) → [产品策略](../business-plan/product-strategy.md) |
+| **产品/商务** | [商业术语表](../reference/business-glossary.md) → [产品策略](../business-plan/product-strategy/product-strategy.md) |
 
 ---
 

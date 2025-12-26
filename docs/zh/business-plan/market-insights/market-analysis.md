@@ -211,7 +211,7 @@
 
 - [IMU 方案竞品](competitors/imu-based.md)
 - [视觉方案竞品](competitors/vision-based.md)
-- [产品战略](../product-strategy.md)
+- [产品战略](../product-strategy/product-strategy.md)
 
 ---
 

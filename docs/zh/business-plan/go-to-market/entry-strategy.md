@@ -151,7 +151,7 @@ Phase 3: 扩展
 
 ## 相关文档
 
-- [产品战略](../product-strategy.md) - 详细设计决策和系统架构
+- [产品战略](../product-strategy/product-strategy.md) - 详细设计决策和系统架构
 - [市场分析](../market-insights/market-analysis.md) - 市场规模与增长数据
 - [竞品分析](../market-insights/competitors/imu-based.md) - 竞品对比
 - [单位经济学](../business-model/unit-economics.md) - 财务预测与盈利模型

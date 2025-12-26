@@ -291,7 +291,7 @@
 
 ### 投资人 / 商业伙伴 (15 分钟)
 
-1. [产品战略](business-plan/product-strategy.md) → 6 个核心决策
+1. [产品战略](business-plan/product-strategy/product-strategy.md) → 6 个核心决策
 2. [进入策略](business-plan/go-to-market/entry-strategy.md) → 差异化定位
 3. [市场分析](business-plan/market-insights/market-analysis.md) → 市场规模与增长
 
