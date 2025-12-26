@@ -502,6 +502,39 @@ graph LR
 - MediaPipe iOS SDK (MediaPipeTasksVision) 提供官方支持
 - CoreML 与 Swift 无缝集成，适合未来 ML 模型扩展
 
+### 2.7 Phase 3.5: Swift 算法移植 (Bridge Phase)
+
+> ⚠️ **为什么需要这个阶段**: Phase 1-3 在 Python Desktop 环境验证算法，Phase 4 需要完整 iOS App。
+> 此阶段专注于算法移植，不做 UI，确保 Python→Swift 输出一致性。
+
+```mermaid
+flowchart LR
+    subgraph P35["Phase 3.5: Swift 算法移植"]
+        PY["🐍 Python 基准<br/>12指标 + 6规则"] -->|"逐模块移植"| SW["🍎 Swift Package<br/>无 UI"]
+        SW --> TEST["🧪 对比测试<br/>Python vs Swift"]
+        TEST --> PASS["✅ 输出一致<br/>±1% 误差"]
+    end
+
+    PASS --> NEXT["→ Phase 4<br/>完整 iOS App"]
+```
+
+| 验收项 | 目标值 |
+|--------|--------|
+| 12 指标计算一致性 | Python vs Swift 输出差异 <1% |
+| 6 规则触发一致性 | 相同输入 → 相同触发结果 |
+| 单元测试覆盖 | >90% 核心算法 |
+
+**移植清单**:
+
+| Python 模块 | Swift 目标 | 依赖 |
+|-------------|-----------|------|
+| `sensor_fusion.py` | `SensorFusion.swift` | - |
+| `feature_extraction.py` | `FeatureExtraction.swift` | Accelerate framework |
+| `rule_engine.py` | `RuleEngine.swift` | - |
+| `kinematic_prompts.py` | `KinematicPrompts.swift` | - |
+
+> 📐 **详细规格**: [ADR-0008 Desktop→Mobile](../decisions/0008-desktop-to-mobile-architecture.md) | [SDK选型](../decisions/sdk-selection.md)
+
 ---
 
 ## 3. MVP 技术规格
@@ -857,6 +890,7 @@ MVP 完成后的技术储备和扩展方向：
 | 2.2 | 2025-12-25 | 修复 Section 1.2 架构图顺序 (改为 top-to-bottom 数据流) |
 | 3.0 | 2025-12-25 | **重大变更**: Flutter → Swift 原生 iOS 开发 (见 [ADR-0007](../decisions/0007-swift-ios-native.md)) |
 | 3.1 | 2025-12-26 | 新增 Section 2.1.1 MVP 验证范围 — 明确 MVP 测试管道集成而非算法精度，定义 Mock 数据策略 |
+| 3.2 | 2025-12-26 | 恢复 Section 2.7 Phase 3.5 Swift 算法移植桥接阶段 (从丢失的 commit 1dab832 恢复) |
 
 ---
 
