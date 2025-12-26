@@ -2984,10 +2984,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dfrobot-sen0240" class="md-nav__link">
+  <a href="#myoware-20" class="md-nav__link">
     <span class="md-ellipsis">
       
-        DFRobot SEN0240 代码示例
+        MyoWare 2.0 代码示例
       
     </span>
   </a>
@@ -4730,10 +4730,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dfrobot-sen0240" class="md-nav__link">
+  <a href="#myoware-20" class="md-nav__link">
     <span class="md-ellipsis">
       
-        DFRobot SEN0240 代码示例
+        MyoWare 2.0 代码示例
       
     </span>
   </a>
@@ -4981,6 +4981,11 @@
 <hr />
 <h2 id="emg_2">EMG 产品对比<a class="headerlink" href="#emg_2" title="Permanent link">&para;</a></h2>
 <h3 id="mvp">消费级方案 (MVP 推荐)<a class="headerlink" href="#mvp" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">高速挥杆场景选型</p>
+<p><strong>DFRobot SEN0240 存在线缆运动伪影问题</strong>，在高尔夫挥杆 (100mph+) 等高速运动场景下信号质量不稳定。
+<strong>推荐 MyoWare 2.0 + Link Shield</strong> 组合，无线缆噪声问题。</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -4993,11 +4998,18 @@
 </thead>
 <tbody>
 <tr>
+<td><strong>MyoWare 2.0 + Link Shield</strong></td>
+<td>1</td>
+<td>模拟</td>
+<td>$40 + $10</td>
+<td>✅ <strong>MVP 首选</strong> (高速运动)</td>
+</tr>
+<tr>
 <td><strong>DFRobot SEN0240</strong></td>
 <td>1</td>
 <td>模拟</td>
 <td>¥319</td>
-<td>✅ <strong>MVP 首选</strong></td>
+<td>静态/低速测量</td>
 </tr>
 <tr>
 <td><strong>uMyo</strong></td>
@@ -5005,13 +5017,6 @@
 <td>BLE</td>
 <td>~$50</td>
 <td>开源方案</td>
-</tr>
-<tr>
-<td><strong>MyoWare 2.0</strong></td>
-<td>1</td>
-<td>模拟</td>
-<td>$40</td>
-<td>Arduino 开发</td>
 </tr>
 <tr>
 <td><strong>Muscle BioAmp</strong></td>
@@ -5110,11 +5115,18 @@
 </thead>
 <tbody>
 <tr>
+<td><strong>MyoWare 2.0</strong></td>
+<td>Arduino</td>
+<td>模拟电压</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>✅ MVP 推荐，需 Link Shield</td>
+</tr>
+<tr>
 <td><strong>DFRobot SEN0240</strong></td>
 <td>Arduino</td>
 <td>模拟电压</td>
 <td>⭐⭐⭐⭐⭐</td>
-<td>最开放</td>
+<td>仅适用静态测量</td>
 </tr>
 <tr>
 <td><strong>OYMotion gForce</strong></td>
@@ -5146,26 +5158,27 @@
 </tr>
 </tbody>
 </table>
-<h3 id="dfrobot-sen0240">DFRobot SEN0240 代码示例<a class="headerlink" href="#dfrobot-sen0240" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Arduino 示例</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#define EMG_PIN A0</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">#define SAMPLE_RATE 1000  </span><span class="c1">// 1 kHz</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="n">analogReadResolution</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span><span class="w">  </span><span class="c1">// ESP32: 12-bit ADC</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">emgValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="n">EMG_PIN</span><span class="p">);</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="c1">// 原始值范围: 0-4095 (12-bit)</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="c1">// 典型肌肉收缩: 500-2000</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="c1">// 放松状态: 100-300</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">emgValue</span><span class="p">);</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w">  </span><span class="c1">// 1 kHz 采样</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">}</span>
+<h3 id="myoware-20">MyoWare 2.0 代码示例<a class="headerlink" href="#myoware-20" title="Permanent link">&para;</a></h3>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Arduino 示例 - MyoWare 2.0 + Link Shield</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// 接线: Link Shield ENV pin → ESP32 ADC pin</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">#define EMG_PIN A0</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">#define SAMPLE_RATE 1000  </span><span class="c1">// 1 kHz</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">115200</span><span class="p">);</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="n">analogReadResolution</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span><span class="w">  </span><span class="c1">// ESP32: 12-bit ADC</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">}</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">emgValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">analogRead</span><span class="p">(</span><span class="n">EMG_PIN</span><span class="p">);</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="c1">// 原始值范围: 0-4095 (12-bit)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="c1">// 典型肌肉收缩: 500-2000</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="c1">// 放松状态: 100-300</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">emgValue</span><span class="p">);</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="w">  </span><span class="c1">// 1 kHz 采样</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="p">}</span>
 </span></code></pre></div>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Python 处理示例</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -5244,6 +5257,14 @@
 </span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>└─────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <h3 id="mvp_1">MVP 最小配置<a class="headerlink" href="#mvp_1" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">硬件采购清单</p>
+<ul>
+<li><strong>MyoWare 2.0</strong>: SparkFun DEV-21265 ($39.95)</li>
+<li><strong>Link Shield</strong>: SparkFun DEV-18425 ($9.95) - <strong>必需</strong>，MyoWare 无焊接孔</li>
+<li>参考: <a href="https://www.sparkfun.com/products/21265">SparkFun MyoWare 2.0</a></li>
+</ul>
+</div>
 <table>
 <thead>
 <tr>
@@ -5256,13 +5277,13 @@
 <tbody>
 <tr>
 <td><strong>前臂</strong></td>
-<td>DFRobot × 2</td>
+<td>MyoWare 2.0 × 2</td>
 <td>FCR + FCU</td>
 <td>⭐⭐⭐ 必须</td>
 </tr>
 <tr>
 <td><strong>上臂</strong></td>
-<td>DFRobot × 1</td>
+<td>MyoWare 2.0 × 1</td>
 <td>Biceps</td>
 <td>⭐⭐ 推荐</td>
 </tr>
@@ -5383,32 +5404,44 @@
 <th>产品</th>
 <th>价格</th>
 <th>联系方式</th>
+<th>备注</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><strong>SparkFun</strong></td>
+<td>MyoWare 2.0 (DEV-21265)</td>
+<td>$39.95</td>
+<td>sparkfun.com</td>
+<td>✅ <strong>MVP 首选</strong></td>
+</tr>
+<tr>
+<td><strong>SparkFun</strong></td>
+<td>Link Shield (DEV-18425)</td>
+<td>$9.95</td>
+<td>sparkfun.com</td>
+<td><strong>必需配件</strong></td>
+</tr>
 <tr>
 <td><strong>DFRobot</strong></td>
 <td>SEN0240</td>
 <td>¥319</td>
 <td>dfrobot.com.cn</td>
+<td>仅静态测量</td>
 </tr>
 <tr>
 <td><strong>OYMotion</strong></td>
 <td>gForcePro+</td>
 <td>¥3,000-5,000</td>
 <td>oymotion.com</td>
+<td>专业级</td>
 </tr>
 <tr>
 <td><strong>Sichiray</strong></td>
 <td>6-channel EMG</td>
 <td>¥800-1,500</td>
 <td>15821508209</td>
-</tr>
-<tr>
-<td><strong>SparkFun</strong></td>
-<td>MyoWare 2.0</td>
-<td>$40</td>
-<td>sparkfun.com</td>
+<td>多通道</td>
 </tr>
 </tbody>
 </table>
@@ -5449,9 +5482,10 @@
 <ul>
 <li><a href="../suppliers/">EMG 供应商</a></li>
 <li><a href="../../../business-plan/market-insights/competitors/imu-based/">竞品分析</a> - 无 EMG 竞品</li>
+<li><a href="../../design/architecture/architecture-decisions-2025-12-23.md">架构决策 2025-12-23</a> - MyoWare 2.0 选型依据</li>
 </ul>
 <hr />
-<p><strong>最后更新</strong>: 2025 年 12 月 12 日</p>
+<p><strong>最后更新</strong>: 2025 年 12 月 25 日</p>
 
 
 
