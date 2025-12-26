@@ -31,11 +31,15 @@
 
 ### 消费级方案 (MVP 推荐)
 
+!!! warning "高速挥杆场景选型"
+    **DFRobot SEN0240 存在线缆运动伪影问题**，在高尔夫挥杆 (100mph+) 等高速运动场景下信号质量不稳定。
+    **推荐 MyoWare 2.0 + Link Shield** 组合，无线缆噪声问题。
+
 | 产品 | 通道数 | 接口 | 价格 | 适用场景 |
 |-----|-------|-----|------|---------|
-| **DFRobot SEN0240** | 1 | 模拟 | ¥319 | ✅ **MVP 首选** |
+| **MyoWare 2.0 + Link Shield** | 1 | 模拟 | $40 + $10 | ✅ **MVP 首选** (高速运动) |
+| **DFRobot SEN0240** | 1 | 模拟 | ¥319 | 静态/低速测量 |
 | **uMyo** | 1 | BLE | ~$50 | 开源方案 |
-| **MyoWare 2.0** | 1 | 模拟 | $40 | Arduino 开发 |
 | **Muscle BioAmp** | 1 | 模拟 | $20 | 超低成本 |
 
 ### 专业级方案
@@ -63,16 +67,18 @@
 
 | 产品 | SDK | 数据格式 | 开放程度 | 备注 |
 |-----|-----|---------|---------|-----|
-| **DFRobot SEN0240** | Arduino | 模拟电压 | ⭐⭐⭐⭐⭐ | 最开放 |
+| **MyoWare 2.0** | Arduino | 模拟电压 | ⭐⭐⭐⭐⭐ | ✅ MVP 推荐，需 Link Shield |
+| **DFRobot SEN0240** | Arduino | 模拟电压 | ⭐⭐⭐⭐⭐ | 仅适用静态测量 |
 | **OYMotion gForce** | ✅ | 原始 EMG + 手势 | ⭐⭐⭐⭐ | Android/iOS/Unity |
 | **uMyo** | BLE GATT | 原始 EMG | ⭐⭐⭐⭐⭐ | OSHWA 开源 |
 | **Myo Armband** | ❌ 停产 | - | - | 不推荐 |
 | **Delsys** | 商业 | EMGworks | ⭐⭐ | 需授权 |
 
-### DFRobot SEN0240 代码示例
+### MyoWare 2.0 代码示例
 
 ```cpp
-// Arduino 示例
+// Arduino 示例 - MyoWare 2.0 + Link Shield
+// 接线: Link Shield ENV pin → ESP32 ADC pin
 #define EMG_PIN A0
 #define SAMPLE_RATE 1000  // 1 kHz
 
@@ -181,10 +187,15 @@ device.startStreaming(StreamType.EMG | StreamType.GESTURE);
 
 ### MVP 最小配置
 
+!!! note "硬件采购清单"
+    - **MyoWare 2.0**: SparkFun DEV-21265 ($39.95)
+    - **Link Shield**: SparkFun DEV-18425 ($9.95) - **必需**，MyoWare 无焊接孔
+    - 参考: [SparkFun MyoWare 2.0](https://www.sparkfun.com/products/21265)
+
 | 位置 | 传感器 | 监测肌群 | 优先级 |
 |-----|-------|---------|-------|
-| **前臂** | DFRobot × 2 | FCR + FCU | ⭐⭐⭐ 必须 |
-| **上臂** | DFRobot × 1 | Biceps | ⭐⭐ 推荐 |
+| **前臂** | MyoWare 2.0 × 2 | FCR + FCU | ⭐⭐⭐ 必须 |
+| **上臂** | MyoWare 2.0 × 1 | Biceps | ⭐⭐ 推荐 |
 | **肩部** | 可选 | Deltoid | ⭐ 可选 |
 
 ### 挥杆阶段肌肉激活模式
@@ -250,12 +261,13 @@ EMG 信号链路:
 
 ### 模块供应商
 
-| 供应商 | 产品 | 价格 | 联系方式 |
-|-------|------|------|---------|
-| **DFRobot** | SEN0240 | ¥319 | dfrobot.com.cn |
-| **OYMotion** | gForcePro+ | ¥3,000-5,000 | oymotion.com |
-| **Sichiray** | 6-channel EMG | ¥800-1,500 | 15821508209 |
-| **SparkFun** | MyoWare 2.0 | $40 | sparkfun.com |
+| 供应商 | 产品 | 价格 | 联系方式 | 备注 |
+|-------|------|------|---------|------|
+| **SparkFun** | MyoWare 2.0 (DEV-21265) | $39.95 | sparkfun.com | ✅ **MVP 首选** |
+| **SparkFun** | Link Shield (DEV-18425) | $9.95 | sparkfun.com | **必需配件** |
+| **DFRobot** | SEN0240 | ¥319 | dfrobot.com.cn | 仅静态测量 |
+| **OYMotion** | gForcePro+ | ¥3,000-5,000 | oymotion.com | 专业级 |
+| **Sichiray** | 6-channel EMG | ¥800-1,500 | 15821508209 | 多通道 |
 
 ### 电极供应商
 
@@ -273,7 +285,8 @@ EMG 信号链路:
 
 - [EMG 供应商](suppliers.md)
 - [竞品分析](../../business-plan/market-insights/competitors/imu-based.md) - 无 EMG 竞品
+- [架构决策 2025-12-23](../../design/architecture/architecture-decisions-2025-12-23.md) - MyoWare 2.0 选型依据
 
 ---
 
-**最后更新**: 2025 年 12 月 12 日
+**最后更新**: 2025 年 12 月 25 日

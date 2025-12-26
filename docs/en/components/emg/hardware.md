@@ -31,11 +31,15 @@ Electromyography (EMG) sensors measure muscle electrical activity, and are the c
 
 ### Consumer-Grade Solutions (MVP Recommended)
 
+!!! warning "High-Speed Swing Sensor Selection"
+    **DFRobot SEN0240 has cable motion artifact issues** - signal quality degrades during golf swings (100mph+) and other high-speed motions.
+    **Recommended: MyoWare 2.0 + Link Shield** combination - no cable noise issues.
+
 | Product | Channels | Interface | Price | Use Case |
 |-----|-------|-----|------|---------|
-| **DFRobot SEN0240** | 1 | Analog | ¥319 | ✅ **MVP Choice** |
+| **MyoWare 2.0 + Link Shield** | 1 | Analog | $40 + $10 | ✅ **MVP Choice** (High-Speed) |
+| **DFRobot SEN0240** | 1 | Analog | ¥319 | Static/Low-Speed Only |
 | **uMyo** | 1 | BLE | ~$50 | Open Source Solution |
-| **MyoWare 2.0** | 1 | Analog | $40 | Arduino Development |
 | **Muscle BioAmp** | 1 | Analog | $20 | Ultra Low Cost |
 
 ### Professional-Grade Solutions
@@ -63,16 +67,18 @@ Electromyography (EMG) sensors measure muscle electrical activity, and are the c
 
 | Product | SDK | Data Format | Openness | Notes |
 |-----|-----|---------|---------|-----|
-| **DFRobot SEN0240** | Arduino | Analog Voltage | ⭐⭐⭐⭐⭐ | Most Open |
+| **MyoWare 2.0** | Arduino | Analog Voltage | ⭐⭐⭐⭐⭐ | ✅ MVP Recommended, requires Link Shield |
+| **DFRobot SEN0240** | Arduino | Analog Voltage | ⭐⭐⭐⭐⭐ | Static measurement only |
 | **OYMotion gForce** | ✅ | Raw EMG + Gesture | ⭐⭐⭐⭐ | Android/iOS/Unity |
 | **uMyo** | BLE GATT | Raw EMG | ⭐⭐⭐⭐⭐ | OSHWA Open Source |
 | **Myo Armband** | ❌ Discontinued | - | - | Not Recommended |
 | **Delsys** | Commercial | EMGworks | ⭐⭐ | License Required |
 
-### DFRobot SEN0240 Code Example
+### MyoWare 2.0 Code Example
 
 ```cpp
-// Arduino example
+// Arduino example - MyoWare 2.0 + Link Shield
+// Wiring: Link Shield ENV pin → ESP32 ADC pin
 #define EMG_PIN A0
 #define SAMPLE_RATE 1000  // 1 kHz
 
@@ -181,10 +187,15 @@ device.startStreaming(StreamType.EMG | StreamType.GESTURE);
 
 ### MVP Minimum Configuration
 
+!!! note "Hardware Shopping List"
+    - **MyoWare 2.0**: SparkFun DEV-21265 ($39.95)
+    - **Link Shield**: SparkFun DEV-18425 ($9.95) - **REQUIRED**, MyoWare has no solder holes
+    - Reference: [SparkFun MyoWare 2.0](https://www.sparkfun.com/products/21265)
+
 | Position | Sensor | Monitored Muscles | Priority |
 |-----|-------|---------|-------|
-| **Forearm** | DFRobot × 2 | FCR + FCU | ⭐⭐⭐ Required |
-| **Upper Arm** | DFRobot × 1 | Biceps | ⭐⭐ Recommended |
+| **Forearm** | MyoWare 2.0 × 2 | FCR + FCU | ⭐⭐⭐ Required |
+| **Upper Arm** | MyoWare 2.0 × 1 | Biceps | ⭐⭐ Recommended |
 | **Shoulder** | Optional | Deltoid | ⭐ Optional |
 
 ### Swing Phase Muscle Activation Patterns
@@ -251,12 +262,13 @@ Recommended Chips:
 
 ### Module Suppliers
 
-| Supplier | Product | Price | Contact |
-|-------|------|------|---------|
-| **DFRobot** | SEN0240 | ¥319 | dfrobot.com.cn |
-| **OYMotion** | gForcePro+ | ¥3,000-5,000 | oymotion.com |
-| **Sichiray** | 6-channel EMG | ¥800-1,500 | 15821508209 |
-| **SparkFun** | MyoWare 2.0 | $40 | sparkfun.com |
+| Supplier | Product | Price | Contact | Notes |
+|-------|------|------|---------|------|
+| **SparkFun** | MyoWare 2.0 (DEV-21265) | $39.95 | sparkfun.com | ✅ **MVP Choice** |
+| **SparkFun** | Link Shield (DEV-18425) | $9.95 | sparkfun.com | **Required Accessory** |
+| **DFRobot** | SEN0240 | ¥319 | dfrobot.com.cn | Static measurement only |
+| **OYMotion** | gForcePro+ | ¥3,000-5,000 | oymotion.com | Professional grade |
+| **Sichiray** | 6-channel EMG | ¥800-1,500 | 15821508209 | Multi-channel |
 
 ### Electrode Suppliers
 
@@ -274,7 +286,8 @@ For detailed supplier information, see [EMG Suppliers Guide](suppliers.md)
 
 - [EMG Suppliers](suppliers.md)
 - [Competitive Analysis](../../business-plan/market-insights/competitors/imu-based.md) - No EMG competitors
+- [Architecture Decisions 2025-12-23](../../design/architecture/architecture-decisions-2025-12-23.md) - MyoWare 2.0 selection rationale
 
 ---
 
-**Last Updated**: December 12, 2025
+**Last Updated**: December 25, 2025

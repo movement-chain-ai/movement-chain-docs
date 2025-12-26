@@ -409,16 +409,21 @@ This document is organized specifically for rapid MVP development of golf swing 
 
 #### Integrated Solution Recommendation
 
+!!! warning "EMG Sensor Note"
+    DFRobot SEN0240 has cable motion artifact issues, **not suitable for high-speed golf swing analysis**.
+    Recommend using **MyoWare 2.0 + Link Shield** instead, see [EMG Hardware Selection](../../emg/hardware.md).
+
 **DFRobot Golf Wearable MVP Kit**:
 
 | Component | Model | Unit Price | Qty | Subtotal |
 |-----|------|------|------|------|
-| EMG Sensor | SEN0240 | ¥319 | 2 | ¥638 |
+| ~~EMG Sensor~~ | ~~SEN0240~~ | ~~¥319~~ | ~~2~~ | ~~¥638~~ |
+| EMG Sensor (Replacement) | MyoWare 2.0 + Link Shield | $50 (~¥360) | 2 | ¥720 |
 | 9-Axis IMU | SEN0374 (BNO055) | ¥180 | 1 | ¥180 |
 | Main Control Board | FireBeetle ESP32-E | ¥68 | 1 | ¥68 |
 | Lithium Battery | 3.7V 1000mAh | ¥25 | 1 | ¥25 |
 | Connecting Wires/Breadboard | - | ¥50 | 1 | ¥50 |
-| **Total** | | | | **¥961** |
+| **Total (with MyoWare 2.0)** | | | | **¥1,043** |
 
 **Development Time**: 1-2 weeks (including shipping)
 
