@@ -6809,39 +6809,41 @@
 </span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>
 </span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>---
 </span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>
-</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>## 5. 部署策略决策 {#deployment-strategy}
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>&lt;a id=&quot;deployment-strategy&quot;&gt;&lt;/a&gt;
 </span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>
-</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>### 5.1 本地优先 → AWS 云端 
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>## 5. 部署策略决策
 </span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
-</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>**决策**: MVP 完全本地运行，Phase 2+ 考虑 AWS 后端
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>### 5.1 本地优先 → AWS 云端 
 </span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>
-</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>**阶段规划**:
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>**决策**: MVP 完全本地运行，Phase 2+ 考虑 AWS 后端
 </span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>
-</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>| 阶段 | 部署模式 | 技术栈 | 原因 |
-</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>|------|---------|--------|------|
-</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>| **MVP1** | 完全本地 | Python + Rerun | 无网络延迟，调试方便 |
-</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>| **Phase 2** | 本地 + 云同步 | + S3/DynamoDB | 数据持久化，用户画像 |
-</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>| **Phase 3** | 混合推理 | + Lambda/SageMaker | 复杂模型云端推理 |
-</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>
-</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>### 5.2 AWS vs Cloudflare Workers 对比
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>**阶段规划**:
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>
+</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>| 阶段 | 部署模式 | 技术栈 | 原因 |
+</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>|------|---------|--------|------|
+</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>| **MVP1** | 完全本地 | Python + Rerun | 无网络延迟，调试方便 |
+</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>| **Phase 2** | 本地 + 云同步 | + S3/DynamoDB | 数据持久化，用户画像 |
+</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>| **Phase 3** | 混合推理 | + Lambda/SageMaker | 复杂模型云端推理 |
 </span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>
-</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>**结论**: ML 推理选 AWS，[边缘](../../reference/software-glossary.md#6-边缘计算-edge-computing) API 可选 Cloudflare
+</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>### 5.2 AWS vs Cloudflare Workers 对比
 </span><span id="__span-21-30"><a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>
-</span><span id="__span-21-31"><a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>| 维度 | Cloudflare Workers | AWS Lambda | 我们的选择 |
-</span><span id="__span-21-32"><a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>|------|-------------------|------------|-----------|
-</span><span id="__span-21-33"><a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>| **内存限制** | 128MB | 10GB | AWS ✅ (ML 模型大) |
-</span><span id="__span-21-34"><a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>| **CPU 时间** | 30s (免费) / 15min (付费) | 15 分钟 | AWS ✅ (视频处理) |
-</span><span id="__span-21-35"><a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>| **Python 支持** | ⚠️ WASM 限制 | ✅ 原生 | AWS ✅ |
-</span><span id="__span-21-36"><a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>| **ML 框架** | ❌ 受限 | ✅ TensorFlow/PyTorch/ONNX | AWS ✅ |
-</span><span id="__span-21-37"><a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a>| **[全球边缘](../../reference/software-glossary.md#6-边缘计算-edge-computing)** | ✅ 最强 | ⚠️ 区域性 | CF ✅ (API 网关) |
-</span><span id="__span-21-38"><a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a>| **冷启动** | ✅ 极快 | ⚠️ 较慢 | CF ✅ |
-</span><span id="__span-21-39"><a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a>
-</span><span id="__span-21-40"><a id="__codelineno-21-40" name="__codelineno-21-40" href="#__codelineno-21-40"></a>**推荐架构** (Phase 3):
+</span><span id="__span-21-31"><a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>**结论**: ML 推理选 AWS，[边缘](../../reference/software-glossary.md#6-边缘计算-edge-computing) API 可选 Cloudflare
+</span><span id="__span-21-32"><a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>
+</span><span id="__span-21-33"><a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>| 维度 | Cloudflare Workers | AWS Lambda | 我们的选择 |
+</span><span id="__span-21-34"><a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>|------|-------------------|------------|-----------|
+</span><span id="__span-21-35"><a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>| **内存限制** | 128MB | 10GB | AWS ✅ (ML 模型大) |
+</span><span id="__span-21-36"><a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>| **CPU 时间** | 30s (免费) / 15min (付费) | 15 分钟 | AWS ✅ (视频处理) |
+</span><span id="__span-21-37"><a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a>| **Python 支持** | ⚠️ WASM 限制 | ✅ 原生 | AWS ✅ |
+</span><span id="__span-21-38"><a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a>| **ML 框架** | ❌ 受限 | ✅ TensorFlow/PyTorch/ONNX | AWS ✅ |
+</span><span id="__span-21-39"><a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a>| **[全球边缘](../../reference/software-glossary.md#6-边缘计算-edge-computing)** | ✅ 最强 | ⚠️ 区域性 | CF ✅ (API 网关) |
+</span><span id="__span-21-40"><a id="__codelineno-21-40" name="__codelineno-21-40" href="#__codelineno-21-40"></a>| **冷启动** | ✅ 极快 | ⚠️ 较慢 | CF ✅ |
 </span><span id="__span-21-41"><a id="__codelineno-21-41" name="__codelineno-21-41" href="#__codelineno-21-41"></a>
-</span><span id="__span-21-42"><a id="__codelineno-21-42" name="__codelineno-21-42" href="#__codelineno-21-42"></a>```text
-</span><span id="__span-21-43"><a id="__codelineno-21-43" name="__codelineno-21-43" href="#__codelineno-21-43"></a>用户 → Cloudflare Workers (API 网关/缓存) → AWS Lambda (ML 推理)
-</span><span id="__span-21-44"><a id="__codelineno-21-44" name="__codelineno-21-44" href="#__codelineno-21-44"></a>                ↓
-</span><span id="__span-21-45"><a id="__codelineno-21-45" name="__codelineno-21-45" href="#__codelineno-21-45"></a>        Cloudflare R2 (视频存储) ←→ S3 (数据湖)
+</span><span id="__span-21-42"><a id="__codelineno-21-42" name="__codelineno-21-42" href="#__codelineno-21-42"></a>**推荐架构** (Phase 3):
+</span><span id="__span-21-43"><a id="__codelineno-21-43" name="__codelineno-21-43" href="#__codelineno-21-43"></a>
+</span><span id="__span-21-44"><a id="__codelineno-21-44" name="__codelineno-21-44" href="#__codelineno-21-44"></a>```text
+</span><span id="__span-21-45"><a id="__codelineno-21-45" name="__codelineno-21-45" href="#__codelineno-21-45"></a>用户 → Cloudflare Workers (API 网关/缓存) → AWS Lambda (ML 推理)
+</span><span id="__span-21-46"><a id="__codelineno-21-46" name="__codelineno-21-46" href="#__codelineno-21-46"></a>                ↓
+</span><span id="__span-21-47"><a id="__codelineno-21-47" name="__codelineno-21-47" href="#__codelineno-21-47"></a>        Cloudflare R2 (视频存储) ←→ S3 (数据湖)
 </span></code></pre></div></p>
 <hr />
 <h2 id="6-mvp1">6. MVP1 成功标准<a class="headerlink" href="#6-mvp1" title="Permanent link">&para;</a></h2>
