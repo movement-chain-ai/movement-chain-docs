@@ -157,6 +157,7 @@ nav:
           - 传感器指标映射: design/architecture/sensor-metric-mapping.md
       - 功能设计:
           - 概览: design/specs/index.md
+          - 产品层级: design/specs/product-tiers.md
           - 挥杆阶段: design/specs/swing-phases.md
           - 实时反馈: design/specs/real-time-feedback.md
           - 挥杆对比: design/specs/swing-comparison.md

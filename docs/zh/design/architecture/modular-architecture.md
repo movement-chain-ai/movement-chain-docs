@@ -37,9 +37,7 @@
 
 ## 2. 架构总览 Architecture Overview
 
-### 2.1 系统架构图 (7 阶段数据流)
-
-> **与 [system-design.md](./system-design.md#12-完整系统架构目标态) 保持一致**: 采用端到端 7 阶段数据流架构
+### 2.1 系统架构图
 
 ```mermaid
 flowchart TB
@@ -140,27 +138,7 @@ flowchart TB
 | 5 | 分析诊断层 | [CLASSIFIER](#41-classifier-block), [FUSION](#42-fusion-block) | 8阶段 + 6规则诊断 |
 | 6-7 | AI反馈 + 用户反馈 | LLM翻译、TTS、Ghost | 教练级可执行建议 |
 
-### 2.3 Video-Only 模式能力边界
-
-!!! warning "重要: Video-Only 模式的局限性"
-
-    没有硬件时，系统只能提供部分能力:
-
-    | 能力 | Video-Only | 有硬件 (IMU+EMG) | 差异原因 |
-    |------|------------|-----------------|---------|
-    | **精确击球时刻** | ❌ ±33ms | ✅ ±0.6ms | 相机帧率限制 |
-    | **杆头速度** | ❌ 无法测量 | ⚠️ 间接推断 | 高速运动模糊 |
-    | **肌肉激活序列** | ❌ **不可能** | ✅ 直接测量 | 需要 EMG |
-    | **力链因果分析** | ❌ **不可能** | ✅ 直接验证 | 需要 EMG |
-    | **疲劳检测** | ❌ **不可能** | ✅ 振幅衰减 | 需要 EMG |
-    | **假性蓄力检测** | ❌ **不可能** | ✅ Vision+EMG 交叉 | 需要 EMG |
-    | X-Factor | ✅ ±3° | ✅ ±3° | Vision 足够 |
-    | 挥杆节奏 | ⚠️ ±2 帧 | ✅ <10ms | IMU 更精确 |
-    | 身体姿态角度 | ✅ ±5° | ✅ ±5° | Vision 足够 |
-
-    **结论**: Video-Only 是**入门级体验**，完整价值需要硬件支持。
-
-### 2.4 时间同步策略 {#24-时间同步策略}
+### 2.3 时间同步策略 {#23-时间同步策略}
 
 三模态融合的**基础**是精确的时间对齐:
 
@@ -218,7 +196,7 @@ flowchart TB
 
     > 详见 [可视化工具评估](../decisions/visualization-tools-evaluation.md)
 
-#### 2.4.1 时间同步实现方案 {#241-时间同步实现方案}
+#### 2.3.1 时间同步实现方案 {#231-时间同步实现方案}
 
 !!! warning "MVP 阶段说明"
 
@@ -344,7 +322,7 @@ class TimeAlignmentManager:
 > - [Twist-n-Sync 陀螺仪同步 (PMC7795013)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7795013/) - 16µs 精度，Google Research
 > - [Golf Swing IMU 分段 (PMC7472298)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7472298/) - Impact 检测精度 ±5-16ms
 
-#### 2.4.2 Sensor Hub 架构 (2025-12 推荐) {#sensor-hub-architecture}
+#### 2.3.2 Sensor Hub 架构 (2025-12 推荐) {#sensor-hub-architecture}
 
 !!! success "单一权威来源 — 所有 Sensor Hub 相关文档引用此处"
 
@@ -423,7 +401,7 @@ class TimeAlignmentManager:
 
 > **硬件购买清单**: 见 [关键决策 2025-12 §4.3](../decisions/architecture-decisions-2025-12-23.md#43-硬件购买清单)
 
-### 2.5 融合引擎: 三大机制
+### 2.4 融合引擎: 三大机制
 
 !!! info "融合不是简单叠加，而是三种机制的协同"
 
@@ -522,7 +500,7 @@ class TimeAlignmentManager:
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 2.6 积木块接口契约 {#26-积木块接口契约}
+### 2.5 积木块接口契约 {#25-积木块接口契约}
 
 每个积木块有明确的输入/输出契约，确保可替换性:
 
@@ -595,7 +573,7 @@ class TimeAlignmentManager:
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 2.7 置信度计算逻辑
+### 2.6 置信度计算逻辑
 
 融合提升置信度的核心算法:
 
@@ -617,7 +595,7 @@ class TimeAlignmentManager:
 !!! tip "算法实现"
     完整 Python 代码见 [传感器指标映射 §7](./sensor-metric-mapping.md#7-融合置信度计算-fusion-confidence)
 
-### 2.8 用户反馈翻译层 {#28-用户反馈翻译层}
+### 2.7 用户反馈翻译层 {#27-用户反馈翻译层}
 
 原始数据 → 规则引擎 → 自然语言反馈:
 
@@ -673,7 +651,7 @@ class TimeAlignmentManager:
     3. 验证规则逻辑是否正确
     4. 反复回放同一录制，调优阈值直到反馈时机合理
 
-### 2.9 研究验证的阈值参考
+### 2.8 研究验证的阈值参考
 
 所有阈值来自文献研究，详见 [生物力学基准值](../../prerequisites/foundations/biomechanics-benchmarks.md):
 
@@ -687,7 +665,7 @@ class TimeAlignmentManager:
 | **疲劳阈值** | <70% 初始激活 | EMG Research | FATIGUE_WARNING 规则 |
 | **EMG 核心激活** | >50% MVC | Research | FALSE_COIL 规则 |
 
-### 2.10 竞品能力对比 & 系统能力矩阵
+### 2.9 竞品能力对比 & 系统能力矩阵
 
 !!! abstract "详细内容已移至单一来源"
     为避免重复维护，详细的竞品对比和能力矩阵表已整合到:
