@@ -5130,25 +5130,25 @@
 </span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│  ╔═══════════════════════════════════════════════════════════════════════════════╗  │
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│  ║  STAGE 2: 数据采集层 (Data Collection)                                          ║  │
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│  ║                                                                                ║  │
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│  ║  ┌─────────────────┐     ┌─────────────────────┐    ┌─────────────────────┐     ║  │
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│  ║  ┌─────────────────┐     ┌─────────────────────┐    ┌─────────────────────┐    ║  │
 </span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│  ║  │  📹 Vision       │    │  🔄 Arm Hub         │    │  🔄 Core Hub        │    ║  │
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│  ║  │  ─────────────   │    │  ─────────────────  │    │  ─────────────────  │    ║  │
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│  ║  │  • iPhone Camera │    │  • ESP32-S3         │    │  • ESP32-S3         │    ║  │
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│  ║  │  • MediaPipe iOS │    │  • LSM6DSV16X (IMU) │    │  • LSM6DSV16X (IMU) │    ║  │
 </span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│  ║  │  • 33 keypoints  │    │  • MyoWare 2.0 (EMG)│    │  • MyoWare 2.0 (EMG)│    ║  │
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>│  ║  │  • 30 fps        │    │  • 共享时钟源         │    │  • 共享时钟源         │    ║  │
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>│  ║  │  • 30 fps        │    │  • 共享时钟源         │    │  • 共享时钟源         │   ║  │
 </span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>│  ║  └────────┬─────────┘    └─────────┬───────────┘    └─────────┬───────────┘    ║  │
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>│  ║           │                        │                          │               ║  │
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>│  ║           │                        └───────────┬──────────────┘               ║  │
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>│  ║           │                                    │                              ║  │
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>│  ║           │ Native SDK                         │ BLE 5.0                      ║  │
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>│  ║           │ (No latency)                       │ (源端时间戳，消除抖动)          ║  │
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>│  ║           │                                    │                              ║  │
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>│  ║           └──────────────────┬─────────────────┘                              ║  │
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>│  ║                              ▼                                                ║  │
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>│  ║                    ┌─────────────────────┐                                    ║  │
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>│  ║           │                        │                          │                ║  │
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>│  ║           │                        └───────────┬──────────────┘                ║  │
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>│  ║           │                                    │                               ║  │
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>│  ║           │ Native SDK                         │ BLE 5.0                       ║  │
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>│  ║           │ (No latency)                       │ (源端时间戳，消除抖动)           ║  │
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>│  ║           │                                    │                               ║  │
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>│  ║           └──────────────────┬─────────────────┘                               ║  │
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>│  ║                              ▼                                                 ║  │
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>│  ║                    ┌─────────────────────┐                                     ║  │
 </span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>│  ║                    │  📱 Swift iOS App    │                                    ║  │
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>│  ║                    │  • MediaPipeTasksVision                                  ║  │
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>│  ║                    │  • MediaPipeTasksVision                                   ║  │
 </span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>│  ║                    │  • CoreBluetooth                                         ║  │
 </span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>│  ║                    │  • 数据接收与缓存                                          ║  │
 </span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>│  ║                    └─────────┬───────────┘                                    ║  │
