@@ -2110,10 +2110,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#25-用户反馈翻译层" class="md-nav__link">
+  <a href="#25-ai-反馈生成层" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.5 用户反馈翻译层 (Stage 6-7)
+        2.5 AI 反馈生成层 (Stage 6)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-用户反馈呈现层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 用户反馈呈现层 (Stage 7)
       
     </span>
   </a>
@@ -4907,10 +4918,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#25-用户反馈翻译层" class="md-nav__link">
+  <a href="#25-ai-反馈生成层" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.5 用户反馈翻译层 (Stage 6-7)
+        2.5 AI 反馈生成层 (Stage 6)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-用户反馈呈现层" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 用户反馈呈现层 (Stage 7)
       
     </span>
   </a>
@@ -5291,10 +5313,16 @@
 <td>8阶段 + 6规则诊断</td>
 </tr>
 <tr>
-<td>6-7</td>
-<td>AI反馈 + 用户反馈</td>
-<td><a href="#25-用户反馈翻译层">用户反馈翻译层</a></td>
-<td>教练级可执行建议</td>
+<td>6</td>
+<td>AI 反馈生成层</td>
+<td><a href="#251-prompt-block">PROMPT</a>, <a href="#252-llm-block">LLM</a> (见 <a href="#25-ai-反馈生成层">§2.5</a>)</td>
+<td>Kinematic Prompts + 自然语言</td>
+</tr>
+<tr>
+<td>7</td>
+<td>用户反馈呈现层</td>
+<td><a href="#261-output-block">OUTPUT</a> (见 <a href="#26-用户反馈呈现层">§2.6</a>)</td>
+<td>UI/TTS/触觉/Ghost</td>
 </tr>
 </tbody>
 </table>
@@ -6889,45 +6917,219 @@
 <p class="admonition-title">算法实现</p>
 <p>完整 Python 代码见 <a href="../sensor-metric-mapping/#7-融合置信度计算-fusion-confidence">传感器指标映射 §7</a></p>
 </div>
-<h3 id="25-用户反馈翻译层">2.5 用户反馈翻译层 (Stage 6-7)<a class="headerlink" href="#25-用户反馈翻译层" title="Permanent link">&para;</a></h3>
-<p>原始数据 → 规则引擎 → 自然语言反馈:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>│                    用户反馈翻译层 FEEDBACK TRANSLATION                       │
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
-</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>│                                                                             │
-</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>│   原始数据 → 规则触发 → 自然语言 → TTS/UI                                   │
-</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>│                                                                             │
-</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>│   示例 1: 运动链倒序                                                        │
-</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>│   ─────────────────────────────────────────────────────                     │
-</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>│   数据: emg_core_forearm_gap = -40ms                                        │
-</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>│   规则: ARMS_BEFORE_CORE (P0 严重)                                          │
-</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>│   CN: &quot;让身体带动，别用手打&quot;                                                │
-</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>│   EN: &quot;Let your body lead, don&#39;t swing with your arms&quot;                     │
-</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>│                                                                             │
-</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>│   示例 2: X-Factor 不足                                                     │
-</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>│   ─────────────────────────────────────────────────────                     │
-</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a>│   数据: x_factor = 22° (低于 35° 阈值)                                      │
-</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>│   规则: LOW_X_FACTOR (P1 重要)                                              │
-</span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a>│   CN: &quot;肩膀多转一点，你的背还没拧紧&quot;                                        │
-</span><span id="__span-23-19"><a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a>│   EN: &quot;Turn your shoulders more - you haven&#39;t coiled your back yet&quot;        │
-</span><span id="__span-23-20"><a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a>│                                                                             │
-</span><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a>│   示例 3: 假性蓄力 (只有三模态能检测!)                                       │
-</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a>│   ─────────────────────────────────────────────────────                     │
-</span><span id="__span-23-23"><a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a>│   数据: x_factor = 45° (正常) + emg_core_activation = 0.3 (低于 0.5)        │
-</span><span id="__span-23-24"><a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a>│   规则: FALSE_COIL (P0 严重)                                                │
-</span><span id="__span-23-25"><a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a>│   CN: &quot;看起来转够了，但核心没发力。专注于收紧腹肌再下杆。&quot;                   │
-</span><span id="__span-23-26"><a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a>│   EN: &quot;Your turn looks good but your core isn&#39;t engaged. Focus on          │
-</span><span id="__span-23-27"><a id="__codelineno-23-27" name="__codelineno-23-27" href="#__codelineno-23-27"></a>│        tightening your abs before starting the downswing.&quot;                 │
-</span><span id="__span-23-28"><a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a>│                                                                             │
-</span><span id="__span-23-29"><a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a>│   示例 4: 疲劳预警                                                          │
-</span><span id="__span-23-30"><a id="__codelineno-23-30" name="__codelineno-23-30" href="#__codelineno-23-30"></a>│   ─────────────────────────────────────────────────────                     │
-</span><span id="__span-23-31"><a id="__codelineno-23-31" name="__codelineno-23-31" href="#__codelineno-23-31"></a>│   数据: emg_fatigue_ratio = 0.65 (低于 0.7 阈值)                            │
-</span><span id="__span-23-32"><a id="__codelineno-23-32" name="__codelineno-23-32" href="#__codelineno-23-32"></a>│   规则: FATIGUE_WARNING (P1 重要)                                           │
-</span><span id="__span-23-33"><a id="__codelineno-23-33" name="__codelineno-23-33" href="#__codelineno-23-33"></a>│   CN: &quot;你累了，休息一下再练，避免受伤&quot;                                      │
-</span><span id="__span-23-34"><a id="__codelineno-23-34" name="__codelineno-23-34" href="#__codelineno-23-34"></a>│   EN: &quot;You&#39;re fatigued. Take a break to prevent injury.&quot;                   │
-</span><span id="__span-23-35"><a id="__codelineno-23-35" name="__codelineno-23-35" href="#__codelineno-23-35"></a>│                                                                             │
-</span><span id="__span-23-36"><a id="__codelineno-23-36" name="__codelineno-23-36" href="#__codelineno-23-36"></a>└─────────────────────────────────────────────────────────────────────────────┘
+<h3 id="25-ai-反馈生成层">2.5 AI 反馈生成层 (Stage 6)<a class="headerlink" href="#25-ai-反馈生成层" title="Permanent link">&para;</a></h3>
+<p>将传感器数据结构化为 LLM 可理解格式，生成教练级自然语言反馈。</p>
+<h4 id="251-prompt-block">2.5.1 PROMPT Block<a class="headerlink" href="#251-prompt-block" title="Permanent link">&para;</a></h4>
+<p><strong>职责</strong>: 将诊断结果转换为 Kinematic Prompts (结构化提示词)</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>触发的规则 + 12 指标 + 置信度</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>结构化 JSON/Text Prompt</td>
+</tr>
+<tr>
+<td>延迟</td>
+<td>&lt;1ms (模板填充)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>接口契约</strong>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nd">@dataclass</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">PromptInput</span><span class="p">:</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>    <span class="n">triggered_rules</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DiagnosticRule</span><span class="p">]</span>  <span class="c1"># 触发的规则列表</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    <span class="n">metrics</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>               <span class="c1"># 12 个结构化指标</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>    <span class="n">confidence</span><span class="p">:</span> <span class="nb">float</span>                       <span class="c1"># 融合置信度</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="nd">@dataclass</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="k">class</span><span class="w"> </span><span class="nc">PromptOutput</span><span class="p">:</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>    <span class="n">kinematic_prompt</span><span class="p">:</span> <span class="nb">str</span>     <span class="c1"># 结构化提示词</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>    <span class="n">severity</span><span class="p">:</span> <span class="nb">str</span>             <span class="c1"># P0/P1/P2/INFO</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>    <span class="n">focus_metric</span><span class="p">:</span> <span class="nb">str</span>         <span class="c1"># 主要关注指标</span>
 </span></code></pre></div>
+<p><strong>Kinematic Prompt 示例</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>X-Factor: 42° ✅ (正常范围 35-55°)
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>Core activation: 30% ⚠️ (低于 50% 阈值)
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>Timing: 核心先于前臂 150ms ✅
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>Triggered rule: FALSE_COIL (P0)
+</span></code></pre></div>
+<h4 id="252-llm-block">2.5.2 LLM Block<a class="headerlink" href="#252-llm-block" title="Permanent link">&para;</a></h4>
+<p><strong>职责</strong>: 将 Kinematic Prompts 翻译为教练级自然语言反馈</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入</td>
+<td>Kinematic Prompt</td>
+</tr>
+<tr>
+<td>处理</td>
+<td>GPT-4o-mini / Gemini 2.5 Flash</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>自然语言反馈 (中/英文)</td>
+</tr>
+<tr>
+<td>延迟</td>
+<td>200-500ms (Cloud API)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>接口契约</strong>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nd">@dataclass</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">LLMInput</span><span class="p">:</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>    <span class="n">kinematic_prompt</span><span class="p">:</span> <span class="nb">str</span>     <span class="c1"># 结构化提示词</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>    <span class="n">language</span><span class="p">:</span> <span class="nb">str</span>             <span class="c1"># &quot;zh&quot; / &quot;en&quot;</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>    <span class="n">user_level</span><span class="p">:</span> <span class="nb">str</span>           <span class="c1"># &quot;beginner&quot; / &quot;intermediate&quot; / &quot;advanced&quot;</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="nd">@dataclass</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="k">class</span><span class="w"> </span><span class="nc">LLMOutput</span><span class="p">:</span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>    <span class="n">feedback_text</span><span class="p">:</span> <span class="nb">str</span>        <span class="c1"># 自然语言反馈</span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>    <span class="n">action_items</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>   <span class="c1"># 可执行建议列表</span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>    <span class="n">tone</span><span class="p">:</span> <span class="nb">str</span>                 <span class="c1"># &quot;encouraging&quot; / &quot;instructive&quot; / &quot;warning&quot;</span>
+</span></code></pre></div>
+<p><strong>翻译示例</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FALSE_COIL (P0)</code> + <code>X-Factor=42°</code> + <code>Core=30%</code></td>
+<td>"看起来转够了 (42°)，但核心没发力 (30%)。在下杆前收紧腹肌，让身体带动手臂。"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="26-用户反馈呈现层">2.6 用户反馈呈现层 (Stage 7)<a class="headerlink" href="#26-用户反馈呈现层" title="Permanent link">&para;</a></h3>
+<p>将 LLM 生成的反馈通过多种渠道呈现给用户，挥杆后 &lt;500ms 内完成。</p>
+<h4 id="261-output-block">2.6.1 OUTPUT Block<a class="headerlink" href="#261-output-block" title="Permanent link">&para;</a></h4>
+<p><strong>职责</strong>: 多渠道反馈呈现 (UI/TTS/触觉/Ghost)</p>
+<table>
+<thead>
+<tr>
+<th>渠道</th>
+<th>组件</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📱 <strong>App UI</strong></td>
+<td>SwiftUI</td>
+<td>简洁指标 (1-3 个)，颜色编码 🟢🟡🔴</td>
+</tr>
+<tr>
+<td>🔊 <strong>语音 TTS</strong></td>
+<td>AVSpeechSynthesizer</td>
+<td>教练语音，离线可用</td>
+</tr>
+<tr>
+<td>📳 <strong>触觉反馈</strong></td>
+<td>UIFeedbackGenerator</td>
+<td>振动提示，方向指引</td>
+</tr>
+<tr>
+<td>👻 <strong>Ghost Overlay</strong></td>
+<td>ARKit (Phase 2+)</td>
+<td>骨架叠加，动作对比</td>
+</tr>
+</tbody>
+</table>
+<p><strong>接口契约</strong>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nd">@dataclass</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">OutputInput</span><span class="p">:</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>    <span class="n">feedback_text</span><span class="p">:</span> <span class="nb">str</span>        <span class="c1"># LLM 生成的反馈</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>    <span class="n">severity</span><span class="p">:</span> <span class="nb">str</span>             <span class="c1"># P0/P1/P2/INFO</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>    <span class="n">metrics_summary</span><span class="p">:</span> <span class="n">Dict</span>     <span class="c1"># 关键指标摘要</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="nd">@dataclass</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="k">class</span><span class="w"> </span><span class="nc">OutputConfig</span><span class="p">:</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>    <span class="n">enable_tts</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>    <span class="n">enable_haptic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>    <span class="n">enable_ghost</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Phase 2+</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>    <span class="n">max_metrics_display</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
+</span></code></pre></div>
+<p><strong>反馈示例映射</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>│                         反馈呈现示例                                          │
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>│                                                                             │
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>│   示例 1: 运动链倒序                                                        │
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>│   ─────────────────────────────────────────────────────                     │
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>│   数据: emg_core_forearm_gap = -40ms                                        │
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>│   规则: ARMS_BEFORE_CORE (P0 严重)                                          │
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>│   CN: &quot;让身体带动，别用手打&quot;                                                │
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>│   EN: &quot;Let your body lead, don&#39;t swing with your arms&quot;                     │
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>│                                                                             │
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>│   示例 2: X-Factor 不足                                                     │
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a>│   ─────────────────────────────────────────────────────                     │
+</span><span id="__span-27-14"><a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a>│   数据: x_factor = 22° (低于 35° 阈值)                                      │
+</span><span id="__span-27-15"><a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a>│   规则: LOW_X_FACTOR (P1 重要)                                              │
+</span><span id="__span-27-16"><a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a>│   CN: &quot;肩膀多转一点，你的背还没拧紧&quot;                                        │
+</span><span id="__span-27-17"><a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a>│   EN: &quot;Turn your shoulders more - you haven&#39;t coiled your back yet&quot;        │
+</span><span id="__span-27-18"><a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a>│                                                                             │
+</span><span id="__span-27-19"><a id="__codelineno-27-19" name="__codelineno-27-19" href="#__codelineno-27-19"></a>│   示例 3: 假性蓄力 (只有三模态能检测!)                                       │
+</span><span id="__span-27-20"><a id="__codelineno-27-20" name="__codelineno-27-20" href="#__codelineno-27-20"></a>│   ─────────────────────────────────────────────────────                     │
+</span><span id="__span-27-21"><a id="__codelineno-27-21" name="__codelineno-27-21" href="#__codelineno-27-21"></a>│   数据: x_factor = 45° (正常) + emg_core_activation = 0.3 (低于 0.5)        │
+</span><span id="__span-27-22"><a id="__codelineno-27-22" name="__codelineno-27-22" href="#__codelineno-27-22"></a>│   规则: FALSE_COIL (P0 严重)                                                │
+</span><span id="__span-27-23"><a id="__codelineno-27-23" name="__codelineno-27-23" href="#__codelineno-27-23"></a>│   CN: &quot;看起来转够了，但核心没发力。专注于收紧腹肌再下杆。&quot;                   │
+</span><span id="__span-27-24"><a id="__codelineno-27-24" name="__codelineno-27-24" href="#__codelineno-27-24"></a>│   EN: &quot;Your turn looks good but your core isn&#39;t engaged. Focus on          │
+</span><span id="__span-27-25"><a id="__codelineno-27-25" name="__codelineno-27-25" href="#__codelineno-27-25"></a>│        tightening your abs before starting the downswing.&quot;                 │
+</span><span id="__span-27-26"><a id="__codelineno-27-26" name="__codelineno-27-26" href="#__codelineno-27-26"></a>│                                                                             │
+</span><span id="__span-27-27"><a id="__codelineno-27-27" name="__codelineno-27-27" href="#__codelineno-27-27"></a>│   示例 4: 疲劳预警                                                          │
+</span><span id="__span-27-28"><a id="__codelineno-27-28" name="__codelineno-27-28" href="#__codelineno-27-28"></a>│   ─────────────────────────────────────────────────────                     │
+</span><span id="__span-27-29"><a id="__codelineno-27-29" name="__codelineno-27-29" href="#__codelineno-27-29"></a>│   数据: emg_fatigue_ratio = 0.65 (低于 0.7 阈值)                            │
+</span><span id="__span-27-30"><a id="__codelineno-27-30" name="__codelineno-27-30" href="#__codelineno-27-30"></a>│   规则: FATIGUE_WARNING (P1 重要)                                           │
+</span><span id="__span-27-31"><a id="__codelineno-27-31" name="__codelineno-27-31" href="#__codelineno-27-31"></a>│   CN: &quot;你累了，休息一下再练，避免受伤&quot;                                      │
+</span><span id="__span-27-32"><a id="__codelineno-27-32" name="__codelineno-27-32" href="#__codelineno-27-32"></a>│   EN: &quot;You&#39;re fatigued. Take a break to prevent injury.&quot;                   │
+</span><span id="__span-27-33"><a id="__codelineno-27-33" name="__codelineno-27-33" href="#__codelineno-27-33"></a>│                                                                             │
+</span><span id="__span-27-34"><a id="__codelineno-27-34" name="__codelineno-27-34" href="#__codelineno-27-34"></a>└─────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<p><strong>用户体验保证</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>挥杆结束 → 反馈呈现</td>
+<td>&lt;500ms (用户无感知延迟)</td>
+</tr>
+<tr>
+<td>语音反馈</td>
+<td>1-2 句话，可执行 ("收紧腹肌" vs 抽象建议)</td>
+</tr>
+<tr>
+<td>视觉反馈</td>
+<td>最多 3 个指标，避免信息过载</td>
+</tr>
+<tr>
+<td>趋势追踪</td>
+<td>连续多次挥杆的改进/退步趋势</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition tip">
 <p class="admonition-title">🔧 调试工具: 验证反馈时机</p>
 <p><strong>问题</strong>: 反馈是否在正确的时刻触发?</p>
@@ -6949,31 +7151,31 @@
 <div class="admonition abstract">
 <p class="admonition-title">🎯 MVP 的核心价值: Time-Aligned FusionResult</p>
 <p><strong>MVP 的最重要输出不是"完美的分析结果"，而是验证三模态数据能否精确对齐。</strong></p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>│                    MVP 核心输出: 时间对齐的 FusionResult                      │
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
-</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>│                                                                             │
-</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>│   在 Rerun 时间轴上同步显示:                                                 │
-</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>│                                                                             │
-</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>│   📷 MediaPipe: ──●──●──●──●──●──●──●──●──●──●── (30fps 骨架)              │
-</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>│                           ↓ Top              ↓ Impact                       │
-</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>│   🔄 Mock IMU:  ─────────────●───────────────●──── (峰值/零交叉)            │
-</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>│                           ↓                  ↓                              │
-</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>│   💪 Mock EMG:  ─────────●─────────────────●────── (Core/Forearm onset)     │
-</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>│                         ↓                                                   │
-</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>│                    Core onset 应该在 Top 之前                                │
-</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>│                                                                             │
-</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a>│   ═══════════════════════════════════════════════════════════════════════  │
-</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>│                                                                             │
-</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>│   ✅ MVP 验证目标:                                                          │
-</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a>│   1. 三条数据流能否对齐到 &lt;10ms?                                            │
-</span><span id="__span-24-19"><a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a>│   2. IMU 峰值是否对应视频中的 Impact 帧?                                    │
-</span><span id="__span-24-20"><a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a>│   3. EMG Core onset 是否在 Top 之前?                                        │
-</span><span id="__span-24-21"><a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a>│   4. 计算的 X-Factor 是否与骨架角度一致?                                    │
-</span><span id="__span-24-22"><a id="__codelineno-24-22" name="__codelineno-24-22" href="#__codelineno-24-22"></a>│                                                                             │
-</span><span id="__span-24-23"><a id="__codelineno-24-23" name="__codelineno-24-23" href="#__codelineno-24-23"></a>│   这些问题只有在 Rerun 中才能直观验证！                                      │
-</span><span id="__span-24-24"><a id="__codelineno-24-24" name="__codelineno-24-24" href="#__codelineno-24-24"></a>│                                                                             │
-</span><span id="__span-24-25"><a id="__codelineno-24-25" name="__codelineno-24-25" href="#__codelineno-24-25"></a>└─────────────────────────────────────────────────────────────────────────────┘
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>│                    MVP 核心输出: 时间对齐的 FusionResult                      │
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>│                                                                             │
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>│   在 Rerun 时间轴上同步显示:                                                 │
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>│                                                                             │
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>│   📷 MediaPipe: ──●──●──●──●──●──●──●──●──●──●── (30fps 骨架)              │
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>│                           ↓ Top              ↓ Impact                       │
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>│   🔄 Mock IMU:  ─────────────●───────────────●──── (峰值/零交叉)            │
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>│                           ↓                  ↓                              │
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>│   💪 Mock EMG:  ─────────●─────────────────●────── (Core/Forearm onset)     │
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>│                         ↓                                                   │
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>│                    Core onset 应该在 Top 之前                                │
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>│                                                                             │
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>│   ═══════════════════════════════════════════════════════════════════════  │
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>│                                                                             │
+</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>│   ✅ MVP 验证目标:                                                          │
+</span><span id="__span-28-18"><a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>│   1. 三条数据流能否对齐到 &lt;10ms?                                            │
+</span><span id="__span-28-19"><a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>│   2. IMU 峰值是否对应视频中的 Impact 帧?                                    │
+</span><span id="__span-28-20"><a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>│   3. EMG Core onset 是否在 Top 之前?                                        │
+</span><span id="__span-28-21"><a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a>│   4. 计算的 X-Factor 是否与骨架角度一致?                                    │
+</span><span id="__span-28-22"><a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a>│                                                                             │
+</span><span id="__span-28-23"><a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a>│   这些问题只有在 Rerun 中才能直观验证！                                      │
+</span><span id="__span-28-24"><a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a>│                                                                             │
+</span><span id="__span-28-25"><a id="__codelineno-28-25" name="__codelineno-28-25" href="#__codelineno-28-25"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 </div>
 <h3 id="32-mvp-mode-3-full-speed">3.2 MVP 模式聚焦: Mode 3 (Full Speed)<a class="headerlink" href="#32-mvp-mode-3-full-speed" title="Permanent link">&para;</a></h3>
@@ -7060,13 +7262,13 @@
     FUSION --&gt; RESULT
     RESULT --&gt; RERUN</code></pre>
 <p><strong>FusionResult 输出结构</strong> (见 <a href="#24-分析诊断层">§2.4 分析诊断层</a>):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>FusionResult {
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>    phases: [{label, start_ms, end_ms, confidence}],   // Top/Impact 时间边界
-</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>    metrics: {x_factor, tempo_ratio, peak_velocity, ...}, // 12 指标
-</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>    anomalies: [{type, severity, description}],        // 异常检测
-</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>    overall_confidence: float,                         // 融合置信度
-</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>    feedback: [{rule, message_cn, message_en}]         // 自然语言建议
-</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>}
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>FusionResult {
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>    phases: [{label, start_ms, end_ms, confidence}],   // Top/Impact 时间边界
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>    metrics: {x_factor, tempo_ratio, peak_velocity, ...}, // 12 指标
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>    anomalies: [{type, severity, description}],        // 异常检测
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>    overall_confidence: float,                         // 融合置信度
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    feedback: [{rule, message_cn, message_en}]         // 自然语言建议
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>}
 </span></code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">MVP 核心原则: 架构不变，数据源可换</p>
@@ -7104,58 +7306,58 @@
 </div>
 <h3 id="34">3.4 模拟数据验证全管道<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
 <p><strong>核心思路</strong>: 真实 MediaPipe + 模拟 IMU/EMG = 完整管道验证</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>为什么用模拟数据？
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>────────────────
-</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>1. 硬件还没准备好，但软件管道可以先开发
-</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>2. 模拟数据可以控制&quot;正确/错误&quot;模式，测试规则引擎
-</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>3. 真实硬件到位后，只需替换 IMU/EMG 积木块
-</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>4. 降低并行开发的耦合度 (软件不等硬件)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>为什么用模拟数据？
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>────────────────
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>1. 硬件还没准备好，但软件管道可以先开发
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>2. 模拟数据可以控制&quot;正确/错误&quot;模式，测试规则引擎
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>3. 真实硬件到位后，只需替换 IMU/EMG 积木块
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>4. 降低并行开发的耦合度 (软件不等硬件)
 </span></code></pre></div>
 <h3 id="35">3.5 渐进式升级路径<a class="headerlink" href="#35" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>Phase 1: MVP (Mode 3 Only)
-</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>──────────────────────────
-</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>Camera → MediaPipe ─┬→ Simple Rules → Top/Impact 检测
-</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>Mock IMU JSON ──────┤  (IMU 峰值/零交叉)
-</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>Mock EMG JSON ──────┼→ Simple Fusion → FusionResult
-</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>                    └→ Rerun 可视化 → 时间对齐验证
-</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>
-</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>训练数据: 0
-</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>硬件: 手机摄像头
-</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>核心验证: 三模态数据能否对齐到 &lt;10ms?
-</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>
-</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>Phase 2: Real IMU + Mode 1
-</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a>──────────────────────────
-</span><span id="__span-27-14"><a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a>Camera → MediaPipe ─┬→ Simple Rules → Top/Impact (更精确)
-</span><span id="__span-27-15"><a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a>Real IMU ───────────┤  (真实 1666Hz 信号)
-</span><span id="__span-27-16"><a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a>Mock EMG JSON ──────┼→ Rule Fusion → 12 Metrics + 6 Rules
-</span><span id="__span-27-17"><a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a>                    └→ Cross-Validation → Anomaly Detection
-</span><span id="__span-27-18"><a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a>
-</span><span id="__span-27-19"><a id="__codelineno-27-19" name="__codelineno-27-19" href="#__codelineno-27-19"></a>训练数据: 0
-</span><span id="__span-27-20"><a id="__codelineno-27-20" name="__codelineno-27-20" href="#__codelineno-27-20"></a>硬件: 手机 + LSM6DSV16X
-</span><span id="__span-27-21"><a id="__codelineno-27-21" name="__codelineno-27-21" href="#__codelineno-27-21"></a>新增: Mode 1 (Setup Check) 静态姿态检测
-</span><span id="__span-27-22"><a id="__codelineno-27-22" name="__codelineno-27-22" href="#__codelineno-27-22"></a>
-</span><span id="__span-27-23"><a id="__codelineno-27-23" name="__codelineno-27-23" href="#__codelineno-27-23"></a>Phase 3: Real EMG + Mode 2
-</span><span id="__span-27-24"><a id="__codelineno-27-24" name="__codelineno-27-24" href="#__codelineno-27-24"></a>──────────────────────────
-</span><span id="__span-27-25"><a id="__codelineno-27-25" name="__codelineno-27-25" href="#__codelineno-27-25"></a>Camera → MediaPipe ─┬→ Simple Rules → Top/Impact
-</span><span id="__span-27-26"><a id="__codelineno-27-26" name="__codelineno-27-26" href="#__codelineno-27-26"></a>Real IMU ───────────┤
-</span><span id="__span-27-27"><a id="__codelineno-27-27" name="__codelineno-27-27" href="#__codelineno-27-27"></a>Real EMG ───────────┼→ Rule Fusion → 12 Metrics + 6 Rules
-</span><span id="__span-27-28"><a id="__codelineno-27-28" name="__codelineno-27-28" href="#__codelineno-27-28"></a>                    └→ Cross-Validation → Anomaly Detection
-</span><span id="__span-27-29"><a id="__codelineno-27-29" name="__codelineno-27-29" href="#__codelineno-27-29"></a>
-</span><span id="__span-27-30"><a id="__codelineno-27-30" name="__codelineno-27-30" href="#__codelineno-27-30"></a>训练数据: 0
-</span><span id="__span-27-31"><a id="__codelineno-27-31" name="__codelineno-27-31" href="#__codelineno-27-31"></a>硬件: 手机 + LSM6DSV16X + MyoWare 2.0 + Link Shield
-</span><span id="__span-27-32"><a id="__codelineno-27-32" name="__codelineno-27-32" href="#__codelineno-27-32"></a>架构: Sensor Hub (同一部位传感器共享 ESP32 时钟)
-</span><span id="__span-27-33"><a id="__codelineno-27-33" name="__codelineno-27-33" href="#__codelineno-27-33"></a>新增: Mode 2 (Slow Motion) 实时反馈
-</span><span id="__span-27-34"><a id="__codelineno-27-34" name="__codelineno-27-34" href="#__codelineno-27-34"></a>
-</span><span id="__span-27-35"><a id="__codelineno-27-35" name="__codelineno-27-35" href="#__codelineno-27-35"></a>Phase 4+: Advanced ML
-</span><span id="__span-27-36"><a id="__codelineno-27-36" name="__codelineno-27-36" href="#__codelineno-27-36"></a>─────────────────────
-</span><span id="__span-27-37"><a id="__codelineno-27-37" name="__codelineno-27-37" href="#__codelineno-27-37"></a>Camera → MediaPipe ─┬→ SwingNet/BiGRU → 8 Phases (完整阶段)
-</span><span id="__span-27-38"><a id="__codelineno-27-38" name="__codelineno-27-38" href="#__codelineno-27-38"></a>Real IMU ───────────┤
-</span><span id="__span-27-39"><a id="__codelineno-27-39" name="__codelineno-27-39" href="#__codelineno-27-39"></a>Real EMG ───────────┼→ Weighted Fusion → Advanced Diagnostics
-</span><span id="__span-27-40"><a id="__codelineno-27-40" name="__codelineno-27-40" href="#__codelineno-27-40"></a>                    └→ TAPIR → 球杆追踪 (可选)
-</span><span id="__span-27-41"><a id="__codelineno-27-41" name="__codelineno-27-41" href="#__codelineno-27-41"></a>
-</span><span id="__span-27-42"><a id="__codelineno-27-42" name="__codelineno-27-42" href="#__codelineno-27-42"></a>训练数据: ~1000 videos (for BiGRU)
-</span><span id="__span-27-43"><a id="__codelineno-27-43" name="__codelineno-27-43" href="#__codelineno-27-43"></a>硬件: 完整穿戴设备
-</span><span id="__span-27-44"><a id="__codelineno-27-44" name="__codelineno-27-44" href="#__codelineno-27-44"></a>新增: 完整 8 阶段划分, 球杆追踪
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>Phase 1: MVP (Mode 3 Only)
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>──────────────────────────
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>Camera → MediaPipe ─┬→ Simple Rules → Top/Impact 检测
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>Mock IMU JSON ──────┤  (IMU 峰值/零交叉)
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>Mock EMG JSON ──────┼→ Simple Fusion → FusionResult
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>                    └→ Rerun 可视化 → 时间对齐验证
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>训练数据: 0
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>硬件: 手机摄像头
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a>核心验证: 三模态数据能否对齐到 &lt;10ms?
+</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a>
+</span><span id="__span-31-12"><a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a>Phase 2: Real IMU + Mode 1
+</span><span id="__span-31-13"><a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a>──────────────────────────
+</span><span id="__span-31-14"><a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a>Camera → MediaPipe ─┬→ Simple Rules → Top/Impact (更精确)
+</span><span id="__span-31-15"><a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a>Real IMU ───────────┤  (真实 1666Hz 信号)
+</span><span id="__span-31-16"><a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a>Mock EMG JSON ──────┼→ Rule Fusion → 12 Metrics + 6 Rules
+</span><span id="__span-31-17"><a id="__codelineno-31-17" name="__codelineno-31-17" href="#__codelineno-31-17"></a>                    └→ Cross-Validation → Anomaly Detection
+</span><span id="__span-31-18"><a id="__codelineno-31-18" name="__codelineno-31-18" href="#__codelineno-31-18"></a>
+</span><span id="__span-31-19"><a id="__codelineno-31-19" name="__codelineno-31-19" href="#__codelineno-31-19"></a>训练数据: 0
+</span><span id="__span-31-20"><a id="__codelineno-31-20" name="__codelineno-31-20" href="#__codelineno-31-20"></a>硬件: 手机 + LSM6DSV16X
+</span><span id="__span-31-21"><a id="__codelineno-31-21" name="__codelineno-31-21" href="#__codelineno-31-21"></a>新增: Mode 1 (Setup Check) 静态姿态检测
+</span><span id="__span-31-22"><a id="__codelineno-31-22" name="__codelineno-31-22" href="#__codelineno-31-22"></a>
+</span><span id="__span-31-23"><a id="__codelineno-31-23" name="__codelineno-31-23" href="#__codelineno-31-23"></a>Phase 3: Real EMG + Mode 2
+</span><span id="__span-31-24"><a id="__codelineno-31-24" name="__codelineno-31-24" href="#__codelineno-31-24"></a>──────────────────────────
+</span><span id="__span-31-25"><a id="__codelineno-31-25" name="__codelineno-31-25" href="#__codelineno-31-25"></a>Camera → MediaPipe ─┬→ Simple Rules → Top/Impact
+</span><span id="__span-31-26"><a id="__codelineno-31-26" name="__codelineno-31-26" href="#__codelineno-31-26"></a>Real IMU ───────────┤
+</span><span id="__span-31-27"><a id="__codelineno-31-27" name="__codelineno-31-27" href="#__codelineno-31-27"></a>Real EMG ───────────┼→ Rule Fusion → 12 Metrics + 6 Rules
+</span><span id="__span-31-28"><a id="__codelineno-31-28" name="__codelineno-31-28" href="#__codelineno-31-28"></a>                    └→ Cross-Validation → Anomaly Detection
+</span><span id="__span-31-29"><a id="__codelineno-31-29" name="__codelineno-31-29" href="#__codelineno-31-29"></a>
+</span><span id="__span-31-30"><a id="__codelineno-31-30" name="__codelineno-31-30" href="#__codelineno-31-30"></a>训练数据: 0
+</span><span id="__span-31-31"><a id="__codelineno-31-31" name="__codelineno-31-31" href="#__codelineno-31-31"></a>硬件: 手机 + LSM6DSV16X + MyoWare 2.0 + Link Shield
+</span><span id="__span-31-32"><a id="__codelineno-31-32" name="__codelineno-31-32" href="#__codelineno-31-32"></a>架构: Sensor Hub (同一部位传感器共享 ESP32 时钟)
+</span><span id="__span-31-33"><a id="__codelineno-31-33" name="__codelineno-31-33" href="#__codelineno-31-33"></a>新增: Mode 2 (Slow Motion) 实时反馈
+</span><span id="__span-31-34"><a id="__codelineno-31-34" name="__codelineno-31-34" href="#__codelineno-31-34"></a>
+</span><span id="__span-31-35"><a id="__codelineno-31-35" name="__codelineno-31-35" href="#__codelineno-31-35"></a>Phase 4+: Advanced ML
+</span><span id="__span-31-36"><a id="__codelineno-31-36" name="__codelineno-31-36" href="#__codelineno-31-36"></a>─────────────────────
+</span><span id="__span-31-37"><a id="__codelineno-31-37" name="__codelineno-31-37" href="#__codelineno-31-37"></a>Camera → MediaPipe ─┬→ SwingNet/BiGRU → 8 Phases (完整阶段)
+</span><span id="__span-31-38"><a id="__codelineno-31-38" name="__codelineno-31-38" href="#__codelineno-31-38"></a>Real IMU ───────────┤
+</span><span id="__span-31-39"><a id="__codelineno-31-39" name="__codelineno-31-39" href="#__codelineno-31-39"></a>Real EMG ───────────┼→ Weighted Fusion → Advanced Diagnostics
+</span><span id="__span-31-40"><a id="__codelineno-31-40" name="__codelineno-31-40" href="#__codelineno-31-40"></a>                    └→ TAPIR → 球杆追踪 (可选)
+</span><span id="__span-31-41"><a id="__codelineno-31-41" name="__codelineno-31-41" href="#__codelineno-31-41"></a>
+</span><span id="__span-31-42"><a id="__codelineno-31-42" name="__codelineno-31-42" href="#__codelineno-31-42"></a>训练数据: ~1000 videos (for BiGRU)
+</span><span id="__span-31-43"><a id="__codelineno-31-43" name="__codelineno-31-43" href="#__codelineno-31-43"></a>硬件: 完整穿戴设备
+</span><span id="__span-31-44"><a id="__codelineno-31-44" name="__codelineno-31-44" href="#__codelineno-31-44"></a>新增: 完整 8 阶段划分, 球杆追踪
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">💡 Rerun 集成时机建议</p>
@@ -7213,61 +7415,61 @@
 <hr />
 <h2 id="4-积木替换示例">4. 积木替换示例 Block Replacement<a class="headerlink" href="#4-积木替换示例" title="Permanent link">&para;</a></h2>
 <h3 id="41-classifier-block">4.1 替换 CLASSIFIER Block<a class="headerlink" href="#41-classifier-block" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>当前 (MVP):
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>Camera → MediaPipe → [SwingNet] → 8 Phases
-</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
-</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>替换后 (v2):
-</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>Camera → MediaPipe → [BiGRU] → 8 Phases
-</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
-</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>需要做的事:
-</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>1. 收集 ~1000 个标注视频
-</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>2. 训练 BiGRU 模型 (~4小时)
-</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>3. 导出 ONNX 格式
-</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>4. 替换 classifier.onnx 文件
-</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>5. 其他代码不变
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>当前 (MVP):
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>Camera → MediaPipe → [SwingNet] → 8 Phases
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>替换后 (v2):
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>Camera → MediaPipe → [BiGRU] → 8 Phases
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>需要做的事:
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>1. 收集 ~1000 个标注视频
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>2. 训练 BiGRU 模型 (~4小时)
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>3. 导出 ONNX 格式
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>4. 替换 classifier.onnx 文件
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a>5. 其他代码不变
 </span></code></pre></div>
 <h3 id="42-imu-block">4.2 替换 IMU Block<a class="headerlink" href="#42-imu-block" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>当前 (MVP):
-</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>Mock IMU JSON → [Simulated IMU Block] → 6 Features
-</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
-</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>替换后 (Phase 2):
-</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>Real LSM6DSV16X → [Real IMU Block] → 6 Features
-</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>
-</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>需要做的事:
-</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>1. 完成硬件原型 (ESP32-S3 + LSM6DSV16X)
-</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a>2. 实现 BLE 数据传输
-</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a>3. 替换数据源 (JSON → BLE Stream)
-</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>4. 特征提取逻辑不变
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>当前 (MVP):
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>Mock IMU JSON → [Simulated IMU Block] → 6 Features
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>替换后 (Phase 2):
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>Real LSM6DSV16X → [Real IMU Block] → 6 Features
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>需要做的事:
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>1. 完成硬件原型 (ESP32-S3 + LSM6DSV16X)
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>2. 实现 BLE 数据传输
+</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>3. 替换数据源 (JSON → BLE Stream)
+</span><span id="__span-33-11"><a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a>4. 特征提取逻辑不变
 </span></code></pre></div>
 <h3 id="43-fusion-block">4.3 替换 FUSION Block<a class="headerlink" href="#43-fusion-block" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>当前 (MVP):
-</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>Vision + Mock IMU + Mock EMG → [Simple Merge] → Output
-</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
-</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>替换后 (v3):
-</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>Vision + Real IMU + Real EMG → [Kalman Filter] → Output
-</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>
-</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>需要做的事:
-</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>1. 确认传感器数据质量
-</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>2. 标定传感器噪声模型
-</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a>3. 实现 Kalman Filter
-</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>4. 调整融合权重
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>当前 (MVP):
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>Vision + Mock IMU + Mock EMG → [Simple Merge] → Output
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>替换后 (v3):
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>Vision + Real IMU + Real EMG → [Kalman Filter] → Output
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>需要做的事:
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>1. 确认传感器数据质量
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a>2. 标定传感器噪声模型
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a>3. 实现 Kalman Filter
+</span><span id="__span-34-11"><a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a>4. 调整融合权重
 </span></code></pre></div>
 <hr />
 <h2 id="5-rerun-调试工具">5. Rerun 调试工具汇总 Debugging Tools Summary<a class="headerlink" href="#5-rerun-调试工具" title="Permanent link">&para;</a></h2>
 <p>本文档多处提到 <a href="https://rerun.io/">Rerun</a> 作为多模态数据调试工具。本节汇总所有调试场景。</p>
 <h3 id="51">5.1 快速开始<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># 安装</span>
-</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>pip<span class="w"> </span>install<span class="w"> </span>rerun-sdk
-</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
-</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="c1"># 验证 MediaPipe 姿态可视化 (官方示例)</span>
-</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>python<span class="w"> </span>-m<span class="w"> </span>rerun_demos.human_pose_tracking
-</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>
-</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="c1"># 在你的代码中使用</span>
-</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>import<span class="w"> </span>rerun<span class="w"> </span>as<span class="w"> </span>rr
-</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>rr.init<span class="o">(</span><span class="s2">&quot;movement-chain&quot;</span>,<span class="w"> </span><span class="nv">spawn</span><span class="o">=</span>True<span class="o">)</span>
-</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a>rr.log<span class="o">(</span><span class="s2">&quot;video/frame&quot;</span>,<span class="w"> </span>rr.Image<span class="o">(</span>frame<span class="o">))</span>
-</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a>rr.log<span class="o">(</span><span class="s2">&quot;imu/gyro_z&quot;</span>,<span class="w"> </span>rr.Scalar<span class="o">(</span>gyro_z<span class="o">))</span>
-</span><span id="__span-31-12"><a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a>rr.log<span class="o">(</span><span class="s2">&quot;emg/core&quot;</span>,<span class="w"> </span>rr.Scalar<span class="o">(</span>core_activation<span class="o">))</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="c1"># 安装</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>pip<span class="w"> </span>install<span class="w"> </span>rerun-sdk
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="c1"># 验证 MediaPipe 姿态可视化 (官方示例)</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>python<span class="w"> </span>-m<span class="w"> </span>rerun_demos.human_pose_tracking
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="c1"># 在你的代码中使用</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>import<span class="w"> </span>rerun<span class="w"> </span>as<span class="w"> </span>rr
+</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a>rr.init<span class="o">(</span><span class="s2">&quot;movement-chain&quot;</span>,<span class="w"> </span><span class="nv">spawn</span><span class="o">=</span>True<span class="o">)</span>
+</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>rr.log<span class="o">(</span><span class="s2">&quot;video/frame&quot;</span>,<span class="w"> </span>rr.Image<span class="o">(</span>frame<span class="o">))</span>
+</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a>rr.log<span class="o">(</span><span class="s2">&quot;imu/gyro_z&quot;</span>,<span class="w"> </span>rr.Scalar<span class="o">(</span>gyro_z<span class="o">))</span>
+</span><span id="__span-35-12"><a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a>rr.log<span class="o">(</span><span class="s2">&quot;emg/core&quot;</span>,<span class="w"> </span>rr.Scalar<span class="o">(</span>core_activation<span class="o">))</span>
 </span></code></pre></div>
 <h3 id="52">5.2 调试场景速查表<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
 <table>
@@ -7319,23 +7521,23 @@
 </tbody>
 </table>
 <h3 id="53">5.3 开发阶段使用建议<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>Phase 1 (Week 1-2): Vision Pipeline
-</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>├── 必须: 验证 MediaPipe 骨架叠加
-</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>├── 必须: 验证 X-Factor 等特征计算
-</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>└── 建议: 建立第一批 .rrd 测试用例
-</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>
-</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>Phase 2 (Week 3): Mock Sensor
-</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>├── 必须: 可视化 IMU/EMG 模拟数据与视频对齐
-</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>└── 必须: 验证时间同步 &lt;10ms
-</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>
-</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>Phase 3 (Week 4): Rule Engine
-</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>├── 必须: 调优规则阈值
-</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a>├── 必须: 录制&quot;正确&quot;和&quot;错误&quot;挥杆对比
-</span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a>└── 建议: 保存问题场景 .rrd 文件
-</span><span id="__span-32-14"><a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a>
-</span><span id="__span-32-15"><a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a>Phase 4+ (Week 5-8): Integration &amp; Testing
-</span><span id="__span-32-16"><a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a>├── 推荐: 验证移动端 vs 桌面端检测一致性
-</span><span id="__span-32-17"><a id="__codelineno-32-17" name="__codelineno-32-17" href="#__codelineno-32-17"></a>└── 推荐: 分享 .rrd 给团队成员协作调试
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>Phase 1 (Week 1-2): Vision Pipeline
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>├── 必须: 验证 MediaPipe 骨架叠加
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>├── 必须: 验证 X-Factor 等特征计算
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>└── 建议: 建立第一批 .rrd 测试用例
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>Phase 2 (Week 3): Mock Sensor
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>├── 必须: 可视化 IMU/EMG 模拟数据与视频对齐
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>└── 必须: 验证时间同步 &lt;10ms
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a>
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a>Phase 3 (Week 4): Rule Engine
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a>├── 必须: 调优规则阈值
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a>├── 必须: 录制&quot;正确&quot;和&quot;错误&quot;挥杆对比
+</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a>└── 建议: 保存问题场景 .rrd 文件
+</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a>
+</span><span id="__span-36-15"><a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a>Phase 4+ (Week 5-8): Integration &amp; Testing
+</span><span id="__span-36-16"><a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a>├── 推荐: 验证移动端 vs 桌面端检测一致性
+</span><span id="__span-36-17"><a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a>└── 推荐: 分享 .rrd 给团队成员协作调试
 </span></code></pre></div>
 <h3 id="54">5.4 详细评估<a class="headerlink" href="#54" title="Permanent link">&para;</a></h3>
 <p>关于 Rerun 的完整技术评估、竞品对比、未来 TAPIR 球杆追踪规划，详见:</p>
@@ -7437,6 +7639,31 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>2.8</td>
+<td>2025-12-27</td>
+<td>Stage 6-7 拆分为独立层级</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>• §2.5: 新增 AI 反馈生成层 (Stage 6) — PROMPT Block + LLM Block</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>• §2.6: 新增用户反馈呈现层 (Stage 7) — OUTPUT Block</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>• §1.3: 更新映射表，Stage 6/7 独立显示</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>• 新增 3 个 Block 接口契约 (PromptInput/LLMInput/OutputInput)</td>
+</tr>
 <tr>
 <td>2.7</td>
 <td>2025-12-27</td>
