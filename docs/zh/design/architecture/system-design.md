@@ -336,13 +336,13 @@ assert result is not None  # MVP 通过!
 
 ### 2.1.3 MVP 模式聚焦: Mode 3 (Full Speed)
 
-!!! info "MVP 只实现 Mode 3，其他模式放到 Phase 2/3"
+!!! info "MVP 只实现 Mode 3，其他模式放到 Post-MVP"
 
-    | 模式 | 名称 | 实时性 | MVP | 原因 |
+    | 模式 | 名称 | 实时性 | 阶段 | 原因 |
     |-----|------|--------|-----|------|
     | **Mode 3** | Full Speed | ❌ 后处理 | ✅ MVP | 无实时约束，最易调试 |
-    | Mode 1 | Setup Check | ⚠️ 准实时 | Phase 2 | 需要静态姿态检测 |
-    | Mode 2 | Slow Motion | ✅ 实时 | Phase 3 | 实时处理复杂度高 |
+    | Mode 1 | Setup Check | ⚠️ 准实时 | Post-MVP | 需要静态姿态检测 |
+    | Mode 2 | Slow Motion | ✅ 实时 | Post-MVP | 实时处理复杂度高 |
 
     **为什么先做 Mode 3?**
 
@@ -355,18 +355,17 @@ assert result is not None  # MVP 通过!
 
 ### 2.1.4 Rerun 集成时机建议
 
-基于 MVP 开发计划的 Rerun 使用时机：
+基于 §2.2 MVP 阶段划分的 Rerun 使用时机：
 
-| 开发阶段 | 周数 | Rerun 使用场景 | 优先级 |
-|---------|-----|---------------|--------|
-| **Phase 1: Vision Pipeline** | Week 1-2 | 验证 MediaPipe 骨架叠加、X-Factor 计算 | ⭐ 必须 |
-| **Phase 2: Mock Sensor** | Week 3 | 可视化 IMU/EMG 模拟数据与视频的时间对齐 | ⭐ 必须 |
-| **Phase 3: Rule Engine** | Week 4 | 调优规则阈值、录制问题场景反复回放 | ⭐ 必须 |
-| **Phase 4: Feedback** | Week 5 | 验证反馈触发时机与动作阶段同步 | 🔵 推荐 |
-| **Phase 5: Mobile App** | Week 6-7 | 对比移动端 vs 桌面端的检测结果 | 🔵 推荐 |
-| **Phase 6: User Testing** | Week 8 | 录制用户测试问题 .rrd 分享调试 | 🔵 推荐 |
+| MVP 阶段 | Rerun 使用场景 | 优先级 |
+|---------|---------------|--------|
+| **Phase 1: 硬件数据管道** | 验证 BLE 数据包完整性、时间戳连续性 | 🔵 推荐 |
+| **Phase 2: Mock 数据 + 可视化** | 可视化三模态时间对齐、验证 12 指标计算 | ⭐ 必须 |
+| **Phase 3: AI 诊断 + LLM** | 调优规则阈值、录制问题场景反复回放 | ⭐ 必须 |
+| **Phase 3.5: Swift 移植** | 对比 Python vs Swift 输出一致性 | 🔵 推荐 |
+| **Phase 4: 移动端集成** | 对比移动端 vs 桌面端检测结果 | 🔵 推荐 |
 
-!!! tip "建议: 从 Phase 1 第一天就集成 Rerun，不要等到出问题再加"
+!!! tip "建议: 从 Phase 2 第一天就集成 Rerun，这是验证时间对齐的核心工具"
 
 ---
 
@@ -647,15 +646,15 @@ flowchart LR
 | **Sensor Fusion** | 📱 On-device | <10ms | 低延迟 |
 | **Rule Engine** | 📱 On-device | <5ms | 确定性 |
 | **LLM Feedback** | ☁️ Cloud API | 200-500ms | 复杂推理，挥杆后可接受 |
-| **Data Sync** | ☁️ Cloud (Phase 2+) | N/A | 趋势分析、跨设备 |
+| **Data Sync** | ☁️ Cloud (Post-MVP) | N/A | 趋势分析、跨设备 |
 
 > 📐 **详细规格**: [数据管道与AI](./data-pipeline-and-ai.md) | [模块化架构](./modular-architecture.md)
 
 ---
 
-## 5. 未来路线图 (Phase 2+)
+## 5. 未来路线图 (Post-MVP)
 
-MVP (Phase 1-4) 完成后的扩展方向:
+MVP (Phase 1 → 2 → 3 → 3.5 → 4) 完成后的扩展方向:
 
 ### 5.1 技术扩展
 
@@ -664,7 +663,7 @@ MVP (Phase 1-4) 完成后的扩展方向:
 | **个性化调优** | [个性化规格](../specs/personalization.md) | 按性别/年龄/体型调整阈值 | Phase 4 完成 |
 | **EMG 扩展** | [传感器映射](./sensor-metric-mapping.md) | 2→4→6 通道 EMG | 硬件验证 |
 | **高级模型** | [模块化架构](./modular-architecture.md) | MediaPipe → RTMPose → ViTPose++ | 性能基准 |
-| **球杆追踪** | [可视化工具](../decisions/visualization-tools-evaluation.md) | TAPIR 替代 Trackman 雷达 | Phase 2+ |
+| **球杆追踪** | [可视化工具](../decisions/visualization-tools-evaluation.md) | TAPIR 替代 Trackman 雷达 | Post-MVP |
 
 ### 5.2 产品扩展
 
@@ -738,6 +737,7 @@ MVP (Phase 1-4) 完成后的扩展方向:
 | 3.6 | 2025-12-25 | **重构 Section 6-7**: 未来路线图对齐 Phase 结构，待解决问题区分已决策/待定/风险 |
 | 3.7 | 2025-12-26 | **恢复 v3.1-3.6**: 从丢失的 commit 1dab832 完整恢复重构内容 (7阶段数据流、Mermaid图、索引表); 新增 Section 2.1.1 MVP 验证范围 |
 | 3.8 | 2025-12-27 | **新增 §2.1.2-2.1.4**: 从 modular-architecture.md 合并 MVP 核心输出图、Mode 3 聚焦策略、Rerun 集成时机表 |
+| 3.9 | 2025-12-27 | **术语统一**: §2.1.4 Rerun 表对齐 §2.2 Phase 结构; "Phase 2+" 改为 "Post-MVP" 避免混淆 |
 
 ---
 
