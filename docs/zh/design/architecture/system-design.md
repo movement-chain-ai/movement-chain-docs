@@ -460,7 +460,7 @@ flowchart LR
 | 规格类别 | 详细文档 | 核心内容 |
 |----------|----------|----------|
 | **12 测量指标** | [传感器指标映射](./sensor-metric-mapping.md) | Vision (6) + IMU (4) + EMG (2) |
-| **6 诊断规则** | [数据管道与AI §4](./data-pipeline-and-ai.md#4-诊断规则引擎) | P0 (2条) + P1 (4条) |
+| **6 诊断规则** | [数据管道与AI §4](./data-pipeline-and-ai.md#4-诊断规则引擎) | P0 (2条) + P1 (4条)，见 [§3.2 诊断规则详解](#32-诊断规则详解) |
 | **反馈模式** | [实时反馈规格](../specs/real-time-feedback.md) | 3种模式: Setup / Slow Motion / Full Speed |
 | **硬件选型** | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md), [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) | LSM6DSV16X IMU + ESP32-S3 MCU |
 | **SDK 选型** | [SDK选型](../decisions/sdk-selection.md) | MediaPipe + NeuroKit2 + imufusion |
@@ -468,7 +468,37 @@ flowchart LR
 | **升级路径** | [模块化架构](./modular-architecture.md) | LEGO block 可替换设计 |
 | **竞品对比** | [竞品指标对比](../research/competitor-metrics-comparison.md) | vs OnForm / Sportsbox |
 
-### 3.2 MVP 核心约束 (不可协商)
+### 3.2 诊断规则详解 {#32-诊断规则详解}
+
+**优先级定义** (详见 [生物力学基准 §10](../../prerequisites/foundations/biomechanics-benchmarks.md#优先级定义)):
+
+| 优先级 | 名称 | 含义 | 反馈策略 |
+|--------|------|------|----------|
+| **P0** | 严重问题 | 必须修正，严重影响挥杆效果或有受伤风险 | 立即语音提醒，优先于其他反馈 |
+| **P1** | 重要改进 | 影响表现，但不紧急 | 挥杆后反馈，按重要性排序 |
+| P2 | 优化建议 | 锦上添花，进阶提升 | 可选反馈，留待详细分析 |
+| P3 | 参考信息 | 数据展示，无明确建议 | 仅在报告中显示 |
+
+> MVP 只实现 P0 + P1 规则，P2/P3 留待后续版本。
+
+!!! info "为什么 MVP 选这 6 条规则？"
+    MVP 不追求覆盖所有问题，而是精选**最常见、最影响挥杆质量、且能体现 EMG 差异化**的规则：
+
+    - **P0 规则 (2条)**: 必须 EMG 才能检测，竞品无法复制，这是核心差异化
+    - **P1 规则 (4条)**: 覆盖节奏、旋转、释放等常见问题，Vision/IMU 可检测
+
+**MVP 6 条诊断规则**:
+
+| 优先级 | 规则 | 条件 | 数据源 | 选中原因 |
+|--------|------|------|--------|----------|
+| P0 | 倒序运动链 | 前臂先于核心激活 (gap < -20ms) | EMG | 最常见业余错误，EMG 独有洞察 |
+| P0 | 过度手臂挥杆 | Forearm/Core ratio > 1.3 | EMG | 力量浪费根源，EMG 独有洞察 |
+| P1 | X-Factor 不足 | X-Factor < 20° | Vision | 距离不够的核心原因 |
+| P1 | 节奏过快 | Downswing < 0.20s | IMU | 稳定性问题，易检测 |
+| P1 | 节奏过慢 | Downswing > 0.40s | IMU | 节奏失衡，影响连贯性 |
+| P1 | 早释放 | Wrist release < 40% downswing | IMU | 力量传递断裂 |
+
+### 3.3 MVP 核心约束 (不可协商)
 
 | 约束 | 目标值 | 验证方式 |
 |------|--------|----------|
@@ -477,7 +507,7 @@ flowchart LR
 | 规则准确率 | 100% (已知案例) | 回归测试用例 |
 | 时间对齐精度 | <10ms | Mock 数据验证 |
 
-### 3.3 技术栈速览
+### 3.4 技术栈速览
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
