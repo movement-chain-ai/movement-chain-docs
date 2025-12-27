@@ -5738,29 +5738,29 @@
 <h5 id="ntp-impact">推荐方案: NTP 预同步 + Impact 验证<a class="headerlink" href="#ntp-impact" title="Permanent link">&para;</a></h5>
 <p>这是行业标准方法，被大多数运动分析应用采用。代码量约 40-50 行，无需额外硬件。</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>│                    时间同步实现: NTP + IMPACT 验证                           │
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>│                    时间同步实现: NTP + IMPACT 验证                             │
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│                                                                             │
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   STEP 1: NTP 预同步 (录制前)                                               │
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│   STEP 1: NTP 预同步 (录制前)                                                 │
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│   ────────────────────────────                                              │
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│   • 手机自动从 NTP 服务器同步时间 (iOS/Android 内置)                         │
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   • ESP32 通过 BLE 从手机获取当前时间并设置内部时钟                           │
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│   • 所有设备共享同一时间基准                                                 │
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│   • 精度: ~1-10ms                                                           │
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│   • 手机自动从 NTP 服务器同步时间 (iOS/Android 内置)                             │
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   • ESP32 通过 BLE 从手机获取当前时间并设置内部时钟                               │
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│   • 所有设备共享同一时间基准                                                    │
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│   • 精度: ~1-10ms                                                            │
 </span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│                                                                             │
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│   STEP 2: 传感器端时间戳 (录制中)                                           │
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│   STEP 2: 传感器端时间戳 (录制中)                                               │
 </span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│   ─────────────────────────────                                             │
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│   • IMU/EMG: ESP32 使用 micros() 在数据采集时立即打时间戳                    │
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│   • Vision: 手机摄像头使用系统时钟 (已 NTP 同步)                             │
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>│   • ⚠️ 关键: 时间戳在传感器端生成，BLE 传输延迟不影响时间戳准确性             │
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│   • IMU/EMG: ESP32 使用 micros() 在数据采集时立即打时间戳                        │
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│   • Vision: 手机摄像头使用系统时钟 (已 NTP 同步)                                 │
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>│   • ⚠️ 关键: 时间戳在传感器端生成，BLE 传输延迟不影响时间戳准确性                    │
 </span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>│                                                                             │
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>│   STEP 3: Impact 验证 (录制后)                                              │
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>│   STEP 3: Impact 验证 (录制后)                                                │
 </span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>│   ───────────────────────────                                               │
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>│   • IMU: 检测峰值角速度 → impact_imu (精度 ±5ms)                            │
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>│   • Vision: 检测球离开瞬间 → impact_vision                                  │
-</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>│   • 计算偏移: offset = impact_imu - impact_vision                           │
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>│   • IMU: 检测峰值角速度 → impact_imu (精度 ±5ms)                               │
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>│   • Vision: 检测球离开瞬间 → impact_vision                                    │
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>│   • 计算偏移: offset = impact_imu - impact_vision                            │
 </span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>│   • 校正: video.timestamps += offset                                        │
-</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>│   • 若 |offset| &gt; 20ms → 标记需检查                                         │
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>│   • 若 |offset| &gt; 20ms → 标记需检查                                           │
 </span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>│                                                                             │
 </span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -5885,17 +5885,17 @@
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>│                                                                             │
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>│   ┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐           │
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>│   │    ESP32 #1     │   │    ESP32 #2     │   │    ESP32 #3     │           │
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>│   │   手臂 (Arm)    │   │   核心 (Core)   │   │    腿部 (Leg)   │           │
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>│   │   手臂 (Arm)     │   │   核心 (Core)   │   │    腿部 (Leg)    │           │
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>│   │ ┌─────┬───────┐ │   │ ┌─────┬───────┐ │   │ ┌─────┬───────┐ │           │
 </span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>│   │ │ IMU │  EMG  │ │   │ │ IMU │  EMG  │ │   │ │ IMU │  EMG  │ │           │
 </span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>│   │ │(I2C)│ (ADC) │ │   │ │(I2C)│ (ADC) │ │   │ │(I2C)│ (ADC) │ │           │
 </span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>│   │ └─────┴───────┘ │   │ └─────┴───────┘ │   │ └─────┴───────┘ │           │
 </span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>│   │ esp_timer_get   │   │ esp_timer_get   │   │ esp_timer_get   │           │
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>│   │ _time() 微秒 ✅ │   │ _time() 微秒 ✅ │   │ _time() 微秒 ✅ │           │
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>│   │ _time() 微秒 ✅  │   │ _time() 微秒 ✅ │   │ _time() 微秒 ✅  │           │
 </span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>│   └────────┬────────┘   └────────┬────────┘   └────────┬────────┘           │
 </span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>│            │                     │                     │                    │
 </span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>│            └──────────── BLE ────┴──────────── BLE ────┘                    │
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>│                        (±15-30ms 抖动)                                      │
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>│                        (±15-30ms 抖动)                                       │
 </span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>│                                  ↓                                          │
 </span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>│                            ┌──────────┐                                     │
 </span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>│                            │  iPhone  │                                     │
@@ -5906,23 +5906,23 @@
 </span></code></pre></div>
 <h5 id="imu">为什么每个单元都必须有 IMU？<a class="headerlink" href="#imu" title="Permanent link">&para;</a></h5>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>│   🔑 关键洞察: Impact 振动传遍全身，每个 IMU 都能检测到!                         │
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>│   🔑 关键洞察: Impact 振动传遍全身，每个 IMU 都能检测到!                          │
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│                                                                             │
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>│        [击球瞬间 Impact]                                                     │
 </span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>│              ↓                                                              │
 </span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>│        ┌─────────────────────────────────────────┐                          │
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>│        │           振动传遍身体                   │                          │
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>│        │  手臂 ←──── 核心 ←──── 腿部              │                          │
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>│        │           振动传遍身体                    │                          │
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>│        │  手臂 ←──── 核心 ←──── 腿部               │                          │
 </span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>│        │   ↓          ↓          ↓               │                          │
 </span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>│        │  IMU#1     IMU#2      IMU#3             │                          │
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>│        │  检测到    检测到     检测到             │                          │
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>│        │  振动峰值   振动峰值   振动峰值           │                          │
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>│        │  检测到    检测到     检测到               │                          │
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>│        │  振动峰值   振动峰值   振动峰值             │                          │
 </span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>│        └─────────────────────────────────────────┘                          │
 </span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>│                                                                             │
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>│   每个 IMU 都能检测到同一个 Impact 事件 → 这就是 T=0 参考点!                     │
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>│   每个 IMU 都能检测到同一个 Impact 事件 → 这就是 T=0 参考点!                      │
 </span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>│                                                                             │
-</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>│   ❌ 如果某个单元只有 EMG 没有 IMU → 无法检测 Impact → 无法与其他单元对齐!        │
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>│   ❌ 如果某个单元只有 EMG 没有 IMU → 无法检测 Impact → 无法与其他单元对齐!          │
 </span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>│                                                                             │
 </span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -5979,17 +5979,17 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>┌──────────────┐   ┌──────────────┐   ┌──────────────┐
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>│    Vision    │   │     IMU      │   │     EMG      │
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>├──────────────┤   ├──────────────┤   ├──────────────┤
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>│ X-Factor    ✅│   │ X-Factor    ❌│   │ X-Factor    ❌│
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>│ 身体姿态    ✅│   │ 身体姿态    ❌│   │ 身体姿态    ❌│
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>│ 空间位置    ✅│   │ 空间位置    ❌│   │ 空间位置    ❌│
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>│             │   │              │   │              │
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>│ 击球时刻    ❌│   │ 击球时刻    ✅│   │ 击球时刻    ❌│
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>│ 峰值速度    ❌│   │ 峰值速度    ✅│   │ 峰值速度    ❌│
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>│ 3D 旋转     ❌│   │ 3D 旋转     ✅│   │ 3D 旋转     ❌│
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>│             │   │              │   │              │
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>│ 肌肉激活    ❌│   │ 肌肉激活    ❌│   │ 肌肉激活    ✅│
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>│ 疲劳检测    ❌│   │ 疲劳检测    ❌│   │ 疲劳检测    ✅│
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>│ 力链因果    ❌│   │ 力链因果    ❌│   │ 力链因果    ✅│
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>│ X-Factor   ✅│   │ X-Factor   ❌│   │ X-Factor   ❌│
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>│ 身体姿态    ✅│   │ 身体姿态    ❌│    │ 身体姿态    ❌│
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>│ 空间位置    ✅│   │ 空间位置    ❌│    │ 空间位置    ❌│
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>│              │   │              │    │             │
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>│ 击球时刻    ❌│   │ 击球时刻    ✅│    │ 击球时刻    ❌│
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>│ 峰值速度    ❌│   │ 峰值速度    ✅│    │ 峰值速度    ❌│
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>│ 3D 旋转    ❌│    │ 3D 旋转   ✅│     │ 3D 旋转    ❌│
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>│             │    │             │     │             │
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>│ 肌肉激活    ❌│   │ 肌肉激活    ❌│    │ 肌肉激活    ✅│
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>│ 疲劳检测    ❌│   │ 疲劳检测    ❌│    │ 疲劳检测    ✅│
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>│ 力链因果    ❌│   │ 力链因果    ❌│    │ 力链因果    ✅│
 </span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>└──────────────┘   └──────────────┘   └──────────────┘
 </span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>
 </span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>→ 融合 = 完整画面，不是部分视图
@@ -6252,61 +6252,11 @@
 </ol>
 </div>
 <h3 id="28">2.8 研究验证的阈值参考<a class="headerlink" href="#28" title="Permanent link">&para;</a></h3>
-<p>所有阈值来自文献研究，详见 <a href="../../../prerequisites/foundations/biomechanics-benchmarks/">生物力学基准值</a>:</p>
-<table>
-<thead>
-<tr>
-<th>指标</th>
-<th>阈值/范围</th>
-<th>来源</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>X-Factor</strong></td>
-<td>35-55° (职业)</td>
-<td>TPI Research</td>
-<td>LOW<em>X</em>FACTOR 规则</td>
-</tr>
-<tr>
-<td><strong>X-Factor Stretch</strong></td>
-<td>&gt;10° 增量</td>
-<td>Literature</td>
-<td>蓄力质量评估</td>
-</tr>
-<tr>
-<td><strong>节奏比</strong></td>
-<td>2.5-3.5:1</td>
-<td>Research</td>
-<td>TEMPO 规则</td>
-</tr>
-<tr>
-<td><strong>核心-前臂时间差</strong></td>
-<td>&gt;20ms</td>
-<td>EMG Studies</td>
-<td>ARMS<em>BEFORE</em>CORE 规则</td>
-</tr>
-<tr>
-<td><strong>峰值角速度</strong></td>
-<td>800-1500°/s</td>
-<td>Pro Range</td>
-<td>爆发力评估</td>
-</tr>
-<tr>
-<td><strong>疲劳阈值</strong></td>
-<td>&lt;70% 初始激活</td>
-<td>EMG Research</td>
-<td>FATIGUE_WARNING 规则</td>
-</tr>
-<tr>
-<td><strong>EMG 核心激活</strong></td>
-<td>&gt;50% MVC</td>
-<td>Research</td>
-<td>FALSE_COIL 规则</td>
-</tr>
-</tbody>
-</table>
+<div class="admonition abstract">
+<p class="admonition-title">详细内容已移至单一来源</p>
+<p>为避免重复维护，所有生物力学阈值数据已整合到:</p>
+<p><strong><a href="../../../prerequisites/foundations/biomechanics-benchmarks/">生物力学基准值</a></strong> — 包含 Vision、IMU、EMG 所有指标的研究验证阈值</p>
+</div>
 <h3 id="29">2.9 竞品能力对比 &amp; 系统能力矩阵<a class="headerlink" href="#29" title="Permanent link">&para;</a></h3>
 <div class="admonition abstract">
 <p class="admonition-title">详细内容已移至单一来源</p>
