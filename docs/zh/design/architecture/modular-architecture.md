@@ -35,24 +35,207 @@
 
 ---
 
-## 2. 架构总览 Architecture Overview
+### 1.3 系统架构的 7 阶段与积木块映射
 
-!!! abstract "系统架构图"
-    完整的 7 阶段数据流架构图请参见 **[系统设计 §1.2](./system-design.md#12-完整系统架构目标态)**
-
-### 2.1 Stage 与积木块映射
-
-> 系统架构的 7 阶段对应本文档后续章节的积木块：
+> 📐 **完整 7 阶段架构图**: 见 [系统设计 §1.2](./system-design.md#12-完整系统架构目标态)
 
 | Stage | 层级 | 对应积木块 | 关键输出 |
 |-------|------|-----------|---------|
-| 1-2 | 用户挥杆 + 数据采集 | Camera, [IMU](#32-imu-block), [EMG](#33-emg-block) | 原始传感器流 |
-| 3 | 传感器融合层 | 时间对齐引擎 (见 [§2.2](#22-时间同步策略)) | 统一时间轴数据 |
-| 4 | 特征提取层 | [POSE](#31-pose-block), [IMU](#32-imu-block), [EMG](#33-emg-block) | 12 个结构化指标 |
-| 5 | 分析诊断层 | [CLASSIFIER](#41-classifier-block), [FUSION](#42-fusion-block) | 8阶段 + 6规则诊断 |
-| 6-7 | AI反馈 + 用户反馈 | LLM翻译、TTS、Ghost | 教练级可执行建议 |
+| 1 | 用户挥杆 | (物理动作，无软件) | 用户开始挥杆 |
+| 2 | 数据采集层 | [CAMERA](#211-camera-block), [ARM_HUB](#212-arm-hub-block), [CORE_HUB](#213-core-hub-block), [BLE](#214-ble-block) | 原始传感器流 |
+| 3 | 传感器融合层 | [TIME_ALIGN](#221-time-align-block) (见 [§2.2](#22-传感器融合层)) | 统一时间轴数据 |
+| 4 | 特征提取层 | [POSE](#232-pose-block), [IMU](#233-imu-block), [EMG](#234-emg-block) | 12 个结构化指标 |
+| 5 | 分析诊断层 | [CLASSIFIER](#241-classifier-block), [FUSION](#242-fusion-block) (见 [§2.4](#24-分析诊断层)) | 8阶段 + 6规则诊断 |
+| 6-7 | AI反馈 + 用户反馈 | [用户反馈翻译层](#25-用户反馈翻译层) | 教练级可执行建议 |
 
-### 2.2 时间同步策略 {#22-时间同步策略}
+## 2 各阶段积木块详情
+
+### 2.1 数据采集层 (Stage 2) {#21-数据采集层}
+
+Stage 2 负责从三种传感器采集原始数据，并通过 BLE 传输到手机端。
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         数据采集层 DATA COLLECTION                            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐                   │
+│   │   CAMERA    │     │  ARM_HUB    │     │  CORE_HUB   │                   │
+│   │   Block     │     │   Block     │     │   Block     │                   │
+│   └──────┬──────┘     └──────┬──────┘     └──────┬──────┘                   │
+│          │                   │                   │                          │
+│          ▼                   ▼                   ▼                          │
+│   ┌─────────────────────────────────────────────────────┐                   │
+│   │                    BLE Block                        │                   │
+│   │              (数据传输 + 时间戳同步)                   │                   │
+│                             │                                               │
+│                             ▼                                               │
+│                      📱 iPhone App                                          │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### 2.1.1 CAMERA Block {#211-camera-block}
+
+| 属性 | 规格 |
+|------|------|
+| **硬件** | iPhone 摄像头 (用户自有) |
+| **SDK** | MediaPipe iOS SDK |
+| **输出** | 33 个关键点 × 30fps |
+| **坐标系** | 归一化 [0,1] 屏幕坐标 |
+
+**接口契约**:
+
+```python
+@dataclass
+class CameraOutput:
+    timestamp_ms: int           # 系统时钟时间戳
+    keypoints: List[Keypoint]   # 33 个关键点
+    confidence: float           # 整体置信度 [0,1]
+
+@dataclass
+class Keypoint:
+    x: float      # [0,1] 归一化
+    y: float      # [0,1] 归一化
+    z: float      # 深度估计 (相对值)
+    visibility: float  # [0,1]
+```
+
+**可替换性**: MediaPipe → RTMPose → 自训练模型 (接口不变)
+
+#### 2.1.2 ARM_HUB Block {#212-arm-hub-block}
+
+| 属性 | 规格 |
+|------|------|
+| **MCU** | ESP32-S3 |
+| **IMU** | 2× LSM6DSV16X (双前臂) |
+| **EMG** | 1× MyoWare 2.0 (前臂) — *Elite 版* |
+| **采样率** | IMU: 1666Hz, EMG: 1000Hz |
+
+**接口契约**:
+
+```python
+@dataclass
+class ArmHubOutput:
+    timestamp_us: int           # ESP32 micros() 时间戳
+    left_arm_imu: IMUReading
+    right_arm_imu: IMUReading
+    forearm_emg: Optional[EMGReading]  # Elite 版才有
+
+@dataclass
+class IMUReading:
+    accel: Vector3  # m/s² [-16g, +16g]
+    gyro: Vector3   # rad/s [-2000°/s, +2000°/s]
+
+@dataclass
+class EMGReading:
+    raw_mv: float       # 原始电压 mV
+    rectified: float    # 整流后
+    envelope: float     # 包络 (RMS 滤波)
+```
+
+#### 2.1.3 CORE_HUB Block {#213-core-hub-block}
+
+| 属性 | 规格 |
+|------|------|
+| **MCU** | ESP32-S3 |
+| **IMU** | 2× LSM6DSV16X (双大腿) |
+| **EMG** | 1× MyoWare 2.0 (核心) — *Elite 版* |
+| **采样率** | IMU: 1666Hz, EMG: 1000Hz |
+
+**接口契约**: 与 ARM_HUB 结构相同，字段为 `left_leg_imu`, `right_leg_imu`, `core_emg`。
+
+#### 2.1.4 BLE Block {#214-ble-block}
+
+| 属性 | 规格 |
+|------|------|
+| **协议** | BLE 5.0 |
+| **延迟** | < 30ms |
+| **MTU** | 244 bytes |
+| **连接** | 2 个外设 (Arm Hub + Core Hub) |
+
+**职责**:
+
+1. 接收 ESP32 数据包 (含源端时间戳)
+2. 计算传输延迟并补偿
+3. 将数据转发到融合层
+
+**接口契约**:
+
+```python
+@dataclass
+class BLEPacket:
+    source: str           # "arm_hub" | "core_hub"
+    esp_timestamp_us: int # ESP32 源端时间戳
+    receive_time_ms: int  # iPhone 接收时间
+    payload: bytes        # IMU/EMG 数据
+```
+
+---
+
+### 2.2 传感器融合层 (Stage 3) {#22-传感器融合层}
+
+Stage 3 负责将三模态数据对齐到统一时间轴，并执行交叉验证。
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         传感器融合层 SENSOR FUSION                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   来自 Stage 2 的原始数据流:                                                 │
+│   ─────────────────────────                                                 │
+│   📹 Vision (30fps)  ──┐                                                    │
+│   🔄 IMU (1666Hz)    ──┼──→  ⏱️ TIME_ALIGN Block ──→ 统一时间轴数据          │
+│   💪 EMG (1000Hz)    ──┘                                                    │
+│                                                                             │
+│   输出到 Stage 4:                                                            │
+│   ────────────────                                                          │
+│   • 三模态时间对齐数据 (以 IMU 1666Hz 为主时钟)                               │
+│   • 同步精度: 同Hub <10μs, 跨Hub <500μs, 跨设备 <10ms                        │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### 2.2.1 TIME_ALIGN Block {#221-time-align-block}
+
+| 属性 | 规格 |
+|------|------|
+| **输入** | Vision 30fps + IMU 1666Hz + EMG 1000Hz (各自带时间戳) |
+| **输出** | 统一时间轴的三模态数据 |
+| **主时钟** | IMU (1666Hz = 0.6ms 分辨率) |
+| **同步精度** | < 10ms (跨设备) |
+
+**接口契约**:
+
+```python
+@dataclass
+class TimeAlignInput:
+    vision_frames: List[CameraOutput]   # 30fps, 带时间戳
+    imu_readings: List[ArmHubOutput]    # 1666Hz, 带时间戳
+    emg_readings: List[EMGReading]      # 1000Hz, 带时间戳 (Elite 版)
+
+@dataclass
+class TimeAlignOutput:
+    aligned_data: List[AlignedSample]   # 统一到 IMU 时间轴
+    sync_quality: SyncQuality
+
+@dataclass
+class AlignedSample:
+    timestamp_us: int                   # IMU 主时钟时间戳
+    vision: Optional[Keypoint]          # 插值后的视觉数据
+    imu: IMUReading                     # 原始 IMU
+    emg: Optional[EMGReading]           # 插值后的 EMG
+
+@dataclass
+class SyncQuality:
+    max_offset_ms: float                # 最大同步偏移
+    is_valid: bool                      # < 10ms 为有效
+    impact_aligned: bool                # Impact 事件是否对齐
+```
+
+**可替换性**: 简单线性插值 → 三次样条插值 → Kalman 滤波 (接口不变)
+
+#### 2.2.2 时间同步策略 {#222-时间同步策略}
 
 三模态融合的**基础**是精确的时间对齐:
 
@@ -110,7 +293,7 @@
 
     > 详见 [可视化工具评估](../decisions/visualization-tools-evaluation.md)
 
-#### 2.2.1 时间同步实现方案 {#221-时间同步实现方案}
+#### 2.2.3 时间同步实现方案 {#223-时间同步实现方案}
 
 !!! warning "MVP 阶段说明"
 
@@ -236,7 +419,7 @@ class TimeAlignmentManager:
 > - [Twist-n-Sync 陀螺仪同步 (PMC7795013)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7795013/) - 16µs 精度，Google Research
 > - [Golf Swing IMU 分段 (PMC7472298)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7472298/) - Impact 检测精度 ±5-16ms
 
-#### 2.2.2 Sensor Hub 架构 (2025-12 推荐) {#sensor-hub-architecture}
+#### 2.2.4 Sensor Hub 架构 (2025-12 推荐) {#224-sensor-hub-architecture}
 
 !!! success "单一权威来源 — 所有 Sensor Hub 相关文档引用此处"
 
@@ -315,11 +498,11 @@ class TimeAlignmentManager:
 
 > **硬件购买清单**: 见 [关键决策 2025-12 §4.3](../decisions/architecture-decisions-2025-12-23.md#43-硬件购买清单)
 
-### 2.3 融合引擎: 三大机制
+#### 2.2.5 融合引擎: 三大机制 {#225-融合引擎}
 
 !!! info "融合不是简单叠加，而是三种机制的协同"
 
-#### 机制 1: 互补性 (Complementarity)
+##### 机制 1: 互补性 (Complementarity)
 
 每个传感器测量其他传感器**无法测量**的内容:
 
@@ -343,7 +526,7 @@ class TimeAlignmentManager:
 → 融合 = 完整画面，不是部分视图
 ```
 
-#### 机制 2: 双重/三重验证 (Cross-Validation) {#机制-2-双重三重验证-cross-validation}
+##### 机制 2: 双重/三重验证 (Cross-Validation)
 
 同一事件被多个传感器测量 → 捕获错误:
 
@@ -377,7 +560,7 @@ class TimeAlignmentManager:
 
     当 Vision 说 "Top" 但 IMU 还在运动 → 置信度曲线会下降 → 一眼看出问题
 
-#### 机制 3: 异常检测 (Anomaly Detection)
+##### 机制 3: 异常检测 (Anomaly Detection)
 
 传感器间的**矛盾**揭示隐藏问题:
 
@@ -414,7 +597,11 @@ class TimeAlignmentManager:
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 2.4 积木块接口契约 {#24-积木块接口契约}
+### 2.3 特征提取层 (Stage 4) {#23-特征提取层}
+
+Stage 4 从原始传感器数据中提取结构化特征。每个 Block 负责一种数据源。
+
+#### 2.3.1 积木块接口契约 {#231-积木块接口契约}
 
 每个积木块有明确的输入/输出契约，确保可替换性:
 
@@ -487,7 +674,393 @@ class TimeAlignmentManager:
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 2.5 置信度计算逻辑
+#### 2.3.2 POSE Block 实现 {#232-pose-block}
+
+**职责**: 从视频帧提取人体 33 个关键点坐标
+
+**MVP 选择**: MediaPipe BlazePose
+
+| 属性 | 值 |
+|-----|-----|
+| 精度 | AP 65% |
+| 速度 | 30 FPS |
+| 训练数据 | 0 (预训练) |
+| 平台 | iOS / Android 原生支持 |
+
+**选择理由**:
+
+- 开箱即用，MediaPipeTasksVision iOS SDK 官方支持
+- 33 关键点足够计算 X-Factor、肩转、髋转
+- 不需要任何训练数据
+
+!!! tip "🔧 调试工具: MediaPipe 骨架可视化"
+
+    Rerun 官方提供 [human_pose_tracking](https://rerun.io/examples/video-image/human_pose_tracking) 示例:
+
+    ```bash
+    pip install rerun-sdk
+    python -m rerun_demos.human_pose_tracking
+    ```
+
+    可验证:
+
+    - 33 关键点是否完整检测
+    - 关键点 visibility 是否足够 (遮挡问题)
+    - X-Factor 等特征计算是否正确 (叠加角度线)
+
+!!! note "备选方案"
+
+    | 方案 | 精度 | 速度 | 何时考虑 |
+    |-----|------|------|---------|
+    | RTMPose | AP 75.8% | 25 FPS | 需要更高精度 |
+    | ViTPose++ | AP 81% | 15 FPS | 精度优先，速度可接受 |
+    | Custom Model | 待定 | 待定 | 积累大量高尔夫数据后 |
+
+##### 可计算的特征
+
+| 特征 | 计算方法 | 关键点 | 用途 |
+|-----|---------|--------|------|
+| **X-Factor** | 肩部连线角 - 骨盆连线角 | 11,12,23,24 | 蓄力评估 |
+| **X-Factor Stretch** | 下杆期最大 X-Factor - Top 时 X-Factor | 同上 | 蓄力质量 |
+| **S-Factor** | 肩部倾斜角 | 11,12 | 姿态评估 |
+| **O-Factor** | 骨盆倾斜角 | 23,24 | 下盘稳定 |
+| **Sway/Lift** | 髋部中心位移 vs Address | 23,24 | 重心控制 |
+
+!!! tip "详细算法实现"
+    计算代码见 [传感器指标映射 §3.1](./sensor-metric-mapping.md#31-vision-检测-mediapipe-33-landmarks)
+
+#### 2.3.3 IMU Block 实现 {#233-imu-block}
+
+**职责**: 从惯性测量单元提取角速度、加速度等时序特征
+
+**MVP 选择**: 模拟数据 (Simulated JSON)
+
+| 属性 | 值 |
+|-----|-----|
+| 数据源 | JSON 文件 (基于研究论文) 或从 Pose 数据生成 |
+| 采样率 | 100Hz (模拟) / 1666Hz (真实) |
+| 用途 | 开发调试，验证完整管道，无需等待硬件 |
+
+**模拟数据设计**:
+
+- 峰值角速度: 800-1500°/s (职业范围)
+- 节奏比: 2.5-3.5:1 (理想范围)
+- 噪声模型: 高斯噪声 + 漂移模拟
+
+!!! tip "🔧 调试工具: IMU 曲线与阶段对齐"
+
+    **问题**: 模拟 IMU 数据的峰值/零交叉点是否正确?
+
+    **Rerun 解决方案**:
+
+    ```text
+    gyro_z (°/s)
+         │
+    1200 ┤                    ●─── Impact 峰值
+         │                   ╱│
+     600 ┤                  ╱ │
+         │                 ╱  │
+       0 ┤────────────●───╱───┴──── Top (零交叉)
+         │   Address   ╲ ╱
+    -600 ┤              V
+         └────────────────────────────→ time
+    ```
+
+    Rerun 曲线视图可以自动检测峰值和零交叉，与视频帧同步验证
+
+##### 模拟 IMU 数据生成
+
+**原理**: 用 MediaPipe 关键点序列**导数**近似 IMU 角速度
+
+| 函数 | 输入 | 输出 |
+|-----|------|------|
+| `simulate_imu_from_pose()` | MediaPipe 33 关键点序列 | `List[SimulatedIMUFrame]` |
+
+**数据结构**:
+
+```python
+@dataclass
+class SimulatedIMUFrame:
+    timestamp_ms: int        # 时间戳
+    gyro_z: float            # 主轴角速度 (°/s)
+    gyro_magnitude: float    # 合成角速度
+    accel_magnitude: float   # 合成加速度
+    phase_hint: str          # 预期阶段 (TOP/IMPACT/...)
+```
+
+!!! tip "完整算法实现"
+    详细代码和测试场景见 [传感器指标映射 §8.1](./sensor-metric-mapping.md#81-从-pose-数据生成模拟-imu)
+
+!!! note "真实硬件选项 (Phase 2+)"
+
+    **推荐硬件**: Adafruit LSM6DSV16X (ADA-5783) — 45+ 分钟漂移稳定性
+
+    | 方案 | 精度 | 硬件 | 何时引入 |
+    |-----|------|------|---------|
+    | Single Wrist IMU | ±9-15ms | LSM6DSV16X | 硬件原型完成 |
+    | Dual IMU | ±5ms | Wrist + Pelvis | 运动链分析 |
+    | Multi-point (4+) | ±2ms | 完整穿戴 | 完整运动链 |
+
+    ⚠️ **WitMotion WT901 警告**: 必须禁用其 BLE，通过 I2C 连接 ESP32 使用
+
+##### 真实 IMU 检测能力
+
+| 特征 | 描述 | 阈值参考 | 用途 |
+|-----|------|---------|------|
+| **Peak Angular Velocity** | 杆头最大角速度 | Pro: 800-1500°/s | 爆发力评估 |
+| **Kinematic Sequence** | 运动链时序 | Pelvis→Torso→Arm→Club | 动力传递验证 |
+| **Tempo Ratio** | 上杆/下杆时间比 | 理想: 2.5-3.5:1 | 节奏评估 |
+| **Transition Timing** | 转换点精度 | ±0.6ms 可检测 | 力量爆发点 |
+
+!!! tip "详细算法实现"
+    峰值检测、运动链验证代码见 [传感器指标映射 §3.2](./sensor-metric-mapping.md#32-imu-检测-lsm6dsv16x--1666hz)
+
+#### 2.3.4 EMG Block 实现 {#234-emg-block}
+
+**职责**: 从肌电传感器提取肌肉激活时序和强度
+
+**MVP 选择**: 模拟数据 (Simulated JSON)
+
+| 属性 | 值 |
+|-----|-----|
+| 数据源 | JSON 文件 (基于研究论文) 或根据阶段时间戳生成 |
+| 通道数 | 2 (Core + Forearm) |
+| 采样率 | 500Hz (模拟) / 1000Hz (真实) |
+
+**模拟数据设计**:
+
+- 正确模式: Core 先于 Forearm 激活 (>20ms)
+- 错误模式: Forearm 先于 Core (模拟"手臂先动"问题)
+- 包络处理: RMS 平滑后归一化到 0-100%
+
+!!! tip "🔧 调试工具: EMG 激活时序可视化"
+
+    **问题**: 如何验证 Core 真的比 Forearm 先激活?
+
+    **Rerun 解决方案**:
+
+    ```text
+    EMG 包络 (归一化)
+      1.0│      Core (红)     Forearm (蓝)
+         │        ┌──╮           ┌──╮
+      0.5│       ╱    ╲         ╱    ╲
+         │      ╱      ╲       ╱      ╲
+      0.0├─────●────────╲─────●────────╲────→ time
+              ↑ Core     ╲    ↑ Forearm
+              onset       ╲   onset
+              (570ms)      ╲  (720ms)
+                            ╲
+                         gap = 150ms ✓
+    ```
+
+    两条 EMG 曲线叠加显示，onset 标记一目了然
+
+##### 模拟 EMG 数据生成
+
+**原理**: 根据已知生物力学时序生成**符合真实模式**的 EMG 信号
+
+| 模式 | 描述 | 时序特征 |
+|------|------|---------|
+| `CORRECT` | 正确运动链 | Core 先于 Forearm >20ms |
+| `ARMS_FIRST` | 错误 — 手臂先动 | Forearm 先于 Core |
+| `FALSE_COIL` | 假性蓄力 | 时序正确，Core <50% |
+| `FATIGUED` | 疲劳模式 | 整体激活衰减 |
+
+**核心函数**: `simulate_emg_from_phases(phase_timestamps, pattern) → SimulatedEMGResult`
+
+!!! warning "False Coil 是竞争护城河"
+    假性蓄力 (False Coil) 是**只有三模态融合才能检测**的问题:
+
+    - Vision 看到: X-Factor = 45° ✅ (正常)
+    - IMU 看到: 正常旋转时序 ✅
+    - EMG 看到: Core activation = 30% ❌ (过低)
+
+    结论: 球员"装"出了正确的姿势，但核心肌群没有真正参与。
+    这是 Vision-only 竞品永远无法检测的问题。
+
+!!! tip "完整算法实现"
+    详细代码和测试场景见 [传感器指标映射 §8.2](./sensor-metric-mapping.md#82-从阶段时间戳生成模拟-emg)
+
+!!! note "真实硬件选项 (Phase 2+)"
+
+    🔴 **CRITICAL**: MyoWare 2.0 没有焊孔，只有 Snap 扣。Link Shield (DEV-18425) 是**必需品**！
+
+    **推荐套装** (每个身体部位):
+    - 1x MyoWare 2.0 Muscle Sensor (~$40)
+    - 1x MyoWare 2.0 Link Shield ($4.50) ← 必需！
+
+    ⚠️ **警告**: DFRobot SEN0240 有线缆噪声问题，仅适用静态测量，不适合高速挥杆。
+
+    | 方案 | 通道 | 肌肉群 | 何时引入 |
+    |-----|------|-------|---------|
+    | 2-channel | 2 | Core + Forearm | 硬件原型 |
+    | 4-channel | 4 | + Gluteus, Adductors | 下肢分析 |
+    | 6-channel | 6 | + Lats, Deltoids | 完整上身 |
+
+##### EMG 电极布局规划
+
+MVP 阶段使用 2 通道 (Core + Forearm)，后续渐进扩展：
+
+| 阶段 | 通道 | 肌群覆盖 | 可检测能力 |
+|-----|------|---------|-----------|
+| **Phase 1** | 2 | 腹直肌 + 前臂屈肌 | False Coil, 核心激活时序 |
+| **Phase 2** | 4 | + 臀大肌, 内收肌 | 下肢驱动, 髋部稳定 |
+| **Phase 3** | 6 | + 背阔肌, 三角肌 | 完整力链验证 |
+
+!!! tip "详细布局图"
+    电极放置位置、选择依据见 [传感器指标映射 §6](./sensor-metric-mapping.md#6-emg-传感器布局规划-emg-sensor-placement-plan)
+
+##### 真实 EMG 检测能力
+
+| 特征 | 描述 | 信号处理 | 用途 |
+|-----|------|---------|------|
+| **Muscle Onset** | 肌肉激活起始时间 | 阈值检测 (10% MVC) | 运动链时序 |
+| **Peak Activation** | 最大肌电幅值 | RMS 包络 | 力量输出评估 |
+| **Fatigue Detection** | 肌肉疲劳指标 | 频谱中值下降 | 训练负荷监控 |
+| **Co-activation** | 拮抗肌同时激活 | 双通道比较 | 动作效率分析 |
+
+!!! tip "详细算法实现"
+    信号处理、特征提取代码见 [传感器指标映射 §3.3](./sensor-metric-mapping.md#33-emg-检测-unique-capability)
+
+### 2.4 分析诊断层 (Stage 5) {#24-分析诊断层}
+
+对提取的特征进行智能分析，识别挥杆阶段并融合多模态数据。
+
+#### 2.4.1 CLASSIFIER Block {#241-classifier-block}
+
+**职责**: 根据关键点序列识别挥杆的 8 个阶段
+
+**MVP 选择**: Simple Rules (基于 IMU 信号)
+
+| 属性 | 值 |
+|-----|-----|
+| 方法 | IMU gyro_z 信号分析 |
+| Top 检测 | gyro_z 零交叉点 (方向反转) |
+| Impact 检测 | gyro_z 峰值点 (最大角速度) |
+| 训练数据 | 0 (纯规则) |
+| 精度 | ±0.6ms (IMU 原生精度) |
+
+**选择理由**:
+
+- **无需训练数据** — 纯物理信号分析
+- **更高精度** — IMU 1666Hz vs Vision 30Hz
+- **可解释性强** — 零交叉和峰值点有明确物理意义
+- **调试简单** — Rerun 中一眼可见峰值和零交叉
+
+```text
+Phase 检测原理 (Simple Rules):
+───────────────────────────────
+gyro_z (°/s)
+     │
+1200 ┤                    ●─── Impact (峰值点)
+     │                   ╱│
+ 600 ┤                  ╱ │
+     │                 ╱  │
+   0 ┤────────────●───╱───┴──── Top (零交叉点)
+     │   Address   ╲ ╱
+-600 ┤              V
+     └────────────────────────────→ time
+
+Top = gyro_z 从负→正 零交叉 (上杆结束，下杆开始)
+Impact = gyro_z 正向峰值 (最大旋转速度)
+```
+
+!!! note "备选方案 (Phase 2+)"
+
+    | 方案 | 准确率 | 训练数据 | 速度 | 何时考虑 |
+    |-----|-------|---------|------|---------|
+    | **SwingNet** | 71.5% | 0 (预训练) | 5ms | 需要完整 8 阶段划分时 |
+    | Random Forest | ~65% | ~500 videos | <1ms | 快速 baseline |
+    | BiGRU | ~80% | ~1000 videos | 3ms | 积累 1000 视频后 |
+    | Transformer | ~88% | ~10000+ | 10ms | 大量数据后 |
+
+    **研究发现 (CaddieSet CVPR 2025)**: 关节特征 + 时序模型 (MSE 8.80) 优于纯视觉 Transformer (MSE 32.32)
+
+#### 2.4.2 FUSION Block {#242-fusion-block}
+
+**职责**: 融合 Vision + IMU + EMG 三模态数据，交叉验证并检测异常
+
+**MVP 选择**: Simple Merge
+
+| 属性 | 值 |
+|-----|-----|
+| 方法 | 简单合并各传感器特征 |
+| 复杂度 | 低 |
+| 用途 | 快速验证管道 |
+
+**融合三原则**:
+
+1. **互补性** — Vision (空间姿态) + IMU (精确时序) + EMG (肌肉状态)
+2. **交叉验证** — Vision "Top" + IMU zero-crossing → 确认; 不一致 → 降低置信度
+3. **异常检测** — 传感器间矛盾 → 标记异常 (穿戴问题/传感器故障)
+
+##### 核心诊断算法
+
+FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模态融合才能实现。
+
+> **实现代码**: 见 [传感器指标映射 §9 融合诊断算法](./sensor-metric-mapping.md#9-融合诊断算法-fusion-diagnostic-algorithms)
+
+| 算法 | 函数名 | 检测内容 | 所需传感器 |
+|-----|-------|---------|-----------|
+| 运动链序列验证 | `validate_kinematic_sequence()` | Core 是否先于 Forearm 激活 | EMG |
+| 假蓄力检测 | `detect_false_coil()` | X-Factor 高但核心肌群未激活 | Vision + EMG |
+| 力量链验证 | `verify_force_chain()` | 三模态数据一致性验证 | Vision + IMU + EMG |
+| 诊断入口 | `run_fusion_diagnostics()` | 整合所有诊断，返回主要反馈 | All |
+
+!!! tip "🔧 调试工具: 诊断规则验证"
+
+    **问题**: 规则是否在正确的条件下触发?
+
+    **Rerun 调试流程**:
+
+    1. 录制一个 "ARMS_BEFORE_CORE" 问题挥杆
+    2. 在 Rerun 中标记:
+        - EMG Core onset: 640ms
+        - EMG Forearm onset: 580ms
+        - 规则触发时刻: 720ms
+    3. 验证: `timing_gap = 580 - 640 = -60ms < 0` → 规则应该触发 ✓
+    4. 如果规则没触发 → 检查阈值设置
+
+    保存 `.rrd` 文件作为回归测试用例
+
+**诊断严重度分级**:
+
+| 级别 | 含义 | 示例 |
+|-----|-----|------|
+| P0_CRITICAL | 必须修正，影响挥杆效果 | `ARMS_BEFORE_CORE`, `FALSE_COIL` |
+| P1_IMPORTANT | 建议修正，影响一致性 | `LOW_X_FACTOR`, `WEAK_CORE_LEAD` |
+| P2_MINOR | 可选优化 | `PHASE_MISMATCH` |
+| INFO | 仅供参考 | 正确序列确认 |
+
+##### 诊断规则速查表
+
+| 规则 ID | 严重度 | 触发条件 | 需要的传感器 |
+|--------|--------|---------|-------------|
+| `ARMS_BEFORE_CORE` | P0 | Forearm 先于 Core 激活 | EMG |
+| `FALSE_COIL` | P0 | X-Factor ≥35° 但 Core <50% | Vision + EMG |
+| `COMPENSATION_DETECTED` | P0 | 峰值速度高但 Core 激活低 | IMU + EMG |
+| `LOW_X_FACTOR` | P1 | X-Factor <35° | Vision |
+| `WEAK_CORE_LEAD` | P1 | Core 领先 Forearm <20ms | EMG |
+| `PHASE_MISMATCH` | P2 | Vision 和 IMU 阶段不一致 | Vision + IMU |
+
+!!! success "三模态独有能力"
+    以上规则中，**P0 级别的三个规则都需要 EMG 数据**。
+    这意味着:
+
+    - Vision-only 竞品只能检测 `LOW_X_FACTOR` (P1)
+    - Vision+IMU 竞品可以检测 `PHASE_MISMATCH` (P2)
+    - **只有 Vision+IMU+EMG 能检测全部 P0 问题**
+
+!!! note "备选融合方法"
+
+    | 方案 | 复杂度 | 何时考虑 |
+    |-----|-------|---------|
+    | Rule-based | 中 | 明确传感器优先级后 |
+    | Weighted Average | 中 | 已知各传感器可靠性 |
+    | Kalman Filter | 高 | 需要实时平滑 |
+    | ML Fusion | 高 | 有足够融合训练数据 |
+
+#### 2.4.3 置信度计算逻辑 {#243-置信度计算逻辑}
 
 融合提升置信度的核心算法:
 
@@ -509,7 +1082,7 @@ class TimeAlignmentManager:
 !!! tip "算法实现"
     完整 Python 代码见 [传感器指标映射 §7](./sensor-metric-mapping.md#7-融合置信度计算-fusion-confidence)
 
-### 2.6 用户反馈翻译层 {#26-用户反馈翻译层}
+### 2.5 用户反馈翻译层 (Stage 6-7) {#25-用户反馈翻译层}
 
 原始数据 → 规则引擎 → 自然语言反馈:
 
@@ -565,423 +1138,11 @@ class TimeAlignmentManager:
     3. 验证规则逻辑是否正确
     4. 反复回放同一录制，调优阈值直到反馈时机合理
 
-### 2.7 竞品能力对比 & 系统能力矩阵
-
-!!! abstract "详细内容已移至单一来源"
-    为避免重复维护，详细的竞品对比和能力矩阵表已整合到:
-
-    - **[传感器指标映射 §1](./sensor-metric-mapping.md#1-系统能力矩阵-capability-matrix)** — 系统能力矩阵
-    - **[传感器指标映射 §2](./sensor-metric-mapping.md#2-竞品能力对比-competitor-comparison)** — 竞品能力对比
-
-**核心差异化速览**:
-
-| 能力维度 | Vision系统 | IMU系统 | 你的系统 (Vision+IMU+EMG) |
-|---------|-----------|---------|--------------------------|
-| **看到什么 (What)** | ✅✅ 最强 | ⚠️ 需多传感器 | ✅✅ 最强 |
-| **测量速度 (How Fast)** | ❌ 低频 | ✅✅ 最强 | ✅✅ 最强 |
-| **解释原因 (Why)** | ❌ 无法解释 | ⚠️ 间接推断 | ✅✅ **直接观测肌肉激活** |
-
-**独特能力 (UNIQUE)**: 肌肉激活时序、肌肉激活强度、力链序列验证、疲劳检测 — 竞品均无法实现。
-
 ---
 
-## 3. ⚙️ 提取层 EXTRACTION LAYER
+## 3. MVP 策略 MVP Strategy {#3-mvp-策略}
 
-从原始传感器数据中提取结构化特征。每个 Block 负责一种数据源。
-
-### 3.1 POSE Block
-
-**职责**: 从视频帧提取人体 33 个关键点坐标
-
-**MVP 选择**: MediaPipe BlazePose
-
-| 属性 | 值 |
-|-----|-----|
-| 精度 | AP 65% |
-| 速度 | 30 FPS |
-| 训练数据 | 0 (预训练) |
-| 平台 | iOS / Android 原生支持 |
-
-**选择理由**:
-
-- 开箱即用，MediaPipeTasksVision iOS SDK 官方支持
-- 33 关键点足够计算 X-Factor、肩转、髋转
-- 不需要任何训练数据
-
-!!! tip "🔧 调试工具: MediaPipe 骨架可视化"
-
-    Rerun 官方提供 [human_pose_tracking](https://rerun.io/examples/video-image/human_pose_tracking) 示例:
-
-    ```bash
-    pip install rerun-sdk
-    python -m rerun_demos.human_pose_tracking
-    ```
-
-    可验证:
-
-    - 33 关键点是否完整检测
-    - 关键点 visibility 是否足够 (遮挡问题)
-    - X-Factor 等特征计算是否正确 (叠加角度线)
-
-!!! note "备选方案"
-
-    | 方案 | 精度 | 速度 | 何时考虑 |
-    |-----|------|------|---------|
-    | RTMPose | AP 75.8% | 25 FPS | 需要更高精度 |
-    | ViTPose++ | AP 81% | 15 FPS | 精度优先，速度可接受 |
-    | Custom Model | 待定 | 待定 | 积累大量高尔夫数据后 |
-
-#### 3.1.1 可计算的特征
-
-| 特征 | 计算方法 | 关键点 | 用途 |
-|-----|---------|--------|------|
-| **X-Factor** | 肩部连线角 - 骨盆连线角 | 11,12,23,24 | 蓄力评估 |
-| **X-Factor Stretch** | 下杆期最大 X-Factor - Top 时 X-Factor | 同上 | 蓄力质量 |
-| **S-Factor** | 肩部倾斜角 | 11,12 | 姿态评估 |
-| **O-Factor** | 骨盆倾斜角 | 23,24 | 下盘稳定 |
-| **Sway/Lift** | 髋部中心位移 vs Address | 23,24 | 重心控制 |
-
-!!! tip "详细算法实现"
-    计算代码见 [传感器指标映射 §3.1](./sensor-metric-mapping.md#31-vision-检测-mediapipe-33-landmarks)
-
-### 3.2 IMU Block
-
-**职责**: 从惯性测量单元提取角速度、加速度等时序特征
-
-**MVP 选择**: 模拟数据 (Simulated JSON)
-
-| 属性 | 值 |
-|-----|-----|
-| 数据源 | JSON 文件 (基于研究论文) 或从 Pose 数据生成 |
-| 采样率 | 100Hz (模拟) / 1666Hz (真实) |
-| 用途 | 开发调试，验证完整管道，无需等待硬件 |
-
-**模拟数据设计**:
-
-- 峰值角速度: 800-1500°/s (职业范围)
-- 节奏比: 2.5-3.5:1 (理想范围)
-- 噪声模型: 高斯噪声 + 漂移模拟
-
-!!! tip "🔧 调试工具: IMU 曲线与阶段对齐"
-
-    **问题**: 模拟 IMU 数据的峰值/零交叉点是否正确?
-
-    **Rerun 解决方案**:
-
-    ```text
-    gyro_z (°/s)
-         │
-    1200 ┤                    ●─── Impact 峰值
-         │                   ╱│
-     600 ┤                  ╱ │
-         │                 ╱  │
-       0 ┤────────────●───╱───┴──── Top (零交叉)
-         │   Address   ╲ ╱
-    -600 ┤              V
-         └────────────────────────────→ time
-    ```
-
-    Rerun 曲线视图可以自动检测峰值和零交叉，与视频帧同步验证
-
-#### 3.2.1 模拟 IMU 数据生成
-
-**原理**: 用 MediaPipe 关键点序列**导数**近似 IMU 角速度
-
-| 函数 | 输入 | 输出 |
-|-----|------|------|
-| `simulate_imu_from_pose()` | MediaPipe 33 关键点序列 | `List[SimulatedIMUFrame]` |
-
-**数据结构**:
-
-```python
-@dataclass
-class SimulatedIMUFrame:
-    timestamp_ms: int        # 时间戳
-    gyro_z: float            # 主轴角速度 (°/s)
-    gyro_magnitude: float    # 合成角速度
-    accel_magnitude: float   # 合成加速度
-    phase_hint: str          # 预期阶段 (TOP/IMPACT/...)
-```
-
-!!! tip "完整算法实现"
-    详细代码和测试场景见 [传感器指标映射 §8.1](./sensor-metric-mapping.md#81-从-pose-数据生成模拟-imu)
-
-!!! note "真实硬件选项 (Phase 2+)"
-
-    **推荐硬件**: Adafruit LSM6DSV16X (ADA-5783) — 45+ 分钟漂移稳定性
-
-    | 方案 | 精度 | 硬件 | 何时引入 |
-    |-----|------|------|---------|
-    | Single Wrist IMU | ±9-15ms | LSM6DSV16X | 硬件原型完成 |
-    | Dual IMU | ±5ms | Wrist + Pelvis | 运动链分析 |
-    | Multi-point (4+) | ±2ms | 完整穿戴 | 完整运动链 |
-
-    ⚠️ **WitMotion WT901 警告**: 必须禁用其 BLE，通过 I2C 连接 ESP32 使用
-
-#### 3.2.3 真实 IMU 检测能力
-
-| 特征 | 描述 | 阈值参考 | 用途 |
-|-----|------|---------|------|
-| **Peak Angular Velocity** | 杆头最大角速度 | Pro: 800-1500°/s | 爆发力评估 |
-| **Kinematic Sequence** | 运动链时序 | Pelvis→Torso→Arm→Club | 动力传递验证 |
-| **Tempo Ratio** | 上杆/下杆时间比 | 理想: 2.5-3.5:1 | 节奏评估 |
-| **Transition Timing** | 转换点精度 | ±0.6ms 可检测 | 力量爆发点 |
-
-!!! tip "详细算法实现"
-    峰值检测、运动链验证代码见 [传感器指标映射 §3.2](./sensor-metric-mapping.md#32-imu-检测-lsm6dsv16x--1666hz)
-
-### 3.3 EMG Block
-
-**职责**: 从肌电传感器提取肌肉激活时序和强度
-
-**MVP 选择**: 模拟数据 (Simulated JSON)
-
-| 属性 | 值 |
-|-----|-----|
-| 数据源 | JSON 文件 (基于研究论文) 或根据阶段时间戳生成 |
-| 通道数 | 2 (Core + Forearm) |
-| 采样率 | 500Hz (模拟) / 1000Hz (真实) |
-
-**模拟数据设计**:
-
-- 正确模式: Core 先于 Forearm 激活 (>20ms)
-- 错误模式: Forearm 先于 Core (模拟"手臂先动"问题)
-- 包络处理: RMS 平滑后归一化到 0-100%
-
-!!! tip "🔧 调试工具: EMG 激活时序可视化"
-
-    **问题**: 如何验证 Core 真的比 Forearm 先激活?
-
-    **Rerun 解决方案**:
-
-    ```text
-    EMG 包络 (归一化)
-      1.0│      Core (红)     Forearm (蓝)
-         │        ┌──╮           ┌──╮
-      0.5│       ╱    ╲         ╱    ╲
-         │      ╱      ╲       ╱      ╲
-      0.0├─────●────────╲─────●────────╲────→ time
-              ↑ Core     ╲    ↑ Forearm
-              onset       ╲   onset
-              (570ms)      ╲  (720ms)
-                            ╲
-                         gap = 150ms ✓
-    ```
-
-    两条 EMG 曲线叠加显示，onset 标记一目了然
-
-#### 3.3.1 模拟 EMG 数据生成
-
-**原理**: 根据已知生物力学时序生成**符合真实模式**的 EMG 信号
-
-| 模式 | 描述 | 时序特征 |
-|------|------|---------|
-| `CORRECT` | 正确运动链 | Core 先于 Forearm >20ms |
-| `ARMS_FIRST` | 错误 — 手臂先动 | Forearm 先于 Core |
-| `FALSE_COIL` | 假性蓄力 | 时序正确，Core <50% |
-| `FATIGUED` | 疲劳模式 | 整体激活衰减 |
-
-**核心函数**: `simulate_emg_from_phases(phase_timestamps, pattern) → SimulatedEMGResult`
-
-!!! warning "False Coil 是竞争护城河"
-    假性蓄力 (False Coil) 是**只有三模态融合才能检测**的问题:
-
-    - Vision 看到: X-Factor = 45° ✅ (正常)
-    - IMU 看到: 正常旋转时序 ✅
-    - EMG 看到: Core activation = 30% ❌ (过低)
-
-    结论: 球员"装"出了正确的姿势，但核心肌群没有真正参与。
-    这是 Vision-only 竞品永远无法检测的问题。
-
-!!! tip "完整算法实现"
-    详细代码和测试场景见 [传感器指标映射 §8.2](./sensor-metric-mapping.md#82-从阶段时间戳生成模拟-emg)
-
-!!! note "真实硬件选项 (Phase 2+)"
-
-    🔴 **CRITICAL**: MyoWare 2.0 没有焊孔，只有 Snap 扣。Link Shield (DEV-18425) 是**必需品**！
-
-    **推荐套装** (每个身体部位):
-    - 1x MyoWare 2.0 Muscle Sensor (~$40)
-    - 1x MyoWare 2.0 Link Shield ($4.50) ← 必需！
-
-    ⚠️ **警告**: DFRobot SEN0240 有线缆噪声问题，仅适用静态测量，不适合高速挥杆。
-
-    | 方案 | 通道 | 肌肉群 | 何时引入 |
-    |-----|------|-------|---------|
-    | 2-channel | 2 | Core + Forearm | 硬件原型 |
-    | 4-channel | 4 | + Gluteus, Adductors | 下肢分析 |
-    | 6-channel | 6 | + Lats, Deltoids | 完整上身 |
-
-#### 3.3.2 EMG 电极布局规划
-
-MVP 阶段使用 2 通道 (Core + Forearm)，后续渐进扩展：
-
-| 阶段 | 通道 | 肌群覆盖 | 可检测能力 |
-|-----|------|---------|-----------|
-| **Phase 1** | 2 | 腹直肌 + 前臂屈肌 | False Coil, 核心激活时序 |
-| **Phase 2** | 4 | + 臀大肌, 内收肌 | 下肢驱动, 髋部稳定 |
-| **Phase 3** | 6 | + 背阔肌, 三角肌 | 完整力链验证 |
-
-!!! tip "详细布局图"
-    电极放置位置、选择依据见 [传感器指标映射 §6](./sensor-metric-mapping.md#6-emg-传感器布局规划-emg-sensor-placement-plan)
-
-#### 3.3.4 真实 EMG 检测能力
-
-| 特征 | 描述 | 信号处理 | 用途 |
-|-----|------|---------|------|
-| **Muscle Onset** | 肌肉激活起始时间 | 阈值检测 (10% MVC) | 运动链时序 |
-| **Peak Activation** | 最大肌电幅值 | RMS 包络 | 力量输出评估 |
-| **Fatigue Detection** | 肌肉疲劳指标 | 频谱中值下降 | 训练负荷监控 |
-| **Co-activation** | 拮抗肌同时激活 | 双通道比较 | 动作效率分析 |
-
-!!! tip "详细算法实现"
-    信号处理、特征提取代码见 [传感器指标映射 §3.3](./sensor-metric-mapping.md#33-emg-检测-unique-capability)
-
----
-
-## 4. 🧠 分析层 ANALYSIS LAYER
-
-对提取的特征进行智能分析，识别挥杆阶段并融合多模态数据。
-
-### 4.1 CLASSIFIER Block
-
-**职责**: 根据关键点序列识别挥杆的 8 个阶段
-
-**MVP 选择**: Simple Rules (基于 IMU 信号)
-
-| 属性 | 值 |
-|-----|-----|
-| 方法 | IMU gyro_z 信号分析 |
-| Top 检测 | gyro_z 零交叉点 (方向反转) |
-| Impact 检测 | gyro_z 峰值点 (最大角速度) |
-| 训练数据 | 0 (纯规则) |
-| 精度 | ±0.6ms (IMU 原生精度) |
-
-**选择理由**:
-
-- **无需训练数据** — 纯物理信号分析
-- **更高精度** — IMU 1666Hz vs Vision 30Hz
-- **可解释性强** — 零交叉和峰值点有明确物理意义
-- **调试简单** — Rerun 中一眼可见峰值和零交叉
-
-```text
-Phase 检测原理 (Simple Rules):
-───────────────────────────────
-gyro_z (°/s)
-     │
-1200 ┤                    ●─── Impact (峰值点)
-     │                   ╱│
- 600 ┤                  ╱ │
-     │                 ╱  │
-   0 ┤────────────●───╱───┴──── Top (零交叉点)
-     │   Address   ╲ ╱
--600 ┤              V
-     └────────────────────────────→ time
-
-Top = gyro_z 从负→正 零交叉 (上杆结束，下杆开始)
-Impact = gyro_z 正向峰值 (最大旋转速度)
-```
-
-!!! note "备选方案 (Phase 2+)"
-
-    | 方案 | 准确率 | 训练数据 | 速度 | 何时考虑 |
-    |-----|-------|---------|------|---------|
-    | **SwingNet** | 71.5% | 0 (预训练) | 5ms | 需要完整 8 阶段划分时 |
-    | Random Forest | ~65% | ~500 videos | <1ms | 快速 baseline |
-    | BiGRU | ~80% | ~1000 videos | 3ms | 积累 1000 视频后 |
-    | Transformer | ~88% | ~10000+ | 10ms | 大量数据后 |
-
-    **研究发现 (CaddieSet CVPR 2025)**: 关节特征 + 时序模型 (MSE 8.80) 优于纯视觉 Transformer (MSE 32.32)
-
-### 4.2 FUSION Block
-
-**职责**: 融合 Vision + IMU + EMG 三模态数据，交叉验证并检测异常
-
-**MVP 选择**: Simple Merge
-
-| 属性 | 值 |
-|-----|-----|
-| 方法 | 简单合并各传感器特征 |
-| 复杂度 | 低 |
-| 用途 | 快速验证管道 |
-
-**融合三原则**:
-
-1. **互补性** — Vision (空间姿态) + IMU (精确时序) + EMG (肌肉状态)
-2. **交叉验证** — Vision "Top" + IMU zero-crossing → 确认; 不一致 → 降低置信度
-3. **异常检测** — 传感器间矛盾 → 标记异常 (穿戴问题/传感器故障)
-
-#### 4.2.1 核心诊断算法 {#421-核心诊断算法}
-
-FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模态融合才能实现。
-
-> **实现代码**: 见 [传感器指标映射 §9 融合诊断算法](./sensor-metric-mapping.md#9-融合诊断算法-fusion-diagnostic-algorithms)
-
-| 算法 | 函数名 | 检测内容 | 所需传感器 |
-|-----|-------|---------|-----------|
-| 运动链序列验证 | `validate_kinematic_sequence()` | Core 是否先于 Forearm 激活 | EMG |
-| 假蓄力检测 | `detect_false_coil()` | X-Factor 高但核心肌群未激活 | Vision + EMG |
-| 力量链验证 | `verify_force_chain()` | 三模态数据一致性验证 | Vision + IMU + EMG |
-| 诊断入口 | `run_fusion_diagnostics()` | 整合所有诊断，返回主要反馈 | All |
-
-!!! tip "🔧 调试工具: 诊断规则验证"
-
-    **问题**: 规则是否在正确的条件下触发?
-
-    **Rerun 调试流程**:
-
-    1. 录制一个 "ARMS_BEFORE_CORE" 问题挥杆
-    2. 在 Rerun 中标记:
-        - EMG Core onset: 640ms
-        - EMG Forearm onset: 580ms
-        - 规则触发时刻: 720ms
-    3. 验证: `timing_gap = 580 - 640 = -60ms < 0` → 规则应该触发 ✓
-    4. 如果规则没触发 → 检查阈值设置
-
-    保存 `.rrd` 文件作为回归测试用例
-
-**诊断严重度分级**:
-
-| 级别 | 含义 | 示例 |
-|-----|-----|------|
-| P0_CRITICAL | 必须修正，影响挥杆效果 | `ARMS_BEFORE_CORE`, `FALSE_COIL` |
-| P1_IMPORTANT | 建议修正，影响一致性 | `LOW_X_FACTOR`, `WEAK_CORE_LEAD` |
-| P2_MINOR | 可选优化 | `PHASE_MISMATCH` |
-| INFO | 仅供参考 | 正确序列确认 |
-
-#### 4.2.2 诊断规则速查表
-
-| 规则 ID | 严重度 | 触发条件 | 需要的传感器 |
-|--------|--------|---------|-------------|
-| `ARMS_BEFORE_CORE` | P0 | Forearm 先于 Core 激活 | EMG |
-| `FALSE_COIL` | P0 | X-Factor ≥35° 但 Core <50% | Vision + EMG |
-| `COMPENSATION_DETECTED` | P0 | 峰值速度高但 Core 激活低 | IMU + EMG |
-| `LOW_X_FACTOR` | P1 | X-Factor <35° | Vision |
-| `WEAK_CORE_LEAD` | P1 | Core 领先 Forearm <20ms | EMG |
-| `PHASE_MISMATCH` | P2 | Vision 和 IMU 阶段不一致 | Vision + IMU |
-
-!!! success "三模态独有能力"
-    以上规则中，**P0 级别的三个规则都需要 EMG 数据**。
-    这意味着:
-
-    - Vision-only 竞品只能检测 `LOW_X_FACTOR` (P1)
-    - Vision+IMU 竞品可以检测 `PHASE_MISMATCH` (P2)
-    - **只有 Vision+IMU+EMG 能检测全部 P0 问题**
-
-!!! note "备选融合方法"
-
-    | 方案 | 复杂度 | 何时考虑 |
-    |-----|-------|---------|
-    | Rule-based | 中 | 明确传感器优先级后 |
-    | Weighted Average | 中 | 已知各传感器可靠性 |
-    | Kalman Filter | 高 | 需要实时平滑 |
-    | ML Fusion | 高 | 有足够融合训练数据 |
-
----
-
-## 5. MVP 策略 MVP Strategy
-
-### 5.1 MVP 核心输出: 时间对齐的融合数据
+### 3.1 MVP 核心输出: 时间对齐的融合数据
 
 !!! abstract "🎯 MVP 的核心价值: Time-Aligned FusionResult"
 
@@ -1015,7 +1176,7 @@ FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模�
     └─────────────────────────────────────────────────────────────────────────────┘
     ```
 
-### 5.2 MVP 模式聚焦: Mode 3 (Full Speed)
+### 3.2 MVP 模式聚焦: Mode 3 (Full Speed)
 
 !!! info "MVP 只实现 Mode 3，其他模式放到 Phase 2/3"
 
@@ -1032,7 +1193,7 @@ FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模�
     3. **Rerun 友好** — 录制 .rrd 文件分享给团队协作
     4. **优先验证核心价值** — 时间对齐是否正确比实时性更重要
 
-### 5.3 MVP 架构图
+### 3.3 MVP 架构图
 
 MVP 使用**完整的 4 层架构**，只是将真实硬件替换为模拟数据源：
 
@@ -1075,7 +1236,7 @@ flowchart TB
     RESULT --> RERUN
 ```
 
-**FusionResult 输出结构** (见 [§2.4 接口契约](#24-积木块接口契约)):
+**FusionResult 输出结构** (见 [§2.4 分析诊断层](#24-分析诊断层)):
 
 ```text
 FusionResult {
@@ -1096,7 +1257,7 @@ FusionResult {
     | **分析层** | Simple Rules + Simple Merge | → SwingNet/BiGRU + Kalman Filter |
     | **输出层** | FusionResult → Rerun 可视化 | → App UI + TTS |
 
-### 5.4 模拟数据验证全管道
+### 3.4 模拟数据验证全管道
 
 **核心思路**: 真实 MediaPipe + 模拟 IMU/EMG = 完整管道验证
 
@@ -1109,7 +1270,7 @@ FusionResult {
 4. 降低并行开发的耦合度 (软件不等硬件)
 ```
 
-### 5.5 渐进式升级路径
+### 3.5 渐进式升级路径
 
 ```text
 Phase 1: MVP (Mode 3 Only)
@@ -1175,9 +1336,9 @@ Real EMG ───────────┼→ Weighted Fusion → Advanced Di
 
 ---
 
-## 6. 积木替换示例 Block Replacement
+## 4. 积木替换示例 Block Replacement {#4-积木替换示例}
 
-### 6.1 替换 CLASSIFIER Block
+### 4.1 替换 CLASSIFIER Block
 
 ```text
 当前 (MVP):
@@ -1194,7 +1355,7 @@ Camera → MediaPipe → [BiGRU] → 8 Phases
 5. 其他代码不变
 ```
 
-### 6.2 替换 IMU Block
+### 4.2 替换 IMU Block
 
 ```text
 当前 (MVP):
@@ -1210,7 +1371,7 @@ Real LSM6DSV16X → [Real IMU Block] → 6 Features
 4. 特征提取逻辑不变
 ```
 
-### 6.3 替换 FUSION Block
+### 4.3 替换 FUSION Block
 
 ```text
 当前 (MVP):
@@ -1228,11 +1389,11 @@ Vision + Real IMU + Real EMG → [Kalman Filter] → Output
 
 ---
 
-## 7. Rerun 调试工具汇总 Debugging Tools Summary
+## 5. Rerun 调试工具汇总 Debugging Tools Summary {#5-rerun-调试工具}
 
 本文档多处提到 [Rerun](https://rerun.io/) 作为多模态数据调试工具。本节汇总所有调试场景。
 
-### 7.1 快速开始
+### 5.1 快速开始
 
 ```bash
 # 安装
@@ -1249,19 +1410,18 @@ rr.log("imu/gyro_z", rr.Scalar(gyro_z))
 rr.log("emg/core", rr.Scalar(core_activation))
 ```
 
-### 7.2 调试场景速查表
+### 5.2 调试场景速查表
 
 | 场景 | 相关章节 | Rerun 功能 | 解决的问题 |
 |------|---------|-----------|-----------|
-| **时间同步验证** | [§2.2](#22-时间同步策略) | 时间轴视图 + 多通道对齐 | 验证 Vision/IMU/EMG 是否 <10ms 对齐 |
-| **交叉验证可视化** | [§2.5](#机制-2-双重三重验证-cross-validation) | 曲线叠加 + 置信度通道 | 验证 Vision 和 IMU 阶段检测一致性 |
-| **反馈时机验证** | [§2.6](#26-用户反馈翻译层) | 录制 .rrd + 反复回放 | 验证规则触发时机是否正确 |
-| **MediaPipe 骨架** | [§3.1](#31-pose-block) | 官方 human_pose_tracking | 验证 33 关键点检测和特征计算 |
-| **IMU 曲线分析** | [§3.2](#32-imu-block) | 峰值/零交叉自动检测 | 验证模拟/真实 IMU 数据质量 |
-| **EMG 激活时序** | [§3.3](#33-emg-block) | 双曲线叠加 + onset 标记 | 验证 Core 是否先于 Forearm 激活 |
-| **诊断规则调试** | [§4.2.1](#421-核心诊断算法) | 标记触发点 + 回归测试 | 验证 ARMS_BEFORE_CORE 等规则逻辑 |
+| **时间同步验证** | [§2.2.2](#222-时间同步策略) | 时间轴视图 + 多通道对齐 | 验证 Vision/IMU/EMG 是否 <10ms 对齐 |
+| **交叉验证可视化** | [§2.2.5](#225-融合引擎) | 曲线叠加 + 置信度通道 | 验证 Vision 和 IMU 阶段检测一致性 |
+| **MediaPipe 骨架** | [§2.3.2](#232-pose-block) | 官方 human_pose_tracking | 验证 33 关键点检测和特征计算 |
+| **IMU 曲线分析** | [§2.3.3](#233-imu-block) | 峰值/零交叉自动检测 | 验证模拟/真实 IMU 数据质量 |
+| **EMG 激活时序** | [§2.3.4](#234-emg-block) | 双曲线叠加 + onset 标记 | 验证 Core 是否先于 Forearm 激活 |
+| **诊断规则调试** | [§2.4.2](#242-fusion-block) | 标记触发点 + 回归测试 | 验证 ARMS_BEFORE_CORE 等规则逻辑 |
 
-### 7.3 开发阶段使用建议
+### 5.3 开发阶段使用建议
 
 ```text
 Phase 1 (Week 1-2): Vision Pipeline
@@ -1283,7 +1443,7 @@ Phase 4+ (Week 5-8): Integration & Testing
 └── 推荐: 分享 .rrd 给团队成员协作调试
 ```
 
-### 7.4 详细评估
+### 5.4 详细评估
 
 关于 Rerun 的完整技术评估、竞品对比、未来 TAPIR 球杆追踪规划，详见:
 
@@ -1292,7 +1452,7 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 ---
 
-## 8. 相关文档 Related Documents
+## 6. 相关文档 Related Documents {#6-相关文档}
 
 ### 核心文档
 
@@ -1320,10 +1480,16 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 ---
 
-## 9. 版本历史
+## 7. 版本历史 {#7-版本历史}
 
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|
+| 2.7 | 2025-12-27 | 章节重构 — 对齐 7 阶段架构 |
+| | | • §2.4: 新增分析诊断层 (Stage 5)，合并原 §3 分析层 + §2.4 置信度计算逻辑 |
+| | | • §2.5: 用户反馈翻译层重新编号为 (Stage 6-7) |
+| | | • §3-§7: 全部章节重新编号 (原 §4-§8) |
+| | | • §1.3: 更新 Stage 4/5/6-7 的锚点链接 |
+| | | • §5.2: 更新诊断规则调试链接指向 §2.4.2 |
 | 2.6 | 2025-12-23 | 硬件与架构更新 (基于 architecture-decisions-2025-12-23.md) |
 | | | • §1.3: 新增原则 #6 "六边形架构" — Ports & Adapters 模式 |
 | | | • §2.4.1: 新增 BLE 传输抖动警告 (±15-30ms) |
