@@ -39,15 +39,37 @@
 
 > 📐 **完整 7 阶段架构图**: 见 [系统设计 §1.2](./system-design.md#12-完整系统架构目标态)
 
-| Stage | 层级 | 对应积木块 | 关键输出 |
-|-------|------|-----------|---------|
-| 1 | 用户挥杆 | (物理动作，无软件) | 用户开始挥杆 |
-| 2 | 数据采集层 | [CAMERA](#211-camera-block), [ARM_HUB](#212-arm-hub-block), [CORE_HUB](#213-core-hub-block), [BLE](#214-ble-block) | 原始传感器流 |
-| 3 | 传感器融合层 | [TIME_ALIGN](#221-time-align-block) (见 [§2.2](#22-传感器融合层)) | 统一时间轴数据 |
-| 4 | 特征提取层 | [POSE](#232-pose-block), [IMU](#233-imu-block), [EMG](#234-emg-block) | 12 个结构化指标 |
-| 5 | 分析诊断层 | [CLASSIFIER](#241-classifier-block), [FUSION](#242-fusion-block) (见 [§2.4](#24-分析诊断层)) | 8阶段 + 6规则诊断 |
-| 6 | AI 反馈生成层 | [PROMPT](#251-prompt-block), [LLM](#252-llm-block) (见 [§2.5](#25-ai-反馈生成层)) | Kinematic Prompts + 自然语言 |
-| 7 | 用户反馈呈现层 | [OUTPUT](#261-output-block) (见 [§2.6](#26-用户反馈呈现层)) | UI/TTS/触觉/Ghost |
+| Stage | 层级 | Block 数 | 对应积木块 | 关键输出 |
+|-------|------|:--------:|-----------|---------|
+| 1 | 用户挥杆 | — | (物理动作，无软件) | 用户开始挥杆 |
+| 2 | 数据采集层 | 3 | [CAMERA](#211-camera-block), [SENSOR_HUB](#212-sensor-hub-block) ×N, [BLE](#213-ble-block) | 原始传感器流 |
+| 3 | 传感器融合层 | 1 | [TIME_ALIGN](#221-time-align-block) | 统一时间轴数据 |
+| 4 | 特征提取层 | 3 | [POSE](#232-pose-block), [IMU](#233-imu-block), [EMG](#234-emg-block) | 12 个结构化指标 |
+| 5 | 分析诊断层 | 2 | [CLASSIFIER](#241-classifier-block), [FUSION](#242-fusion-block) | 8阶段 + 6规则诊断 |
+| 6 | AI 反馈生成层 | 2 | [PROMPT](#251-prompt-block), [LLM](#252-llm-block) | Kinematic Prompts + 自然语言 |
+| 7 | 用户反馈呈现层 | 1 | [OUTPUT](#261-output-block) | UI/TTS/触觉/Ghost |
+| | **总计** | **12** | *(SENSOR_HUB 为可复用模块，部署 N 个实例)* | |
+
+#### 接口契约汇总
+
+| Stage | Block | 实例数 | Input 类型 | Output 类型 |
+|:-----:|-------|:------:|-----------|------------|
+| 2 | CAMERA | 1 | `CameraInput` | `CameraOutput` |
+| 2 | SENSOR_HUB | N | `SensorHubInput` | `SensorHubOutput` |
+| 2 | BLE | 1 | `BLEInput` | `BLEPacket` |
+| 3 | TIME_ALIGN | 1 | `TimeAlignInput` | `TimeAlignOutput` |
+| 4 | POSE | 1 | `VideoFrame` | `PoseResult` |
+| 4 | IMU | 1 | `RawIMU` | `IMUFeatures` |
+| 4 | EMG | 1 | `RawEMG` | `EMGFeatures` |
+| 5 | CLASSIFIER | 1 | `ClassifierInput` | `ClassifierResult` |
+| 5 | FUSION | 1 | `FusionInput` | `FusionResult` |
+| 6 | PROMPT | 1 | `PromptInput` | `PromptOutput` |
+| 6 | LLM | 1 | `LLMInput` | `LLMOutput` |
+| 7 | OUTPUT | 1 | `OutputInput` | `OutputResult` |
+
+> 💡 **SENSOR_HUB 复用**: 同一套固件代码，通过 `hub_id` 参数区分不同实例。MVP 部署 2 个 (N=2)。
+
+> 📐 **详细定义**: 各 Block 接口契约的完整 Python dataclass 定义见对应章节。
 
 ## 2 各阶段积木块详情
 
@@ -60,18 +82,26 @@ Stage 2 负责从三种传感器采集原始数据，并通过 BLE 传输到手�
 │                         数据采集层 DATA COLLECTION                            │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
-│   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐                   │
-│   │   CAMERA    │     │  ARM_HUB    │     │  CORE_HUB   │                   │
-│   │   Block     │     │   Block     │     │   Block     │                   │
-│   └──────┬──────┘     └──────┬──────┘     └──────┬──────┘                   │
-│          │                   │                   │                          │
-│          ▼                   ▼                   ▼                          │
+│   ┌─────────────┐     ┌─────────────────────────────────────┐               │
+│   │   CAMERA    │     │         SENSOR_HUB Block ×N         │               │
+│   │   Block     │     │  ┌───────────┐     ┌───────────┐    │               │
+│   │             │     │  │  Hub #0   │     │  Hub #1   │    │               │
+│   │             │     │  │ (hub_id=0)│ ... │ (hub_id=1)│    │               │
+│   │             │     │  └─────┬─────┘     └─────┬─────┘    │               │
+│   └──────┬──────┘     └────────┼─────────────────┼──────────┘               │
+│          │                     │                 │                          │
+│          ▼                     ▼                 ▼                          │
 │   ┌─────────────────────────────────────────────────────┐                   │
 │   │                    BLE Block                        │                   │
 │   │              (数据传输 + 时间戳同步)                   │                   │
-│                             │                                               │
-│                             ▼                                               │
-│                      📱 iPhone App                                          │
+│   │                                                     │                   │
+│   └───────────────────────────┬─────────────────────────┘                   │
+│                               ▼                                             │
+│                        📱 iPhone App                                        │
+│                                                                             │
+│   💡 同一套固件代码，通过 hub_id 参数区分实例                                    │
+│      MVP: N=2 (上肢 + 下肢)                                                  │
+│      扩展: N=4+ (四肢 + 躯干)                                                 │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -88,6 +118,16 @@ Stage 2 负责从三种传感器采集原始数据，并通过 BLE 传输到手�
 **接口契约**:
 
 ```python
+# Input: 物理世界 (无软件输入，由硬件直接采集)
+@dataclass
+class CameraInput:
+    """物理输入: iPhone 摄像头采集的视频帧"""
+    video_frame: bytes          # RGB 图像数据
+    width: int                  # 帧宽度
+    height: int                 # 帧高度
+    system_time_ms: int         # iOS 系统时间戳
+
+# Output
 @dataclass
 class CameraOutput:
     timestamp_ms: int           # 系统时钟时间戳
@@ -104,24 +144,50 @@ class Keypoint:
 
 **可替换性**: MediaPipe → RTMPose → 自训练模型 (接口不变)
 
-#### 2.1.2 ARM_HUB Block {#212-arm-hub-block}
+#### 2.1.2 SENSOR_HUB Block ×N {#212-sensor-hub-block}
+
+> **核心特性**: 可复用固件模块，通过 `hub_id` 参数区分不同实例
+>
+> **部署灵活性**: 同一套代码可部署于任意身体部位 (手臂、腿部、躯干等)
 
 | 属性 | 规格 |
 |------|------|
 | **MCU** | ESP32-S3 |
-| **IMU** | 2× LSM6DSV16X (双前臂) |
-| **EMG** | 1× MyoWare 2.0 (前臂) — *Elite 版* |
+| **IMU** | 2× LSM6DSV16X |
+| **EMG** | 1× MyoWare 2.0 — *Elite 版* |
 | **采样率** | IMU: 1666Hz, EMG: 1000Hz |
+| **实例数** | MVP: N=2, 扩展: N=4+ |
+
+**典型部署配置**:
+
+| hub_id | MVP 位置 | 扩展位置 (可选) |
+|:------:|---------|----------------|
+| 0 | 上肢 (双前臂) | 左臂 |
+| 1 | 下肢 (双大腿) | 右臂 |
+| 2 | — | 左腿 |
+| 3 | — | 右腿 |
+| 4 | — | 躯干/核心 |
 
 **接口契约**:
 
 ```python
+# Input: 物理传感器信号 (由硬件直接采集)
 @dataclass
-class ArmHubOutput:
+class SensorHubInput:
+    """物理输入: LSM6DSV16X + MyoWare 传感器原始信号"""
+    hub_id: int                 # 实例标识 (0, 1, 2, ...)
+    imu_registers: bytes        # IMU I2C 寄存器读取
+    emg_adc_value: int          # ADC 采样值 (0-4095)
+    esp_micros: int             # ESP32 微秒计数器
+
+# Output
+@dataclass
+class SensorHubOutput:
+    hub_id: int                 # 实例标识 (0, 1, 2, ...)
     timestamp_us: int           # ESP32 micros() 时间戳
-    left_arm_imu: IMUReading
-    right_arm_imu: IMUReading
-    forearm_emg: Optional[EMGReading]  # Elite 版才有
+    imu_1: IMUReading           # 第一个 IMU
+    imu_2: IMUReading           # 第二个 IMU
+    emg: Optional[EMGReading]   # Elite 版才有
 
 @dataclass
 class IMUReading:
@@ -135,41 +201,48 @@ class EMGReading:
     envelope: float     # 包络 (RMS 滤波)
 ```
 
-#### 2.1.3 CORE_HUB Block {#213-core-hub-block}
+!!! tip "固件复用优势"
 
-| 属性 | 规格 |
-|------|------|
-| **MCU** | ESP32-S3 |
-| **IMU** | 2× LSM6DSV16X (双大腿) |
-| **EMG** | 1× MyoWare 2.0 (核心) — *Elite 版* |
-| **采样率** | IMU: 1666Hz, EMG: 1000Hz |
+    **同一套固件代码** 部署到所有 SENSOR_HUB 实例:
 
-**接口契约**: 与 ARM_HUB 结构相同，字段为 `left_leg_imu`, `right_leg_imu`, `core_emg`。
+    - 开发效率: 只需维护一份代码
+    - 测试覆盖: 一次测试覆盖所有实例
+    - OTA 升级: 统一固件版本管理
+    - 扩展性: 添加新 Hub 只需配置 `hub_id`
 
-#### 2.1.4 BLE Block {#214-ble-block}
+#### 2.1.3 BLE Block {#213-ble-block}
 
 | 属性 | 规格 |
 |------|------|
 | **协议** | BLE 5.0 |
 | **延迟** | < 30ms |
 | **MTU** | 244 bytes |
-| **连接** | 2 个外设 (Arm Hub + Core Hub) |
+| **连接** | N 个外设 (SENSOR_HUB ×N) |
 
 **职责**:
 
-1. 接收 ESP32 数据包 (含源端时间戳)
+1. 接收 ESP32 数据包 (含源端时间戳 + hub_id)
 2. 计算传输延迟并补偿
 3. 将数据转发到融合层
 
 **接口契约**:
 
 ```python
+# Input: 来自 ESP32 的 BLE 通知
+@dataclass
+class BLEInput:
+    characteristic_uuid: str    # BLE 特征 UUID
+    raw_bytes: bytes            # 原始字节流
+    rssi: int                   # 信号强度
+
+# Output
 @dataclass
 class BLEPacket:
-    source: str           # "arm_hub" | "core_hub"
+    hub_id: int           # SENSOR_HUB 实例标识 (0, 1, 2, ...)
     esp_timestamp_us: int # ESP32 源端时间戳
     receive_time_ms: int  # iPhone 接收时间
     payload: bytes        # IMU/EMG 数据
+    latency_ms: float     # 估算的传输延迟
 ```
 
 ---
@@ -211,9 +284,9 @@ Stage 3 负责将三模态数据对齐到统一时间轴，并执行交叉验证
 ```python
 @dataclass
 class TimeAlignInput:
-    vision_frames: List[CameraOutput]   # 30fps, 带时间戳
-    imu_readings: List[ArmHubOutput]    # 1666Hz, 带时间戳
-    emg_readings: List[EMGReading]      # 1000Hz, 带时间戳 (Elite 版)
+    vision_frames: List[CameraOutput]       # 30fps, 带时间戳
+    hub_readings: List[SensorHubOutput]     # N 个 Hub, 各 1666Hz, 带时间戳 + hub_id
+    # EMG 数据包含在 SensorHubOutput 中 (Elite 版)
 
 @dataclass
 class TimeAlignOutput:
@@ -606,73 +679,168 @@ Stage 4 从原始传感器数据中提取结构化特征。每个 Block 负责�
 
 每个积木块有明确的输入/输出契约，确保可替换性:
 
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         积木块接口契约 BLOCK INTERFACE CONTRACTS             │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│   [POSE Block]                                                              │
-│   ─────────────────────────────────────────────────────                     │
-│   Input:  VideoFrame { rgb: [H, W, 3], timestamp_ms: int }                 │
-│   Output: PoseResult {                                                      │
-│       keypoints: [33 × {x: float, y: float, z: float, visibility: float}], │
-│       timestamp_ms: int,                                                    │
-│       features: {                                                           │
-│           x_factor: float,      // 肩髋分离角 (度)                          │
-│           s_factor: float,      // 肩部倾斜角 (度)                          │
-│           o_factor: float,      // 骨盆倾斜角 (度)                          │
-│           sway: float,          // 髋部侧移 (归一化)                        │
-│           lift: float           // 髋部抬升 (归一化)                        │
-│       }                                                                     │
-│   }                                                                         │
-│                                                                             │
-│   [IMU Block]                                                               │
-│   ─────────────────────────────────────────────────────                     │
-│   Input:  RawIMU { gyro: [x,y,z] °/s, accel: [x,y,z] g, timestamp_us: int }│
-│   Output: IMUFeatures {                                                     │
-│       phase: string,            // 当前检测到的阶段 (Address/Top/Impact/...)│
-│       phase_confidence: float,  // 阶段置信度 [0-1]                         │
-│       peak_velocity: float,     // 峰值角速度 (°/s)                         │
-│       tempo_ratio: float,       // 上杆/下杆时间比                          │
-│       timestamp_ms: int                                                     │
-│   }                                                                         │
-│                                                                             │
-│   [EMG Block]                                                               │
-│   ─────────────────────────────────────────────────────                     │
-│   Input:  RawEMG { channels: {core: [mV], forearm: [mV]}, timestamp_ms: int}│
-│   Output: EMGFeatures {                                                     │
-│       onset_times: {core_ms: int, forearm_ms: int},                        │
-│       activation_pct: {core: float, forearm: float},  // [0-1]             │
-│       timing_gap_ms: int,       // forearm_onset - core_onset              │
-│       fatigue_ratio: float,     // 当前/初始激活强度比                      │
-│       timestamp_ms: int                                                     │
-│   }                                                                         │
-│                                                                             │
-│   [CLASSIFIER Block]                                                        │
-│   ─────────────────────────────────────────────────────                     │
-│   Input:  PoseSequence [N × PoseResult]                                    │
-│   Output: ClassifierResult {                                                │
-│       phases: [N × {label: int, confidence: float}],  // 0-7 每帧          │
-│       phase_boundaries: [{phase: int, start_ms: int, end_ms: int}]         │
-│   }                                                                         │
-│                                                                             │
-│   [FUSION Block]                                                            │
-│   ─────────────────────────────────────────────────────                     │
-│   Input:  {                                                                 │
-│       pose: PoseResult[],                                                   │
-│       imu: IMUFeatures,                                                     │
-│       emg: EMGFeatures,                                                     │
-│       classifier: ClassifierResult                                          │
-│   }                                                                         │
-│   Output: FusionResult {                                                    │
-│       phases: [{label: str, start_ms: int, end_ms: int, confidence: float}],│
-│       metrics: {x_factor, tempo_ratio, core_forearm_gap, peak_velocity, ...}│
-│       anomalies: [{type: str, severity: str, description: str}],           │
-│       overall_confidence: float,                                            │
-│       feedback: [{rule: str, message_cn: str, message_en: str}]            │
-│   }                                                                         │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
+##### POSE Block 接口
+
+```python
+# Input
+@dataclass
+class VideoFrame:
+    rgb: np.ndarray           # [H, W, 3] RGB 图像
+    timestamp_ms: int         # 帧时间戳
+
+# Output
+@dataclass
+class PoseResult:
+    keypoints: List[Keypoint] # 33 个关键点
+    timestamp_ms: int
+    features: PoseFeatures
+
+@dataclass
+class PoseFeatures:
+    x_factor: float           # 肩髋分离角 (度)
+    x_factor_stretch: float   # X-Factor 延展
+    s_factor: float           # 肩部倾斜角 (度)
+    o_factor: float           # 骨盆倾斜角 (度)
+    sway: float               # 髋部侧移 (归一化)
+    lift: float               # 髋部抬升 (归一化)
+```
+
+##### IMU Block 接口
+
+```python
+# Input
+@dataclass
+class RawIMU:
+    gyro: Vector3             # [x,y,z] °/s
+    accel: Vector3            # [x,y,z] g
+    timestamp_us: int         # 微秒时间戳
+
+# Output
+@dataclass
+class IMUFeatures:
+    phase: str                # 当前阶段 (Address/Top/Impact/...)
+    phase_confidence: float   # 阶段置信度 [0-1]
+    peak_velocity: float      # 峰值角速度 (°/s)
+    tempo_ratio: float        # 上杆/下杆时间比
+    backswing_duration_ms: int  # 上杆时长
+    downswing_duration_ms: int  # 下杆时长
+    timestamp_ms: int
+```
+
+##### EMG Block 接口
+
+```python
+# Input
+@dataclass
+class RawEMG:
+    core_mv: List[float]      # 核心肌群原始信号 (mV)
+    forearm_mv: List[float]   # 前臂原始信号 (mV)
+    timestamp_ms: int
+
+# Output
+@dataclass
+class EMGFeatures:
+    onset_times: OnsetTimes   # 激活起始时间
+    activation_pct: ActivationPct  # 激活百分比 [0-1]
+    timing_gap_ms: int        # forearm_onset - core_onset
+    fatigue_ratio: float      # 当前/初始激活强度比
+    timestamp_ms: int
+
+@dataclass
+class OnsetTimes:
+    core_ms: int
+    forearm_ms: int
+
+@dataclass
+class ActivationPct:
+    core: float               # [0-1]
+    forearm: float            # [0-1]
+```
+
+##### CLASSIFIER Block 接口
+
+```python
+# Input
+@dataclass
+class ClassifierInput:
+    pose_sequence: List[PoseResult]  # N 帧姿态序列
+    imu_features: Optional[IMUFeatures]  # 可选 IMU 辅助
+
+# Output
+@dataclass
+class ClassifierResult:
+    phases: List[PhaseLabel]  # N × {label, confidence}
+    phase_boundaries: List[PhaseBoundary]
+
+@dataclass
+class PhaseLabel:
+    label: int                # 0-7 阶段编号
+    confidence: float         # [0-1]
+
+@dataclass
+class PhaseBoundary:
+    phase: int                # 阶段编号
+    start_ms: int
+    end_ms: int
+```
+
+##### FUSION Block 接口
+
+```python
+# Input
+@dataclass
+class FusionInput:
+    pose: List[PoseResult]
+    imu: IMUFeatures
+    emg: EMGFeatures
+    classifier: ClassifierResult
+
+# Output
+@dataclass
+class FusionResult:
+    phases: List[FusedPhase]  # 融合后的阶段
+    metrics: SwingMetrics     # 12 个结构化指标
+    anomalies: List[Anomaly]  # 异常检测结果
+    overall_confidence: float # 整体置信度
+    triggered_rules: List[DiagnosticRule]  # 触发的诊断规则
+
+@dataclass
+class FusedPhase:
+    label: str                # "Address" / "Top" / "Impact" / ...
+    start_ms: int
+    end_ms: int
+    confidence: float
+
+@dataclass
+class SwingMetrics:
+    # Vision (6)
+    x_factor: float
+    x_factor_stretch: float
+    shoulder_turn: float
+    hip_turn: float
+    s_factor: float
+    sway_lift: float
+    # IMU (4)
+    peak_velocity: float
+    tempo_ratio: float
+    backswing_duration: float
+    downswing_duration: float
+    # EMG (2)
+    core_activation: float
+    core_forearm_gap: float
+
+@dataclass
+class Anomaly:
+    type: str                 # "FALSE_COIL" / "COMPENSATION" / ...
+    severity: str             # "P0" / "P1" / "P2"
+    description: str
+
+@dataclass
+class DiagnosticRule:
+    rule_id: str              # "ARMS_BEFORE_CORE" / "LOW_X_FACTOR" / ...
+    priority: str             # "P0" / "P1" / "P2"
+    message_cn: str
+    message_en: str
 ```
 
 #### 2.3.2 POSE Block 实现 {#232-pose-block}
@@ -1173,11 +1341,13 @@ class LLMOutput:
 **接口契约**:
 
 ```python
+# Input
 @dataclass
 class OutputInput:
     feedback_text: str        # LLM 生成的反馈
+    action_items: List[str]   # 可执行建议列表
     severity: str             # P0/P1/P2/INFO
-    metrics_summary: Dict     # 关键指标摘要
+    metrics_summary: Dict     # 关键指标摘要 (最多 3 个)
 
 @dataclass
 class OutputConfig:
@@ -1185,6 +1355,18 @@ class OutputConfig:
     enable_haptic: bool = True
     enable_ghost: bool = False  # Phase 2+
     max_metrics_display: int = 3
+    language: str = "zh"      # "zh" / "en"
+
+# Output: 用户感知的反馈 (终端呈现，无下游 Block)
+@dataclass
+class OutputResult:
+    """反馈呈现结果，用于日志和分析"""
+    tts_played: bool          # TTS 是否播放成功
+    tts_duration_ms: int      # TTS 播放时长
+    haptic_triggered: bool    # 触觉反馈是否触发
+    ui_rendered: bool         # UI 是否渲染成功
+    total_latency_ms: int     # 从挥杆结束到反馈呈现的总延迟
+    user_dismissed: bool      # 用户是否主动关闭反馈
 ```
 
 **反馈示例映射**:
@@ -1594,6 +1776,24 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|
+| 2.11 | 2025-12-27 | SENSOR_HUB 可复用架构 — 同一固件多实例部署 |
+| | | • HUB_A + HUB_B 合并为单一 SENSOR_HUB Block ×N |
+| | | • Block 总数: 13 → 12 (消除重复定义) |
+| | | • 新增 `hub_id` 字段区分实例 (0, 1, 2, ...) |
+| | | • 接口类: HubAInput/HubBOutput → SensorHubInput/SensorHubOutput |
+| | | • 新增典型部署配置表 (MVP N=2, 扩展 N=4+) |
+| | | • BLE Block 更新: 支持 N 个外设连接 |
+| | | • TIME_ALIGN Block 更新: hub_readings 替代分离的 imu/emg 输入 |
+| 2.10 | 2025-12-27 | Hub 命名通用化 — 支持多场景部署 |
+| | | • ARM_HUB → HUB_A, CORE_HUB → HUB_B (位置无关命名) |
+| | | • 接口类重命名: ArmHubInput/Output → HubAInput/Output |
+| | | • 字段通用化: left_arm_imu → imu_1, right_arm_imu → imu_2 |
+| | | • 新增 "部署位置: 可配置" 说明 |
+| 2.9 | 2025-12-27 | 接口契约完善 — 统一 Python dataclass 格式 |
+| | | • §1.3: 新增 Block 数列 + 接口契约汇总表，统计 13 个 Block 总计 |
+| | | • §2.1.1-2.1.4: 补全 Stage 2 采集层所有 Block 的 Input 接口 |
+| | | • §2.3.1: 重写接口契约 (ASCII → Python dataclass)，新增完整类型定义 |
+| | | • §2.6.1: 补全 OUTPUT Block 的 Output 接口 (OutputResult) |
 | 2.8 | 2025-12-27 | Stage 6-7 拆分为独立层级 |
 | | | • §2.5: 新增 AI 反馈生成层 (Stage 6) — PROMPT Block + LLM Block |
 | | | • §2.6: 新增用户反馈呈现层 (Stage 7) — OUTPUT Block |
