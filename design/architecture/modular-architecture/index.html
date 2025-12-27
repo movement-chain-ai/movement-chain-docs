@@ -5650,7 +5650,7 @@
 <tr>
 <td>3</td>
 <td>传感器融合层</td>
-<td>时间对齐引擎 (见 <a href="#24-时间同步策略">§2.4</a>)</td>
+<td>时间对齐引擎 (见 <a href="#23-时间同步策略">§2.3</a>)</td>
 <td>统一时间轴数据</td>
 </tr>
 <tr>
@@ -7281,7 +7281,7 @@
 
     FUSION --&gt; RESULT
     RESULT --&gt; RERUN</code></pre>
-<p><strong>FusionResult 输出结构</strong> (见 <a href="#26-积木块接口契约">§2.6 接口契约</a>):</p>
+<p><strong>FusionResult 输出结构</strong> (见 <a href="#25-积木块接口契约">§2.5 接口契约</a>):</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>FusionResult {
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    phases: [{label, start_ms, end_ms, confidence}],   // Top/Impact 时间边界
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    metrics: {x_factor, tempo_ratio, peak_velocity, ...}, // 12 指标
@@ -7504,7 +7504,7 @@
 <tbody>
 <tr>
 <td><strong>时间同步验证</strong></td>
-<td><a href="#24-时间同步策略">§2.4</a></td>
+<td><a href="#23-时间同步策略">§2.3</a></td>
 <td>时间轴视图 + 多通道对齐</td>
 <td>验证 Vision/IMU/EMG 是否 &lt;10ms 对齐</td>
 </tr>
@@ -7516,7 +7516,7 @@
 </tr>
 <tr>
 <td><strong>反馈时机验证</strong></td>
-<td><a href="#28-用户反馈翻译层">§2.8</a></td>
+<td><a href="#27-用户反馈翻译层">§2.7</a></td>
 <td>录制 .rrd + 反复回放</td>
 <td>验证规则触发时机是否正确</td>
 </tr>
