@@ -457,7 +457,7 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 
 !!! tip "时间对齐实现"
     Phase 2 时间对齐的具体实现方案（NTP 预同步 + Impact 验证）详见
-    [模块化架构 §2.4.1](modular-architecture.md#241-时间同步实现方案)。
+    [模块化架构 §2.2.1](modular-architecture.md#221-时间同步实现方案)。
 ```
 
 **融合优势**:

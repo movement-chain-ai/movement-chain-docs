@@ -37,108 +37,22 @@
 
 ## 2. 架构总览 Architecture Overview
 
-### 2.1 系统架构图
+!!! abstract "系统架构图"
+    完整的 7 阶段数据流架构图请参见 **[系统设计 §1.2](./system-design.md#12-完整系统架构目标态)**
 
-```mermaid
-flowchart TB
-    subgraph S1["🏌️ Stage 1: 用户挥杆"]
-        USER["高尔夫球手挥杆"]
-    end
+### 2.1 Stage 与积木块映射
 
-    subgraph S2["📥 Stage 2: 数据采集层"]
-        CAM["📹 Vision<br/>iPhone + MediaPipe<br/>30fps, 33关键点"]
-        ARM["🔄 Arm Hub<br/>ESP32-S3<br/>IMU + EMG"]
-        CORE["🔄 Core Hub<br/>ESP32-S3<br/>IMU + EMG"]
-    end
-
-    subgraph S3["⏱️ Stage 3: 传感器融合层"]
-        SYNC["时间对齐引擎<br/>IMU主时钟 1666Hz<br/>Impact T=0 对齐<br/>精度: <10μs"]
-    end
-
-    subgraph S4["⚙️ Stage 4: 特征提取层 (12指标)"]
-        V_FEAT["🦴 Vision (6)<br/>X-Factor, 转肩角<br/>转髋角, S-Factor等"]
-        I_FEAT["📊 IMU (4)<br/>峰值角速度, 节奏比<br/>上杆/下杆时长"]
-        E_FEAT["💪 EMG (2)<br/>核心激活%<br/>核心-前臂时序差"]
-    end
-
-    subgraph S5["🧠 Stage 5: 分析诊断层"]
-        PHASE["🎬 8阶段检测<br/>GolfDB标准"]
-        RULES["⚙️ 规则引擎<br/>6条诊断规则<br/>P0(2) + P1(4)"]
-        CAUSAL["⭐ 因果归因<br/>WHAT + WHY"]
-    end
-
-    subgraph S6["🤖 Stage 6: AI反馈生成层"]
-        KP["📝 Kinematic Prompts<br/>结构化数据"]
-        LLM["🧠 LLM翻译<br/>GPT-4o-mini<br/>200-500ms"]
-    end
-
-    subgraph S7["📤 Stage 7: 用户反馈层 (<500ms)"]
-        UI["📱 App UI<br/>1-3指标"]
-        TTS["🔊 语音TTS<br/>教练反馈"]
-        HAPTIC["📳 触觉反馈"]
-        GHOST["👻 Ghost叠加"]
-    end
-
-    USER --> CAM
-    USER --> ARM
-    USER --> CORE
-
-    CAM --> SYNC
-    ARM --> SYNC
-    CORE --> SYNC
-
-    SYNC --> V_FEAT
-    SYNC --> I_FEAT
-    SYNC --> E_FEAT
-
-    V_FEAT --> PHASE
-    V_FEAT --> RULES
-    I_FEAT --> RULES
-    E_FEAT --> RULES
-
-    PHASE --> CAUSAL
-    RULES --> CAUSAL
-
-    CAUSAL --> KP
-    KP --> LLM
-
-    LLM --> UI
-    LLM --> TTS
-    LLM --> HAPTIC
-    LLM --> GHOST
-
-    click V_FEAT "#31-pose-block"
-    click I_FEAT "#32-imu-block"
-    click E_FEAT "#33-emg-block"
-    click PHASE "#41-classifier-block"
-    click RULES "#42-fusion-block"
-```
-
-**核心价值链** (Stage 1 → Stage 7):
-
-| Stage | 层级 | 功能 | 关键技术 | 价值 |
-|-------|------|------|----------|------|
-| 1 | 用户挥杆 | 输入事件 | - | 触发数据采集 |
-| 2 | 数据采集层 | 三模态数据采集 | ESP32 Sensor Hub + MediaPipe | WHAT + WHEN + WHY |
-| 3 | 传感器融合层 | 时间对齐 <10μs | IMU 主时钟 + Impact T=0 | 因果推断基础 |
-| 4 | 特征提取层 | 12 个生物力学指标 | MediaPipe + NeuroKit2 | 结构化特征 |
-| 5 | 分析诊断层 | 规则引擎 + 因果归因 | 8阶段检测、6条规则 | **核心差异化** |
-| 6 | AI反馈层 | Kinematic Prompts → LLM | GPT-4o-mini | 教练级反馈 |
-| 7 | 用户反馈层 | 多模态反馈 <500ms | TTS、触觉、Ghost | 可执行建议 |
-
-### 2.2 架构层级说明
-
-> 上图的 7 阶段对应本文档后续章节的积木块：
+> 系统架构的 7 阶段对应本文档后续章节的积木块：
 
 | Stage | 层级 | 对应积木块 | 关键输出 |
 |-------|------|-----------|---------|
 | 1-2 | 用户挥杆 + 数据采集 | Camera, [IMU](#32-imu-block), [EMG](#33-emg-block) | 原始传感器流 |
-| 3 | 传感器融合层 | 时间对齐引擎 (见 [§2.3](#23-时间同步策略)) | 统一时间轴数据 |
+| 3 | 传感器融合层 | 时间对齐引擎 (见 [§2.2](#22-时间同步策略)) | 统一时间轴数据 |
 | 4 | 特征提取层 | [POSE](#31-pose-block), [IMU](#32-imu-block), [EMG](#33-emg-block) | 12 个结构化指标 |
 | 5 | 分析诊断层 | [CLASSIFIER](#41-classifier-block), [FUSION](#42-fusion-block) | 8阶段 + 6规则诊断 |
 | 6-7 | AI反馈 + 用户反馈 | LLM翻译、TTS、Ghost | 教练级可执行建议 |
 
-### 2.3 时间同步策略 {#23-时间同步策略}
+### 2.2 时间同步策略 {#22-时间同步策略}
 
 三模态融合的**基础**是精确的时间对齐:
 
@@ -196,7 +110,7 @@ flowchart TB
 
     > 详见 [可视化工具评估](../decisions/visualization-tools-evaluation.md)
 
-#### 2.3.1 时间同步实现方案 {#231-时间同步实现方案}
+#### 2.2.1 时间同步实现方案 {#221-时间同步实现方案}
 
 !!! warning "MVP 阶段说明"
 
@@ -322,7 +236,7 @@ class TimeAlignmentManager:
 > - [Twist-n-Sync 陀螺仪同步 (PMC7795013)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7795013/) - 16µs 精度，Google Research
 > - [Golf Swing IMU 分段 (PMC7472298)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7472298/) - Impact 检测精度 ±5-16ms
 
-#### 2.3.2 Sensor Hub 架构 (2025-12 推荐) {#sensor-hub-architecture}
+#### 2.2.2 Sensor Hub 架构 (2025-12 推荐) {#sensor-hub-architecture}
 
 !!! success "单一权威来源 — 所有 Sensor Hub 相关文档引用此处"
 
@@ -401,7 +315,7 @@ class TimeAlignmentManager:
 
 > **硬件购买清单**: 见 [关键决策 2025-12 §4.3](../decisions/architecture-decisions-2025-12-23.md#43-硬件购买清单)
 
-### 2.4 融合引擎: 三大机制
+### 2.3 融合引擎: 三大机制
 
 !!! info "融合不是简单叠加，而是三种机制的协同"
 
@@ -500,7 +414,7 @@ class TimeAlignmentManager:
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 2.5 积木块接口契约 {#25-积木块接口契约}
+### 2.4 积木块接口契约 {#24-积木块接口契约}
 
 每个积木块有明确的输入/输出契约，确保可替换性:
 
@@ -573,7 +487,7 @@ class TimeAlignmentManager:
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 2.6 置信度计算逻辑
+### 2.5 置信度计算逻辑
 
 融合提升置信度的核心算法:
 
@@ -595,7 +509,7 @@ class TimeAlignmentManager:
 !!! tip "算法实现"
     完整 Python 代码见 [传感器指标映射 §7](./sensor-metric-mapping.md#7-融合置信度计算-fusion-confidence)
 
-### 2.7 用户反馈翻译层 {#27-用户反馈翻译层}
+### 2.6 用户反馈翻译层 {#26-用户反馈翻译层}
 
 原始数据 → 规则引擎 → 自然语言反馈:
 
@@ -651,7 +565,7 @@ class TimeAlignmentManager:
     3. 验证规则逻辑是否正确
     4. 反复回放同一录制，调优阈值直到反馈时机合理
 
-### 2.8 竞品能力对比 & 系统能力矩阵
+### 2.7 竞品能力对比 & 系统能力矩阵
 
 !!! abstract "详细内容已移至单一来源"
     为避免重复维护，详细的竞品对比和能力矩阵表已整合到:
@@ -1161,7 +1075,7 @@ flowchart TB
     RESULT --> RERUN
 ```
 
-**FusionResult 输出结构** (见 [§2.5 接口契约](#25-积木块接口契约)):
+**FusionResult 输出结构** (见 [§2.4 接口契约](#24-积木块接口契约)):
 
 ```text
 FusionResult {
@@ -1339,9 +1253,9 @@ rr.log("emg/core", rr.Scalar(core_activation))
 
 | 场景 | 相关章节 | Rerun 功能 | 解决的问题 |
 |------|---------|-----------|-----------|
-| **时间同步验证** | [§2.3](#23-时间同步策略) | 时间轴视图 + 多通道对齐 | 验证 Vision/IMU/EMG 是否 <10ms 对齐 |
+| **时间同步验证** | [§2.2](#22-时间同步策略) | 时间轴视图 + 多通道对齐 | 验证 Vision/IMU/EMG 是否 <10ms 对齐 |
 | **交叉验证可视化** | [§2.5](#机制-2-双重三重验证-cross-validation) | 曲线叠加 + 置信度通道 | 验证 Vision 和 IMU 阶段检测一致性 |
-| **反馈时机验证** | [§2.7](#27-用户反馈翻译层) | 录制 .rrd + 反复回放 | 验证规则触发时机是否正确 |
+| **反馈时机验证** | [§2.6](#26-用户反馈翻译层) | 录制 .rrd + 反复回放 | 验证规则触发时机是否正确 |
 | **MediaPipe 骨架** | [§3.1](#31-pose-block) | 官方 human_pose_tracking | 验证 33 关键点检测和特征计算 |
 | **IMU 曲线分析** | [§3.2](#32-imu-block) | 峰值/零交叉自动检测 | 验证模拟/真实 IMU 数据质量 |
 | **EMG 激活时序** | [§3.3](#33-emg-block) | 双曲线叠加 + onset 标记 | 验证 Core 是否先于 Forearm 激活 |
