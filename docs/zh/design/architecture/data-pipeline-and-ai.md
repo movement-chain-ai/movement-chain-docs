@@ -157,11 +157,11 @@ IMU 是主时钟 (Master Clock):
 
 !!! tip "实现细节"
     时间同步的具体实现方案（NTP 预同步 + Impact 验证）详见
-    [模块化架构 §2.4.1](modular-architecture.md#241-时间同步实现方案)。
+    [模块化架构 §2.3.1](modular-architecture.md#231-时间同步实现方案)。
 
 #### Sensor Hub 时间同步架构 (2025-12 推荐) {#sensor-hub-架构-2025-12-推荐}
 
-> 📐 **物理架构图**: 见 [模块化架构 §2.4.2](./modular-architecture.md#sensor-hub-architecture) (单一权威来源)
+> 📐 **物理架构图**: 见 [模块化架构 §2.3.2](./modular-architecture.md#sensor-hub-architecture) (单一权威来源)
 
 本节聚焦于**时间同步的 3 层级架构**，与物理布局互补：
 
