@@ -18,7 +18,7 @@
         <link rel="prev" href="../biomechanics-glossary/">
       
       
-        <link rel="next" href="../../ml-basics/">
+        <link rel="next" href="../signal-processing-101/">
       
       
         
@@ -1097,10 +1097,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#优先级定义" class="md-nav__link">
     <span class="md-ellipsis">
       
-        关键说明
+        优先级定义
       
     </span>
   </a>
@@ -1249,6 +1249,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signal-processing-101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    信号处理入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2913,6 +2941,34 @@
     
   
     ADR-0007 Swift iOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../design/decisions/0008-desktop-to-mobile-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0008 Desktop→Mobile
   
 
     
@@ -5182,10 +5238,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#优先级定义" class="md-nav__link">
     <span class="md-ellipsis">
       
-        关键说明
+        优先级定义
       
     </span>
   </a>
@@ -6208,13 +6264,53 @@
 </tr>
 </tbody>
 </table>
-<h3 id="_14">关键说明<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>P0 优先级</strong>: 必须立即修正，严重影响性能和受伤风险</li>
-<li><strong>P1 优先级</strong>: 重要改进点，中等影响</li>
-<li><strong>P2-P3 优先级</strong>: 优化建议，长期提升</li>
-<li><strong>MVP 范围</strong>: 初期只实现 P0-P1 规则，P2-P3 后续迭代</li>
-</ul>
+<h3 id="优先级定义">优先级定义<a class="headerlink" href="#优先级定义" title="Permanent link">&para;</a></h3>
+<p>诊断规则按严重程度分为 4 个优先级：</p>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>名称</th>
+<th>含义</th>
+<th>反馈策略</th>
+<th>示例规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P0</strong></td>
+<td>严重问题</td>
+<td>必须修正，严重影响挥杆效果或有受伤风险</td>
+<td>立即语音提醒，优先于其他反馈</td>
+<td>倒序运动链、过度手臂挥杆</td>
+</tr>
+<tr>
+<td><strong>P1</strong></td>
+<td>重要改进</td>
+<td>影响表现，但不紧急</td>
+<td>挥杆后反馈，按重要性排序</td>
+<td>X-Factor 不足、节奏问题</td>
+</tr>
+<tr>
+<td><strong>P2</strong></td>
+<td>优化建议</td>
+<td>锦上添花，进阶提升</td>
+<td>可选反馈，留待详细分析</td>
+<td>髋部滑移、重心偏移</td>
+</tr>
+<tr>
+<td><strong>P3</strong></td>
+<td>参考信息</td>
+<td>数据展示，无明确建议</td>
+<td>仅在报告中显示</td>
+<td>S-Factor、速度递增分析</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MVP 范围</strong>: 初期只实现 P0 + P1 规则 (共 6 条)，P2-P3 留待后续版本迭代。</p>
+<blockquote>
+<p>在 <a href="../../../design/architecture/system-design/#234-ai-反馈层">系统设计</a> 中查看 MVP 具体选用的 6 条规则。</p>
+</blockquote>
 <hr />
 <h2 id="11-data-collection-notes">11. Data Collection Notes (数据采集注意事项)<a class="headerlink" href="#11-data-collection-notes" title="Permanent link">&para;</a></h2>
 <h3 id="111">11.1 采样率要求<a class="headerlink" href="#111" title="Permanent link">&para;</a></h3>

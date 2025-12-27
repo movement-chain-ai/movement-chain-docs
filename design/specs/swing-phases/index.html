@@ -710,6 +710,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../prerequisites/foundations/signal-processing-101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    信号处理入门
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2227,7 +2255,7 @@
   <a href="#phase-6-impact" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Phase 6: Impact (击球)
+        Phase 6: Impact (峰值角速度时刻)
       
     </span>
   </a>
@@ -2583,6 +2611,34 @@
     
   
     ADR-0007 Swift iOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/0008-desktop-to-mobile-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR-0008 Desktop→Mobile
   
 
     
@@ -4592,7 +4648,7 @@
   <a href="#phase-6-impact" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Phase 6: Impact (击球)
+        Phase 6: Impact (峰值角速度时刻)
       
     </span>
   </a>
@@ -5074,7 +5130,7 @@
 </tbody>
 </table>
 <hr />
-<h3 id="phase-6-impact">Phase 6: Impact (击球)<a class="headerlink" href="#phase-6-impact" title="Permanent link">&para;</a></h3>
+<h3 id="phase-6-impact">Phase 6: Impact (峰值角速度时刻)<a class="headerlink" href="#phase-6-impact" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -5089,11 +5145,11 @@
 </tr>
 <tr>
 <td><strong>标志动作</strong></td>
-<td>杆面触球，峰值角速度</td>
+<td><strong>峰值角速度时刻</strong> — 运动学定义，不依赖是否有球</td>
 </tr>
 <tr>
 <td><strong>检测条件</strong></td>
-<td>IMU 峰值角速度 或 加速度突变</td>
+<td>IMU 峰值角速度 (主要方法) 或 加速度突变 (备用)</td>
 </tr>
 <tr>
 <td><strong>关键指标</strong></td>
@@ -5101,25 +5157,85 @@
 </tr>
 </tbody>
 </table>
+<div class="admonition info">
+<p class="admonition-title">为什么用"峰值角速度"而非"击球"？</p>
+<p><strong>运动学定义 (Kinematic Definition)</strong>:</p>
+<ul>
+<li>Impact 定义为<strong>峰值角速度时刻</strong>，而非物理击球</li>
+<li>这样无论是否有球、是否击中，检测逻辑都一致</li>
+<li>空挥、打垫、练习挥杆都能正确检测</li>
+</ul>
+<p>详见: <a href="../../../prerequisites/foundations/signal-processing-101/#6-相位检测-imu-零交叉与峰值">信号处理入门 §6</a></p>
+</div>
 <p><strong>检测代码 (最可靠)</strong>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">detect_impact</span><span class="p">(</span><span class="n">gyro_z</span><span class="p">,</span> <span class="n">accel_z</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">):</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="sd">    检测击球瞬间</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="sd">    方法 1: 峰值角速度 (推荐)</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="sd">    方法 2: 加速度突变 (备选)</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="c1"># 方法 1: 峰值角速度</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="n">peak_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">gyro_z</span><span class="p">))</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="c1"># 方法 2: 加速度突变 (更精确但需要更高采样率)</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="n">accel_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">accel_z</span><span class="p">))</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="n">shock_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">accel_diff</span><span class="p">)</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>    <span class="c1"># 两种方法应该接近，取平均或选择更可靠的</span>
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>    <span class="n">impact_time</span> <span class="o">=</span> <span class="n">timestamps</span><span class="p">[</span><span class="n">peak_idx</span><span class="p">]</span>
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>    <span class="k">return</span> <span class="n">impact_time</span><span class="p">,</span> <span class="n">gyro_z</span><span class="p">[</span><span class="n">peak_idx</span><span class="p">]</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="sd">    检测 Impact 时刻 (峰值角速度)</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="sd">    ⚠️ 重要: Impact 是运动学定义，不是物理击球</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="sd">       - 峰值角速度时刻 = Impact</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="sd">       - 无论是否有球、是否击中，检测逻辑一致</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="sd">    方法 1: 峰值角速度 (推荐) — 最可靠，±9-15ms 精度</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="sd">    方法 2: 加速度突变 (备选) — 更精确但需要更高采样率</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="sd">    边缘情况处理:</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="sd">        - 多个峰值 (double_peak): 取第一个超过阈值的峰</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="sd">        - 无明显峰值: 返回 None + 触发 swing_abort</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="sd">        - 峰值过低 (&lt;300°/s): 可能是假挥杆，标记 low_confidence</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>    <span class="c1"># 方法 1: 峰值角速度</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>    <span class="n">peak_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">gyro_z</span><span class="p">))</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>    <span class="n">peak_velocity</span> <span class="o">=</span> <span class="n">gyro_z</span><span class="p">[</span><span class="n">peak_idx</span><span class="p">]</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>    <span class="c1"># 边缘情况: 峰值过低</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>    <span class="n">MIN_PEAK_VELOCITY</span> <span class="o">=</span> <span class="mi">300</span>  <span class="c1"># deg/s</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">peak_velocity</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">MIN_PEAK_VELOCITY</span><span class="p">:</span>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>        <span class="c1"># 可能是假挥杆或检测失败</span>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>  <span class="c1"># 调用方应处理 swing_abort</span>
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>
+</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>    <span class="c1"># 方法 2: 加速度突变 (更精确但需要更高采样率)</span>
+</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>    <span class="k">if</span> <span class="n">accel_z</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>        <span class="n">accel_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">accel_z</span><span class="p">))</span>
+</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>        <span class="n">shock_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">accel_diff</span><span class="p">)</span>
+</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>        <span class="c1"># 可用于交叉验证</span>
+</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>
+</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>    <span class="n">impact_time</span> <span class="o">=</span> <span class="n">timestamps</span><span class="p">[</span><span class="n">peak_idx</span><span class="p">]</span>
+</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>
+</span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>    <span class="k">return</span> <span class="n">impact_time</span><span class="p">,</span> <span class="n">peak_velocity</span>
 </span></code></pre></div>
+<p><strong>边缘情况处理</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>检测条件</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>swing_abort</code></td>
+<td>峰值角速度 &lt; 300°/s</td>
+<td>返回 None，不计入分析</td>
+</tr>
+<tr>
+<td><code>double_peak</code></td>
+<td>检测到多个峰值</td>
+<td>取第一个超过阈值的峰</td>
+</tr>
+<tr>
+<td><code>phase_sequence_error</code></td>
+<td>Top 和 Impact 顺序异常</td>
+<td>标记为无效挥杆</td>
+</tr>
+<tr>
+<td><code>low_confidence</code></td>
+<td>峰值 300-500°/s</td>
+<td>正常处理但标记置信度低</td>
+</tr>
+</tbody>
+</table>
 <p><strong>可检测问题</strong>:</p>
 <table>
 <thead>
