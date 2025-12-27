@@ -1440,260 +1440,168 @@ class OutputResult:
 
 ---
 
-## 3. MVP 策略 MVP Strategy {#3-mvp-策略}
+## 3. 积木替换示例 Block Replacement {#3-积木替换示例}
 
-### 3.1 MVP 核心输出: 时间对齐的融合数据
+> **核心理念**: 模块化架构的价值在于 — 升级某个模块时，其他模块完全不受影响。
+>
+> 就像换乐高积木一样：只要接口形状相同，内部用什么颜色/材质都可以。
 
-!!! abstract "🎯 MVP 的核心价值: Time-Aligned FusionResult"
+### 4.1 替换场景示例
 
-    **MVP 的最重要输出不是"完美的分析结果"，而是验证三模态数据能否精确对齐。**
+| 替换场景 | MVP (现在) | 升级版 (未来) | 要改的 | 不用改的 |
+|---------|-----------|--------------|-------|---------|
+| **分类器升级** | SwingNet (规则) | BiGRU (深度学习) | 1个模型文件 | 所有其他代码 |
+| **IMU 真实化** | JSON 模拟数据 | 真实硬件传感器 | 数据源 | 特征提取逻辑 |
+| **融合算法** | 简单合并 | Kalman Filter | 融合模块 | 上下游模块 |
 
-    ```text
-    ┌─────────────────────────────────────────────────────────────────────────────┐
-    │                    MVP 核心输出: 时间对齐的 FusionResult                      │
-    ├─────────────────────────────────────────────────────────────────────────────┤
-    │                                                                             │
-    │   在 Rerun 时间轴上同步显示:                                                 │
-    │                                                                             │
-    │   📷 MediaPipe: ──●──●──●──●──●──●──●──●──●──●── (30fps 骨架)              │
-    │                           ↓ Top              ↓ Impact                       │
-    │   🔄 Mock IMU:  ─────────────●───────────────●──── (峰值/零交叉)            │
-    │                           ↓                  ↓                              │
-    │   💪 Mock EMG:  ─────────●─────────────────●────── (Core/Forearm onset)     │
-    │                         ↓                                                   │
-    │                    Core onset 应该在 Top 之前                                │
-    │                                                                             │
-    │   ═══════════════════════════════════════════════════════════════════════  │
-    │                                                                             │
-    │   ✅ MVP 验证目标:                                                          │
-    │   1. 三条数据流能否对齐到 <10ms?                                            │
-    │   2. IMU 峰值是否对应视频中的 Impact 帧?                                    │
-    │   3. EMG Core onset 是否在 Top 之前?                                        │
-    │   4. 计算的 X-Factor 是否与骨架角度一致?                                    │
-    │                                                                             │
-    │   这些问题只有在 Rerun 中才能直观验证！                                      │
-    │                                                                             │
-    └─────────────────────────────────────────────────────────────────────────────┘
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         积木替换原理 BLOCK REPLACEMENT                        │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   替换前:                              替换后:                               │
+│   ─────────                            ─────────                            │
+│                                                                             │
+│   ┌─────────┐   ┌─────────┐           ┌─────────┐   ┌─────────┐            │
+│   │ Block A │ → │ Block B │           │ Block A │ → │ Block B'│            │
+│   └─────────┘   └─────────┘           └─────────┘   └─────────┘            │
+│        │             │                     │             │                  │
+│        │    旧实现    │                     │    新实现    │                  │
+│        │             │                     │             │                  │
+│        └──────┬──────┘                     └──────┬──────┘                  │
+│               │                                   │                         │
+│               ▼                                   ▼                         │
+│   ┌─────────────────────┐             ┌─────────────────────┐              │
+│   │      Block C        │      =      │      Block C        │              │
+│   │     (不变)          │             │     (完全不改)       │              │
+│   └─────────────────────┘             └─────────────────────┘              │
+│                                                                             │
+│   💡 关键: 只要 Block B 和 Block B' 的输出接口相同，Block C 无需任何修改        │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 4.2 示例 1: 分类器升级 (CLASSIFIER Block)
+
+**场景**: 从简单规则升级到深度学习模型
+
+```text
+MVP 阶段:
+┌──────────┐    ┌───────────────┐    ┌──────────┐
+│ MediaPipe│ →  │   SwingNet    │ →  │ 8 Phases │
+│ 33点骨架  │    │   (规则匹配)   │    │  输出    │
+└──────────┘    └───────────────┘    └──────────┘
+
+升级后:
+┌──────────┐    ┌───────────────┐    ┌──────────┐
+│ MediaPipe│ →  │    BiGRU      │ →  │ 8 Phases │
+│ 33点骨架  │    │   (深度学习)   │    │  输出    │
+└──────────┘    └───────────────┘    └──────────┘
+                      ↑
+                   只换这个
+```
+
+| 步骤 | 操作 | 工作量 |
+|:---:|------|:------:|
+| 1 | 收集 ~1000 个标注视频 | 数据准备 |
+| 2 | 训练 BiGRU 模型 | ~4小时 |
+| 3 | 导出 ONNX 格式 | 1行命令 |
+| 4 | 替换 `classifier.onnx` 文件 | 换文件 |
+| ✅ | **其他代码零修改** | 0 |
+
+---
+
+### 4.3 示例 2: IMU 真实化 (SENSOR_HUB Block)
+
+**场景**: 从模拟数据切换到真实硬件
+
+```text
+MVP 阶段 (模拟):
+┌──────────────┐    ┌───────────────┐    ┌──────────┐
+│  mock.json   │ →  │  IMU Block    │ →  │ 4 指标   │
+│  (模拟数据)   │    │  (特征提取)    │    │  输出    │
+└──────────────┘    └───────────────┘    └──────────┘
+
+升级后 (真实):
+┌──────────────┐    ┌───────────────┐    ┌──────────┐
+│  LSM6DSV16X  │ →  │  IMU Block    │ →  │ 4 指标   │
+│  (BLE 传输)   │    │  (特征提取)    │    │  输出    │
+└──────────────┘    └───────────────┘    └──────────┘
+       ↑                   ↑
+    换数据源           逻辑不变
+```
+
+| 步骤 | 操作 | 工作量 |
+|:---:|------|:------:|
+| 1 | 完成硬件原型 (ESP32-S3 + IMU) | 硬件 |
+| 2 | 实现 BLE 数据传输 | 通信 |
+| 3 | 替换数据源 (JSON → BLE Stream) | 适配器 |
+| ✅ | **特征提取逻辑零修改** | 0 |
+
+---
+
+### 4.4 示例 3: 融合算法升级 (FUSION Block)
+
+**场景**: 从简单合并升级到 Kalman Filter
+
+```text
+MVP 阶段:
+┌─────────┐
+│ Vision  │ ──┐
+├─────────┤   │    ┌───────────────┐    ┌──────────┐
+│  IMU    │ ──┼──→ │ Simple Merge  │ →  │ 融合结果  │
+├─────────┤   │    │  (简单合并)    │    │         │
+│  EMG    │ ──┘    └───────────────┘    └──────────┘
+└─────────┘
+
+升级后:
+┌─────────┐
+│ Vision  │ ──┐
+├─────────┤   │    ┌───────────────┐    ┌──────────┐
+│  IMU    │ ──┼──→ │ Kalman Filter │ →  │ 融合结果  │
+├─────────┤   │    │  (最优估计)    │    │         │
+│  EMG    │ ──┘    └───────────────┘    └──────────┘
+└─────────┘              ↑
+                      只换这个
+```
+
+| 步骤 | 操作 | 工作量 |
+|:---:|------|:------:|
+| 1 | 确认传感器数据质量 | 分析 |
+| 2 | 标定传感器噪声模型 | 测量 |
+| 3 | 实现 Kalman Filter | 算法 |
+| 4 | 调整融合权重 | 调参 |
+| ✅ | **上下游模块零修改** | 0 |
+
+---
+
+### 4.5 为什么能做到"零修改"？
+
+!!! success "接口契约是关键"
+
+    只要保证**输入输出接口不变**，内部实现可以任意替换：
+
+    ```python
+    # CLASSIFIER Block 接口契约 (不变)
+    class ClassifierInput:
+        keypoints: List[Keypoint]   # 输入: 33个关键点
+
+    class ClassifierResult:
+        phases: List[SwingPhase]    # 输出: 8个阶段
+        confidence: float
     ```
 
-### 3.2 MVP 模式聚焦: Mode 3 (Full Speed)
-
-!!! info "MVP 只实现 Mode 3，其他模式放到 Phase 2/3"
-
-    | 模式 | 名称 | 实时性 | MVP | 原因 |
-    |-----|------|--------|-----|------|
-    | **Mode 3** | Full Speed | ❌ 后处理 | ✅ MVP | 无实时约束，最易调试 |
-    | Mode 1 | Setup Check | ⚠️ 准实时 | Phase 2 | 需要静态姿态检测 |
-    | Mode 2 | Slow Motion | ✅ 实时 | Phase 3 | 实时处理复杂度高 |
-
-    **为什么先做 Mode 3?**
-
-    1. **无实时约束** — 可以反复回放同一录制，逐帧调试
-    2. **完整数据** — 录制完成后数据完整，不会丢帧
-    3. **Rerun 友好** — 录制 .rrd 文件分享给团队协作
-    4. **优先验证核心价值** — 时间对齐是否正确比实时性更重要
-
-### 3.3 MVP 架构图
-
-MVP 使用**完整的 4 层架构**，只是将真实硬件替换为模拟数据源：
-
-```mermaid
-flowchart TB
-    subgraph INPUT["📥 输入层 INPUT LAYER"]
-        CAM["📷 Camera<br/>30fps 视频帧<br/><b>✅ 真实</b>"]
-        IMU_IN["🔄 Mock IMU<br/>JSON 文件<br/><b>📄 模拟</b>"]
-        EMG_IN["💪 Mock EMG<br/>JSON 文件<br/><b>📄 模拟</b>"]
-    end
-
-    subgraph EXTRACT["⚙️ 提取层 EXTRACTION LAYER"]
-        POSE["🦴 POSE Block<br/>MediaPipe<br/>33 关键点 + 特征"]
-        IMU_BLK["📊 IMU Block<br/>相位 + 峰值速度 + 节奏"]
-        EMG_BLK["🔋 EMG Block<br/>激活时序 + 强度"]
-    end
-
-    subgraph ANALYZE["🧠 分析层 ANALYSIS LAYER"]
-        CLASSIFIER["🎯 CLASSIFIER Block<br/>Simple Rules<br/>(Top/Impact 检测)"]
-        FUSION["🔗 FUSION Block<br/>Simple Merge + 交叉验证"]
-    end
-
-    subgraph OUTPUT["📤 输出层 OUTPUT LAYER"]
-        RESULT["📋 FusionResult<br/>phases + metrics + anomalies + feedback"]
-        RERUN["🔧 Rerun 可视化<br/>时间对齐验证"]
-    end
-
-    CAM --> POSE
-    IMU_IN --> IMU_BLK
-    EMG_IN --> EMG_BLK
-
-    POSE --> CLASSIFIER
-    POSE --> FUSION
-    IMU_BLK --> CLASSIFIER
-    IMU_BLK --> FUSION
-    EMG_BLK --> FUSION
-    CLASSIFIER --> FUSION
-
-    FUSION --> RESULT
-    RESULT --> RERUN
-```
-
-**FusionResult 输出结构** (见 [§2.4 分析诊断层](#24-分析诊断层)):
-
-```text
-FusionResult {
-    phases: [{label, start_ms, end_ms, confidence}],   // Top/Impact 时间边界
-    metrics: {x_factor, tempo_ratio, peak_velocity, ...}, // 12 指标
-    anomalies: [{type, severity, description}],        // 异常检测
-    overall_confidence: float,                         // 融合置信度
-    feedback: [{rule, message_cn, message_en}]         // 自然语言建议
-}
-```
-
-!!! success "MVP 核心原则: 架构不变，数据源可换"
-
-    | 层级 | MVP 实现 | 后续升级 |
-    |-----|---------|---------|
-    | **输入层** | Camera 真实 + Mock IMU/EMG JSON | → 真实 LSM6DSV16X + DFRobot EMG |
-    | **提取层** | 3 个 Block 接口不变 | 内部实现可替换 |
-    | **分析层** | Simple Rules + Simple Merge | → SwingNet/BiGRU + Kalman Filter |
-    | **输出层** | FusionResult → Rerun 可视化 | → App UI + TTS |
-
-### 3.4 模拟数据验证全管道
-
-**核心思路**: 真实 MediaPipe + 模拟 IMU/EMG = 完整管道验证
-
-```text
-为什么用模拟数据？
-────────────────
-1. 硬件还没准备好，但软件管道可以先开发
-2. 模拟数据可以控制"正确/错误"模式，测试规则引擎
-3. 真实硬件到位后，只需替换 IMU/EMG 积木块
-4. 降低并行开发的耦合度 (软件不等硬件)
-```
-
-### 3.5 渐进式升级路径
-
-```text
-Phase 1: MVP (Mode 3 Only)
-──────────────────────────
-Camera → MediaPipe ─┬→ Simple Rules → Top/Impact 检测
-Mock IMU JSON ──────┤  (IMU 峰值/零交叉)
-Mock EMG JSON ──────┼→ Simple Fusion → FusionResult
-                    └→ Rerun 可视化 → 时间对齐验证
-
-训练数据: 0
-硬件: 手机摄像头
-核心验证: 三模态数据能否对齐到 <10ms?
-
-Phase 2: Real IMU + Mode 1
-──────────────────────────
-Camera → MediaPipe ─┬→ Simple Rules → Top/Impact (更精确)
-Real IMU ───────────┤  (真实 1666Hz 信号)
-Mock EMG JSON ──────┼→ Rule Fusion → 12 Metrics + 6 Rules
-                    └→ Cross-Validation → Anomaly Detection
-
-训练数据: 0
-硬件: 手机 + LSM6DSV16X
-新增: Mode 1 (Setup Check) 静态姿态检测
-
-Phase 3: Real EMG + Mode 2
-──────────────────────────
-Camera → MediaPipe ─┬→ Simple Rules → Top/Impact
-Real IMU ───────────┤
-Real EMG ───────────┼→ Rule Fusion → 12 Metrics + 6 Rules
-                    └→ Cross-Validation → Anomaly Detection
-
-训练数据: 0
-硬件: 手机 + LSM6DSV16X + MyoWare 2.0 + Link Shield
-架构: Sensor Hub (同一部位传感器共享 ESP32 时钟)
-新增: Mode 2 (Slow Motion) 实时反馈
-
-Phase 4+: Advanced ML
-─────────────────────
-Camera → MediaPipe ─┬→ SwingNet/BiGRU → 8 Phases (完整阶段)
-Real IMU ───────────┤
-Real EMG ───────────┼→ Weighted Fusion → Advanced Diagnostics
-                    └→ TAPIR → 球杆追踪 (可选)
-
-训练数据: ~1000 videos (for BiGRU)
-硬件: 完整穿戴设备
-新增: 完整 8 阶段划分, 球杆追踪
-```
-
-!!! info "💡 Rerun 集成时机建议"
-
-    基于 [system-design.md §2](./system-design.md#2-mvp-开发计划) 的开发计划:
-
-    | 开发阶段 | 周数 | Rerun 使用场景 | 优先级 |
-    |---------|-----|---------------|--------|
-    | **Phase 1: Vision Pipeline** | Week 1-2 | 验证 MediaPipe 骨架叠加、X-Factor 计算 | ⭐ 必须 |
-    | **Phase 2: Mock Sensor** | Week 3 | 可视化 IMU/EMG 模拟数据与视频的时间对齐 | ⭐ 必须 |
-    | **Phase 3: Rule Engine** | Week 4 | 调优规则阈值、录制问题场景反复回放 | ⭐ 必须 |
-    | **Phase 4: Feedback** | Week 5 | 验证反馈触发时机与动作阶段同步 | 🔵 推荐 |
-    | **Phase 5: Mobile App** | Week 6-7 | 对比移动端 vs 桌面端的检测结果 | 🔵 推荐 |
-    | **Phase 6: User Testing** | Week 8 | 录制用户测试问题 .rrd 分享调试 | 🔵 推荐 |
-
-    **建议**: 从 Phase 1 第一天就集成 Rerun，不要等到出问题再加
+    无论内部是规则匹配还是深度学习，只要遵守这个契约，调用方无需感知变化。
 
 ---
 
-## 4. 积木替换示例 Block Replacement {#4-积木替换示例}
-
-### 4.1 替换 CLASSIFIER Block
-
-```text
-当前 (MVP):
-Camera → MediaPipe → [SwingNet] → 8 Phases
-
-替换后 (v2):
-Camera → MediaPipe → [BiGRU] → 8 Phases
-
-需要做的事:
-1. 收集 ~1000 个标注视频
-2. 训练 BiGRU 模型 (~4小时)
-3. 导出 ONNX 格式
-4. 替换 classifier.onnx 文件
-5. 其他代码不变
-```
-
-### 4.2 替换 IMU Block
-
-```text
-当前 (MVP):
-Mock IMU JSON → [Simulated IMU Block] → 6 Features
-
-替换后 (Phase 2):
-Real LSM6DSV16X → [Real IMU Block] → 6 Features
-
-需要做的事:
-1. 完成硬件原型 (ESP32-S3 + LSM6DSV16X)
-2. 实现 BLE 数据传输
-3. 替换数据源 (JSON → BLE Stream)
-4. 特征提取逻辑不变
-```
-
-### 4.3 替换 FUSION Block
-
-```text
-当前 (MVP):
-Vision + Mock IMU + Mock EMG → [Simple Merge] → Output
-
-替换后 (v3):
-Vision + Real IMU + Real EMG → [Kalman Filter] → Output
-
-需要做的事:
-1. 确认传感器数据质量
-2. 标定传感器噪声模型
-3. 实现 Kalman Filter
-4. 调整融合权重
-```
-
----
-
-## 5. Rerun 调试工具汇总 Debugging Tools Summary {#5-rerun-调试工具}
+## 4. Rerun 调试工具汇总 Debugging Tools Summary {#4-rerun-调试工具}
 
 本文档多处提到 [Rerun](https://rerun.io/) 作为多模态数据调试工具。本节汇总所有调试场景。
 
-### 5.1 快速开始
+### 4.1 快速开始
 
 ```bash
 # 安装
@@ -1710,7 +1618,7 @@ rr.log("imu/gyro_z", rr.Scalar(gyro_z))
 rr.log("emg/core", rr.Scalar(core_activation))
 ```
 
-### 5.2 调试场景速查表
+### 4.2 调试场景速查表
 
 | 场景 | 相关章节 | Rerun 功能 | 解决的问题 |
 |------|---------|-----------|-----------|
@@ -1752,7 +1660,7 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 ---
 
-## 6. 相关文档 Related Documents {#6-相关文档}
+## 5. 相关文档 Related Documents {#5-相关文档}
 
 ### 核心文档
 
@@ -1780,10 +1688,15 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 ---
 
-## 7. 版本历史 {#7-版本历史}
+## 6. 版本历史 {#6-版本历史}
 
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|
+| 2.12 | 2025-12-27 | 文档聚焦重构 |
+| | | • 删除 §3 MVP 策略 (内容移至 system-design.md) |
+| | | • 重写 §3 积木替换示例，增加概览表 + 原理图 + 步骤表 |
+| | | • 修正 §2.1 数据采集层图: CAMERA 独立于 BLE (Native SDK 零延迟) |
+| | | • 章节重新编号: §4→§3, §5→§4, §6→§5, §7→§6 |
 | 2.11 | 2025-12-27 | SENSOR_HUB 可复用架构 — 同一固件多实例部署 |
 | | | • HUB_A + HUB_B 合并为单一 SENSOR_HUB Block ×N |
 | | | • Block 总数: 13 → 12 (消除重复定义) |
