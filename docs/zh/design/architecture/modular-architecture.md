@@ -10,62 +10,7 @@
 
 ## 1. LEGO 哲学 Philosophy
 
-### 1.1 竞争壁垒: What/When/Why 价值层次
-
-!!! abstract "核心洞察: 为什么三模态融合是护城河"
-
-    ```text
-    ┌─────────────────────────────────────────────────────────────────────────────┐
-    │                    三模态系统的价值层次 VALUE HIERARCHY                       │
-    ├─────────────────────────────────────────────────────────────────────────────┤
-    │                                                                             │
-    │   竞品 (Vision-only):      "你的 X-Factor 是 22°"                           │
-    │                            → 用户知道 WHAT 错了                             │
-    │                                                                             │
-    │   竞品 (Vision+IMU):       "你的 X-Factor 是 22°，时序也有问题"              │
-    │                            → 用户知道 WHAT 和 WHEN                          │
-    │                                                                             │
-    │   你的系统 (Vision+IMU+EMG):                                                │
-    │                            "你的 X-Factor 是 22°，因为你的核心在手臂         │
-    │                             之后 40ms 才激活。专注于在下杆前收紧腹肌。"       │
-    │                            → 用户知道 WHAT, WHEN, 和 WHY                    │
-    │                                                                             │
-    │   ═══════════════════════════════════════════════════════════════════════  │
-    │                                                                             │
-    │   Vision = WHAT (空间位置 — 身体在哪里)                                      │
-    │   IMU    = WHEN (精确时序 — ±0.6ms 精度)                                    │
-    │   EMG    = WHY  (肌肉激活 — 为什么会这样动)                                  │
-    │                                                                             │
-    │   ⚡ 关键: 只有三模态融合才能检测"假性蓄力" (False Coil)                     │
-    │      — X-Factor 看起来正常 (45°)，但 EMG 显示核心从未激活                    │
-    │      — 这是竞品永远无法检测的问题                                            │
-    │                                                                             │
-    └─────────────────────────────────────────────────────────────────────────────┘
-    ```
-
-### 1.2 科学验证: 为什么这个方法正确
-
-我们的架构选择得到了最新研究的验证:
-
-!!! success "CaddieSet 研究 (CVPR 2025) — 关键发现"
-
-    **结论**: 对于高尔夫挥杆分析，特征工程 + 简单模型 **优于** 端到端深度学习
-
-    | 模型 | 球速预测 MSE | 方法 |
-    |------|-------------|------|
-    | Random Forest | **8.80** | Pose → 特征工程 → 传统ML |
-    | XGBoost | 10.15 | Pose → 特征工程 → 传统ML |
-    | Vision Transformer | 28.41 | 原始图像 → 深度学习 |
-    | MobileNet V3 | 32.32 | 原始图像 → 深度学习 |
-
-    **对我们架构的意义**:
-
-    - ✅ MediaPipe → 特征提取 (X-Factor, Tempo) → 分类器 = **科学验证的正确路径**
-    - ✅ 不需要复杂的 Video Transformer
-    - ✅ 高尔夫是**生物力学约束**的运动 — 领域特征比像素更有效
-    - ✅ 可解释的特征 → 可解释的反馈 (用户能理解为什么)
-
-### 1.3 LEGO 核心原则
+### 1.1 LEGO 核心原则
 
 1. **模块独立** — 每个模块是独立的"积木块"，可以单独替换，接口保持稳定
 2. **快速验证** — MVP 用最简单的积木快速搭建，验证完整管道和用户价值
@@ -74,7 +19,7 @@
 5. **融合优先** — 单传感器准确性不如跨传感器验证重要
 6. **六边形架构** — Ports & Adapters 模式，硬件依赖通过接口隔离
 
-### 1.4 技术不确定性管理
+### 1.2 技术不确定性管理
 
 我们面临多个技术不确定性:
 
@@ -92,63 +37,108 @@
 
 ## 2. 架构总览 Architecture Overview
 
-### 2.1 系统架构图
+### 2.1 系统架构图 (7 阶段数据流)
+
+> **与 [system-design.md](./system-design.md#12-完整系统架构目标态) 保持一致**: 采用端到端 7 阶段数据流架构
 
 ```mermaid
 flowchart TB
-    subgraph INPUT["📥 输入层 INPUT LAYER"]
-        CAM["📷 Camera<br/>30fps 视频帧"]
-        IMU_IN["🔄 IMU<br/>1666Hz 角速度/加速度"]
-        EMG_IN["💪 EMG<br/>1000Hz 肌电信号"]
+    subgraph S1["🏌️ Stage 1: 用户挥杆"]
+        USER["高尔夫球手挥杆"]
     end
 
-    subgraph EXTRACT["⚙️ 提取层 EXTRACTION LAYER"]
-        POSE["🦴 POSE Block<br/>33 关键点 + 特征"]
-        IMU_BLK["📊 IMU Block<br/>相位 + 峰值速度 + 节奏"]
-        EMG_BLK["🔋 EMG Block<br/>激活时序 + 强度"]
+    subgraph S2["📥 Stage 2: 数据采集层"]
+        CAM["📹 Vision<br/>iPhone + MediaPipe<br/>30fps, 33关键点"]
+        ARM["🔄 Arm Hub<br/>ESP32-S3<br/>IMU + EMG"]
+        CORE["🔄 Core Hub<br/>ESP32-S3<br/>IMU + EMG"]
     end
 
-    subgraph ANALYZE["🧠 分析层 ANALYSIS LAYER"]
-        CLASSIFIER["🎯 CLASSIFIER Block<br/>8 阶段识别"]
-        FUSION["🔗 FUSION Block<br/>三模态融合引擎"]
+    subgraph S3["⏱️ Stage 3: 传感器融合层"]
+        SYNC["时间对齐引擎<br/>IMU主时钟 1666Hz<br/>Impact T=0 对齐<br/>精度: <10μs"]
     end
 
-    subgraph OUTPUT["📤 输出层 OUTPUT LAYER"]
-        PHASES["🎬 8 Phases<br/>+ 置信度"]
-        METRICS["📊 12 Metrics<br/>+ 阈值判断"]
-        ANOMALY["⚠️ Anomalies<br/>+ 严重程度"]
-        FEEDBACK["💬 Feedback<br/>自然语言建议"]
+    subgraph S4["⚙️ Stage 4: 特征提取层 (12指标)"]
+        V_FEAT["🦴 Vision (6)<br/>X-Factor, 转肩角<br/>转髋角, S-Factor等"]
+        I_FEAT["📊 IMU (4)<br/>峰值角速度, 节奏比<br/>上杆/下杆时长"]
+        E_FEAT["💪 EMG (2)<br/>核心激活%<br/>核心-前臂时序差"]
     end
 
-    CAM --> POSE
-    IMU_IN --> IMU_BLK
-    EMG_IN --> EMG_BLK
+    subgraph S5["🧠 Stage 5: 分析诊断层"]
+        PHASE["🎬 8阶段检测<br/>GolfDB标准"]
+        RULES["⚙️ 规则引擎<br/>6条诊断规则<br/>P0(2) + P1(4)"]
+        CAUSAL["⭐ 因果归因<br/>WHAT + WHY"]
+    end
 
-    POSE --> CLASSIFIER
-    POSE --> FUSION
-    IMU_BLK --> FUSION
-    EMG_BLK --> FUSION
+    subgraph S6["🤖 Stage 6: AI反馈生成层"]
+        KP["📝 Kinematic Prompts<br/>结构化数据"]
+        LLM["🧠 LLM翻译<br/>GPT-4o-mini<br/>200-500ms"]
+    end
 
-    CLASSIFIER --> PHASES
-    FUSION --> METRICS
-    FUSION --> ANOMALY
-    FUSION --> FEEDBACK
+    subgraph S7["📤 Stage 7: 用户反馈层 (<500ms)"]
+        UI["📱 App UI<br/>1-3指标"]
+        TTS["🔊 语音TTS<br/>教练反馈"]
+        HAPTIC["📳 触觉反馈"]
+        GHOST["👻 Ghost叠加"]
+    end
 
-    click POSE "#31-pose-block"
-    click IMU_BLK "#32-imu-block"
-    click EMG_BLK "#33-emg-block"
-    click CLASSIFIER "#41-classifier-block"
-    click FUSION "#42-fusion-block"
+    USER --> CAM
+    USER --> ARM
+    USER --> CORE
+
+    CAM --> SYNC
+    ARM --> SYNC
+    CORE --> SYNC
+
+    SYNC --> V_FEAT
+    SYNC --> I_FEAT
+    SYNC --> E_FEAT
+
+    V_FEAT --> PHASE
+    V_FEAT --> RULES
+    I_FEAT --> RULES
+    E_FEAT --> RULES
+
+    PHASE --> CAUSAL
+    RULES --> CAUSAL
+
+    CAUSAL --> KP
+    KP --> LLM
+
+    LLM --> UI
+    LLM --> TTS
+    LLM --> HAPTIC
+    LLM --> GHOST
+
+    click V_FEAT "#31-pose-block"
+    click I_FEAT "#32-imu-block"
+    click E_FEAT "#33-emg-block"
+    click PHASE "#41-classifier-block"
+    click RULES "#42-fusion-block"
 ```
+
+**核心价值链** (Stage 1 → Stage 7):
+
+| Stage | 层级 | 功能 | 关键技术 | 价值 |
+|-------|------|------|----------|------|
+| 1 | 用户挥杆 | 输入事件 | - | 触发数据采集 |
+| 2 | 数据采集层 | 三模态数据采集 | ESP32 Sensor Hub + MediaPipe | WHAT + WHEN + WHY |
+| 3 | 传感器融合层 | 时间对齐 <10μs | IMU 主时钟 + Impact T=0 | 因果推断基础 |
+| 4 | 特征提取层 | 12 个生物力学指标 | MediaPipe + NeuroKit2 | 结构化特征 |
+| 5 | 分析诊断层 | 规则引擎 + 因果归因 | 8阶段检测、6条规则 | **核心差异化** |
+| 6 | AI反馈层 | Kinematic Prompts → LLM | GPT-4o-mini | 教练级反馈 |
+| 7 | 用户反馈层 | 多模态反馈 <500ms | TTS、触觉、Ghost | 可执行建议 |
 
 ### 2.2 架构层级说明
 
-| 层级 | 职责 | 积木块 | 关键输出 |
-|-----|------|--------|---------|
-| **📥 输入层** | 数据采集 | Camera, IMU, EMG (真实或模拟) | 原始传感器流 |
-| **⚙️ 提取层** | 特征提取 | [POSE](#31-pose-block), [IMU](#32-imu-block), [EMG](#33-emg-block) | 结构化特征 |
-| **🧠 分析层** | 智能分析 | [CLASSIFIER](#41-classifier-block), [FUSION](#42-fusion-block) | 阶段 + 指标 + 异常 |
-| **📤 输出层** | 结果输出 | 8阶段, 12指标, 异常标记, 自然语言反馈 | 用户可理解的建议 |
+> 上图的 7 阶段对应本文档后续章节的积木块：
+
+| Stage | 层级 | 对应积木块 | 关键输出 |
+|-------|------|-----------|---------|
+| 1-2 | 用户挥杆 + 数据采集 | Camera, [IMU](#32-imu-block), [EMG](#33-emg-block) | 原始传感器流 |
+| 3 | 传感器融合层 | 时间对齐引擎 (见 [§2.4](#24-时间同步策略)) | 统一时间轴数据 |
+| 4 | 特征提取层 | [POSE](#31-pose-block), [IMU](#32-imu-block), [EMG](#33-emg-block) | 12 个结构化指标 |
+| 5 | 分析诊断层 | [CLASSIFIER](#41-classifier-block), [FUSION](#42-fusion-block) | 8阶段 + 6规则诊断 |
+| 6-7 | AI反馈 + 用户反馈 | LLM翻译、TTS、Ghost | 教练级可执行建议 |
 
 ### 2.3 Video-Only 模式能力边界
 
