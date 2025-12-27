@@ -46,7 +46,8 @@
 | 3 | 传感器融合层 | [TIME_ALIGN](#221-time-align-block) (见 [§2.2](#22-传感器融合层)) | 统一时间轴数据 |
 | 4 | 特征提取层 | [POSE](#232-pose-block), [IMU](#233-imu-block), [EMG](#234-emg-block) | 12 个结构化指标 |
 | 5 | 分析诊断层 | [CLASSIFIER](#241-classifier-block), [FUSION](#242-fusion-block) (见 [§2.4](#24-分析诊断层)) | 8阶段 + 6规则诊断 |
-| 6-7 | AI反馈 + 用户反馈 | [用户反馈翻译层](#25-用户反馈翻译层) | 教练级可执行建议 |
+| 6 | AI 反馈生成层 | [PROMPT](#251-prompt-block), [LLM](#252-llm-block) (见 [§2.5](#25-ai-反馈生成层)) | Kinematic Prompts + 自然语言 |
+| 7 | 用户反馈呈现层 | [OUTPUT](#261-output-block) (见 [§2.6](#26-用户反馈呈现层)) | UI/TTS/触觉/Ghost |
 
 ## 2 各阶段积木块详情
 
@@ -1082,16 +1083,116 @@ FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模�
 !!! tip "算法实现"
     完整 Python 代码见 [传感器指标映射 §7](./sensor-metric-mapping.md#7-融合置信度计算-fusion-confidence)
 
-### 2.5 用户反馈翻译层 (Stage 6-7) {#25-用户反馈翻译层}
+### 2.5 AI 反馈生成层 (Stage 6) {#25-ai-反馈生成层}
 
-原始数据 → 规则引擎 → 自然语言反馈:
+将传感器数据结构化为 LLM 可理解格式，生成教练级自然语言反馈。
+
+#### 2.5.1 PROMPT Block {#251-prompt-block}
+
+**职责**: 将诊断结果转换为 Kinematic Prompts (结构化提示词)
+
+| 属性 | 值 |
+|-----|-----|
+| 输入 | 触发的规则 + 12 指标 + 置信度 |
+| 输出 | 结构化 JSON/Text Prompt |
+| 延迟 | <1ms (模板填充) |
+
+**接口契约**:
+
+```python
+@dataclass
+class PromptInput:
+    triggered_rules: List[DiagnosticRule]  # 触发的规则列表
+    metrics: Dict[str, float]               # 12 个结构化指标
+    confidence: float                       # 融合置信度
+
+@dataclass
+class PromptOutput:
+    kinematic_prompt: str     # 结构化提示词
+    severity: str             # P0/P1/P2/INFO
+    focus_metric: str         # 主要关注指标
+```
+
+**Kinematic Prompt 示例**:
+
+```text
+X-Factor: 42° ✅ (正常范围 35-55°)
+Core activation: 30% ⚠️ (低于 50% 阈值)
+Timing: 核心先于前臂 150ms ✅
+Triggered rule: FALSE_COIL (P0)
+```
+
+#### 2.5.2 LLM Block {#252-llm-block}
+
+**职责**: 将 Kinematic Prompts 翻译为教练级自然语言反馈
+
+| 属性 | 值 |
+|-----|-----|
+| 输入 | Kinematic Prompt |
+| 处理 | GPT-4o-mini / Gemini 2.5 Flash |
+| 输出 | 自然语言反馈 (中/英文) |
+| 延迟 | 200-500ms (Cloud API) |
+
+**接口契约**:
+
+```python
+@dataclass
+class LLMInput:
+    kinematic_prompt: str     # 结构化提示词
+    language: str             # "zh" / "en"
+    user_level: str           # "beginner" / "intermediate" / "advanced"
+
+@dataclass
+class LLMOutput:
+    feedback_text: str        # 自然语言反馈
+    action_items: List[str]   # 可执行建议列表
+    tone: str                 # "encouraging" / "instructive" / "warning"
+```
+
+**翻译示例**:
+
+| 输入 | 输出 |
+|------|------|
+| `FALSE_COIL (P0)` + `X-Factor=42°` + `Core=30%` | "看起来转够了 (42°)，但核心没发力 (30%)。在下杆前收紧腹肌，让身体带动手臂。" |
+
+### 2.6 用户反馈呈现层 (Stage 7) {#26-用户反馈呈现层}
+
+将 LLM 生成的反馈通过多种渠道呈现给用户，挥杆后 <500ms 内完成。
+
+#### 2.6.1 OUTPUT Block {#261-output-block}
+
+**职责**: 多渠道反馈呈现 (UI/TTS/触觉/Ghost)
+
+| 渠道 | 组件 | 特点 |
+|------|------|------|
+| 📱 **App UI** | SwiftUI | 简洁指标 (1-3 个)，颜色编码 🟢🟡🔴 |
+| 🔊 **语音 TTS** | AVSpeechSynthesizer | 教练语音，离线可用 |
+| 📳 **触觉反馈** | UIFeedbackGenerator | 振动提示，方向指引 |
+| 👻 **Ghost Overlay** | ARKit (Phase 2+) | 骨架叠加，动作对比 |
+
+**接口契约**:
+
+```python
+@dataclass
+class OutputInput:
+    feedback_text: str        # LLM 生成的反馈
+    severity: str             # P0/P1/P2/INFO
+    metrics_summary: Dict     # 关键指标摘要
+
+@dataclass
+class OutputConfig:
+    enable_tts: bool = True
+    enable_haptic: bool = True
+    enable_ghost: bool = False  # Phase 2+
+    max_metrics_display: int = 3
+```
+
+**反馈示例映射**:
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                    用户反馈翻译层 FEEDBACK TRANSLATION                       │
+│                         反馈呈现示例                                          │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│   原始数据 → 规则触发 → 自然语言 → TTS/UI                                   │
 │                                                                             │
 │   示例 1: 运动链倒序                                                        │
 │   ─────────────────────────────────────────────────────                     │
@@ -1124,6 +1225,15 @@ FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模�
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
+
+**用户体验保证**:
+
+| 指标 | 要求 |
+|------|------|
+| 挥杆结束 → 反馈呈现 | <500ms (用户无感知延迟) |
+| 语音反馈 | 1-2 句话，可执行 ("收紧腹肌" vs 抽象建议) |
+| 视觉反馈 | 最多 3 个指标，避免信息过载 |
+| 趋势追踪 | 连续多次挥杆的改进/退步趋势 |
 
 !!! tip "🔧 调试工具: 验证反馈时机"
 
@@ -1484,6 +1594,11 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|
+| 2.8 | 2025-12-27 | Stage 6-7 拆分为独立层级 |
+| | | • §2.5: 新增 AI 反馈生成层 (Stage 6) — PROMPT Block + LLM Block |
+| | | • §2.6: 新增用户反馈呈现层 (Stage 7) — OUTPUT Block |
+| | | • §1.3: 更新映射表，Stage 6/7 独立显示 |
+| | | • 新增 3 个 Block 接口契约 (PromptInput/LLMInput/OutputInput) |
 | 2.7 | 2025-12-27 | 章节重构 — 对齐 7 阶段架构 |
 | | | • §2.4: 新增分析诊断层 (Stage 5)，合并原 §3 分析层 + §2.4 置信度计算逻辑 |
 | | | • §2.5: 用户反馈翻译层重新编号为 (Stage 6-7) |
