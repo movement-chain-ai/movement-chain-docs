@@ -2143,6 +2143,23 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imu-imu-imu-accel-gyro-x-y-z-imu-gyro_z-gyro_z-0-gyro_z-gyro_z-1000-1500s-gyro_y-imu-phase-2-tip-1-text-gyro_z-1200-1500s-2-gyro-gyro_x-gyro_y-gyro_z-gyro_y-tip-gyro_z-gyro_z-gyro_z-1200-1500s-600-800s-gyro_z-r-085" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        **IMU 贴于手腕背侧在高尔夫挥杆中的应用:** 手腕背侧 IMU 位置 ↓ ┌─────────────────┐ │ 前臂 │ │ │ └────────┬────────┘ │ ┌────────┼────────┐ │ [IMU 传感器] │ ← 手腕背侧 └────────┼────────┘ │ ┌────┴────┐ │ 手掌 │ └─────────┘ | 轴 | 加速度计 (accel) | 陀螺仪 (gyro) | |:--:|-----------------|---------------| | **X** | 手臂左右摆动 | 手腕上下翻转 (俯仰) | | **Y** | 手臂上下抬起 | 手臂旋转 (内旋/外旋) | | **Z** | 手臂前后伸展 | 手腕左右旋转 (尺偏/桡偏) | | 挥杆阶段 | 关键 IMU 轴 | 测量内容 | |---------|------------|---------| | **上杆** | gyro_z | 手腕外旋角速度 | | **顶点** | gyro_z → 0 | 角速度归零 = 方向切换 | | **下杆** | gyro_z (负值) | 手腕快速内旋 | | **击球** | gyro_z 峰值 | 峰值角速度 (1000-1500°/s) | | **髋部旋转** | gyro_y (骨盆 IMU) | 髋部旋转速度 (Phase 2) | !!! tip &quot;为什么传感器贴在手腕背侧?&quot; 手腕背侧是高尔夫挥杆分析的**战略要地**，原因有二： **1. 动力链末端效应** ```text 地面 → 腿部 → 髋部 → 躯干 → 肩部 → 手臂 → 手腕 → 球杆 ↑ ↑ 能量起点 能量终点 (大质量、慢速度) (小质量、快速度) ``` 根据动量守恒，能量在动力链中层层放大，手腕作为末端达到**最大角速度**（鞭打效应）。 如果上游动作正确，手腕 gyro_z 会达到 1200-1500°/s；反之则会明显偏低。 **2. 一石二鸟的测量位置** | gyro 轴 | 测量的动作 | 涉及的身体段 | |---------|-----------|-------------| | gyro_x | 手腕俯仰（上翻/下扣） | 手腕关节 | | gyro_y | 前臂旋转（内旋/外旋） | 前臂 + 手腕 | | gyro_z | 手腕翻滚（释放动作） | 手腕 + 间接反映整条手臂 | 手腕背侧既能测到**手腕本身的精细动作**，又能通过 gyro_y 感知**前臂的旋转**。 !!! tip &quot;为什么 gyro_z 最重要?&quot; 在高尔夫挥杆中，**gyro_z** (手腕的翻滚/旋转) 是最关键的指标： - 职业球手击球时 gyro_z 可达 **1200-1500°/s** - 业余球手通常只有 **600-800°/s** - gyro_z 与杆头速度高度相关 (r &gt; 0.85)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="**IMU 贴于手腕背侧在高尔夫挥杆中的应用:** 手腕背侧 IMU 位置 ↓ ┌─────────────────┐ │ 前臂 │ │ │ └────────┬────────┘ │ ┌────────┼────────┐ │ [IMU 传感器] │ ← 手腕背侧 └────────┼────────┘ │ ┌────┴────┐ │ 手掌 │ └─────────┘ | 轴 | 加速度计 (accel) | 陀螺仪 (gyro) | |:--:|-----------------|---------------| | **X** | 手臂左右摆动 | 手腕上下翻转 (俯仰) | | **Y** | 手臂上下抬起 | 手臂旋转 (内旋/外旋) | | **Z** | 手臂前后伸展 | 手腕左右旋转 (尺偏/桡偏) | | 挥杆阶段 | 关键 IMU 轴 | 测量内容 | |---------|------------|---------| | **上杆** | gyro_z | 手腕外旋角速度 | | **顶点** | gyro_z → 0 | 角速度归零 = 方向切换 | | **下杆** | gyro_z (负值) | 手腕快速内旋 | | **击球** | gyro_z 峰值 | 峰值角速度 (1000-1500°/s) | | **髋部旋转** | gyro_y (骨盆 IMU) | 髋部旋转速度 (Phase 2) | !!! tip &#34;为什么传感器贴在手腕背侧?&#34; 手腕背侧是高尔夫挥杆分析的**战略要地**，原因有二： **1. 动力链末端效应** ```text 地面 → 腿部 → 髋部 → 躯干 → 肩部 → 手臂 → 手腕 → 球杆 ↑ ↑ 能量起点 能量终点 (大质量、慢速度) (小质量、快速度) ``` 根据动量守恒，能量在动力链中层层放大，手腕作为末端达到**最大角速度**（鞭打效应）。 如果上游动作正确，手腕 gyro_z 会达到 1200-1500°/s；反之则会明显偏低。 **2. 一石二鸟的测量位置** | gyro 轴 | 测量的动作 | 涉及的身体段 | |---------|-----------|-------------| | gyro_x | 手腕俯仰（上翻/下扣） | 手腕关节 | | gyro_y | 前臂旋转（内旋/外旋） | 前臂 + 手腕 | | gyro_z | 手腕翻滚（释放动作） | 手腕 + 间接反映整条手臂 | 手腕背侧既能测到**手腕本身的精细动作**，又能通过 gyro_y 感知**前臂的旋转**。 !!! tip &#34;为什么 gyro_z 最重要?&#34; 在高尔夫挥杆中，**gyro_z** (手腕的翻滚/旋转) 是最关键的指标： - 职业球手击球时 gyro_z 可达 **1200-1500°/s** - 业余球手通常只有 **600-800°/s** - gyro_z 与杆头速度高度相关 (r &gt; 0.85)">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#33-emg-数据处理-unique-capability" class="md-nav__link">
     <span class="md-ellipsis">
@@ -4751,6 +4768,23 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#imu-imu-imu-accel-gyro-x-y-z-imu-gyro_z-gyro_z-0-gyro_z-gyro_z-1000-1500s-gyro_y-imu-phase-2-tip-1-text-gyro_z-1200-1500s-2-gyro-gyro_x-gyro_y-gyro_z-gyro_y-tip-gyro_z-gyro_z-gyro_z-1200-1500s-600-800s-gyro_z-r-085" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        **IMU 贴于手腕背侧在高尔夫挥杆中的应用:** 手腕背侧 IMU 位置 ↓ ┌─────────────────┐ │ 前臂 │ │ │ └────────┬────────┘ │ ┌────────┼────────┐ │ [IMU 传感器] │ ← 手腕背侧 └────────┼────────┘ │ ┌────┴────┐ │ 手掌 │ └─────────┘ | 轴 | 加速度计 (accel) | 陀螺仪 (gyro) | |:--:|-----------------|---------------| | **X** | 手臂左右摆动 | 手腕上下翻转 (俯仰) | | **Y** | 手臂上下抬起 | 手臂旋转 (内旋/外旋) | | **Z** | 手臂前后伸展 | 手腕左右旋转 (尺偏/桡偏) | | 挥杆阶段 | 关键 IMU 轴 | 测量内容 | |---------|------------|---------| | **上杆** | gyro_z | 手腕外旋角速度 | | **顶点** | gyro_z → 0 | 角速度归零 = 方向切换 | | **下杆** | gyro_z (负值) | 手腕快速内旋 | | **击球** | gyro_z 峰值 | 峰值角速度 (1000-1500°/s) | | **髋部旋转** | gyro_y (骨盆 IMU) | 髋部旋转速度 (Phase 2) | !!! tip &quot;为什么传感器贴在手腕背侧?&quot; 手腕背侧是高尔夫挥杆分析的**战略要地**，原因有二： **1. 动力链末端效应** ```text 地面 → 腿部 → 髋部 → 躯干 → 肩部 → 手臂 → 手腕 → 球杆 ↑ ↑ 能量起点 能量终点 (大质量、慢速度) (小质量、快速度) ``` 根据动量守恒，能量在动力链中层层放大，手腕作为末端达到**最大角速度**（鞭打效应）。 如果上游动作正确，手腕 gyro_z 会达到 1200-1500°/s；反之则会明显偏低。 **2. 一石二鸟的测量位置** | gyro 轴 | 测量的动作 | 涉及的身体段 | |---------|-----------|-------------| | gyro_x | 手腕俯仰（上翻/下扣） | 手腕关节 | | gyro_y | 前臂旋转（内旋/外旋） | 前臂 + 手腕 | | gyro_z | 手腕翻滚（释放动作） | 手腕 + 间接反映整条手臂 | 手腕背侧既能测到**手腕本身的精细动作**，又能通过 gyro_y 感知**前臂的旋转**。 !!! tip &quot;为什么 gyro_z 最重要?&quot; 在高尔夫挥杆中，**gyro_z** (手腕的翻滚/旋转) 是最关键的指标： - 职业球手击球时 gyro_z 可达 **1200-1500°/s** - 业余球手通常只有 **600-800°/s** - gyro_z 与杆头速度高度相关 (r &gt; 0.85)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="**IMU 贴于手腕背侧在高尔夫挥杆中的应用:** 手腕背侧 IMU 位置 ↓ ┌─────────────────┐ │ 前臂 │ │ │ └────────┬────────┘ │ ┌────────┼────────┐ │ [IMU 传感器] │ ← 手腕背侧 └────────┼────────┘ │ ┌────┴────┐ │ 手掌 │ └─────────┘ | 轴 | 加速度计 (accel) | 陀螺仪 (gyro) | |:--:|-----------------|---------------| | **X** | 手臂左右摆动 | 手腕上下翻转 (俯仰) | | **Y** | 手臂上下抬起 | 手臂旋转 (内旋/外旋) | | **Z** | 手臂前后伸展 | 手腕左右旋转 (尺偏/桡偏) | | 挥杆阶段 | 关键 IMU 轴 | 测量内容 | |---------|------------|---------| | **上杆** | gyro_z | 手腕外旋角速度 | | **顶点** | gyro_z → 0 | 角速度归零 = 方向切换 | | **下杆** | gyro_z (负值) | 手腕快速内旋 | | **击球** | gyro_z 峰值 | 峰值角速度 (1000-1500°/s) | | **髋部旋转** | gyro_y (骨盆 IMU) | 髋部旋转速度 (Phase 2) | !!! tip &#34;为什么传感器贴在手腕背侧?&#34; 手腕背侧是高尔夫挥杆分析的**战略要地**，原因有二： **1. 动力链末端效应** ```text 地面 → 腿部 → 髋部 → 躯干 → 肩部 → 手臂 → 手腕 → 球杆 ↑ ↑ 能量起点 能量终点 (大质量、慢速度) (小质量、快速度) ``` 根据动量守恒，能量在动力链中层层放大，手腕作为末端达到**最大角速度**（鞭打效应）。 如果上游动作正确，手腕 gyro_z 会达到 1200-1500°/s；反之则会明显偏低。 **2. 一石二鸟的测量位置** | gyro 轴 | 测量的动作 | 涉及的身体段 | |---------|-----------|-------------| | gyro_x | 手腕俯仰（上翻/下扣） | 手腕关节 | | gyro_y | 前臂旋转（内旋/外旋） | 前臂 + 手腕 | | gyro_z | 手腕翻滚（释放动作） | 手腕 + 间接反映整条手臂 | 手腕背侧既能测到**手腕本身的精细动作**，又能通过 gyro_y 感知**前臂的旋转**。 !!! tip &#34;为什么 gyro_z 最重要?&#34; 在高尔夫挥杆中，**gyro_z** (手腕的翻滚/旋转) 是最关键的指标： - 职业球手击球时 gyro_z 可达 **1200-1500°/s** - 业余球手通常只有 **600-800°/s** - gyro_z 与杆头速度高度相关 (r &gt; 0.85)">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#33-emg-数据处理-unique-capability" class="md-nav__link">
     <span class="md-ellipsis">
@@ -5547,7 +5581,7 @@
 <li><strong>挥杆顶点</strong>: gyro_z 从正值变为负值，瞬间经过 0 = 方向切换点</li>
 </ul>
 </div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>IMU 贴于手腕背侧在高尔夫挥杆中的应用:
+<h2 id="imu-imu-imu-accel-gyro-x-y-z-imu-gyro_z-gyro_z-0-gyro_z-gyro_z-1000-1500s-gyro_y-imu-phase-2-tip-1-text-gyro_z-1200-1500s-2-gyro-gyro_x-gyro_y-gyro_z-gyro_y-tip-gyro_z-gyro_z-gyro_z-1200-1500s-600-800s-gyro_z-r-085"><div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>**IMU 贴于手腕背侧在高尔夫挥杆中的应用:**
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>        手腕背侧 IMU 位置
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>              ↓
@@ -5610,8 +5644,7 @@
 </span><span id="__span-9-61"><a id="__codelineno-9-61" name="__codelineno-9-61" href="#__codelineno-9-61"></a>    - 职业球手击球时 gyro_z 可达 **1200-1500°/s**
 </span><span id="__span-9-62"><a id="__codelineno-9-62" name="__codelineno-9-62" href="#__codelineno-9-62"></a>    - 业余球手通常只有 **600-800°/s**
 </span><span id="__span-9-63"><a id="__codelineno-9-63" name="__codelineno-9-63" href="#__codelineno-9-63"></a>    - gyro_z 与杆头速度高度相关 (r &gt; 0.85)
-</span></code></pre></div>
-<hr />
+</span></code></pre></div><a class="headerlink" href="#imu-imu-imu-accel-gyro-x-y-z-imu-gyro_z-gyro_z-0-gyro_z-gyro_z-1000-1500s-gyro_y-imu-phase-2-tip-1-text-gyro_z-1200-1500s-2-gyro-gyro_x-gyro_y-gyro_z-gyro_y-tip-gyro_z-gyro_z-gyro_z-1200-1500s-600-800s-gyro_z-r-085" title="Permanent link">&para;</a></h2>
 <h4 id="322-imu-计算指标">3.2.2 计算指标<a class="headerlink" href="#322-imu-计算指标" title="Permanent link">&para;</a></h4>
 <p>基于原始 6 轴数据，可计算以下高尔夫挥杆指标：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 峰值角速度检测</span>
@@ -5636,55 +5669,112 @@
 </span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>
 </span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>    <span class="k">return</span> <span class="n">peak_velocity</span><span class="p">,</span> <span class="n">peak_time</span>
 </span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a>
-</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="c1"># 节奏比计算</span>
-</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_tempo_ratio</span><span class="p">(</span><span class="n">timestamps</span><span class="p">,</span> <span class="n">event_labels</span><span class="p">):</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="c1"># 零交叉检测 (实时阶段划分)</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="k">def</span><span class="w"> </span><span class="nf">detect_zero_crossing</span><span class="p">(</span><span class="n">gyro_z</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">):</span>
 </span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="sd">    计算上杆/下杆节奏比</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="sd">    检测 gyro_z 零交叉点，用于实时划分挥杆阶段</span>
 </span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a>
 </span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="sd">    Args:</span>
-</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="sd">        timestamps: 时间戳 (ms)</span>
-</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="sd">        event_labels: 事件标签 [&#39;address&#39;, &#39;top&#39;, &#39;impact&#39;]</span>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="sd">        gyro_z: Z 轴角速度 (deg/s)</span>
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="sd">        timestamps: 时间戳 (ms)</span>
 </span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>
 </span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a><span class="sd">    Returns:</span>
-</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a><span class="sd">        tempo_ratio: 上杆时长 / 下杆时长</span>
+</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a><span class="sd">        crossing_time: 零交叉时间 (ms)，即上杆顶点</span>
 </span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>    <span class="n">address_time</span> <span class="o">=</span> <span class="n">timestamps</span><span class="p">[</span><span class="n">event_labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">)]</span>
-</span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>    <span class="n">top_time</span> <span class="o">=</span> <span class="n">timestamps</span><span class="p">[</span><span class="n">event_labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;top&#39;</span><span class="p">)]</span>
-</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>    <span class="n">impact_time</span> <span class="o">=</span> <span class="n">timestamps</span><span class="p">[</span><span class="n">event_labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;impact&#39;</span><span class="p">)]</span>
-</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>
-</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>    <span class="n">backswing_duration</span> <span class="o">=</span> <span class="n">top_time</span> <span class="o">-</span> <span class="n">address_time</span>
-</span><span id="__span-10-40"><a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a>    <span class="n">downswing_duration</span> <span class="o">=</span> <span class="n">impact_time</span> <span class="o">-</span> <span class="n">top_time</span>
+</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>    <span class="c1"># 寻找符号变化点 (正→负)</span>
+</span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a>    <span class="n">sign_changes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">gyro_z</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sign_changes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a>        <span class="n">crossing_idx</span> <span class="o">=</span> <span class="n">sign_changes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>        <span class="k">return</span> <span class="n">timestamps</span><span class="p">[</span><span class="n">crossing_idx</span><span class="p">]</span>
+</span><span id="__span-10-40"><a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a>    <span class="k">return</span> <span class="kc">None</span>
 </span><span id="__span-10-41"><a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a>
-</span><span id="__span-10-42"><a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a>    <span class="n">tempo_ratio</span> <span class="o">=</span> <span class="n">backswing_duration</span> <span class="o">/</span> <span class="n">downswing_duration</span>
-</span><span id="__span-10-43"><a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a>
-</span><span id="__span-10-44"><a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a>    <span class="k">return</span> <span class="n">tempo_ratio</span>
-</span><span id="__span-10-45"><a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a>
-</span><span id="__span-10-46"><a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a><span class="c1"># 运动链时序检测</span>
-</span><span id="__span-10-47"><a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a><span class="k">def</span><span class="w"> </span><span class="nf">detect_kinematic_sequence</span><span class="p">(</span><span class="n">gyro_data</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-</span><span id="__span-10-48"><a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-10-49"><a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a><span class="sd">    检测运动链各环节的启动时间</span>
-</span><span id="__span-10-50"><a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a>
-</span><span id="__span-10-51"><a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a><span class="sd">    Args:</span>
-</span><span id="__span-10-52"><a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a><span class="sd">        gyro_data: 陀螺仪数据 (deg/s)</span>
-</span><span id="__span-10-53"><a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a><span class="sd">        timestamps: 时间戳 (ms)</span>
-</span><span id="__span-10-54"><a id="__codelineno-10-54" name="__codelineno-10-54" href="#__codelineno-10-54"></a><span class="sd">        threshold: 启动阈值 (deg/s)</span>
-</span><span id="__span-10-55"><a id="__codelineno-10-55" name="__codelineno-10-55" href="#__codelineno-10-55"></a>
-</span><span id="__span-10-56"><a id="__codelineno-10-56" name="__codelineno-10-56" href="#__codelineno-10-56"></a><span class="sd">    Returns:</span>
-</span><span id="__span-10-57"><a id="__codelineno-10-57" name="__codelineno-10-57" href="#__codelineno-10-57"></a><span class="sd">        onset_times: 各环节启动时间 (ms)</span>
-</span><span id="__span-10-58"><a id="__codelineno-10-58" name="__codelineno-10-58" href="#__codelineno-10-58"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-10-59"><a id="__codelineno-10-59" name="__codelineno-10-59" href="#__codelineno-10-59"></a>    <span class="c1"># 寻找角速度超过阈值的首次时刻</span>
-</span><span id="__span-10-60"><a id="__codelineno-10-60" name="__codelineno-10-60" href="#__codelineno-10-60"></a>    <span class="n">onset_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">gyro_data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-10-61"><a id="__codelineno-10-61" name="__codelineno-10-61" href="#__codelineno-10-61"></a>    <span class="n">onset_time</span> <span class="o">=</span> <span class="n">timestamps</span><span class="p">[</span><span class="n">onset_idx</span><span class="p">]</span>
-</span><span id="__span-10-62"><a id="__codelineno-10-62" name="__codelineno-10-62" href="#__codelineno-10-62"></a>
-</span><span id="__span-10-63"><a id="__codelineno-10-63" name="__codelineno-10-63" href="#__codelineno-10-63"></a>    <span class="k">return</span> <span class="n">onset_time</span>
+</span><span id="__span-10-42"><a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a>
+</span><span id="__span-10-43"><a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a><span class="c1"># ============================================================</span>
+</span><span id="__span-10-44"><a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a><span class="c1"># 以下为 挥杆后计算 (Post-Swing Analysis)</span>
+</span><span id="__span-10-45"><a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a><span class="c1"># 需要完整挥杆数据，不可实时计算</span>
+</span><span id="__span-10-46"><a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a><span class="c1"># ============================================================</span>
+</span><span id="__span-10-47"><a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a>
+</span><span id="__span-10-48"><a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a><span class="c1"># 节奏比计算 (挥杆后)</span>
+</span><span id="__span-10-49"><a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_tempo_ratio</span><span class="p">(</span><span class="n">timestamps</span><span class="p">,</span> <span class="n">event_labels</span><span class="p">):</span>
+</span><span id="__span-10-50"><a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-10-51"><a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a><span class="sd">    计算上杆/下杆节奏比</span>
+</span><span id="__span-10-52"><a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a>
+</span><span id="__span-10-53"><a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a><span class="sd">    ⚠️ 挥杆后计算：需要完整挥杆数据</span>
+</span><span id="__span-10-54"><a id="__codelineno-10-54" name="__codelineno-10-54" href="#__codelineno-10-54"></a>
+</span><span id="__span-10-55"><a id="__codelineno-10-55" name="__codelineno-10-55" href="#__codelineno-10-55"></a><span class="sd">    Args:</span>
+</span><span id="__span-10-56"><a id="__codelineno-10-56" name="__codelineno-10-56" href="#__codelineno-10-56"></a><span class="sd">        timestamps: 时间戳 (ms)</span>
+</span><span id="__span-10-57"><a id="__codelineno-10-57" name="__codelineno-10-57" href="#__codelineno-10-57"></a><span class="sd">        event_labels: 事件标签 [&#39;address&#39;, &#39;top&#39;, &#39;impact&#39;]</span>
+</span><span id="__span-10-58"><a id="__codelineno-10-58" name="__codelineno-10-58" href="#__codelineno-10-58"></a>
+</span><span id="__span-10-59"><a id="__codelineno-10-59" name="__codelineno-10-59" href="#__codelineno-10-59"></a><span class="sd">    Returns:</span>
+</span><span id="__span-10-60"><a id="__codelineno-10-60" name="__codelineno-10-60" href="#__codelineno-10-60"></a><span class="sd">        tempo_ratio: 上杆时长 / 下杆时长 (理想值约 3:1)</span>
+</span><span id="__span-10-61"><a id="__codelineno-10-61" name="__codelineno-10-61" href="#__codelineno-10-61"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-10-62"><a id="__codelineno-10-62" name="__codelineno-10-62" href="#__codelineno-10-62"></a>    <span class="n">address_time</span> <span class="o">=</span> <span class="n">timestamps</span><span class="p">[</span><span class="n">event_labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;address&#39;</span><span class="p">)]</span>
+</span><span id="__span-10-63"><a id="__codelineno-10-63" name="__codelineno-10-63" href="#__codelineno-10-63"></a>    <span class="n">top_time</span> <span class="o">=</span> <span class="n">timestamps</span><span class="p">[</span><span class="n">event_labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;top&#39;</span><span class="p">)]</span>
+</span><span id="__span-10-64"><a id="__codelineno-10-64" name="__codelineno-10-64" href="#__codelineno-10-64"></a>    <span class="n">impact_time</span> <span class="o">=</span> <span class="n">timestamps</span><span class="p">[</span><span class="n">event_labels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;impact&#39;</span><span class="p">)]</span>
+</span><span id="__span-10-65"><a id="__codelineno-10-65" name="__codelineno-10-65" href="#__codelineno-10-65"></a>
+</span><span id="__span-10-66"><a id="__codelineno-10-66" name="__codelineno-10-66" href="#__codelineno-10-66"></a>    <span class="n">backswing_duration</span> <span class="o">=</span> <span class="n">top_time</span> <span class="o">-</span> <span class="n">address_time</span>
+</span><span id="__span-10-67"><a id="__codelineno-10-67" name="__codelineno-10-67" href="#__codelineno-10-67"></a>    <span class="n">downswing_duration</span> <span class="o">=</span> <span class="n">impact_time</span> <span class="o">-</span> <span class="n">top_time</span>
+</span><span id="__span-10-68"><a id="__codelineno-10-68" name="__codelineno-10-68" href="#__codelineno-10-68"></a>
+</span><span id="__span-10-69"><a id="__codelineno-10-69" name="__codelineno-10-69" href="#__codelineno-10-69"></a>    <span class="n">tempo_ratio</span> <span class="o">=</span> <span class="n">backswing_duration</span> <span class="o">/</span> <span class="n">downswing_duration</span>
+</span><span id="__span-10-70"><a id="__codelineno-10-70" name="__codelineno-10-70" href="#__codelineno-10-70"></a>
+</span><span id="__span-10-71"><a id="__codelineno-10-71" name="__codelineno-10-71" href="#__codelineno-10-71"></a>    <span class="k">return</span> <span class="n">tempo_ratio</span>
+</span><span id="__span-10-72"><a id="__codelineno-10-72" name="__codelineno-10-72" href="#__codelineno-10-72"></a>
+</span><span id="__span-10-73"><a id="__codelineno-10-73" name="__codelineno-10-73" href="#__codelineno-10-73"></a><span class="c1"># 运动链时序检测 (挥杆后)</span>
+</span><span id="__span-10-74"><a id="__codelineno-10-74" name="__codelineno-10-74" href="#__codelineno-10-74"></a><span class="k">def</span><span class="w"> </span><span class="nf">detect_kinematic_sequence</span><span class="p">(</span><span class="n">gyro_data</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+</span><span id="__span-10-75"><a id="__codelineno-10-75" name="__codelineno-10-75" href="#__codelineno-10-75"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-10-76"><a id="__codelineno-10-76" name="__codelineno-10-76" href="#__codelineno-10-76"></a><span class="sd">    检测运动链各环节的启动时间</span>
+</span><span id="__span-10-77"><a id="__codelineno-10-77" name="__codelineno-10-77" href="#__codelineno-10-77"></a>
+</span><span id="__span-10-78"><a id="__codelineno-10-78" name="__codelineno-10-78" href="#__codelineno-10-78"></a><span class="sd">    Args:</span>
+</span><span id="__span-10-79"><a id="__codelineno-10-79" name="__codelineno-10-79" href="#__codelineno-10-79"></a><span class="sd">        gyro_data: 陀螺仪数据 (deg/s)</span>
+</span><span id="__span-10-80"><a id="__codelineno-10-80" name="__codelineno-10-80" href="#__codelineno-10-80"></a><span class="sd">        timestamps: 时间戳 (ms)</span>
+</span><span id="__span-10-81"><a id="__codelineno-10-81" name="__codelineno-10-81" href="#__codelineno-10-81"></a><span class="sd">        threshold: 启动阈值 (deg/s)</span>
+</span><span id="__span-10-82"><a id="__codelineno-10-82" name="__codelineno-10-82" href="#__codelineno-10-82"></a>
+</span><span id="__span-10-83"><a id="__codelineno-10-83" name="__codelineno-10-83" href="#__codelineno-10-83"></a><span class="sd">    Returns:</span>
+</span><span id="__span-10-84"><a id="__codelineno-10-84" name="__codelineno-10-84" href="#__codelineno-10-84"></a><span class="sd">        onset_times: 各环节启动时间 (ms)</span>
+</span><span id="__span-10-85"><a id="__codelineno-10-85" name="__codelineno-10-85" href="#__codelineno-10-85"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-10-86"><a id="__codelineno-10-86" name="__codelineno-10-86" href="#__codelineno-10-86"></a>    <span class="c1"># 寻找角速度超过阈值的首次时刻</span>
+</span><span id="__span-10-87"><a id="__codelineno-10-87" name="__codelineno-10-87" href="#__codelineno-10-87"></a>    <span class="n">onset_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">gyro_data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-10-88"><a id="__codelineno-10-88" name="__codelineno-10-88" href="#__codelineno-10-88"></a>    <span class="n">onset_time</span> <span class="o">=</span> <span class="n">timestamps</span><span class="p">[</span><span class="n">onset_idx</span><span class="p">]</span>
+</span><span id="__span-10-89"><a id="__codelineno-10-89" name="__codelineno-10-89" href="#__codelineno-10-89"></a>
+</span><span id="__span-10-90"><a id="__codelineno-10-90" name="__codelineno-10-90" href="#__codelineno-10-90"></a>    <span class="k">return</span> <span class="n">onset_time</span>
 </span></code></pre></div>
 <p><strong>可计算指标</strong>:</p>
-<ul>
-<li>峰值角速度</li>
-<li>节奏比 (高精度)</li>
-<li>运动链时序 (&lt;10ms 精度)</li>
-<li>加速度峰值</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>指标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>实时</strong></td>
+<td>峰值角速度</td>
+<td>可在数据流中实时检测</td>
+</tr>
+<tr>
+<td><strong>实时</strong></td>
+<td>零交叉检测</td>
+<td>用于阶段划分 (上杆顶点)</td>
+</tr>
+<tr>
+<td><strong>实时</strong></td>
+<td>加速度峰值</td>
+<td>可在数据流中实时检测</td>
+</tr>
+<tr>
+<td><strong>挥杆后</strong></td>
+<td>节奏比</td>
+<td>需要完整挥杆数据 (address→impact)</td>
+</tr>
+<tr>
+<td><strong>挥杆后</strong></td>
+<td>运动链时序</td>
+<td>需要完整挥杆数据 (&lt;10ms 精度)</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h3 id="33-emg-数据处理-unique-capability">3.3 EMG 数据处理<a class="headerlink" href="#33-emg-数据处理-unique-capability" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
