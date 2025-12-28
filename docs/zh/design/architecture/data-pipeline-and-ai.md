@@ -857,7 +857,76 @@ P2 (最后):   优化建议 (BALANCE)
 
 ---
 
-文档版本: v1.2 | 作者: Movement Chain AI Team | 最后更新: 2025-12-23
+## 5. Rerun 调试工具汇总 {#5-rerun-调试工具}
+
+[Rerun](https://rerun.io/) 是多模态数据调试工具，用于验证传感器融合和时间对齐。
+
+!!! warning "重要区分"
+    Rerun 是**开发者工具**，用于调试和验证算法。
+    用户的手机 App 不会显示这些复杂图表。
+    用户体验设计见 [§4 用户体验设计](#4-用户体验设计)。
+
+### 5.1 快速开始
+
+```bash
+# 安装
+pip install rerun-sdk
+
+# 验证 MediaPipe 姿态可视化 (官方示例)
+python -m rerun_demos.human_pose_tracking
+
+# 在你的代码中使用
+import rerun as rr
+rr.init("movement-chain", spawn=True)
+rr.log("video/frame", rr.Image(frame))
+rr.log("imu/gyro_z", rr.Scalar(gyro_z))
+rr.log("emg/core", rr.Scalar(core_activation))
+```
+
+### 5.2 调试场景速查表
+
+| 场景 | 相关章节 | Rerun 功能 | 解决的问题 |
+|------|---------|-----------|-----------|
+| **时间同步验证** | [§1.2 原始传感器数据](#12-原始传感器数据) | 时间轴视图 + 多通道对齐 | 验证 Vision/IMU/EMG 是否 <10ms 对齐 |
+| **MediaPipe 骨架** | [§1.3 计算特征](#13-计算特征) | 官方 human_pose_tracking | 验证 33 关键点检测和特征计算 |
+| **IMU 曲线分析** | [§1.3 IMU 指标](#13-计算特征) | 峰值/零交叉自动检测 | 验证模拟/真实 IMU 数据质量 |
+| **EMG 激活时序** | [§1.3 EMG 指标](#13-计算特征) | 双曲线叠加 + onset 标记 | 验证 Core 是否先于 Forearm 激活 |
+| **诊断规则调试** | [§2.3 推荐架构](#23-推荐架构详解-方案-c) | 标记触发点 + 回归测试 | 验证 ARMS_BEFORE_CORE 等规则逻辑 |
+
+### 5.3 开发阶段使用建议
+
+```text
+Phase 1 (Week 1-2): Vision Pipeline
+├── 必须: 验证 MediaPipe 骨架叠加
+├── 必须: 验证 X-Factor 等特征计算
+└── 建议: 建立第一批 .rrd 测试用例
+
+Phase 2 (Week 3): Mock Sensor
+├── 必须: 可视化 IMU/EMG 模拟数据与视频对齐
+└── 必须: 验证时间同步 <10ms
+
+Phase 3 (Week 4): Rule Engine
+├── 必须: 调优规则阈值
+├── 必须: 录制"正确"和"错误"挥杆对比
+└── 建议: 保存问题场景 .rrd 文件
+
+Phase 4+ (Week 5-8): Integration & Testing
+├── 推荐: 验证移动端 vs 桌面端检测一致性
+└── 推荐: 分享 .rrd 给团队成员协作调试
+```
+
+### 5.4 详细评估
+
+关于 Rerun 的完整技术评估、竞品对比，详见:
+
+- **[可视化工具评估](../decisions/visualization-tools-evaluation.md)** — 为什么选择 Rerun 而非 Foxglove/PlotJuggler
+- **[MVP 开发计划 §11](./mvp-plan.md#11-post-mvp-路线图)** — 项目整体技术路线图
+
+---
+
+文档版本: v1.3 | 作者: Movement Chain AI Team | 最后更新: 2025-12-27
+
+**v1.3 更新**: 新增 §5 Rerun 调试工具汇总 (从 modular-architecture.md 迁移)
 
 **v1.2 更新**: 新增 BLE 时间抖动警告、Sensor Hub 架构、ESP32 源端时间戳方案
 

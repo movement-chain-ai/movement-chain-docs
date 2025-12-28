@@ -1597,70 +1597,10 @@ MVP 阶段:
 
 ---
 
-## 4. Rerun 调试工具汇总 Debugging Tools Summary {#4-rerun-调试工具}
+## 4. 相关文档 Related Documents {#4-相关文档}
 
-本文档多处提到 [Rerun](https://rerun.io/) 作为多模态数据调试工具。本节汇总所有调试场景。
-
-### 4.1 快速开始
-
-```bash
-# 安装
-pip install rerun-sdk
-
-# 验证 MediaPipe 姿态可视化 (官方示例)
-python -m rerun_demos.human_pose_tracking
-
-# 在你的代码中使用
-import rerun as rr
-rr.init("movement-chain", spawn=True)
-rr.log("video/frame", rr.Image(frame))
-rr.log("imu/gyro_z", rr.Scalar(gyro_z))
-rr.log("emg/core", rr.Scalar(core_activation))
-```
-
-### 4.2 调试场景速查表
-
-| 场景 | 相关章节 | Rerun 功能 | 解决的问题 |
-|------|---------|-----------|-----------|
-| **时间同步验证** | [§2.2.2](#222-时间同步策略) | 时间轴视图 + 多通道对齐 | 验证 Vision/IMU/EMG 是否 <10ms 对齐 |
-| **交叉验证可视化** | [§2.2.5](#225-融合引擎) | 曲线叠加 + 置信度通道 | 验证 Vision 和 IMU 阶段检测一致性 |
-| **MediaPipe 骨架** | [§2.3.2](#232-pose-block) | 官方 human_pose_tracking | 验证 33 关键点检测和特征计算 |
-| **IMU 曲线分析** | [§2.3.3](#233-imu-block) | 峰值/零交叉自动检测 | 验证模拟/真实 IMU 数据质量 |
-| **EMG 激活时序** | [§2.3.4](#234-emg-block) | 双曲线叠加 + onset 标记 | 验证 Core 是否先于 Forearm 激活 |
-| **诊断规则调试** | [§2.4.2](#242-fusion-block) | 标记触发点 + 回归测试 | 验证 ARMS_BEFORE_CORE 等规则逻辑 |
-
-### 5.3 开发阶段使用建议
-
-```text
-Phase 1 (Week 1-2): Vision Pipeline
-├── 必须: 验证 MediaPipe 骨架叠加
-├── 必须: 验证 X-Factor 等特征计算
-└── 建议: 建立第一批 .rrd 测试用例
-
-Phase 2 (Week 3): Mock Sensor
-├── 必须: 可视化 IMU/EMG 模拟数据与视频对齐
-└── 必须: 验证时间同步 <10ms
-
-Phase 3 (Week 4): Rule Engine
-├── 必须: 调优规则阈值
-├── 必须: 录制"正确"和"错误"挥杆对比
-└── 建议: 保存问题场景 .rrd 文件
-
-Phase 4+ (Week 5-8): Integration & Testing
-├── 推荐: 验证移动端 vs 桌面端检测一致性
-└── 推荐: 分享 .rrd 给团队成员协作调试
-```
-
-### 5.4 详细评估
-
-关于 Rerun 的完整技术评估、竞品对比、未来 TAPIR 球杆追踪规划，详见:
-
-- **[可视化工具评估](../decisions/visualization-tools-evaluation.md)** — 为什么选择 Rerun 而非 Foxglove/PlotJuggler
-- **[mvp-plan.md §11](./mvp-plan.md#11-post-mvp-路线图)** — 项目整体技术路线图
-
----
-
-## 5. 相关文档 Related Documents {#5-相关文档}
+!!! tip "Rerun 调试工具"
+    Rerun 调试工具汇总已迁移至 [数据流与反馈 §5](./data-pipeline-and-ai.md#5-rerun-调试工具)。
 
 ### 核心文档
 
@@ -1688,10 +1628,13 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 ---
 
-## 6. 版本历史 {#6-版本历史}
+## 5. 版本历史 {#5-版本历史}
 
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|
+| 2.13 | 2025-12-27 | Rerun 章节迁移 |
+| | | • §4 Rerun 调试工具迁移至 data-pipeline-and-ai.md §5 |
+| | | • 章节重新编号: §5→§4, §6→§5 |
 | 2.12 | 2025-12-27 | 文档聚焦重构 |
 | | | • 删除 §3 MVP 策略 (内容移至 system-design.md) |
 | | | • 重写 §3 积木替换示例，增加概览表 + 原理图 + 步骤表 |
@@ -1773,5 +1716,5 @@ Phase 4+ (Week 5-8): Integration & Testing
 
 ---
 
-**最后更新**: 2025-12-23
+**最后更新**: 2025-12-27
 **维护者**: Movement Chain AI Team
