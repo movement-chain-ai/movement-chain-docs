@@ -8,7 +8,7 @@
 
 ## 1. 系统能力矩阵 Capability Matrix {#1-系统能力矩阵-capability-matrix}
 
-下表展示了文献验证的高尔夫指标与三模态系统各传感器的对应关系。
+下表展示了文献验证的高尔夫指标与系统数据的对应关系。
 
 | 研究验证指标 | Vision (MediaPipe) | IMU (手腕) | IMU (骨盆 Phase 2) | EMG | 覆盖状态 |
 |------------|-------------------|-----------|-------------------|-----|---------|
@@ -82,14 +82,14 @@
 
 ---
 
-## 3. 检测方法详解 Detection Methods
+## 3. 数据处理与指标计算(单传感器计算) Data Processing & Metric Computation
 
-### 3.1 Vision 检测 (MediaPipe 33 landmarks) {#31-vision-检测-mediapipe-33-landmarks}
+### 3.1 Vision 数据处理 (MediaPipe 33 landmarks) {#31-vision-数据处理-mediapipe-33-landmarks}
 
 **优势**: 直接观测身体姿态，无需复杂校准
 **劣势**: 采样率低 (30fps = 33ms)，无法测量高频运动
 
-#### 3.1.1 数据解释 {#311-vision-数据解释}
+#### 3.1.1 原始数据 Raw Data {#311-vision-原始数据}
 
 MediaPipe Pose 每帧输出 **33 个关键点**，每个关键点包含 4 个数值：
 
@@ -250,6 +250,10 @@ def filter_landmarks(landmarks, min_visibility=0.7):
 
 ---
 
+#### 3.1.2 计算指标 Computed Metrics {#312-vision-计算指标}
+
+基于原始 33 关键点坐标，可计算以下高尔夫挥杆指标：
+
 ```python
 # X-Factor 计算示例
 def calculate_x_factor(landmarks):
@@ -315,9 +319,9 @@ def calculate_obliquity(landmarks, is_shoulder=True):
 
 ---
 
-### 3.2 IMU 检测 {#32-imu-检测-lsm6dsv16x--1666hz}
+### 3.2 IMU 数据处理 {#32-imu-数据处理-lsm6dsv16x--1666hz}
 
-#### 3.2.1 数据解释 {#321-imu-6-轴数据解释}
+#### 3.2.1 原始数据 Raw Data {#321-imu-原始数据}
 
 IMU (惯性测量单元) 每次采样输出 **6 个数值**，来自两个传感器：
 
@@ -396,6 +400,12 @@ IMU 坐标系 (右手系):
     - 业余球手通常只有 **600-800°/s**
     - gyro_z 与杆头速度高度相关 (r > 0.85)
 
+---
+
+#### 3.2.2 计算指标 Computed Metrics {#322-imu-计算指标}
+
+基于原始 6 轴数据，可计算以下高尔夫挥杆指标：
+
 ```python
 # 峰值角速度检测
 def detect_peak_velocity(gyro_data, timestamps):
@@ -471,7 +481,7 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
 
 ---
 
-### 3.3 EMG 检测 (UNIQUE CAPABILITY) {#33-emg-检测-unique-capability}
+### 3.3 EMG 数据处理 (UNIQUE CAPABILITY) {#33-emg-数据处理-unique-capability}
 
 !!! info "信号处理基础知识"
     理解 EMG 检测算法前，请先阅读:
@@ -479,7 +489,7 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
     - [信号处理入门](../../prerequisites/foundations/signal-processing-101.md) — 基线、激活检测、消抖的基础概念
     - 关键术语: Baseline (基线)、Onset Detection (激活检测)、Debounce (消抖)
 
-#### 3.3.1 数据解释 {#331-emg-数据解释}
+#### 3.3.1 原始数据 Raw Data {#331-emg-原始数据}
 
 EMG (肌电传感器) 测量的是**肌肉收缩时产生的电信号**：
 
@@ -609,7 +619,7 @@ ADC Value vs 肌肉状态:
 | Phase 2 | 4 | + Gluteus, Adductors | 下肢发力分析 |
 | Phase 3 | 6 | + Lats, Deltoids | 全身运动链 |
 
-> 详见 [§6 EMG 传感器布局规划](#6-emg-传感器布局规划-emg-sensor-placement-plan)
+> 详见 [§5 EMG 传感器布局规划](#5-emg-传感器布局规划-emg-sensor-placement-plan)
 
 **信号处理流程**:
 
@@ -663,6 +673,12 @@ Forearm EMG: _________/‾‾‾‾‾‾\___    ← 后激活 (t=720ms)
 时间差 = 720 - 570 = 150ms > 20ms ✅ 正确
 ```
 
+---
+
+#### 3.3.2 计算指标 Computed Metrics {#332-emg-计算指标}
+
+基于原始 EMG 信号，可计算以下单通道指标：
+
 ```python
 # 肌肉激活时序检测
 def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
@@ -700,7 +716,29 @@ def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
     onset_intensity = np.max(emg_signal[onset_idx])
 
     return onset_time, onset_intensity
+```
 
+**单传感器可计算指标**:
+
+- 单通道激活时刻 (onset_time)
+- 单通道激活强度 (onset_intensity)
+- 包络信号 (envelope_mV)
+- 归一化激活百分比 (activation_%)
+
+!!! note "多传感器融合分析"
+    以下功能需要**时间对齐后的多传感器数据**，详见 [§4 多传感器融合分析](#4-多传感器融合分析-sensor-fusion-analysis)：
+
+    - 运动链序列验证 (Core vs Forearm 时序)
+    - 力链传递验证 (多肌群激活顺序)
+    - 疲劳检测 (跨挥杆对比)
+
+---
+
+#### 3.3.3 多传感器融合算法 {#333-多传感器融合算法}
+
+以下算法需要对齐后的多传感器数据才能执行：
+
+```python
 # 运动链序列验证 (UNIQUE)
 def validate_kinematic_sequence(emg_core, emg_forearm, timestamps, threshold=0.5):
     """
@@ -802,7 +840,17 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 
 ---
 
-## 4. 独特检测能力总结 Your Unique Detection Capabilities
+## 4. 多传感器融合分析 Sensor Fusion Analysis {#4-多传感器融合分析-sensor-fusion-analysis}
+
+!!! info "本章节内容"
+    本章节描述**时间对齐后**的多传感器融合分析，包括：
+
+    - 融合策略与流程
+    - 融合后的独特检测能力
+
+---
+
+### 4.1 独特检测能力总结 Your Unique Detection Capabilities
 
 下表展示了你的系统相对于竞品的独特优势。
 
@@ -825,7 +873,7 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 
 ---
 
-## 5. 系统融合策略 Sensor Fusion Strategy
+### 4.2 系统融合策略 Sensor Fusion Strategy
 
 三模态传感器的数据融合策略如下:
 
@@ -870,9 +918,9 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 
 ---
 
-## 6. EMG 传感器布局规划 EMG Sensor Placement Plan {#6-emg-传感器布局规划-emg-sensor-placement-plan}
+## 5. EMG 传感器布局规划 EMG Sensor Placement Plan {#5-emg-传感器布局规划-emg-sensor-placement-plan}
 
-### 6.1 关键肌群图 Key Muscle Groups
+### 5.1 关键肌群图 Key Muscle Groups
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -911,7 +959,7 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 6.2 分阶段部署计划 Phased Deployment
+### 5.2 分阶段部署计划 Phased Deployment
 
 | Phase | 肌群 | 英文名 | 检测目标 | 传感器数 |
 |:-----:|------|--------|----------|:--------:|
@@ -928,7 +976,7 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 - Phase 2: **4 通道** — 完整下半身运动链
 - Phase 3: **6 通道** — 全身运动链分析
 
-### 6.3 选择依据 Selection Rationale
+### 5.3 选择依据 Selection Rationale
 
 | 研究来源 | 发现 | 对选型的影响 |
 |---------|------|-------------|
@@ -937,7 +985,7 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 | **TPI 研究** | 臀肌激活不足 → 早伸 (Early Extension) | Phase 2 加入 Gluteus |
 | **PMC4851105** | 8通道EMG分析发现"雪崩效应" | 全通道分析需要 Phase 3 |
 
-### 6.4 MVP 检测能力
+### 5.4 MVP 检测能力
 
 仅用 **2 个 EMG 传感器 (Core + Forearm)** 即可检测:
 
@@ -948,7 +996,7 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 | **核心激活不足** | Core RMS / MVC% | < 50% MVC = 不足 |
 | **疲劳检测** | 峰值幅度衰减趋势 | 下降 > 30% = 疲劳 |
 
-### 6.5 Mock 数据结构
+### 5.5 Mock 数据结构
 
 MVP 阶段使用 Mock 数据时，建议预留 **4 通道** 数据结构，便于后续扩展:
 
@@ -995,7 +1043,7 @@ def calculate_activation_ratio(mock_emg):
 
 ---
 
-## 7. 融合置信度计算 Fusion Confidence {#7-融合置信度计算-fusion-confidence}
+## 6. 融合置信度计算 Fusion Confidence {#6-融合置信度计算-fusion-confidence}
 
 三模态融合提升置信度的核心算法:
 
@@ -1039,11 +1087,11 @@ def calculate_fusion_confidence(
 
 ---
 
-## 8. 模拟数据生成 Simulation Data Generation
+## 7. 模拟数据生成 Simulation Data Generation
 
 MVP 阶段硬件未就绪时，使用模拟数据验证完整管道。
 
-### 8.1 从 Pose 数据生成模拟 IMU {#81-从-pose-数据生成模拟-imu}
+### 7.1 从 Pose 数据生成模拟 IMU {#71-从-pose-数据生成模拟-imu}
 
 核心思路: 用 MediaPipe 的关键点序列**导数**来近似 IMU 角速度
 
@@ -1154,7 +1202,7 @@ def simulate_imu_from_pose(
 #     print(f"{f.timestamp_ms}ms: gyro_z={f.gyro_z:.1f}°/s, phase={f.phase_hint}")
 ```
 
-### 8.2 从阶段时间戳生成模拟 EMG {#82-从阶段时间戳生成模拟-emg}
+### 7.2 从阶段时间戳生成模拟 EMG {#72-从阶段时间戳生成模拟-emg}
 
 核心思路: 根据已知的生物力学时序生成**符合真实模式**的 EMG 信号
 
@@ -1322,7 +1370,7 @@ def simulate_emg_from_phases(
 # print(f"Gap: {result.timing_gap_ms}ms → {result.pattern_detected}")
 ```
 
-### 8.3 预生成的测试场景
+### 7.3 预生成的测试场景
 
 #### IMU 测试场景
 
@@ -1390,11 +1438,11 @@ def simulate_emg_from_phases(
 
 ---
 
-## 9. 融合诊断算法 Fusion Diagnostic Algorithms {#9-融合诊断算法-fusion-diagnostic-algorithms}
+## 8. 融合诊断算法 Fusion Diagnostic Algorithms {#8-融合诊断算法-fusion-diagnostic-algorithms}
 
 FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模态融合才能实现。
 
-### 9.1 基础数据结构
+### 8.1 基础数据结构
 
 ```python
 from dataclasses import dataclass
@@ -1421,7 +1469,7 @@ class DiagnosticResult:
     evidence: dict  # 支持诊断的数据点
 ```
 
-### 9.2 算法 1: 运动链序列验证
+### 8.2 算法 1: 运动链序列验证
 
 ```python
 def validate_kinematic_sequence(
@@ -1506,7 +1554,7 @@ def validate_kinematic_sequence(
         )
 ```
 
-### 9.3 算法 2: 假性蓄力检测
+### 8.3 算法 2: 假性蓄力检测
 
 ```python
 def detect_false_coil(
@@ -1608,7 +1656,7 @@ def detect_false_coil(
         )
 ```
 
-### 9.4 算法 3: 力链三重验证
+### 8.4 算法 3: 力链三重验证
 
 ```python
 def verify_force_chain(
@@ -1722,7 +1770,7 @@ def verify_force_chain(
     return final_confidence, diagnostics
 ```
 
-### 9.5 完整融合流程
+### 8.5 完整融合流程
 
 ```python
 def run_fusion_diagnostics(
@@ -1793,7 +1841,7 @@ def run_fusion_diagnostics(
     }
 ```
 
-### 9.6 诊断规则速查表
+### 8.6 诊断规则速查表
 
 | 规则 ID | 严重度 | 触发条件 | 需要的传感器 |
 |--------|--------|---------|-------------|
@@ -1814,7 +1862,7 @@ def run_fusion_diagnostics(
 
 ---
 
-## 10. 相关文档 Related Documents
+## 9. 相关文档 Related Documents
 
 - [系统设计](./system-design.md): MVP 技术架构和构建顺序
 - [模块化架构](./modular-architecture.md): LEGO 积木式架构设计
