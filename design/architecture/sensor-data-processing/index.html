@@ -5707,14 +5707,14 @@
 <h4 id="331-emg-原始数据">3.3.1 原始数据 Raw Data<a class="headerlink" href="#331-emg-原始数据" title="Permanent link">&para;</a></h4>
 <p>EMG (肌电传感器) 测量的是<strong>肌肉收缩时产生的电信号</strong>：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>┌─────────────────────────────────────────────────────────────────┐
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>│                    EMG 单通道数据结构                               │
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>│                    EMG 单通道数据结构                             │
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>├─────────────────────────────────────────────────────────────────┤
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>│                                                                  │
 </span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>│   raw_mV: 原始电压信号 (毫伏, mV)                                   │
 </span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>│           典型范围: -5mV ~ +5mV (皮肤表面 sEMG)                     │
 </span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>│                                                                  │
 </span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>│   envelope_mV: 包络信号 (经过滤波和整流)                             │
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>│                典型范围: 0 ~ 2mV                                   │
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>│                典型范围: 0 ~ 2mV                                  │
 </span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>│                                                                  │
 </span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>└─────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -5865,20 +5865,20 @@
 </div>
 <p><strong>系统设计: 2 通道 EMG</strong> (见 <a href="../system-design/">系统设计</a>)</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>┌─────────────────────────────────────────────────────────────────┐
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>│              Movement Chain AI EMG 通道配置                        │
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>│              Movement Chain AI EMG 通道配置                      │
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>├─────────────────────────────────────────────────────────────────┤
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>│                                                                  │
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>│   通道 1: Core (核心肌群)                                          │
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>│   ├── 位置: 腹斜肌 (External Oblique)                              │
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>│                                                                 │
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>│   通道 1: Core (核心肌群)                                         │
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>│   ├── 位置: 腹斜肌 (External Oblique)                             │
 </span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>│   ├── 作用: 检测躯干旋转发力                                        │
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>│   └── 硬件: MyoWare 2.0 × 1                                       │
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>│                                                                  │
-</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>│   通道 2: Forearm (前臂)                                           │
-</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>│   ├── 位置: 腕屈肌 (Flexor Carpi)                                  │
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>│   └── 硬件: MyoWare 2.0 × 1                                      │
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>│                                                                 │
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>│   通道 2: Forearm (前臂)                                          │
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>│   ├── 位置: 腕屈肌 (Flexor Carpi)                                 │
 </span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>│   ├── 作用: 检测手腕释放时机                                        │
 </span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>│   └── 硬件: MyoWare 2.0 × 1                                       │
 </span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>│                                                                  │
-</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>│   核心检测: Core 激活时间 vs Forearm 激活时间                         │
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>│   核心检测: Core 激活时间 vs Forearm 激活时间                        │
 </span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>│            → 时间差 &gt; 20ms = 正确运动链                             │
 </span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>│            → 时间差 &lt; 0ms = &quot;用手打&quot; (倒序运动链)                    │
 </span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>│                                                                  │
@@ -6101,33 +6101,33 @@
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>│                                                                             │
 </span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>│                        ┌─────────────┐                                      │
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>│                        │   背阔肌     │ ← Phase 3: 肩部旋转、拉杆动作        │
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>│                        │   背阔肌     │ ← Phase 3: 肩部旋转、拉杆动作           │
 </span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>│                        │    Lats     │   (Latissimus Dorsi)                 │
 </span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>│                        └──────┬──────┘                                      │
 </span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>│                               │                                             │
 </span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>│                        ┌──────┴──────┐                                      │
-</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>│                        │    核心     │ ← Phase 1: 躯干旋转、力量传递中枢 ⭐  │
-</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>│                        │    Core    │   (Obliques 腹斜肌)                   │
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>│                        │    核心      │ ← Phase 1: 躯干旋转、力量传递中枢 ⭐    │
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>│                        │    Core     │   (Obliques 腹斜肌)                   │
 </span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>│                        └──────┬──────┘                                      │
 </span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>│                               │                                             │
 </span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>│                        ┌──────┴──────┐                                      │
-</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>│                        │    臀肌     │ ← Phase 2: 下杆启动、髋部旋转         │
-</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>│                        │   Glutes   │   (Gluteus Maximus 臀大肌)            │
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>│                        │    臀肌      │ ← Phase 2: 下杆启动、髋部旋转           │
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>│                        │   Glutes    │   (Gluteus Maximus 臀大肌)            │
 </span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>│                        └──────┬──────┘                                      │
 </span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>│                               │                                             │
 </span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>│   ┌───────────────────┐       │       ┌───────────────────┐                 │
-</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>│   │   三角肌 Deltoids │       │       │   前臂 Forearm    │                 │
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>│   │   三角肌 Deltoids  │       │       │   前臂 Forearm     │                 │
 </span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>│   │   Phase 3         │       │       │   Phase 1 ⭐      │                 │
 </span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>│   └───────────────────┘       │       │   (Wrist Flexors) │                 │
 </span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>│                               │       └───────────────────┘                 │
 </span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>│                        ┌──────┴──────┐                                      │
-</span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>│                        │  大腿内侧   │ ← Phase 2: 下盘稳定、重心转移         │
-</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>│                        │  Adductors │                                       │
+</span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>│                        │  大腿内侧    │ ← Phase 2: 下盘稳定、重心转移           │
+</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>│                        │  Adductors  │                                      │
 </span><span id="__span-18-28"><a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>│                        └─────────────┘                                      │
 </span><span id="__span-18-29"><a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>│                                                                             │
-</span><span id="__span-18-30"><a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>│   运动链传递顺序 Kinematic Chain:                                            │
-</span><span id="__span-18-31"><a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>│   Glutes → Core → Lats → Forearm                                           │
-</span><span id="__span-18-32"><a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>│   (臀肌 → 核心 → 背阔肌 → 前臂)                                              │
+</span><span id="__span-18-30"><a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>│   运动链传递顺序 Kinematic Chain:                                             │
+</span><span id="__span-18-31"><a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>│   Glutes → Core → Lats → Forearm                                            │
+</span><span id="__span-18-32"><a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>│   (臀肌 → 核心 → 背阔肌 → 前臂)                                                │
 </span><span id="__span-18-33"><a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>│                                                                             │
 </span><span id="__span-18-34"><a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -6187,6 +6187,9 @@
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>详见：<a href="../../../reference/semg-research-2024-2025/#第五部分高尔夫生物力学实战实验室如何成功应用semg">sEMG 技术研究综述 §5 高尔夫生物力学实战</a> — 肌肉选择、传感器放置、实验室 SOP</p>
+</blockquote>
 <p><strong>传感器数量规划</strong>:</p>
 <ul>
 <li>Phase 1 (MVP): <strong>2 通道</strong> — 最小可行，验证核心价值</li>
@@ -6225,9 +6228,6 @@
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>详见：<a href="../../../reference/semg-research-2024-2025/">sEMG 技术研究综述 (2024-2025)</a> — 传感器-皮肤界面、运动伪影、信号处理前沿</p>
-</blockquote>
 <h5 id="mvp">MVP 检测能力<a class="headerlink" href="#mvp" title="Permanent link">&para;</a></h5>
 <p>仅用 <strong>2 个 EMG 传感器 (Core + Forearm)</strong> 即可检测:</p>
 <table>
@@ -6385,30 +6385,30 @@
 <h3 id="42-sensor-fusion-strategy">4.2 系统融合策略 Sensor Fusion Strategy<a class="headerlink" href="#42-sensor-fusion-strategy" title="Permanent link">&para;</a></h3>
 <p>三模态传感器的数据融合策略如下:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>│                         SENSOR FUSION PIPELINE                               │
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>│                         SENSOR FUSION PIPELINE                              │
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>│                                                                              │
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>│   Phase 1: 单模态特征提取                                                      │
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>│   ├── Vision (30fps): 提取 33 关键点 → 计算 X-Factor, S-Factor, Sway/Lift     │
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>│   ├── IMU (1666Hz): 提取角速度/加速度 → 计算峰值速度, 节奏比                    │
-</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>│   └── EMG (1000Hz): 提取激活时序 → 计算肌肉启动时间, 激活强度                   │
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>│                                                                             │
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>│   Phase 1: 单模态特征提取                                                     │
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>│   ├── Vision (30fps): 提取 33 关键点 → 计算 X-Factor, S-Factor, Sway/Lift      │
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>│   ├── IMU (1666Hz): 提取角速度/加速度 → 计算峰值速度, 节奏比                      │
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>│   └── EMG (1000Hz): 提取激活时序 → 计算肌肉启动时间, 激活强度                      │
 </span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>│                                                                              │
-</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>│   Phase 2: 时间对齐 (Sensor Hub 架构)                                       │
-</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>│   ├── Sensor Hub: 同部位 IMU/EMG 共享 ESP32 时钟 (硬件级微秒同步)            │
-</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>│   ├── 以 IMU 为基准时钟 (最高采样率)                                         │
-</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>│   ├── Vision 帧插值到 1666Hz (线性插值)                                      │
-</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>│   ├── EMG 重采样到 1666Hz (降采样)                                           │
-</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>│   └── 跨设备对齐: 使用 Impact 时刻作为同步锚点                               │
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>│   Phase 2: 时间对齐 (Sensor Hub 架构)                                          │
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>│   ├── Sensor Hub: 同部位 IMU/EMG 共享 ESP32 时钟 (硬件级微秒同步)                │
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>│   ├── 以 IMU 为基准时钟 (最高采样率)                                            │
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>│   ├── Vision 帧插值到 1666Hz (线性插值)                                        │
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>│   ├── EMG 重采样到 1666Hz (降采样)                                             │
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>│   └── 跨设备对齐: 使用 Impact 时刻作为同步锚点                                    │
 </span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>│                                                                              │
 </span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>│   Phase 3: 特征融合                                                           │
-</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>│   ├── 运动链时序 = IMU (身体启动) + EMG (肌肉启动) 双重验证                      │
-</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>│   ├── X-Factor Stretch = Vision (角度差) + EMG (核心激活) 相关性分析            │
-</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>│   └── 力链验证 = Vision (姿态) + IMU (速度) + EMG (激活序列) 三重验证            │
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>│   ├── 运动链时序 = IMU (身体启动) + EMG (肌肉启动) 双重验证                       │
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>│   ├── X-Factor Stretch = Vision (角度差) + EMG (核心激活) 相关性分析             │
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>│   └── 力链验证 = Vision (姿态) + IMU (速度) + EMG (激活序列) 三重验证             │
 </span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>│                                                                              │
 </span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>│   Phase 4: 异常检测                                                           │
-</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>│   ├── 如果 EMG 显示核心未激活，但 IMU 显示高速转体 → 警告&quot;代偿动作&quot;              │
-</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>│   ├── 如果 Vision 显示 X-Factor 正常，但 EMG 显示激活序列错误 → 警告&quot;假性蓄力&quot;   │
-</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>│   └── 如果 EMG 显示疲劳，但用户继续练习 → 建议&quot;休息以防受伤&quot;                     │
+</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>│   ├── 如果 EMG 显示核心未激活，但 IMU 显示高速转体 → 警告&quot;代偿动作&quot;                 │
+</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>│   ├── 如果 Vision 显示 X-Factor 正常，但 EMG 显示激活序列错误 → 警告&quot;假性蓄力&quot;      │
+</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>│   └── 如果 EMG 显示疲劳，但用户继续练习 → 建议&quot;休息以防受伤&quot;                        │
 </span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>
 </span><span id="__span-20-28"><a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>!!! tip &quot;时间对齐实现&quot;
