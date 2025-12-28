@@ -801,6 +801,8 @@ def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
 | **TPI 研究** | 臀肌激活不足 → 早伸 (Early Extension) | Phase 2 加入 Gluteus |
 | **PMC4851105** | 8通道EMG分析发现"雪崩效应" | 全通道分析需要 Phase 3 |
 
+> 详见：[sEMG 技术研究综述 (2024-2025)](../../reference/semg-research-2024-2025.md) — 传感器-皮肤界面、运动伪影、信号处理前沿
+
 ##### MVP 检测能力
 
 仅用 **2 个 EMG 传感器 (Core + Forearm)** 即可检测:
@@ -938,9 +940,9 @@ def calculate_activation_ratio(mock_emg):
 
 ---
 
-### 4.3 多传感器融合算法 Sensor Fusion Algorithms {#43-多传感器融合算法}
+### 4.3 EMG 多通道时序分析 EMG Multi-Channel Temporal Analysis {#43-emg-多通道时序分析}
 
-以下算法需要对齐后的多传感器数据才能执行：
+以下算法分析多个 EMG 通道之间的时序关系和激活模式：
 
 ```python
 # 运动链序列验证 (UNIQUE)
