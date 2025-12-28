@@ -376,7 +376,7 @@ IMU 坐标系 (右手系):
     - **挥杆顶点**: gyro_z 从正值变为负值，瞬间经过 0 = 方向切换点
 
 ```text
-IMU 贴于手腕背侧在高尔夫挥杆中的应用:
+**IMU 贴于手腕背侧在高尔夫挥杆中的应用:**
 
         手腕背侧 IMU 位置
               ↓
@@ -441,7 +441,6 @@ IMU 贴于手腕背侧在高尔夫挥杆中的应用:
     - gyro_z 与杆头速度高度相关 (r > 0.85)
 
 ```
-
 ---
 
 #### 3.2.2 计算指标 {#322-imu-计算指标}
@@ -471,17 +470,44 @@ def detect_peak_velocity(gyro_data, timestamps):
 
     return peak_velocity, peak_time
 
-# 节奏比计算
+# 零交叉检测 (实时阶段划分)
+def detect_zero_crossing(gyro_z, timestamps):
+    """
+    检测 gyro_z 零交叉点，用于实时划分挥杆阶段
+
+    Args:
+        gyro_z: Z 轴角速度 (deg/s)
+        timestamps: 时间戳 (ms)
+
+    Returns:
+        crossing_time: 零交叉时间 (ms)，即上杆顶点
+    """
+    # 寻找符号变化点 (正→负)
+    sign_changes = np.where(np.diff(np.sign(gyro_z)) < 0)[0]
+    if len(sign_changes) > 0:
+        crossing_idx = sign_changes[0]
+        return timestamps[crossing_idx]
+    return None
+
+
+# ============================================================
+# 以下为 挥杆后计算 (Post-Swing Analysis)
+# 需要完整挥杆数据，不可实时计算
+# ============================================================
+
+# 节奏比计算 (挥杆后)
 def calculate_tempo_ratio(timestamps, event_labels):
     """
     计算上杆/下杆节奏比
+
+    ⚠️ 挥杆后计算：需要完整挥杆数据
 
     Args:
         timestamps: 时间戳 (ms)
         event_labels: 事件标签 ['address', 'top', 'impact']
 
     Returns:
-        tempo_ratio: 上杆时长 / 下杆时长
+        tempo_ratio: 上杆时长 / 下杆时长 (理想值约 3:1)
     """
     address_time = timestamps[event_labels.index('address')]
     top_time = timestamps[event_labels.index('top')]
@@ -494,7 +520,7 @@ def calculate_tempo_ratio(timestamps, event_labels):
 
     return tempo_ratio
 
-# 运动链时序检测
+# 运动链时序检测 (挥杆后)
 def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
     """
     检测运动链各环节的启动时间
@@ -516,10 +542,13 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
 
 **可计算指标**:
 
-- 峰值角速度
-- 节奏比 (高精度)
-- 运动链时序 (<10ms 精度)
-- 加速度峰值
+| 类型 | 指标 | 说明 |
+|------|------|------|
+| **实时** | 峰值角速度 | 可在数据流中实时检测 |
+| **实时** | 零交叉检测 | 用于阶段划分 (上杆顶点) |
+| **实时** | 加速度峰值 | 可在数据流中实时检测 |
+| **挥杆后** | 节奏比 | 需要完整挥杆数据 (address→impact) |
+| **挥杆后** | 运动链时序 | 需要完整挥杆数据 (<10ms 精度) |
 
 ---
 
