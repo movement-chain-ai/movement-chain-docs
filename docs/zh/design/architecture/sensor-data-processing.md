@@ -1,4 +1,4 @@
-# 传感器数据处理与指标计算 Sensor Data Processing
+# 数据处理与指标计算 Sensor Data Processing
 
 > **文档目的**: 定义三模态系统 (Vision + IMU + EMG) 的数据处理流程与可计算指标
 > **核心价值**: EMG 提供的肌肉激活检测是独特差异化优势，竞品无法实现
@@ -1519,7 +1519,7 @@ def run_fusion_diagnostics(
 
 ## 5. 模拟数据生成 Simulation Data Generation {#5-模拟数据生成-simulation-data-generation}
 
-MVP 阶段硬件未就绪时，使用模拟数据验证完整管道。
+MVP 早期硬件未就绪时，使用模拟数据验证完整管道。
 
 ### 5.1 从 Pose 数据生成模拟 IMU {#51-从-pose-数据生成模拟-imu}
 
