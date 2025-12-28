@@ -4920,7 +4920,7 @@
   
 
 
-<h1 id="sensor-data-processing">传感器数据处理与指标计算 Sensor Data Processing<a class="headerlink" href="#sensor-data-processing" title="Permanent link">&para;</a></h1>
+<h1 id="sensor-data-processing">数据处理与指标计算 Sensor Data Processing<a class="headerlink" href="#sensor-data-processing" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>文档目的</strong>: 定义三模态系统 (Vision + IMU + EMG) 的数据处理流程与可计算指标
 <strong>核心价值</strong>: EMG 提供的肌肉激活检测是独特差异化优势，竞品无法实现
@@ -7010,7 +7010,7 @@
 </div>
 <hr />
 <h2 id="5-模拟数据生成-simulation-data-generation">5. 模拟数据生成 Simulation Data Generation<a class="headerlink" href="#5-模拟数据生成-simulation-data-generation" title="Permanent link">&para;</a></h2>
-<p>MVP 阶段硬件未就绪时，使用模拟数据验证完整管道。</p>
+<p>MVP 早期硬件未就绪时，使用模拟数据验证完整管道。</p>
 <h3 id="51-从-pose-数据生成模拟-imu">5.1 从 Pose 数据生成模拟 IMU<a class="headerlink" href="#51-从-pose-数据生成模拟-imu" title="Permanent link">&para;</a></h3>
 <p>核心思路: 用 MediaPipe 的关键点序列<strong>导数</strong>来近似 IMU 角速度</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
