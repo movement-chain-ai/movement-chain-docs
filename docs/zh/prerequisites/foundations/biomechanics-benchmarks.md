@@ -282,7 +282,7 @@
 
 **MVP 范围**: 初期只实现 P0 + P1 规则 (共 6 条)，P2-P3 留待后续版本迭代。
 
-> 在 [MVP 开发计划](../../design/architecture/mvp-plan.md#82-诊断规则详解) 中查看 MVP 具体选用的 6 条规则。
+> 在 [MVP 开发计划](../../design/architecture/mvp-plan.md#82-mvp-6-条诊断规则) 中查看 MVP 具体选用的 6 条规则。
 
 ---
 

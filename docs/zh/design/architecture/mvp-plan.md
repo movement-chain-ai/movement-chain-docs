@@ -337,7 +337,7 @@ flowchart LR
 | **移动端架构** | [ADR-0007](../decisions/0007-swift-ios-native.md) | Swift iOS 原生 (非 Flutter) |
 | **升级路径** | [模块化架构](./modular-architecture.md) | LEGO block 可替换设计 |
 
-### 8.2 MVP 6 条诊断规则
+### 8.2 MVP 6 条诊断规则 {#82-mvp-6-条诊断规则}
 
 !!! info "为什么 MVP 选这 6 条规则？"
     MVP 不追求覆盖所有问题，而是精选**最常见、最影响挥杆质量、且能体现 EMG 差异化**的规则：
@@ -410,7 +410,7 @@ flowchart LR
 
 ---
 
-## 11. Post-MVP 路线图
+## 11. Post-MVP 路线图 {#11-post-mvp-路线图}
 
 MVP (Phase 1 → 2 → 3 → 3.5 → 4) 完成后的扩展方向:
 
