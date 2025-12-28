@@ -563,7 +563,7 @@ build-backend = "hatchling.build"
 
 #### Sensor Hub 架构 (推荐)
 
-> 📐 **完整架构图与原理**: 见 [模块化架构 §2.4.2](../architecture/modular-architecture.md#sensor-hub-architecture) (单一权威来源)
+> 📐 **完整架构图与原理**: 见 [模块化架构 §2.2.4](../architecture/modular-architecture.md#224-sensor-hub-architecture) (单一权威来源)
 
 **架构要点** (硬件购买需考虑):
 
@@ -985,7 +985,7 @@ build-backend = "hatchling.build"
 
 #### 多单元时间同步拓扑 (Multi-Unit Sync Topology) ✅ 2025-12-23
 
-> 📐 **完整架构图与 "为什么每个单元需要 IMU" 解释**: 见 [模块化架构 §2.4.2](../architecture/modular-architecture.md#sensor-hub-architecture) (单一权威来源)
+> 📐 **完整架构图与 "为什么每个单元需要 IMU" 解释**: 见 [模块化架构 §2.2.4](../architecture/modular-architecture.md#224-sensor-hub-architecture) (单一权威来源)
 
 **决策要点**:
 

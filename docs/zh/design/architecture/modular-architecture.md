@@ -1656,7 +1656,7 @@ Phase 4+ (Week 5-8): Integration & Testing
 关于 Rerun 的完整技术评估、竞品对比、未来 TAPIR 球杆追踪规划，详见:
 
 - **[可视化工具评估](../decisions/visualization-tools-evaluation.md)** — 为什么选择 Rerun 而非 Foxglove/PlotJuggler
-- **[system-design.md §6](./system-design.md#6-未来路线图-phase-2)** — 项目整体技术路线图
+- **[mvp-plan.md §11](./mvp-plan.md#11-post-mvp-路线图)** — 项目整体技术路线图
 
 ---
 

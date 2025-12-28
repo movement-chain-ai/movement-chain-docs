@@ -241,7 +241,7 @@ flowchart LR
 | 规则准确率 | 100% (已知案例) |
 | 反馈可读性 | 用户评分 >4/5 |
 
-> 📐 **详细规格**: [数据管道与AI §4-5](./data-pipeline-and-ai.md#4-诊断规则引擎) | [实时反馈规格](../specs/real-time-feedback.md)
+> 📐 **详细规格**: [§8.2 诊断规则](#82-mvp-6-条诊断规则) | [实时反馈规格](../specs/real-time-feedback.md)
 
 ---
 
@@ -314,7 +314,7 @@ flowchart LR
 | **Phase 1** | 连续运行 | >30min 无断连 | - |
 | **Phase 2** | 时间对齐精度 | <10ms | [数据管道](./data-pipeline-and-ai.md) |
 | **Phase 2** | Rerun 可视化 | 人工审核通过 | [可视化工具](../decisions/visualization-tools-evaluation.md) |
-| **Phase 3** | 规则准确率 | 100% (已知案例) | [规则引擎](./data-pipeline-and-ai.md#4-诊断规则引擎) |
+| **Phase 3** | 规则准确率 | 100% (已知案例) | [§8.2 诊断规则](#82-mvp-6-条诊断规则) |
 | **Phase 3** | 反馈可读性 | 用户评分 >4/5 | - |
 | **Phase 3.5** | Python↔Swift 一致性 | 输出差异 <1% | [ADR-0008](../decisions/0008-desktop-to-mobile-architecture.md) |
 | **Phase 3.5** | Swift 单元测试 | >90% 覆盖率 | - |
@@ -330,7 +330,7 @@ flowchart LR
 | 规格类别 | 详细文档 | 核心内容 |
 |----------|----------|----------|
 | **12 测量指标** | [传感器指标映射](./sensor-metric-mapping.md) | Vision (6) + IMU (4) + EMG (2) |
-| **6 诊断规则** | [数据管道与AI §4](./data-pipeline-and-ai.md#4-诊断规则引擎) | P0 (2条) + P1 (4条) |
+| **6 诊断规则** | [§8.2 诊断规则](#82-mvp-6-条诊断规则) | P0 (2条) + P1 (4条) |
 | **反馈模式** | [实时反馈规格](../specs/real-time-feedback.md) | 3种模式: Setup / Slow Motion / Full Speed |
 | **硬件选型** | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md), [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) | LSM6DSV16X IMU + ESP32-S3 MCU |
 | **SDK 选型** | [SDK选型](../decisions/sdk-selection.md) | MediaPipe + NeuroKit2 + imufusion |
