@@ -5508,34 +5508,115 @@
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>│                    MediaPipe 33 关键点                            │
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>├─────────────────────────────────────────────────────────────────┤
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│                                                                  │
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│   高尔夫挥杆最常用的关键点:                                          │
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│   高尔夫挥杆最常用的关键点 (按运动链分组):                              │
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>│                                                                  │
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│   肩部 (X-Factor, S-Factor):                                     │
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>│   ├── 11: left_shoulder   (左肩)                                 │
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>│   └── 12: right_shoulder  (右肩)                                 │
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>│                                                                  │
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>│   手肘 (手臂折叠角度):                                              │
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>│   ├── 13: left_elbow      (左肘)                                 │
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>│   └── 14: right_elbow     (右肘)                                 │
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>│                                                                  │
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>│   手腕 (握杆位置):                                                 │
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>│   ├── 15: left_wrist      (左手腕)                               │
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>│   └── 16: right_wrist     (右手腕)                               │
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>│                                                                  │
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>│   髋部 (X-Factor, O-Factor):                                     │
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>│   ├── 23: left_hip        (左髋)                                 │
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>│   └── 24: right_hip       (右髋)                                 │
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│   ┌─ 上肢控制群 (握杆/释放) ─────────────────────────────────────┐  │
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>│   │                                                            │  │
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>│   │   肩部 (X-Factor, S-Factor):                               │  │
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>│   │   ├── 11: left_shoulder   (左肩)                           │  │
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>│   │   └── 12: right_shoulder  (右肩)                           │  │
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>│   │                                                            │  │
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>│   │   手肘 (手臂折叠角度):                                        │  │
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>│   │   ├── 13: left_elbow      (左肘)                           │  │
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>│   │   └── 14: right_elbow     (右肘)                           │  │
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>│   │                                                            │  │
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>│   │   手腕 (握杆位置, 对应 EMG 前臂屈肌/伸肌):                      │  │
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>│   │   ├── 15: left_wrist      (左手腕)                         │  │
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>│   │   └── 16: right_wrist     (右手腕)                         │  │
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>│   │                                                            │  │
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>│   └────────────────────────────────────────────────────────────┘  │
 </span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>│                                                                  │
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>│   膝盖 (下肢稳定性):                                               │
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>│   ├── 25: left_knee       (左膝)                                 │
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>│   └── 26: right_knee      (右膝)                                 │
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>│                                                                  │
-</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>│   脚踝 (站位宽度):                                                 │
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>│   ├── 27: left_ankle      (左脚踝)                               │
-</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>│   └── 28: right_ankle     (右脚踝)                               │
-</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>│                                                                  │
-</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>└─────────────────────────────────────────────────────────────────┘
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>│   ┌─ 核心驱动群 (躯干旋转) ──────────────────────────────────────┐  │
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>│   │                                                            │  │
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>│   │   髋部 (X-Factor, O-Factor, 对应 EMG 竖脊肌/腹外斜肌):        │  │
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>│   │   ├── 23: left_hip        (左髋)                           │  │
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>│   │   └── 24: right_hip       (右髋)                           │  │
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>│   │                                                            │  │
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>│   │   注: 躯干旋转通过 肩膀(11,12) - 髋部(23,24) 角度差计算         │  │
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>│   │       对应 EMG 腹外斜肌 (躯干旋转主引擎)                       │  │
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>│   │                                                            │  │
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>│   └────────────────────────────────────────────────────────────┘  │
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>│                                                                  │
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>│   ┌─ 下肢稳定群 (地面反作用力) ─────────────────────────────────┐  │
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>│   │                                                            │  │
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>│   │   膝盖 (下肢稳定性):                                         │  │
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>│   │   ├── 25: left_knee       (左膝)                           │  │
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>│   │   └── 26: right_knee      (右膝)                           │  │
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>│   │                                                            │  │
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>│   │   脚踝 (站位宽度):                                           │  │
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>│   │   ├── 27: left_ankle      (左脚踝)                         │  │
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>│   │   └── 28: right_ankle     (右脚踝)                         │  │
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>│   │                                                            │  │
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>│   │   注: 对应 EMG 臀大肌/臀中肌 (骨盆旋转扭矩 + 侧向稳定性)         │  │
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>│   │                                                            │  │
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a>│   └────────────────────────────────────────────────────────────┘  │
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a>│                                                                  │
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a>└─────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
+<p><strong>Vision 关键点与 EMG 肌群对照</strong> (基于运动链):</p>
+<table>
+<thead>
+<tr>
+<th>运动链层级</th>
+<th>Vision 关键点</th>
+<th>对应 EMG 肌群</th>
+<th>生物力学功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>上肢控制</strong></td>
+<td>15, 16 (手腕)</td>
+<td>前臂屈肌/伸肌</td>
+<td>握杆压力、杆面控制</td>
+</tr>
+<tr>
+<td><strong>上肢控制</strong></td>
+<td>13, 14 (手肘)</td>
+<td>肱二头肌/三头肌</td>
+<td>手臂折叠、释放时机</td>
+</tr>
+<tr>
+<td><strong>上肢控制</strong></td>
+<td>11, 12 (肩膀)</td>
+<td>三角肌、胸大肌</td>
+<td>上杆幅度、下杆驱动</td>
+</tr>
+<tr>
+<td><strong>核心驱动</strong></td>
+<td>11, 12 + 23, 24</td>
+<td>腹外斜肌</td>
+<td>躯干旋转 (X-Factor)</td>
+</tr>
+<tr>
+<td><strong>核心驱动</strong></td>
+<td>23, 24 (髋部)</td>
+<td>竖脊肌</td>
+<td>脊柱稳定、背部负荷</td>
+</tr>
+<tr>
+<td><strong>下肢稳定</strong></td>
+<td>23, 24 (髋部)</td>
+<td>臀大肌/臀中肌</td>
+<td>骨盆旋转扭矩</td>
+</tr>
+<tr>
+<td><strong>下肢稳定</strong></td>
+<td>25, 26 (膝盖)</td>
+<td>股四头肌</td>
+<td>膝盖稳定性</td>
+</tr>
+<tr>
+<td><strong>下肢稳定</strong></td>
+<td>27, 28 (脚踝)</td>
+<td>-</td>
+<td>站位基础</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>详见 <a href="../../../reference/semg-research-2024-2025/#51-肌肉选择与传感器放置基于动力链的策略">sEMG 研究 §5.1</a> — 肌肉选择与传感器放置策略</p>
+</blockquote>
 <p><strong>高尔夫指标与关键点对应</strong>:</p>
 <table>
 <thead>
