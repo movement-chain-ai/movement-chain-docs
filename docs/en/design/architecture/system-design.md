@@ -78,7 +78,7 @@ Before diving into system design, we recommend understanding golf biomechanics f
 
 ### 2.1 MVP Measured Metrics (12)
 
-Based on [Sensor-Metric Mapping](./sensor-metric-mapping.md) and [Biomechanics Benchmarks](../foundations/biomechanics-benchmarks.md).
+Based on [Sensor-Metric Mapping](./sensor-data-processing.md) and [Biomechanics Benchmarks](../foundations/biomechanics-benchmarks.md).
 
 > 🔍 **Competitor Comparison**: Metric differences vs OnForm/Sportsbox see [Competitor Metrics Comparison](../research/competitor-metrics-comparison.md)
 
@@ -370,7 +370,7 @@ flowchart LR
 
 - **[Modular Architecture](./modular-architecture.md)** - LEGO block design, module upgrade paths
 - **[Data Pipeline & AI](./data-pipeline-and-ai.md)** - Data flow, sensor fusion, time sync strategy
-- **[Sensor Mapping](./sensor-metric-mapping.md)** - Which sensor measures what
+- **[Sensor Mapping](./sensor-data-processing.md)** - Which sensor measures what
 - **[2025 December Key Decisions](./architecture-decisions-2025-12-23.md)** - Sensor Hub architecture, hardware selection, time sync strategy
 - **[8-Phase Detection](../specs/swing-phases.md)** - Swing phase identification algorithm with code
 - **[Swing Comparison](../specs/swing-comparison.md)** - 4 comparison methods, DTW algorithm

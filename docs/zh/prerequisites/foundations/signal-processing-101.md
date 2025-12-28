@@ -20,7 +20,7 @@
 - IMU 如何检测**挥杆阶段**的变化
 - 多传感器如何**时间对齐**
 
-掌握这些知识后，你就能理解 [传感器指标映射](../../design/architecture/sensor-metric-mapping.md) 中的检测算法为什么这样写。
+掌握这些知识后，你就能理解 [传感器指标映射](../../design/architecture/sensor-data-processing.md) 中的检测算法为什么这样写。
 
 ---
 
@@ -717,7 +717,7 @@
 
 掌握这些信号处理基础后，你可以：
 
-1. 阅读 [传感器指标映射](../../design/architecture/sensor-metric-mapping.md) — 理解检测算法的实现
+1. 阅读 [传感器指标映射](../../design/architecture/sensor-data-processing.md) — 理解检测算法的实现
 2. 阅读 [挥杆阶段](../../design/specs/swing-phases.md) — 理解如何应用相位检测
 3. 阅读 [生物力学基准值](biomechanics-benchmarks.md) — 了解阈值从何而来
 

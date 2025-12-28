@@ -849,7 +849,7 @@ Rule: Max 2 feedback items per swing, avoid information overload
 - [Modular Architecture](modular-architecture.md) - System module detailed design
 - [Real-time Feedback Spec](../specs/real-time-feedback.md) - Feedback latency and mode details
 - [Biomechanics Benchmarks](../foundations/biomechanics-benchmarks.md) - Complete threshold tables
-- [Sensor-Metric Mapping](./sensor-metric-mapping.md) - Data calculation formulas
+- [Sensor-Metric Mapping](./sensor-data-processing.md) - Data calculation formulas
 
 ---
 

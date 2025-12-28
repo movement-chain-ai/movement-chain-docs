@@ -309,7 +309,7 @@
 2. [系统设计](design/architecture/system-design.md) → 4 模块流水线
 3. [模块化架构](design/architecture/modular-architecture.md) → LEGO 积木块设计
 4. [数据流与反馈](design/architecture/data-pipeline-and-ai.md) → Kinematic Prompts
-5. [传感器-指标映射](design/architecture/sensor-metric-mapping.md) → Python 代码示例
+5. [传感器-指标映射](design/architecture/sensor-data-processing.md) → Python 代码示例
 
 ### 新团队成员
 

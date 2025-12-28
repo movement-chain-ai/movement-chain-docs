@@ -583,7 +583,7 @@ Core algorithm for how fusion improves confidence:
 - Vision=Top, IMU=Mid, EMG=None → **0.35** (needs check)
 
 !!! tip "Algorithm Implementation"
-    Complete Python code see [Sensor Metric Mapping §7](./sensor-metric-mapping.md#7-fusion-confidence)
+    Complete Python code see [Sensor Metric Mapping §7](./sensor-data-processing.md#7-fusion-confidence)
 
 ### 2.8 User Feedback Translation Layer {#28-user-feedback-translation-layer}
 
@@ -661,8 +661,8 @@ All thresholds from literature research, see [Biomechanics Benchmarks](../founda
 !!! abstract "Detailed content moved to single source"
     To avoid duplicate maintenance, detailed competitor comparison and capability matrix consolidated to:
 
-    - **[Sensor Metric Mapping §1](./sensor-metric-mapping.md#1-system-capability-matrix)** — System capability matrix
-    - **[Sensor Metric Mapping §2](./sensor-metric-mapping.md#2-competitor-comparison)** — Competitor capability comparison
+    - **[Sensor Metric Mapping §1](./sensor-data-processing.md#1-system-capability-matrix)** — System capability matrix
+    - **[Sensor Metric Mapping §2](./sensor-data-processing.md#2-competitor-comparison)** — Competitor capability comparison
 
 **Quick Differentiation Overview**:
 
@@ -733,7 +733,7 @@ Extract structured features from raw sensor data. Each Block handles one data so
 | **Sway/Lift** | Hip center displacement vs Address | 23,24 | Weight shift control |
 
 !!! tip "Detailed Algorithm Implementation"
-    Calculation code see [Sensor Metric Mapping §3.1](./sensor-metric-mapping.md#31-vision-detection-mediapipe-33-landmarks)
+    Calculation code see [Sensor Metric Mapping §3.1](./sensor-data-processing.md#31-vision-detection-mediapipe-33-landmarks)
 
 ### 3.2 IMU Block
 
@@ -795,7 +795,7 @@ class SimulatedIMUFrame:
 ```
 
 !!! tip "Complete Algorithm Implementation"
-    Detailed code and test scenarios see [Sensor Metric Mapping §8.1](./sensor-metric-mapping.md#81-generate-simulated-imu-from-pose-data)
+    Detailed code and test scenarios see [Sensor Metric Mapping §8.1](./sensor-data-processing.md#81-generate-simulated-imu-from-pose-data)
 
 !!! note "Real Hardware Options (Phase 2+)"
 
@@ -819,7 +819,7 @@ class SimulatedIMUFrame:
 | **Transition Timing** | Transition point precision | ±0.6ms detectable | Power burst point |
 
 !!! tip "Detailed Algorithm Implementation"
-    Peak detection, kinematic chain validation code see [Sensor Metric Mapping §3.2](./sensor-metric-mapping.md#32-imu-detection-lsm6dsv16x-1666hz)
+    Peak detection, kinematic chain validation code see [Sensor Metric Mapping §3.2](./sensor-data-processing.md#32-imu-detection-lsm6dsv16x-1666hz)
 
 ### 3.3 EMG Block
 
@@ -885,7 +885,7 @@ class SimulatedIMUFrame:
     This is a problem Vision-only competitors can NEVER detect.
 
 !!! tip "Complete Algorithm Implementation"
-    Detailed code and test scenarios see [Sensor Metric Mapping §8.2](./sensor-metric-mapping.md#82-generate-simulated-emg-from-phase-timestamps)
+    Detailed code and test scenarios see [Sensor Metric Mapping §8.2](./sensor-data-processing.md#82-generate-simulated-emg-from-phase-timestamps)
 
 !!! note "Real Hardware Options (Phase 2+)"
 
@@ -914,7 +914,7 @@ MVP phase uses 2 channels (Core + Forearm), progressively expand later:
 | **Phase 3** | 6 | + Latissimus Dorsi, Deltoids | Complete force chain validation |
 
 !!! tip "Detailed Layout Diagram"
-    Electrode placement positions, selection rationale see [Sensor Metric Mapping §6](./sensor-metric-mapping.md#6-emg-sensor-placement-plan)
+    Electrode placement positions, selection rationale see [Sensor Metric Mapping §6](./sensor-data-processing.md#6-emg-sensor-placement-plan)
 
 #### 3.3.4 Real EMG Detection Capabilities
 
@@ -926,7 +926,7 @@ MVP phase uses 2 channels (Core + Forearm), progressively expand later:
 | **Co-activation** | Antagonist simultaneous activation | Dual-channel comparison | Movement efficiency analysis |
 
 !!! tip "Detailed Algorithm Implementation"
-    Signal processing, feature extraction code see [Sensor Metric Mapping §3.3](./sensor-metric-mapping.md#33-emg-detection-unique-capability)
+    Signal processing, feature extraction code see [Sensor Metric Mapping §3.3](./sensor-data-processing.md#33-emg-detection-unique-capability)
 
 ---
 
@@ -1006,7 +1006,7 @@ Impact = gyro_z positive peak (max rotation speed)
 
 FUSION Block's core value lies in **diagnostic algorithms** — only achievable with tri-modal fusion.
 
-> **Implementation Code**: See [Sensor Metric Mapping §9 Fusion Diagnostic Algorithms](./sensor-metric-mapping.md#9-fusion-diagnostic-algorithms)
+> **Implementation Code**: See [Sensor Metric Mapping §9 Fusion Diagnostic Algorithms](./sensor-data-processing.md#9-fusion-diagnostic-algorithms)
 
 | Algorithm | Function Name | Detection | Required Sensors |
 |-----|-------|---------|-----------|
@@ -1390,7 +1390,7 @@ For complete technical evaluation of Rerun, competitor comparison, future TAPIR 
 | Document | Content | Relationship |
 |------|------|------|
 | [System Design](./system-design.md) | MVP 4-module architecture | Parent of this document |
-| [Sensor Metric Mapping](./sensor-metric-mapping.md) | Algorithm implementation code | Detailed implementation of §3.1-3.3 |
+| [Sensor Metric Mapping](./sensor-data-processing.md) | Algorithm implementation code | Detailed implementation of §3.1-3.3 |
 | [Swing Phases](../specs/swing-phases.md) | 8-phase detection | CLASSIFIER Block output |
 | [Biomechanics Glossary](../foundations/biomechanics-glossary.md) | Terminology definitions | Golf professional terms |
 

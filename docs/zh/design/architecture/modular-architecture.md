@@ -904,7 +904,7 @@ class DiagnosticRule:
 | **Sway/Lift** | 髋部中心位移 vs Address | 23,24 | 重心控制 |
 
 !!! tip "详细算法实现"
-    计算代码见 [传感器指标映射 §3.1](./sensor-metric-mapping.md#31-vision-数据处理-mediapipe-33-landmarks)
+    计算代码见 [传感器指标映射 §3.1](./sensor-data-processing.md#31-vision-数据处理-mediapipe-33-landmarks)
 
 #### 2.3.3 IMU Block 实现 {#233-imu-block}
 
@@ -966,7 +966,7 @@ class SimulatedIMUFrame:
 ```
 
 !!! tip "完整算法实现"
-    详细代码和测试场景见 [传感器指标映射 §7.1](./sensor-metric-mapping.md#71-从-pose-数据生成模拟-imu)
+    详细代码和测试场景见 [传感器指标映射 §7.1](./sensor-data-processing.md#71-从-pose-数据生成模拟-imu)
 
 !!! note "真实硬件选项 (Phase 2+)"
 
@@ -990,7 +990,7 @@ class SimulatedIMUFrame:
 | **Transition Timing** | 转换点精度 | ±0.6ms 可检测 | 力量爆发点 |
 
 !!! tip "详细算法实现"
-    峰值检测、运动链验证代码见 [传感器指标映射 §3.2](./sensor-metric-mapping.md#32-imu-数据处理-lsm6dsv16x--1666hz)
+    峰值检测、运动链验证代码见 [传感器指标映射 §3.2](./sensor-data-processing.md#32-imu-数据处理-lsm6dsv16x--1666hz)
 
 #### 2.3.4 EMG Block 实现 {#234-emg-block}
 
@@ -1056,7 +1056,7 @@ class SimulatedIMUFrame:
     这是 Vision-only 竞品永远无法检测的问题。
 
 !!! tip "完整算法实现"
-    详细代码和测试场景见 [传感器指标映射 §7.2](./sensor-metric-mapping.md#72-从阶段时间戳生成模拟-emg)
+    详细代码和测试场景见 [传感器指标映射 §7.2](./sensor-data-processing.md#72-从阶段时间戳生成模拟-emg)
 
 !!! note "真实硬件选项 (Phase 2+)"
 
@@ -1085,7 +1085,7 @@ MVP 阶段使用 2 通道 (Core + Forearm)，后续渐进扩展：
 | **Phase 3** | 6 | + 背阔肌, 三角肌 | 完整力链验证 |
 
 !!! tip "详细布局图"
-    电极放置位置、选择依据见 [传感器指标映射 §5](./sensor-metric-mapping.md#5-emg-传感器布局规划-emg-sensor-placement-plan)
+    电极放置位置、选择依据见 [传感器指标映射 §5](./sensor-data-processing.md#5-emg-传感器布局规划-emg-sensor-placement-plan)
 
 ##### 真实 EMG 检测能力
 
@@ -1097,7 +1097,7 @@ MVP 阶段使用 2 通道 (Core + Forearm)，后续渐进扩展：
 | **Co-activation** | 拮抗肌同时激活 | 双通道比较 | 动作效率分析 |
 
 !!! tip "详细算法实现"
-    信号处理、特征提取代码见 [传感器指标映射 §3.3](./sensor-metric-mapping.md#33-emg-数据处理-unique-capability)
+    信号处理、特征提取代码见 [传感器指标映射 §3.3](./sensor-data-processing.md#33-emg-数据处理-unique-capability)
 
 ### 2.4 分析诊断层 (Stage 5) {#24-分析诊断层}
 
@@ -1175,7 +1175,7 @@ Impact = gyro_z 正向峰值 (最大旋转速度)
 
 FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模态融合才能实现。
 
-> **实现代码**: 见 [传感器指标映射 §8 融合诊断算法](./sensor-metric-mapping.md#8-融合诊断算法-fusion-diagnostic-algorithms)
+> **实现代码**: 见 [传感器指标映射 §8 融合诊断算法](./sensor-data-processing.md#8-融合诊断算法-fusion-diagnostic-algorithms)
 
 | 算法 | 函数名 | 检测内容 | 所需传感器 |
 |-----|-------|---------|-----------|
@@ -1257,7 +1257,7 @@ FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模�
 - Vision=Top, IMU=Mid, EMG=None → **0.35** (需检查)
 
 !!! tip "算法实现"
-    完整 Python 代码见 [传感器指标映射 §6](./sensor-metric-mapping.md#6-融合置信度计算-fusion-confidence)
+    完整 Python 代码见 [传感器指标映射 §6](./sensor-data-processing.md#6-融合置信度计算-fusion-confidence)
 
 ### 2.5 AI 反馈生成层 (Stage 6) {#25-ai-反馈生成层}
 
@@ -1604,7 +1604,7 @@ MVP 阶段:
 | 文档 | 内容 | 关系 |
 |------|------|------|
 | [系统设计](./system-design.md) | MVP 4 模块架构 | 本文档的父文档 |
-| [传感器指标映射](./sensor-metric-mapping.md) | 算法实现代码 | §3.1-3.3 的详细实现 |
+| [传感器指标映射](./sensor-data-processing.md) | 算法实现代码 | §3.1-3.3 的详细实现 |
 | [挥杆阶段](../specs/swing-phases.md) | 8 阶段检测 | CLASSIFIER Block 输出 |
 | [生物力学术语表](../../prerequisites/foundations/biomechanics-glossary.md) | 术语定义 | 高尔夫专业术语 |
 

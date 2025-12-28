@@ -213,7 +213,7 @@
 | **移动端 (Swift iOS)** | [ADR-0007](../decisions/0007-swift-ios-native.md), [SDK选型](../decisions/sdk-selection.md) | MediaPipeTasksVision + CoreBluetooth + AVFoundation |
 | **开发环境 (Python)** | [SDK选型](../decisions/sdk-selection.md), [架构决策](../decisions/architecture-decisions-2025-12-23.md) | MediaPipe + NeuroKit2 + Polars + Rerun.io |
 | **嵌入式 (ESP32)** | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md), [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) | ESP-IDF + FreeRTOS + BLE 5.0 |
-| **传感器** | [传感器指标映射](./sensor-metric-mapping.md) | LSM6DSV16X (IMU) + MyoWare 2.0 (EMG) |
+| **传感器** | [传感器指标映射](./sensor-data-processing.md) | LSM6DSV16X (IMU) + MyoWare 2.0 (EMG) |
 | **时间同步** | [数据管道](./data-pipeline-and-ai.md#sensor-hub-架构-2025-12-推荐) | Sensor Hub + Impact T=0 对齐 |
 | **硬件设计** | [硬件购买清单](../decisions/architecture-decisions-2025-12-23.md#43-硬件购买清单) | KiCad PCB 设计 |
 
@@ -267,7 +267,7 @@
 
 | 规格类别 | 详细文档 | 核心内容 |
 |----------|----------|----------|
-| **12 测量指标** | [传感器指标映射](./sensor-metric-mapping.md) | Vision (6) + IMU (4) + EMG (2) |
+| **12 测量指标** | [传感器指标映射](./sensor-data-processing.md) | Vision (6) + IMU (4) + EMG (2) |
 | **6 诊断规则** | [MVP 开发计划 §8.2](./mvp-plan.md#82-mvp-6-条诊断规则) | P0 (2条) + P1 (4条) |
 | **反馈模式** | [实时反馈规格](../specs/real-time-feedback.md) | 3种模式: Setup / Slow Motion / Full Speed |
 | **产品层级** | [产品层级](../specs/product-tiers.md) | Lite / Pro / Elite 三个版本 |

@@ -538,7 +538,7 @@ build-backend = "hatchling.build"
 
 ### 4.2 Mock 数据策略 ✅ 已有完整文档
 
-**现状**: `sensor-metric-mapping.md §8` 已包含完整的 Mock 数据生成代码
+**现状**: `sensor-data-processing.md §8` 已包含完整的 Mock 数据生成代码
 
 | Mock 类型 | 函数 | 来源 |
 |----------|------|------|
@@ -1458,7 +1458,7 @@ build-backend = "hatchling.build"
 | **[system-design.md](../architecture/system-design.md)** | **MVP 系统设计总览** | **⭐ Hub 文档** |
 | **[data-pipeline-and-ai.md](../architecture/data-pipeline-and-ai.md)** | **数据流与时间同步** | **⭐ 权威来源** |
 | [modular-architecture.md](../architecture/modular-architecture.md) | LEGO 积木架构 | 六边形对应 |
-| [sensor-metric-mapping.md](../architecture/sensor-metric-mapping.md) | 算法实现代码 | Mock 数据生成 |
+| [sensor-data-processing.md](../architecture/sensor-data-processing.md) | 算法实现代码 | Mock 数据生成 |
 | [ADR-0005](0005-esp32-s3-microcontroller.md) | ESP32-S3 选型 | 硬件决策 |
 | [ADR-0007](0007-swift-ios-native.md) | Swift iOS 开发 | 移动端决策 |
 | [vision-based.md](../../business-plan/market-insights/competitors/vision-based.md) | 竞品分析 | 2025 更新 |

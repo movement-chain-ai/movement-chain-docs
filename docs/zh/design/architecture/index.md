@@ -23,7 +23,7 @@
 │  3. data-pipeline-and-ai.md (20分钟) ─── 数据流设计                │
 │     └── 时间对齐、Kinematic Prompts、反馈生成                        │
 │                                                                     │
-│  4. sensor-metric-mapping.md (参考) ─── 算法实现                   │
+│  4. sensor-data-processing.md (参考) ─── 算法实现                   │
 │     └── Python 代码：特征计算、融合诊断、模拟数据生成                 │
 └─────────────────────────────────────────────────────────────────────┘
 ```
@@ -67,7 +67,7 @@ LEGO 积木块架构：
 - **反馈生成**: Plan A/B/C 架构对比
 - **阈值来源**: TPI、Meister、Cheetham 论文
 
-### [传感器指标映射](sensor-metric-mapping.md)
+### [传感器指标映射](sensor-data-processing.md)
 
 **阅读时间**: 按需查阅 | **实现参考**
 

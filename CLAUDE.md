@@ -57,7 +57,7 @@ Types: `docs`, `feat`, `fix`, `chore`, `style`, `refactor`, `test`, `ci`, `perf`
 | `system-design.md` | **Hub document** - MVP overview | Single source of truth; all other docs reference this |
 | `modular-architecture.md` | LEGO block design | Defines the 4-module pipeline (Assessment → Diagnosis → Correction → Tracking) |
 | `data-pipeline-and-ai.md` | Data flow & feedback loop | How sensor data becomes actionable insights |
-| `sensor-metric-mapping.md` | Algorithm implementations | Maps sensors to biomechanics metrics |
+| `sensor-data-processing.md` | Algorithm implementations | Maps sensors to biomechanics metrics |
 | `architecture-decisions-2025-12-23.md` | **Latest decisions** - Dec 2025 | Hexagonal architecture, directory structure, 2025 best practices |
 
 **Reading order**: `foundations/` (biomechanics prereqs) → `architecture/` (start with `system-design.md`, then others) → `specs/` (as needed)
@@ -98,7 +98,7 @@ design/
 │   ├── system-design.md          # Hub document (MVP overview)
 │   ├── modular-architecture.md   # LEGO block design
 │   ├── data-pipeline-and-ai.md   # Data flow & feedback
-│   ├── sensor-metric-mapping.md  # Algorithm implementations
+│   ├── sensor-data-processing.md  # Algorithm implementations
 │   └── architecture-decisions-2025-12-23.md  # Latest architecture decisions
 ├── specs/                # LEVEL 3: Detailed specifications (reference)
 ├── guides/               # Developer guides (ml-basics, sdk-selection)

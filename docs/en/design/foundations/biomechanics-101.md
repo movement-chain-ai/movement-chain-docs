@@ -1826,7 +1826,7 @@ Three sensors have different [sampling rates](../../reference/physics-glossary.m
 
 1. **Deep learning**: Consult [Glossary](biomechanics-glossary.md) for more professional terms
 2. **See benchmarks**: Reference [Benchmark Values](biomechanics-benchmarks.md) for complete data
-3. **Understand system**: Read [Sensor Mapping](../architecture/sensor-metric-mapping.md) to understand our measurement capabilities
+3. **Understand system**: Read [Sensor Mapping](../architecture/sensor-data-processing.md) to understand our measurement capabilities
 
 ---
 

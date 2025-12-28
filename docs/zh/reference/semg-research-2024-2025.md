@@ -333,7 +333,7 @@ Transformer架构最初用于自然语言处理，现已被成功迁移至生理
 
 ## 相关文档
 
-- [传感器指标映射](../design/architecture/sensor-metric-mapping.md) — EMG 指标定义
+- [传感器指标映射](../design/architecture/sensor-data-processing.md) — EMG 指标定义
 - [硬件组件 - EMG](../components/emg/hardware.md) — MyoWare 2.0 选型
 - [生物力学基准值](../prerequisites/foundations/biomechanics-benchmarks.md) — 挥杆指标阈值
 

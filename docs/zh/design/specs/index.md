@@ -83,4 +83,4 @@
 
 - [核心架构](../architecture/index.md) - 系统整体设计
 - [技术决策](../decisions/index.md) - 选型和权衡记录
-- [传感器映射](../architecture/sensor-metric-mapping.md) - 算法实现代码
+- [传感器映射](../architecture/sensor-data-processing.md) - 算法实现代码

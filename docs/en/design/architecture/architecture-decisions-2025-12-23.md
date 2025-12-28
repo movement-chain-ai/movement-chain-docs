@@ -486,7 +486,7 @@ build-backend = "hatchling.build"
 
 ### 4.2 Mock Data Strategy ✅ Complete Documentation Exists
 
-**Current Status**: `sensor-metric-mapping.md §8` already contains complete Mock data generation code
+**Current Status**: `sensor-data-processing.md §8` already contains complete Mock data generation code
 
 | Mock Type | Function | Source |
 |-----------|----------|--------|
@@ -1515,7 +1515,7 @@ User → Cloudflare Workers (API gateway/cache) → AWS Lambda (ML inference)
 |----------|---------|--------------|
 | **[data-pipeline-and-ai.md](../architecture/data-pipeline-and-ai.md)** | **Data flow & time sync** | **⭐ Authoritative source** |
 | [modular-architecture.md](../architecture/modular-architecture.md) | LEGO block architecture | Hexagonal mapping |
-| [sensor-metric-mapping.md](../architecture/sensor-metric-mapping.md) | Algorithm implementation code | Mock data generation |
+| [sensor-data-processing.md](../architecture/sensor-data-processing.md) | Algorithm implementation code | Mock data generation |
 | [ADR-0002](0002-lsm6dsv16x-imu.md) | LSM6DSV16X selection | IMU hardware decision |
 | [ADR-0005](0005-esp32-s3-microcontroller.md) | ESP32-S3 selection | MCU hardware decision |
 | [ADR-0007](0007-swift-ios-native.md) | Swift iOS native | Mobile platform decision |

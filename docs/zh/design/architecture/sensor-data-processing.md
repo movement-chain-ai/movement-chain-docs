@@ -1,12 +1,12 @@
-# 传感器指标映射 Sensor-to-Metric Mapping
+# 传感器数据处理与指标计算 Sensor Data Processing
 
-> **文档目的**: 定义三模态系统 (Vision + IMU + EMG) 可测量的研究验证指标
+> **文档目的**: 定义三模态系统 (Vision + IMU + EMG) 的数据处理流程与可计算指标
 > **核心价值**: EMG 提供的肌肉激活检测是独特差异化优势，竞品无法实现
-> **最后更新**: 2025-12-23
+> **最后更新**: 2025-12-28
 
 ---
 
-## 1. 系统能力矩阵 Capability Matrix {#1-系统能力矩阵-capability-matrix}
+## 1. 指标能力矩阵 Metrics Capability Matrix {#1-指标能力矩阵-metrics-capability-matrix}
 
 下表展示了文献验证的高尔夫指标与系统数据的对应关系。
 
