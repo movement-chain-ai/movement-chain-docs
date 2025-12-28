@@ -5165,17 +5165,17 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>┌─────────────────────────────────────────────────────────────────┐
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│                    Vision 关键点数据结构                          │
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├─────────────────────────────────────────────────────────────────┤
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│                                                                  │
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   每个 Landmark 包含 4 个值:                                       │
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── x: 水平位置 (归一化坐标, 0-1)                                 │
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   ├── y: 垂直位置 (归一化坐标, 0-1)                                 │
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   ├── z: 深度 (相对髋部中点的距离)                                   │
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   └── visibility: 可见度 (0-1, 置信度)                             │
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│                                                                  │
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   采样率: 30 fps (每帧间隔 33.3ms)                                 │
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   关键点数: 33 个 (全身骨架)                                        │
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   每帧数据量: 33 × 4 = 132 个浮点数                                 │
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│                                                                  │
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│                                                                 │
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   每个 Landmark 包含 4 个值:                                      │
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── x: 水平位置 (归一化坐标, 0-1)                                │
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   ├── y: 垂直位置 (归一化坐标, 0-1)                                │
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   ├── z: 深度 (相对髋部中点的距离)                                  │
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   └── visibility: 可见度 (0-1, 置信度)                            │
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│                                                                 │
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   采样率: 30 fps (每帧间隔 33.3ms)                                │
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   关键点数: 33 个 (全身骨架)                                       │
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   每帧数据量: 33 × 4 = 132 个浮点数                                │
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│                                                                 │
 </span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>└─────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <p><strong>归一化坐标系</strong>:</p>
@@ -5271,52 +5271,105 @@
 <p>MediaPipe 的 z 是从 2D 图像推断的，精度有限。
 真正的 3D 深度需要双目摄像头或 LiDAR。</p>
 </div>
-<p><strong>高尔夫挥杆关键关键点索引</strong>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>┌─────────────────────────────────────────────────────────────────┐
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>│                    MediaPipe 33 关键点                           │
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>├─────────────────────────────────────────────────────────────────┤
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│                                                                 │
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│   高尔夫挥杆最常用的关键点 (按运动链分组):                            │
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>│                                                                 │
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│   ┌─ 上肢控制群 (握杆/释放) ─────────────────────────────────────┐ │
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>│   │                                                           │ │
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>│   │   肩部 (X-Factor, S-Factor):                               │ │
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>│   │   ├── 11: left_shoulder   (左肩)                           │ │
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>│   │   └── 12: right_shoulder  (右肩)                           │ │
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>│   │                                                           │ │
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>│   │   手肘 (手臂折叠角度):                                       │ │
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>│   │   ├── 13: left_elbow      (左肘)                           │ │
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>│   │   └── 14: right_elbow     (右肘)                           │ │
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>│   │                                                            │ │
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>│   │   手腕 (握杆位置, 对应 EMG 前臂屈肌/伸肌):                      │ │
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>│   │   ├── 15: left_wrist      (左手腕)                          │ │
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>│   │   └── 16: right_wrist     (右手腕)                          │ │
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>│   │                                                            │ │
-</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>│   └────────────────────────────────────────────────────────────┘ │
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>│                                                                  │
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>│   ┌─ 核心驱动群 (躯干旋转) ──────────────────────────────────────┐  │
-</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>│   │                                                           │  │
-</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>│   │   髋部 (X-Factor, O-Factor):                              │  │
-</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>│   │   ├── 23: left_hip        (左髋)                          │  │
-</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>│   │   └── 24: right_hip       (右髋)                          │  │
-</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>│   │                                                           │  │
-</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>│   │   注: 躯干旋转通过 肩膀(11,12) - 髋部(23,24) 角度差计算        │  │
-</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>│   │                                                           │  │
-</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>│   └────────────────────────────────────────────────────────────┘ │
-</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>│                                                                  │
-</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>│   ┌─ 下肢稳定群 (地面反作用力) ─────────────────────────────────┐   │
-</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>│   │                                                            │ │
-</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>│   │   膝盖 (下肢稳定性):                                        │ │
-</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>│   │   ├── 25: left_knee       (左膝)                           │ │
-</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>│   │   └── 26: right_knee      (右膝)                           │ │
-</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>│   │                                                            │ │
-</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>│   │   脚踝 (站位宽度):                                          │ │
-</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>│   │   ├── 27: left_ankle      (左脚踝)                         │ │
-</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>│   │   └── 28: right_ankle     (右脚踝)                         │ │
-</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>│   │                                                            │ │
-</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>│   └────────────────────────────────────────────────────────────┘│
-</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>│                                                                 │
-</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>└─────────────────────────────────────────────────────────────────┘
+<p><strong>visibility 可见度应用</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>visibility 值</th>
+<th>状态</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.9 - 1.0</td>
+<td>清晰可见</td>
+<td>✅ 直接使用</td>
+</tr>
+<tr>
+<td>0.7 - 0.9</td>
+<td>部分遮挡</td>
+<td>⚠️ 可用但需谨慎</td>
+</tr>
+<tr>
+<td>0.5 - 0.7</td>
+<td>严重遮挡</td>
+<td>⚠️ 建议忽略或插值</td>
+</tr>
+<tr>
+<td>&lt; 0.5</td>
+<td>不可见</td>
+<td>❌ 不应使用</td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 可见度过滤示例</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">filter_landmarks</span><span class="p">(</span><span class="n">landmarks</span><span class="p">,</span> <span class="n">min_visibility</span><span class="o">=</span><span class="mf">0.7</span><span class="p">):</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;过滤低可见度的关键点&quot;&quot;&quot;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="k">return</span> <span class="p">{</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        <span class="n">idx</span><span class="p">:</span> <span class="n">lm</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">lm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">landmarks</span><span class="p">)</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="k">if</span> <span class="n">lm</span><span class="o">.</span><span class="n">visibility</span> <span class="o">&gt;=</span> <span class="n">min_visibility</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="p">}</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">为什么需要归一化坐标？</p>
+<ul>
+<li><strong>跨设备一致</strong>: iPhone 12 (1920×1080) 和 iPhone 15 Pro (2556×1179) 输出相同坐标</li>
+<li><strong>算法通用</strong>: 不需要针对不同分辨率调整阈值</li>
+<li><strong>存储高效</strong>: 不需要记录原始图像尺寸</li>
+</ul>
+</div>
+<blockquote>
+<p>详见 <a href="../../../reference/software-glossary/#7-归一化坐标-normalized-coordinates">归一化坐标</a> — 完整定义和转换公式</p>
+</blockquote>
+<hr />
+<h4 id="312-vision-计算指标">3.1.2 计算指标<a class="headerlink" href="#312-vision-计算指标" title="Permanent link">&para;</a></h4>
+<p><strong>高尔夫挥杆关键点</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>┌─────────────────────────────────────────────────────────────────┐
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>│                    MediaPipe 33 关键点                           │
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>├─────────────────────────────────────────────────────────────────┤
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│                                                                 │
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>│   高尔夫挥杆最常用的关键点 (按运动链分组):                            │
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>│                                                                 │
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>│   ┌─ 上肢控制群 (握杆/释放) ───────────────────────────────────┐   │
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>│   │                                                         │   │
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>│   │   肩部 (X-Factor, S-Factor):                             │   │
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>│   │   ├── 11: left_shoulder   (左肩)                         │   │
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>│   │   └── 12: right_shoulder  (右肩)                         │   │
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>│   │                                                         │   │
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>│   │   手肘 (手臂折叠角度):                                     │   │
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>│   │   ├── 13: left_elbow      (左肘)                         │   │
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>│   │   └── 14: right_elbow     (右肘)                         │   │
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>│   │                                                         │   │
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>│   │   手腕 (握杆位置, 对应 EMG 前臂屈肌/伸肌):                   │   │
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>│   │   ├── 15: left_wrist      (左手腕)                       │   │
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>│   │   └── 16: right_wrist     (右手腕)                       │   │
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>│   │                                                         │   │
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>│   └─────────────────────────────────────────────────────────┘   │
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>│                                                                 │
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>│   ┌─ 核心驱动群 (躯干旋转) ────────────────────────────────────┐   │
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>│   │                                                         │   │
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>│   │   髋部 (X-Factor, O-Factor):                             │   │
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>│   │   ├── 23: left_hip        (左髋)                         │   │
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>│   │   └── 24: right_hip       (右髋)                         │   │
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>│   │                                                         │   │
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>│   │   注: 躯干旋转通过 肩膀(11,12) - 髋部(23,24) 角度差计算       │   │
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>│   │                                                         │   │
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>│   └─────────────────────────────────────────────────────────┘   │
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>│                                                                 │
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>│   ┌─ 下肢稳定群 (地面反作用力) ─────────────────────────────────┐   │
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>│   │                                                         │   │
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>│   │   膝盖 (下肢稳定性):                                       │   │
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>│   │   ├── 25: left_knee       (左膝)                         │   │
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>│   │   └── 26: right_knee      (右膝)                         │   │
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>│   │                                                         │   │
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>│   │   脚踝 (站位宽度):                                        │   │
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>│   │   ├── 27: left_ankle      (左脚踝)                       │   │
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>│   │   └── 28: right_ankle     (右脚踝)                       │   │
+</span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>│   │                                                         │   │
+</span><span id="__span-5-43"><a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>│   └─────────────────────────────────────────────────────────┘   │
+</span><span id="__span-5-44"><a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>│                                                                 │
+</span><span id="__span-5-45"><a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>└─────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <p><strong>高尔夫指标与关键点对应</strong>:</p>
 <table>
@@ -5365,59 +5418,6 @@
 </tr>
 </tbody>
 </table>
-<p><strong>visibility 可见度应用</strong>:</p>
-<table>
-<thead>
-<tr>
-<th>visibility 值</th>
-<th>状态</th>
-<th>处理方式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0.9 - 1.0</td>
-<td>清晰可见</td>
-<td>✅ 直接使用</td>
-</tr>
-<tr>
-<td>0.7 - 0.9</td>
-<td>部分遮挡</td>
-<td>⚠️ 可用但需谨慎</td>
-</tr>
-<tr>
-<td>0.5 - 0.7</td>
-<td>严重遮挡</td>
-<td>⚠️ 建议忽略或插值</td>
-</tr>
-<tr>
-<td>&lt; 0.5</td>
-<td>不可见</td>
-<td>❌ 不应使用</td>
-</tr>
-</tbody>
-</table>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 可见度过滤示例</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">filter_landmarks</span><span class="p">(</span><span class="n">landmarks</span><span class="p">,</span> <span class="n">min_visibility</span><span class="o">=</span><span class="mf">0.7</span><span class="p">):</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;过滤低可见度的关键点&quot;&quot;&quot;</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="k">return</span> <span class="p">{</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>        <span class="n">idx</span><span class="p">:</span> <span class="n">lm</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">lm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">landmarks</span><span class="p">)</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>        <span class="k">if</span> <span class="n">lm</span><span class="o">.</span><span class="n">visibility</span> <span class="o">&gt;=</span> <span class="n">min_visibility</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="p">}</span>
-</span></code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">为什么需要归一化坐标？</p>
-<ul>
-<li><strong>跨设备一致</strong>: iPhone 12 (1920×1080) 和 iPhone 15 Pro (2556×1179) 输出相同坐标</li>
-<li><strong>算法通用</strong>: 不需要针对不同分辨率调整阈值</li>
-<li><strong>存储高效</strong>: 不需要记录原始图像尺寸</li>
-</ul>
-</div>
-<blockquote>
-<p>详见 <a href="../../../reference/software-glossary/#7-归一化坐标-normalized-coordinates">归一化坐标</a> — 完整定义和转换公式</p>
-</blockquote>
-<hr />
-<h4 id="312-vision-计算指标">3.1.2 计算指标<a class="headerlink" href="#312-vision-计算指标" title="Permanent link">&para;</a></h4>
 <p>基于原始 33 关键点坐标，可计算以下高尔夫挥杆指标：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># X-Factor 计算示例</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_x_factor</span><span class="p">(</span><span class="n">landmarks</span><span class="p">):</span>
@@ -5530,7 +5530,7 @@
 <tr>
 <td><strong>accel_x/y/z</strong></td>
 <td>传感器静止时</td>
-<td>静止时只有重力加速度 (accel_y ≈ 9.8 m/s²)</td>
+<td><a href="../../../reference/engineering-glossary/#11-加速度计-accelerometer">静止时只有重力加速度</a> (accel_y ≈ 9.8 m/s²)</td>
 </tr>
 <tr>
 <td><strong>gyro_x/y/z</strong></td>
@@ -5721,15 +5721,15 @@
 <p><strong>Raw Data 详解</strong> (硬件层):</p>
 <p>MyoWare 2.0 + ESP32 ADC 输出的原始数据是 <strong>12-bit 整数值 (0-4095)</strong>：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>┌─────────────────────────────────────────────────────────────────┐
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>│                    EMG Raw Data 信号链                            │
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>│                    EMG Raw Data 信号链                           │
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>├─────────────────────────────────────────────────────────────────┤
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>│                                                                  │
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>│   肌肉电信号        MyoWare 2.0 放大器         ESP32 ADC         │
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>│                                                                 │
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>│   肌肉电信号        MyoWare 2.0 放大器         ESP32 ADC           │
 </span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>│   ───────────  →   ─────────────────────  →   ──────────        │
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>│   ±5 μV ~ ±5 mV    增益 ≈1000x → 0-3.3V       0-4095 (12-bit)   │
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>│                                                                  │
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>│   ±5 μV ~ ±5 mV    增益 ≈1000x → 0-3.3V       0-4095 (12-bit)    │
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>│                                                                 │
 </span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>│   皮肤表面          模拟电压输出 (ENV pin)      数字值              │
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>│                                                                  │
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>│                                                                 │
 </span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>└─────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <table>
