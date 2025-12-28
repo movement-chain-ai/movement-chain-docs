@@ -67,7 +67,7 @@ LEGO 积木块架构：
 - **反馈生成**: Plan A/B/C 架构对比
 - **阈值来源**: TPI、Meister、Cheetham 论文
 
-### [传感器指标映射](sensor-data-processing.md)
+### [数据处理与指标计算](sensor-data-processing.md)
 
 **阅读时间**: 按需查阅 | **实现参考**
 

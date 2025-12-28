@@ -25,7 +25,7 @@
 >
 > - [系统设计](./system-design.md) — 产品愿景、完整架构、技术栈
 > - [数据管道与AI](./data-pipeline-and-ai.md) — 时间同步、Kinematic Prompts、诊断规则
-> - [传感器指标映射](./sensor-data-processing.md) — 12个指标的完整定义与算法
+> - [数据处理与指标计算](./sensor-data-processing.md) — 12个指标的完整定义与算法
 > - [2025年12月关键决策](../decisions/architecture-decisions-2025-12-23.md) — 硬件选型、Sensor Hub 架构
 > - [移动开发指南](../../development/mobile/development.md) — Swift iOS 开发
 
@@ -218,7 +218,7 @@ flowchart LR
 | 指标提取准确率 | >90% (与标注数据对比) |
 | Rerun 可视化 | 人工审核通过 |
 
-> 📐 **详细规格**: [数据管道与AI](./data-pipeline-and-ai.md) | [传感器指标映射](./sensor-data-processing.md)
+> 📐 **详细规格**: [数据管道与AI](./data-pipeline-and-ai.md) | [数据处理与指标计算](./sensor-data-processing.md)
 
 ---
 
@@ -329,7 +329,7 @@ flowchart LR
 
 | 规格类别 | 详细文档 | 核心内容 |
 |----------|----------|----------|
-| **12 测量指标** | [传感器指标映射](./sensor-data-processing.md) | Vision (6) + IMU (4) + EMG (2) |
+| **12 测量指标** | [数据处理与指标计算](./sensor-data-processing.md) | Vision (6) + IMU (4) + EMG (2) |
 | **6 诊断规则** | [§8.2 诊断规则](#82-mvp-6-条诊断规则) | P0 (2条) + P1 (4条) |
 | **反馈模式** | [实时反馈规格](../specs/real-time-feedback.md) | 3种模式: Setup / Slow Motion / Full Speed |
 | **硬件选型** | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md), [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) | LSM6DSV16X IMU + ESP32-S3 MCU |

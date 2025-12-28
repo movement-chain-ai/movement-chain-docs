@@ -848,7 +848,7 @@ P2 (最后):   优化建议 (BALANCE)
 - [模块化架构](modular-architecture.md) - 系统模块详细设计
 - [实时反馈规格](../specs/real-time-feedback.md) - 反馈时延和模式详解
 - [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) - 完整阈值表
-- [传感器指标映射](./sensor-data-processing.md) - 数据计算公式
+- [数据处理与指标计算](./sensor-data-processing.md) - 数据计算公式
 
 ---
 

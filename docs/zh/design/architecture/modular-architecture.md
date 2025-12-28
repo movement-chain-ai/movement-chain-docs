@@ -904,7 +904,7 @@ class DiagnosticRule:
 | **Sway/Lift** | 髋部中心位移 vs Address | 23,24 | 重心控制 |
 
 !!! tip "详细算法实现"
-    计算代码见 [传感器指标映射 §3.1](./sensor-data-processing.md#31-vision-数据处理-mediapipe-33-landmarks)
+    计算代码见 [数据处理与指标计算 §3.1](./sensor-data-processing.md#31-vision-数据处理-mediapipe-33-landmarks)
 
 #### 2.3.3 IMU Block 实现 {#233-imu-block}
 
@@ -990,7 +990,7 @@ class SimulatedIMUFrame:
 | **Transition Timing** | 转换点精度 | ±0.6ms 可检测 | 力量爆发点 |
 
 !!! tip "详细算法实现"
-    峰值检测、运动链验证代码见 [传感器指标映射 §3.2](./sensor-data-processing.md#32-imu-数据处理-lsm6dsv16x--1666hz)
+    峰值检测、运动链验证代码见 [数据处理与指标计算 §3.2](./sensor-data-processing.md#32-imu-数据处理-lsm6dsv16x--1666hz)
 
 #### 2.3.4 EMG Block 实现 {#234-emg-block}
 
@@ -1097,7 +1097,7 @@ MVP 阶段使用 2 通道 (Core + Forearm)，后续渐进扩展：
 | **Co-activation** | 拮抗肌同时激活 | 双通道比较 | 动作效率分析 |
 
 !!! tip "详细算法实现"
-    信号处理、特征提取代码见 [传感器指标映射 §3.3](./sensor-data-processing.md#33-emg-数据处理-unique-capability)
+    信号处理、特征提取代码见 [数据处理与指标计算 §3.3](./sensor-data-processing.md#33-emg-数据处理-unique-capability)
 
 ### 2.4 分析诊断层 {#24-分析诊断层}
 
@@ -1604,7 +1604,7 @@ MVP 阶段:
 | 文档 | 内容 | 关系 |
 |------|------|------|
 | [系统设计](./system-design.md) | MVP 4 模块架构 | 本文档的父文档 |
-| [传感器指标映射](./sensor-data-processing.md) | 算法实现代码 | §3.1-3.3 的详细实现 |
+| [数据处理与指标计算](./sensor-data-processing.md) | 算法实现代码 | §3.1-3.3 的详细实现 |
 | [挥杆阶段](../specs/swing-phases.md) | 8 阶段检测 | CLASSIFIER Block 输出 |
 | [生物力学术语表](../../prerequisites/foundations/biomechanics-glossary.md) | 术语定义 | 高尔夫专业术语 |
 
