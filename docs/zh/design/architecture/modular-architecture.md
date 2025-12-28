@@ -1085,7 +1085,7 @@ MVP 阶段使用 2 通道 (Core + Forearm)，后续渐进扩展：
 | **Phase 3** | 6 | + 背阔肌, 三角肌 | 完整力链验证 |
 
 !!! tip "详细布局图"
-    电极放置位置、选择依据见 [数据处理与指标计算 §4.3](./sensor-data-processing.md#43-emg-传感器布局规划-emg-sensor-placement-plan)
+    电极放置位置、选择依据见 [数据处理与指标计算 §3.3.3](./sensor-data-processing.md#333-emg-传感器布局规划)
 
 ##### 真实 EMG 检测能力
 

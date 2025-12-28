@@ -619,7 +619,7 @@ ADC Value vs 肌肉状态:
 | Phase 2 | 4 | + Gluteus, Adductors | 下肢发力分析 |
 | Phase 3 | 6 | + Lats, Deltoids | 全身运动链 |
 
-> 详见 [§4.3 EMG 传感器布局规划](#43-emg-传感器布局规划-emg-sensor-placement-plan)
+> 详见 [§3.3.3 传感器布局规划](#333-emg-传感器布局规划)
 
 **信号处理流程**:
 
@@ -734,7 +734,211 @@ def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
 
 ---
 
-#### 3.3.3 多传感器融合算法 {#333-多传感器融合算法}
+#### 3.3.3 传感器布局规划 EMG Sensor Placement {#333-emg-传感器布局规划}
+
+##### 关键肌群图 Key Muscle Groups
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         GOLF SWING EMG SENSOR MAP                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│                        ┌─────────────┐                                      │
+│                        │   背阔肌     │ ← Phase 3: 肩部旋转、拉杆动作        │
+│                        │    Lats     │   (Latissimus Dorsi)                 │
+│                        └──────┬──────┘                                      │
+│                               │                                             │
+│                        ┌──────┴──────┐                                      │
+│                        │    核心     │ ← Phase 1: 躯干旋转、力量传递中枢 ⭐  │
+│                        │    Core    │   (Obliques 腹斜肌)                   │
+│                        └──────┬──────┘                                      │
+│                               │                                             │
+│                        ┌──────┴──────┐                                      │
+│                        │    臀肌     │ ← Phase 2: 下杆启动、髋部旋转         │
+│                        │   Glutes   │   (Gluteus Maximus 臀大肌)            │
+│                        └──────┬──────┘                                      │
+│                               │                                             │
+│   ┌───────────────────┐       │       ┌───────────────────┐                 │
+│   │   三角肌 Deltoids │       │       │   前臂 Forearm    │                 │
+│   │   Phase 3         │       │       │   Phase 1 ⭐      │                 │
+│   └───────────────────┘       │       │   (Wrist Flexors) │                 │
+│                               │       └───────────────────┘                 │
+│                        ┌──────┴──────┐                                      │
+│                        │  大腿内侧   │ ← Phase 2: 下盘稳定、重心转移         │
+│                        │  Adductors │                                       │
+│                        └─────────────┘                                      │
+│                                                                             │
+│   运动链传递顺序 Kinematic Chain:                                            │
+│   Glutes → Core → Lats → Forearm                                           │
+│   (臀肌 → 核心 → 背阔肌 → 前臂)                                              │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+##### 分阶段部署计划 Phased Deployment
+
+| Phase | 肌群 | 英文名 | 检测目标 | 传感器数 |
+|:-----:|------|--------|----------|:--------:|
+| **1 (MVP)** | 核心/腹斜肌 | Core/Obliques | 躯干旋转发力、运动链中枢 | 1 |
+| **1 (MVP)** | 前臂屈肌 | Forearm Flexors | 手腕释放时机、握杆力度 | 1 |
+| **2** | 臀大肌 | Gluteus Maximus | 下杆启动、髋部旋转 | 1 |
+| **2** | 大腿内侧 | Adductors | 下盘稳定、重心转移 | 1 |
+| **3** | 背阔肌 | Latissimus Dorsi | 肩部旋转、拉杆动作 | 1 |
+| **3** | 三角肌 | Deltoids | 手臂举起、顶点位置 | 1 |
+
+**传感器数量规划**:
+
+- Phase 1 (MVP): **2 通道** — 最小可行，验证核心价值
+- Phase 2: **4 通道** — 完整下半身运动链
+- Phase 3: **6 通道** — 全身运动链分析
+
+##### 选择依据 Selection Rationale
+
+| 研究来源 | 发现 | 对选型的影响 |
+|---------|------|-------------|
+| **Cheetham (2008)** | 运动链时序: 骨盆 → 躯干 → 手臂，职业选手间隔更稳定 | Core + Forearm 可检测最关键的"躯干→手臂"时序 |
+| **Meister (2011)** | 核心激活与杆头速度相关性 r=0.89 | Core 是必选传感器 |
+| **TPI 研究** | 臀肌激活不足 → 早伸 (Early Extension) | Phase 2 加入 Gluteus |
+| **PMC4851105** | 8通道EMG分析发现"雪崩效应" | 全通道分析需要 Phase 3 |
+
+##### MVP 检测能力
+
+仅用 **2 个 EMG 传感器 (Core + Forearm)** 即可检测:
+
+| 检测能力 | 方法 | 阈值 |
+|---------|------|------|
+| **倒序运动链** | Core onset vs Forearm onset | 时间差 < 0ms = 错误 |
+| **过度手臂挥杆** | Forearm RMS / Core RMS | 比值 > 1.3 = 问题 |
+| **核心激活不足** | Core RMS / MVC% | < 50% MVC = 不足 |
+| **疲劳检测** | 峰值幅度衰减趋势 | 下降 > 30% = 疲劳 |
+
+##### Mock 数据结构
+
+MVP 阶段使用 Mock 数据时，建议预留 **4 通道** 数据结构，便于后续扩展:
+
+```python
+# Mock EMG 数据结构 (为 Phase 2 预留)
+mock_emg = {
+    # Phase 1 (MVP) - 必须实现
+    "core_obliques": {
+        "signal": [...],           # 1000Hz 采样 (MyoWare 2.0 推荐配置)
+        "onset_time_ms": 0,        # 激活起始时间
+        "peak_amplitude_mv": 0.0,  # 峰值幅度
+        "rms_mv": 0.0,             # RMS 均值
+    },
+    "forearm_flexors": {
+        "signal": [...],
+        "onset_time_ms": 0,
+        "peak_amplitude_mv": 0.0,
+        "rms_mv": 0.0,
+    },
+
+    # Phase 2 - 数据结构预留
+    "gluteus_maximus": None,       # Phase 2 填充
+    "adductors": None,             # Phase 2 填充
+
+    # Phase 3 - 数据结构预留
+    "latissimus_dorsi": None,      # Phase 3 填充
+    "deltoids": None,              # Phase 3 填充
+}
+
+# 计算 Core-Forearm 时序差
+def calculate_timing_gap(mock_emg):
+    core_onset = mock_emg["core_obliques"]["onset_time_ms"]
+    forearm_onset = mock_emg["forearm_flexors"]["onset_time_ms"]
+    gap_ms = forearm_onset - core_onset  # 正值 = 核心先激活 (正确)
+    return gap_ms
+
+# 计算发力比例
+def calculate_activation_ratio(mock_emg):
+    core_rms = mock_emg["core_obliques"]["rms_mv"]
+    forearm_rms = mock_emg["forearm_flexors"]["rms_mv"]
+    ratio = forearm_rms / core_rms  # < 1.3 为正常
+    return ratio
+```
+
+
+---
+
+## 4. 多传感器融合分析 Sensor Fusion Analysis {#4-多传感器融合分析-sensor-fusion-analysis}
+
+!!! info "本章节内容"
+    本章节描述**时间对齐后**的多传感器融合分析，包括：
+
+    - 融合策略与流程
+    - 融合后的独特检测能力
+
+---
+
+### 4.1 独特检测能力总结 Your Unique Detection Capabilities
+
+下表展示了你的系统相对于竞品的独特优势。
+
+| 可检测能力 | 检测方法 | 竞品可实现? | 商业价值 |
+|-----------|---------|-----------|---------|
+| **核心先于手臂激活** | EMG 时序分析 | ❌ 无竞品可实现 | 验证"由内而外"的力链传递原则 |
+| **力链断裂点定位** | EMG 序列分析 | ❌ 无竞品可实现 | 精确诊断"为什么挥杆失败" |
+| **疲劳累积检测** | EMG 幅值衰减 | ❌ 无竞品可实现 | 伤病预防，优化训练量 |
+| **X-Factor Stretch** | Vision 帧分析 | ✅ 部分竞品 (Sportsbox) | 验证"蓄力"动作 |
+| **运动链时序 (<10ms)** | IMU + EMG 双重验证 | ⚠️ 部分竞品 (GEARS, 仅 IMU) | 高精度时序分析 |
+| **峰值角速度** | IMU 直接测量 | ✅ 部分竞品 (K-VEST) | 爆发力评估 |
+| **节奏比** | IMU 高频采样 | ✅ 部分竞品 (Vision + IMU) | 挥杆节奏一致性 |
+| **所有身体角度** | Vision 33 关键点 | ✅ 所有 Vision 系统 | 姿态评估基础能力 |
+
+**核心差异化总结**:
+
+1. **EMG 肌肉激活检测** = 你的系统**独有**，无竞品可实现
+2. **因果分析能力** = Vision/IMU 只能看到"结果"，EMG 可以解释"原因"
+3. **伤病预防** = 疲劳检测可提前发现过度训练风险
+
+---
+
+### 4.2 系统融合策略 Sensor Fusion Strategy
+
+三模态传感器的数据融合策略如下:
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         SENSOR FUSION PIPELINE                               │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│   Phase 1: 单模态特征提取                                                      │
+│   ├── Vision (30fps): 提取 33 关键点 → 计算 X-Factor, S-Factor, Sway/Lift     │
+│   ├── IMU (1666Hz): 提取角速度/加速度 → 计算峰值速度, 节奏比                    │
+│   └── EMG (1000Hz): 提取激活时序 → 计算肌肉启动时间, 激活强度                   │
+│                                                                              │
+│   Phase 2: 时间对齐 (Sensor Hub 架构)                                       │
+│   ├── Sensor Hub: 同部位 IMU/EMG 共享 ESP32 时钟 (硬件级微秒同步)            │
+│   ├── 以 IMU 为基准时钟 (最高采样率)                                         │
+│   ├── Vision 帧插值到 1666Hz (线性插值)                                      │
+│   ├── EMG 重采样到 1666Hz (降采样)                                           │
+│   └── 跨设备对齐: 使用 Impact 时刻作为同步锚点                               │
+│                                                                              │
+│   Phase 3: 特征融合                                                           │
+│   ├── 运动链时序 = IMU (身体启动) + EMG (肌肉启动) 双重验证                      │
+│   ├── X-Factor Stretch = Vision (角度差) + EMG (核心激活) 相关性分析            │
+│   └── 力链验证 = Vision (姿态) + IMU (速度) + EMG (激活序列) 三重验证            │
+│                                                                              │
+│   Phase 4: 异常检测                                                           │
+│   ├── 如果 EMG 显示核心未激活，但 IMU 显示高速转体 → 警告"代偿动作"              │
+│   ├── 如果 Vision 显示 X-Factor 正常，但 EMG 显示激活序列错误 → 警告"假性蓄力"   │
+│   └── 如果 EMG 显示疲劳，但用户继续练习 → 建议"休息以防受伤"                     │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+!!! tip "时间对齐实现"
+    Phase 2 时间对齐的具体实现方案（NTP 预同步 + Impact 验证）详见
+    [模块化架构 §2.2.3](modular-architecture.md#223-时间同步实现方案)。
+```
+
+**融合优势**:
+
+- **互补性**: Vision 看不到的 (肌肉激活)，EMG 可以测
+- **冗余性**: 运动链时序可用 IMU + EMG 双重验证，提高准确性
+- **因果性**: Vision/IMU 提供"现象"，EMG 提供"原因"
+
+---
+
+### 4.3 多传感器融合算法 Sensor Fusion Algorithms {#43-多传感器融合算法}
 
 以下算法需要对齐后的多传感器数据才能执行：
 
@@ -838,208 +1042,6 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 - 疲劳检测 (激活强度衰减)
 - 力链传递验证 (下肢 → 核心 → 躯干 → 手臂)
 
----
-
-## 4. 多传感器融合分析 Sensor Fusion Analysis {#4-多传感器融合分析-sensor-fusion-analysis}
-
-!!! info "本章节内容"
-    本章节描述**时间对齐后**的多传感器融合分析，包括：
-
-    - 融合策略与流程
-    - 融合后的独特检测能力
-
----
-
-### 4.1 独特检测能力总结 Your Unique Detection Capabilities
-
-下表展示了你的系统相对于竞品的独特优势。
-
-| 可检测能力 | 检测方法 | 竞品可实现? | 商业价值 |
-|-----------|---------|-----------|---------|
-| **核心先于手臂激活** | EMG 时序分析 | ❌ 无竞品可实现 | 验证"由内而外"的力链传递原则 |
-| **力链断裂点定位** | EMG 序列分析 | ❌ 无竞品可实现 | 精确诊断"为什么挥杆失败" |
-| **疲劳累积检测** | EMG 幅值衰减 | ❌ 无竞品可实现 | 伤病预防，优化训练量 |
-| **X-Factor Stretch** | Vision 帧分析 | ✅ 部分竞品 (Sportsbox) | 验证"蓄力"动作 |
-| **运动链时序 (<10ms)** | IMU + EMG 双重验证 | ⚠️ 部分竞品 (GEARS, 仅 IMU) | 高精度时序分析 |
-| **峰值角速度** | IMU 直接测量 | ✅ 部分竞品 (K-VEST) | 爆发力评估 |
-| **节奏比** | IMU 高频采样 | ✅ 部分竞品 (Vision + IMU) | 挥杆节奏一致性 |
-| **所有身体角度** | Vision 33 关键点 | ✅ 所有 Vision 系统 | 姿态评估基础能力 |
-
-**核心差异化总结**:
-
-1. **EMG 肌肉激活检测** = 你的系统**独有**，无竞品可实现
-2. **因果分析能力** = Vision/IMU 只能看到"结果"，EMG 可以解释"原因"
-3. **伤病预防** = 疲劳检测可提前发现过度训练风险
-
----
-
-### 4.2 系统融合策略 Sensor Fusion Strategy
-
-三模态传感器的数据融合策略如下:
-
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         SENSOR FUSION PIPELINE                               │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                              │
-│   Phase 1: 单模态特征提取                                                      │
-│   ├── Vision (30fps): 提取 33 关键点 → 计算 X-Factor, S-Factor, Sway/Lift     │
-│   ├── IMU (1666Hz): 提取角速度/加速度 → 计算峰值速度, 节奏比                    │
-│   └── EMG (1000Hz): 提取激活时序 → 计算肌肉启动时间, 激活强度                   │
-│                                                                              │
-│   Phase 2: 时间对齐 (Sensor Hub 架构)                                       │
-│   ├── Sensor Hub: 同部位 IMU/EMG 共享 ESP32 时钟 (硬件级微秒同步)            │
-│   ├── 以 IMU 为基准时钟 (最高采样率)                                         │
-│   ├── Vision 帧插值到 1666Hz (线性插值)                                      │
-│   ├── EMG 重采样到 1666Hz (降采样)                                           │
-│   └── 跨设备对齐: 使用 Impact 时刻作为同步锚点                               │
-│                                                                              │
-│   Phase 3: 特征融合                                                           │
-│   ├── 运动链时序 = IMU (身体启动) + EMG (肌肉启动) 双重验证                      │
-│   ├── X-Factor Stretch = Vision (角度差) + EMG (核心激活) 相关性分析            │
-│   └── 力链验证 = Vision (姿态) + IMU (速度) + EMG (激活序列) 三重验证            │
-│                                                                              │
-│   Phase 4: 异常检测                                                           │
-│   ├── 如果 EMG 显示核心未激活，但 IMU 显示高速转体 → 警告"代偿动作"              │
-│   ├── 如果 Vision 显示 X-Factor 正常，但 EMG 显示激活序列错误 → 警告"假性蓄力"   │
-│   └── 如果 EMG 显示疲劳，但用户继续练习 → 建议"休息以防受伤"                     │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-!!! tip "时间对齐实现"
-    Phase 2 时间对齐的具体实现方案（NTP 预同步 + Impact 验证）详见
-    [模块化架构 §2.2.3](modular-architecture.md#223-时间同步实现方案)。
-```
-
-**融合优势**:
-
-- **互补性**: Vision 看不到的 (肌肉激活)，EMG 可以测
-- **冗余性**: 运动链时序可用 IMU + EMG 双重验证，提高准确性
-- **因果性**: Vision/IMU 提供"现象"，EMG 提供"原因"
-
----
-
-### 4.3 EMG 传感器布局规划 EMG Sensor Placement Plan {#43-emg-传感器布局规划-emg-sensor-placement-plan}
-
-#### 4.3.1 关键肌群图 Key Muscle Groups
-
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         GOLF SWING EMG SENSOR MAP                           │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│                        ┌─────────────┐                                      │
-│                        │   背阔肌     │ ← Phase 3: 肩部旋转、拉杆动作        │
-│                        │    Lats     │   (Latissimus Dorsi)                 │
-│                        └──────┬──────┘                                      │
-│                               │                                             │
-│                        ┌──────┴──────┐                                      │
-│                        │    核心     │ ← Phase 1: 躯干旋转、力量传递中枢 ⭐  │
-│                        │    Core    │   (Obliques 腹斜肌)                   │
-│                        └──────┬──────┘                                      │
-│                               │                                             │
-│                        ┌──────┴──────┐                                      │
-│                        │    臀肌     │ ← Phase 2: 下杆启动、髋部旋转         │
-│                        │   Glutes   │   (Gluteus Maximus 臀大肌)            │
-│                        └──────┬──────┘                                      │
-│                               │                                             │
-│   ┌───────────────────┐       │       ┌───────────────────┐                 │
-│   │   三角肌 Deltoids │       │       │   前臂 Forearm    │                 │
-│   │   Phase 3         │       │       │   Phase 1 ⭐      │                 │
-│   └───────────────────┘       │       │   (Wrist Flexors) │                 │
-│                               │       └───────────────────┘                 │
-│                        ┌──────┴──────┐                                      │
-│                        │  大腿内侧   │ ← Phase 2: 下盘稳定、重心转移         │
-│                        │  Adductors │                                       │
-│                        └─────────────┘                                      │
-│                                                                             │
-│   运动链传递顺序 Kinematic Chain:                                            │
-│   Glutes → Core → Lats → Forearm                                           │
-│   (臀肌 → 核心 → 背阔肌 → 前臂)                                              │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
-
-#### 4.3.2 分阶段部署计划 Phased Deployment
-
-| Phase | 肌群 | 英文名 | 检测目标 | 传感器数 |
-|:-----:|------|--------|----------|:--------:|
-| **1 (MVP)** | 核心/腹斜肌 | Core/Obliques | 躯干旋转发力、运动链中枢 | 1 |
-| **1 (MVP)** | 前臂屈肌 | Forearm Flexors | 手腕释放时机、握杆力度 | 1 |
-| **2** | 臀大肌 | Gluteus Maximus | 下杆启动、髋部旋转 | 1 |
-| **2** | 大腿内侧 | Adductors | 下盘稳定、重心转移 | 1 |
-| **3** | 背阔肌 | Latissimus Dorsi | 肩部旋转、拉杆动作 | 1 |
-| **3** | 三角肌 | Deltoids | 手臂举起、顶点位置 | 1 |
-
-**传感器数量规划**:
-
-- Phase 1 (MVP): **2 通道** — 最小可行，验证核心价值
-- Phase 2: **4 通道** — 完整下半身运动链
-- Phase 3: **6 通道** — 全身运动链分析
-
-#### 4.3.3 选择依据 Selection Rationale
-
-| 研究来源 | 发现 | 对选型的影响 |
-|---------|------|-------------|
-| **Cheetham (2008)** | 运动链时序: 骨盆 → 躯干 → 手臂，职业选手间隔更稳定 | Core + Forearm 可检测最关键的"躯干→手臂"时序 |
-| **Meister (2011)** | 核心激活与杆头速度相关性 r=0.89 | Core 是必选传感器 |
-| **TPI 研究** | 臀肌激活不足 → 早伸 (Early Extension) | Phase 2 加入 Gluteus |
-| **PMC4851105** | 8通道EMG分析发现"雪崩效应" | 全通道分析需要 Phase 3 |
-
-#### 4.3.4 MVP 检测能力
-
-仅用 **2 个 EMG 传感器 (Core + Forearm)** 即可检测:
-
-| 检测能力 | 方法 | 阈值 |
-|---------|------|------|
-| **倒序运动链** | Core onset vs Forearm onset | 时间差 < 0ms = 错误 |
-| **过度手臂挥杆** | Forearm RMS / Core RMS | 比值 > 1.3 = 问题 |
-| **核心激活不足** | Core RMS / MVC% | < 50% MVC = 不足 |
-| **疲劳检测** | 峰值幅度衰减趋势 | 下降 > 30% = 疲劳 |
-
-#### 4.3.5 Mock 数据结构
-
-MVP 阶段使用 Mock 数据时，建议预留 **4 通道** 数据结构，便于后续扩展:
-
-```python
-# Mock EMG 数据结构 (为 Phase 2 预留)
-mock_emg = {
-    # Phase 1 (MVP) - 必须实现
-    "core_obliques": {
-        "signal": [...],           # 1000Hz 采样 (MyoWare 2.0 推荐配置)
-        "onset_time_ms": 0,        # 激活起始时间
-        "peak_amplitude_mv": 0.0,  # 峰值幅度
-        "rms_mv": 0.0,             # RMS 均值
-    },
-    "forearm_flexors": {
-        "signal": [...],
-        "onset_time_ms": 0,
-        "peak_amplitude_mv": 0.0,
-        "rms_mv": 0.0,
-    },
-
-    # Phase 2 - 数据结构预留
-    "gluteus_maximus": None,       # Phase 2 填充
-    "adductors": None,             # Phase 2 填充
-
-    # Phase 3 - 数据结构预留
-    "latissimus_dorsi": None,      # Phase 3 填充
-    "deltoids": None,              # Phase 3 填充
-}
-
-# 计算 Core-Forearm 时序差
-def calculate_timing_gap(mock_emg):
-    core_onset = mock_emg["core_obliques"]["onset_time_ms"]
-    forearm_onset = mock_emg["forearm_flexors"]["onset_time_ms"]
-    gap_ms = forearm_onset - core_onset  # 正值 = 核心先激活 (正确)
-    return gap_ms
-
-# 计算发力比例
-def calculate_activation_ratio(mock_emg):
-    core_rms = mock_emg["core_obliques"]["rms_mv"]
-    forearm_rms = mock_emg["forearm_flexors"]["rms_mv"]
-    ratio = forearm_rms / core_rms  # < 1.3 为正常
-    return ratio
-```
 
 ---
 
