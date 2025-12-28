@@ -11,13 +11,14 @@
 | 1 | [IMU](#1-imu-惯性测量单元) | Inertial Measurement Unit | 惯性测量单元，包含加速度计和陀螺仪 |
 | 2 | [EMG](#2-emg-肌电传感器) | Electromyography | 肌电传感器，测量肌肉电活动 |
 | 3 | [采样率](#3-采样率-sampling-rate) | Sampling Rate | 传感器每秒采集数据的次数，单位 Hz |
-| 4 | [漂移](#4-漂移-drift) | Drift | 传感器随时间累积的测量误差 |
-| 5 | [边缘 AI](#5-边缘-ai-edge-ai) | Edge AI | 在设备端直接运行 AI 推理 |
-| 6 | [I2C / SPI](#6-i2c--spi-通信协议) | Communication Protocols | 芯片间的通信协议 |
-| 7 | [MCU](#7-mcu-微控制器) | Microcontroller Unit | 微控制器，嵌入式系统的"大脑" |
-| 8 | [PCB](#8-pcb-印刷电路板) | Printed Circuit Board | 印刷电路板，电子元件的物理载体 |
-| 9 | [KiCad](#9-kicad) | KiCad | 开源 EDA 软件，用于 PCB 设计 |
-| 10 | [BLE 抖动](#10-ble-抖动-ble-jitter) | BLE Jitter | 蓝牙低功耗传输的时间不确定性，15-30ms |
+| 4 | [fps](#4-fps-每秒帧数) | Frames Per Second | 视频/图像每秒采集的帧数 |
+| 5 | [漂移](#5-漂移-drift) | Drift | 传感器随时间累积的测量误差 |
+| 6 | [边缘 AI](#6-边缘-ai-edge-ai) | Edge AI | 在设备端直接运行 AI 推理 |
+| 7 | [I2C / SPI](#7-i2c--spi-通信协议) | Communication Protocols | 芯片间的通信协议 |
+| 8 | [MCU](#8-mcu-微控制器) | Microcontroller Unit | 微控制器，嵌入式系统的"大脑" |
+| 9 | [PCB](#9-pcb-印刷电路板) | Printed Circuit Board | 印刷电路板，电子元件的物理载体 |
+| 10 | [KiCad](#10-kicad) | KiCad | 开源 EDA 软件，用于 PCB 设计 |
+| 11 | [BLE 抖动](#11-ble-抖动-ble-jitter) | BLE Jitter | 蓝牙低功耗传输的时间不确定性，15-30ms |
 
 ---
 
@@ -189,7 +190,68 @@ $$
 
 ---
 
-## 4. 漂移 (Drift) {#4-漂移-drift}
+## 4. fps (每秒帧数) {#4-fps-每秒帧数}
+
+**定义：** fps (Frames Per Second，每秒帧数) 是视频或图像采集频率的单位，表示每秒钟采集或显示多少帧图像。
+
+---
+
+### fps 与 Hz 的关系
+
+fps 和 Hz 本质上是同一概念在不同领域的表达：
+
+| 术语 | 全称 | 使用领域 | 含义 |
+|------|------|----------|------|
+| **fps** | Frames Per Second | 视频/图像 | 每秒帧数 |
+| **Hz** | Hertz | 通用信号/传感器 | 每秒周期数 |
+
+**换算**：1 fps = 1 Hz（但习惯上视频用 fps，传感器用 Hz）
+
+### 常见 fps 规格
+
+| fps | 每帧间隔 | 典型应用 |
+|-----|----------|----------|
+| 24 fps | 41.7 ms | 电影标准 |
+| 30 fps | 33.3 ms | iPhone 默认摄像、电视 |
+| 60 fps | 16.7 ms | 高帧率视频、游戏 |
+| 120 fps | 8.3 ms | 慢动作回放 |
+| 240 fps | 4.2 ms | 高速摄影 |
+
+### Movement Chain AI 中的应用
+
+| 数据源 | 采集频率 | 单位习惯 | 说明 |
+|--------|----------|----------|------|
+| **MediaPipe Vision** | 30 | fps | iPhone 摄像头默认帧率 |
+| **IMU** | 1666 | Hz | 惯性传感器采样率 |
+| **EMG** | 1000 | Hz | 肌电传感器采样率 |
+
+### 为什么 Vision 用 30fps？
+
+| 考量 | 说明 |
+|------|------|
+| **iPhone 默认** | 大多数 iPhone 摄像头默认 30fps |
+| **够用** | 完整挥杆 1-1.5 秒 = 30-45 帧，足以分析姿态 |
+| **计算负担** | 更高帧率需要更多 GPU/CPU 资源 |
+| **存储成本** | 60fps 文件大小翻倍 |
+
+### fps 与时间分辨率
+
+fps 决定了能分辨的**最短时间间隔**：
+
+| fps | 时间分辨率 | 能捕捉 |
+|-----|-----------|--------|
+| 30 fps | 33.3 ms | 姿态变化、关节角度 |
+| 60 fps | 16.7 ms | 更细腻的动作过渡 |
+| 240 fps | 4.2 ms | 击球瞬间细节 |
+
+!!! info "为什么 IMU 用 Hz 而不是 fps？"
+    fps 专指**图像帧**，而 IMU 输出的是**数值数据**（加速度、角速度），所以用 Hz 表示采样率更准确。
+
+> 详见：[数据流与反馈 §1.2](../design/architecture/data-pipeline-and-ai.md#1-时间对齐数据结构) — MediaPipe Vision 30fps 数据采集
+
+---
+
+## 5. 漂移 (Drift) {#5-漂移-drift}
 
 **定义：** 漂移是指传感器的测量值随时间逐渐偏离真实值的现象，是 IMU 的固有问题。
 
@@ -231,7 +293,7 @@ $$
 
 ---
 
-## 5. 边缘 AI (Edge AI) {#5-边缘-ai-edge-ai}
+## 6. 边缘 AI (Edge AI) {#6-边缘-ai-edge-ai}
 
 **定义：** 边缘 AI 是指在终端设备（如传感器、手机）上直接运行 AI 推理，而不依赖云端服务器。
 
@@ -267,7 +329,7 @@ LSM6DSV16X 内置 MLC，可以在芯片内部直接进行运动分类：
 
 ---
 
-## 6. I2C / SPI (通信协议) {#6-i2c--spi-通信协议}
+## 7. I2C / SPI (通信协议) {#7-i2c--spi-通信协议}
 
 **定义：** I2C 和 SPI 是两种常用的芯片间串行通信协议，用于 MCU 与传感器之间的数据传输。
 
@@ -311,7 +373,7 @@ LSM6DSV16X 内置 MLC，可以在芯片内部直接进行运动分类：
 
 ---
 
-## 7. MCU (微控制器) {#7-mcu-微控制器}
+## 8. MCU (微控制器) {#8-mcu-微控制器}
 
 **定义：** MCU (Microcontroller Unit) 是嵌入式系统的核心处理器，集成了 CPU、内存、外设接口于一体。
 
@@ -354,7 +416,7 @@ LSM6DSV16X 内置 MLC，可以在芯片内部直接进行运动分类：
 
 ---
 
-## 8. PCB (印刷电路板) {#8-pcb-印刷电路板}
+## 9. PCB (印刷电路板) {#9-pcb-印刷电路板}
 
 **定义：** PCB (Printed Circuit Board，印刷电路板) 是电子设备的物理基础，用于机械支撑和电气连接电子元件。
 
@@ -425,7 +487,7 @@ VS Code 编辑器         ←→  KiCad 设计软件
 
 ---
 
-## 9. KiCad
+## 10. KiCad {#10-kicad}
 
 **定义：** KiCad 是一款开源的 EDA (Electronic Design Automation) 软件，用于设计 PCB 原理图和布局。
 
@@ -496,7 +558,7 @@ VS Code 编辑器         ←→  KiCad 设计软件
 
 ---
 
-## 10. BLE 抖动 (BLE Jitter) {#10-ble-抖动-ble-jitter}
+## 11. BLE 抖动 (BLE Jitter) {#11-ble-抖动-ble-jitter}
 
 **定义：** BLE 抖动是指蓝牙低功耗 (Bluetooth Low Energy) 协议在数据传输时的时间不确定性，典型值为 15-30ms。
 
