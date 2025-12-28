@@ -2032,15 +2032,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-lego" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. LEGO 哲学
+        1. 设计哲学
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. LEGO 哲学">
+    <nav class="md-nav" aria-label="1. 设计哲学">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2069,7 +2069,7 @@
   <a href="#13" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3 系统架构的阶段与积木块映射
+        1.3 架构阶段与模块映射
       
     </span>
   </a>
@@ -2082,15 +2082,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-各积木块详情" class="md-nav__link">
+  <a href="#2-模块详情" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 各积木块详情
+        2. 模块详情
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 各积木块详情">
+    <nav class="md-nav" aria-label="2. 模块详情">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2141,7 +2141,7 @@
   <a href="#25-ai-反馈生成层" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.5 AI 反馈生成层 (Stage 6)
+        2.5 AI 反馈生成层
       
     </span>
   </a>
@@ -4757,15 +4757,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-lego" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. LEGO 哲学
+        1. 设计哲学
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. LEGO 哲学">
+    <nav class="md-nav" aria-label="1. 设计哲学">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4794,7 +4794,7 @@
   <a href="#13" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3 系统架构的阶段与积木块映射
+        1.3 架构阶段与模块映射
       
     </span>
   </a>
@@ -4807,15 +4807,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-各积木块详情" class="md-nav__link">
+  <a href="#2-模块详情" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 各积木块详情
+        2. 模块详情
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 各积木块详情">
+    <nav class="md-nav" aria-label="2. 模块详情">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4866,7 +4866,7 @@
   <a href="#25-ai-反馈生成层" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.5 AI 反馈生成层 (Stage 6)
+        2.5 AI 反馈生成层
       
     </span>
   </a>
@@ -5049,7 +5049,7 @@
 <p><strong>阅读时间</strong>: 25 分钟</p>
 </blockquote>
 <hr />
-<h2 id="1-lego">1. LEGO 哲学<a class="headerlink" href="#1-lego" title="Permanent link">&para;</a></h2>
+<h2 id="1">1. 设计哲学<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <h3 id="11-lego">1.1 LEGO 核心原则<a class="headerlink" href="#11-lego" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>模块独立</strong> — 每个模块是独立的"积木块"，可以单独替换，接口保持稳定</li>
@@ -5102,7 +5102,7 @@
 <p>把这些不确定性封装成<strong>可替换的积木块</strong>，通过定义清晰的接口契约，让替换成本最小化。</p>
 </div>
 <hr />
-<h3 id="13">1.3 系统架构的阶段与积木块映射<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<h3 id="13">1.3 架构阶段与模块映射<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>📐 <strong>完整 7 阶段架构图</strong>: 见 <a href="../system-design/#12-完整系统架构">系统设计 §1.2</a></p>
 </blockquote>
@@ -5277,7 +5277,7 @@
 <p>💡 <strong>SENSOR_HUB 复用</strong>: 同一套固件代码，通过 <code>hub_id</code> 参数区分不同实例。MVP 部署 2 个 (N=2)。</p>
 <p>📐 <strong>详细定义</strong>: 各 Block 接口契约的完整 Python dataclass 定义见对应章节。</p>
 </blockquote>
-<h2 id="2-各积木块详情">2. 各积木块详情<a class="headerlink" href="#2-各积木块详情" title="Permanent link">&para;</a></h2>
+<h2 id="2-模块详情">2. 模块详情<a class="headerlink" href="#2-模块详情" title="Permanent link">&para;</a></h2>
 <h3 id="21-数据采集层">2.1 数据采集层<a class="headerlink" href="#21-数据采集层" title="Permanent link">&para;</a></h3>
 <p>Stage 2 负责从多种传感器采集原始数据:
 - <strong>CAMERA</strong>: iPhone 本机摄像头，通过 Native SDK 直接访问 (零延迟)
@@ -7023,7 +7023,7 @@
 <p class="admonition-title">算法实现</p>
 <p>完整 Python 代码见 <a href="../sensor-data-processing/#44-融合置信度计算-fusion-confidence">数据处理与指标计算 §4.4</a></p>
 </div>
-<h3 id="25-ai-反馈生成层">2.5 AI 反馈生成层 (Stage 6)<a class="headerlink" href="#25-ai-反馈生成层" title="Permanent link">&para;</a></h3>
+<h3 id="25-ai-反馈生成层">2.5 AI 反馈生成层<a class="headerlink" href="#25-ai-反馈生成层" title="Permanent link">&para;</a></h3>
 <p>将传感器数据结构化为 LLM 可理解格式，生成教练级自然语言反馈。</p>
 <h4 id="251-prompt-block">2.5.1 PROMPT Block<a class="headerlink" href="#251-prompt-block" title="Permanent link">&para;</a></h4>
 <p><strong>职责</strong>: 将诊断结果转换为 Kinematic Prompts (结构化提示词)</p>
