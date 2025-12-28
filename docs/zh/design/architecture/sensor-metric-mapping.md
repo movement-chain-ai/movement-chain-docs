@@ -305,7 +305,7 @@ def calculate_obliquity(landmarks, is_shoulder=True):
     return obliquity
 ```
 
-**可检测指标**:
+**可计算指标**:
 
 - X-Factor, X-Factor Stretch
 - S-Factor, O-Factor
@@ -462,7 +462,7 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
     return onset_time
 ```
 
-**可检测指标**:
+**可计算指标**:
 
 - 峰值角速度
 - 节奏比 (高精度)
@@ -792,7 +792,7 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
     return force_chain_correct, onset_times
 ```
 
-**可检测指标 (竞品无法实现)**:
+**可计算指标 (竞品无法实现)**:
 
 - 肌肉激活时序 (<5ms 精度)
 - 肌肉激活强度 (mV 信号幅值)
