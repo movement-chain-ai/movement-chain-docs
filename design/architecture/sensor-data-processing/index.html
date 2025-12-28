@@ -12,7 +12,7 @@
         <meta name="author" content="Movement Chain AI Team">
       
       
-        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/sensor-metric-mapping/">
+        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/sensor-data-processing/">
       
       
         <link rel="prev" href="../data-pipeline-and-ai/">
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sensor-to-metric-mapping" class="md-skip">
+        <a href="#sensor-data-processing" class="md-skip">
           跳转至
         </a>
       
@@ -2088,10 +2088,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-系统能力矩阵-capability-matrix" class="md-nav__link">
+  <a href="#1-指标能力矩阵-metrics-capability-matrix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 系统能力矩阵 Capability Matrix
+        1. 指标能力矩阵 Metrics Capability Matrix
       
     </span>
   </a>
@@ -4829,10 +4829,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-系统能力矩阵-capability-matrix" class="md-nav__link">
+  <a href="#1-指标能力矩阵-metrics-capability-matrix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 系统能力矩阵 Capability Matrix
+        1. 指标能力矩阵 Metrics Capability Matrix
       
     </span>
   </a>
@@ -5186,14 +5186,14 @@
   
 
 
-<h1 id="sensor-to-metric-mapping">传感器指标映射 Sensor-to-Metric Mapping<a class="headerlink" href="#sensor-to-metric-mapping" title="Permanent link">&para;</a></h1>
+<h1 id="sensor-data-processing">传感器数据处理与指标计算 Sensor Data Processing<a class="headerlink" href="#sensor-data-processing" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>文档目的</strong>: 定义三模态系统 (Vision + IMU + EMG) 可测量的研究验证指标
+<p><strong>文档目的</strong>: 定义三模态系统 (Vision + IMU + EMG) 的数据处理流程与可计算指标
 <strong>核心价值</strong>: EMG 提供的肌肉激活检测是独特差异化优势，竞品无法实现
-<strong>最后更新</strong>: 2025-12-23</p>
+<strong>最后更新</strong>: 2025-12-28</p>
 </blockquote>
 <hr />
-<h2 id="1-系统能力矩阵-capability-matrix">1. 系统能力矩阵 Capability Matrix<a class="headerlink" href="#1-系统能力矩阵-capability-matrix" title="Permanent link">&para;</a></h2>
+<h2 id="1-指标能力矩阵-metrics-capability-matrix">1. 指标能力矩阵 Metrics Capability Matrix<a class="headerlink" href="#1-指标能力矩阵-metrics-capability-matrix" title="Permanent link">&para;</a></h2>
 <p>下表展示了文献验证的高尔夫指标与系统数据的对应关系。</p>
 <table>
 <thead>
