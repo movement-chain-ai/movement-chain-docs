@@ -6,7 +6,7 @@
 
 ---
 
-## 1. 指标能力矩阵 Metrics Capability Matrix {#1-指标能力矩阵-metrics-capability-matrix}
+## 1. 指标能力矩阵 {#1-指标能力矩阵-metrics-capability-matrix}
 
 下表展示了文献验证的高尔夫指标与系统数据的对应关系。
 
@@ -40,7 +40,7 @@
 
 ---
 
-## 2. 竞品能力对比 Competitor Comparison {#2-竞品能力对比-competitor-comparison}
+## 2. 竞品能力对比  {#2-竞品能力对比-competitor-comparison}
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -82,14 +82,14 @@
 
 ---
 
-## 3. 数据处理与指标计算(单传感器计算) Data Processing & Metric Computation
+## 3. 数据处理与指标计算(单传感器计算) 
 
-### 3.1 Vision 数据处理 (MediaPipe 33 landmarks) {#31-vision-数据处理-mediapipe-33-landmarks}
+### 3.1 Vision 数据处理 {#31-vision-数据处理-mediapipe-33-landmarks}
 
 **优势**: 直接观测身体姿态，无需复杂校准
 **劣势**: 采样率低 (30fps = 33ms)，无法测量高频运动
 
-#### 3.1.1 原始数据 Raw Data {#311-vision-原始数据}
+#### 3.1.1 原始数据 {#311-vision-原始数据}
 
 MediaPipe Pose 每帧输出 **33 个关键点**，每个关键点包含 4 个数值：
 
@@ -250,7 +250,7 @@ def filter_landmarks(landmarks, min_visibility=0.7):
 
 ---
 
-#### 3.1.2 计算指标 Computed Metrics {#312-vision-计算指标}
+#### 3.1.2 计算指标 {#312-vision-计算指标}
 
 基于原始 33 关键点坐标，可计算以下高尔夫挥杆指标：
 
@@ -321,7 +321,7 @@ def calculate_obliquity(landmarks, is_shoulder=True):
 
 ### 3.2 IMU 数据处理 {#32-imu-数据处理-lsm6dsv16x--1666hz}
 
-#### 3.2.1 原始数据 Raw Data {#321-imu-原始数据}
+#### 3.2.1 原始数据 {#321-imu-原始数据}
 
 IMU (惯性测量单元) 每次采样输出 **6 个数值**，来自两个传感器：
 
@@ -402,7 +402,7 @@ IMU 坐标系 (右手系):
 
 ---
 
-#### 3.2.2 计算指标 Computed Metrics {#322-imu-计算指标}
+#### 3.2.2 计算指标 {#322-imu-计算指标}
 
 基于原始 6 轴数据，可计算以下高尔夫挥杆指标：
 
@@ -481,7 +481,7 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
 
 ---
 
-### 3.3 EMG 数据处理 (UNIQUE CAPABILITY) {#33-emg-数据处理-unique-capability}
+### 3.3 EMG 数据处理 {#33-emg-数据处理-unique-capability}
 
 !!! info "信号处理基础知识"
     理解 EMG 检测算法前，请先阅读:
@@ -489,7 +489,7 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
     - [信号处理入门](../../prerequisites/foundations/signal-processing-101.md) — 基线、激活检测、消抖的基础概念
     - 关键术语: Baseline (基线)、Onset Detection (激活检测)、Debounce (消抖)
 
-#### 3.3.1 原始数据 Raw Data {#331-emg-原始数据}
+#### 3.3.1 原始数据 {#331-emg-原始数据}
 
 EMG (肌电传感器) 测量的是**肌肉收缩时产生的电信号**：
 
@@ -675,7 +675,7 @@ Forearm EMG: _________/‾‾‾‾‾‾\___    ← 后激活 (t=720ms)
 
 ---
 
-#### 3.3.2 计算指标 Computed Metrics {#332-emg-计算指标}
+#### 3.3.2 计算指标  {#332-emg-计算指标}
 
 基于原始 EMG 信号，可计算以下单通道指标：
 
@@ -734,7 +734,7 @@ def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
 
 ---
 
-#### 3.3.3 传感器布局规划 EMG Sensor Placement {#333-emg-传感器布局规划}
+#### 3.3.3 传感器布局规划 {#333-emg-传感器布局规划}
 
 ##### 关键肌群图 Key Muscle Groups
 
@@ -859,10 +859,9 @@ def calculate_activation_ratio(mock_emg):
     return ratio
 ```
 
-
 ---
 
-## 4. 多传感器融合分析 Sensor Fusion Analysis {#4-多传感器融合分析-sensor-fusion-analysis}
+## 4. 多传感器融合分析 {#4-多传感器融合分析-sensor-fusion-analysis}
 
 !!! info "本章节内容"
     本章节描述**时间对齐后**的多传感器融合分析，包括：
@@ -872,7 +871,7 @@ def calculate_activation_ratio(mock_emg):
 
 ---
 
-### 4.1 独特检测能力总结 Your Unique Detection Capabilities
+### 4.1 独特检测能力总结
 
 下表展示了你的系统相对于竞品的独特优势。
 
@@ -895,7 +894,7 @@ def calculate_activation_ratio(mock_emg):
 
 ---
 
-### 4.2 系统融合策略 Sensor Fusion Strategy
+### 4.2 系统融合策略
 
 三模态传感器的数据融合策略如下:
 
@@ -940,7 +939,7 @@ def calculate_activation_ratio(mock_emg):
 
 ---
 
-### 4.3 EMG 多通道时序分析 EMG Multi-Channel Temporal Analysis {#43-emg-多通道时序分析}
+### 4.3 EMG 多通道时序分析 {#43-emg-多通道时序分析}
 
 以下算法分析多个 EMG 通道之间的时序关系和激活模式：
 
@@ -1047,7 +1046,7 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 
 ---
 
-### 4.4 融合置信度计算 Fusion Confidence {#44-融合置信度计算-fusion-confidence}
+### 4.4 融合置信度计算 {#44-融合置信度计算-fusion-confidence}
 
 三模态融合提升置信度的核心算法:
 
@@ -1091,9 +1090,7 @@ def calculate_fusion_confidence(
 
 ---
 
----
-
-### 4.5 融合诊断算法 Fusion Diagnostic Algorithms {#45-融合诊断算法-fusion-diagnostic-algorithms}
+### 4.5 融合诊断算法 {#45-融合诊断算法-fusion-diagnostic-algorithms}
 
 FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模态融合才能实现。
 
@@ -1517,7 +1514,7 @@ def run_fusion_diagnostics(
 
 ---
 
-## 5. 模拟数据生成 Simulation Data Generation {#5-模拟数据生成-simulation-data-generation}
+## 5. 模拟数据生成 {#5-模拟数据生成-simulation-data-generation}
 
 MVP 早期硬件未就绪时，使用模拟数据验证完整管道。
 
@@ -1866,7 +1863,7 @@ def simulate_emg_from_phases(
 ]
 ```
 
-## 6. 相关文档 Related Documents {#6-相关文档-related-documents}
+## 6. 相关文档 {#6-相关文档-related-documents}
 
 - [系统设计](./system-design.md): MVP 技术架构和构建顺序
 - [模块化架构](./modular-architecture.md): LEGO 积木式架构设计
