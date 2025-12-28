@@ -786,7 +786,7 @@ def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
 | **3** | 背阔肌 | Latissimus Dorsi | 肩部旋转、拉杆动作 | 1 |
 | **3** | 三角肌 | Deltoids | 手臂举起、顶点位置 | 1 |
 
-> 详见：[sEMG 技术研究综述 §5 高尔夫生物力学实战](../../reference/semg-research-2024-2025.md#第五部分高尔夫生物力学实战实验室如何成功应用semg) — 肌肉选择、传感器放置、实验室 SOP
+> 详见：[sEMG 技术研究综述 §5 高尔夫生物力学实战](../../reference/semg-research-2024-2025.md#semg_1) — 肌肉选择、传感器放置、实验室 SOP
 
 **传感器数量规划**:
 
