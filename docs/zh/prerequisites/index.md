@@ -64,7 +64,7 @@ Movement Chain AI 融合了多个领域：
 |------|------|------|
 | **IMU** | 惯性测量单元，测量加速度+角速度 | [工程术语表](../reference/engineering-glossary.md#1-imu-惯性测量单元) |
 | **EMG** | 肌电传感器，测量肌肉激活 | [工程术语表](../reference/engineering-glossary.md#2-emg-肌电传感器) |
-| **BLE 抖动** | 蓝牙传输的时间不确定性 | [工程术语表](../reference/engineering-glossary.md#10-ble-抖动-ble-jitter) |
+| **BLE 抖动** | 蓝牙传输的时间不确定性 | [工程术语表](../reference/engineering-glossary.md#11-ble-抖动-ble-jitter) |
 
 ### 软件架构
 

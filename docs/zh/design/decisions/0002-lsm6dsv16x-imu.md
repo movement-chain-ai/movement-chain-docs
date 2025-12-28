@@ -5,10 +5,10 @@
 Movement Chain AI 需要一个高性能的 6 轴[惯性测量单元（IMU）](../../reference/engineering-glossary.md#1-imu-惯性测量单元)，能够以最低 100Hz [采样率](../../reference/engineering-glossary.md#3-采样率-sampling-rate)捕获人体运动数据，用于专业级健身跟踪和运动分析。之前流行的 Bosch BNO055 传感器已经停产，且存在使用 15-20 分钟后漂移明显加剧的问题（无法支撑完整的锻炼时长），因此需要选择一个现代化的替代品，满足以下要求：
 
 - **采样率:** 最低 100Hz 以实现准确的运动捕获
-- **精度:** 专业级校准，在 45+ 分钟锻炼期间[漂移](../../reference/engineering-glossary.md#4-漂移-drift)最小
+- **精度:** 专业级校准，在 45+ 分钟锻炼期间[漂移](../../reference/engineering-glossary.md#5-漂移-drift)最小
 - **功耗效率:** 低功耗以适用于可穿戴应用
-- **处理能力:** [边缘 AI](../../reference/engineering-glossary.md#5-边缘-ai-edge-ai) 能力，用于设备端运动分类
-- **集成性:** 与 ESP32 生态系统兼容的 [I2C/SPI](../../reference/engineering-glossary.md#6-i2c--spi-通信协议) 接口
+- **处理能力:** [边缘 AI](../../reference/engineering-glossary.md#6-边缘-ai-edge-ai) 能力，用于设备端运动分类
+- **集成性:** 与 ESP32 生态系统兼容的 [I2C/SPI](../../reference/engineering-glossary.md#7-i2c--spi-通信协议) 接口
 - **市场定位:** 必须是当前一代（2025 年）传感器，具有长期可用性
 
 ## 二、决策
