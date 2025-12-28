@@ -5452,7 +5452,7 @@
 </tr>
 </tbody>
 </table>
-<p>基于原始 33 关键点坐标，可计算以下高尔夫挥杆指标：</p>
+<p>基于原始关键点坐标，可计算以下高尔夫挥杆指标：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># X-Factor 计算示例</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_x_factor</span><span class="p">(</span><span class="n">landmarks</span><span class="p">):</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -5507,13 +5507,47 @@
 </span><span id="__span-6-52"><a id="__codelineno-6-52" name="__codelineno-6-52" href="#__codelineno-6-52"></a>    <span class="k">return</span> <span class="n">obliquity</span>
 </span></code></pre></div>
 <p><strong>可计算指标</strong>:</p>
-<ul>
-<li>X-Factor, X-Factor Stretch</li>
-<li>S-Factor, O-Factor</li>
-<li>骨盆/躯干转角</li>
-<li>侧移/前推/抬升 (Sway/Thrust/Lift)</li>
-<li>节奏比 (低精度)</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>指标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>实时</strong></td>
+<td>X-Factor</td>
+<td>每帧计算肩髋分离角</td>
+</tr>
+<tr>
+<td><strong>实时</strong></td>
+<td>S-Factor, O-Factor</td>
+<td>每帧计算倾斜角</td>
+</tr>
+<tr>
+<td><strong>实时</strong></td>
+<td>骨盆/躯干转角</td>
+<td>每帧计算</td>
+</tr>
+<tr>
+<td><strong>实时</strong></td>
+<td>侧移/前推/抬升</td>
+<td>Sway/Thrust/Lift，每帧计算</td>
+</tr>
+<tr>
+<td><strong>挥杆后</strong></td>
+<td>X-Factor Stretch</td>
+<td>需要完整挥杆数据 (峰值时刻对比)</td>
+</tr>
+<tr>
+<td><strong>挥杆后</strong></td>
+<td>节奏比 (低精度)</td>
+<td>需要完整挥杆数据</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h3 id="32-imu-数据处理-lsm6dsv16x--1666hz">3.2 IMU 数据处理<a class="headerlink" href="#32-imu-数据处理-lsm6dsv16x--1666hz" title="Permanent link">&para;</a></h3>
 <h4 id="321-imu-原始数据">3.2.1 原始数据<a class="headerlink" href="#321-imu-原始数据" title="Permanent link">&para;</a></h4>
