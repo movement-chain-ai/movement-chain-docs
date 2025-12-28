@@ -1048,9 +1048,7 @@ build-backend = "hatchling.build"
 
 ---
 
-<a id="deployment-strategy"></a>
-
-## 5. 部署策略决策
+## 5. 部署策略决策 {#deployment-strategy}
 
 ### 5.1 本地优先 → AWS 云端 
 
