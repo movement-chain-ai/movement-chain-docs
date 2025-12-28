@@ -4744,7 +4744,79 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#7-归一化坐标-normalized-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 归一化坐标 (Normalized Coordinates)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 归一化坐标 (Normalized Coordinates)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么需要归一化？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediapipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MediaPipe 关键点坐标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坐标转换
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#z" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        z 坐标的特殊说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#movement-chain-ai_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 Movement Chain AI 中的应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -5430,7 +5502,79 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#7-归一化坐标-normalized-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 归一化坐标 (Normalized Coordinates)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 归一化坐标 (Normalized Coordinates)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么需要归一化？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mediapipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MediaPipe 关键点坐标
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坐标转换
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#z" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        z 坐标的特殊说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#movement-chain-ai_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 Movement Chain AI 中的应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
     <span class="md-ellipsis">
       
         相关文档
@@ -5511,6 +5655,12 @@
 <td><a href="#6-边缘计算-edge-computing">边缘计算</a></td>
 <td>Edge Computing</td>
 <td>在靠近用户的服务器上运行代码，降低延迟</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="#7-归一化坐标-normalized-coordinates">归一化坐标</a></td>
+<td>Normalized Coordinates</td>
+<td>将像素坐标转换为 [0,1] 范围的相对值</td>
 </tr>
 </tbody>
 </table>
@@ -6489,7 +6639,184 @@
 <p>详见：<a href="../../design/decisions/architecture-decisions-2025-12-23/#deployment-strategy">关键决策 2025-12 § 部署策略</a></p>
 </blockquote>
 <hr />
-<h2 id="_17">相关文档<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<h2 id="7-归一化坐标-normalized-coordinates">7. 归一化坐标 (Normalized Coordinates)<a class="headerlink" href="#7-归一化坐标-normalized-coordinates" title="Permanent link">&para;</a></h2>
+<p><strong>定义：</strong> 归一化坐标是将原始像素坐标转换为 [0, 1] 范围内的相对值，使坐标与图像分辨率无关。</p>
+<hr />
+<h3 id="_17">为什么需要归一化？<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>原始像素坐标 (分辨率依赖):
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>─────────────────────────────────────
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>  1920×1080 视频: 肩膀 x = 960 像素
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>  1280×720 视频:  肩膀 x = 640 像素   ← 同一位置，不同数值
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>归一化坐标 (分辨率无关):
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>─────────────────────────────────────
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>  1920×1080 视频: 肩膀 x = 0.5
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>  1280×720 视频:  肩膀 x = 0.5       ← 同一位置，相同数值
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>优势</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>跨设备一致</strong></td>
+<td>iPhone 12 和 iPhone 15 Pro 输出相同坐标</td>
+</tr>
+<tr>
+<td><strong>算法通用</strong></td>
+<td>不需要针对不同分辨率调整阈值</td>
+</tr>
+<tr>
+<td><strong>存储高效</strong></td>
+<td>不需要记录原始图像尺寸</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mediapipe">MediaPipe 关键点坐标<a class="headerlink" href="#mediapipe" title="Permanent link">&para;</a></h3>
+<p>MediaPipe Pose 输出的每个关键点包含 4 个值：</p>
+<table>
+<thead>
+<tr>
+<th>坐标</th>
+<th>含义</th>
+<th>范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>x</strong></td>
+<td>水平位置</td>
+<td>[0, 1]</td>
+<td>0 = 图像左边缘，1 = 右边缘</td>
+</tr>
+<tr>
+<td><strong>y</strong></td>
+<td>垂直位置</td>
+<td>[0, 1]</td>
+<td>0 = 图像上边缘，1 = 下边缘</td>
+</tr>
+<tr>
+<td><strong>z</strong></td>
+<td>深度</td>
+<td>相对值</td>
+<td>负数 = 靠近镜头，正数 = 远离镜头</td>
+</tr>
+<tr>
+<td><strong>visibility</strong></td>
+<td>可见度</td>
+<td>[0, 1]</td>
+<td>0 = 被遮挡，1 = 完全可见</td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># MediaPipe 输出示例</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">PoseLandmark</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mf">0.45</span><span class="p">,</span>        <span class="c1"># 归一化坐标 [0, 1]</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>    <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="mf">0.32</span><span class="p">,</span>        <span class="c1"># 归一化坐标 [0, 1]</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>    <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span>        <span class="c1"># 深度 (相对值)</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>    <span class="s2">&quot;visibility&quot;</span><span class="p">:</span> <span class="mf">0.98</span> <span class="c1"># 可见度 [0, 1]</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="_18">坐标转换<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># 归一化坐标 → 像素坐标</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">pixel_x</span> <span class="o">=</span> <span class="n">landmark</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">image_width</span>   <span class="c1"># 例: 0.5 × 1920 = 960</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="n">pixel_y</span> <span class="o">=</span> <span class="n">landmark</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">image_height</span>  <span class="c1"># 例: 0.3 × 1080 = 324</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="c1"># 像素坐标 → 归一化坐标</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="n">norm_x</span> <span class="o">=</span> <span class="n">pixel_x</span> <span class="o">/</span> <span class="n">image_width</span>       <span class="c1"># 例: 960 / 1920 = 0.5</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="n">norm_y</span> <span class="o">=</span> <span class="n">pixel_y</span> <span class="o">/</span> <span class="n">image_height</span>      <span class="c1"># 例: 324 / 1080 = 0.3</span>
+</span></code></pre></div>
+<h3 id="z">z 坐标的特殊说明<a class="headerlink" href="#z" title="Permanent link">&para;</a></h3>
+<p>z 坐标是<strong>估计深度</strong>，不是真实的米/厘米距离：</p>
+<table>
+<thead>
+<tr>
+<th>z 值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>负数</strong></td>
+<td>身体部位靠近镜头（如挥杆时手臂向前伸）</td>
+</tr>
+<tr>
+<td><strong>接近 0</strong></td>
+<td>与髋部大致同一平面</td>
+</tr>
+<tr>
+<td><strong>正数</strong></td>
+<td>身体部位远离镜头（如后背）</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">z 坐标的局限性</p>
+<p>MediaPipe 的 z 是从 2D 图像推断的，精度有限。
+真正的 3D 深度需要双目摄像头或 LiDAR。</p>
+</div>
+<h3 id="movement-chain-ai_6">在 Movement Chain AI 中的应用<a class="headerlink" href="#movement-chain-ai_6" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>应用场景</th>
+<th>使用的坐标</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>X-Factor 计算</strong></td>
+<td>x, y</td>
+<td>肩髋连线的角度差</td>
+</tr>
+<tr>
+<td><strong>S-Factor 计算</strong></td>
+<td>x, y</td>
+<td>肩部倾斜角度</td>
+</tr>
+<tr>
+<td><strong>手臂伸展检测</strong></td>
+<td>z</td>
+<td>判断手臂是否向前伸展</td>
+</tr>
+<tr>
+<td><strong>可见度过滤</strong></td>
+<td>visibility</td>
+<td>过滤被遮挡的关键点</td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># 计算 X-Factor 示例</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_x_factor</span><span class="p">(</span><span class="n">landmarks</span><span class="p">):</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="c1"># 获取关键点的归一化坐标</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="n">left_shoulder</span> <span class="o">=</span> <span class="n">landmarks</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>   <span class="c1"># x, y, z, visibility</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>    <span class="n">right_shoulder</span> <span class="o">=</span> <span class="n">landmarks</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>    <span class="n">left_hip</span> <span class="o">=</span> <span class="n">landmarks</span><span class="p">[</span><span class="mi">23</span><span class="p">]</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>    <span class="n">right_hip</span> <span class="o">=</span> <span class="n">landmarks</span><span class="p">[</span><span class="mi">24</span><span class="p">]</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>    <span class="c1"># 计算肩膀和髋部的角度</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>    <span class="n">shoulder_angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>        <span class="n">right_shoulder</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">left_shoulder</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>        <span class="n">right_shoulder</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">left_shoulder</span><span class="o">.</span><span class="n">x</span>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>    <span class="p">)</span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>    <span class="n">hip_angle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span>
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>        <span class="n">right_hip</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">left_hip</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>        <span class="n">right_hip</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">left_hip</span><span class="o">.</span><span class="n">x</span>
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>    <span class="p">)</span>
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>    <span class="c1"># X-Factor = 肩膀角度 - 髋部角度</span>
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">shoulder_angle</span> <span class="o">-</span> <span class="n">hip_angle</span><span class="p">)</span>
+</span></code></pre></div>
+<blockquote>
+<p>详见：<a href="../../design/architecture/data-pipeline-and-ai/#1-时间对齐数据结构">数据流与反馈 §1.2</a> — MediaPipe Vision 原始数据格式</p>
+</blockquote>
+<hr />
+<h2 id="_19">相关文档<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../design/decisions/architecture-decisions-2025-12-23/#11-六边形架构-hexagonal-architecture">关键决策 2025-12 § 六边形架构</a> - 为什么选择六边形架构</li>
 <li><a href="../../design/decisions/architecture-decisions-2025-12-23/#22-uv-替代-poetry">关键决策 2025-12 § UV 替代 Poetry</a> - 包管理器选型决策</li>
