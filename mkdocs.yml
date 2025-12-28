@@ -155,7 +155,7 @@ nav:
           - MVP 开发计划: design/architecture/mvp-plan.md
           - 模块化架构: design/architecture/modular-architecture.md
           - 数据流与反馈: design/architecture/data-pipeline-and-ai.md
-          - 传感器指标映射: design/architecture/sensor-data-processing.md
+          - 数据处理与指标: design/architecture/sensor-data-processing.md
       - 功能设计:
           - 概览: design/specs/index.md
           - 产品层级: design/specs/product-tiers.md

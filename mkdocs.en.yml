@@ -119,7 +119,7 @@ nav:
           - System Design: design/architecture/system-design.md
           - Modular Architecture: design/architecture/modular-architecture.md
           - Data Pipeline & AI: design/architecture/data-pipeline-and-ai.md
-          - Sensor-Metric Mapping: design/architecture/sensor-data-processing.md
+          - Data Processing: design/architecture/sensor-data-processing.md
           - Architecture Decisions (Dec 2025): design/decisions/architecture-decisions-2025-12-23.md
 
   - Hardware Components:
