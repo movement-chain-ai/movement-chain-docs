@@ -966,7 +966,7 @@ class SimulatedIMUFrame:
 ```
 
 !!! tip "完整算法实现"
-    详细代码和测试场景见 [传感器指标映射 §7.1](./sensor-data-processing.md#71-从-pose-数据生成模拟-imu)
+    详细代码和测试场景见 [数据处理与指标计算 §5.1](./sensor-data-processing.md#51-从-pose-数据生成模拟-imu)
 
 !!! note "真实硬件选项 (Phase 2+)"
 
@@ -1056,7 +1056,7 @@ class SimulatedIMUFrame:
     这是 Vision-only 竞品永远无法检测的问题。
 
 !!! tip "完整算法实现"
-    详细代码和测试场景见 [传感器指标映射 §7.2](./sensor-data-processing.md#72-从阶段时间戳生成模拟-emg)
+    详细代码和测试场景见 [数据处理与指标计算 §5.2](./sensor-data-processing.md#52-从阶段时间戳生成模拟-emg)
 
 !!! note "真实硬件选项 (Phase 2+)"
 
@@ -1085,7 +1085,7 @@ MVP 阶段使用 2 通道 (Core + Forearm)，后续渐进扩展：
 | **Phase 3** | 6 | + 背阔肌, 三角肌 | 完整力链验证 |
 
 !!! tip "详细布局图"
-    电极放置位置、选择依据见 [传感器指标映射 §5](./sensor-data-processing.md#5-emg-传感器布局规划-emg-sensor-placement-plan)
+    电极放置位置、选择依据见 [数据处理与指标计算 §4.3](./sensor-data-processing.md#43-emg-传感器布局规划-emg-sensor-placement-plan)
 
 ##### 真实 EMG 检测能力
 
@@ -1175,7 +1175,7 @@ Impact = gyro_z 正向峰值 (最大旋转速度)
 
 FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模态融合才能实现。
 
-> **实现代码**: 见 [传感器指标映射 §8 融合诊断算法](./sensor-data-processing.md#8-融合诊断算法-fusion-diagnostic-algorithms)
+> **实现代码**: 见 [数据处理与指标计算 §4.5 融合诊断算法](./sensor-data-processing.md#45-融合诊断算法-fusion-diagnostic-algorithms)
 
 | 算法 | 函数名 | 检测内容 | 所需传感器 |
 |-----|-------|---------|-----------|
@@ -1257,7 +1257,7 @@ FUSION Block 的核心价值在于**诊断算法** — 这些算法只有三模�
 - Vision=Top, IMU=Mid, EMG=None → **0.35** (需检查)
 
 !!! tip "算法实现"
-    完整 Python 代码见 [传感器指标映射 §6](./sensor-data-processing.md#6-融合置信度计算-fusion-confidence)
+    完整 Python 代码见 [数据处理与指标计算 §4.4](./sensor-data-processing.md#44-融合置信度计算-fusion-confidence)
 
 ### 2.5 AI 反馈生成层 (Stage 6) {#25-ai-反馈生成层}
 
