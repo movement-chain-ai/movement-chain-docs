@@ -80,12 +80,13 @@
 
 #### MediaPipe Vision ([30fps](../../reference/engineering-glossary.md#4-fps-每秒帧数))
 
+每帧输出 33 个关键点，使用[归一化坐标](../../reference/software-glossary.md#7-归一化坐标-normalized-coordinates)：
+
 ```python
-# 每帧输出 33 个关键点
 PoseLandmark = {
-    "x": float,        # 归一化坐标 [0, 1]
-    "y": float,        # 归一化坐标 [0, 1]
-    "z": float,        # 深度 (相对值)
+    "x": float,        # 归一化坐标 [0, 1]，0=左边缘，1=右边缘
+    "y": float,        # 归一化坐标 [0, 1]，0=上边缘，1=下边缘
+    "z": float,        # 深度 (相对值)，负=靠近镜头
     "visibility": float # 可见度 [0, 1]
 }
 

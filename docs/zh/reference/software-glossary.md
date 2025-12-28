@@ -14,6 +14,7 @@
 | 4 | [包管理器](#4-包管理器-package-manager) | Package Manager | 管理项目依赖的工具（pip、Poetry、uv） |
 | 5 | [Polars](#5-polars) | Polars | Rust 实现的高性能数据处理库，替代 Pandas |
 | 6 | [边缘计算](#6-边缘计算-edge-computing) | Edge Computing | 在靠近用户的服务器上运行代码，降低延迟 |
+| 7 | [归一化坐标](#7-归一化坐标-normalized-coordinates) | Normalized Coordinates | 将像素坐标转换为 [0,1] 范围的相对值 |
 
 ---
 
@@ -545,6 +546,115 @@ AWS Lambda (云端)
 | 视频处理 | 云端 | 需要长时间计算 |
 
 > 详见：[关键决策 2025-12 § 部署策略](../design/decisions/architecture-decisions-2025-12-23.md#deployment-strategy)
+
+---
+
+## 7. 归一化坐标 (Normalized Coordinates) {#7-归一化坐标-normalized-coordinates}
+
+**定义：** 归一化坐标是将原始像素坐标转换为 [0, 1] 范围内的相对值，使坐标与图像分辨率无关。
+
+---
+
+### 为什么需要归一化？
+
+```text
+原始像素坐标 (分辨率依赖):
+─────────────────────────────────────
+  1920×1080 视频: 肩膀 x = 960 像素
+  1280×720 视频:  肩膀 x = 640 像素   ← 同一位置，不同数值
+
+归一化坐标 (分辨率无关):
+─────────────────────────────────────
+  1920×1080 视频: 肩膀 x = 0.5
+  1280×720 视频:  肩膀 x = 0.5       ← 同一位置，相同数值
+```
+
+| 优势 | 说明 |
+|------|------|
+| **跨设备一致** | iPhone 12 和 iPhone 15 Pro 输出相同坐标 |
+| **算法通用** | 不需要针对不同分辨率调整阈值 |
+| **存储高效** | 不需要记录原始图像尺寸 |
+
+### MediaPipe 关键点坐标
+
+MediaPipe Pose 输出的每个关键点包含 4 个值：
+
+| 坐标 | 含义 | 范围 | 说明 |
+|------|------|------|------|
+| **x** | 水平位置 | [0, 1] | 0 = 图像左边缘，1 = 右边缘 |
+| **y** | 垂直位置 | [0, 1] | 0 = 图像上边缘，1 = 下边缘 |
+| **z** | 深度 | 相对值 | 负数 = 靠近镜头，正数 = 远离镜头 |
+| **visibility** | 可见度 | [0, 1] | 0 = 被遮挡，1 = 完全可见 |
+
+```python
+# MediaPipe 输出示例
+PoseLandmark = {
+    "x": 0.45,        # 归一化坐标 [0, 1]
+    "y": 0.32,        # 归一化坐标 [0, 1]
+    "z": -0.1,        # 深度 (相对值)
+    "visibility": 0.98 # 可见度 [0, 1]
+}
+```
+
+### 坐标转换
+
+```python
+# 归一化坐标 → 像素坐标
+pixel_x = landmark.x * image_width   # 例: 0.5 × 1920 = 960
+pixel_y = landmark.y * image_height  # 例: 0.3 × 1080 = 324
+
+# 像素坐标 → 归一化坐标
+norm_x = pixel_x / image_width       # 例: 960 / 1920 = 0.5
+norm_y = pixel_y / image_height      # 例: 324 / 1080 = 0.3
+```
+
+### z 坐标的特殊说明
+
+z 坐标是**估计深度**，不是真实的米/厘米距离：
+
+| z 值 | 含义 |
+|------|------|
+| **负数** | 身体部位靠近镜头（如挥杆时手臂向前伸） |
+| **接近 0** | 与髋部大致同一平面 |
+| **正数** | 身体部位远离镜头（如后背） |
+
+!!! warning "z 坐标的局限性"
+    MediaPipe 的 z 是从 2D 图像推断的，精度有限。
+    真正的 3D 深度需要双目摄像头或 LiDAR。
+
+### 在 Movement Chain AI 中的应用
+
+| 应用场景 | 使用的坐标 | 说明 |
+|----------|-----------|------|
+| **X-Factor 计算** | x, y | 肩髋连线的角度差 |
+| **S-Factor 计算** | x, y | 肩部倾斜角度 |
+| **手臂伸展检测** | z | 判断手臂是否向前伸展 |
+| **可见度过滤** | visibility | 过滤被遮挡的关键点 |
+
+```python
+# 计算 X-Factor 示例
+def calculate_x_factor(landmarks):
+    # 获取关键点的归一化坐标
+    left_shoulder = landmarks[11]   # x, y, z, visibility
+    right_shoulder = landmarks[12]
+    left_hip = landmarks[23]
+    right_hip = landmarks[24]
+
+    # 计算肩膀和髋部的角度
+    shoulder_angle = math.atan2(
+        right_shoulder.y - left_shoulder.y,
+        right_shoulder.x - left_shoulder.x
+    )
+    hip_angle = math.atan2(
+        right_hip.y - left_hip.y,
+        right_hip.x - left_hip.x
+    )
+
+    # X-Factor = 肩膀角度 - 髋部角度
+    return math.degrees(shoulder_angle - hip_angle)
+```
+
+> 详见：[数据流与反馈 §1.2](../design/architecture/data-pipeline-and-ai.md#1-时间对齐数据结构) — MediaPipe Vision 原始数据格式
 
 ---
 
