@@ -560,7 +560,7 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
 !!! info "信号处理基础知识"
     理解 EMG 检测算法前，请先阅读:
 
-    - [信号处理入门](../../prerequisites/foundations/signal-processing-101.md) — 基线、激活检测、消抖的基础概念
+    - [信号处理入门](../../prerequisites/signal-processing-101.md) — 基线、激活检测、消抖的基础概念
     - 关键术语: Baseline (基线)、Onset Detection (激活检测)、Debounce (消抖)
 
 #### 3.3.1 原始数据 {#331-emg-原始数据}

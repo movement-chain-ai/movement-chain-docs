@@ -116,7 +116,7 @@ nav:
           - 入门教程: prerequisites/foundations/biomechanics-101.md
           - 术语表: prerequisites/foundations/biomechanics-glossary.md
           - 基准值: prerequisites/foundations/biomechanics-benchmarks.md
-          - 信号处理入门: prerequisites/foundations/signal-processing-101.md
+      - 信号处理入门: prerequisites/signal-processing-101.md
       - ML 基础: prerequisites/ml-basics.md
 
   - 商业计划:

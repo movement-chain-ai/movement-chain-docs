@@ -247,7 +247,7 @@ def detect_mid_downswing(gyro_z, timestamps, top_time, accel_threshold=500):
     - 这样无论是否有球、是否击中，检测逻辑都一致
     - 空挥、打垫、练习挥杆都能正确检测
 
-    详见: [信号处理入门 §6](../../prerequisites/foundations/signal-processing-101.md#phase-detection)
+    详见: [信号处理入门 §6](../../prerequisites/signal-processing-101.md#phase-detection)
 
 **检测代码 (最可靠)**:
 
