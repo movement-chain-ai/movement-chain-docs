@@ -174,7 +174,7 @@ lsm6dsv16x_linear_acceleration_get(&dev_ctx, &linear_accel);  // 去重力后
 lsm6dsv16x_acceleration_raw_get(&dev_ctx, &raw_accel);        // 含重力原始值
 ```
 
-> 详见：[数据处理与指标计算 §2.2](../design/architecture/sensor-data-processing.md#22-imu-指标) — IMU 数据处理
+> 详见：[数据处理与指标计算 §3.2](../design/architecture/sensor-data-processing.md#32-imu-数据处理-lsm6dsv16x--1666hz) — IMU 数据处理
 
 ---
 

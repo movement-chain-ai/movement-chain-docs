@@ -367,7 +367,7 @@ IMU 坐标系 (右手系):
 
 | 数据类型 | 原点 (0 值) | 说明 |
 |---------|------------|------|
-| **accel_x/y/z** | 传感器静止时 | [静止时只有重力加速度](../../reference/engineering-glossary.md#11-加速度计-accelerometer) (accel_y ≈ 9.8 m/s²) |
+| **accel_x/y/z** | 传感器静止时 | [静止时只有重力加速度 (accel_y ≈ 9.8 m/s²)](../../reference/engineering-glossary.md#11-加速度计-accelerometer) |
 | **gyro_x/y/z** | 无旋转时 | 传感器不转动时，三轴角速度均为 0°/s |
 
 !!! info "什么时候数值为 0？"
