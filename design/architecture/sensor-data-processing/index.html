@@ -2194,10 +2194,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-emg-传感器布局规划-emg-sensor-placement-plan" class="md-nav__link">
+  <a href="#43-多传感器融合算法" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.3 EMG 传感器布局规划 EMG Sensor Placement Plan
+        4.3 多传感器融合算法 Sensor Fusion Algorithms
       
     </span>
   </a>
@@ -4802,10 +4802,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-emg-传感器布局规划-emg-sensor-placement-plan" class="md-nav__link">
+  <a href="#43-多传感器融合算法" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.3 EMG 传感器布局规划 EMG Sensor Placement Plan
+        4.3 多传感器融合算法 Sensor Fusion Algorithms
       
     </span>
   </a>
@@ -5915,7 +5915,7 @@
 </tbody>
 </table>
 <blockquote>
-<p>详见 <a href="#43-emg-传感器布局规划-emg-sensor-placement-plan">§4.3 EMG 传感器布局规划</a></p>
+<p>详见 <a href="#333-emg-传感器布局规划">§3.3.3 传感器布局规划</a></p>
 </blockquote>
 <p><strong>信号处理流程</strong>:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>原始 EMG 信号 → 带通滤波 → 整流 (取绝对值) → 包络提取 → 归一化
@@ -6094,106 +6094,211 @@
 </ul>
 </div>
 <hr />
-<h4 id="333-多传感器融合算法">3.3.3 多传感器融合算法<a class="headerlink" href="#333-多传感器融合算法" title="Permanent link">&para;</a></h4>
-<p>以下算法需要对齐后的多传感器数据才能执行：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># 运动链序列验证 (UNIQUE)</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_kinematic_sequence</span><span class="p">(</span><span class="n">emg_core</span><span class="p">,</span> <span class="n">emg_forearm</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="sd">    验证核心肌群是否先于手臂激活 (正确的运动链序列)</span>
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="sd">    ⚠️ 关键参数: 同时激活容差 (Co-activation Tolerance)</span>
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="sd">       - 如果 |time_diff| &lt; 5ms，视为&quot;同时激活&quot;</span>
-</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="sd">       - 这是因为 EMG 采样精度限制 (1000Hz = 1ms)</span>
-</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="sd">       - 详见: signal-processing-101.md §3.2</span>
-</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
-</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="sd">    Args:</span>
-</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="sd">        emg_core: 核心肌群 EMG 信号 (腹斜肌或竖脊肌)</span>
-</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="sd">        emg_forearm: 前臂 EMG 信号 (桡侧腕屈肌或尺侧腕屈肌)</span>
-</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="sd">        timestamps: 时间戳 (ms)</span>
-</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="sd">        threshold: 激活阈值</span>
-</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>
-</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="sd">    Returns:</span>
-</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="sd">        sequence_correct: True=核心先激活, False=手臂先激活</span>
-</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="sd">        time_diff: 激活时间差 (ms, 正值=核心先激活)</span>
-</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="sd">                   ±5ms 范围内视为同时激活</span>
-</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>    <span class="n">core_onset</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">detect_muscle_onset</span><span class="p">(</span><span class="n">emg_core</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
-</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>    <span class="n">forearm_onset</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">detect_muscle_onset</span><span class="p">(</span><span class="n">emg_forearm</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
-</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>
-</span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>    <span class="k">if</span> <span class="n">core_onset</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">forearm_onset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>  <span class="c1"># 信号质量不足</span>
-</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>
-</span><span id="__span-18-28"><a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>    <span class="n">time_diff</span> <span class="o">=</span> <span class="n">forearm_onset</span> <span class="o">-</span> <span class="n">core_onset</span>  <span class="c1"># 正值=核心先激活</span>
-</span><span id="__span-18-29"><a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>    <span class="n">sequence_correct</span> <span class="o">=</span> <span class="n">time_diff</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</span><span id="__span-18-30"><a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>
-</span><span id="__span-18-31"><a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>    <span class="k">return</span> <span class="n">sequence_correct</span><span class="p">,</span> <span class="n">time_diff</span>
-</span><span id="__span-18-32"><a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>
-</span><span id="__span-18-33"><a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a><span class="c1"># 疲劳检测 (UNIQUE)</span>
-</span><span id="__span-18-34"><a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a><span class="k">def</span><span class="w"> </span><span class="nf">detect_muscle_fatigue</span><span class="p">(</span><span class="n">emg_signals</span><span class="p">,</span> <span class="n">swing_indices</span><span class="p">):</span>
-</span><span id="__span-18-35"><a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-18-36"><a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a><span class="sd">    检测练习过程中的肌肉疲劳</span>
-</span><span id="__span-18-37"><a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a>
-</span><span id="__span-18-38"><a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a><span class="sd">    Args:</span>
-</span><span id="__span-18-39"><a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a><span class="sd">        emg_signals: EMG 信号 (mV), shape=(N_samples, N_muscles)</span>
-</span><span id="__span-18-40"><a id="__codelineno-18-40" name="__codelineno-18-40" href="#__codelineno-18-40"></a><span class="sd">        swing_indices: 每次挥杆的起止索引 [(start1, end1), (start2, end2), ...]</span>
-</span><span id="__span-18-41"><a id="__codelineno-18-41" name="__codelineno-18-41" href="#__codelineno-18-41"></a>
-</span><span id="__span-18-42"><a id="__codelineno-18-42" name="__codelineno-18-42" href="#__codelineno-18-42"></a><span class="sd">    Returns:</span>
-</span><span id="__span-18-43"><a id="__codelineno-18-43" name="__codelineno-18-43" href="#__codelineno-18-43"></a><span class="sd">        fatigue_detected: 是否检测到疲劳</span>
-</span><span id="__span-18-44"><a id="__codelineno-18-44" name="__codelineno-18-44" href="#__codelineno-18-44"></a><span class="sd">        fatigue_ratio: 最后挥杆 / 首次挥杆的激活强度比 (&lt;0.7 表示疲劳)</span>
-</span><span id="__span-18-45"><a id="__codelineno-18-45" name="__codelineno-18-45" href="#__codelineno-18-45"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-18-46"><a id="__codelineno-18-46" name="__codelineno-18-46" href="#__codelineno-18-46"></a>    <span class="c1"># 提取每次挥杆的峰值激活强度</span>
-</span><span id="__span-18-47"><a id="__codelineno-18-47" name="__codelineno-18-47" href="#__codelineno-18-47"></a>    <span class="n">peak_intensities</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-18-48"><a id="__codelineno-18-48" name="__codelineno-18-48" href="#__codelineno-18-48"></a>    <span class="k">for</span> <span class="n">start_idx</span><span class="p">,</span> <span class="n">end_idx</span> <span class="ow">in</span> <span class="n">swing_indices</span><span class="p">:</span>
-</span><span id="__span-18-49"><a id="__codelineno-18-49" name="__codelineno-18-49" href="#__codelineno-18-49"></a>        <span class="n">swing_emg</span> <span class="o">=</span> <span class="n">emg_signals</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span>
-</span><span id="__span-18-50"><a id="__codelineno-18-50" name="__codelineno-18-50" href="#__codelineno-18-50"></a>        <span class="n">peak</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">swing_emg</span><span class="p">)</span>
-</span><span id="__span-18-51"><a id="__codelineno-18-51" name="__codelineno-18-51" href="#__codelineno-18-51"></a>        <span class="n">peak_intensities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">peak</span><span class="p">)</span>
-</span><span id="__span-18-52"><a id="__codelineno-18-52" name="__codelineno-18-52" href="#__codelineno-18-52"></a>
-</span><span id="__span-18-53"><a id="__codelineno-18-53" name="__codelineno-18-53" href="#__codelineno-18-53"></a>    <span class="c1"># 对比首次和最后挥杆的激活强度</span>
-</span><span id="__span-18-54"><a id="__codelineno-18-54" name="__codelineno-18-54" href="#__codelineno-18-54"></a>    <span class="n">first_swing_peak</span> <span class="o">=</span> <span class="n">peak_intensities</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-18-55"><a id="__codelineno-18-55" name="__codelineno-18-55" href="#__codelineno-18-55"></a>    <span class="n">last_swing_peak</span> <span class="o">=</span> <span class="n">peak_intensities</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span id="__span-18-56"><a id="__codelineno-18-56" name="__codelineno-18-56" href="#__codelineno-18-56"></a>
-</span><span id="__span-18-57"><a id="__codelineno-18-57" name="__codelineno-18-57" href="#__codelineno-18-57"></a>    <span class="n">fatigue_ratio</span> <span class="o">=</span> <span class="n">last_swing_peak</span> <span class="o">/</span> <span class="n">first_swing_peak</span>
-</span><span id="__span-18-58"><a id="__codelineno-18-58" name="__codelineno-18-58" href="#__codelineno-18-58"></a>    <span class="n">fatigue_detected</span> <span class="o">=</span> <span class="n">fatigue_ratio</span> <span class="o">&lt;</span> <span class="mf">0.7</span>  <span class="c1"># 强度下降 &gt;30% 视为疲劳</span>
-</span><span id="__span-18-59"><a id="__codelineno-18-59" name="__codelineno-18-59" href="#__codelineno-18-59"></a>
-</span><span id="__span-18-60"><a id="__codelineno-18-60" name="__codelineno-18-60" href="#__codelineno-18-60"></a>    <span class="k">return</span> <span class="n">fatigue_detected</span><span class="p">,</span> <span class="n">fatigue_ratio</span>
-</span><span id="__span-18-61"><a id="__codelineno-18-61" name="__codelineno-18-61" href="#__codelineno-18-61"></a>
-</span><span id="__span-18-62"><a id="__codelineno-18-62" name="__codelineno-18-62" href="#__codelineno-18-62"></a><span class="c1"># 力链传递验证 (UNIQUE)</span>
-</span><span id="__span-18-63"><a id="__codelineno-18-63" name="__codelineno-18-63" href="#__codelineno-18-63"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_force_chain</span><span class="p">(</span><span class="n">emg_signals</span><span class="p">,</span> <span class="n">muscle_names</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
-</span><span id="__span-18-64"><a id="__codelineno-18-64" name="__codelineno-18-64" href="#__codelineno-18-64"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-18-65"><a id="__codelineno-18-65" name="__codelineno-18-65" href="#__codelineno-18-65"></a><span class="sd">    验证力链传递序列: 下肢 → 核心 → 躯干 → 手臂</span>
-</span><span id="__span-18-66"><a id="__codelineno-18-66" name="__codelineno-18-66" href="#__codelineno-18-66"></a>
-</span><span id="__span-18-67"><a id="__codelineno-18-67" name="__codelineno-18-67" href="#__codelineno-18-67"></a><span class="sd">    Args:</span>
-</span><span id="__span-18-68"><a id="__codelineno-18-68" name="__codelineno-18-68" href="#__codelineno-18-68"></a><span class="sd">        emg_signals: EMG 信号字典 {muscle_name: signal}</span>
-</span><span id="__span-18-69"><a id="__codelineno-18-69" name="__codelineno-18-69" href="#__codelineno-18-69"></a><span class="sd">        muscle_names: 肌肉分组 [&#39;leg&#39;, &#39;core&#39;, &#39;torso&#39;, &#39;arm&#39;]</span>
-</span><span id="__span-18-70"><a id="__codelineno-18-70" name="__codelineno-18-70" href="#__codelineno-18-70"></a><span class="sd">        timestamps: 时间戳 (ms)</span>
-</span><span id="__span-18-71"><a id="__codelineno-18-71" name="__codelineno-18-71" href="#__codelineno-18-71"></a><span class="sd">        threshold: 激活阈值</span>
-</span><span id="__span-18-72"><a id="__codelineno-18-72" name="__codelineno-18-72" href="#__codelineno-18-72"></a>
-</span><span id="__span-18-73"><a id="__codelineno-18-73" name="__codelineno-18-73" href="#__codelineno-18-73"></a><span class="sd">    Returns:</span>
-</span><span id="__span-18-74"><a id="__codelineno-18-74" name="__codelineno-18-74" href="#__codelineno-18-74"></a><span class="sd">        force_chain_correct: True=力链传递正确</span>
-</span><span id="__span-18-75"><a id="__codelineno-18-75" name="__codelineno-18-75" href="#__codelineno-18-75"></a><span class="sd">        onset_sequence: 各肌群激活时间 (ms)</span>
-</span><span id="__span-18-76"><a id="__codelineno-18-76" name="__codelineno-18-76" href="#__codelineno-18-76"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-18-77"><a id="__codelineno-18-77" name="__codelineno-18-77" href="#__codelineno-18-77"></a>    <span class="n">onset_times</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span id="__span-18-78"><a id="__codelineno-18-78" name="__codelineno-18-78" href="#__codelineno-18-78"></a>
-</span><span id="__span-18-79"><a id="__codelineno-18-79" name="__codelineno-18-79" href="#__codelineno-18-79"></a>    <span class="k">for</span> <span class="n">muscle</span> <span class="ow">in</span> <span class="n">muscle_names</span><span class="p">:</span>
-</span><span id="__span-18-80"><a id="__codelineno-18-80" name="__codelineno-18-80" href="#__codelineno-18-80"></a>        <span class="n">onset_time</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">detect_muscle_onset</span><span class="p">(</span><span class="n">emg_signals</span><span class="p">[</span><span class="n">muscle</span><span class="p">],</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
-</span><span id="__span-18-81"><a id="__codelineno-18-81" name="__codelineno-18-81" href="#__codelineno-18-81"></a>        <span class="n">onset_times</span><span class="p">[</span><span class="n">muscle</span><span class="p">]</span> <span class="o">=</span> <span class="n">onset_time</span>
-</span><span id="__span-18-82"><a id="__codelineno-18-82" name="__codelineno-18-82" href="#__codelineno-18-82"></a>
-</span><span id="__span-18-83"><a id="__codelineno-18-83" name="__codelineno-18-83" href="#__codelineno-18-83"></a>    <span class="c1"># 验证激活顺序</span>
-</span><span id="__span-18-84"><a id="__codelineno-18-84" name="__codelineno-18-84" href="#__codelineno-18-84"></a>    <span class="n">expected_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;leg&#39;</span><span class="p">,</span> <span class="s1">&#39;core&#39;</span><span class="p">,</span> <span class="s1">&#39;torso&#39;</span><span class="p">,</span> <span class="s1">&#39;arm&#39;</span><span class="p">]</span>
-</span><span id="__span-18-85"><a id="__codelineno-18-85" name="__codelineno-18-85" href="#__codelineno-18-85"></a>    <span class="n">actual_order</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">onset_times</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">onset_times</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>
-</span><span id="__span-18-86"><a id="__codelineno-18-86" name="__codelineno-18-86" href="#__codelineno-18-86"></a>
-</span><span id="__span-18-87"><a id="__codelineno-18-87" name="__codelineno-18-87" href="#__codelineno-18-87"></a>    <span class="n">force_chain_correct</span> <span class="o">=</span> <span class="n">actual_order</span> <span class="o">==</span> <span class="n">expected_order</span>
-</span><span id="__span-18-88"><a id="__codelineno-18-88" name="__codelineno-18-88" href="#__codelineno-18-88"></a>
-</span><span id="__span-18-89"><a id="__codelineno-18-89" name="__codelineno-18-89" href="#__codelineno-18-89"></a>    <span class="k">return</span> <span class="n">force_chain_correct</span><span class="p">,</span> <span class="n">onset_times</span>
+<h4 id="333-emg-传感器布局规划">3.3.3 传感器布局规划 EMG Sensor Placement<a class="headerlink" href="#333-emg-传感器布局规划" title="Permanent link">&para;</a></h4>
+<h5 id="key-muscle-groups">关键肌群图 Key Muscle Groups<a class="headerlink" href="#key-muscle-groups" title="Permanent link">&para;</a></h5>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>│                         GOLF SWING EMG SENSOR MAP                           │
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>│                                                                             │
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>│                        ┌─────────────┐                                      │
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>│                        │   背阔肌     │ ← Phase 3: 肩部旋转、拉杆动作        │
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>│                        │    Lats     │   (Latissimus Dorsi)                 │
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>│                        └──────┬──────┘                                      │
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>│                               │                                             │
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>│                        ┌──────┴──────┐                                      │
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>│                        │    核心     │ ← Phase 1: 躯干旋转、力量传递中枢 ⭐  │
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>│                        │    Core    │   (Obliques 腹斜肌)                   │
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>│                        └──────┬──────┘                                      │
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>│                               │                                             │
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>│                        ┌──────┴──────┐                                      │
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>│                        │    臀肌     │ ← Phase 2: 下杆启动、髋部旋转         │
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>│                        │   Glutes   │   (Gluteus Maximus 臀大肌)            │
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>│                        └──────┬──────┘                                      │
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>│                               │                                             │
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>│   ┌───────────────────┐       │       ┌───────────────────┐                 │
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>│   │   三角肌 Deltoids │       │       │   前臂 Forearm    │                 │
+</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>│   │   Phase 3         │       │       │   Phase 1 ⭐      │                 │
+</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>│   └───────────────────┘       │       │   (Wrist Flexors) │                 │
+</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>│                               │       └───────────────────┘                 │
+</span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>│                        ┌──────┴──────┐                                      │
+</span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>│                        │  大腿内侧   │ ← Phase 2: 下盘稳定、重心转移         │
+</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>│                        │  Adductors │                                       │
+</span><span id="__span-18-28"><a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>│                        └─────────────┘                                      │
+</span><span id="__span-18-29"><a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>│                                                                             │
+</span><span id="__span-18-30"><a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>│   运动链传递顺序 Kinematic Chain:                                            │
+</span><span id="__span-18-31"><a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>│   Glutes → Core → Lats → Forearm                                           │
+</span><span id="__span-18-32"><a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>│   (臀肌 → 核心 → 背阔肌 → 前臂)                                              │
+</span><span id="__span-18-33"><a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>│                                                                             │
+</span><span id="__span-18-34"><a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
-<p><strong>可计算指标 (竞品无法实现)</strong>:</p>
+<h5 id="phased-deployment">分阶段部署计划 Phased Deployment<a class="headerlink" href="#phased-deployment" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Phase</th>
+<th>肌群</th>
+<th>英文名</th>
+<th>检测目标</th>
+<th style="text-align: center;">传感器数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1 (MVP)</strong></td>
+<td>核心/腹斜肌</td>
+<td>Core/Obliques</td>
+<td>躯干旋转发力、运动链中枢</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>1 (MVP)</strong></td>
+<td>前臂屈肌</td>
+<td>Forearm Flexors</td>
+<td>手腕释放时机、握杆力度</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td>臀大肌</td>
+<td>Gluteus Maximus</td>
+<td>下杆启动、髋部旋转</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td>大腿内侧</td>
+<td>Adductors</td>
+<td>下盘稳定、重心转移</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td>背阔肌</td>
+<td>Latissimus Dorsi</td>
+<td>肩部旋转、拉杆动作</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td>三角肌</td>
+<td>Deltoids</td>
+<td>手臂举起、顶点位置</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>传感器数量规划</strong>:</p>
 <ul>
-<li>肌肉激活时序 (&lt;5ms 精度)</li>
-<li>肌肉激活强度 (mV 信号幅值)</li>
-<li>运动链序列验证 (核心 → 手臂的顺序)</li>
-<li>疲劳检测 (激活强度衰减)</li>
-<li>力链传递验证 (下肢 → 核心 → 躯干 → 手臂)</li>
+<li>Phase 1 (MVP): <strong>2 通道</strong> — 最小可行，验证核心价值</li>
+<li>Phase 2: <strong>4 通道</strong> — 完整下半身运动链</li>
+<li>Phase 3: <strong>6 通道</strong> — 全身运动链分析</li>
 </ul>
+<h5 id="selection-rationale">选择依据 Selection Rationale<a class="headerlink" href="#selection-rationale" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>研究来源</th>
+<th>发现</th>
+<th>对选型的影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cheetham (2008)</strong></td>
+<td>运动链时序: 骨盆 → 躯干 → 手臂，职业选手间隔更稳定</td>
+<td>Core + Forearm 可检测最关键的"躯干→手臂"时序</td>
+</tr>
+<tr>
+<td><strong>Meister (2011)</strong></td>
+<td>核心激活与杆头速度相关性 r=0.89</td>
+<td>Core 是必选传感器</td>
+</tr>
+<tr>
+<td><strong>TPI 研究</strong></td>
+<td>臀肌激活不足 → 早伸 (Early Extension)</td>
+<td>Phase 2 加入 Gluteus</td>
+</tr>
+<tr>
+<td><strong>PMC4851105</strong></td>
+<td>8通道EMG分析发现"雪崩效应"</td>
+<td>全通道分析需要 Phase 3</td>
+</tr>
+</tbody>
+</table>
+<h5 id="mvp">MVP 检测能力<a class="headerlink" href="#mvp" title="Permanent link">&para;</a></h5>
+<p>仅用 <strong>2 个 EMG 传感器 (Core + Forearm)</strong> 即可检测:</p>
+<table>
+<thead>
+<tr>
+<th>检测能力</th>
+<th>方法</th>
+<th>阈值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>倒序运动链</strong></td>
+<td>Core onset vs Forearm onset</td>
+<td>时间差 &lt; 0ms = 错误</td>
+</tr>
+<tr>
+<td><strong>过度手臂挥杆</strong></td>
+<td>Forearm RMS / Core RMS</td>
+<td>比值 &gt; 1.3 = 问题</td>
+</tr>
+<tr>
+<td><strong>核心激活不足</strong></td>
+<td>Core RMS / MVC%</td>
+<td>&lt; 50% MVC = 不足</td>
+</tr>
+<tr>
+<td><strong>疲劳检测</strong></td>
+<td>峰值幅度衰减趋势</td>
+<td>下降 &gt; 30% = 疲劳</td>
+</tr>
+</tbody>
+</table>
+<h5 id="mock">Mock 数据结构<a class="headerlink" href="#mock" title="Permanent link">&para;</a></h5>
+<p>MVP 阶段使用 Mock 数据时，建议预留 <strong>4 通道</strong> 数据结构，便于后续扩展:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Mock EMG 数据结构 (为 Phase 2 预留)</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">mock_emg</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="c1"># Phase 1 (MVP) - 必须实现</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>    <span class="s2">&quot;core_obliques&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>        <span class="s2">&quot;signal&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>           <span class="c1"># 1000Hz 采样 (MyoWare 2.0 推荐配置)</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>        <span class="s2">&quot;onset_time_ms&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>        <span class="c1"># 激活起始时间</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>        <span class="s2">&quot;peak_amplitude_mv&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>  <span class="c1"># 峰值幅度</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>        <span class="s2">&quot;rms_mv&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>             <span class="c1"># RMS 均值</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>    <span class="p">},</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>    <span class="s2">&quot;forearm_flexors&quot;</span><span class="p">:</span> <span class="p">{</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>        <span class="s2">&quot;signal&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>        <span class="s2">&quot;onset_time_ms&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>        <span class="s2">&quot;peak_amplitude_mv&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>        <span class="s2">&quot;rms_mv&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>    <span class="p">},</span>
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>    <span class="c1"># Phase 2 - 数据结构预留</span>
+</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>    <span class="s2">&quot;gluteus_maximus&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>       <span class="c1"># Phase 2 填充</span>
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>    <span class="s2">&quot;adductors&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>             <span class="c1"># Phase 2 填充</span>
+</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>
+</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>    <span class="c1"># Phase 3 - 数据结构预留</span>
+</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>    <span class="s2">&quot;latissimus_dorsi&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>      <span class="c1"># Phase 3 填充</span>
+</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>    <span class="s2">&quot;deltoids&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>              <span class="c1"># Phase 3 填充</span>
+</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="p">}</span>
+</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>
+</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="c1"># 计算 Core-Forearm 时序差</span>
+</span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_timing_gap</span><span class="p">(</span><span class="n">mock_emg</span><span class="p">):</span>
+</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>    <span class="n">core_onset</span> <span class="o">=</span> <span class="n">mock_emg</span><span class="p">[</span><span class="s2">&quot;core_obliques&quot;</span><span class="p">][</span><span class="s2">&quot;onset_time_ms&quot;</span><span class="p">]</span>
+</span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>    <span class="n">forearm_onset</span> <span class="o">=</span> <span class="n">mock_emg</span><span class="p">[</span><span class="s2">&quot;forearm_flexors&quot;</span><span class="p">][</span><span class="s2">&quot;onset_time_ms&quot;</span><span class="p">]</span>
+</span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a>    <span class="n">gap_ms</span> <span class="o">=</span> <span class="n">forearm_onset</span> <span class="o">-</span> <span class="n">core_onset</span>  <span class="c1"># 正值 = 核心先激活 (正确)</span>
+</span><span id="__span-19-31"><a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>    <span class="k">return</span> <span class="n">gap_ms</span>
+</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a>
+</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a><span class="c1"># 计算发力比例</span>
+</span><span id="__span-19-34"><a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_activation_ratio</span><span class="p">(</span><span class="n">mock_emg</span><span class="p">):</span>
+</span><span id="__span-19-35"><a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a>    <span class="n">core_rms</span> <span class="o">=</span> <span class="n">mock_emg</span><span class="p">[</span><span class="s2">&quot;core_obliques&quot;</span><span class="p">][</span><span class="s2">&quot;rms_mv&quot;</span><span class="p">]</span>
+</span><span id="__span-19-36"><a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>    <span class="n">forearm_rms</span> <span class="o">=</span> <span class="n">mock_emg</span><span class="p">[</span><span class="s2">&quot;forearm_flexors&quot;</span><span class="p">][</span><span class="s2">&quot;rms_mv&quot;</span><span class="p">]</span>
+</span><span id="__span-19-37"><a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a>    <span class="n">ratio</span> <span class="o">=</span> <span class="n">forearm_rms</span> <span class="o">/</span> <span class="n">core_rms</span>  <span class="c1"># &lt; 1.3 为正常</span>
+</span><span id="__span-19-38"><a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a>    <span class="k">return</span> <span class="n">ratio</span>
+</span></code></pre></div>
 <hr />
 <h2 id="4-多传感器融合分析-sensor-fusion-analysis">4. 多传感器融合分析 Sensor Fusion Analysis<a class="headerlink" href="#4-多传感器融合分析-sensor-fusion-analysis" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
@@ -6276,36 +6381,36 @@
 <hr />
 <h3 id="42-sensor-fusion-strategy">4.2 系统融合策略 Sensor Fusion Strategy<a class="headerlink" href="#42-sensor-fusion-strategy" title="Permanent link">&para;</a></h3>
 <p>三模态传感器的数据融合策略如下:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>│                         SENSOR FUSION PIPELINE                               │
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>│                                                                              │
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>│   Phase 1: 单模态特征提取                                                      │
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>│   ├── Vision (30fps): 提取 33 关键点 → 计算 X-Factor, S-Factor, Sway/Lift     │
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>│   ├── IMU (1666Hz): 提取角速度/加速度 → 计算峰值速度, 节奏比                    │
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>│   └── EMG (1000Hz): 提取激活时序 → 计算肌肉启动时间, 激活强度                   │
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>│                                                                              │
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>│   Phase 2: 时间对齐 (Sensor Hub 架构)                                       │
-</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>│   ├── Sensor Hub: 同部位 IMU/EMG 共享 ESP32 时钟 (硬件级微秒同步)            │
-</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>│   ├── 以 IMU 为基准时钟 (最高采样率)                                         │
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>│   ├── Vision 帧插值到 1666Hz (线性插值)                                      │
-</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>│   ├── EMG 重采样到 1666Hz (降采样)                                           │
-</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>│   └── 跨设备对齐: 使用 Impact 时刻作为同步锚点                               │
-</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>│                                                                              │
-</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>│   Phase 3: 特征融合                                                           │
-</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>│   ├── 运动链时序 = IMU (身体启动) + EMG (肌肉启动) 双重验证                      │
-</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>│   ├── X-Factor Stretch = Vision (角度差) + EMG (核心激活) 相关性分析            │
-</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>│   └── 力链验证 = Vision (姿态) + IMU (速度) + EMG (激活序列) 三重验证            │
-</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>│                                                                              │
-</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>│   Phase 4: 异常检测                                                           │
-</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>│   ├── 如果 EMG 显示核心未激活，但 IMU 显示高速转体 → 警告&quot;代偿动作&quot;              │
-</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>│   ├── 如果 Vision 显示 X-Factor 正常，但 EMG 显示激活序列错误 → 警告&quot;假性蓄力&quot;   │
-</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>│   └── 如果 EMG 显示疲劳，但用户继续练习 → 建议&quot;休息以防受伤&quot;                     │
-</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>└─────────────────────────────────────────────────────────────────────────────┘
-</span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>
-</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>!!! tip &quot;时间对齐实现&quot;
-</span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>    Phase 2 时间对齐的具体实现方案（NTP 预同步 + Impact 验证）详见
-</span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a>    [模块化架构 §2.2.3](modular-architecture.md#223-时间同步实现方案)。
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>│                         SENSOR FUSION PIPELINE                               │
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>│                                                                              │
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>│   Phase 1: 单模态特征提取                                                      │
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>│   ├── Vision (30fps): 提取 33 关键点 → 计算 X-Factor, S-Factor, Sway/Lift     │
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>│   ├── IMU (1666Hz): 提取角速度/加速度 → 计算峰值速度, 节奏比                    │
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>│   └── EMG (1000Hz): 提取激活时序 → 计算肌肉启动时间, 激活强度                   │
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>│                                                                              │
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>│   Phase 2: 时间对齐 (Sensor Hub 架构)                                       │
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>│   ├── Sensor Hub: 同部位 IMU/EMG 共享 ESP32 时钟 (硬件级微秒同步)            │
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>│   ├── 以 IMU 为基准时钟 (最高采样率)                                         │
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>│   ├── Vision 帧插值到 1666Hz (线性插值)                                      │
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>│   ├── EMG 重采样到 1666Hz (降采样)                                           │
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>│   └── 跨设备对齐: 使用 Impact 时刻作为同步锚点                               │
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>│                                                                              │
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>│   Phase 3: 特征融合                                                           │
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>│   ├── 运动链时序 = IMU (身体启动) + EMG (肌肉启动) 双重验证                      │
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>│   ├── X-Factor Stretch = Vision (角度差) + EMG (核心激活) 相关性分析            │
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>│   └── 力链验证 = Vision (姿态) + IMU (速度) + EMG (激活序列) 三重验证            │
+</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>│                                                                              │
+</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>│   Phase 4: 异常检测                                                           │
+</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>│   ├── 如果 EMG 显示核心未激活，但 IMU 显示高速转体 → 警告&quot;代偿动作&quot;              │
+</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>│   ├── 如果 Vision 显示 X-Factor 正常，但 EMG 显示激活序列错误 → 警告&quot;假性蓄力&quot;   │
+</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>│   └── 如果 EMG 显示疲劳，但用户继续练习 → 建议&quot;休息以防受伤&quot;                     │
+</span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>└─────────────────────────────────────────────────────────────────────────────┘
+</span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>
+</span><span id="__span-20-28"><a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>!!! tip &quot;时间对齐实现&quot;
+</span><span id="__span-20-29"><a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>    Phase 2 时间对齐的具体实现方案（NTP 预同步 + Impact 验证）详见
+</span><span id="__span-20-30"><a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a>    [模块化架构 §2.2.3](modular-architecture.md#223-时间同步实现方案)。
 </span></code></pre></div>
 <p><strong>融合优势</strong>:</p>
 <ul>
@@ -6314,211 +6419,106 @@
 <li><strong>因果性</strong>: Vision/IMU 提供"现象"，EMG 提供"原因"</li>
 </ul>
 <hr />
-<h3 id="43-emg-传感器布局规划-emg-sensor-placement-plan">4.3 EMG 传感器布局规划 EMG Sensor Placement Plan<a class="headerlink" href="#43-emg-传感器布局规划-emg-sensor-placement-plan" title="Permanent link">&para;</a></h3>
-<h4 id="431-key-muscle-groups">4.3.1 关键肌群图 Key Muscle Groups<a class="headerlink" href="#431-key-muscle-groups" title="Permanent link">&para;</a></h4>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>│                         GOLF SWING EMG SENSOR MAP                           │
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>│                                                                             │
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>│                        ┌─────────────┐                                      │
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>│                        │   背阔肌     │ ← Phase 3: 肩部旋转、拉杆动作        │
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>│                        │    Lats     │   (Latissimus Dorsi)                 │
-</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>│                        └──────┬──────┘                                      │
-</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>│                               │                                             │
-</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>│                        ┌──────┴──────┐                                      │
-</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>│                        │    核心     │ ← Phase 1: 躯干旋转、力量传递中枢 ⭐  │
-</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>│                        │    Core    │   (Obliques 腹斜肌)                   │
-</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>│                        └──────┬──────┘                                      │
-</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>│                               │                                             │
-</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>│                        ┌──────┴──────┐                                      │
-</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>│                        │    臀肌     │ ← Phase 2: 下杆启动、髋部旋转         │
-</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>│                        │   Glutes   │   (Gluteus Maximus 臀大肌)            │
-</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>│                        └──────┬──────┘                                      │
-</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>│                               │                                             │
-</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>│   ┌───────────────────┐       │       ┌───────────────────┐                 │
-</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>│   │   三角肌 Deltoids │       │       │   前臂 Forearm    │                 │
-</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>│   │   Phase 3         │       │       │   Phase 1 ⭐      │                 │
-</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>│   └───────────────────┘       │       │   (Wrist Flexors) │                 │
-</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>│                               │       └───────────────────┘                 │
-</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>│                        ┌──────┴──────┐                                      │
-</span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>│                        │  大腿内侧   │ ← Phase 2: 下盘稳定、重心转移         │
-</span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>│                        │  Adductors │                                       │
-</span><span id="__span-20-28"><a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>│                        └─────────────┘                                      │
-</span><span id="__span-20-29"><a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>│                                                                             │
-</span><span id="__span-20-30"><a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a>│   运动链传递顺序 Kinematic Chain:                                            │
-</span><span id="__span-20-31"><a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a>│   Glutes → Core → Lats → Forearm                                           │
-</span><span id="__span-20-32"><a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a>│   (臀肌 → 核心 → 背阔肌 → 前臂)                                              │
-</span><span id="__span-20-33"><a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a>│                                                                             │
-</span><span id="__span-20-34"><a id="__codelineno-20-34" name="__codelineno-20-34" href="#__codelineno-20-34"></a>└─────────────────────────────────────────────────────────────────────────────┘
-</span></code></pre></div>
-<h4 id="432-phased-deployment">4.3.2 分阶段部署计划 Phased Deployment<a class="headerlink" href="#432-phased-deployment" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Phase</th>
-<th>肌群</th>
-<th>英文名</th>
-<th>检测目标</th>
-<th style="text-align: center;">传感器数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;"><strong>1 (MVP)</strong></td>
-<td>核心/腹斜肌</td>
-<td>Core/Obliques</td>
-<td>躯干旋转发力、运动链中枢</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>1 (MVP)</strong></td>
-<td>前臂屈肌</td>
-<td>Forearm Flexors</td>
-<td>手腕释放时机、握杆力度</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>2</strong></td>
-<td>臀大肌</td>
-<td>Gluteus Maximus</td>
-<td>下杆启动、髋部旋转</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>2</strong></td>
-<td>大腿内侧</td>
-<td>Adductors</td>
-<td>下盘稳定、重心转移</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>3</strong></td>
-<td>背阔肌</td>
-<td>Latissimus Dorsi</td>
-<td>肩部旋转、拉杆动作</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr>
-<td style="text-align: center;"><strong>3</strong></td>
-<td>三角肌</td>
-<td>Deltoids</td>
-<td>手臂举起、顶点位置</td>
-<td style="text-align: center;">1</td>
-</tr>
-</tbody>
-</table>
-<p><strong>传感器数量规划</strong>:</p>
-<ul>
-<li>Phase 1 (MVP): <strong>2 通道</strong> — 最小可行，验证核心价值</li>
-<li>Phase 2: <strong>4 通道</strong> — 完整下半身运动链</li>
-<li>Phase 3: <strong>6 通道</strong> — 全身运动链分析</li>
-</ul>
-<h4 id="433-selection-rationale">4.3.3 选择依据 Selection Rationale<a class="headerlink" href="#433-selection-rationale" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>研究来源</th>
-<th>发现</th>
-<th>对选型的影响</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Cheetham (2008)</strong></td>
-<td>运动链时序: 骨盆 → 躯干 → 手臂，职业选手间隔更稳定</td>
-<td>Core + Forearm 可检测最关键的"躯干→手臂"时序</td>
-</tr>
-<tr>
-<td><strong>Meister (2011)</strong></td>
-<td>核心激活与杆头速度相关性 r=0.89</td>
-<td>Core 是必选传感器</td>
-</tr>
-<tr>
-<td><strong>TPI 研究</strong></td>
-<td>臀肌激活不足 → 早伸 (Early Extension)</td>
-<td>Phase 2 加入 Gluteus</td>
-</tr>
-<tr>
-<td><strong>PMC4851105</strong></td>
-<td>8通道EMG分析发现"雪崩效应"</td>
-<td>全通道分析需要 Phase 3</td>
-</tr>
-</tbody>
-</table>
-<h4 id="434-mvp">4.3.4 MVP 检测能力<a class="headerlink" href="#434-mvp" title="Permanent link">&para;</a></h4>
-<p>仅用 <strong>2 个 EMG 传感器 (Core + Forearm)</strong> 即可检测:</p>
-<table>
-<thead>
-<tr>
-<th>检测能力</th>
-<th>方法</th>
-<th>阈值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>倒序运动链</strong></td>
-<td>Core onset vs Forearm onset</td>
-<td>时间差 &lt; 0ms = 错误</td>
-</tr>
-<tr>
-<td><strong>过度手臂挥杆</strong></td>
-<td>Forearm RMS / Core RMS</td>
-<td>比值 &gt; 1.3 = 问题</td>
-</tr>
-<tr>
-<td><strong>核心激活不足</strong></td>
-<td>Core RMS / MVC%</td>
-<td>&lt; 50% MVC = 不足</td>
-</tr>
-<tr>
-<td><strong>疲劳检测</strong></td>
-<td>峰值幅度衰减趋势</td>
-<td>下降 &gt; 30% = 疲劳</td>
-</tr>
-</tbody>
-</table>
-<h4 id="435-mock">4.3.5 Mock 数据结构<a class="headerlink" href="#435-mock" title="Permanent link">&para;</a></h4>
-<p>MVP 阶段使用 Mock 数据时，建议预留 <strong>4 通道</strong> 数据结构，便于后续扩展:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Mock EMG 数据结构 (为 Phase 2 预留)</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">mock_emg</span> <span class="o">=</span> <span class="p">{</span>
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    <span class="c1"># Phase 1 (MVP) - 必须实现</span>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="s2">&quot;core_obliques&quot;</span><span class="p">:</span> <span class="p">{</span>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>        <span class="s2">&quot;signal&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>           <span class="c1"># 1000Hz 采样 (MyoWare 2.0 推荐配置)</span>
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>        <span class="s2">&quot;onset_time_ms&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>        <span class="c1"># 激活起始时间</span>
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>        <span class="s2">&quot;peak_amplitude_mv&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>  <span class="c1"># 峰值幅度</span>
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>        <span class="s2">&quot;rms_mv&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>             <span class="c1"># RMS 均值</span>
-</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>    <span class="p">},</span>
-</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>    <span class="s2">&quot;forearm_flexors&quot;</span><span class="p">:</span> <span class="p">{</span>
-</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>        <span class="s2">&quot;signal&quot;</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="p">],</span>
-</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>        <span class="s2">&quot;onset_time_ms&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>        <span class="s2">&quot;peak_amplitude_mv&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
-</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>        <span class="s2">&quot;rms_mv&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
-</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>    <span class="p">},</span>
+<h3 id="43-多传感器融合算法">4.3 多传感器融合算法 Sensor Fusion Algorithms<a class="headerlink" href="#43-多传感器融合算法" title="Permanent link">&para;</a></h3>
+<p>以下算法需要对齐后的多传感器数据才能执行：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># 运动链序列验证 (UNIQUE)</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_kinematic_sequence</span><span class="p">(</span><span class="n">emg_core</span><span class="p">,</span> <span class="n">emg_forearm</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="sd">    验证核心肌群是否先于手臂激活 (正确的运动链序列)</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="sd">    ⚠️ 关键参数: 同时激活容差 (Co-activation Tolerance)</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="sd">       - 如果 |time_diff| &lt; 5ms，视为&quot;同时激活&quot;</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="sd">       - 这是因为 EMG 采样精度限制 (1000Hz = 1ms)</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="sd">       - 详见: signal-processing-101.md §3.2</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="sd">    Args:</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="sd">        emg_core: 核心肌群 EMG 信号 (腹斜肌或竖脊肌)</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="sd">        emg_forearm: 前臂 EMG 信号 (桡侧腕屈肌或尺侧腕屈肌)</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="sd">        timestamps: 时间戳 (ms)</span>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="sd">        threshold: 激活阈值</span>
 </span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
-</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>    <span class="c1"># Phase 2 - 数据结构预留</span>
-</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>    <span class="s2">&quot;gluteus_maximus&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>       <span class="c1"># Phase 2 填充</span>
-</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>    <span class="s2">&quot;adductors&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>             <span class="c1"># Phase 2 填充</span>
-</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>
-</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>    <span class="c1"># Phase 3 - 数据结构预留</span>
-</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>    <span class="s2">&quot;latissimus_dorsi&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>      <span class="c1"># Phase 3 填充</span>
-</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>    <span class="s2">&quot;deltoids&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>              <span class="c1"># Phase 3 填充</span>
-</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a><span class="p">}</span>
-</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>
-</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a><span class="c1"># 计算 Core-Forearm 时序差</span>
-</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_timing_gap</span><span class="p">(</span><span class="n">mock_emg</span><span class="p">):</span>
-</span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>    <span class="n">core_onset</span> <span class="o">=</span> <span class="n">mock_emg</span><span class="p">[</span><span class="s2">&quot;core_obliques&quot;</span><span class="p">][</span><span class="s2">&quot;onset_time_ms&quot;</span><span class="p">]</span>
-</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>    <span class="n">forearm_onset</span> <span class="o">=</span> <span class="n">mock_emg</span><span class="p">[</span><span class="s2">&quot;forearm_flexors&quot;</span><span class="p">][</span><span class="s2">&quot;onset_time_ms&quot;</span><span class="p">]</span>
-</span><span id="__span-21-30"><a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>    <span class="n">gap_ms</span> <span class="o">=</span> <span class="n">forearm_onset</span> <span class="o">-</span> <span class="n">core_onset</span>  <span class="c1"># 正值 = 核心先激活 (正确)</span>
-</span><span id="__span-21-31"><a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>    <span class="k">return</span> <span class="n">gap_ms</span>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="sd">    Returns:</span>
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="sd">        sequence_correct: True=核心先激活, False=手臂先激活</span>
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="sd">        time_diff: 激活时间差 (ms, 正值=核心先激活)</span>
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="sd">                   ±5ms 范围内视为同时激活</span>
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>    <span class="n">core_onset</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">detect_muscle_onset</span><span class="p">(</span><span class="n">emg_core</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>    <span class="n">forearm_onset</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">detect_muscle_onset</span><span class="p">(</span><span class="n">emg_forearm</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>
+</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>    <span class="k">if</span> <span class="n">core_onset</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">forearm_onset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>  <span class="c1"># 信号质量不足</span>
+</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>
+</span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>    <span class="n">time_diff</span> <span class="o">=</span> <span class="n">forearm_onset</span> <span class="o">-</span> <span class="n">core_onset</span>  <span class="c1"># 正值=核心先激活</span>
+</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>    <span class="n">sequence_correct</span> <span class="o">=</span> <span class="n">time_diff</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span><span id="__span-21-30"><a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>
+</span><span id="__span-21-31"><a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>    <span class="k">return</span> <span class="n">sequence_correct</span><span class="p">,</span> <span class="n">time_diff</span>
 </span><span id="__span-21-32"><a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>
-</span><span id="__span-21-33"><a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a><span class="c1"># 计算发力比例</span>
-</span><span id="__span-21-34"><a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_activation_ratio</span><span class="p">(</span><span class="n">mock_emg</span><span class="p">):</span>
-</span><span id="__span-21-35"><a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>    <span class="n">core_rms</span> <span class="o">=</span> <span class="n">mock_emg</span><span class="p">[</span><span class="s2">&quot;core_obliques&quot;</span><span class="p">][</span><span class="s2">&quot;rms_mv&quot;</span><span class="p">]</span>
-</span><span id="__span-21-36"><a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>    <span class="n">forearm_rms</span> <span class="o">=</span> <span class="n">mock_emg</span><span class="p">[</span><span class="s2">&quot;forearm_flexors&quot;</span><span class="p">][</span><span class="s2">&quot;rms_mv&quot;</span><span class="p">]</span>
-</span><span id="__span-21-37"><a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a>    <span class="n">ratio</span> <span class="o">=</span> <span class="n">forearm_rms</span> <span class="o">/</span> <span class="n">core_rms</span>  <span class="c1"># &lt; 1.3 为正常</span>
-</span><span id="__span-21-38"><a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a>    <span class="k">return</span> <span class="n">ratio</span>
+</span><span id="__span-21-33"><a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a><span class="c1"># 疲劳检测 (UNIQUE)</span>
+</span><span id="__span-21-34"><a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a><span class="k">def</span><span class="w"> </span><span class="nf">detect_muscle_fatigue</span><span class="p">(</span><span class="n">emg_signals</span><span class="p">,</span> <span class="n">swing_indices</span><span class="p">):</span>
+</span><span id="__span-21-35"><a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-21-36"><a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a><span class="sd">    检测练习过程中的肌肉疲劳</span>
+</span><span id="__span-21-37"><a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a>
+</span><span id="__span-21-38"><a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a><span class="sd">    Args:</span>
+</span><span id="__span-21-39"><a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a><span class="sd">        emg_signals: EMG 信号 (mV), shape=(N_samples, N_muscles)</span>
+</span><span id="__span-21-40"><a id="__codelineno-21-40" name="__codelineno-21-40" href="#__codelineno-21-40"></a><span class="sd">        swing_indices: 每次挥杆的起止索引 [(start1, end1), (start2, end2), ...]</span>
+</span><span id="__span-21-41"><a id="__codelineno-21-41" name="__codelineno-21-41" href="#__codelineno-21-41"></a>
+</span><span id="__span-21-42"><a id="__codelineno-21-42" name="__codelineno-21-42" href="#__codelineno-21-42"></a><span class="sd">    Returns:</span>
+</span><span id="__span-21-43"><a id="__codelineno-21-43" name="__codelineno-21-43" href="#__codelineno-21-43"></a><span class="sd">        fatigue_detected: 是否检测到疲劳</span>
+</span><span id="__span-21-44"><a id="__codelineno-21-44" name="__codelineno-21-44" href="#__codelineno-21-44"></a><span class="sd">        fatigue_ratio: 最后挥杆 / 首次挥杆的激活强度比 (&lt;0.7 表示疲劳)</span>
+</span><span id="__span-21-45"><a id="__codelineno-21-45" name="__codelineno-21-45" href="#__codelineno-21-45"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-21-46"><a id="__codelineno-21-46" name="__codelineno-21-46" href="#__codelineno-21-46"></a>    <span class="c1"># 提取每次挥杆的峰值激活强度</span>
+</span><span id="__span-21-47"><a id="__codelineno-21-47" name="__codelineno-21-47" href="#__codelineno-21-47"></a>    <span class="n">peak_intensities</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-21-48"><a id="__codelineno-21-48" name="__codelineno-21-48" href="#__codelineno-21-48"></a>    <span class="k">for</span> <span class="n">start_idx</span><span class="p">,</span> <span class="n">end_idx</span> <span class="ow">in</span> <span class="n">swing_indices</span><span class="p">:</span>
+</span><span id="__span-21-49"><a id="__codelineno-21-49" name="__codelineno-21-49" href="#__codelineno-21-49"></a>        <span class="n">swing_emg</span> <span class="o">=</span> <span class="n">emg_signals</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span>
+</span><span id="__span-21-50"><a id="__codelineno-21-50" name="__codelineno-21-50" href="#__codelineno-21-50"></a>        <span class="n">peak</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">swing_emg</span><span class="p">)</span>
+</span><span id="__span-21-51"><a id="__codelineno-21-51" name="__codelineno-21-51" href="#__codelineno-21-51"></a>        <span class="n">peak_intensities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">peak</span><span class="p">)</span>
+</span><span id="__span-21-52"><a id="__codelineno-21-52" name="__codelineno-21-52" href="#__codelineno-21-52"></a>
+</span><span id="__span-21-53"><a id="__codelineno-21-53" name="__codelineno-21-53" href="#__codelineno-21-53"></a>    <span class="c1"># 对比首次和最后挥杆的激活强度</span>
+</span><span id="__span-21-54"><a id="__codelineno-21-54" name="__codelineno-21-54" href="#__codelineno-21-54"></a>    <span class="n">first_swing_peak</span> <span class="o">=</span> <span class="n">peak_intensities</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-21-55"><a id="__codelineno-21-55" name="__codelineno-21-55" href="#__codelineno-21-55"></a>    <span class="n">last_swing_peak</span> <span class="o">=</span> <span class="n">peak_intensities</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-21-56"><a id="__codelineno-21-56" name="__codelineno-21-56" href="#__codelineno-21-56"></a>
+</span><span id="__span-21-57"><a id="__codelineno-21-57" name="__codelineno-21-57" href="#__codelineno-21-57"></a>    <span class="n">fatigue_ratio</span> <span class="o">=</span> <span class="n">last_swing_peak</span> <span class="o">/</span> <span class="n">first_swing_peak</span>
+</span><span id="__span-21-58"><a id="__codelineno-21-58" name="__codelineno-21-58" href="#__codelineno-21-58"></a>    <span class="n">fatigue_detected</span> <span class="o">=</span> <span class="n">fatigue_ratio</span> <span class="o">&lt;</span> <span class="mf">0.7</span>  <span class="c1"># 强度下降 &gt;30% 视为疲劳</span>
+</span><span id="__span-21-59"><a id="__codelineno-21-59" name="__codelineno-21-59" href="#__codelineno-21-59"></a>
+</span><span id="__span-21-60"><a id="__codelineno-21-60" name="__codelineno-21-60" href="#__codelineno-21-60"></a>    <span class="k">return</span> <span class="n">fatigue_detected</span><span class="p">,</span> <span class="n">fatigue_ratio</span>
+</span><span id="__span-21-61"><a id="__codelineno-21-61" name="__codelineno-21-61" href="#__codelineno-21-61"></a>
+</span><span id="__span-21-62"><a id="__codelineno-21-62" name="__codelineno-21-62" href="#__codelineno-21-62"></a><span class="c1"># 力链传递验证 (UNIQUE)</span>
+</span><span id="__span-21-63"><a id="__codelineno-21-63" name="__codelineno-21-63" href="#__codelineno-21-63"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_force_chain</span><span class="p">(</span><span class="n">emg_signals</span><span class="p">,</span> <span class="n">muscle_names</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+</span><span id="__span-21-64"><a id="__codelineno-21-64" name="__codelineno-21-64" href="#__codelineno-21-64"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-21-65"><a id="__codelineno-21-65" name="__codelineno-21-65" href="#__codelineno-21-65"></a><span class="sd">    验证力链传递序列: 下肢 → 核心 → 躯干 → 手臂</span>
+</span><span id="__span-21-66"><a id="__codelineno-21-66" name="__codelineno-21-66" href="#__codelineno-21-66"></a>
+</span><span id="__span-21-67"><a id="__codelineno-21-67" name="__codelineno-21-67" href="#__codelineno-21-67"></a><span class="sd">    Args:</span>
+</span><span id="__span-21-68"><a id="__codelineno-21-68" name="__codelineno-21-68" href="#__codelineno-21-68"></a><span class="sd">        emg_signals: EMG 信号字典 {muscle_name: signal}</span>
+</span><span id="__span-21-69"><a id="__codelineno-21-69" name="__codelineno-21-69" href="#__codelineno-21-69"></a><span class="sd">        muscle_names: 肌肉分组 [&#39;leg&#39;, &#39;core&#39;, &#39;torso&#39;, &#39;arm&#39;]</span>
+</span><span id="__span-21-70"><a id="__codelineno-21-70" name="__codelineno-21-70" href="#__codelineno-21-70"></a><span class="sd">        timestamps: 时间戳 (ms)</span>
+</span><span id="__span-21-71"><a id="__codelineno-21-71" name="__codelineno-21-71" href="#__codelineno-21-71"></a><span class="sd">        threshold: 激活阈值</span>
+</span><span id="__span-21-72"><a id="__codelineno-21-72" name="__codelineno-21-72" href="#__codelineno-21-72"></a>
+</span><span id="__span-21-73"><a id="__codelineno-21-73" name="__codelineno-21-73" href="#__codelineno-21-73"></a><span class="sd">    Returns:</span>
+</span><span id="__span-21-74"><a id="__codelineno-21-74" name="__codelineno-21-74" href="#__codelineno-21-74"></a><span class="sd">        force_chain_correct: True=力链传递正确</span>
+</span><span id="__span-21-75"><a id="__codelineno-21-75" name="__codelineno-21-75" href="#__codelineno-21-75"></a><span class="sd">        onset_sequence: 各肌群激活时间 (ms)</span>
+</span><span id="__span-21-76"><a id="__codelineno-21-76" name="__codelineno-21-76" href="#__codelineno-21-76"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-21-77"><a id="__codelineno-21-77" name="__codelineno-21-77" href="#__codelineno-21-77"></a>    <span class="n">onset_times</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-21-78"><a id="__codelineno-21-78" name="__codelineno-21-78" href="#__codelineno-21-78"></a>
+</span><span id="__span-21-79"><a id="__codelineno-21-79" name="__codelineno-21-79" href="#__codelineno-21-79"></a>    <span class="k">for</span> <span class="n">muscle</span> <span class="ow">in</span> <span class="n">muscle_names</span><span class="p">:</span>
+</span><span id="__span-21-80"><a id="__codelineno-21-80" name="__codelineno-21-80" href="#__codelineno-21-80"></a>        <span class="n">onset_time</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">detect_muscle_onset</span><span class="p">(</span><span class="n">emg_signals</span><span class="p">[</span><span class="n">muscle</span><span class="p">],</span> <span class="n">timestamps</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+</span><span id="__span-21-81"><a id="__codelineno-21-81" name="__codelineno-21-81" href="#__codelineno-21-81"></a>        <span class="n">onset_times</span><span class="p">[</span><span class="n">muscle</span><span class="p">]</span> <span class="o">=</span> <span class="n">onset_time</span>
+</span><span id="__span-21-82"><a id="__codelineno-21-82" name="__codelineno-21-82" href="#__codelineno-21-82"></a>
+</span><span id="__span-21-83"><a id="__codelineno-21-83" name="__codelineno-21-83" href="#__codelineno-21-83"></a>    <span class="c1"># 验证激活顺序</span>
+</span><span id="__span-21-84"><a id="__codelineno-21-84" name="__codelineno-21-84" href="#__codelineno-21-84"></a>    <span class="n">expected_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;leg&#39;</span><span class="p">,</span> <span class="s1">&#39;core&#39;</span><span class="p">,</span> <span class="s1">&#39;torso&#39;</span><span class="p">,</span> <span class="s1">&#39;arm&#39;</span><span class="p">]</span>
+</span><span id="__span-21-85"><a id="__codelineno-21-85" name="__codelineno-21-85" href="#__codelineno-21-85"></a>    <span class="n">actual_order</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">onset_times</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">onset_times</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>
+</span><span id="__span-21-86"><a id="__codelineno-21-86" name="__codelineno-21-86" href="#__codelineno-21-86"></a>
+</span><span id="__span-21-87"><a id="__codelineno-21-87" name="__codelineno-21-87" href="#__codelineno-21-87"></a>    <span class="n">force_chain_correct</span> <span class="o">=</span> <span class="n">actual_order</span> <span class="o">==</span> <span class="n">expected_order</span>
+</span><span id="__span-21-88"><a id="__codelineno-21-88" name="__codelineno-21-88" href="#__codelineno-21-88"></a>
+</span><span id="__span-21-89"><a id="__codelineno-21-89" name="__codelineno-21-89" href="#__codelineno-21-89"></a>    <span class="k">return</span> <span class="n">force_chain_correct</span><span class="p">,</span> <span class="n">onset_times</span>
 </span></code></pre></div>
+<p><strong>可计算指标 (竞品无法实现)</strong>:</p>
+<ul>
+<li>肌肉激活时序 (&lt;5ms 精度)</li>
+<li>肌肉激活强度 (mV 信号幅值)</li>
+<li>运动链序列验证 (核心 → 手臂的顺序)</li>
+<li>疲劳检测 (激活强度衰减)</li>
+<li>力链传递验证 (下肢 → 核心 → 躯干 → 手臂)</li>
+</ul>
 <hr />
 <h3 id="44-融合置信度计算-fusion-confidence">4.4 融合置信度计算 Fusion Confidence<a class="headerlink" href="#44-融合置信度计算-fusion-confidence" title="Permanent link">&para;</a></h3>
 <p>三模态融合提升置信度的核心算法:</p>
