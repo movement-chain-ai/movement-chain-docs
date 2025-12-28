@@ -252,7 +252,7 @@ def filter_landmarks(landmarks, min_visibility=0.7):
 | **重心转移** | 23, 24, 27, 28 | 髋部中点相对于双脚中点的偏移 |
 | **膝盖弯曲** | 23/24, 25/26, 27/28 | 髋-膝-踝夹角 |
 
-基于原始 33 关键点坐标，可计算以下高尔夫挥杆指标：
+基于原始关键点坐标，可计算以下高尔夫挥杆指标：
 
 ```python
 # X-Factor 计算示例
@@ -311,11 +311,14 @@ def calculate_obliquity(landmarks, is_shoulder=True):
 
 **可计算指标**:
 
-- X-Factor, X-Factor Stretch
-- S-Factor, O-Factor
-- 骨盆/躯干转角
-- 侧移/前推/抬升 (Sway/Thrust/Lift)
-- 节奏比 (低精度)
+| 类型 | 指标 | 说明 |
+|------|------|------|
+| **实时** | X-Factor | 每帧计算肩髋分离角 |
+| **实时** | S-Factor, O-Factor | 每帧计算倾斜角 |
+| **实时** | 骨盆/躯干转角 | 每帧计算 |
+| **实时** | 侧移/前推/抬升 | Sway/Thrust/Lift，每帧计算 |
+| **挥杆后** | X-Factor Stretch | 需要完整挥杆数据 (峰值时刻对比) |
+| **挥杆后** | 节奏比 (低精度) | 需要完整挥杆数据 |
 
 ---
 
