@@ -14,6 +14,7 @@
 | 4 | [MSE](#4-mse-均方误差) | Mean Squared Error | 回归模型的评估指标，衡量预测误差 |
 | 5 | [LLM](#5-llm-大语言模型) | Large Language Model | 大规模预训练语言模型，用于生成自然语言反馈 |
 | 6 | [NLP](#6-nlp-自然语言处理) | Natural Language Processing | AI 的分支，研究计算机理解和生成人类语言 |
+| 7 | [Kinematic Prompt](#7-kinematic-prompt-运动学提示) | Kinematic Prompt | 用结构化运动学数据作为 LLM 输入，替代硬编码规则 |
 
 ---
 
@@ -563,13 +564,156 @@ X-Factor: 45°               ┌─────────────┐      
 
 ---
 
+## 7. Kinematic Prompt (运动学提示) {#7-kinematic-prompt-运动学提示}
+
+**定义：** Kinematic Prompt 是一种**数据组织与呈现的设计模式**，定义了如何将运动学数据（关节位置、速度、角度等）**结构化、格式化**后作为 LLM 的输入。它本身不是算法或模型，而是一种规范化的数据表达方式，让 LLM 能够理解并推理运动学信息，从而自动分析规则，而不需要人工编写硬编码规则。
+
+> ⚠️ **术语说明**：Kinematic Prompt 是 **Movement Chain AI 项目内部术语**，用于描述本系统的 LLM 提示设计模式。学术界通常使用 "kinematics-conditioned prompting"、"motion-aware prompting" 或 "pose-conditioned generation" 等表述。
+
+---
+
+### 核心思想
+
+```text
+传统方式 (硬编码规则):
+─────────────────────────────────────────────────────
+开发者写规则: if x_factor < 35: return "肩髋分离不足"
+             if tempo_ratio > 4: return "下杆过慢"
+             if gyro_peak < 600: return "挥杆速度不足"
+             ... (几十条规则，难以维护)
+
+Kinematic Prompt 方式:
+─────────────────────────────────────────────────────
+开发者给数据:  {x_factor: 28, tempo_ratio: 4.2, gyro_peak: 520}
+LLM 自动推理: "你的肩髋分离只有28°，职业选手通常45°+。
+              这导致能量传递效率低，挥杆速度仅520°/s。
+              建议：上杆时保持髋部稳定，让肩膀多转15°"
+```
+
+### 为什么叫 "Kinematic"？
+
+**Kinematics（运动学）** 是力学的分支，研究物体运动的几何描述（位置、速度、加速度），不考虑力的作用。
+
+在 Movement Chain AI 中，Kinematic 数据包括：
+
+| 数据类型 | 来源 | 示例 |
+|----------|------|------|
+| **关节坐标** | Vision (MediaPipe) | 肩膀 x=0.45, y=0.32 |
+| **关节角度** | 计算 | X-Factor 45°, S-Factor 12° |
+| **角速度** | IMU (gyro) | gyro_z 峰值 850°/s |
+| **时间指标** | 计算 | 节奏比 3.2:1, 下杆时间 280ms |
+| **肌肉激活** | EMG | 背阔肌激活时刻 -45ms |
+
+### Kinematic Prompt vs 传统规则
+
+| 对比 | 硬编码规则 | Kinematic Prompt |
+|------|-----------|------------------|
+| **规则维护** | 需要手写几十条 | LLM 自动推理 |
+| **边界情况** | 容易遗漏 | 自然语言理解 |
+| **个性化** | 需要复杂逻辑 | 可加入用户上下文 |
+| **解释性** | 固定文案 | 动态生成自然语言 |
+| **多指标综合** | 复杂条件嵌套 | LLM 自然理解关联 |
+
+### 在 Movement Chain AI 中的应用
+
+#### Phase 3 LLM 调用示例
+
+```python
+# 从各传感器计算的运动学指标
+kinematic_data = {
+    # Vision 指标
+    "x_factor_peak": 28,           # 肩髋分离角
+    "s_factor_peak": 15,           # 肩部倾斜
+
+    # IMU 指标
+    "tempo_ratio": 4.2,            # 节奏比
+    "gyro_z_peak": 520,            # 峰值角速度 (°/s)
+    "downswing_time_ms": 320,      # 下杆时间
+
+    # EMG 指标
+    "lat_activation_timing": -45,  # 背阔肌激活时刻 (ms before impact)
+
+    # 用户上下文
+    "user_handicap": 18,           # 用户差点
+    "previous_issue": "节奏"       # 上次反馈的问题
+}
+
+# Kinematic Prompt
+prompt = f"""
+你是一位专业高尔夫教练。分析以下挥杆数据，给出 1-2 句可执行建议。
+
+挥杆数据:
+{json.dumps(kinematic_data, indent=2)}
+
+参考基准:
+- 职业选手 X-Factor: 45-55°
+- 理想节奏比: 2.5-3.5:1
+- 职业峰值角速度: 800-1200°/s
+
+用户水平: {kinematic_data['user_handicap']} 差点
+上次问题: {kinematic_data['previous_issue']}
+
+请用中文回答，语气友好专业。
+"""
+
+# LLM 自动理解指标含义，生成教练级反馈
+response = openai.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": prompt}]
+)
+```
+
+#### 为什么这样设计？
+
+```text
+Movement Chain AI 数据流:
+
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│  Stage 1-4  │ ──► │   Stage 5   │ ──► │   Stage 6   │
+│  传感器采集  │     │  特征提取   │     │  LLM 推理   │
+└─────────────┘     └─────────────┘     └─────────────┘
+      │                   │                   │
+      ▼                   ▼                   ▼
+  Vision/IMU/EMG    Kinematic 指标      自然语言反馈
+  原始数据           (结构化数据)       (教练建议)
+
+你只负责:                           LLM 负责:
+提取指标                            理解指标含义
+计算特征                            推理问题原因
+                                    生成建议
+```
+
+### 优势总结
+
+| 优势 | 说明 |
+|------|------|
+| **零规则维护** | 不需要写 if-else 逻辑 |
+| **自动关联** | LLM 能理解多个指标之间的关系 |
+| **个性化** | 可以加入用户历史、水平等上下文 |
+| **自然语言** | 输出像真人教练的建议 |
+| **易迭代** | 调整 Prompt 即可改变输出风格 |
+
+### 相关技术
+
+| 术语 | 说明 |
+|------|------|
+| **Prompt Engineering** | 设计有效的提示词引导 LLM 输出 |
+| **Few-shot Learning** | 在 Prompt 中提供示例 |
+| **Chain-of-Thought** | 让 LLM 分步推理 |
+| **Structured Output** | 让 LLM 输出 JSON 等结构化格式 |
+
+> 详见：[数据流与反馈 § Stage 5](../design/architecture/data-pipeline-and-ai.md) — Kinematic Prompt 在系统中的位置
+
+---
+
 ## 相关文档
 
 - [软件架构术语表](software-glossary.md) - 六边形架构等设计模式
 - [工程术语表](engineering-glossary.md) - Edge AI 相关概念
 - [关键决策 2025-12](../design/decisions/architecture-decisions-2025-12-23.md) - 技术选型决策
 - [系统设计](../design/architecture/system-design.md) - 整体架构
+- [数据流与反馈](../design/architecture/data-pipeline-and-ai.md) - Kinematic Prompt 实际应用
 
 ---
 
-**最后更新**: 2025年12月24日
+**最后更新**: 2025-12-29

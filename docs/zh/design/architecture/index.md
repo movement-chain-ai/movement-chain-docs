@@ -14,17 +14,17 @@
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────┐
-│  1. system-design.md (25分钟) ─── Hub 文档                         │
-│     └── MVP 全貌：4模块架构、12指标、6规则、技术栈                    │
+│  1. system-design.md (25分钟) ─── Hub 文档                           │
+│     └── MVP 全貌：4模块架构、12指标、6规则、技术栈                        │
 │                                                                     │
-│  2. modular-architecture.md (25分钟) ─── 结构设计                  │
-│     └── LEGO 积木块：Input→Extraction→Analysis→Output              │
+│  2. modular-architecture.md (25分钟) ─── 结构设计                     │
+│     └── LEGO 积木块：Input→Extraction→Analysis→Output                │
 │                                                                     │
-│  3. data-pipeline-and-ai.md (20分钟) ─── 数据流设计                │
-│     └── 时间对齐、Kinematic Prompts、反馈生成                        │
+│  3. data-pipeline-and-ai.md (20分钟) ─── 数据流设计                   │
+│     └── 时间对齐、Kinematic Prompts、反馈生成                          │
 │                                                                     │
-│  4. sensor-data-processing.md (参考) ─── 算法实现                   │
-│     └── Python 代码：特征计算、融合诊断、模拟数据生成                 │
+│  4. sensor-data-processing.md (参考) ─── 算法实现                     │
+│     └── Python 代码：特征计算、融合诊断、模拟数据生成                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
