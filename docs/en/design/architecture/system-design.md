@@ -278,7 +278,7 @@ flowchart LR
 
 ### 4.3 Sensor Hub Architecture (Key Innovation)
 
-> 📐 **Time Sync Strategy**: Detailed specs see [Data Pipeline & AI](./data-pipeline-and-ai.md) §1.2
+> 📐 **Time Sync Strategy**: Detailed specs see [Data Pipeline & AI](./data-flow.md) §1.2
 
 **Core Problem**: BLE protocol has 15-30ms jitter (validated 2025-12), cannot be completely eliminated by software.
 
@@ -369,7 +369,7 @@ flowchart LR
 #### Step 2: Understand Core Algorithms
 
 - **[Modular Architecture](./modular-architecture.md)** - LEGO block design, module upgrade paths
-- **[Data Pipeline & AI](./data-pipeline-and-ai.md)** - Data flow, sensor fusion, time sync strategy
+- **[Data Pipeline & AI](./data-flow.md)** - Data flow, sensor fusion, time sync strategy
 - **[Sensor Mapping](./sensor-metric-mapping.md)** - Which sensor measures what
 - **[2025 December Key Decisions](./architecture-decisions-2025-12-23.md)** - Sensor Hub architecture, hardware selection, time sync strategy
 - 8-Phase Detection - Swing phase identification algorithm with code

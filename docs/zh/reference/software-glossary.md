@@ -672,7 +672,7 @@ def calculate_x_factor(landmarks):
     return math.degrees(shoulder_angle - hip_angle)
 ```
 
-> 详见：[数据流与反馈 §1.2](../design/architecture/data-pipeline-and-ai.md#1-时间对齐数据结构) — MediaPipe Vision 原始数据格式
+> 详见：[数据流与反馈 §1.2](../design/architecture/data-flow.md#1-时间对齐数据结构) — MediaPipe Vision 原始数据格式
 
 ---
 

@@ -496,7 +496,7 @@ fps 决定了能分辨的**最短时间间隔**：
 !!! info "为什么 IMU 用 Hz 而不是 fps？"
     fps 专指**图像帧**，而 IMU 输出的是**数值数据**（加速度、角速度），所以用 Hz 表示采样率更准确。
 
-> 详见：[数据流与反馈 §1.2](../design/architecture/data-pipeline-and-ai.md#1-时间对齐数据结构) — MediaPipe Vision 30fps 数据采集
+> 详见：[数据流与反馈 §1.2](../design/architecture/data-flow.md#1-时间对齐数据结构) — MediaPipe Vision 30fps 数据采集
 
 ---
 

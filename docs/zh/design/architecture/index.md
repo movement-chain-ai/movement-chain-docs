@@ -20,7 +20,7 @@
 │  2. modular-architecture.md (25分钟) ─── 结构设计                     │
 │     └── LEGO 积木块：Input→Extraction→Analysis→Output                │
 │                                                                     │
-│  3. data-pipeline-and-ai.md (20分钟) ─── 数据流设计                   │
+│  3. data-flow.md (20分钟) ─── 数据流设计                   │
 │     └── 时间对齐、Kinematic Prompts、反馈生成                          │
 │                                                                     │
 │  4. sensor-data-processing.md (参考) ─── 算法实现                     │
@@ -56,7 +56,7 @@ LEGO 积木块架构：
 - **MVP 策略**: Simple Rules 分类器、Mode 3 聚焦
 - **升级路径**: Phase 1-4 渐进式开发
 
-### [数据流与反馈架构](data-pipeline-and-ai.md)
+### [数据流与反馈架构](data-flow.md)
 
 **阅读时间**: ~20 分钟 | **行为设计** | **必读**
 
@@ -89,9 +89,9 @@ LEGO 积木块架构：
 | Impact 对齐 | 使用击球瞬间作为 T=0 参考点 | [关键决策](../decisions/architecture-decisions-2025-12-23.md) |
 | BLE 抖动 | 15-30ms 连接间隔随机延迟 | [关键决策](../decisions/architecture-decisions-2025-12-23.md) |
 | X-Factor | 肩-髋分离角 | system-design.md §2 |
-| Kinematic Prompts | 传感器→LLM 的桥梁 | data-pipeline-and-ai.md §2 |
+| Kinematic Prompts | 传感器→LLM 的桥梁 | data-flow.md §2 |
 | False Coil | X-Factor 正常但核心未激活 | modular-architecture.md §4.2.2 |
-| Mode 3 | 全速挥杆后处理模式 | data-pipeline-and-ai.md §2 |
+| Mode 3 | 全速挥杆后处理模式 | data-flow.md §2 |
 | LEGO 原则 | 模块独立、接口稳定 | modular-architecture.md §1.3 |
 
 ---

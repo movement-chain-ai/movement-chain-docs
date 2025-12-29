@@ -1163,7 +1163,7 @@ User → Cloudflare Workers (API gateway/cache) → AWS Lambda (ML inference)
 
 ### 7.8 Video & Sensor Synchronization Solution
 
-> **Authoritative Source**: [data-pipeline-and-ai.md §1.2](./data-pipeline-and-ai.md) defines complete time synchronization specs.
+> **Authoritative Source**: [data-flow.md §1.2](./data-flow.md) defines complete time synchronization specs.
 > This section is decision confirmation only, refer to authoritative documentation for detailed implementation.
 
 ```text
@@ -1490,7 +1490,7 @@ User → Cloudflare Workers (API gateway/cache) → AWS Lambda (ML inference)
 
 | Item | Status | Description | Deadline |
 |------|--------|-------------|----------|
-| Update data-pipeline-and-ai.md | ⏳ Pending | Sync BLE jitter research to authoritative doc | Next week |
+| Update data-flow.md | ⏳ Pending | Sync BLE jitter research to authoritative doc | Next week |
 | Update components/emg/hardware.md | ⏳ Pending | Add MyoWare 2.0 discontinuation warning | Next week |
 | ESP32 source-side timestamp firmware prototype | ⏳ Pending | Implement `esp_timer_get_time()` packaging | Phase 2 |
 
@@ -1513,7 +1513,7 @@ User → Cloudflare Workers (API gateway/cache) → AWS Lambda (ML inference)
 
 | Document | Content | Relationship |
 |----------|---------|--------------|
-| **[data-pipeline-and-ai.md](./data-pipeline-and-ai.md)** | **Data flow & time sync** | **⭐ Authoritative source** |
+| **[data-flow.md](./data-flow.md)** | **Data flow & time sync** | **⭐ Authoritative source** |
 | [modular-architecture.md](./modular-architecture.md) | LEGO block architecture | Hexagonal mapping |
 | [sensor-metric-mapping.md](./sensor-metric-mapping.md) | Algorithm implementation code | Mock data generation |
 | ADR-0002 | LSM6DSV16X selection | IMU hardware decision |
@@ -1521,7 +1521,7 @@ User → Cloudflare Workers (API gateway/cache) → AWS Lambda (ML inference)
 | ADR-0007 | Swift iOS native | Mobile platform decision |
 | vision-based.md | Competitor analysis | 2025 update |
 
-> **Documentation Priority**: `data-pipeline-and-ai.md` is the **single authoritative source** for data flow and time synchronization.
+> **Documentation Priority**: `data-flow.md` is the **single authoritative source** for data flow and time synchronization.
 > This decision document only provides high-level confirmation; in case of conflict with data-pipeline, defer to latter.
 
 ---

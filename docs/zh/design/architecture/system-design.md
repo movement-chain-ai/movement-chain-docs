@@ -194,7 +194,7 @@
 
 ---
 
-#### 1.3.1 Stage 1: 用户挥杆 {#stage-1}
+#### 1.3.1 用户挥杆 {#stage-1}
 
 **功能**: 系统的输入事件，触发整个数据采集与分析流程。
 
@@ -273,7 +273,7 @@
 - **因果推断基础**: 只有时间精确对齐，才能判断"核心激活是否先于手臂动作"
 - **数据可比性**: 不同挥杆、不同用户的数据可以直接比较
 
-> 📐 详见: [数据管道与AI](./data-pipeline-and-ai.md#sensor-hub-架构-2025-12-推荐) — 时间同步策略
+> 📐 详见: [数据管道与AI](./data-flow.md#sensor-hub-架构-2025-12-推荐) — 时间同步策略
 
 ---
 
@@ -432,7 +432,7 @@ LLM 输出:
 - **可执行**: 建议是具体动作（"收紧腹肌"），不是抽象概念
 - **个性化**: 根据具体数据定制反馈内容
 
-> 📐 详见: [数据管道与AI](./data-pipeline-and-ai.md) — Kinematic Prompts 详细设计
+> 📐 详见: [数据管道与AI](./data-flow.md) — Kinematic Prompts 详细设计
 
 ---
 
@@ -506,7 +506,7 @@ LLM 输出:
 | **开发环境 (Python)** | [SDK选型](../decisions/sdk-selection.md), [架构决策](../decisions/architecture-decisions-2025-12-23.md) | MediaPipe + NeuroKit2 + Polars + Rerun.io |
 | **嵌入式 (ESP32)** | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md), [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) | ESP-IDF + FreeRTOS + BLE 5.0 |
 | **传感器** | [数据处理与指标计算](./sensor-data-processing.md) | LSM6DSV16X (IMU) + MyoWare 2.0 (EMG) |
-| **时间同步** | [数据管道](./data-pipeline-and-ai.md#sensor-hub-架构-2025-12-推荐) | Sensor Hub + Impact T=0 对齐 |
+| **时间同步** | [数据管道](./data-flow.md#sensor-hub-架构-2025-12-推荐) | Sensor Hub + Impact T=0 对齐 |
 | **硬件设计** | [硬件购买清单](../decisions/architecture-decisions-2025-12-23.md#43-硬件购买清单) | KiCad PCB 设计 |
 
 ### 2.2 开发 vs 生产架构
@@ -549,7 +549,7 @@ LLM 输出:
 | **LLM Feedback** | ☁️ Cloud API | 200-500ms | 复杂推理，挥杆后可接受 |
 | **Data Sync** | ☁️ Cloud (Post-MVP) | N/A | 趋势分析、跨设备 |
 
-> 📐 **详细规格**: [数据管道与AI](./data-pipeline-and-ai.md) | [模块化架构](./modular-architecture.md)
+> 📐 **详细规格**: [数据管道与AI](./data-flow.md) | [模块化架构](./modular-architecture.md)
 
 ---
 
@@ -573,7 +573,7 @@ LLM 输出:
 | IMU 选型 | LSM6DSV16X | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md) |
 | MCU 选型 | ESP32-S3 | [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) |
 | EMG 选型 | MyoWare 2.0 + Link Shield | [架构决策](../decisions/architecture-decisions-2025-12-23.md) |
-| 时间同步 | Sensor Hub + Impact 对齐 | [数据管道](./data-pipeline-and-ai.md) |
+| 时间同步 | Sensor Hub + Impact 对齐 | [数据管道](./data-flow.md) |
 | 升级路径 | LEGO block 可替换设计 | [模块化架构](./modular-architecture.md) |
 
 ### 3.3 开发计划

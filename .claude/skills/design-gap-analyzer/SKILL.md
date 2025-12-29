@@ -17,7 +17,7 @@ description: Analyze design documents for gaps, ambiguities, and missing details
 ```text
 docs/zh/design/architecture/system-design.md    # Hub document (source of truth)
 docs/zh/design/architecture/modular-architecture.md
-docs/zh/design/architecture/data-pipeline-and-ai.md
+docs/zh/design/architecture/data-flow.md
 docs/zh/design/architecture/sensor-data-processing.md
 docs/zh/design/specs/*.md                        # Feature specifications
 docs/zh/prerequisites/foundations/biomechanics-glossary.md  # Term definitions
@@ -202,7 +202,7 @@ AFTER:  "角速度精度 ±0.5°/s"
 ```text
 system-design.md
     ├── modular-architecture.md ✅
-    ├── data-pipeline-and-ai.md ⚠️ (missing error handling)
+    ├── data-flow.md ⚠️ (missing error handling)
     ├── sensor-data-processing.md ⚠️ (missing units)
     └── swing-phases.md ✅
 ```
