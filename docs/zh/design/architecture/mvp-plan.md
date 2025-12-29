@@ -14,108 +14,33 @@
 
 ### 1.1 MVP 目标
 
-**一句话**: 验证三模态数据 (Vision + IMU + EMG) 能否精确对齐，并产生有意义的教练反馈。
+**一句话**: 验证三模态数据管道 (Vision + IMU + EMG) 的时间对齐与反馈生成逻辑。
 
 !!! warning "MVP 测试的是管道集成，不是算法精度"
-    这是最重要的范围边界。理解这一点可以避免过度工程。
+    - **初期**: 使用 Mock 数据验证管道逻辑（见 [§3.1 模拟数据策略](#31-模拟数据策略)）
+    - **硬件就绪后**: 切换到真实传感器数据验证端到端集成
+    - 算法精度优化属于 Post-MVP 范围
 
-### 1.2 相关文档
+### 1.2 MVP 实现的功能
 
-> **详细规格文档** (本文档仅提供开发计划，详细规格见以下文档):
->
-> - [系统设计](./system-design.md) — 产品愿景、完整架构、技术栈
-> - [数据管道与AI](./data-pipeline-and-ai.md) — 时间同步、Kinematic Prompts、诊断规则
-> - [数据处理与指标计算](./sensor-data-processing.md) — 12个指标的完整定义与算法
-> - [2025年12月关键决策](../decisions/architecture-decisions-2025-12-23.md) — 硬件选型、Sensor Hub 架构
-> - [移动开发指南](../../development/mobile/development.md) — Swift iOS 开发
+| 功能 | 说明 | 数据来源 |
+|------|------|----------|
+| **MediaPipe 视频处理** | 30fps 实时姿态估计 | 真实视频 |
+| **BLE 数据接收** | ESP32 → iPhone 数据传输 | 真实硬件或模拟器 |
+| **时间戳对齐** | 跨传感器 ±30ms 容差对齐 | 混合 (真实+Mock) |
+| **融合逻辑** | 三模态数据合并产生结构化输出 | 任意输入 |
+| **UI 反馈渲染** | 用户可见的反馈界面 | Pipeline 输出 |
 
----
+#### MVP 不验证的功能 (Post-MVP)
 
-## 2. 并行开发策略
+| 延后项 | 原因 |
+|--------|------|
+| EMG 激活检测精度 (<5ms) | 需要真实肌肉数据 |
+| IMU 相位检测鲁棒性 | 需要真实噪声数据 |
+| 阈值校准正确性 | 需要大量用户样本 |
+| 算法精度优化 | 属于产品迭代范围 |
 
-**核心思路**: 硬件开发周期长（PCB打样、固件调试），软件不应等待。通过 Mock Data 解耦，硬件和软件可以并行推进。
-
-```mermaid
-flowchart LR
-    subgraph TrackA["🔧 Track A: 硬件"]
-        A1["传感器<br/>IMU + EMG"] --> A2["ESP32-S3"]
-        A2 --> A3["BLE 5.0"]
-        A3 --> A4["iPhone 接收"]
-    end
-
-    subgraph TrackB["💻 Track B: 软件"]
-        B1["Mock JSON"] --> B2["融合引擎"]
-        B2 --> B3["12 指标"]
-        B3 --> B4["规则引擎"]
-        B4 --> B5["LLM 反馈"]
-    end
-
-    A4 -.->|"完成后替换数据源"| B2
-
-    style TrackA fill:#e1f5fe
-    style TrackB fill:#fff3e0
-```
-
-**合流时机**: Track A 完成稳定 BLE 传输后，将 Mock Data 替换为 Real Data，代码层面几乎不需要改动。
-
----
-
-## 3. MVP 验证范围
-
-### 3.1 正在测试 (Pipeline Integration)
-
-| 测试项 | 验证标准 | 数据来源 |
-|--------|----------|----------|
-| MediaPipe 处理视频帧 | 30fps 无崩溃 | 真实视频 |
-| BLE 接收 ESP32 数据 | 数据包完整 | 真实硬件 或 模拟器 |
-| 时间戳跨传感器对齐 | ±30ms 容差内 | 混合 (真实+模拟) |
-| 融合逻辑产生输出 | 返回有效结构 | 任意输入 |
-| UI 渲染反馈 | 用户可见 | Pipeline 输出 |
-
-### 3.2 不测试 (Post-MVP 范围)
-
-| 延后项 | 原因 | 何时测试 |
-|--------|------|----------|
-| EMG 激活检测精度 (<5ms) | 需要真实肌肉数据 | Post-MVP 硬件就绪 |
-| IMU 相位检测鲁棒性 | 需要噪声数据 | Post-MVP 硬件就绪 |
-| 阈值校准正确性 | 需要大量样本 | Post-MVP 用户测试 |
-| 真实肌肉信号处理 | 需要 MyoWare 硬件 | Post-MVP |
-
-### 3.3 模拟数据策略
-
-MVP 阶段使用**最简单可行**的模拟数据：
-
-| 传感器 | 数据来源 | 复杂度 |
-|--------|----------|--------|
-| **Vision** | 真实视频 + MediaPipe | 真实数据 |
-| **IMU** | 硬编码时间戳 | `{"top_ms": 600, "impact_ms": 850}` |
-| **EMG** | 硬编码时间戳 | `{"core_onset_ms": 570, "forearm_onset_ms": 720}` |
-
-```python
-# MVP Mock 示例 — 故意简单
-mock_emg = {"core_onset_ms": 570, "forearm_onset_ms": 720}
-mock_imu = {"top_ms": 600, "impact_ms": 850}
-
-# 真实数据
-vision = mediapipe.process(real_video_frame)
-
-# 测试管道是否运行
-result = fusion_pipeline(vision, mock_imu, mock_emg)
-assert result is not None  # MVP 通过!
-```
-
-### 3.4 外部参考数据
-
-可使用 OnForm 等应用的分析结果作为 Vision 管道的参照：
-
-1. 录制挥杆视频
-2. 上传到 OnForm → 获取 X-Factor、节奏等计算值
-3. 用同一视频运行 MediaPipe → 比较结果
-4. 误差在合理范围内 → Vision 管道验证通过
-
----
-
-## 4. MVP 核心输出
+### 1.3 MVP 核心输出
 
 !!! abstract "🎯 MVP 的核心价值: Time-Aligned FusionResult"
 
@@ -151,7 +76,68 @@ assert result is not None  # MVP 通过!
 
 ---
 
-## 5. MVP 模式聚焦
+## 2. 并行开发策略
+
+**核心思路**: 硬件开发周期长（PCB打样、固件调试），软件不应等待。通过 Mock Data 解耦，硬件和软件可以并行推进。
+
+```mermaid
+flowchart LR
+    subgraph TrackA["🔧 Track A: 硬件"]
+        A1["传感器<br/>IMU + EMG"] --> A2["ESP32-S3"]
+        A2 --> A3["BLE 5.0"]
+        A3 --> A4["iPhone 接收"]
+    end
+
+    subgraph TrackB["💻 Track B: 软件"]
+        B1["Mock JSON"] --> B2["融合引擎"]
+        B2 --> B3["12 指标"]
+        B3 --> B4["规则引擎"]
+        B4 --> B5["LLM 反馈"]
+    end
+
+    A4 -.->|"完成后替换数据源"| B2
+
+    style TrackA fill:#e1f5fe
+    style TrackB fill:#fff3e0
+```
+
+**合流时机**: Track A 完成稳定 BLE 传输后，将 Mock Data 替换为 Real Data，代码层面几乎不需要改动。
+
+### MVP 阶段使用**最简单可行**的模拟数据：
+
+| 传感器 | 数据来源 | 复杂度 |
+|--------|----------|--------|
+| **Vision** | 真实视频 + MediaPipe | 真实数据 |
+| **IMU** | 硬编码时间戳 | `{"top_ms": 600, "impact_ms": 850}` |
+| **EMG** | 硬编码时间戳 | `{"core_onset_ms": 570, "forearm_onset_ms": 720}` |
+
+```python
+# MVP Mock 示例 — 故意简单
+mock_emg = {"core_onset_ms": 570, "forearm_onset_ms": 720}
+mock_imu = {"top_ms": 600, "impact_ms": 850}
+
+# 真实数据
+vision = mediapipe.process(real_video_frame)
+
+# 测试管道是否运行
+result = fusion_pipeline(vision, mock_imu, mock_emg)
+assert result is not None  # MVP 通过!
+```
+
+---
+
+## 3. 外部参考数据
+
+可使用 OnForm 等应用的分析结果验证 Vision 算法的准确性：
+
+1. 录制挥杆视频
+2. 上传到 OnForm → 获取 X-Factor、节奏等计算值
+3. 用同一视频运行 MediaPipe → 比较结果
+4. 误差在合理范围内 → Vision 管道验证通过
+
+---
+
+## 4. MVP 模式聚焦
 
 !!! info "MVP 只实现 Mode 3，其他模式放到 Post-MVP"
 
@@ -168,15 +154,46 @@ assert result is not None  # MVP 通过!
     3. **Rerun 友好** — 录制 .rrd 文件分享给团队协作
     4. **优先验证核心价值** — 时间对齐是否正确比实时性更重要
 
+> 📐 **详细规格**: 三种模式的完整定义见 [实时反馈规格](../specs/real-time-feedback.md)
+
 ---
 
-## 6. MVP 阶段划分
+## 5. MVP 阶段划分
 
 MVP 分为 **5 个阶段**，每个阶段有明确的交付物和验收标准。
 
-> 📐 **架构决策**: Python Desktop 与 Swift Mobile 的关系见 [ADR-0008 Desktop→Mobile 架构](../decisions/0008-desktop-to-mobile-architecture.md)
+| 阶段 | 轨道 | 主要工作 | 依赖 |
+|------|------|----------|------|
+| Phase 1 | 🔧 Track A | 硬件数据管道 (BLE + 传感器) | 无 |
+| Phase 2 | 💻 Track B | Mock 数据管道 (Python Desktop) | 无 |
+| Phase 3 | 💻 Track B | AI 诊断 + LLM 反馈 | Phase 2 |
+| Phase 3.5 | 🔗 合并 | Swift 移植核心算法 | Phase 1 + Phase 3 |
+| Phase 4 | 🔗 合并 | 移动端完整集成 | Phase 3.5 |
 
-### 6.1 Phase 1: 硬件数据管道
+```mermaid
+flowchart TB
+    subgraph parallel["🔀 可并行开发"]
+        direction TB
+        subgraph trackA["Track A: 硬件"]
+            P1["Phase 1<br/>🔧 硬件数据管道<br/>(BLE + 传感器)"]
+        end
+        subgraph trackB["Track B: 软件"]
+            P2["Phase 2<br/>💻 Mock 数据管道"] --> P3["Phase 3<br/>🤖 AI 诊断 + LLM"]
+        end
+    end
+
+    P1 --> P35["Phase 3.5<br/>🔗 Swift 移植<br/>(合并点)"]
+    P3 --> P35
+    P35 --> P4["Phase 4<br/>📱 移动端集成"]
+
+    style parallel fill:#e8f5e9,stroke:#4caf50
+    style trackA fill:#fff3e0,stroke:#ff9800
+    style trackB fill:#e3f2fd,stroke:#2196f3
+    style P35 fill:#fce4ec,stroke:#e91e63
+    style P4 fill:#f3e5f5,stroke:#9c27b0
+```
+
+### 5.1 Phase 1: 硬件数据管道
 
 ```mermaid
 flowchart LR
@@ -199,7 +216,7 @@ flowchart LR
 
 ---
 
-### 6.2 Phase 2: Mock 数据管道 + 可视化验证
+### 5.2 Phase 2: Mock 数据管道 + 可视化验证
 
 ```mermaid
 flowchart LR
@@ -222,7 +239,7 @@ flowchart LR
 
 ---
 
-### 6.3 Phase 3: AI 诊断 + LLM 反馈
+### 5.3 Phase 3: AI 诊断 + LLM 反馈
 
 ```mermaid
 flowchart LR
@@ -241,11 +258,11 @@ flowchart LR
 | 规则准确率 | 100% (已知案例) |
 | 反馈可读性 | 用户评分 >4/5 |
 
-> 📐 **详细规格**: [§8.2 诊断规则](#82-mvp-6-条诊断规则) | [实时反馈规格](../specs/real-time-feedback.md)
+> 📐 **详细规格**: [§7.2 诊断规则](#72-mvp-6-条诊断规则) | [实时反馈规格](../specs/real-time-feedback.md)
 
 ---
 
-### 6.4 Phase 3.5: Swift 算法移植 (Bridge Phase)
+### 5.4 Phase 3.5: Swift 算法移植 (Bridge Phase)
 
 > ⚠️ **为什么需要这个阶段**: Phase 1-3 在 Python Desktop 环境验证算法，Phase 4 需要完整 iOS App。
 > 此阶段专注于算法移植，不做 UI，确保 Python→Swift 输出一致性。
@@ -280,7 +297,7 @@ flowchart LR
 
 ---
 
-### 6.5 Phase 4: Swift 移动端集成
+### 5.5 Phase 4: Swift 移动端集成
 
 > 前置条件: Phase 3.5 完成，Swift 算法包已验证
 
@@ -306,7 +323,7 @@ flowchart LR
 
 ---
 
-## 7. 验收标准总览
+## 6. 验收标准总览
 
 | Phase | 关键验收项 | 目标值 | 详细规格 |
 |-------|-----------|--------|----------|
@@ -314,7 +331,7 @@ flowchart LR
 | **Phase 1** | 连续运行 | >30min 无断连 | - |
 | **Phase 2** | 时间对齐精度 | <10ms | [数据管道](./data-pipeline-and-ai.md) |
 | **Phase 2** | Rerun 可视化 | 人工审核通过 | [可视化工具](../decisions/visualization-tools-evaluation.md) |
-| **Phase 3** | 规则准确率 | 100% (已知案例) | [§8.2 诊断规则](#82-mvp-6-条诊断规则) |
+| **Phase 3** | 规则准确率 | 100% (已知案例) | [§7.2 诊断规则](#72-mvp-6-条诊断规则) |
 | **Phase 3** | 反馈可读性 | 用户评分 >4/5 | - |
 | **Phase 3.5** | Python↔Swift 一致性 | 输出差异 <1% | [ADR-0008](../decisions/0008-desktop-to-mobile-architecture.md) |
 | **Phase 3.5** | Swift 单元测试 | >90% 覆盖率 | - |
@@ -323,21 +340,21 @@ flowchart LR
 
 ---
 
-## 8. MVP 技术规格
+## 7. MVP 技术规格
 
-### 8.1 技术规格索引
+### 7.1 技术规格索引
 
 | 规格类别 | 详细文档 | 核心内容 |
 |----------|----------|----------|
 | **12 测量指标** | [数据处理与指标计算](./sensor-data-processing.md) | Vision (6) + IMU (4) + EMG (2) |
-| **6 诊断规则** | [§8.2 诊断规则](#82-mvp-6-条诊断规则) | P0 (2条) + P1 (4条) |
+| **6 诊断规则** | [§7.2 诊断规则](#72-mvp-6-条诊断规则) | P0 (2条) + P1 (4条) |
 | **反馈模式** | [实时反馈规格](../specs/real-time-feedback.md) | 3种模式: Setup / Slow Motion / Full Speed |
 | **硬件选型** | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md), [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) | LSM6DSV16X IMU + ESP32-S3 MCU |
 | **SDK 选型** | [SDK选型](../decisions/sdk-selection.md) | MediaPipe + NeuroKit2 + imufusion |
 | **移动端架构** | [ADR-0007](../decisions/0007-swift-ios-native.md) | Swift iOS 原生 (非 Flutter) |
 | **升级路径** | [模块化架构](./modular-architecture.md) | LEGO block 可替换设计 |
 
-### 8.2 MVP 6 条诊断规则 {#82-mvp-6-条诊断规则}
+### 7.2 MVP 6 条诊断规则 {#72-mvp-6-条诊断规则}
 
 !!! info "为什么 MVP 选这 6 条规则？"
     MVP 不追求覆盖所有问题，而是精选**最常见、最影响挥杆质量、且能体现 EMG 差异化**的规则：
@@ -354,7 +371,7 @@ flowchart LR
 | P1 | 节奏过慢 | Downswing > 0.40s | IMU | 节奏失衡，影响连贯性 |
 | P1 | 早释放 | Wrist release < 40% downswing | IMU | 力量传递断裂 |
 
-### 8.3 MVP 核心约束
+### 7.3 MVP 核心约束
 
 | 约束 | 目标值 | 验证方式 |
 |------|--------|----------|
@@ -365,7 +382,7 @@ flowchart LR
 
 ---
 
-## 9. Rerun 集成时机
+## 8. Rerun 集成时机
 
 基于 MVP 阶段划分的 Rerun 使用时机：
 
@@ -381,9 +398,9 @@ flowchart LR
 
 ---
 
-## 10. MVP 验证假设与风险
+## 9. MVP 验证假设与风险
 
-### 10.1 需要验证的假设
+### 9.1 需要验证的假设
 
 | 假设 | 验证方法 | Phase | 状态 |
 |------|----------|-------|------|
@@ -392,7 +409,7 @@ flowchart LR
 | 用户能理解LLM生成的反馈 | 用户测试 | Phase 4 | 🔄 待验证 |
 | Python↔Swift 算法输出一致 | 对比测试 | Phase 3.5 | 🔄 待验证 |
 
-### 10.2 待定决策
+### 9.2 待定决策
 
 | 决策 | 选项 | 决策时机 |
 |------|------|----------|
@@ -400,7 +417,7 @@ flowchart LR
 | 录制保存功能 | 本地 / 云端 / 跳过 | Phase 4 完成后 |
 | 数据库选型 | SQLite / Realm / CloudKit | Post-MVP 规划 |
 
-### 10.3 已知风险
+### 9.3 已知风险
 
 | 风险 | 影响 | 缓解措施 | 状态 |
 |------|------|----------|------|
@@ -410,11 +427,11 @@ flowchart LR
 
 ---
 
-## 11. Post-MVP 路线图 {#11-post-mvp-路线图}
+## 10. Post-MVP 路线图 {#10-post-mvp-路线图}
 
 MVP (Phase 1 → 2 → 3 → 3.5 → 4) 完成后的扩展方向:
 
-### 11.1 技术扩展
+### 10.1 技术扩展
 
 | 方向 | 文档 | 内容 | 依赖 |
 |------|------|------|------|
@@ -424,7 +441,7 @@ MVP (Phase 1 → 2 → 3 → 3.5 → 4) 完成后的扩展方向:
 | **球杆追踪** | [可视化工具](../decisions/visualization-tools-evaluation.md) | TAPIR 替代 Trackman 雷达 | Post-MVP |
 | **Mode 1/2** | [实时反馈规格](../specs/real-time-feedback.md) | Setup Check + Slow Motion | Post-MVP |
 
-### 11.2 产品扩展
+### 10.2 产品扩展
 
 | 方向 | 内容 | 决策时机 |
 |------|------|----------|
@@ -436,7 +453,7 @@ MVP (Phase 1 → 2 → 3 → 3.5 → 4) 完成后的扩展方向:
 
 ---
 
-## 12. 版本历史
+## 11. 版本历史
 
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|

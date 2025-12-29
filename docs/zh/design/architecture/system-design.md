@@ -371,7 +371,7 @@ Address → Takeaway → Backswing → Top → Downswing → Impact → Follow-t
 - **可执行建议**: 不只是"什么错了"，还有"为什么错"和"怎么改"
 - **教练替代**: 提供接近人类教练的诊断深度
 
-> 📐 详见: [MVP 开发计划 §8.2](./mvp-plan.md#82-mvp-6-条诊断规则) — 6 条规则的详细逻辑
+> 📐 详见: [MVP 开发计划 §7.2](./mvp-plan.md#72-mvp-6-条诊断规则) — 6 条规则的详细逻辑
 
 ---
 
@@ -560,7 +560,7 @@ LLM 输出:
 | 规格类别 | 详细文档 | 核心内容 |
 |----------|----------|----------|
 | **12 测量指标** | [数据处理与指标计算](./sensor-data-processing.md) | Vision (6) + IMU (4) + EMG (2) |
-| **6 诊断规则** | [MVP 开发计划 §8.2](./mvp-plan.md#82-mvp-6-条诊断规则) | P0 (2条) + P1 (4条) |
+| **6 诊断规则** | [MVP 开发计划 §7.2](./mvp-plan.md#72-mvp-6-条诊断规则) | P0 (2条) + P1 (4条) |
 | **反馈模式** | [实时反馈规格](../specs/real-time-feedback.md) | 3种模式: Setup / Slow Motion / Full Speed |
 | **产品层级** | [产品层级](../specs/product-tiers.md) | Lite / Pro / Elite 三个版本 |
 
