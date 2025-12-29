@@ -431,7 +431,20 @@ flowchart LR
 
 MVP (Phase 1 → 2 → 3 → 3.5 → 4) 完成后的扩展方向:
 
-### 10.1 技术扩展
+### 10.1 用户反馈层扩展 (Stage 7)
+
+MVP Phase 4 实现基础 UI 反馈后，以下功能延后到 Post-MVP：
+
+| 方向 | 技术 | 内容 | 优先级 |
+|------|------|------|--------|
+| **语音反馈 TTS** | AVSpeechSynthesizer | 教练语音播报，1-2 句可执行建议 | 🔴 高 |
+| **触觉反馈** | Core Haptics | 振动提示问题类型，Apple Watch 联动 | 🟡 中 |
+| **Ghost 骨架叠加** | ARKit | 理想轨迹 vs 实际轨迹对比，慢动作回放 | 🟡 中 |
+| **历史趋势图表** | SwiftUI Charts | 连续多次挥杆的改进/退步趋势 | 🟡 中 |
+| **挥杆对比视图** | AVFoundation | 并排对比两次挥杆视频 | 🟢 低 |
+| **录制回放** | AVFoundation | 保存挥杆视频 + 分析结果 | 🟢 低 |
+
+### 10.2 技术扩展
 
 | 方向 | 文档 | 内容 | 依赖 |
 |------|------|------|------|
@@ -441,7 +454,7 @@ MVP (Phase 1 → 2 → 3 → 3.5 → 4) 完成后的扩展方向:
 | **球杆追踪** | [可视化工具](../decisions/visualization-tools-evaluation.md) | TAPIR 替代 Trackman 雷达 | Post-MVP |
 | **Mode 1/2** | [实时反馈规格](../specs/real-time-feedback.md) | Setup Check + Slow Motion | Post-MVP |
 
-### 10.2 产品扩展
+### 10.3 产品扩展
 
 | 方向 | 内容 | 决策时机 |
 |------|------|----------|
