@@ -2047,7 +2047,7 @@
   <a href="#stage-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3.3 Stage 3: 传感器融合层
+        1.3.3 传感器融合层
       
     </span>
   </a>
@@ -2058,7 +2058,7 @@
   <a href="#stage-4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3.4 Stage 4: 特征提取层
+        1.3.4 特征提取层
       
     </span>
   </a>
@@ -2069,7 +2069,7 @@
   <a href="#stage-5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3.5 Stage 5: 分析诊断层
+        1.3.5 分析诊断层
       
     </span>
   </a>
@@ -2080,7 +2080,7 @@
   <a href="#stage-6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3.6 Stage 6: AI 反馈生成层
+        1.3.6 AI 反馈生成层
       
     </span>
   </a>
@@ -2091,7 +2091,7 @@
   <a href="#stage-7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3.7 Stage 7: 用户反馈层
+        1.3.7 用户反馈层
       
     </span>
   </a>
@@ -4806,7 +4806,7 @@
   <a href="#stage-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3.3 Stage 3: 传感器融合层
+        1.3.3 传感器融合层
       
     </span>
   </a>
@@ -4817,7 +4817,7 @@
   <a href="#stage-4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3.4 Stage 4: 特征提取层
+        1.3.4 特征提取层
       
     </span>
   </a>
@@ -4828,7 +4828,7 @@
   <a href="#stage-5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3.5 Stage 5: 分析诊断层
+        1.3.5 分析诊断层
       
     </span>
   </a>
@@ -4839,7 +4839,7 @@
   <a href="#stage-6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3.6 Stage 6: AI 反馈生成层
+        1.3.6 AI 反馈生成层
       
     </span>
   </a>
@@ -4850,7 +4850,7 @@
   <a href="#stage-7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3.7 Stage 7: 用户反馈层
+        1.3.7 用户反馈层
       
     </span>
   </a>
@@ -5268,7 +5268,7 @@
 <p>📐 详见: <a href="../sensor-data-processing/">数据处理与指标计算</a> — 各传感器的数据格式与处理</p>
 </blockquote>
 <hr />
-<h4 id="stage-3">1.3.3 Stage 3: 传感器融合层<a class="headerlink" href="#stage-3" title="Permanent link">&para;</a></h4>
+<h4 id="stage-3">1.3.3 传感器融合层<a class="headerlink" href="#stage-3" title="Permanent link">&para;</a></h4>
 <p><strong>功能</strong>: 将三种不同采样率的数据对齐到统一时间轴，为后续分析提供可比较的数据基础。</p>
 <p><strong>核心挑战</strong>:
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>问题: 三种传感器采样率不同，如何对齐？
@@ -5334,7 +5334,7 @@
 <p>📐 详见: <a href="../data-flow/#sensor-hub-架构-2025-12-推荐">数据管道与AI</a> — 时间同步策略</p>
 </blockquote>
 <hr />
-<h4 id="stage-4">1.3.4 Stage 4: 特征提取层<a class="headerlink" href="#stage-4" title="Permanent link">&para;</a></h4>
+<h4 id="stage-4">1.3.4 特征提取层<a class="headerlink" href="#stage-4" title="Permanent link">&para;</a></h4>
 <p><strong>功能</strong>: 从原始传感器数据中提取 12 个标准化的生物力学指标，将"原始波形"转换为"可分析数值"。</p>
 <p><strong>12 核心指标</strong>:</p>
 <table>
@@ -5474,7 +5474,7 @@
 <p>📐 详见: <a href="../sensor-data-processing/">数据处理与指标计算</a> — 12 个指标的详细计算公式</p>
 </blockquote>
 <hr />
-<h4 id="stage-5">1.3.5 Stage 5: 分析诊断层<a class="headerlink" href="#stage-5" title="Permanent link">&para;</a></h4>
+<h4 id="stage-5">1.3.5 分析诊断层<a class="headerlink" href="#stage-5" title="Permanent link">&para;</a></h4>
 <p><strong>功能</strong>: 基于 12 个指标，执行规则引擎诊断和因果归因分析。这是系统的<strong>核心差异化能力</strong>。</p>
 <p><strong>8 阶段挥杆检测</strong> (基于 GolfDB 标准):
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Address → Takeaway → Backswing → Top → Downswing → Impact → Follow-through → Finish
@@ -5578,7 +5578,7 @@
 <p>📐 详见: <a href="../mvp-plan/#72-mvp-6-条诊断规则">MVP 开发计划 §7.2</a> — 6 条规则的详细逻辑</p>
 </blockquote>
 <hr />
-<h4 id="stage-6">1.3.6 Stage 6: AI 反馈生成层<a class="headerlink" href="#stage-6" title="Permanent link">&para;</a></h4>
+<h4 id="stage-6">1.3.6 AI 反馈生成层<a class="headerlink" href="#stage-6" title="Permanent link">&para;</a></h4>
 <p><strong>功能</strong>: 将结构化的诊断结果转换为自然语言的教练反馈。</p>
 <p><strong>Kinematic Prompts</strong> (结构化提示词):</p>
 <p>将传感器数据和诊断结果格式化为 LLM 可理解的结构:</p>
@@ -5667,7 +5667,7 @@
 <p>📐 详见: <a href="../data-flow/">数据管道与AI</a> — Kinematic Prompts 详细设计</p>
 </blockquote>
 <hr />
-<h4 id="stage-7">1.3.7 Stage 7: 用户反馈层<a class="headerlink" href="#stage-7" title="Permanent link">&para;</a></h4>
+<h4 id="stage-7">1.3.7 用户反馈层<a class="headerlink" href="#stage-7" title="Permanent link">&para;</a></h4>
 <p><strong>功能</strong>: 将 AI 生成的反馈通过多种模态呈现给用户，确保挥杆后 &lt;500ms 内收到反馈。</p>
 <p><strong>四种反馈通道</strong>:</p>
 <table>
