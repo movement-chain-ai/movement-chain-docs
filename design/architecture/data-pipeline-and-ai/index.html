@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/data-pipeline-and-ai/">
       
       
-        <link rel="prev" href="../modular-architecture/">
+        <link rel="prev" href="../sensor-data-processing/">
       
       
-        <link rel="next" href="../sensor-data-processing/">
+        <link rel="next" href="../../specs/">
       
       
         
@@ -1944,6 +1944,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../modular-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块化架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mvp-plan/" class="md-nav__link">
         
   
@@ -1972,14 +2000,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../modular-architecture/" class="md-nav__link">
+      <a href="../sensor-data-processing/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    模块化架构
+    数据处理与指标计算
   
 
     
@@ -2629,34 +2657,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../sensor-data-processing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    数据处理与指标计算
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -2693,7 +2693,7 @@
   <span class="md-ellipsis">
     
   
-    功能设计
+    产品设计
   
 
     
@@ -2709,7 +2709,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    功能设计
+    产品设计
   
 
           </label>
@@ -5994,34 +5994,34 @@
 <h3 id="14-rerun">1.4 Rerun 开发者可视化<a class="headerlink" href="#14-rerun" title="Permanent link">&para;</a></h3>
 <p>Rerun 是<strong>开发者调试工具</strong>，用于验证多流数据是否正确对齐。</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>┌────────────────────────────────────────────────────────────────┐
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>│              Rerun 时间轴可视化 (开发者视角)                    │
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>│              Rerun 时间轴可视化 (开发者视角)                       │
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>├────────────────────────────────────────────────────────────────┤
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│                                                                │
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>│  时间轴 (ms):  0    200   400   600   800   1000  1200        │
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>│  ─────────────────────────────────────────────────────────────│
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>│  时间轴 (ms):  0    200   400   600   800   1000  1200          │
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>│  ───────────────────────────────────────────────────────────── │
 </span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>│                                                                │
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>│  📷 Video:     ●────●────●────●────●────●────●────●           │
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>│                     (每 33ms 一帧)                             │
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>│  📷 Video:     ●────●────●────●────●────●────●────●            │
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>│                     (每 33ms 一帧)                              │
 </span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>│                                                                │
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>│  🔄 gyro_z:    ─────────────────●─────────●─────────          │
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>│  🔄 gyro_z:    ─────────────────●─────────●─────────           │
 </span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>│                              (Top)     (Impact)                │
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>│                           零交叉点     峰值点                  │
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>│                           零交叉点     峰值点                    │
 </span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>│                                                                │
-</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>│  💪 Core EMG:  ─────────────────●──────────────────           │
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>│                              (激活)                            │
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>│  💪 Core EMG:  ─────────────────●──────────────────            │
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>│                              (激活)                             │
 </span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>│                              485ms                             │
 </span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>│                                                                │
-</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>│  💪 Forearm:   ───────────────────────●────────────           │
-</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>│                                     (激活)                     │
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>│  💪 Forearm:   ───────────────────────●────────────            │
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>│                                     (激活)                      │
 </span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>│                                     540ms                      │
 </span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>│                                                                │
-</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>│  ─────────────────────────────────────────────────────────────│
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>│  ───────────────────────────────────────────────────────────── │
 </span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>│                                                                │
-</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>│  验证点:                                                       │
-</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>│  ✅ Top (零交叉) 对齐 Video 帧中手臂最高点                     │
-</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>│  ✅ Impact (峰值) 对齐 Video 帧中击球瞬间                      │
-</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>│  ✅ Core EMG 在 Top 之前激活 (485ms &lt; Top)                     │
-</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>│  ✅ Core 在 Forearm 之前激活 (485ms &lt; 540ms = +55ms gap)       │
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>│  验证点:                                                        │
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>│  ✅ Top (零交叉) 对齐 Video 帧中手臂最高点                         │
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>│  ✅ Impact (峰值) 对齐 Video 帧中击球瞬间                         │
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>│  ✅ Core EMG 在 Top 之前激活 (485ms &lt; Top)                       │
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>│  ✅ Core 在 Forearm 之前激活 (485ms &lt; 540ms = +55ms gap)         │
 </span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>│                                                                │
 </span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>└────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -6035,50 +6035,50 @@
 <h2 id="2-反馈生成架构">2. 反馈生成架构<a class="headerlink" href="#2-反馈生成架构" title="Permanent link">&para;</a></h2>
 <h3 id="21">2.1 端到端数据流<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>┌────────────────────────────────────────────────────────────────┐
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>│                    端到端数据流                                 │
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>│                    端到端数据流                                  │
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>├────────────────────────────────────────────────────────────────┤
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>│                                                                │
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>│  ┌─────────┐   ┌─────────┐   ┌─────────┐                      │
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>│  │ 📷 摄像头│   │ 🔄 IMU  │   │ 💪 EMG  │                      │
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>│  └────┬────┘   └────┬────┘   └────┬────┘                      │
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>│  ┌─────────┐   ┌─────────┐   ┌─────────┐                       │
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>│  │ 📷 摄像头│   │ 🔄 IMU  │   │ 💪 EMG  │                       │
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>│  └────┬────┘   └────┬────┘   └────┬────┘                       │
 </span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>│       │             │             │                            │
 </span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>│       ▼             ▼             ▼                            │
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>│  ┌─────────────────────────────────────────────────────────┐  │
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>│  │              特征提取层 (Feature Extraction)             │  │
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>│  │  MediaPipe → 33点   IMU → 6轴    EMG → 2通道            │  │
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>│  │  计算: X-Factor等   计算: 相位    计算: 激活%           │  │
-</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>│  └─────────────────────────────────────────────────────────┘  │
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>│  ┌─────────────────────────────────────────────────────────┐   │
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>│  │              特征提取层 (Feature Extraction)              │   │
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>│  │  MediaPipe → 33点   IMU → 6轴    EMG → 2通道              │  │
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>│  │  计算: X-Factor等   计算: 相位    计算: 激活%               │   │
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>│  └─────────────────────────────────────────────────────────┘   │
 </span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>│                            │                                   │
 </span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>│                            ▼                                   │
-</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>│  ┌─────────────────────────────────────────────────────────┐  │
-</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>│  │              判断层 (Decision Layer)                     │  │
-</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>│  │                                                          │  │
-</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>│  │  ┌─────────────────┐    ┌─────────────────┐             │  │
-</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>│  │  │   规则引擎      │ 或 │    AI 分析      │             │  │
-</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>│  │  │  (硬编码规则)   │    │  (LLM/模型)     │             │  │
-</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>│  │  └─────────────────┘    └─────────────────┘             │  │
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>│  ┌─────────────────────────────────────────────────────────┐   │
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>│  │              判断层 (Decision Layer)                     │   │
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>│  │                                                         │   │
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>│  │  ┌─────────────────┐    ┌─────────────────┐             │   │
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>│  │  │   规则引擎      │ 或 │    AI 分析      │                │  │
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>│  │  │  (硬编码规则)   │    │  (LLM/模型)     │                │  │
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>│  │  └─────────────────┘    └─────────────────┘              │  │
 </span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>│  │                                                          │  │
-</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>│  │  输出: 触发的规则列表 + 严重程度 (P0/P1/P2)              │  │
-</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>│  └─────────────────────────────────────────────────────────┘  │
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>│  │  输出: 触发的规则列表 + 严重程度 (P0/P1/P2)                  │  │
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>│  └─────────────────────────────────────────────────────────┘   │
 </span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>│                            │                                   │
 </span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>│                            ▼                                   │
-</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>│  ┌─────────────────────────────────────────────────────────┐  │
-</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>│  │              翻译层 (Translation Layer)                  │  │
-</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>│  │                                                          │  │
-</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>│  │  输入: &quot;ARMS_BEFORE_CORE 触发, gap=-25ms&quot;               │  │
-</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>│  │  LLM: &quot;你的手臂比身体先动了，让身体带动手臂&quot;            │  │
-</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>│  │                                                          │  │
-</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>│  └─────────────────────────────────────────────────────────┘  │
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>│  ┌─────────────────────────────────────────────────────────┐   │
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>│  │              翻译层 (Translation Layer)                  │   │
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>│  │                                                         │   │
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>│  │  输入: &quot;ARMS_BEFORE_CORE 触发, gap=-25ms&quot;                │   │
+</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>│  │  LLM: &quot;你的手臂比身体先动了，让身体带动手臂&quot;                  │   │
+</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>│  │                                                         │   │
+</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>│  └─────────────────────────────────────────────────────────┘   │
 </span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a>│                            │                                   │
 </span><span id="__span-8-37"><a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a>│                            ▼                                   │
-</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a>│  ┌─────────────────────────────────────────────────────────┐  │
-</span><span id="__span-8-39"><a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a>│  │              输出层 (Output Layer)                       │  │
-</span><span id="__span-8-40"><a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a>│  │                                                          │  │
-</span><span id="__span-8-41"><a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a>│  │  🔊 语音: &quot;从核心启动&quot;                                   │  │
-</span><span id="__span-8-42"><a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a>│  │  📱 屏幕: 简单文字 + 分数                                │  │
-</span><span id="__span-8-43"><a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a>│  │  📳 震动: (可选)                                         │  │
-</span><span id="__span-8-44"><a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a>│  │                                                          │  │
-</span><span id="__span-8-45"><a id="__codelineno-8-45" name="__codelineno-8-45" href="#__codelineno-8-45"></a>│  └─────────────────────────────────────────────────────────┘  │
+</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a>│  ┌─────────────────────────────────────────────────────────┐   │
+</span><span id="__span-8-39"><a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a>│  │              输出层 (Output Layer)                       │   │
+</span><span id="__span-8-40"><a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a>│  │                                                         │   │
+</span><span id="__span-8-41"><a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a>│  │  🔊 语音: &quot;从核心启动&quot;                                    │   │
+</span><span id="__span-8-42"><a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a>│  │  📱 屏幕: 简单文字 + 分数                                  │   │
+</span><span id="__span-8-43"><a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a>│  │  📳 震动: (可选)                                         │   │
+</span><span id="__span-8-44"><a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a>│  │                                                         │   │
+</span><span id="__span-8-45"><a id="__codelineno-8-45" name="__codelineno-8-45" href="#__codelineno-8-45"></a>│  └─────────────────────────────────────────────────────────┘   │
 </span><span id="__span-8-46"><a id="__codelineno-8-46" name="__codelineno-8-46" href="#__codelineno-8-46"></a>│                                                                │
 </span><span id="__span-8-47"><a id="__codelineno-8-47" name="__codelineno-8-47" href="#__codelineno-8-47"></a>└────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -6119,7 +6119,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="b-kinematic-prompts-llm">方案 B: Kinematic Prompts + LLM 推理 (研究验证)<a class="headerlink" href="#b-kinematic-prompts-llm" title="Permanent link">&para;</a></h4>
+<h4 id="b-kinematic-prompts-llm">方案 B: <a href="../../../reference/ml-glossary/#7-kinematic-prompt-运动学提示">Kinematic Prompts</a> + LLM 推理 (研究验证)<a class="headerlink" href="#b-kinematic-prompts-llm" title="Permanent link">&para;</a></h4>
 <blockquote>
 <p><strong>研究来源</strong>: BoxingPro (2025), SportsGPT (2025) 验证了此架构</p>
 </blockquote>
@@ -6635,7 +6635,7 @@
 <h3 id="41">4.1 用户界面<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
 <p>用户在手机 App 上看到的界面简洁明了:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>┌────────────────────────────────────────────────────────────────┐
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>│              用户手机界面                                       │
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>│              用户手机界面                                        │
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>├────────────────────────────────────────────────────────────────┤
 </span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>│                                                                │
 </span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>│  ┌──────────────────────────────────────────────────────────┐  │
@@ -6645,22 +6645,22 @@
 </span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>│  │                                                          │  │
 </span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>│  │           ┌─────────────────────────────────┐            │  │
 </span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>│  │           │                                 │            │  │
-</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>│  │           │      [实时摄像头画面]           │            │  │
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>│  │           │      [实时摄像头画面]             │            │  │
 </span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>│  │           │                                 │            │  │
 </span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>│  │           │         👤                      │            │  │
-</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>│  │           │        /│\   ← 半透明骨架       │            │  │
-</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>│  │           │        / \     (白色, 覆盖在身体上)          │  │
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>│  │           │        /│\   ← 半透明骨架         │            │  │
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>│  │           │        / \     (白色, 覆盖在身体上)             │  │
 </span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>│  │           │                                 │            │  │
-</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>│  │           │      ↓ 红色箭头                 │            │  │
-</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>│  │           │      (指向需要调整的关节)        │            │  │
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>│  │           │      ↓ 红色箭头                  │            │  │
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>│  │           │      (指向需要调整的关节)          │            │  │
 </span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>│  │           │                                 │            │  │
 </span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>│  │           └─────────────────────────────────┘            │  │
 </span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>│  │                                                          │  │
 </span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>│  ├──────────────────────────────────────────────────────────┤  │
 </span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>│  │                                                          │  │
-</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>│  │   X-Factor: 42° ✅    核心激活: 弱 ⚠️                    │  │
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>│  │   X-Factor: 42° ✅    核心激活: 弱 ⚠️                      │  │
 </span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>│  │                                                          │  │
-</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>│  │   [开始录制]  [设置]  [历史]                              │  │
+</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>│  │   [开始录制]  [设置]  [历史]                                │  │
 </span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>│  │                                                          │  │
 </span><span id="__span-17-29"><a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>│  └──────────────────────────────────────────────────────────┘  │
 </span><span id="__span-17-30"><a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>│                                                                │
@@ -6668,10 +6668,10 @@
 </span><span id="__span-17-32"><a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a>│                    设计原则                                     │
 </span><span id="__span-17-33"><a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a>├────────────────────────────────────────────────────────────────┤
 </span><span id="__span-17-34"><a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>│                                                                │
-</span><span id="__span-17-35"><a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>│  1. 简洁: 不超过 3 个关键指标                                  │
-</span><span id="__span-17-36"><a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>│  2. 聚焦: 每次只指出 1-2 个问题                                │
-</span><span id="__span-17-37"><a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>│  3. 不干扰: 覆盖层半透明，不遮挡身体                           │
-</span><span id="__span-17-38"><a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a>│  4. 可操作: 反馈告诉用户&quot;怎么做&quot;，不是&quot;什么错&quot;                 │
+</span><span id="__span-17-35"><a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>│  1. 简洁: 不超过 3 个关键指标                                     │
+</span><span id="__span-17-36"><a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>│  2. 聚焦: 每次只指出 1-2 个问题                                   │
+</span><span id="__span-17-37"><a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>│  3. 不干扰: 覆盖层半透明，不遮挡身体                                │
+</span><span id="__span-17-38"><a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a>│  4. 可操作: 反馈告诉用户&quot;怎么做&quot;，不是&quot;什么错&quot;                       │
 </span><span id="__span-17-39"><a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>│                                                                │
 </span><span id="__span-17-40"><a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a>└────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
