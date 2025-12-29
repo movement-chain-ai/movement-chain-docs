@@ -1,12 +1,12 @@
-# Sensor-to-Metric Mapping
+# Sensor Data Processing
 
-> **Document Purpose**: Define research-validated metrics measurable by tri-modal system (Vision + IMU + EMG)
-> **Core Value**: EMG muscle activation detection is unique differentiator, competitors cannot achieve
-> **Last Updated**: 2025-12-23
+> **Document Purpose**: Define data processing pipelines and computable metrics for the tri-modal system (Vision + IMU + EMG)
+> **Core Value**: EMG muscle activation detection is a unique differentiator - competitors cannot achieve this
+> **Last Updated**: 2025-12-28
 
 ---
 
-## 1. System Capability Matrix
+## 1. Metrics Capability Matrix
 
 The table below shows the correspondence between literature-validated golf metrics and each sensor in the tri-modal system.
 
@@ -44,30 +44,30 @@ The table below shows the correspondence between literature-validated golf metri
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                    YOUR SYSTEM vs COMPETITORS                                │
+│                    YOUR SYSTEM vs COMPETITORS                               │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                              │
-│   OnForm / Sportsbox AI (Vision Only):                                       │
+│                                                                             │
+│   OnForm / Sportsbox AI (Vision Only):                                      │
 │   ├── ✅ All body angles and positions (X-Factor, S-Factor, O-Factor, Sway/Lift) │
 │   ├── ❌ Cannot accurately measure angular velocity (limited by <30fps sampling) │
-│   ├── ❌ Cannot detect muscle activation (no EMG sensors)                     │
+│   ├── ❌ Cannot detect muscle activation (no EMG sensors)                   │
 │   ├── ❌ Cannot detect kinematic sequence timing (accuracy ≥33ms, insufficient for 5-10ms activation differences) │
-│   └── ❌ Cannot validate force chain (only sees result, not cause)            │
-│                                                                              │
-│   K-VEST / GEARS (IMU Only):                                                 │
-│   ├── ✅ Accurate angular velocity measurement (1000Hz sampling)              │
-│   ├── ✅ Kinematic sequence timing detection (10ms accuracy)                  │
+│   └── ❌ Cannot validate force chain (only sees result, not cause)          │
+│                                                                             │
+│   K-VEST / GEARS (IMU Only):                                                │
+│   ├── ✅ Accurate angular velocity measurement (1000Hz sampling)            │
+│   ├── ✅ Kinematic sequence timing detection (10ms accuracy)                │
 │   ├── ❌ Cannot see full body position (needs multiple IMUs to reconstruct pose) │
-│   ├── ❌ Cannot detect muscle activation (no EMG sensors)                     │
-│   └── ❌ Cannot validate force chain (can only infer, not directly observe)   │
-│                                                                              │
-│   YOUR SYSTEM (Vision + IMU + EMG):                                          │
-│   ├── ✅ All body angles (Vision provides 33 keypoints)                       │
-│   ├── ✅ Angular velocity measurement (IMU 1666Hz sampling)                   │
-│   ├── ✅ Kinematic sequence timing (IMU <10ms + EMG <5ms dual validation)     │
-│   ├── ✅✅ Muscle activation detection (EMG) ← UNIQUE DIFFERENTIATOR          │
+│   ├── ❌ Cannot detect muscle activation (no EMG sensors)                   │
+│   └── ❌ Cannot validate force chain (can only infer, not directly observe) │
+│                                                                             │
+│   YOUR SYSTEM (Vision + IMU + EMG):                                         │
+│   ├── ✅ All body angles (Vision provides 33 keypoints)                     │
+│   ├── ✅ Angular velocity measurement (IMU 1666Hz sampling)                 │
+│   ├── ✅ Kinematic sequence timing (IMU <10ms + EMG <5ms dual validation)   │
+│   ├── ✅✅ Muscle activation detection (EMG) ← UNIQUE DIFFERENTIATOR        │
 │   ├── ✅✅ Force chain validation (EMG sequence analysis) ← NO COMPETITOR HAS THIS │
-│   ├── ✅✅ Fatigue detection (EMG amplitude decline) ← INJURY PREVENTION       │
+│   ├── ✅✅ Fatigue detection (EMG amplitude decline) ← INJURY PREVENTION     │
 │   └── ✅✅ Causal analysis (Why did swing fail? EMG shows muscle timing errors) │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -82,12 +82,176 @@ The table below shows the correspondence between literature-validated golf metri
 
 ---
 
-## 3. Detection Methods Detailed
+## 3. Data Processing and Metric Calculation (Single Sensor)
 
-### 3.1 Vision Detection (MediaPipe 33 landmarks)
+### 3.1 Vision Data Processing (MediaPipe 33 landmarks)
 
 **Advantages**: Direct body posture observation, no complex calibration needed
 **Disadvantages**: Low sampling rate (30fps = 33ms), cannot measure high-frequency motion
+
+#### 3.1.1 Raw Data
+
+MediaPipe Pose outputs **33 keypoints** per frame, each containing 4 values:
+
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│                    Vision Keypoint Data Structure               │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   Each Landmark contains 4 values:                              │
+│   ├── x: Horizontal position (normalized coordinates, 0-1)     │
+│   ├── y: Vertical position (normalized coordinates, 0-1)       │
+│   ├── z: Depth (relative to hip midpoint)                      │
+│   └── visibility: Visibility (0-1, confidence score)           │
+│                                                                 │
+│   Sampling rate: 30 fps (33.3ms between frames)                │
+│   Keypoint count: 33 (full body skeleton)                      │
+│   Data per frame: 33 × 4 = 132 floating point numbers          │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**Normalized Coordinate System**:
+
+```text
+Image coordinate system (origin at top-left):
+
+(0,0) ─────────────────────────────→ x (1,0)
+  │
+  │         ┌─────────┐
+  │         │  0.45   │  ← x=0.45 means 45% from left edge
+  │         │    ●    │
+  │         │  0.32   │  ← y=0.32 means 32% from top edge
+  │         └─────────┘
+  │
+  ↓
+(0,1)                                   (1,1)
+```
+
+| Coordinate | Meaning | Range | Origin |
+|------------|---------|-------|--------|
+| **x** | Horizontal position | [0, 1] | 0 = left edge of image |
+| **y** | Vertical position | [0, 1] | 0 = top edge of image |
+| **z** | Depth | Relative value | 0 ≈ hip midpoint |
+| **visibility** | Visibility | [0, 1] | 0 = fully occluded |
+
+**z Coordinate Depth Explanation**:
+
+```text
+Top-down view (looking from above):
+
+        Camera
+          │
+          ▼
+    ┌─────────────┐
+    │   Arms      │  ← z < 0 (closer to camera than hips)
+    │   Hips ●    │  ← z ≈ 0 (reference point: midpoint of left/right hips)
+    │   Back      │  ← z > 0 (further from camera than hips)
+    └─────────────┘
+```
+
+| z Value | Meaning | Example in Golf Swing |
+|---------|---------|----------------------|
+| **Negative** | Closer to camera than hips | Arms extended forward, body leaning |
+| **≈ 0** | Same depth plane as hips | The hips themselves |
+| **Positive** | Further from camera than hips | Back, arms swinging backward |
+
+!!! warning "z Coordinate Limitations"
+    MediaPipe's z is inferred from 2D images, with limited precision.
+    True 3D depth requires stereo cameras or LiDAR.
+
+**Visibility Application**:
+
+| visibility Value | Status | Handling |
+|-----------------|--------|----------|
+| 0.9 - 1.0 | Clearly visible | ✅ Use directly |
+| 0.7 - 0.9 | Partially occluded | ⚠️ Usable but with caution |
+| 0.5 - 0.7 | Severely occluded | ⚠️ Recommend ignoring or interpolation |
+| < 0.5 | Not visible | ❌ Should not use |
+
+```python
+# Visibility filtering example
+def filter_landmarks(landmarks, min_visibility=0.7):
+    """Filter out low-visibility keypoints"""
+    return {
+        idx: lm for idx, lm in enumerate(landmarks)
+        if lm.visibility >= min_visibility
+    }
+```
+
+!!! tip "Why Use Normalized Coordinates?"
+    - **Cross-device consistency**: iPhone 12 (1920×1080) and iPhone 15 Pro (2556×1179) output same coordinates
+    - **Universal algorithms**: No need to adjust thresholds for different resolutions
+    - **Storage efficiency**: No need to record original image dimensions
+
+---
+
+#### 3.1.2 Calculated Metrics
+
+**Golf Swing Key Keypoints**:
+
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│                    MediaPipe 33 Keypoints                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   Key keypoints for golf swing (grouped by kinematic chain):   │
+│                                                                 │
+│   ┌─ Upper Limb Control Group (Grip/Release) ────────────────┐  │
+│   │                                                          │  │
+│   │   Shoulders (X-Factor, S-Factor):                        │  │
+│   │   ├── 11: left_shoulder                                  │  │
+│   │   └── 12: right_shoulder                                 │  │
+│   │                                                          │  │
+│   │   Elbows (Arm fold angle):                               │  │
+│   │   ├── 13: left_elbow                                     │  │
+│   │   └── 14: right_elbow                                    │  │
+│   │                                                          │  │
+│   │   Wrists (Grip position, corresponds to EMG forearm):    │  │
+│   │   ├── 15: left_wrist                                     │  │
+│   │   └── 16: right_wrist                                    │  │
+│   │                                                          │  │
+│   └──────────────────────────────────────────────────────────┘  │
+│                                                                 │
+│   ┌─ Core Drive Group (Torso Rotation) ──────────────────────┐  │
+│   │                                                          │  │
+│   │   Hips (X-Factor, O-Factor):                             │  │
+│   │   ├── 23: left_hip                                       │  │
+│   │   └── 24: right_hip                                      │  │
+│   │                                                          │  │
+│   │   Note: Torso rotation calculated via shoulder(11,12)    │  │
+│   │         minus hip(23,24) angle difference                │  │
+│   │                                                          │  │
+│   └──────────────────────────────────────────────────────────┘  │
+│                                                                 │
+│   ┌─ Lower Body Stability Group (Ground Reaction Force) ─────┐  │
+│   │                                                          │  │
+│   │   Knees (Lower body stability):                          │  │
+│   │   ├── 25: left_knee                                      │  │
+│   │   └── 26: right_knee                                     │  │
+│   │                                                          │  │
+│   │   Ankles (Stance width):                                 │  │
+│   │   ├── 27: left_ankle                                     │  │
+│   │   └── 28: right_ankle                                    │  │
+│   │                                                          │  │
+│   └──────────────────────────────────────────────────────────┘  │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**Golf Metrics and Keypoint Mapping**:
+
+| Metric | Keypoints Used | Calculation Method |
+|--------|---------------|-------------------|
+| **X-Factor** | 11, 12, 23, 24 | Shoulder line angle - hip line angle |
+| **S-Factor** | 11, 12 | Shoulder tilt angle (left/right height difference) |
+| **O-Factor** | 23, 24 | Pelvis tilt angle (left/right height difference) |
+| **Arm Extension** | 11/12, 13/14, 15/16 | Shoulder-elbow-wrist angle |
+| **Stance Width** | 27, 28 | Horizontal distance between ankles |
+| **Weight Transfer** | 23, 24, 27, 28 | Hip midpoint offset relative to feet midpoint |
+| **Knee Bend** | 23/24, 25/26, 27/28 | Hip-knee-ankle angle |
+
+Based on raw keypoint coordinates, the following golf swing metrics can be calculated:
 
 ```python
 # X-Factor calculation example
@@ -144,25 +308,145 @@ def calculate_obliquity(landmarks, is_shoulder=True):
     return obliquity
 ```
 
-**Detectable Metrics**:
+**Computable Metrics**:
 
-- X-Factor, X-Factor Stretch
-- S-Factor, O-Factor
-- Pelvis/torso turn angles
-- Sway/Thrust/Lift
-- Tempo ratio (low accuracy)
+| Type | Metric | Description |
+|------|--------|-------------|
+| **Real-time** | X-Factor | Calculate shoulder-hip separation per frame |
+| **Real-time** | S-Factor, O-Factor | Calculate tilt angle per frame |
+| **Real-time** | Pelvis/Torso turn | Calculate per frame |
+| **Real-time** | Sway/Thrust/Lift | Calculate per frame |
+| **Post-swing** | X-Factor Stretch | Requires complete swing data (peak moment comparison) |
+| **Post-swing** | Tempo Ratio (low accuracy) | Requires complete swing data |
 
 ---
 
-### 3.2 IMU Detection (LSM6DSV16X @ 1666Hz, max support 7.68kHz)
+### 3.2 IMU Data Processing (LSM6DSV16X @ 1666Hz)
 
-!!! info "LSM6DSV16X Specifications (2025-12 Validation)"
-    - **ODR Range**: 7.5Hz ~ 7.68kHz (far exceeds our 1666Hz usage)
-    - **Internal Sync Accuracy**: 6.25 μs (accelerometer/gyroscope hardware sync)
-    - **MVP Choice**: 1666Hz (balance accuracy and power)
+#### 3.2.1 Raw Data
 
-**Advantages**: High-frequency sampling, accurate angular velocity and acceleration measurement
-**Disadvantages**: Single IMU only measures local motion, needs multiple sensors to reconstruct full-body posture
+IMU (Inertial Measurement Unit) outputs **6 values** per sample from two sensors:
+
+```text
+┌────────────────────────────────────────────────────────────────┐
+│                    IMU 6-Axis Data Structure                   │
+├────────────────────────────────────────────────────────────────┤
+│                                                                │
+│   Accelerometer — 3 axes                                       │
+│   ├── accel_x: Linear acceleration left/right (m/s²)          │
+│   ├── accel_y: Linear acceleration up/down (m/s²)             │
+│   └── accel_z: Linear acceleration front/back (m/s²)          │
+│                                                                │
+│   Gyroscope — 3 axes                                           │
+│   ├── gyro_x: Angular velocity around X axis (°/s) — Pitch    │
+│   ├── gyro_y: Angular velocity around Y axis (°/s) — Yaw      │
+│   └── gyro_z: Angular velocity around Z axis (°/s) — Roll     │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+```
+
+**Coordinate System Definition**:
+
+```text
+IMU Coordinate System (Right-handed):
+
+                Y (up)
+                    │
+                    │   gyro_y: Yaw (turn head left/right)
+                    │   ↻
+                    │
+        ────────────┼────────────→ X (right)
+                   ╱│
+                  ╱ │
+                 ╱  │
+                ╱   │
+               Z (front)
+
+  gyro_x: Pitch (nod head)    gyro_z: Roll (tilt sideways)
+```
+
+**Origin and Zero Point Explanation**:
+
+| Data Type | Origin (Zero Value) | Description |
+|-----------|---------------------|-------------|
+| **accel_x/y/z** | When sensor is stationary | At rest, only gravity acceleration (accel_y ≈ 9.8 m/s²) |
+| **gyro_x/y/z** | When not rotating | When sensor is not rotating, all three axes are 0°/s |
+
+!!! info "When Are Values Zero?"
+    - **Accelerometer**: In free fall accel ≈ 0 (no gravity sensed); at rest accel_y ≈ 9.8
+    - **Gyroscope**: When sensor is completely stationary (not rotating), gyro_x = gyro_y = gyro_z = 0°/s
+    - **Top of backswing**: gyro_z changes from positive to negative, momentarily passing through 0 = direction change point
+
+**IMU on Wrist Back During Golf Swing**
+
+```text
+        Wrist back IMU position
+              ↓
+    ┌─────────────────┐
+    │     Forearm     │
+    │                 │
+    └────────┬────────┘
+             │
+    ┌────────┼────────┐
+    │   [IMU sensor]  │  ← Back of wrist
+    └────────┼────────┘
+             │
+        ┌────┴────┐
+        │  Palm   │
+        └─────────┘
+```
+
+| Axis | Accelerometer (accel) | Gyroscope (gyro) |
+|:----:|----------------------|------------------|
+| **X** | Arm swinging left/right | Wrist pitch (up/down flip) |
+| **Y** | Arm raising up/down | Forearm rotation (internal/external) |
+| **Z** | Arm extending front/back | Wrist yaw (ulnar/radial deviation) |
+
+| Swing Phase | Key IMU Axis | Measurement |
+|-------------|--------------|-------------|
+| **Backswing** | gyro_z | Wrist external rotation velocity |
+| **Top** | gyro_z → 0 | Zero velocity = direction change |
+| **Downswing** | gyro_z (negative) | Fast wrist internal rotation |
+| **Impact** | gyro_z peak | Peak angular velocity (1000-1500°/s) |
+| **Hip rotation** | gyro_y (pelvis IMU) | Hip rotation speed (Phase 2) |
+
+!!! tip "Why Place Sensor on Wrist Back?"
+    The wrist back is a **strategic location** for golf swing analysis for two reasons:
+
+    **1. Kinetic Chain Terminal Effect**
+
+    ```text
+    Ground → Legs → Hips → Torso → Shoulders → Arms → Wrist → Club
+      ↑                                                    ↑
+    Energy start                                      Energy end
+    (large mass, slow speed)                         (small mass, fast speed)
+    ```
+
+    According to momentum conservation, energy amplifies through the kinetic chain, reaching **maximum angular velocity** at the wrist (whip effect).
+    If upstream motion is correct, wrist gyro_z reaches 1200-1500°/s; otherwise it will be noticeably lower.
+
+    **2. Two-for-One Measurement Position**
+
+    | gyro Axis | Motion Measured | Body Segments Involved |
+    |-----------|-----------------|----------------------|
+    | gyro_x | Wrist pitch (flip up/down) | Wrist joint |
+    | gyro_y | Forearm rotation (internal/external) | Forearm + wrist |
+    | gyro_z | Wrist roll (release action) | Wrist + indirectly reflects entire arm |
+
+    The wrist back measures both **fine wrist movements** and senses **forearm rotation** through gyro_y.
+
+!!! tip "Why is gyro_z Most Important?"
+    In golf swing, **gyro_z** (wrist roll/rotation) is the most critical metric:
+
+    - Pro golfers reach **1200-1500°/s** at impact
+    - Amateurs typically only **600-800°/s**
+    - gyro_z highly correlates with clubhead speed (r > 0.85)
+
+---
+
+#### 3.2.2 Calculated Metrics
+
+Based on raw 6-axis data, the following golf swing metrics can be calculated:
 
 ```python
 # Peak angular velocity detection
@@ -187,17 +471,44 @@ def detect_peak_velocity(gyro_data, timestamps):
 
     return peak_velocity, peak_time
 
-# Tempo ratio calculation
+# Zero crossing detection (real-time phase segmentation)
+def detect_zero_crossing(gyro_z, timestamps):
+    """
+    Detect gyro_z zero crossing for real-time phase segmentation
+
+    Args:
+        gyro_z: Z-axis angular velocity (deg/s)
+        timestamps: Timestamps (ms)
+
+    Returns:
+        crossing_time: Zero crossing time (ms), i.e., top of backswing
+    """
+    # Find sign change points (positive→negative)
+    sign_changes = np.where(np.diff(np.sign(gyro_z)) < 0)[0]
+    if len(sign_changes) > 0:
+        crossing_idx = sign_changes[0]
+        return timestamps[crossing_idx]
+    return None
+
+
+# ============================================================
+# Below are Post-Swing Analysis functions
+# Require complete swing data, cannot be calculated real-time
+# ============================================================
+
+# Tempo ratio calculation (post-swing)
 def calculate_tempo_ratio(timestamps, event_labels):
     """
     Calculate backswing/downswing tempo ratio
+
+    ⚠️ Post-swing calculation: Requires complete swing data
 
     Args:
         timestamps: Timestamps (ms)
         event_labels: Event labels ['address', 'top', 'impact']
 
     Returns:
-        tempo_ratio: Backswing duration / downswing duration
+        tempo_ratio: Backswing duration / downswing duration (ideal ~3:1)
     """
     address_time = timestamps[event_labels.index('address')]
     top_time = timestamps[event_labels.index('top')]
@@ -210,7 +521,7 @@ def calculate_tempo_ratio(timestamps, event_labels):
 
     return tempo_ratio
 
-# Kinematic sequence timing detection
+# Kinematic sequence timing detection (post-swing)
 def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
     """
     Detect kinematic sequence onset times
@@ -230,45 +541,242 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
     return onset_time
 ```
 
-**Detectable Metrics**:
+**Computable Metrics**:
 
-- Peak angular velocity
-- Tempo ratio (high accuracy)
-- Kinematic sequence timing (<10ms accuracy)
-- Peak acceleration
+| Type | Metric | Description |
+|------|--------|-------------|
+| **Real-time** | Peak angular velocity | Can be detected in data stream real-time |
+| **Real-time** | Zero crossing detection | For phase segmentation (top of backswing) |
+| **Real-time** | Peak acceleration | Can be detected in data stream real-time |
+| **Post-swing** | Tempo ratio | Requires complete swing data (address→impact) |
+| **Post-swing** | Kinematic sequence timing | Requires complete swing data (<10ms accuracy) |
 
 ---
 
-### 3.3 EMG Detection (UNIQUE CAPABILITY)
+### 3.3 EMG Data Processing (UNIQUE CAPABILITY)
 
-!!! note "Sensor Selection (2025-12 Validation)"
-    **Recommended**: MyoWare 2.0 + Link Shield (DEV-18425)
+!!! info "Signal Processing Fundamentals"
+    Before understanding EMG detection algorithms, please read:
 
-    - No cable noise issues, suitable for high-speed swings (100mph)
-    - Link Shield is required (MyoWare has no solder holes)
+    - Signal Processing 101 — Basic concepts of baseline, onset detection, debounce
+    - Key terms: Baseline, Onset Detection, Debounce
 
-    **Not Recommended for High-Speed Motion**: DFRobot SEN0240
+#### 3.3.1 Raw Data
 
-    - Cables generate motion artifacts during high-speed swings
-    - Only suitable for static measurement scenarios
+EMG (Electromyography) measures **electrical signals generated during muscle contraction**:
 
-**Advantages**: Direct muscle activation observation, explains "why"
-**Disadvantages**: Needs skin contact, affected by sweat/hair
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│                    EMG Single Channel Data Structure            │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   raw_mV: Raw voltage signal (millivolts, mV)                  │
+│           Typical range: -5mV ~ +5mV (surface EMG)             │
+│                                                                 │
+│   envelope_mV: Envelope signal (filtered and rectified)        │
+│                Typical range: 0 ~ 2mV                          │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**Raw Data Details** (Hardware Layer):
+
+MyoWare 2.0 + ESP32 ADC outputs **12-bit integer values (0-4095)**:
+
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│                    EMG Raw Data Signal Chain                    │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   Muscle signal        MyoWare 2.0 Amplifier      ESP32 ADC    │
+│   ───────────  →   ─────────────────────  →   ──────────       │
+│   ±5 μV ~ ±5 mV    Gain ≈1000x → 0-3.3V       0-4095 (12-bit)  │
+│                                                                 │
+│   Skin surface        Analog voltage (ENV pin)   Digital value │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+| Data Layer | Variable Name | Range | Unit | Description |
+|------------|---------------|-------|------|-------------|
+| **ADC Raw Value** | `adc_value` | 0 - 4095 | None | ESP32 12-bit ADC direct read |
+| **Voltage** | `voltage` | 0 - 3.3 | V | `adc_value × 3.3 / 4095` |
+| **Envelope Voltage** | `envelope_mV` | 0 - 2000 | mV | MyoWare ENV output (rectified) |
+| **Normalized Activation** | `activation_%` | 0 - 100 | % | Percentage relative to MVC |
+
+**ADC Raw Value Reference**:
+
+```text
+ADC Value vs Muscle State:
+
+4095 ─┬─────────────────────────────────── Sensor saturation (fault)
+      │
+3000 ─┼─────────────────────────── Maximum Voluntary Contraction (MVC)
+      │                           Peak at impact
+2000 ─┼─────────────────── Strong activation (downswing power)
+      │
+1000 ─┼───────────── Moderate activation (coiling)
+      │
+ 500 ─┼──────── Light activation (backswing)
+      │
+ 300 ─┼───── Resting baseline + noise
+      │
+ 100 ─┼── Ideal resting (rare)
+      │
+   0 ─┴─ Signal loss / electrode detached
+```
+
+| ADC Range | State | Description |
+|-----------|-------|-------------|
+| 0 - 50 | ⚠️ Abnormal | Electrode may be detached |
+| 100 - 300 | Resting | Muscle relaxed, baseline noise |
+| 300 - 800 | Light activation | Low-intensity muscle contraction |
+| 800 - 1500 | Moderate activation | Swing coiling phase |
+| 1500 - 2500 | Strong activation | Downswing power phase |
+| 2500 - 3500 | Maximum activation | Moment of impact |
+| > 3800 | ⚠️ Saturation | Gain too high or motion artifact |
+
+**Raw EMG Waveform Characteristics**:
+
+```text
+Resting State (relaxed):             Activated State (contraction):
+
+     ↑ mV                               ↑ mV
+ +0.1┤   ~  ~  ~  ~  ~  ~           +2.0┤    ∧    ∧
+     │  ~  ~  ~  ~  ~  ~                │   /\  /\  /\
+  0  ├─────────────────── t            0├─/──\/──\/──\─ t
+     │  ~  ~  ~  ~  ~  ~                │\/          \/
+ -0.1┤   ~  ~  ~  ~  ~  ~           -2.0┤    ∨    ∨
+     ↓                                  ↓
+
+Characteristics:                    Characteristics:
+- Low amplitude (±0.1mV)            - High amplitude (±2mV+)
+- Random noise                      - High frequency oscillation
+- No pattern                        - Frequency 20-150Hz
+```
+
+!!! tip "Why Use ADC Values Instead of mV?"
+    - **Simplified calculation**: Skip ADC→voltage→mV conversion
+    - **Integer arithmetic**: Faster on MCU
+    - **Relative comparison**: Activation detection only needs threshold comparison, not absolute physical units
+    - **Calibration compensation**: Re-calibrate baseline each session, eliminating absolute value errors
+
+**System Design: 2-Channel EMG** (see System Design)
+
+```text
+┌─────────────────────────────────────────────────────────────────┐
+│              Movement Chain AI EMG Channel Configuration        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   Channel 1: Core                                               │
+│   ├── Location: External Oblique                                │
+│   ├── Function: Detect torso rotation power                     │
+│   └── Hardware: MyoWare 2.0 × 1                                 │
+│                                                                 │
+│   Channel 2: Forearm                                            │
+│   ├── Location: Flexor Carpi                                    │
+│   ├── Function: Detect wrist release timing                     │
+│   └── Hardware: MyoWare 2.0 × 1                                 │
+│                                                                 │
+│   Core Detection: Core activation time vs Forearm activation    │
+│            → Time diff > 20ms = correct kinematic chain         │
+│            → Time diff < 0ms = "swinging with arms" (reverse)   │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+| Phase | Channels | Muscle Location | Purpose |
+|:-----:|:--------:|-----------------|---------|
+| **MVP** | 2 | Core + Forearm | Validate core kinematic chain timing |
+| Phase 2 | 4 | + Gluteus, Adductors | Lower body power analysis |
+| Phase 3 | 6 | + Lats, Deltoids | Full body kinematic chain |
+
+> See [Section 3.3.3 EMG Sensor Placement](#333-emg-sensor-placement-plan)
+
+**Signal Processing Pipeline**:
+
+```text
+Raw EMG signal → Bandpass filter → Rectification → Envelope extraction → Normalization
+     ↓              ↓                 ↓                  ↓                  ↓
+  Noisy waveform  Remove noise    All positive      Smooth curve         0-100%
+```
+
+**Origin and Zero Point Explanation**:
+
+| Data Type | Zero Value Meaning | Description |
+|-----------|-------------------|-------------|
+| **raw_mV** | Muscle fully relaxed | Signal near 0 at rest, but with noise (±0.05mV) |
+| **envelope_mV** | No activation | After processing, 0 = muscle not contracting |
+| **activation_%** | No activation | Normalized, 0% = resting, 100% = maximum voluntary contraction |
+
+!!! info "When Are Values Zero?"
+    - **Fully relaxed**: When muscle not contracting, EMG signal is near 0
+    - **Reality**: Due to noise, resting state typically has 0.02-0.1mV baseline noise
+    - **Threshold judgment**: Activation = signal > baseline + 2×standard deviation
+
+**Signal Amplitude Reference**:
+
+| Activation State | envelope_mV | activation_% | Example in Swing |
+|-----------------|-------------|--------------|------------------|
+| **Resting** | 0 ~ 0.1 | 0 ~ 5% | Standing ready (Address) |
+| **Light activation** | 0.1 ~ 0.3 | 5 ~ 20% | Early backswing |
+| **Moderate activation** | 0.3 ~ 0.8 | 20 ~ 50% | Top of backswing coiling |
+| **Strong activation** | 0.8 ~ 1.5 | 50 ~ 80% | Downswing power |
+| **Maximum activation** | 1.5 ~ 2.0+ | 80 ~ 100% | Moment of impact |
+
+**Application in Golf Swing**:
+
+| Muscle | Measurement | Normal Pattern | Abnormal Pattern |
+|--------|-------------|----------------|------------------|
+| **Core** | Oblique activation | Activates 30ms before downswing | Late or no activation |
+| **Forearm** | Wrist flexor activation | 20ms+ after core activation | Activates before core = "swinging with arms" |
+
+```text
+Correct kinematic chain timing:
+
+Core EMG:    ____/‾‾‾‾‾‾‾‾‾‾\____    ← Activates first (t=570ms)
+                  ↓
+Forearm EMG: _________/‾‾‾‾‾‾\___    ← Activates later (t=720ms)
+                      ↓
+             |--------|--------|
+             Top    Impact
+             (600ms) (850ms)
+
+Time diff = 720 - 570 = 150ms > 20ms ✅ Correct
+```
+
+---
+
+#### 3.3.2 Calculated Metrics
+
+Based on raw EMG signals, the following single-channel metrics can be calculated:
 
 ```python
 # Muscle activation onset detection
 def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
     """
-    Detect muscle activation onset time
+    Detect muscle activation onset time (Onset Detection)
+
+    ⚠️ Prerequisites: Understanding this algorithm requires reading signal-processing-101.md
+       - Baseline: EMG at rest is not 0, need to calculate baseline first
+       - Threshold method: SD method (2-3 standard deviations) or %MVC method
 
     Args:
         emg_signal: EMG signal (mV), already filtered and envelope extracted
         timestamps: Timestamps (ms)
         threshold: Activation threshold (mV or normalized value)
+                   - Simple implementation: fixed threshold 0.5
+                   - Recommended: baseline_mean + 2*baseline_sd
 
     Returns:
         onset_time: Activation onset time (ms)
         onset_intensity: Peak activation intensity (mV)
+
+    Improvement directions:
+        1. Add baseline window calculation (baseline_window_ms: 200-500ms)
+        2. Use SD method threshold (onset_threshold_sd: 2-3)
+        3. Add debounce logic (debounce_ms: 10-20ms)
+        See: signal-processing-101.md sections 3-5
     """
     # Find first moment when signal exceeds threshold
     onset_idx = np.where(emg_signal > threshold)[0]
@@ -280,11 +788,243 @@ def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
     onset_intensity = np.max(emg_signal[onset_idx])
 
     return onset_time, onset_intensity
+```
 
+**Single-Sensor Computable Metrics**:
+
+- Single channel activation time (onset_time)
+- Single channel activation intensity (onset_intensity)
+- Envelope signal (envelope_mV)
+- Normalized activation percentage (activation_%)
+
+!!! note "Multi-Sensor Fusion Analysis"
+    The following capabilities require **time-aligned multi-sensor data**, see [Section 4 Multi-Sensor Fusion Analysis](#4-multi-sensor-fusion-analysis):
+
+    - Kinematic sequence validation (Core vs Forearm timing)
+    - Force chain validation (multi-muscle activation sequence)
+    - Fatigue detection (cross-swing comparison)
+
+---
+
+#### 3.3.3 EMG Sensor Placement Plan
+
+##### Key Muscle Groups Map
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         GOLF SWING EMG SENSOR MAP                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│                        ┌─────────────┐                                      │
+│                        │   Lats      │ ← Phase 3: Shoulder rotation, pulling motion │
+│                        │  (Latissimus│   (Latissimus Dorsi)                 │
+│                        │   Dorsi)    │                                      │
+│                        └──────┬──────┘                                      │
+│                               │                                             │
+│                        ┌──────┴──────┐                                      │
+│                        │    Core     │ ← Phase 1: Torso rotation, force transfer hub ⭐ │
+│                        │   (Core/    │   (Obliques)                         │
+│                        │   Obliques) │                                      │
+│                        └──────┬──────┘                                      │
+│                               │                                             │
+│                        ┌──────┴──────┐                                      │
+│                        │   Glutes    │ ← Phase 2: Downswing initiation, hip rotation │
+│                        │  (Gluteus   │   (Gluteus Maximus)                  │
+│                        │   Maximus)  │                                      │
+│                        └──────┬──────┘                                      │
+│                               │                                             │
+│   ┌───────────────────┐       │       ┌───────────────────┐                 │
+│   │   Deltoids        │       │       │   Forearm         │                 │
+│   │   (Phase 3)       │       │       │   (Phase 1 ⭐)    │                 │
+│   └───────────────────┘       │       │   (Wrist Flexors) │                 │
+│                               │       └───────────────────┘                 │
+│                        ┌──────┴──────┐                                      │
+│                        │  Adductors  │ ← Phase 2: Lower body stability, weight transfer │
+│                        │             │                                      │
+│                        └─────────────┘                                      │
+│                                                                             │
+│   Kinematic Chain Sequence:                                                 │
+│   Glutes → Core → Lats → Forearm                                           │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+##### Phased Deployment Plan
+
+| Phase | Muscle Group | English Name | Detection Target | Sensor Count |
+|:-----:|-------------|-------------|------------------|:------------:|
+| **1 (MVP)** | Core/Obliques | Core/Obliques | Torso rotation power, kinematic chain hub | 1 |
+| **1 (MVP)** | Forearm Flexors | Forearm Flexors | Wrist release timing, grip pressure | 1 |
+| **2** | Gluteus Maximus | Gluteus Maximus | Downswing initiation, hip rotation | 1 |
+| **2** | Adductors | Adductors | Lower body stability, weight transfer | 1 |
+| **3** | Latissimus Dorsi | Latissimus Dorsi | Shoulder rotation, pulling motion | 1 |
+| **3** | Deltoids | Deltoids | Arm raise, top position | 1 |
+
+**Sensor Count Planning**:
+
+- Phase 1 (MVP): **2 channels** - Minimum viable, validate core value
+- Phase 2: **4 channels** - Complete lower body kinematic chain
+- Phase 3: **6 channels** - Full-body kinematic chain analysis
+
+##### Selection Rationale
+
+| Research Source | Finding | Impact on Selection |
+|----------------|---------|---------------------|
+| **Cheetham (2008)** | Kinematic sequence timing: Pelvis → Torso → Arms, pros more stable | Core + Forearm can detect most critical "Torso→Arms" timing |
+| **Meister (2011)** | Core activation correlates with clubhead speed r=0.89 | Core is must-select sensor |
+| **TPI Research** | Insufficient glute activation → Early Extension | Add Gluteus in Phase 2 |
+| **PMC4851105** | 8-channel EMG analysis reveals "avalanche effect" | Full-channel analysis needs Phase 3 |
+
+##### MVP Detection Capabilities
+
+Using only **2 EMG sensors (Core + Forearm)** can detect:
+
+| Detection Capability | Method | Threshold |
+|---------------------|--------|-----------|
+| **Reverse Kinematic Chain** | Core onset vs Forearm onset | Time diff < 0ms = wrong |
+| **Excessive Arm Swing** | Forearm RMS / Core RMS | Ratio > 1.3 = problem |
+| **Insufficient Core Activation** | Core RMS / MVC% | < 50% MVC = insufficient |
+| **Fatigue Detection** | Peak amplitude decay trend | Drop > 30% = fatigue |
+
+##### Mock Data Structure
+
+For MVP stage using Mock data, recommend reserving **4-channel** data structure for future expansion:
+
+```python
+# Mock EMG data structure (reserve for Phase 2)
+mock_emg = {
+    # Phase 1 (MVP) - Must implement
+    "core_obliques": {
+        "signal": [...],           # 1000Hz sampling (MyoWare 2.0 recommended config)
+        "onset_time_ms": 0,        # Activation onset time
+        "peak_amplitude_mv": 0.0,  # Peak amplitude
+        "rms_mv": 0.0,             # RMS mean
+    },
+    "forearm_flexors": {
+        "signal": [...],
+        "onset_time_ms": 0,
+        "peak_amplitude_mv": 0.0,
+        "rms_mv": 0.0,
+    },
+
+    # Phase 2 - Data structure reserved
+    "gluteus_maximus": None,       # Phase 2 fill
+    "adductors": None,             # Phase 2 fill
+
+    # Phase 3 - Data structure reserved
+    "latissimus_dorsi": None,      # Phase 3 fill
+    "deltoids": None,              # Phase 3 fill
+}
+
+# Calculate Core-Forearm timing gap
+def calculate_timing_gap(mock_emg):
+    core_onset = mock_emg["core_obliques"]["onset_time_ms"]
+    forearm_onset = mock_emg["forearm_flexors"]["onset_time_ms"]
+    gap_ms = forearm_onset - core_onset  # Positive = core first (correct)
+    return gap_ms
+
+# Calculate activation ratio
+def calculate_activation_ratio(mock_emg):
+    core_rms = mock_emg["core_obliques"]["rms_mv"]
+    forearm_rms = mock_emg["forearm_flexors"]["rms_mv"]
+    ratio = forearm_rms / core_rms  # < 1.3 is normal
+    return ratio
+```
+
+---
+
+## 4. Multi-Sensor Fusion Analysis
+
+!!! info "Section Contents"
+    This section describes multi-sensor fusion analysis **after time alignment**, including:
+
+    - Fusion strategy and pipeline
+    - Unique detection capabilities enabled by fusion
+
+---
+
+### 4.1 Unique Detection Capabilities Summary
+
+The table below shows your system's unique advantages over competitors.
+
+| Detectable Capability | Detection Method | Competitors Can Achieve? | Business Value |
+|----------------------|-----------------|------------------------|---------------|
+| **Core Before Arms Activation** | EMG timing analysis | ❌ No competitor | Validate "inside-out" force chain principle |
+| **Force Chain Break Point Location** | EMG sequence analysis | ❌ No competitor | Precisely diagnose "why swing failed" |
+| **Fatigue Accumulation Detection** | EMG amplitude decay | ❌ No competitor | Injury prevention, optimize training volume |
+| **X-Factor Stretch** | Vision frame analysis | ✅ Some competitors (Sportsbox) | Validate "coil" motion |
+| **Kinematic Sequence Timing (<10ms)** | IMU + EMG dual validation | ⚠️ Some competitors (GEARS, IMU only) | High-precision timing analysis |
+| **Peak Angular Velocity** | IMU direct measure | ✅ Some competitors (K-VEST) | Power output assessment |
+| **Tempo Ratio** | IMU high-freq sampling | ✅ Some competitors (Vision + IMU) | Swing tempo consistency |
+| **All Body Angles** | Vision 33 keypoints | ✅ All Vision systems | Posture assessment foundation |
+
+**Core Differentiation Summary**:
+
+1. **EMG Muscle Activation Detection** = Your system **unique**, no competitor can achieve
+2. **Causal Analysis Capability** = Vision/IMU only see "results", EMG can explain "causes"
+3. **Injury Prevention** = Fatigue detection can identify overtraining risks early
+
+---
+
+### 4.2 Sensor Fusion Strategy
+
+Tri-modal sensor data fusion strategy:
+
+```text
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         SENSOR FUSION PIPELINE                              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   Phase 1: Single-Modal Feature Extraction                                  │
+│   ├── Vision (30fps): Extract 33 keypoints → Calculate X-Factor, S-Factor, Sway/Lift │
+│   ├── IMU (1666Hz): Extract angular velocity/acceleration → Calculate peak velocity, tempo ratio │
+│   └── EMG (1000Hz): Extract activation timing → Calculate muscle onset times, activation intensity │
+│                                                                             │
+│   Phase 2: Time Alignment (Sensor Hub Architecture)                         │
+│   ├── Sensor Hub: Same-location IMU/EMG share ESP32 clock (hardware-level microsecond sync) │
+│   ├── Use IMU as reference clock (highest sampling rate)                    │
+│   ├── Vision frame interpolation to 1666Hz (linear interpolation)           │
+│   ├── EMG resampling to 1666Hz (downsampling)                               │
+│   └── Cross-device alignment: Use Impact moment as sync anchor              │
+│                                                                             │
+│   Phase 3: Feature Fusion                                                   │
+│   ├── Kinematic sequence timing = IMU (body onset) + EMG (muscle onset) dual validation │
+│   ├── X-Factor Stretch = Vision (angle diff) + EMG (core activation) correlation analysis │
+│   └── Force chain validation = Vision (posture) + IMU (velocity) + EMG (activation sequence) triple validation │
+│                                                                             │
+│   Phase 4: Anomaly Detection                                                │
+│   ├── If EMG shows core not activated but IMU shows high-speed rotation → Warn "compensation motion" │
+│   ├── If Vision shows normal X-Factor but EMG shows wrong activation sequence → Warn "false coil" │
+│   └── If EMG shows fatigue but user continues practice → Suggest "rest to prevent injury" │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+!!! tip "Time Alignment Implementation"
+    Phase 2 time alignment implementation (NTP pre-sync + Impact validation) detailed in
+    Modular Architecture Section 2.2.3.
+```
+
+**Fusion Advantages**:
+
+- **Complementarity**: What Vision can't see (muscle activation), EMG can measure
+- **Redundancy**: Kinematic sequence timing can use IMU + EMG dual validation, improving accuracy
+- **Causality**: Vision/IMU provide "phenomenon", EMG provides "cause"
+
+---
+
+### 4.3 EMG Multi-Channel Timing Analysis
+
+The following algorithms analyze timing relationships and activation patterns across multiple EMG channels:
+
+```python
 # Kinematic sequence validation (UNIQUE)
 def validate_kinematic_sequence(emg_core, emg_forearm, timestamps, threshold=0.5):
     """
     Validate if core activates before arms (correct kinematic sequence)
+
+    ⚠️ Key parameter: Co-activation Tolerance
+       - If |time_diff| < 5ms, consider as "co-activation"
+       - Due to EMG sampling precision limits (1000Hz = 1ms)
+       - See: signal-processing-101.md section 3.2
 
     Args:
         emg_core: Core muscle EMG signal (obliques or erector spinae)
@@ -295,6 +1035,7 @@ def validate_kinematic_sequence(emg_core, emg_forearm, timestamps, threshold=0.5
     Returns:
         sequence_correct: True=core activates first, False=arms first
         time_diff: Activation time difference (ms, positive=core first)
+                   ±5ms range considered co-activation
     """
     core_onset, _ = detect_muscle_onset(emg_core, timestamps, threshold)
     forearm_onset, _ = detect_muscle_onset(emg_forearm, timestamps, threshold)
@@ -366,7 +1107,7 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
     return force_chain_correct, onset_times
 ```
 
-**Detectable Metrics (Competitors Cannot Achieve)**:
+**Computable Metrics (Competitors Cannot Achieve)**:
 
 - Muscle activation timing (<5ms accuracy)
 - Muscle activation intensity (mV signal amplitude)
@@ -376,202 +1117,7 @@ def validate_force_chain(emg_signals, muscle_names, timestamps, threshold=0.5):
 
 ---
 
-## 4. Your Unique Detection Capabilities Summary
-
-The table below shows your system's unique advantages over competitors.
-
-| Detectable Capability | Detection Method | Competitors Can Achieve? | Business Value |
-|----------------------|-----------------|------------------------|---------------|
-| **Core Before Arms Activation** | EMG timing analysis | ❌ No competitor | Validate "inside-out" force chain principle |
-| **Force Chain Break Point Location** | EMG sequence analysis | ❌ No competitor | Precisely diagnose "why swing failed" |
-| **Fatigue Accumulation Detection** | EMG amplitude decay | ❌ No competitor | Injury prevention, optimize training volume |
-| **X-Factor Stretch** | Vision frame analysis | ✅ Some competitors (Sportsbox) | Validate "coil" motion |
-| **Kinematic Sequence Timing (<10ms)** | IMU + EMG dual validation | ⚠️ Some competitors (GEARS, IMU only) | High-precision timing analysis |
-| **Peak Angular Velocity** | IMU direct measure | ✅ Some competitors (K-VEST) | Power output assessment |
-| **Tempo Ratio** | IMU high-freq sampling | ✅ Some competitors (Vision + IMU) | Swing tempo consistency |
-| **All Body Angles** | Vision 33 keypoints | ✅ All Vision systems | Posture assessment foundation |
-
-**Core Differentiation Summary**:
-
-1. **EMG Muscle Activation Detection** = Your system **unique**, no competitor can achieve
-2. **Causal Analysis Capability** = Vision/IMU only see "results", EMG can explain "causes"
-3. **Injury Prevention** = Fatigue detection can identify overtraining risks early
-
----
-
-## 5. Sensor Fusion Strategy
-
-Tri-modal sensor data fusion strategy:
-
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         SENSOR FUSION PIPELINE                               │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                              │
-│   Phase 1: Single-Modal Feature Extraction                                   │
-│   ├── Vision (30fps): Extract 33 keypoints → Calculate X-Factor, S-Factor, Sway/Lift │
-│   ├── IMU (1666Hz): Extract angular velocity/acceleration → Calculate peak velocity, tempo ratio │
-│   └── EMG (1000Hz): Extract activation timing → Calculate muscle onset times, activation intensity │
-│                                                                              │
-│   Phase 2: Time Alignment (Sensor Hub Architecture)                          │
-│   ├── Sensor Hub: Same-location IMU/EMG share ESP32 clock (hardware-level microsecond sync) │
-│   ├── Use IMU as reference clock (highest sampling rate)                     │
-│   ├── Vision frame interpolation to 1666Hz (linear interpolation)            │
-│   ├── EMG resampling to 1666Hz (downsampling)                                │
-│   └── Cross-device alignment: Use Impact moment as sync anchor               │
-│                                                                              │
-│   Phase 3: Feature Fusion                                                    │
-│   ├── Kinematic sequence timing = IMU (body onset) + EMG (muscle onset) dual validation │
-│   ├── X-Factor Stretch = Vision (angle diff) + EMG (core activation) correlation analysis │
-│   └── Force chain validation = Vision (posture) + IMU (velocity) + EMG (activation sequence) triple validation │
-│                                                                              │
-│   Phase 4: Anomaly Detection                                                 │
-│   ├── If EMG shows core not activated but IMU shows high-speed rotation → Warn "compensation motion" │
-│   ├── If Vision shows normal X-Factor but EMG shows wrong activation sequence → Warn "false coil" │
-│   └── If EMG shows fatigue but user continues practice → Suggest "rest to prevent injury" │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-!!! tip "Time Alignment Implementation"
-    Phase 2 time alignment implementation (NTP pre-sync + Impact validation) detailed in
-    [Modular Architecture §2.4.1](modular-architecture.md#241-time-sync-implementation).
-```
-
-**Fusion Advantages**:
-
-- **Complementarity**: What Vision can't see (muscle activation), EMG can measure
-- **Redundancy**: Kinematic sequence timing can use IMU + EMG dual validation, improving accuracy
-- **Causality**: Vision/IMU provide "phenomenon", EMG provides "cause"
-
----
-
-## 6. EMG Sensor Placement Plan
-
-### 6.1 Key Muscle Groups Map
-
-```text
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                         GOLF SWING EMG SENSOR MAP                           │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│                        ┌─────────────┐                                      │
-│                        │   Lats      │ ← Phase 3: Shoulder rotation, pulling motion │
-│                        │  (Latissimus│   (Latissimus Dorsi)                 │
-│                        │   Dorsi)    │                                      │
-│                        └──────┬──────┘                                      │
-│                               │                                             │
-│                        ┌──────┴──────┐                                      │
-│                        │    Core     │ ← Phase 1: Torso rotation, force transfer hub ⭐ │
-│                        │   (Core/    │   (Obliques)                          │
-│                        │   Obliques) │                                      │
-│                        └──────┬──────┘                                      │
-│                               │                                             │
-│                        ┌──────┴──────┐                                      │
-│                        │   Glutes    │ ← Phase 2: Downswing initiation, hip rotation │
-│                        │  (Gluteus   │   (Gluteus Maximus)                  │
-│                        │   Maximus)  │                                      │
-│                        └──────┬──────┘                                      │
-│                               │                                             │
-│   ┌───────────────────┐       │       ┌───────────────────┐                 │
-│   │   Deltoids        │       │       │   Forearm         │                 │
-│   │   (Phase 3)       │       │       │   (Phase 1 ⭐)    │                 │
-│   └───────────────────┘       │       │   (Wrist Flexors) │                 │
-│                               │       └───────────────────┘                 │
-│                        ┌──────┴──────┐                                      │
-│                        │  Adductors  │ ← Phase 2: Lower body stability, weight transfer │
-│                        │             │                                      │
-│                        └─────────────┘                                      │
-│                                                                             │
-│   Kinematic Chain Sequence:                                                 │
-│   Glutes → Core → Lats → Forearm                                           │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
-
-### 6.2 Phased Deployment Plan
-
-| Phase | Muscle Group | English Name | Detection Target | Sensor Count |
-|:-----:|-------------|-------------|------------------|:------------:|
-| **1 (MVP)** | Core/Obliques | Core/Obliques | Torso rotation power, kinematic chain hub | 1 |
-| **1 (MVP)** | Forearm Flexors | Forearm Flexors | Wrist release timing, grip pressure | 1 |
-| **2** | Gluteus Maximus | Gluteus Maximus | Downswing initiation, hip rotation | 1 |
-| **2** | Adductors | Adductors | Lower body stability, weight transfer | 1 |
-| **3** | Latissimus Dorsi | Latissimus Dorsi | Shoulder rotation, pulling motion | 1 |
-| **3** | Deltoids | Deltoids | Arm raise, top position | 1 |
-
-**Sensor Count Planning**:
-
-- Phase 1 (MVP): **2 channels** — Minimum viable, validate core value
-- Phase 2: **4 channels** — Complete lower body kinematic chain
-- Phase 3: **6 channels** — Full-body kinematic chain analysis
-
-### 6.3 Selection Rationale
-
-| Research Source | Finding | Impact on Selection |
-|----------------|---------|---------------------|
-| **Cheetham (2008)** | Kinematic sequence timing: Pelvis → Torso → Arms, pros more stable | Core + Forearm can detect most critical "Torso→Arms" timing |
-| **Meister (2011)** | Core activation correlates with clubhead speed r=0.89 | Core is must-select sensor |
-| **TPI Research** | Insufficient glute activation → Early Extension | Add Gluteus in Phase 2 |
-| **PMC4851105** | 8-channel EMG analysis reveals "avalanche effect" | Full-channel analysis needs Phase 3 |
-
-### 6.4 MVP Detection Capabilities
-
-Using only **2 EMG sensors (Core + Forearm)** can detect:
-
-| Detection Capability | Method | Threshold |
-|---------------------|--------|-----------|
-| **Reverse Kinematic Chain** | Core onset vs Forearm onset | Time diff < 0ms = wrong |
-| **Excessive Arm Swing** | Forearm RMS / Core RMS | Ratio > 1.3 = problem |
-| **Insufficient Core Activation** | Core RMS / MVC% | < 50% MVC = insufficient |
-| **Fatigue Detection** | Peak amplitude decay trend | Drop > 30% = fatigue |
-
-### 6.5 Mock Data Structure
-
-For MVP stage using Mock data, recommend reserving **4-channel** data structure for future expansion:
-
-```python
-# Mock EMG data structure (reserve for Phase 2)
-mock_emg = {
-    # Phase 1 (MVP) - Must implement
-    "core_obliques": {
-        "signal": [...],           # 1000Hz sampling (MyoWare 2.0 recommended config)
-        "onset_time_ms": 0,        # Activation onset time
-        "peak_amplitude_mv": 0.0,  # Peak amplitude
-        "rms_mv": 0.0,             # RMS mean
-    },
-    "forearm_flexors": {
-        "signal": [...],
-        "onset_time_ms": 0,
-        "peak_amplitude_mv": 0.0,
-        "rms_mv": 0.0,
-    },
-
-    # Phase 2 - Data structure reserved
-    "gluteus_maximus": None,       # Phase 2 fill
-    "adductors": None,             # Phase 2 fill
-
-    # Phase 3 - Data structure reserved
-    "latissimus_dorsi": None,      # Phase 3 fill
-    "deltoids": None,              # Phase 3 fill
-}
-
-# Calculate Core-Forearm timing gap
-def calculate_timing_gap(mock_emg):
-    core_onset = mock_emg["core_obliques"]["onset_time_ms"]
-    forearm_onset = mock_emg["forearm_flexors"]["onset_time_ms"]
-    gap_ms = forearm_onset - core_onset  # Positive = core first (correct)
-    return gap_ms
-
-# Calculate activation ratio
-def calculate_activation_ratio(mock_emg):
-    core_rms = mock_emg["core_obliques"]["rms_mv"]
-    forearm_rms = mock_emg["forearm_flexors"]["rms_mv"]
-    ratio = forearm_rms / core_rms  # < 1.3 is normal
-    return ratio
-```
-
----
-
-## 7. Fusion Confidence Calculation
+### 4.4 Fusion Confidence Calculation
 
 Core algorithm for tri-modal fusion confidence improvement:
 
@@ -615,11 +1161,434 @@ def calculate_fusion_confidence(
 
 ---
 
-## 8. Simulation Data Generation
+### 4.5 Fusion Diagnostic Algorithms
+
+FUSION Block's core value lies in **diagnostic algorithms** - these algorithms can only be implemented with tri-modal fusion.
+
+#### 4.5.1 Basic Data Structures
+
+```python
+from dataclasses import dataclass
+from typing import Optional, List, Tuple
+from enum import Enum
+
+class DiagnosticSeverity(Enum):
+    """Diagnostic severity"""
+    P0_CRITICAL = "P0"   # Must fix, affects swing effectiveness
+    P1_IMPORTANT = "P1"  # Recommend fix, affects consistency
+    P2_MINOR = "P2"      # Optional optimization
+    INFO = "INFO"        # For reference only
+
+@dataclass
+class DiagnosticResult:
+    """Diagnostic result"""
+    rule_id: str
+    severity: DiagnosticSeverity
+    triggered: bool
+    message_cn: str
+    message_en: str
+    confidence: float
+    evidence: dict  # Data points supporting diagnosis
+```
+
+#### 4.5.2 Algorithm 1: Kinematic Sequence Validation
+
+```python
+def validate_kinematic_sequence(
+    imu_body_rotation_onset_ms: int,
+    emg_core_onset_ms: int,
+    emg_forearm_onset_ms: int,
+    threshold_core_lead_ms: int = 20
+) -> DiagnosticResult:
+    """
+    Kinematic sequence validation
+
+    Biomechanical Principle:
+    ──────────────
+    Correct force transfer sequence: Ground → Core → Torso → Arms → Club
+
+    Validation Rules:
+    ──────────────
+    1. Core should activate 10-30ms before body rotation
+    2. Core should activate at least 20ms before Forearm
+    3. If Forearm before Core → "arms-dominated swing" error
+
+    Parameters:
+    ──────────────
+    imu_body_rotation_onset_ms: IMU-detected body rotation start time
+    emg_core_onset_ms: EMG-detected core activation time
+    emg_forearm_onset_ms: EMG-detected forearm activation time
+    threshold_core_lead_ms: Minimum ms core should lead (default 20ms)
+
+    Returns:
+    ──────────────
+    DiagnosticResult: Contains diagnostic result and feedback message
+    """
+    # Calculate timing differences
+    core_to_body_gap = imu_body_rotation_onset_ms - emg_core_onset_ms
+    core_to_forearm_gap = emg_forearm_onset_ms - emg_core_onset_ms
+
+    evidence = {
+        "core_onset_ms": emg_core_onset_ms,
+        "forearm_onset_ms": emg_forearm_onset_ms,
+        "body_rotation_onset_ms": imu_body_rotation_onset_ms,
+        "core_to_body_gap_ms": core_to_body_gap,
+        "core_to_forearm_gap_ms": core_to_forearm_gap
+    }
+
+    # Diagnostic logic
+    if core_to_forearm_gap < 0:
+        # Error: Forearm before core
+        return DiagnosticResult(
+            rule_id="ARMS_BEFORE_CORE",
+            severity=DiagnosticSeverity.P0_CRITICAL,
+            triggered=True,
+            message_cn="让身体带动，别用手打。前臂比核心早激活了 {}ms。".format(abs(core_to_forearm_gap)),
+            message_en="Let your body lead, don't swing with your arms. "
+                       "Forearm activated {}ms before core.".format(abs(core_to_forearm_gap)),
+            confidence=0.9,
+            evidence=evidence
+        )
+
+    elif core_to_forearm_gap < threshold_core_lead_ms:
+        # Warning: Insufficient core lead
+        return DiagnosticResult(
+            rule_id="WEAK_CORE_LEAD",
+            severity=DiagnosticSeverity.P1_IMPORTANT,
+            triggered=True,
+            message_cn="核心启动稍慢，尝试在下杆前更早收紧腹肌。",
+            message_en="Core activation is slightly delayed. "
+                       "Try engaging your abs earlier before the downswing.",
+            confidence=0.7,
+            evidence=evidence
+        )
+
+    else:
+        # Correct: Kinematic sequence correct
+        return DiagnosticResult(
+            rule_id="KINEMATIC_SEQUENCE_OK",
+            severity=DiagnosticSeverity.INFO,
+            triggered=False,
+            message_cn="运动链序列正确 ✓",
+            message_en="Kinematic sequence is correct ✓",
+            confidence=0.95,
+            evidence=evidence
+        )
+```
+
+#### 4.5.3 Algorithm 2: False Coil Detection
+
+```python
+def detect_false_coil(
+    vision_x_factor_degrees: float,
+    emg_core_activation_pct: float,
+    x_factor_threshold: float = 35.0,
+    core_activation_threshold: float = 0.5
+) -> DiagnosticResult:
+    """
+    False coil detection - Only tri-modal can detect!
+
+    What is False Coil?
+    ────────────────────────────
+    Player "fakes" correct X-Factor angle but core muscles not truly engaged.
+    This causes:
+    - Looks like turn enough, but no real coil
+    - Power not transmitted from core
+    - Ball distance and consistency decline
+
+    Why only tri-modal can detect?
+    ────────────────────────────
+    - Vision sees: X-Factor = 45° ✅ (looks normal)
+    - IMU sees: Normal rotation timing ✅ (timing correct)
+    - EMG sees: Core activation = 30% ❌ (core not engaged!)
+
+    Vision-only system says: "Your swing looks good"
+    Our system says: "Your turn looks good, but core not engaged"
+
+    Parameters:
+    ──────────────
+    vision_x_factor_degrees: Vision-measured X-Factor angle
+    emg_core_activation_pct: EMG-measured core activation percentage [0-1]
+    x_factor_threshold: X-Factor normal threshold (default 35°)
+    core_activation_threshold: Core activation normal threshold (default 50%)
+
+    Returns:
+    ──────────────
+    DiagnosticResult: Contains diagnostic result and feedback message
+    """
+    evidence = {
+        "x_factor_degrees": vision_x_factor_degrees,
+        "core_activation_pct": emg_core_activation_pct,
+        "x_factor_threshold": x_factor_threshold,
+        "core_threshold": core_activation_threshold
+    }
+
+    # False coil condition: X-Factor normal + core activation insufficient
+    x_factor_looks_ok = vision_x_factor_degrees >= x_factor_threshold
+    core_not_engaged = emg_core_activation_pct < core_activation_threshold
+
+    if x_factor_looks_ok and core_not_engaged:
+        # Detected false coil!
+        return DiagnosticResult(
+            rule_id="FALSE_COIL",
+            severity=DiagnosticSeverity.P0_CRITICAL,
+            triggered=True,
+            message_cn="看起来转够了 ({:.0f}°)，但核心只有 {:.0f}% 激活。"
+                       "专注于收紧腹肌再下杆，让核心真正参与蓄力。".format(
+                           vision_x_factor_degrees,
+                           emg_core_activation_pct * 100
+                       ),
+            message_en="Your turn looks good ({:.0f}°) but core is only at {:.0f}% activation. "
+                       "Focus on tightening your abs before starting the downswing.".format(
+                           vision_x_factor_degrees,
+                           emg_core_activation_pct * 100
+                       ),
+            confidence=0.95,
+            evidence=evidence
+        )
+
+    elif not x_factor_looks_ok:
+        # X-Factor itself insufficient, not false coil issue
+        return DiagnosticResult(
+            rule_id="LOW_X_FACTOR",
+            severity=DiagnosticSeverity.P1_IMPORTANT,
+            triggered=True,
+            message_cn="肩膀多转一点，X-Factor 只有 {:.0f}° (建议 >35°)。".format(vision_x_factor_degrees),
+            message_en="Turn your shoulders more. X-Factor is only {:.0f}° (target >35°).".format(
+                vision_x_factor_degrees
+            ),
+            confidence=0.85,
+            evidence=evidence
+        )
+
+    else:
+        # Normal: X-Factor sufficient, core engaged
+        return DiagnosticResult(
+            rule_id="COIL_OK",
+            severity=DiagnosticSeverity.INFO,
+            triggered=False,
+            message_cn="蓄力正常 ✓ X-Factor {:.0f}°, 核心激活 {:.0f}%".format(
+                vision_x_factor_degrees, emg_core_activation_pct * 100
+            ),
+            message_en="Coil looks good ✓ X-Factor {:.0f}°, core at {:.0f}%".format(
+                vision_x_factor_degrees, emg_core_activation_pct * 100
+            ),
+            confidence=0.9,
+            evidence=evidence
+        )
+```
+
+#### 4.5.4 Algorithm 3: Force Chain Triple Validation
+
+```python
+def verify_force_chain(
+    vision_phase: str,
+    imu_phase: str,
+    emg_sequence_correct: bool,
+    imu_peak_velocity_dps: float,
+    emg_core_activation_pct: float
+) -> Tuple[float, List[DiagnosticResult]]:
+    """
+    Force chain triple validation - Fusion confidence calculation + anomaly detection
+
+    Validation Logic:
+    ──────────────
+    1. Vision-IMU cross validation: Phase detection consistency
+    2. EMG causal validation: Muscle activation sequence correctness
+    3. Physical consistency: High velocity should accompany high activation
+
+    Parameters:
+    ──────────────
+    vision_phase: Vision-detected current phase
+    imu_phase: IMU-detected current phase
+    emg_sequence_correct: EMG shows kinematic sequence correct or not
+    imu_peak_velocity_dps: IMU peak angular velocity (°/s)
+    emg_core_activation_pct: EMG core activation percentage [0-1]
+
+    Returns:
+    ──────────────
+    Tuple[float, List[DiagnosticResult]]:
+        - Fusion confidence [0-1]
+        - Diagnostic result list
+    """
+    diagnostics = []
+    confidence = 0.5  # Baseline confidence
+
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    # Validation 1: Vision-IMU Phase Consistency
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    if vision_phase == imu_phase:
+        confidence += 0.25  # Dual validation consistent
+        diagnostics.append(DiagnosticResult(
+            rule_id="PHASE_CROSS_VALIDATION_OK",
+            severity=DiagnosticSeverity.INFO,
+            triggered=False,
+            message_cn=f"阶段检测一致: Vision={vision_phase}, IMU={imu_phase} ✓",
+            message_en=f"Phase detection consistent: Vision={vision_phase}, IMU={imu_phase} ✓",
+            confidence=0.95,
+            evidence={"vision_phase": vision_phase, "imu_phase": imu_phase}
+        ))
+    else:
+        confidence -= 0.15  # Inconsistent, lower confidence
+        diagnostics.append(DiagnosticResult(
+            rule_id="PHASE_MISMATCH",
+            severity=DiagnosticSeverity.P2_MINOR,
+            triggered=True,
+            message_cn=f"阶段检测不一致: Vision={vision_phase}, IMU={imu_phase}。"
+                       f"使用 IMU 结果 (更精确)。",
+            message_en=f"Phase detection mismatch: Vision={vision_phase}, IMU={imu_phase}. "
+                       f"Using IMU (more precise).",
+            confidence=0.6,
+            evidence={"vision_phase": vision_phase, "imu_phase": imu_phase}
+        ))
+
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    # Validation 2: EMG Kinematic Sequence
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    if emg_sequence_correct:
+        confidence += 0.25  # Triple validation consistent
+    else:
+        confidence -= 0.10  # EMG abnormal
+
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    # Validation 3: Physical Consistency (high velocity + low activation = compensation)
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    HIGH_VELOCITY_THRESHOLD = 800  # °/s
+    MIN_CORE_FOR_HIGH_VELOCITY = 0.6
+
+    if imu_peak_velocity_dps > HIGH_VELOCITY_THRESHOLD:
+        if emg_core_activation_pct < MIN_CORE_FOR_HIGH_VELOCITY:
+            # Abnormal: High velocity but insufficient core activation → compensation motion
+            diagnostics.append(DiagnosticResult(
+                rule_id="COMPENSATION_DETECTED",
+                severity=DiagnosticSeverity.P0_CRITICAL,
+                triggered=True,
+                message_cn="速度来自手臂，缺乏核心力量。峰值速度 {:.0f}°/s 但核心只有 {:.0f}%。"
+                           "让身体带动，不要靠手打。".format(
+                               imu_peak_velocity_dps, emg_core_activation_pct * 100
+                           ),
+                message_en="Speed is coming from arms, lacking core power. "
+                           "Peak velocity {:.0f}°/s but core at only {:.0f}%. "
+                           "Let your body lead.".format(
+                               imu_peak_velocity_dps, emg_core_activation_pct * 100
+                           ),
+                confidence=0.85,
+                evidence={
+                    "peak_velocity_dps": imu_peak_velocity_dps,
+                    "core_activation_pct": emg_core_activation_pct
+                }
+            ))
+            confidence -= 0.10  # Compensation motion lowers overall confidence
+
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    # Final confidence (clamp to [0, 1])
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+    final_confidence = max(0.0, min(1.0, confidence))
+
+    return final_confidence, diagnostics
+```
+
+#### 4.5.5 Complete Fusion Flow
+
+```python
+def run_fusion_diagnostics(
+    vision_data: dict,
+    imu_data: dict,
+    emg_data: dict
+) -> dict:
+    """
+    Run complete fusion diagnostic flow
+
+    Parameters:
+    ──────────────
+    vision_data: {"phase": str, "x_factor": float, ...}
+    imu_data: {"phase": str, "peak_velocity_dps": float, "body_rotation_onset_ms": int}
+    emg_data: {"core_onset_ms": int, "forearm_onset_ms": int, "core_activation_pct": float}
+
+    Returns:
+    ──────────────
+    dict: {
+        "overall_confidence": float,
+        "diagnostics": List[DiagnosticResult],
+        "primary_feedback": str
+    }
+    """
+    all_diagnostics = []
+
+    # 1. Kinematic sequence validation
+    kinematic_result = validate_kinematic_sequence(
+        imu_body_rotation_onset_ms=imu_data.get("body_rotation_onset_ms", 700),
+        emg_core_onset_ms=emg_data.get("core_onset_ms", 570),
+        emg_forearm_onset_ms=emg_data.get("forearm_onset_ms", 720)
+    )
+    all_diagnostics.append(kinematic_result)
+
+    # 2. False coil detection
+    false_coil_result = detect_false_coil(
+        vision_x_factor_degrees=vision_data.get("x_factor", 45.0),
+        emg_core_activation_pct=emg_data.get("core_activation_pct", 0.8)
+    )
+    all_diagnostics.append(false_coil_result)
+
+    # 3. Force chain triple validation
+    emg_sequence_ok = kinematic_result.rule_id == "KINEMATIC_SEQUENCE_OK"
+    confidence, chain_diagnostics = verify_force_chain(
+        vision_phase=vision_data.get("phase", "TOP"),
+        imu_phase=imu_data.get("phase", "TOP"),
+        emg_sequence_correct=emg_sequence_ok,
+        imu_peak_velocity_dps=imu_data.get("peak_velocity_dps", 1000),
+        emg_core_activation_pct=emg_data.get("core_activation_pct", 0.8)
+    )
+    all_diagnostics.extend(chain_diagnostics)
+
+    # Select most important feedback (P0 > P1 > P2)
+    critical_issues = [d for d in all_diagnostics if d.triggered and d.severity == DiagnosticSeverity.P0_CRITICAL]
+    important_issues = [d for d in all_diagnostics if d.triggered and d.severity == DiagnosticSeverity.P1_IMPORTANT]
+
+    if critical_issues:
+        primary_feedback = critical_issues[0].message_en
+    elif important_issues:
+        primary_feedback = important_issues[0].message_en
+    else:
+        primary_feedback = "Swing looks good ✓"
+
+    return {
+        "overall_confidence": confidence,
+        "diagnostics": all_diagnostics,
+        "primary_feedback": primary_feedback
+    }
+```
+
+#### 4.5.6 Diagnostic Rules Quick Reference
+
+| Rule ID | Severity | Trigger Condition | Required Sensors |
+|---------|---------|------------------|-----------------|
+| `ARMS_BEFORE_CORE` | P0 | Forearm before Core activation | EMG |
+| `FALSE_COIL` | P0 | X-Factor ≥35° but Core <50% | Vision + EMG |
+| `COMPENSATION_DETECTED` | P0 | High peak velocity but low Core activation | IMU + EMG |
+| `LOW_X_FACTOR` | P1 | X-Factor <35° | Vision |
+| `WEAK_CORE_LEAD` | P1 | Core leads Forearm <20ms | EMG |
+| `PHASE_MISMATCH` | P2 | Vision and IMU phase inconsistent | Vision + IMU |
+
+!!! success "Tri-Modal Unique Capabilities"
+    Among the above rules, **all three P0-level rules require EMG data**.
+    This means:
+
+    - Vision-only competitors can only detect `LOW_X_FACTOR` (P1)
+    - Vision+IMU competitors can detect `PHASE_MISMATCH` (P2)
+    - **Only Vision+IMU+EMG can detect all P0 issues**
+
+---
+
+## 5. Simulation Data Generation
 
 For MVP stage when hardware not ready, use simulated data to validate complete pipeline.
 
-### 8.1 Generate Simulated IMU from Pose Data
+### 5.1 Generate Simulated IMU from Pose Data
 
 Core idea: Use MediaPipe keypoint sequence **derivative** to approximate IMU angular velocity
 
@@ -728,7 +1697,7 @@ def simulate_imu_from_pose(
 #     print(f"{f.timestamp_ms}ms: gyro_z={f.gyro_z:.1f}°/s, phase={f.phase_hint}")
 ```
 
-### 8.2 Generate Simulated EMG from Phase Timestamps
+### 5.2 Generate Simulated EMG from Phase Timestamps
 
 Core idea: Generate **realistic pattern** EMG signals based on known biomechanical timing
 
@@ -892,7 +1861,7 @@ def simulate_emg_from_phases(
 # print(f"Gap: {result.timing_gap_ms}ms → {result.pattern_detected}")
 ```
 
-### 8.3 Pre-generated Test Scenarios
+### 5.3 Pre-generated Test Scenarios
 
 #### IMU Test Scenarios
 
@@ -960,434 +1929,11 @@ def simulate_emg_from_phases(
 
 ---
 
-## 9. Fusion Diagnostic Algorithms
+## 6. Related Documents
 
-FUSION Block's core value lies in **diagnostic algorithms** — these algorithms can only be implemented with tri-modal fusion.
-
-### 9.1 Basic Data Structures
-
-```python
-from dataclasses import dataclass
-from typing import Optional, List, Tuple
-from enum import Enum
-
-class DiagnosticSeverity(Enum):
-    """Diagnostic severity"""
-    P0_CRITICAL = "P0"   # Must fix, affects swing effectiveness
-    P1_IMPORTANT = "P1"  # Recommend fix, affects consistency
-    P2_MINOR = "P2"      # Optional optimization
-    INFO = "INFO"        # For reference only
-
-@dataclass
-class DiagnosticResult:
-    """Diagnostic result"""
-    rule_id: str
-    severity: DiagnosticSeverity
-    triggered: bool
-    message_cn: str
-    message_en: str
-    confidence: float
-    evidence: dict  # Data points supporting diagnosis
-```
-
-### 9.2 Algorithm 1: Kinematic Sequence Validation
-
-```python
-def validate_kinematic_sequence(
-    imu_body_rotation_onset_ms: int,
-    emg_core_onset_ms: int,
-    emg_forearm_onset_ms: int,
-    threshold_core_lead_ms: int = 20
-) -> DiagnosticResult:
-    """
-    Kinematic sequence validation
-
-    Biomechanical Principle:
-    ──────────────
-    Correct force transfer sequence: Ground → Core → Torso → Arms → Club
-
-    Validation Rules:
-    ──────────────
-    1. Core should activate 10-30ms before body rotation
-    2. Core should activate at least 20ms before Forearm
-    3. If Forearm before Core → "arms-dominated swing" error
-
-    Parameters:
-    ──────────────
-    imu_body_rotation_onset_ms: IMU-detected body rotation start time
-    emg_core_onset_ms: EMG-detected core activation time
-    emg_forearm_onset_ms: EMG-detected forearm activation time
-    threshold_core_lead_ms: Minimum ms core should lead (default 20ms)
-
-    Returns:
-    ──────────────
-    DiagnosticResult: Contains diagnostic result and feedback message
-    """
-    # Calculate timing differences
-    core_to_body_gap = imu_body_rotation_onset_ms - emg_core_onset_ms
-    core_to_forearm_gap = emg_forearm_onset_ms - emg_core_onset_ms
-
-    evidence = {
-        "core_onset_ms": emg_core_onset_ms,
-        "forearm_onset_ms": emg_forearm_onset_ms,
-        "body_rotation_onset_ms": imu_body_rotation_onset_ms,
-        "core_to_body_gap_ms": core_to_body_gap,
-        "core_to_forearm_gap_ms": core_to_forearm_gap
-    }
-
-    # Diagnostic logic
-    if core_to_forearm_gap < 0:
-        # Error: Forearm before core
-        return DiagnosticResult(
-            rule_id="ARMS_BEFORE_CORE",
-            severity=DiagnosticSeverity.P0_CRITICAL,
-            triggered=True,
-            message_cn="让身体带动,别用手打。前臂比核心早激活了 {}ms。".format(abs(core_to_forearm_gap)),
-            message_en="Let your body lead, don't swing with your arms. "
-                       "Forearm activated {}ms before core.".format(abs(core_to_forearm_gap)),
-            confidence=0.9,
-            evidence=evidence
-        )
-
-    elif core_to_forearm_gap < threshold_core_lead_ms:
-        # Warning: Insufficient core lead
-        return DiagnosticResult(
-            rule_id="WEAK_CORE_LEAD",
-            severity=DiagnosticSeverity.P1_IMPORTANT,
-            triggered=True,
-            message_cn="核心启动稍慢,尝试在下杆前更早收紧腹肌。",
-            message_en="Core activation is slightly delayed. "
-                       "Try engaging your abs earlier before the downswing.",
-            confidence=0.7,
-            evidence=evidence
-        )
-
-    else:
-        # Correct: Kinematic sequence correct
-        return DiagnosticResult(
-            rule_id="KINEMATIC_SEQUENCE_OK",
-            severity=DiagnosticSeverity.INFO,
-            triggered=False,
-            message_cn="运动链序列正确 ✓",
-            message_en="Kinematic sequence is correct ✓",
-            confidence=0.95,
-            evidence=evidence
-        )
-```
-
-### 9.3 Algorithm 2: False Coil Detection
-
-```python
-def detect_false_coil(
-    vision_x_factor_degrees: float,
-    emg_core_activation_pct: float,
-    x_factor_threshold: float = 35.0,
-    core_activation_threshold: float = 0.5
-) -> DiagnosticResult:
-    """
-    False coil detection — Only tri-modal can detect!
-
-    What is False Coil?
-    ────────────────────────────
-    Player "fakes" correct X-Factor angle but core muscles not truly engaged.
-    This causes:
-    - Looks like turn enough, but no real coil
-    - Power not transmitted from core
-    - Ball distance and consistency decline
-
-    Why only tri-modal can detect?
-    ────────────────────────────
-    - Vision sees: X-Factor = 45° ✅ (looks normal)
-    - IMU sees: Normal rotation timing ✅ (timing correct)
-    - EMG sees: Core activation = 30% ❌ (core not engaged!)
-
-    Vision-only system says: "Your swing looks good"
-    Our system says: "Your turn looks good, but core not engaged"
-
-    Parameters:
-    ──────────────
-    vision_x_factor_degrees: Vision-measured X-Factor angle
-    emg_core_activation_pct: EMG-measured core activation percentage [0-1]
-    x_factor_threshold: X-Factor normal threshold (default 35°)
-    core_activation_threshold: Core activation normal threshold (default 50%)
-
-    Returns:
-    ──────────────
-    DiagnosticResult: Contains diagnostic result and feedback message
-    """
-    evidence = {
-        "x_factor_degrees": vision_x_factor_degrees,
-        "core_activation_pct": emg_core_activation_pct,
-        "x_factor_threshold": x_factor_threshold,
-        "core_threshold": core_activation_threshold
-    }
-
-    # False coil condition: X-Factor normal + core activation insufficient
-    x_factor_looks_ok = vision_x_factor_degrees >= x_factor_threshold
-    core_not_engaged = emg_core_activation_pct < core_activation_threshold
-
-    if x_factor_looks_ok and core_not_engaged:
-        # Detected false coil!
-        return DiagnosticResult(
-            rule_id="FALSE_COIL",
-            severity=DiagnosticSeverity.P0_CRITICAL,
-            triggered=True,
-            message_cn="看起来转够了 ({:.0f}°),但核心只有 {:.0f}% 激活。"
-                       "专注于收紧腹肌再下杆,让核心真正参与蓄力。".format(
-                           vision_x_factor_degrees,
-                           emg_core_activation_pct * 100
-                       ),
-            message_en="Your turn looks good ({:.0f}°) but core is only at {:.0f}% activation. "
-                       "Focus on tightening your abs before starting the downswing.".format(
-                           vision_x_factor_degrees,
-                           emg_core_activation_pct * 100
-                       ),
-            confidence=0.95,
-            evidence=evidence
-        )
-
-    elif not x_factor_looks_ok:
-        # X-Factor itself insufficient, not false coil issue
-        return DiagnosticResult(
-            rule_id="LOW_X_FACTOR",
-            severity=DiagnosticSeverity.P1_IMPORTANT,
-            triggered=True,
-            message_cn="肩膀多转一点,X-Factor 只有 {:.0f}° (建议 >35°)。".format(vision_x_factor_degrees),
-            message_en="Turn your shoulders more. X-Factor is only {:.0f}° (target >35°).".format(
-                vision_x_factor_degrees
-            ),
-            confidence=0.85,
-            evidence=evidence
-        )
-
-    else:
-        # Normal: X-Factor sufficient, core engaged
-        return DiagnosticResult(
-            rule_id="COIL_OK",
-            severity=DiagnosticSeverity.INFO,
-            triggered=False,
-            message_cn="蓄力正常 ✓ X-Factor {:.0f}°, 核心激活 {:.0f}%".format(
-                vision_x_factor_degrees, emg_core_activation_pct * 100
-            ),
-            message_en="Coil looks good ✓ X-Factor {:.0f}°, core at {:.0f}%".format(
-                vision_x_factor_degrees, emg_core_activation_pct * 100
-            ),
-            confidence=0.9,
-            evidence=evidence
-        )
-```
-
-### 9.4 Algorithm 3: Force Chain Triple Validation
-
-```python
-def verify_force_chain(
-    vision_phase: str,
-    imu_phase: str,
-    emg_sequence_correct: bool,
-    imu_peak_velocity_dps: float,
-    emg_core_activation_pct: float
-) -> Tuple[float, List[DiagnosticResult]]:
-    """
-    Force chain triple validation — Fusion confidence calculation + anomaly detection
-
-    Validation Logic:
-    ──────────────
-    1. Vision-IMU cross validation: Phase detection consistency
-    2. EMG causal validation: Muscle activation sequence correctness
-    3. Physical consistency: High velocity should accompany high activation
-
-    Parameters:
-    ──────────────
-    vision_phase: Vision-detected current phase
-    imu_phase: IMU-detected current phase
-    emg_sequence_correct: EMG shows kinematic sequence correct or not
-    imu_peak_velocity_dps: IMU peak angular velocity (°/s)
-    emg_core_activation_pct: EMG core activation percentage [0-1]
-
-    Returns:
-    ──────────────
-    Tuple[float, List[DiagnosticResult]]:
-        - Fusion confidence [0-1]
-        - Diagnostic result list
-    """
-    diagnostics = []
-    confidence = 0.5  # Baseline confidence
-
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    # Validation 1: Vision-IMU Phase Consistency
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-    if vision_phase == imu_phase:
-        confidence += 0.25  # Dual validation consistent
-        diagnostics.append(DiagnosticResult(
-            rule_id="PHASE_CROSS_VALIDATION_OK",
-            severity=DiagnosticSeverity.INFO,
-            triggered=False,
-            message_cn=f"阶段检测一致: Vision={vision_phase}, IMU={imu_phase} ✓",
-            message_en=f"Phase detection consistent: Vision={vision_phase}, IMU={imu_phase} ✓",
-            confidence=0.95,
-            evidence={"vision_phase": vision_phase, "imu_phase": imu_phase}
-        ))
-    else:
-        confidence -= 0.15  # Inconsistent, lower confidence
-        diagnostics.append(DiagnosticResult(
-            rule_id="PHASE_MISMATCH",
-            severity=DiagnosticSeverity.P2_MINOR,
-            triggered=True,
-            message_cn=f"阶段检测不一致: Vision={vision_phase}, IMU={imu_phase}。"
-                       f"使用 IMU 结果 (更精确)。",
-            message_en=f"Phase detection mismatch: Vision={vision_phase}, IMU={imu_phase}. "
-                       f"Using IMU (more precise).",
-            confidence=0.6,
-            evidence={"vision_phase": vision_phase, "imu_phase": imu_phase}
-        ))
-
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    # Validation 2: EMG Kinematic Sequence
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-    if emg_sequence_correct:
-        confidence += 0.25  # Triple validation consistent
-    else:
-        confidence -= 0.10  # EMG abnormal
-
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    # Validation 3: Physical Consistency (high velocity + low activation = compensation)
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-    HIGH_VELOCITY_THRESHOLD = 800  # °/s
-    MIN_CORE_FOR_HIGH_VELOCITY = 0.6
-
-    if imu_peak_velocity_dps > HIGH_VELOCITY_THRESHOLD:
-        if emg_core_activation_pct < MIN_CORE_FOR_HIGH_VELOCITY:
-            # Abnormal: High velocity but insufficient core activation → compensation motion
-            diagnostics.append(DiagnosticResult(
-                rule_id="COMPENSATION_DETECTED",
-                severity=DiagnosticSeverity.P0_CRITICAL,
-                triggered=True,
-                message_cn="速度来自手臂,缺乏核心力量。峰值速度 {:.0f}°/s 但核心只有 {:.0f}%。"
-                           "让身体带动,不要靠手打。".format(
-                               imu_peak_velocity_dps, emg_core_activation_pct * 100
-                           ),
-                message_en="Speed is coming from arms, lacking core power. "
-                           "Peak velocity {:.0f}°/s but core at only {:.0f}%. "
-                           "Let your body lead.".format(
-                               imu_peak_velocity_dps, emg_core_activation_pct * 100
-                           ),
-                confidence=0.85,
-                evidence={
-                    "peak_velocity_dps": imu_peak_velocity_dps,
-                    "core_activation_pct": emg_core_activation_pct
-                }
-            ))
-            confidence -= 0.10  # Compensation motion lowers overall confidence
-
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    # Final confidence (clamp to [0, 1])
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-    final_confidence = max(0.0, min(1.0, confidence))
-
-    return final_confidence, diagnostics
-```
-
-### 9.5 Complete Fusion Flow
-
-```python
-def run_fusion_diagnostics(
-    vision_data: dict,
-    imu_data: dict,
-    emg_data: dict
-) -> dict:
-    """
-    Run complete fusion diagnostic flow
-
-    Parameters:
-    ──────────────
-    vision_data: {"phase": str, "x_factor": float, ...}
-    imu_data: {"phase": str, "peak_velocity_dps": float, "body_rotation_onset_ms": int}
-    emg_data: {"core_onset_ms": int, "forearm_onset_ms": int, "core_activation_pct": float}
-
-    Returns:
-    ──────────────
-    dict: {
-        "overall_confidence": float,
-        "diagnostics": List[DiagnosticResult],
-        "primary_feedback": str
-    }
-    """
-    all_diagnostics = []
-
-    # 1. Kinematic sequence validation
-    kinematic_result = validate_kinematic_sequence(
-        imu_body_rotation_onset_ms=imu_data.get("body_rotation_onset_ms", 700),
-        emg_core_onset_ms=emg_data.get("core_onset_ms", 570),
-        emg_forearm_onset_ms=emg_data.get("forearm_onset_ms", 720)
-    )
-    all_diagnostics.append(kinematic_result)
-
-    # 2. False coil detection
-    false_coil_result = detect_false_coil(
-        vision_x_factor_degrees=vision_data.get("x_factor", 45.0),
-        emg_core_activation_pct=emg_data.get("core_activation_pct", 0.8)
-    )
-    all_diagnostics.append(false_coil_result)
-
-    # 3. Force chain triple validation
-    emg_sequence_ok = kinematic_result.rule_id == "KINEMATIC_SEQUENCE_OK"
-    confidence, chain_diagnostics = verify_force_chain(
-        vision_phase=vision_data.get("phase", "TOP"),
-        imu_phase=imu_data.get("phase", "TOP"),
-        emg_sequence_correct=emg_sequence_ok,
-        imu_peak_velocity_dps=imu_data.get("peak_velocity_dps", 1000),
-        emg_core_activation_pct=emg_data.get("core_activation_pct", 0.8)
-    )
-    all_diagnostics.extend(chain_diagnostics)
-
-    # Select most important feedback (P0 > P1 > P2)
-    critical_issues = [d for d in all_diagnostics if d.triggered and d.severity == DiagnosticSeverity.P0_CRITICAL]
-    important_issues = [d for d in all_diagnostics if d.triggered and d.severity == DiagnosticSeverity.P1_IMPORTANT]
-
-    if critical_issues:
-        primary_feedback = critical_issues[0].message_en
-    elif important_issues:
-        primary_feedback = important_issues[0].message_en
-    else:
-        primary_feedback = "Swing looks good ✓"
-
-    return {
-        "overall_confidence": confidence,
-        "diagnostics": all_diagnostics,
-        "primary_feedback": primary_feedback
-    }
-```
-
-### 9.6 Diagnostic Rules Quick Reference
-
-| Rule ID | Severity | Trigger Condition | Required Sensors |
-|---------|---------|------------------|-----------------|
-| `ARMS_BEFORE_CORE` | P0 | Forearm before Core activation | EMG |
-| `FALSE_COIL` | P0 | X-Factor ≥35° but Core <50% | Vision + EMG |
-| `COMPENSATION_DETECTED` | P0 | High peak velocity but low Core activation | IMU + EMG |
-| `LOW_X_FACTOR` | P1 | X-Factor <35° | Vision |
-| `WEAK_CORE_LEAD` | P1 | Core leads Forearm <20ms | EMG |
-| `PHASE_MISMATCH` | P2 | Vision and IMU phase inconsistent | Vision + IMU |
-
-!!! success "Tri-Modal Unique Capabilities"
-    Among the above rules, **all three P0-level rules require EMG data**.
-    This means:
-
-    - Vision-only competitors can only detect `LOW_X_FACTOR` (P1)
-    - Vision+IMU competitors can detect `PHASE_MISMATCH` (P2)
-    - **Only Vision+IMU+EMG can detect all P0 issues**
-
----
-
-## 10. Related Documents
-
-- [System Design](./system-design.md): MVP technical architecture and build order
-- [Modular Architecture](./modular-architecture.md): LEGO-style architecture design
-- [Key Decisions 2025-12](./architecture-decisions-2025-12-23.md): Sensor selection and Sensor Hub sync strategy
+- System Design: MVP technical architecture and build order
+- Modular Architecture: LEGO-style architecture design
+- Key Decisions 2025-12: Sensor selection and Sensor Hub sync strategy
 - Swing Comparison Analysis: Pro vs Amateur biomechanical differences
 - Biomechanics Glossary: Technical term definitions
 - Biomechanics Benchmarks: Literature-validated normal ranges
@@ -1403,4 +1949,4 @@ def run_fusion_diagnostics(
 
 ---
 
-**Last Updated**: 2025-12-19
+**Last Updated**: 2025-12-28

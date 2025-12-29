@@ -1,4 +1,4 @@
-# Hardware Components
+# Hardware Components Overview
 
 Hardware and software documentation organized by component type. Each component includes hardware specifications, software integration, and supplier information.
 
@@ -7,13 +7,13 @@ Hardware and software documentation organized by component type. Each component 
 ## Component Navigation
 
 | Component | Hardware | Software | Suppliers |
-|------|------|------|--------|
-| **IMU Inertial Measurement** | [Hardware Specs](imu/hardware.md) | - | - |
-| **EMG Muscle Sensing** | [Hardware Specs](emg/hardware.md) | - | - |
-| **Vision/Camera** | - | - | - |
-| **MCU Microcontroller** | [Hardware Specs](mcu/hardware.md) | - | - |
-| **Flexible Sensors** | - | - | - |
-| **Pressure Sensors** | - | - | - |
+|-----------|----------|----------|-----------|
+| **IMU Inertial Measurement** | [Hardware Specs](imu/hardware.md) | - | *Coming Soon* |
+| **EMG Muscle Sensing** | [Hardware Specs](emg/hardware.md) | - | *Coming Soon* |
+| **Vision/Camera** | *Coming Soon* | *Coming Soon* | - |
+| **MCU Microcontroller** | [Hardware Specs](mcu/hardware.md) | - | *Coming Soon* |
+| **Flexible Sensors** | *Coming Soon* | - | *Coming Soon* |
+| **Pressure Sensors** | *Coming Soon* | - | *Coming Soon* |
 
 ---
 
@@ -27,7 +27,8 @@ Hardware and software documentation organized by component type. Each component 
 │   ┌─────────────┐    ┌─────────────┐    ┌─────────────┐            │
 │   │    IMU      │    │    EMG      │    │   Vision    │            │
 │   │ LSM6DSV16X  │    │ MyoWare 2.0 │    │  RTMPose-m  │            │
-│   │   6-axis    │    │  EMG Signal │    │ 17 keypoints│            │
+│   │  6-axis     │    │  EMG Signal │    │ 17 keypoints│            │
+│   │   motion    │    │             │    │             │            │
 │   └──────┬──────┘    └──────┬──────┘    └──────┬──────┘            │
 │          │                  │                  │                   │
 │          └──────────────────┼──────────────────┘                   │
@@ -35,6 +36,7 @@ Hardware and software documentation organized by component type. Each component 
 │                    ┌─────────────────┐                             │
 │                    │   ESP32-S3 MCU  │                             │
 │                    │  Data Fusion    │                             │
+│                    │   Processing    │                             │
 │                    └────────┬────────┘                             │
 │                             │ BLE                                  │
 │                             ▼                                      │
@@ -43,7 +45,7 @@ Hardware and software documentation organized by component type. Each component 
 │                    │   ONNX Runtime  │                             │
 │                    └─────────────────┘                             │
 │                                                                     │
-│   Competitive Edge: EMG + Vision + IMU Tri-modal Fusion = Market Unique │
+│   Competitive Edge: EMG + Vision + IMU Tri-modal Fusion = Unique   │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
@@ -59,6 +61,7 @@ Hardware and software documentation organized by component type. Each component 
 ## Related Documentation
 
 - [System Design](../design/architecture/system-design.md)
+- [Product Strategy](../business-plan/product-strategy.md)
 
 ---
 

@@ -853,7 +853,7 @@ From pelvis to club, speed amplifies by **over 5 times**!
 
 ---
 
-## 4.2 Speed Benchmarks by Body Part
+## 4.3 Speed Benchmarks by Body Part
 
 ### Pelvis Rotation Speed
 

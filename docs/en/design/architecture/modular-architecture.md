@@ -66,7 +66,43 @@ Our architecture choices are validated by latest research:
     - ✅ Golf is a **biomechanically constrained** sport — domain features outperform pixels
     - ✅ Interpretable features → Interpretable feedback (users can understand why)
 
-### 1.3 LEGO Core Principles
+### 1.3 Architecture Stages and Module Mapping
+
+> **Complete 7-Stage Architecture Diagram**: See System Design §1.2 (link available in Chinese version)
+
+| Stage | Layer | Block Count | Corresponding Blocks | Key Output |
+|-------|------|:--------:|-----------|---------|
+| 1 | User Swing | — | (Physical action, no software) | User starts swing |
+| 2 | Data Collection | 3 | CAMERA, SENSOR_HUB ×N, BLE | Raw sensor streams |
+| 3 | Sensor Fusion | 1 | TIME_ALIGN | Unified timeline data |
+| 4 | Feature Extraction | 3 | POSE, IMU, EMG | 12 structured metrics |
+| 5 | Analysis & Diagnosis | 2 | CLASSIFIER, FUSION | 8 phases + 6 rule diagnostics |
+| 6 | AI Feedback Generation | 2 | PROMPT, LLM | Kinematic Prompts + natural language |
+| 7 | User Feedback Presentation | 1 | OUTPUT | UI/TTS/Haptic/Ghost |
+| | **Total** | **12** | *(SENSOR_HUB is reusable module, deploy N instances)* | |
+
+#### Interface Contract Summary
+
+| Stage | Block | Instances | Input Type | Output Type |
+|:-----:|-------|:------:|-----------|------------|
+| 2 | CAMERA | 1 | `CameraInput` | `CameraOutput` |
+| 2 | SENSOR_HUB | N | `SensorHubInput` | `SensorHubOutput` |
+| 2 | BLE | 1 | `BLEInput` | `BLEPacket` |
+| 3 | TIME_ALIGN | 1 | `TimeAlignInput` | `TimeAlignOutput` |
+| 4 | POSE | 1 | `VideoFrame` | `PoseResult` |
+| 4 | IMU | 1 | `RawIMU` | `IMUFeatures` |
+| 4 | EMG | 1 | `RawEMG` | `EMGFeatures` |
+| 5 | CLASSIFIER | 1 | `ClassifierInput` | `ClassifierResult` |
+| 5 | FUSION | 1 | `FusionInput` | `FusionResult` |
+| 6 | PROMPT | 1 | `PromptInput` | `PromptOutput` |
+| 6 | LLM | 1 | `LLMInput` | `LLMOutput` |
+| 7 | OUTPUT | 1 | `OutputInput` | `OutputResult` |
+
+> **SENSOR_HUB Reuse**: Same firmware code, differentiated by `hub_id` parameter. MVP deploys 2 instances (N=2).
+
+> **Detailed Definitions**: Complete Python dataclass definitions for each Block interface contract are in corresponding sections.
+
+### 1.4 LEGO Core Principles
 
 1. **Modularity** — Each module is an independent "LEGO block", can be replaced individually, interfaces remain stable
 2. **Fast Validation** — MVP uses simplest blocks to build quickly, validate complete pipeline and user value
@@ -75,7 +111,7 @@ Our architecture choices are validated by latest research:
 5. **Fusion First** — Single-sensor accuracy less important than cross-sensor validation
 6. **Hexagonal Architecture** — Ports & Adapters pattern, hardware dependencies isolated through interfaces
 
-### 1.4 Technology Uncertainty Management
+### 1.5 Technology Uncertainty Management
 
 We face multiple technology uncertainties:
 
@@ -583,7 +619,7 @@ Core algorithm for how fusion improves confidence:
 - Vision=Top, IMU=Mid, EMG=None → **0.35** (needs check)
 
 !!! tip "Algorithm Implementation"
-    Complete Python code see [Sensor Metric Mapping §7](./sensor-metric-mapping.md#7-fusion-confidence-calculation)
+    Complete Python code see [Sensor Data Processing §4.4](./sensor-metric-mapping.md#44-fusion-confidence-calculation)
 
 ### 2.8 User Feedback Translation Layer {#28-user-feedback-translation-layer}
 
@@ -661,8 +697,8 @@ All thresholds from literature research, see Biomechanics Benchmarks:
 !!! abstract "Detailed content moved to single source"
     To avoid duplicate maintenance, detailed competitor comparison and capability matrix consolidated to:
 
-    - **[Sensor Metric Mapping §1](./sensor-metric-mapping.md#1-system-capability-matrix)** — System capability matrix
-    - **[Sensor Metric Mapping §2](./sensor-metric-mapping.md#2-competitor-capability-comparison)** — Competitor capability comparison
+    - **[Sensor Data Processing §1](./sensor-metric-mapping.md#1-metrics-capability-matrix)** — Metrics capability matrix
+    - **[Sensor Data Processing §2](./sensor-metric-mapping.md#2-competitor-capability-comparison)** — Competitor capability comparison
 
 **Quick Differentiation Overview**:
 
@@ -1251,7 +1287,7 @@ New: Full 8-phase detection, club tracking
 
 !!! info "💡 Rerun Integration Timing Recommendation"
 
-    Based on [system-design.md §3](./system-design.md#3-build-order) build order:
+    Based on recommended build order:
 
     | Development Phase | Weeks | Rerun Use Case | Priority |
     |---------|-----|---------------|--------|
@@ -1379,7 +1415,7 @@ Phase 4+ (Week 5-8): Integration & Testing
 For complete technical evaluation of Rerun, competitor comparison, future TAPIR club tracking plans, see:
 
 - Visualization Tools Evaluation — Why choose Rerun over Foxglove/PlotJuggler
-- [system-design.md §7](./system-design.md#7-future-plans) — Project overall technical roadmap
+- [System Design](./system-design.md) — Project overall technical architecture
 
 ---
 
@@ -1415,6 +1451,11 @@ For complete technical evaluation of Rerun, competitor comparison, future TAPIR 
 
 | Version | Date | Changes |
 |------|------|----------|
+| 2.7 | 2025-12-29 | Sync with Chinese v2.7+: Added 7-layer architecture to 12-block mapping |
+| | | • §1.3: New "Architecture Stages and Module Mapping" section |
+| | | • Added Stage-to-Block mapping table (7 stages → 12 blocks) |
+| | | • Added Interface Contract Summary table (all 12 blocks with Input/Output types) |
+| | | • §1.4-1.5 renumbered (previously §1.3-1.4) |
 | 2.6 | 2025-12-23 | Hardware & architecture updates (based on architecture-decisions-2025-12-23.md) |
 | | | • §1.3: Added principle #6 "Hexagonal Architecture" — Ports & Adapters pattern |
 | | | • §2.4.1: Added BLE transmission jitter warning (±15-30ms) |
@@ -1462,5 +1503,5 @@ For complete technical evaluation of Rerun, competitor comparison, future TAPIR 
 
 ---
 
-**Last Updated**: 2025-12-23
+**Last Updated**: 2025-12-29
 **Maintainer**: Movement Chain AI Team
