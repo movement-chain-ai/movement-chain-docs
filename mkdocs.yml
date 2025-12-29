@@ -79,7 +79,7 @@ markdown_extensions:
   - footnotes
   - toc:
       permalink: true
-      toc_depth: 3
+      toc_depth: 4
 
 extra_css:
   - stylesheets/extra.css
