@@ -411,7 +411,7 @@ This document is organized specifically for rapid MVP development of golf swing 
 
 !!! warning "EMG Sensor Note"
     DFRobot SEN0240 has cable motion artifact issues, **not suitable for high-speed golf swing analysis**.
-    Recommend using **MyoWare 2.0 + Link Shield** instead, see [EMG Hardware Selection](../../emg/hardware.md).
+    Recommend using **MyoWare 2.0 + Link Shield** instead, see [EMG Hardware Selection](../emg/hardware.md).
 
 **DFRobot Golf Wearable MVP Kit**:
 

@@ -12,7 +12,7 @@
 
 ### 1.1 Hexagonal Architecture (Hexagonal Architecture) ✅ Confirmed
 
-> Term explanation: [Software Architecture Glossary § Hexagonal Architecture](../../reference/software-glossary.md#1-hexagonal-architecture)
+> Term explanation: Software Architecture Glossary § Hexagonal Architecture
 
 **Decision**: Adopt Hexagonal Architecture (Ports & Adapters) as the long-term architectural pattern
 
@@ -153,7 +153,7 @@ movement-chain-ml/
 + # ONNX delayed to Phase 2
 ```
 
-> 📖 **Term Explanation**: [ONNX Runtime](../../reference/software-glossary.md#2-onnx-runtime) - Microsoft's open-source cross-platform ML inference engine
+> 📖 **Term Explanation**: ONNX Runtime - Microsoft's open-source cross-platform ML inference engine
 
 ---
 
@@ -504,7 +504,7 @@ build-backend = "hatchling.build"
 
 ---
 
-### 4.3 Hardware Shopping List ✅ 2025-12-23 Verified
+### 4.3 Hardware Shopping List ✅ 2025-12-23 Verified {#43-hardware-shopping-list--2025-12-23-verified}
 
 > **Validation Method**: Multi-AI cross-validation + SparkFun/Adafruit/DigiKey official site confirmation + Actual assembly feasibility analysis
 > **Documentation Status**: Engineer Review Ready
@@ -1163,7 +1163,7 @@ User → Cloudflare Workers (API gateway/cache) → AWS Lambda (ML inference)
 
 ### 7.8 Video & Sensor Synchronization Solution
 
-> **Authoritative Source**: [data-pipeline-and-ai.md §1.2](../architecture/data-pipeline-and-ai.md) defines complete time synchronization specs.
+> **Authoritative Source**: [data-pipeline-and-ai.md §1.2](./data-pipeline-and-ai.md) defines complete time synchronization specs.
 > This section is decision confirmation only, refer to authoritative documentation for detailed implementation.
 
 ```text
@@ -1513,13 +1513,13 @@ User → Cloudflare Workers (API gateway/cache) → AWS Lambda (ML inference)
 
 | Document | Content | Relationship |
 |----------|---------|--------------|
-| **[data-pipeline-and-ai.md](../architecture/data-pipeline-and-ai.md)** | **Data flow & time sync** | **⭐ Authoritative source** |
-| [modular-architecture.md](../architecture/modular-architecture.md) | LEGO block architecture | Hexagonal mapping |
-| [sensor-data-processing.md](../architecture/sensor-data-processing.md) | Algorithm implementation code | Mock data generation |
-| [ADR-0002](0002-lsm6dsv16x-imu.md) | LSM6DSV16X selection | IMU hardware decision |
-| [ADR-0005](0005-esp32-s3-microcontroller.md) | ESP32-S3 selection | MCU hardware decision |
-| [ADR-0007](0007-swift-ios-native.md) | Swift iOS native | Mobile platform decision |
-| [vision-based.md](../../business-plan/market-insights/competitors/vision-based.md) | Competitor analysis | 2025 update |
+| **[data-pipeline-and-ai.md](./data-pipeline-and-ai.md)** | **Data flow & time sync** | **⭐ Authoritative source** |
+| [modular-architecture.md](./modular-architecture.md) | LEGO block architecture | Hexagonal mapping |
+| [sensor-metric-mapping.md](./sensor-metric-mapping.md) | Algorithm implementation code | Mock data generation |
+| ADR-0002 | LSM6DSV16X selection | IMU hardware decision |
+| ADR-0005 | ESP32-S3 selection | MCU hardware decision |
+| ADR-0007 | Swift iOS native | Mobile platform decision |
+| vision-based.md | Competitor analysis | 2025 update |
 
 > **Documentation Priority**: `data-pipeline-and-ai.md` is the **single authoritative source** for data flow and time synchronization.
 > This decision document only provides high-level confirmation; in case of conflict with data-pipeline, defer to latter.

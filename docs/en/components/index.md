@@ -8,12 +8,12 @@ Hardware and software documentation organized by component type. Each component 
 
 | Component | Hardware | Software | Suppliers |
 |------|------|------|--------|
-| **IMU Inertial Measurement** | [Hardware Specs](imu/hardware.md) | - | [Suppliers](imu/suppliers.md) |
-| **EMG Muscle Sensing** | [Hardware Specs](emg/hardware.md) | - | [Suppliers](emg/suppliers.md) |
-| **Vision/Camera** | [Hardware Specs](vision/hardware.md) | [Software Integration](vision/software.md) | - |
-| **MCU Microcontroller** | [Hardware Specs](mcu/hardware.md) | - | [Suppliers](mcu/suppliers.md) |
-| **Flexible Sensors** | [Hardware Specs](flexible-sensors/hardware.md) | - | [Suppliers](flexible-sensors/suppliers.md) |
-| **Pressure Sensors** | [Hardware Specs](pressure-sensors/hardware.md) | - | [Suppliers](pressure-sensors/suppliers.md) |
+| **IMU Inertial Measurement** | [Hardware Specs](imu/hardware.md) | - | - |
+| **EMG Muscle Sensing** | [Hardware Specs](emg/hardware.md) | - | - |
+| **Vision/Camera** | - | - | - |
+| **MCU Microcontroller** | [Hardware Specs](mcu/hardware.md) | - | - |
+| **Flexible Sensors** | - | - | - |
+| **Pressure Sensors** | - | - | - |
 
 ---
 
@@ -52,15 +52,13 @@ Hardware and software documentation organized by component type. Each component 
 
 ## Comprehensive Resources
 
-- [Supply Chain & ODM/OEM](supply-chain/index.md) - Supplier and solution provider resources
+- [MVP Suppliers Guide](supply-chain/mvp-suppliers.md) - Supplier and solution provider resources
 
 ---
 
 ## Related Documentation
 
 - [System Design](../design/architecture/system-design.md)
-- [Competitive Analysis](../business-plan/market-insights/competitors/imu-based.md)
-- [Development Guide](../development/index.md)
 
 ---
 

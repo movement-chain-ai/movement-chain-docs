@@ -7,7 +7,7 @@ The Microcontroller Unit (MCU) is the core for sensor data acquisition, processi
 ## Our Choice: ESP32-S3
 
 !!! success "Project Decision"
-    See [ADR-0005: ESP32-S3 Microcontroller Selection](../../design/decisions/0005-esp32-s3-microcontroller.md)
+    ADR-0005: ESP32-S3 Microcontroller Selection
 
 ### Core Specifications
 
@@ -26,7 +26,7 @@ The Microcontroller Unit (MCU) is the core for sensor data acquisition, processi
 ### Why ESP32-S3
 
 !!! info "Selection Details"
-    For detailed selection analysis and comparison, see [ADR-0005 ESP32-S3 Microcontroller Selection](../../design/decisions/0005-esp32-s3-microcontroller.md)
+    For detailed selection analysis and comparison, see ADR-0005 ESP32-S3 Microcontroller Selection
 
 **Core Advantages**: BLE 5.0 + WiFi dual-mode, 240MHz dual-core processor, 8MB PSRAM supports edge ML inference.
 
@@ -352,7 +352,7 @@ Battery Management Circuit (3.7V LiPo)
 | **Seeed Studio** | XIAO ESP32S3 | ¥60 | seeedstudio.com |
 | **DFRobot** | FireBeetle 2 | ¥80 | dfrobot.com.cn |
 
-For detailed supplier information, see [MCU Suppliers](suppliers.md)
+For detailed supplier information, see the [MVP Suppliers Guide](../supply-chain/mvp-suppliers.md)
 
 ---
 
@@ -377,8 +377,8 @@ For detailed supplier information, see [MCU Suppliers](suppliers.md)
 
 ## Related Resources
 
-- [ADR-0005: ESP32-S3 Selection](../../design/decisions/0005-esp32-s3-microcontroller.md)
-- [MCU Suppliers](suppliers.md)
+- ADR-0005: ESP32-S3 Selection
+- [MVP Suppliers Guide](../supply-chain/mvp-suppliers.md)
 
 ---
 

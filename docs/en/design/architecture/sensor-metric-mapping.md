@@ -1388,9 +1388,9 @@ def run_fusion_diagnostics(
 - [System Design](./system-design.md): MVP technical architecture and build order
 - [Modular Architecture](./modular-architecture.md): LEGO-style architecture design
 - [Key Decisions 2025-12](./architecture-decisions-2025-12-23.md): Sensor selection and Sensor Hub sync strategy
-- [Swing Comparison Analysis](../specs/swing-comparison.md): Pro vs Amateur biomechanical differences
-- [Biomechanics Glossary](../foundations/biomechanics-glossary.md): Technical term definitions
-- [Biomechanics Benchmarks](../foundations/biomechanics-benchmarks.md): Literature-validated normal ranges
+- Swing Comparison Analysis: Pro vs Amateur biomechanical differences
+- Biomechanics Glossary: Technical term definitions
+- Biomechanics Benchmarks: Literature-validated normal ranges
 
 ---
 

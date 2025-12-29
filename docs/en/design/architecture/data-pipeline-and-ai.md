@@ -2,7 +2,7 @@
 
 > **Document Status**: Draft v1.2
 > **Last Updated**: 2025-12-23
-> **Related Documents**: [Modular Architecture](modular-architecture.md) | [Real-time Feedback](../specs/real-time-feedback.md) | [Biomechanics Benchmarks](../foundations/biomechanics-benchmarks.md) | [Key Decisions 2025-12](./architecture-decisions-2025-12-23.md)
+> **Related Documents**: [Modular Architecture](modular-architecture.md) | Real-time Feedback | Biomechanics Benchmarks | [Key Decisions 2025-12](./architecture-decisions-2025-12-23.md)
 
 ---
 
@@ -144,7 +144,7 @@ class EMGFrame:
     - Use `esp_timer_get_time()` to stamp microsecond timestamp immediately at acquisition
     - Cross-device alignment using Impact event
 
-    Details see [Key Decisions 2025-12](../decisions/architecture-decisions-2025-12-23.md#45-视频与传感器同步方案)
+    Details see [Key Decisions 2025-12](./architecture-decisions-2025-12-23.md#78-video-sensor-synchronization-solution)
 
 ```text
 IMU is Master Clock:
@@ -157,7 +157,7 @@ Sync requirement: Error < 10ms
 
 !!! tip "Implementation Details"
     Time synchronization implementation (NTP pre-sync + Impact validation) detailed in
-    [Modular Architecture §2.4.1](modular-architecture.md#241-time-sync-implementation).
+    [Modular Architecture §2.4.1](modular-architecture.md#241-time-synchronization-implementation).
 
 #### Sensor Hub Architecture (2025-12 Recommended)
 
@@ -847,9 +847,9 @@ Rule: Max 2 feedback items per swing, avoid information overload
 ### B. Related Documents
 
 - [Modular Architecture](modular-architecture.md) - System module detailed design
-- [Real-time Feedback Spec](../specs/real-time-feedback.md) - Feedback latency and mode details
-- [Biomechanics Benchmarks](../foundations/biomechanics-benchmarks.md) - Complete threshold tables
-- [Sensor-Metric Mapping](./sensor-data-processing.md) - Data calculation formulas
+- Real-time Feedback Spec - Feedback latency and mode details
+- Biomechanics Benchmarks - Complete threshold tables
+- [Sensor-Metric Mapping](./sensor-metric-mapping.md) - Data calculation formulas
 
 ---
 

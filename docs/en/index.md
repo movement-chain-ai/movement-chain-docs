@@ -295,11 +295,11 @@ This table shows all core documentation organized by learning phase. Each file b
 | Phase | Document | What You'll Learn | Time |
 |:-----:|----------|-------------------|:----:|
 | **1: Foundation** | [Biomechanics 101](prerequisites/foundations/biomechanics-101.md) | Golf swing physics from first principles: kinematic chain (ground → legs → hips → torso → arms → club), X-Factor stretch-shortening cycle, tempo ratio (3:1 backswing:downswing), and the 8 swing phases. **Required foundation** for understanding why we measure what we measure. | 90 min |
-| **2: Architecture** | [Architecture Decisions 2025-12-23](design/decisions/architecture-decisions-2025-12-23.md) | December 2025 technology decisions with rationale: Hexagonal architecture for sensor swappability, Python + Rust-backed libraries strategy, UV/Polars/Pydantic toolchain, ONNX Runtime deferral (MediaPipe has built-in TFLite), and the Sensor Hub design for microsecond-level time sync. | 45 min |
+| **2: Architecture** | [Architecture Decisions 2025-12-23](design/architecture/architecture-decisions-2025-12-23.md) | December 2025 technology decisions with rationale: Hexagonal architecture for sensor swappability, Python + Rust-backed libraries strategy, UV/Polars/Pydantic toolchain, ONNX Runtime deferral (MediaPipe has built-in TFLite), and the Sensor Hub design for microsecond-level time sync. | 45 min |
 | **2: Architecture** | [Modular Architecture](design/architecture/modular-architecture.md) | LEGO block philosophy: why tri-modal fusion is a competitive moat (Vision=WHAT, IMU=WHEN, EMG=WHY), CaddieSet research validation (feature engineering beats deep learning for golf), time synchronization strategies (<10ms requirement), fusion engine mechanisms (complementarity, cross-validation, anomaly detection), and block interface contracts for replaceable components. | 40 min |
 | **3: Core Design** | [System Design](design/architecture/system-design.md) | **Hub document** — MVP architecture overview: 4-module pipeline (Assessment → Diagnosis → Correction → Tracking), sensor data flow, user journey mapping, feature-to-module allocation, and success criteria. All other docs reference this as the single source of truth. | 30 min |
 | **3: Core Design** | [Data Pipeline & AI](design/architecture/data-pipeline-and-ai.md) | Kinematic Prompts system: how raw sensor data becomes actionable coaching feedback. Covers the 3-layer stack (Signals → Features → Prompts), real-time vs post-session analysis modes, LLM integration strategy, and the feedback generation pipeline. | 25 min |
-| **3: Core Design** | [Sensor-Metric Mapping](design/architecture/sensor-data-processing.md) | Algorithm implementations with Python code: X-Factor calculation from pose keypoints, phase detection from IMU zero-crossings, EMG onset detection, muscle activation sequencing, and mock data generation for testing without hardware. | 35 min |
+| **3: Core Design** | [Sensor-Metric Mapping](design/architecture/sensor-metric-mapping.md) | Algorithm implementations with Python code: X-Factor calculation from pose keypoints, phase detection from IMU zero-crossings, EMG onset detection, muscle activation sequencing, and mock data generation for testing without hardware. | 35 min |
 | **4: Hardware** | [Components Overview](components/index.md) | Hardware component navigation: sensor portfolio diagram (Vision + IMU + EMG → ESP32 → BLE → Flutter), component matrix with links to specs and suppliers, and cross-references to related design docs. | 5 min |
 | **4: Hardware** | [IMU Hardware](components/imu/hardware.md) | LSM6DSV16X deep dive: 45+ minute drift stability, Machine Learning Core (MLC), 1666Hz sampling rate. Includes comparison with ICM-42688-P/BMI270, development board options (WitMotion WT901BLECL for MVP), Apple Watch feasibility analysis, SDK code examples, and sensor placement guide. | 20 min |
 | **4: Hardware** | [EMG Hardware](components/emg/hardware.md) | EMG sensor selection: MyoWare 2.0 + Link Shield for MVP, OYMotion gForcePro+ for production. Covers golf-relevant muscle groups (FCR, FCU, core), activation patterns across swing phases, signal processing pipeline (bandpass → rectification → envelope), and electrode placement. | 20 min |
@@ -323,7 +323,7 @@ Start with hardware, then understand why we chose these components:
 | 4 | 4 | [MCU Hardware](components/mcu/hardware.md) | Data acquisition hub, BLE protocol |
 | 5 | 4 | [MVP Suppliers](components/supply-chain/mvp-suppliers.md) | Where to buy, BOM costs, China sourcing |
 | 6 | 3 | [System Design](design/architecture/system-design.md) | How hardware fits the software pipeline |
-| 7 | 2 | [Architecture Decisions](design/decisions/architecture-decisions-2025-12-23.md) | Why we chose ESP32-S3, Sensor Hub pattern |
+| 7 | 2 | [Architecture Decisions](design/architecture/architecture-decisions-2025-12-23.md) | Why we chose ESP32-S3, Sensor Hub pattern |
 | 8 | 1 | [Biomechanics 101](prerequisites/foundations/biomechanics-101.md) | *Optional* — Domain context for sensor placement |
 
 #### 💻 Software Engineers (3.5 hours)
@@ -333,11 +333,11 @@ Progressive learning from domain knowledge to implementation:
 | Order | Phase | Document | Why Read This |
 |:-----:|:-----:|----------|---------------|
 | 1 | 1 | [Biomechanics 101](prerequisites/foundations/biomechanics-101.md) | **Required** — Can't build what you don't understand |
-| 2 | 2 | [Architecture Decisions](design/decisions/architecture-decisions-2025-12-23.md) | Hexagonal architecture, toolchain choices |
+| 2 | 2 | [Architecture Decisions](design/architecture/architecture-decisions-2025-12-23.md) | Hexagonal architecture, toolchain choices |
 | 3 | 2 | [Modular Architecture](design/architecture/modular-architecture.md) | LEGO blocks, fusion engine, interface contracts |
 | 4 | 3 | [System Design](design/architecture/system-design.md) | Hub document — 4-module pipeline |
 | 5 | 3 | [Data Pipeline & AI](design/architecture/data-pipeline-and-ai.md) | Kinematic Prompts, LLM integration |
-| 6 | 3 | [Sensor-Metric Mapping](design/architecture/sensor-data-processing.md) | Python code, algorithm implementations |
+| 6 | 3 | [Sensor-Metric Mapping](design/architecture/sensor-metric-mapping.md) | Python code, algorithm implementations |
 | 7 | 4 | [IMU Hardware](components/imu/hardware.md) | *Reference* — Sensor data formats |
 | 8 | 4 | [EMG Hardware](components/emg/hardware.md) | *Reference* — Signal processing pipeline |
 
@@ -348,11 +348,11 @@ All phases in sequence — complete technical picture:
 | Order | Phase | Document | Focus Area |
 |:-----:|:-----:|----------|------------|
 | 1 | 1 | [Biomechanics 101](prerequisites/foundations/biomechanics-101.md) | Domain foundation |
-| 2 | 2 | [Architecture Decisions](design/decisions/architecture-decisions-2025-12-23.md) | Technology rationale |
+| 2 | 2 | [Architecture Decisions](design/architecture/architecture-decisions-2025-12-23.md) | Technology rationale |
 | 3 | 2 | [Modular Architecture](design/architecture/modular-architecture.md) | System philosophy |
 | 4 | 3 | [System Design](design/architecture/system-design.md) | Architecture hub |
 | 5 | 3 | [Data Pipeline & AI](design/architecture/data-pipeline-and-ai.md) | AI integration |
-| 6 | 3 | [Sensor-Metric Mapping](design/architecture/sensor-data-processing.md) | Algorithms |
+| 6 | 3 | [Sensor-Metric Mapping](design/architecture/sensor-metric-mapping.md) | Algorithms |
 | 7 | 4 | All Hardware docs | Component specs |
 | 8 | 5 | [Product Strategy](business-plan/product-strategy.md) | Business context |
 
@@ -379,11 +379,11 @@ Focus on strategy and differentiators:
 | Want to Know | Document |
 |-------------|----------|
 | MVP Core Architecture | [System Design](design/architecture/system-design.md) |
-| 2025 Latest Tech Decisions | [Architecture Decisions 2025-12-23](design/decisions/architecture-decisions-2025-12-23.md) |
-| Technology Selection Records | [ADR Index](design/decisions/index.md) |
-| Biomechanics Terms | [Glossary (140+ entries)](prerequisites/foundations/biomechanics-glossary.md) |
-| Competitor Analysis | [IMU Competitors](business-plan/market-insights/competitors/imu-based.md) / [Vision Competitors](business-plan/market-insights/competitors/vision-based.md) |
-| Open Source Tools | [Tools & Code Libraries](reference/open-source-tools.md) |
+| 2025 Latest Tech Decisions | [Architecture Decisions 2025-12-23](design/architecture/architecture-decisions-2025-12-23.md) |
+| Technology Selection Records | ADR Index (see Architecture Decisions) |
+| Biomechanics Terms | Glossary (140+ entries) - see ZH docs |
+| Competitor Analysis | IMU Competitors / Vision Competitors - see ZH docs |
+| Open Source Tools | Tools & Code Libraries - see ZH docs |
 
 ---
 

@@ -14,11 +14,11 @@ Before diving into system design, we recommend understanding golf biomechanics f
 
 | Document | Content | Reading Time |
 |----------|---------|--------------|
-| **[📖 Biomechanics 101](../foundations/biomechanics-101.md)** | 7 chapters learning golf biomechanics from scratch | ~90 minutes |
-| **[📚 Biomechanics Glossary](../foundations/biomechanics-glossary.md)** | 140+ professional term definitions, team communication standard | As needed |
-| **[📊 Biomechanics Benchmarks](../foundations/biomechanics-benchmarks.md)** | Research-validated benchmark data for pros/amateurs | ~15 minutes |
+| **[📖 Biomechanics 101](../../prerequisites/foundations/biomechanics-101.md)** | 7 chapters learning golf biomechanics from scratch | ~90 minutes |
+| **📚 Biomechanics Glossary** | 140+ professional term definitions, team communication standard | As needed |
+| **📊 Biomechanics Benchmarks** | Research-validated benchmark data for pros/amateurs | ~15 minutes |
 
-> 💡 **Quick Start**: If time is limited, at least read chapters 1-3 of [Biomechanics 101](../foundations/biomechanics-101.md).
+> 💡 **Quick Start**: If time is limited, at least read chapters 1-3 of [Biomechanics 101](../../prerequisites/foundations/biomechanics-101.md).
 
 ---
 
@@ -78,9 +78,9 @@ Before diving into system design, we recommend understanding golf biomechanics f
 
 ### 2.1 MVP Measured Metrics (12)
 
-Based on [Sensor-Metric Mapping](./sensor-data-processing.md) and [Biomechanics Benchmarks](../foundations/biomechanics-benchmarks.md).
+Based on [Sensor-Metric Mapping](./sensor-metric-mapping.md) and Biomechanics Benchmarks.
 
-> 🔍 **Competitor Comparison**: Metric differences vs OnForm/Sportsbox see [Competitor Metrics Comparison](../research/competitor-metrics-comparison.md)
+> 🔍 **Competitor Comparison**: Metric differences vs OnForm/Sportsbox see Competitor Metrics Comparison
 
 #### Vision Metrics (MediaPipe 33 Keypoints)
 
@@ -111,7 +111,7 @@ Based on [Sensor-Metric Mapping](./sensor-data-processing.md) and [Biomechanics 
 
 ### 2.2 MVP Rule Engine (6 Rules)
 
-> 📋 **Detailed Specs**: Complete trigger logic, feedback modes, latency requirements see [Real-time Feedback Spec](../specs/real-time-feedback.md)
+> 📋 **Detailed Specs**: Complete trigger logic, feedback modes, latency requirements see Real-time Feedback Spec
 
 #### P0 - Critical Issues (Must Fix)
 
@@ -135,10 +135,10 @@ Based on [Sensor-Metric Mapping](./sensor-data-processing.md) and [Biomechanics 
 
 > **Related Documents**:
 >
-> - [8-Phase Swing Detection](../specs/swing-phases.md) - Phase segmentation algorithm & code implementation
-> - [Swing Comparison Strategy](../specs/swing-comparison.md) - 4 comparison methods (Pro/Personal Best/Statistical/Learned)
-> - [Real-time Feedback Spec](../specs/real-time-feedback.md) - 3 feedback modes detailed specs
-> - [Mobile Development](../../development/mobile/development.md) - Flutter development & testing guide
+> - 8-Phase Swing Detection - Phase segmentation algorithm & code implementation
+> - Swing Comparison Strategy - 4 comparison methods (Pro/Personal Best/Statistical/Learned)
+> - Real-time Feedback Spec - 3 feedback modes detailed specs
+> - Mobile Development - Flutter development & testing guide
 
 ### 3.1 Phase 1: Vision Pipeline (Week 1-2)
 
@@ -245,15 +245,15 @@ flowchart LR
 
 > **Related Documents**:
 >
-> - [SDK Selection](../guides/sdk-selection.md) - MediaPipe/NeuroKit2/imufusion SDK comparison
-> - [Machine Learning Basics](../guides/ml-basics.md) - Swing analysis ML models introduction
+> - SDK Selection - MediaPipe/NeuroKit2/imufusion SDK comparison
+> - Machine Learning Basics - Swing analysis ML models introduction
 
 ### 4.1 Confirmed Technology Choices
 
 | Layer | Technology | Decision Basis |
 |-------|-----------|---------------|
-| **Project Structure** | Multi-repo (5 repos) | [ADR-0001](../decisions/0001-multi-repo-structure.md) |
-| **Mobile** | Swift iOS (Native) | [ADR-0007](../decisions/0007-swift-ios-native.md) |
+| **Project Structure** | Multi-repo (5 repos) | ADR-0001 |
+| **Mobile** | Swift iOS (Native) | ADR-0007 |
 | **Pose Estimation** | MediaPipe iOS SDK (MediaPipeTasksVision) | Official Google SDK, 33 keypoints |
 | **MCU** | XIAO ESP32S3 | Seeed 113991114, Sensor Hub architecture |
 | **IMU** | Adafruit LSM6DSV16X | ADA-5783, better Arduino library |
@@ -322,7 +322,7 @@ flowchart LR
 - Different Sensor Hubs eliminate BLE jitter via Impact event alignment
 - Avoid clock drift from each sensor having independent BLE connection
 
-> Details see [Key Decisions 2025-12](../decisions/architecture-decisions-2025-12-23.md#43-硬件购买清单)
+> Details see [Key Decisions 2025-12](./architecture-decisions-2025-12-23.md#43-hardware-shopping-list--2025-12-23-verified)
 
 ---
 
@@ -354,7 +354,7 @@ flowchart LR
 ### 5.4 Benchmark Data
 
 - **GolfDB**: 1400 annotated swing videos
-- **Research Data**: Pro/amateur benchmark values (see [biomechanics-benchmarks.md](../foundations/biomechanics-benchmarks.md))
+- **Research Data**: Pro/amateur benchmark values (see Biomechanics Benchmarks)
 
 ---
 
@@ -370,16 +370,16 @@ flowchart LR
 
 - **[Modular Architecture](./modular-architecture.md)** - LEGO block design, module upgrade paths
 - **[Data Pipeline & AI](./data-pipeline-and-ai.md)** - Data flow, sensor fusion, time sync strategy
-- **[Sensor Mapping](./sensor-data-processing.md)** - Which sensor measures what
+- **[Sensor Mapping](./sensor-metric-mapping.md)** - Which sensor measures what
 - **[2025 December Key Decisions](./architecture-decisions-2025-12-23.md)** - Sensor Hub architecture, hardware selection, time sync strategy
-- **[8-Phase Detection](../specs/swing-phases.md)** - Swing phase identification algorithm with code
-- **[Swing Comparison](../specs/swing-comparison.md)** - 4 comparison methods, DTW algorithm
-- **[Real-time Feedback](../specs/real-time-feedback.md)** - 3 feedback mode specs
+- 8-Phase Detection - Swing phase identification algorithm with code
+- Swing Comparison - 4 comparison methods, DTW algorithm
+- Real-time Feedback - 3 feedback mode specs
 
 #### Step 3: Understand Data Sources
 
-- **[Biomechanics Benchmarks](../foundations/biomechanics-benchmarks.md)** - Threshold data sources
-- **[Biomechanics Glossary](../foundations/biomechanics-glossary.md)** - 140+ term definitions
+- Biomechanics Benchmarks - Threshold data sources
+- Biomechanics Glossary - 140+ term definitions
 
 ---
 
@@ -389,8 +389,8 @@ Technical reserves and expansion directions after MVP completion:
 
 | Direction | Document | Content |
 |-----------|---------|---------|
-| **Personalization** | [Personalization Spec](../specs/personalization.md) | Adjust thresholds by gender/age/body type |
-| **Debug Visualization** | [Visualization Tools Evaluation](../research/visualization-tools-evaluation.md) | Rerun multimodal debugging, TAPIR club tracking |
+| **Personalization** | Personalization Spec | Adjust thresholds by gender/age/body type |
+| **Debug Visualization** | Visualization Tools Evaluation | Rerun multimodal debugging, TAPIR club tracking |
 
 > 💡 **Highlights**: [Rerun.io](https://rerun.io) supports Vision+IMU+EMG same-timeline visualization, our first choice debugging tool. [TAPIR](https://github.com/google-deepmind/tapnet) enables clubhead tracking, replacing $5000+ Trackman radar with software.
 

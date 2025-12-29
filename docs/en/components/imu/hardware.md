@@ -7,7 +7,7 @@ The Inertial Measurement Unit is the core sensor for golf swing analysis, tracki
 ## Our Choice: LSM6DSV16X
 
 !!! success "Project Decision"
-    See [ADR-0002: LSM6DSV16X IMU Selection](../../design/decisions/0002-lsm6dsv16x-imu.md)
+    ADR-0002: LSM6DSV16X IMU Selection
 
 ### Core Specifications
 
@@ -26,7 +26,7 @@ The Inertial Measurement Unit is the core sensor for golf swing analysis, tracki
 ### Why LSM6DSV16X
 
 !!! info "Selection Details"
-    For detailed selection analysis and comparison, see [ADR-0002 LSM6DSV16X IMU Selection](../../design/decisions/0002-lsm6dsv16x-imu.md)
+    For detailed selection analysis and comparison, see ADR-0002 LSM6DSV16X IMU Selection
 
 **Core Advantages**: 45+ min drift stability, built-in Machine Learning Core (MLC), industry-best cost-performance ratio.
 
@@ -233,15 +233,14 @@ Data Packet Format (20 bytes):
 | **DFRobot** | Various IMU Modules | ¥50-200 | dfrobot.com.cn |
 | **Seeed Studio** | Grove IMU | ¥60-120 | seeedstudio.com |
 
-For detailed supplier information, see [IMU Suppliers Guide](suppliers.md)
+For detailed supplier information, see the [MVP Suppliers Guide](../supply-chain/mvp-suppliers.md)
 
 ---
 
 ## Related Resources
 
-- [ADR-0002: LSM6DSV16X Selection Decision](../../design/decisions/0002-lsm6dsv16x-imu.md)
-- [IMU Suppliers](suppliers.md)
-- [IMU-based Competitors](../../business-plan/market-insights/competitors/imu-based.md)
+- ADR-0002: LSM6DSV16X Selection Decision
+- [MVP Suppliers Guide](../supply-chain/mvp-suppliers.md)
 
 ---
 

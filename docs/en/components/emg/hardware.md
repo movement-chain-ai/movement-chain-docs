@@ -278,14 +278,13 @@ Recommended Chips:
 | **Florida Probe** | Dry Electrode | ¥50/pair | Reusable |
 | **Taobao/1688** | Domestic Dry Electrode | ¥10-30/pair | Cost-effective |
 
-For detailed supplier information, see [EMG Suppliers Guide](suppliers.md)
+For detailed supplier information, see the [MVP Suppliers Guide](../supply-chain/mvp-suppliers.md)
 
 ---
 
 ## Related Resources
 
-- [EMG Suppliers](suppliers.md)
-- [Competitive Analysis](../../business-plan/market-insights/competitors/imu-based.md) - No EMG competitors
+- [MVP Suppliers Guide](../supply-chain/mvp-suppliers.md)
 - [Architecture Decisions 2025-12-23](../../design/architecture/architecture-decisions-2025-12-23.md) - MyoWare 2.0 selection rationale
 
 ---

@@ -133,7 +133,7 @@ We designed three feedback modes for different scenarios:
 !!! tip "Innovation: Slow Motion Mode"
     Users perform swing actions at slow speed, allowing the system to provide real-time voice feedback during the motion. This solves the "normal swing too fast for real-time correction" challenge.
 
-> See detailed specs: [Real-time Feedback Specification](../design/specs/real-time-feedback.md)
+> See detailed specs: Real-time Feedback Specification
 
 ### Feedback Design Principles
 
@@ -152,7 +152,7 @@ We designed three feedback modes for different scenarios:
 
 ---
 
-## Decision 4: AI Coach + AI Caddie
+## Decision 4: AI Coach + AI Caddie {#decision-4-ai-coach--ai-caddie}
 
 !!! warning "Market Gap"
     Users have 50 data points but don't know what to do.
@@ -290,14 +290,14 @@ flowchart LR
 
 ### Technical Specifications
 
-- [8-Phase Swing Decomposition](../design/specs/swing-phases.md) - Technical implementation of swing phase detection
-- [Real-time Feedback Specification](../design/specs/real-time-feedback.md) - Three feedback modes latency & implementation
+- 8-Phase Swing Decomposition - Technical implementation of swing phase detection
+- Real-time Feedback Specification - Three feedback modes latency & implementation
 - [System Design](../design/architecture/system-design.md) - MVP technical architecture
 
 ### Market & Business
 
-- [User Pain Points Analysis](market-insights/pain-points.md) - User research insights
-- [Market Size & Roadmap](market-insights/market-analysis.md) - Pricing, roadmap, risk assessment
+- User Pain Points Analysis - User research insights
+- Market Size & Roadmap - Pricing, roadmap, risk assessment
 
 ---
 

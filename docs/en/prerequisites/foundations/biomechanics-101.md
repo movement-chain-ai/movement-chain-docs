@@ -207,7 +207,7 @@ A complete golf swing can be divided into eight phases:
 
 ## 1.4 Tempo Ratio {#tempo-ratio}
 
-Professional golfers' **[tempo ratio](../../reference/golf-glossary.md#2-节奏比-tempo-ratio)** is typically 3:1:
+Professional golfers' **tempo ratio** is typically 3:1:
 
 $$
 \text{Tempo Ratio} = \frac{\text{Backswing Time}}{\text{Downswing Time}} = \frac{0.75\,\text{s}}{0.25\,\text{s}} = 3{:}1
@@ -216,7 +216,7 @@ $$
 This means backswing takes 3 times longer than downswing. This ratio is remarkably consistent, whether Tiger Woods or Rory McIlroy.
 
 !!! tip "Key Understanding"
-    Tempo ratio is a **diagnostic tool**, not a training target. Everyone has their own natural tempo; consistency is key. See [Golf Glossary - Tempo Ratio](../../reference/golf-glossary.md#2-节奏比-tempo-ratio).
+    Tempo ratio is a **diagnostic tool**, not a training target. Everyone has their own natural tempo; consistency is key.
 
 ---
 
@@ -235,8 +235,6 @@ This naming convention avoids confusion between right and left-handed golfers.
     1. **IMU Naming Convention**: Sensor positions should use lead/trail not left/right
     2. **Algorithm Reusability**: Motion analysis needs only one logic set, switching left/right mode via configuration
     3. **Data Universality**: Labeling and metric reporting are universal for both golfer types, no need to maintain two terminology sets
-
-    See [Golf Glossary - Lead & Trail Side](../../reference/golf-glossary.md#3-引导侧与后侧-lead-trail-side).
 
 ---
 
@@ -313,7 +311,7 @@ When you release (downswing), these stretched muscles **elastically recoil**, pr
 
 ## 2.3 X-Factor Stretch {#x-factor-stretch}
 
-This is **one of the key indicators** distinguishing professionals from amateurs. See [Golf Glossary - X-Factor Stretch](../../reference/golf-glossary.md#5-x-factor-stretch).
+This is **one of the key indicators** distinguishing professionals from amateurs.
 
 ### What is X-Factor Stretch?
 
@@ -754,7 +752,7 @@ Recommendation: Rebuild entire motion, emphasize one-time power application
 
 ## 4.1 What is Angular Velocity?
 
-**[Angular velocity](../../reference/physics-glossary.md#1-角速度-angular-velocity)** = How fast something rotates, unit is **degrees/second (°/s)**
+**Angular velocity** = How fast something rotates, unit is **degrees/second (°/s)**
 
 ### Formula
 
@@ -768,12 +766,12 @@ $$
 
 Simple analogy:
 
-- [Linear velocity](../../reference/physics-glossary.md#2-线速度-linear-velocity) tells you "how fast you move" (m/s)
-- [Angular velocity](../../reference/physics-glossary.md#1-角速度-angular-velocity) tells you "how fast you spin" (°/s)
+- Linear velocity tells you "how fast you move" (m/s)
+- Angular velocity tells you "how fast you spin" (°/s)
 
 An object rotating 360° per second = rotating once per second
 
-### Relationship Between [Angular Velocity](../../reference/physics-glossary.md#1-角速度-angular-velocity) and [Linear Velocity](../../reference/physics-glossary.md#2-线速度-linear-velocity)
+### Relationship Between Angular Velocity and Linear Velocity
 
 ![Angular Velocity Diagram](../../images/angular-velocity-diagram.svg)
 
@@ -789,8 +787,8 @@ $$
 v = \omega \times r
 $$
 
-- **v**: [Linear velocity](../../reference/physics-glossary.md#2-线速度-linear-velocity) (m/s)
-- **ω**: [Angular velocity](../../reference/physics-glossary.md#1-角速度-angular-velocity) (same)
+- **v**: Linear velocity (m/s)
+- **ω**: Angular velocity (same)
 - **r**: Distance to rotation center
 
 **Core conclusion**:
@@ -801,7 +799,7 @@ $$
 | Hand (C) | Large | Same | Large |
 | Clubhead | Largest | Same | **Largest** |
 
-> **This is why clubhead speed is fastest**: Although all body parts have the same [angular velocity](../../reference/physics-glossary.md#1-角速度-angular-velocity), the clubhead is farthest from the rotation center (r is largest), so [linear velocity](../../reference/physics-glossary.md#2-线速度-linear-velocity) is greatest.
+> **This is why clubhead speed is fastest**: Although all body parts have the same angular velocity, the clubhead is farthest from the rotation center (r is largest), so linear velocity is greatest.
 
 ---
 
@@ -884,7 +882,7 @@ From pelvis to club, speed amplifies by **over 5 times**!
 
 ### Clubhead Speed (Linear Velocity) {#clubhead-speed}
 
-Clubhead speed is the final output, typically expressed in **mph** or **km/h**. See [Golf Glossary - Clubhead Speed](../../reference/golf-glossary.md#4-杆头速度-clubhead-speed).
+Clubhead speed is the final output, typically expressed in **mph** or **km/h**.
 
 | Club | Professional | Amateur | Difference |
 |------|------|------|------|
@@ -959,7 +957,7 @@ $$L = I \times \omega = m \times r^2 \times \omega$$
 | r | Effective radius (distance from center of mass to rotation axis) | m |
 | ω | Angular velocity | rad/s |
 
-> See detailed physics concepts: [Physics Glossary](../../reference/physics-glossary.md)
+> These are fundamental physics concepts for understanding golf biomechanics.
 
 ---
 
@@ -1076,7 +1074,7 @@ Understanding physics principles makes training direction clearer:
 
 **Key understanding**: Muscles **don't produce angular momentum** (that only comes from ground), but muscles **control transfer timing** and **input energy**.
 
-> See: [Physics Glossary - Source of Angular Momentum](../../reference/physics-glossary.md#44-角动量的来源地面反作用力)
+> Angular momentum in the golf swing originates from ground reaction force.
 
 ---
 
@@ -1408,7 +1406,7 @@ Below are four most common swing errors, each with unique biomechanical characte
 | ![Over-the-Top Illustration 1](../../images/Over-the-top.webp){ width="350" } | ![Over-the-Top Illustration 2](../../images/over-the-top.png){ width="350" } |
 
 !!! tip "Visual Reference"
-    📊 [TPI: Over the Top](https://www.mytpi.com/improve-my-game/swing-characteristics/over-the-top) has detailed video and [swing path](../../reference/golf-glossary.md#9-挥杆路径-swing-path) analysis.
+    📊 [TPI: Over the Top](https://www.mytpi.com/improve-my-game/swing-characteristics/over-the-top) has detailed video and swing path analysis.
 
 ### Biomechanical Characteristics
 
@@ -1426,14 +1424,14 @@ Below are four most common swing errors, each with unique biomechanical characte
 
 ### Consequences
 
-OTT consequences depend on **[swing path](../../reference/golf-glossary.md#9-挥杆路径-swing-path)** and **[clubface angle](../../reference/golf-glossary.md#8-杆面-clubface)** combination:
+OTT consequences depend on **swing path** and **clubface angle** combination:
 
-#### [Ball Flight](../../reference/golf-glossary.md#10-球路-ball-flight) Impact
+#### Ball Flight Impact
 
 | Clubface State | Ball Flight Result | Notes |
 |----------|----------|------|
-| **Clubface Open** (common) | [Slice](../../reference/golf-glossary.md#10-球路-ball-flight) | Out→In path + Open face = Strong right spin |
-| **Clubface Closed** | [Hook](../../reference/golf-glossary.md#10-球路-ball-flight) or Pull-Hook | Out→In path + Closed face = Left spin or left straight |
+| **Clubface Open** (common) | Slice | Out→In path + Open face = Strong right spin |
+| **Clubface Closed** | Hook or Pull-Hook | Out→In path + Closed face = Left spin or left straight |
 | **Clubface Square** | Pull (straight left) | Out→In path + Square face = Straight but left |
 
 !!! note "Why OTT Usually Causes Slice?"
@@ -1450,7 +1448,7 @@ OTT **doesn't necessarily** cause distance loss:
 | OTT + Square face (Pull) | ✅ May be normal | Direction left, but distance maintained |
 
 !!! info "Professional Exceptions"
-    Professional players like Jim Furyk have slight OTT but can still hit consistent [ball flight](../../reference/golf-glossary.md#10-球路-ball-flight) with excellent clubface control. The core OTT problem is **poor controllability** and **poor consistency**, not necessarily distance loss.
+    Professional players like Jim Furyk have slight OTT but can still hit consistent ball flight with excellent clubface control. The core OTT problem is **poor controllability** and **poor consistency**, not necessarily distance loss.
 
 #### Other Impacts
 
@@ -1608,7 +1606,7 @@ Our system uses three complementary sensors:
 │   │   rotation  │    │             │    │ • Intensity │                     │
 │   └─────────────┘    └─────────────┘    └─────────────┘                     │
 │                                                                              │
-│   [Sampling rate](../../reference/physics-glossary.md#5-采样率-sampling-rate): 30fps       1666Hz           1000Hz                  │
+│   Sampling rate: 30fps       1666Hz           1000Hz                  │
 │   Accuracy: ±2°        <10ms             <5ms                               │
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -1736,7 +1734,7 @@ Three sensors each have pros and cons; **fusion** gives complete picture.
 
 ### Time Synchronization
 
-Three sensors have different [sampling rates](../../reference/physics-glossary.md#5-采样率-sampling-rate), need to align to same timeline:
+Three sensors have different sampling rates, need to align to same timeline:
 
 | Sensor | Original Sampling Rate | Alignment Strategy |
 |--------|------------|----------|
@@ -1824,9 +1822,9 @@ Three sensors have different [sampling rates](../../reference/physics-glossary.m
 
 ## Next Steps
 
-1. **Deep learning**: Consult [Glossary](biomechanics-glossary.md) for more professional terms
-2. **See benchmarks**: Reference [Benchmark Values](biomechanics-benchmarks.md) for complete data
-3. **Understand system**: Read [Sensor Mapping](../architecture/sensor-data-processing.md) to understand our measurement capabilities
+1. **Deep learning**: Consult the biomechanics glossary for more professional terms
+2. **See benchmarks**: Reference the biomechanics benchmark values for complete data
+3. **Understand system**: Read [Sensor Metric Mapping](../../design/architecture/sensor-metric-mapping.md) to understand our measurement capabilities
 
 ---
 
