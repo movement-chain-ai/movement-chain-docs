@@ -39,7 +39,7 @@
 |------|------|---------|
 | [系统设计](architecture/system-design.md) | MVP 全貌：4模块、12指标、6规则 | ~25分钟 |
 | [模块化架构](architecture/modular-architecture.md) | LEGO 积木块设计 | ~25分钟 |
-| [数据流与反馈](architecture/data-flow.md) | 时间对齐、Kinematic Prompts | ~20分钟 |
+| [数据流](architecture/data-flow.md) | 时间对齐、Kinematic Prompts | ~20分钟 |
 | [数据处理与指标计算](architecture/sensor-data-processing.md) | Python 实现代码 | 按需查阅 |
 
 ### 3️⃣ 详细规格 (按需参考)
