@@ -2327,10 +2327,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#101" class="md-nav__link">
+  <a href="#101-stage-7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10.1 技术扩展
+        10.1 用户反馈层扩展 (Stage 7)
       
     </span>
   </a>
@@ -2341,7 +2341,18 @@
   <a href="#102" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10.2 产品扩展
+        10.2 技术扩展
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 产品扩展
       
     </span>
   </a>
@@ -5175,10 +5186,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#101" class="md-nav__link">
+  <a href="#101-stage-7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10.1 技术扩展
+        10.1 用户反馈层扩展 (Stage 7)
       
     </span>
   </a>
@@ -5189,7 +5200,18 @@
   <a href="#102" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10.2 产品扩展
+        10.2 技术扩展
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 产品扩展
       
     </span>
   </a>
@@ -6101,7 +6123,57 @@
 <hr />
 <h2 id="10-post-mvp-路线图">10. Post-MVP 路线图<a class="headerlink" href="#10-post-mvp-路线图" title="Permanent link">&para;</a></h2>
 <p>MVP (Phase 1 → 2 → 3 → 3.5 → 4) 完成后的扩展方向:</p>
-<h3 id="101">10.1 技术扩展<a class="headerlink" href="#101" title="Permanent link">&para;</a></h3>
+<h3 id="101-stage-7">10.1 用户反馈层扩展 (Stage 7)<a class="headerlink" href="#101-stage-7" title="Permanent link">&para;</a></h3>
+<p>MVP Phase 4 实现基础 UI 反馈后，以下功能延后到 Post-MVP：</p>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>技术</th>
+<th>内容</th>
+<th>优先级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>语音反馈 TTS</strong></td>
+<td>AVSpeechSynthesizer</td>
+<td>教练语音播报，1-2 句可执行建议</td>
+<td>🔴 高</td>
+</tr>
+<tr>
+<td><strong>触觉反馈</strong></td>
+<td>Core Haptics</td>
+<td>振动提示问题类型，Apple Watch 联动</td>
+<td>🟡 中</td>
+</tr>
+<tr>
+<td><strong>Ghost 骨架叠加</strong></td>
+<td>ARKit</td>
+<td>理想轨迹 vs 实际轨迹对比，慢动作回放</td>
+<td>🟡 中</td>
+</tr>
+<tr>
+<td><strong>历史趋势图表</strong></td>
+<td>SwiftUI Charts</td>
+<td>连续多次挥杆的改进/退步趋势</td>
+<td>🟡 中</td>
+</tr>
+<tr>
+<td><strong>挥杆对比视图</strong></td>
+<td>AVFoundation</td>
+<td>并排对比两次挥杆视频</td>
+<td>🟢 低</td>
+</tr>
+<tr>
+<td><strong>录制回放</strong></td>
+<td>AVFoundation</td>
+<td>保存挥杆视频 + 分析结果</td>
+<td>🟢 低</td>
+</tr>
+</tbody>
+</table>
+<h3 id="102">10.2 技术扩展<a class="headerlink" href="#102" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -6144,7 +6216,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="102">10.2 产品扩展<a class="headerlink" href="#102" title="Permanent link">&para;</a></h3>
+<h3 id="103">10.3 产品扩展<a class="headerlink" href="#103" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
