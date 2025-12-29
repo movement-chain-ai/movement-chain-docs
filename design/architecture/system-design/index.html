@@ -2009,6 +2009,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#core-value-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 核心价值链详解
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4674,6 +4685,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#core-value-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 核心价值链详解
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4859,10 +4881,10 @@
 </span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>│  ║           └──────────────────┬─────────────────┘                               ║  │
 </span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>│  ║                              ▼                                                 ║  │
 </span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>│  ║                    ┌─────────────────────┐                                     ║  │
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>│  ║                    │  📱 Swift iOS App    │                                    ║  │
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>│  ║                    │  📱 Swift iOS App   │                                     ║  │
 </span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>│  ║                    │  • MediaPipeTasksVision                                   ║  │
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>│  ║                    │  • CoreBluetooth                                          ║  │
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>│  ║                    │  • 数据接收与缓存                                            ║  │
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>│  ║                    │  • CoreBluetooth    │                                     ║  │
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>│  ║                    │  • 数据接收与缓存     │                                      ║  │
 </span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>│  ║                    └─────────┬───────────┘                                     ║  │
 </span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>│  ║                                                                                ║  │
 </span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>│  ║  【空间姿态 WHAT】       【运动时序 WHEN】         【肌肉激活 WHY】                  ║  │
@@ -4990,69 +5012,610 @@
 </span><span id="__span-0-166"><a id="__codelineno-0-166" name="__codelineno-0-166" href="#__codelineno-0-166"></a>│                                                                                     │
 </span><span id="__span-0-167"><a id="__codelineno-0-167" name="__codelineno-0-167" href="#__codelineno-0-167"></a>└─────────────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
-<p><strong>核心价值链</strong> (数据流: Stage 1 → Stage 7):</p>
+<h3 id="core-value-chain">1.3 核心价值链详解<a class="headerlink" href="#core-value-chain" title="Permanent link">&para;</a></h3>
+<p>数据从用户挥杆到最终反馈，经过 7 个阶段的处理。每个阶段都有明确的功能边界和技术实现。</p>
+<hr />
+<h4 id="stage-1">1.3.1 Stage 1: 用户挥杆 (User Swings)<a class="headerlink" href="#stage-1" title="Permanent link">&para;</a></h4>
+<p><strong>功能</strong>: 系统的输入事件，触发整个数据采集与分析流程。</p>
+<p><strong>数据流</strong>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>🏌️ 高尔夫球手挥杆
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>        │
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        ├──→ 📹 iPhone Camera (视觉捕捉)
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        ├──→ 💪 Arm Hub (前臂传感器)
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        └──→ 💪 Core Hub (核心传感器)
+</span></code></pre></div></p>
+<p><strong>价值</strong>: 一次挥杆同时触发三种传感器的并行采集，确保多模态数据的时间起点一致性。</p>
+<hr />
+<h4 id="stage-2">1.3.2 Stage 2: 数据采集层 (Data Collection)<a class="headerlink" href="#stage-2" title="Permanent link">&para;</a></h4>
+<p><strong>功能</strong>: 三模态数据的并行采集，获取挥杆的完整信息。</p>
+<p><strong>三模态数据</strong>:</p>
 <table>
 <thead>
 <tr>
-<th>Stage</th>
-<th>层级</th>
-<th>功能</th>
-<th>关键技术</th>
-<th>价值</th>
+<th>模态</th>
+<th>传感器</th>
+<th>采样率</th>
+<th>数据内容</th>
+<th>回答问题</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
-<td>用户挥杆</td>
-<td>输入事件</td>
-<td>-</td>
-<td>触发数据采集</td>
+<td><strong>Vision</strong></td>
+<td>iPhone Camera + MediaPipe</td>
+<td>30 fps</td>
+<td>33 个骨骼关键点坐标</td>
+<td><strong>WHAT</strong>: 身体姿态是什么样的？</td>
 </tr>
 <tr>
-<td>2</td>
-<td>数据采集层</td>
-<td>三模态数据采集</td>
-<td>ESP32 Sensor Hub + Swift App + MediaPipe</td>
-<td>WHAT + WHEN + WHY 完整信息</td>
+<td><strong>IMU</strong></td>
+<td>LSM6DSV16X (陀螺仪+加速度计)</td>
+<td>1666 Hz</td>
+<td>角速度、加速度、时间戳</td>
+<td><strong>WHEN</strong>: 各阶段何时发生？</td>
 </tr>
 <tr>
-<td>3</td>
-<td>传感器融合层</td>
-<td>时间对齐 &lt;10μs</td>
-<td>IMU 主时钟 + Impact T=0 对齐</td>
-<td>数据可比性、因果推断基础</td>
-</tr>
-<tr>
-<td>4</td>
-<td>特征提取层</td>
-<td>12 个生物力学指标</td>
-<td>MediaPipe + NeuroKit2 + scipy</td>
-<td>从原始数据到可分析指标</td>
-</tr>
-<tr>
-<td>5</td>
-<td>分析诊断层</td>
-<td>规则引擎 + 因果归因</td>
-<td>8阶段检测、6条规则、因果诊断</td>
-<td><strong>核心差异化</strong>: 告诉用户"为什么"</td>
-</tr>
-<tr>
-<td>6</td>
-<td>AI反馈层</td>
-<td>Kinematic Prompts → LLM</td>
-<td>GPT-4o-mini / Gemini</td>
-<td>教练级自然语言反馈</td>
-</tr>
-<tr>
-<td>7</td>
-<td>用户反馈层</td>
-<td>多模态反馈 &lt;500ms</td>
-<td>App UI、TTS、触觉、Ghost</td>
-<td>用户可执行的改进建议</td>
+<td><strong>EMG</strong></td>
+<td>MyoWare 2.0</td>
+<td>1000 Hz</td>
+<td>肌肉电信号强度</td>
+<td><strong>WHY</strong>: 为什么会这样？</td>
 </tr>
 </tbody>
 </table>
+<p><strong>关键技术</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>技术选型</th>
+<th>核心能力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sensor Hub</strong></td>
+<td>ESP32-S3 MCU</td>
+<td>多传感器共享时钟源，源端时间戳</td>
+</tr>
+<tr>
+<td><strong>BLE 传输</strong></td>
+<td>BLE 5.0 + 源端时间戳</td>
+<td>消除传输抖动，保留精确时序</td>
+</tr>
+<tr>
+<td><strong>Vision SDK</strong></td>
+<td>MediaPipeTasksVision (iOS)</td>
+<td>设备端实时姿态估计，无网络延迟</td>
+</tr>
+<tr>
+<td><strong>App 接收</strong></td>
+<td>Swift + CoreBluetooth</td>
+<td>原生性能，低功耗蓝牙管理</td>
+</tr>
+</tbody>
+</table>
+<p><strong>价值</strong>:
+- <strong>信息完整性</strong>: Vision 告诉你"发生了什么"，IMU 告诉你"何时发生"，EMG 告诉你"为什么发生"
+- <strong>竞品对比</strong>: 纯 Vision 方案只有 WHAT，我们有 WHAT + WHEN + WHY</p>
+<blockquote>
+<p>📐 详见: <a href="../sensor-data-processing/">数据处理与指标计算</a> — 各传感器的数据格式与处理</p>
+</blockquote>
+<hr />
+<h4 id="stage-3">1.3.3 Stage 3: 传感器融合层 (Sensor Fusion)<a class="headerlink" href="#stage-3" title="Permanent link">&para;</a></h4>
+<p><strong>功能</strong>: 将三种不同采样率的数据对齐到统一时间轴，为后续分析提供可比较的数据基础。</p>
+<p><strong>核心挑战</strong>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>问题: 三种传感器采样率不同，如何对齐？
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>   Vision:   |----33ms----|----33ms----|----33ms----|  (30 fps)
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>   IMU:      |0.6ms|0.6ms|0.6ms|...                    (1666 Hz)
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>   EMG:      |-1ms-|-1ms-|-1ms-|...                    (1000 Hz)
+</span></code></pre></div></p>
+<p><strong>解决方案</strong>: IMU 主时钟 + Impact T=0 对齐</p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>实现方式</th>
+<th>精度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IMU 作为主时钟</strong></td>
+<td>所有数据插值对齐到 IMU 时间轴</td>
+<td>同 Hub 内 &lt;10μs</td>
+</tr>
+<tr>
+<td><strong>Impact T=0 锚点</strong></td>
+<td>击球瞬间作为跨设备同步参考点</td>
+<td>跨 Hub &lt;500μs</td>
+</tr>
+<tr>
+<td><strong>三次样条插值</strong></td>
+<td>低采样率数据 (Vision) 插值到高采样率</td>
+<td>保持曲线平滑</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键技术</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sensor Hub 架构</strong></td>
+<td>同一 Hub 内的 IMU+EMG 共享时钟源，同步精度 &lt;10μs</td>
+</tr>
+<tr>
+<td><strong>Impact 检测</strong></td>
+<td>通过 IMU 陀螺仪峰值检测击球时刻，作为 T=0</td>
+</tr>
+<tr>
+<td><strong>跨 Hub 对齐</strong></td>
+<td>多个 Sensor Hub 都能检测到 Impact 振动，对齐各自的 T=0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>价值</strong>:
+- <strong>因果推断基础</strong>: 只有时间精确对齐，才能判断"核心激活是否先于手臂动作"
+- <strong>数据可比性</strong>: 不同挥杆、不同用户的数据可以直接比较</p>
+<blockquote>
+<p>📐 详见: <a href="../data-pipeline-and-ai/#sensor-hub-架构-2025-12-推荐">数据管道与AI</a> — 时间同步策略</p>
+</blockquote>
+<hr />
+<h4 id="stage-4">1.3.4 Stage 4: 特征提取层 (Feature Extraction)<a class="headerlink" href="#stage-4" title="Permanent link">&para;</a></h4>
+<p><strong>功能</strong>: 从原始传感器数据中提取 12 个标准化的生物力学指标，将"原始波形"转换为"可分析数值"。</p>
+<p><strong>12 核心指标</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>指标</th>
+<th>英文</th>
+<th>计算方式</th>
+<th>正常范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vision</strong></td>
+<td>X-Factor</td>
+<td>X-Factor</td>
+<td>肩膀旋转角 - 髋部旋转角</td>
+<td>35°-55°</td>
+</tr>
+<tr>
+<td></td>
+<td>X-Factor 延展</td>
+<td>X-Factor Stretch</td>
+<td>X-Factor 在下杆初期的增加值</td>
+<td>5°-15°</td>
+</tr>
+<tr>
+<td></td>
+<td>转肩角</td>
+<td>Shoulder Turn</td>
+<td>肩线与目标线夹角</td>
+<td>80°-110°</td>
+</tr>
+<tr>
+<td></td>
+<td>转髋角</td>
+<td>Hip Turn</td>
+<td>髋线与目标线夹角</td>
+<td>35°-55°</td>
+</tr>
+<tr>
+<td></td>
+<td>S-Factor</td>
+<td>S-Factor</td>
+<td>肩部倾斜角度</td>
+<td>20°-35°</td>
+</tr>
+<tr>
+<td></td>
+<td>侧移/抬头</td>
+<td>Sway/Lift</td>
+<td>头部/髋部水平位移</td>
+<td>&lt;5cm</td>
+</tr>
+<tr>
+<td><strong>IMU</strong></td>
+<td>峰值角速度</td>
+<td>Peak Angular Velocity</td>
+<td>gyro_z 负峰值</td>
+<td>800°-1200°/s</td>
+</tr>
+<tr>
+<td></td>
+<td>节奏比</td>
+<td>Tempo Ratio</td>
+<td>上杆时间 / 下杆时间</td>
+<td>2.5:1 - 3.5:1</td>
+</tr>
+<tr>
+<td></td>
+<td>上杆时长</td>
+<td>Backswing Duration</td>
+<td>Address → Top 时间</td>
+<td>0.8s - 1.2s</td>
+</tr>
+<tr>
+<td></td>
+<td>下杆时长</td>
+<td>Downswing Duration</td>
+<td>Top → Impact 时间</td>
+<td>0.20s - 0.35s</td>
+</tr>
+<tr>
+<td><strong>EMG</strong></td>
+<td>核心激活 %</td>
+<td>Core Activation %</td>
+<td>核心肌群 RMS / MVC</td>
+<td>&gt;50%</td>
+</tr>
+<tr>
+<td></td>
+<td>核心-前臂时序差</td>
+<td>Core-Forearm Timing Gap</td>
+<td>核心激活时刻 - 前臂激活时刻</td>
+<td>&gt;20ms (核心先)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键技术</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>库</th>
+<th>用途</th>
+<th>处理内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MediaPipe</strong></td>
+<td>Vision 指标</td>
+<td>从 33 个关键点计算角度、位移</td>
+</tr>
+<tr>
+<td><strong>scipy</strong></td>
+<td>IMU 指标</td>
+<td>信号滤波、峰值检测、零交叉检测</td>
+</tr>
+<tr>
+<td><strong>NeuroKit2</strong></td>
+<td>EMG 指标</td>
+<td>肌电信号处理、激活时刻检测</td>
+</tr>
+<tr>
+<td><strong>Polars</strong></td>
+<td>数据处理</td>
+<td>高性能时间序列操作</td>
+</tr>
+</tbody>
+</table>
+<p><strong>价值</strong>:
+- <strong>标准化</strong>: 将不同用户、不同设备的原始数据转换为可比较的标准指标
+- <strong>可解释性</strong>: 每个指标都有明确的生物力学含义，用户可以理解
+- <strong>诊断基础</strong>: 为下一层的规则引擎提供结构化输入</p>
+<blockquote>
+<p>📐 详见: <a href="../sensor-data-processing/">数据处理与指标计算</a> — 12 个指标的详细计算公式</p>
+</blockquote>
+<hr />
+<h4 id="stage-5">1.3.5 Stage 5: 分析诊断层 (Analysis &amp; Diagnosis)<a class="headerlink" href="#stage-5" title="Permanent link">&para;</a></h4>
+<p><strong>功能</strong>: 基于 12 个指标，执行规则引擎诊断和因果归因分析。这是系统的<strong>核心差异化能力</strong>。</p>
+<p><strong>8 阶段挥杆检测</strong> (基于 GolfDB 标准):
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Address → Takeaway → Backswing → Top → Downswing → Impact → Follow-through → Finish
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>   │          │           │        │        │          │          │             │
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>   ▼          ▼           ▼        ▼        ▼          ▼          ▼             ▼
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a> 站姿设置   起杆启动    上杆过程  杆顶位置  下杆加速   击球时刻    顺势跟随      收杆结束
+</span></code></pre></div></p>
+<p><strong>6 条诊断规则</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>规则名称</th>
+<th>触发条件</th>
+<th>诊断结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P0</strong></td>
+<td>倒序运动链</td>
+<td>EMG 前臂先于核心激活 (gap &lt; -20ms)</td>
+<td>严重问题：手臂主导而非身体主导</td>
+</tr>
+<tr>
+<td><strong>P0</strong></td>
+<td>过度手臂挥杆</td>
+<td>Forearm/Core ratio &gt; 1.3</td>
+<td>严重问题：核心力量未充分参与</td>
+</tr>
+<tr>
+<td><strong>P1</strong></td>
+<td>差异角过小</td>
+<td>X-Factor &lt; 20°</td>
+<td>身体扭转不足，力量储备不够</td>
+</tr>
+<tr>
+<td><strong>P1</strong></td>
+<td>节奏过快</td>
+<td>Downswing &lt; 0.20s</td>
+<td>下杆太急，节奏失控</td>
+</tr>
+<tr>
+<td><strong>P1</strong></td>
+<td>节奏过慢</td>
+<td>Downswing &gt; 0.40s</td>
+<td>下杆迟缓，力量流失</td>
+</tr>
+<tr>
+<td><strong>P1</strong></td>
+<td>早释放</td>
+<td>Wrist release &lt; 40% downswing</td>
+<td>释放角度过早，损失杆头速度</td>
+</tr>
+</tbody>
+</table>
+<p><strong>因果归因诊断</strong> (核心差异化):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>竞品 (Vision-only):
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>┌─────────────────────────────────────────────────────────────┐
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>│  &quot;你的 X-Factor 只有 18°，低于正常范围&quot;                        │
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│   → 只能告诉 WHAT（发生了什么）                               │
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│   → 用户不知道为什么，也不知道怎么改                            │
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>└─────────────────────────────────────────────────────────────┘
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>我们 (三模态融合):
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>┌─────────────────────────────────────────────────────────────┐
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>│  &quot;你的 X-Factor 只有 18°，因为核心肌群在下杆时只有 30% 激活&quot;    │
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>│   → WHAT: X-Factor 不足                                     │
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>│   → WHY: 核心激活不够                                        │
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>│   → HOW TO FIX: 在下杆前收紧腹肌，让身体带动手臂                │
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>└─────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<p><strong>关键技术</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>规则引擎</strong></td>
+<td>基于阈值的条件判断，确定性输出</td>
+</tr>
+<tr>
+<td><strong>EMG 时序分析</strong></td>
+<td>检测肌肉激活顺序，判断运动链是否正确</td>
+</tr>
+<tr>
+<td><strong>因果推断</strong></td>
+<td>关联 EMG 激活模式与 Vision 姿态问题</td>
+</tr>
+</tbody>
+</table>
+<p><strong>价值</strong>:
+- <strong>核心差异化</strong>: 这是我们与所有 Vision-only 竞品的本质区别
+- <strong>可执行建议</strong>: 不只是"什么错了"，还有"为什么错"和"怎么改"
+- <strong>教练替代</strong>: 提供接近人类教练的诊断深度</p>
+<blockquote>
+<p>📐 详见: <a href="../mvp-plan/#82-mvp-6-条诊断规则">MVP 开发计划 §8.2</a> — 6 条规则的详细逻辑</p>
+</blockquote>
+<hr />
+<h4 id="stage-6">1.3.6 Stage 6: AI 反馈生成层 (AI Feedback Generation)<a class="headerlink" href="#stage-6" title="Permanent link">&para;</a></h4>
+<p><strong>功能</strong>: 将结构化的诊断结果转换为自然语言的教练反馈。</p>
+<p><strong>Kinematic Prompts</strong> (结构化提示词):</p>
+<p>将传感器数据和诊断结果格式化为 LLM 可理解的结构:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>用户挥杆数据:
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>─────────────────────────────────────
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>X-Factor: 42° ✅ (正常范围 35-55°)
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Core activation: 30% ⚠️ (低于 50% 阈值)
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Timing: 核心先于前臂 150ms ✅
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>Peak velocity: 920°/s ✅
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>触发规则:
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>─────────────────────────────────────
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>• LOW_CORE_ACTIVATION (P1) - 核心激活不足
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>• 置信度: 0.85
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>请生成教练反馈...
+</span></code></pre></div>
+<p><strong>LLM 翻译引擎</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>选择</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>模型</strong></td>
+<td>GPT-4o-mini / Gemini 2.5 Flash</td>
+<td>性价比高，响应快</td>
+</tr>
+<tr>
+<td><strong>延迟</strong></td>
+<td>200-500ms</td>
+<td>挥杆后可接受，非实时要求</td>
+</tr>
+<tr>
+<td><strong>部署</strong></td>
+<td>Cloud API</td>
+<td>复杂推理，模型更新灵活</td>
+</tr>
+<tr>
+<td><strong>Fallback</strong></td>
+<td>本地模板</td>
+<td>网络不可用时的备用方案</td>
+</tr>
+</tbody>
+</table>
+<p><strong>输出示例</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>LLM 输入:
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  X-Factor=42°, Core=30%, Rule=LOW_CORE_ACTIVATION
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>LLM 输出:
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  &quot;看起来转够了 (42°)，但核心没发力 (30%)。
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>   在下杆前收紧腹肌，让身体带动手臂。&quot;
+</span></code></pre></div>
+<p><strong>关键技术</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prompt Engineering</strong></td>
+<td>设计让 LLM 输出简洁、可执行建议的提示词</td>
+</tr>
+<tr>
+<td><strong>结构化输入</strong></td>
+<td>将数值数据转换为 LLM 易理解的格式</td>
+</tr>
+<tr>
+<td><strong>输出约束</strong></td>
+<td>限制输出为 1-2 句话，避免啰嗦</td>
+</tr>
+</tbody>
+</table>
+<p><strong>价值</strong>:
+- <strong>自然语言</strong>: 用户听到的是人话，不是数据
+- <strong>可执行</strong>: 建议是具体动作（"收紧腹肌"），不是抽象概念
+- <strong>个性化</strong>: 根据具体数据定制反馈内容</p>
+<blockquote>
+<p>📐 详见: <a href="../data-pipeline-and-ai/">数据管道与AI</a> — Kinematic Prompts 详细设计</p>
+</blockquote>
+<hr />
+<h4 id="stage-7">1.3.7 Stage 7: 用户反馈层 (User Feedback)<a class="headerlink" href="#stage-7" title="Permanent link">&para;</a></h4>
+<p><strong>功能</strong>: 将 AI 生成的反馈通过多种模态呈现给用户，确保挥杆后 &lt;500ms 内收到反馈。</p>
+<p><strong>四种反馈通道</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>通道</th>
+<th>载体</th>
+<th>内容</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>📱 App UI</strong></td>
+<td>手机屏幕</td>
+<td>1-3 个关键指标 + 颜色编码 (🟢🟡🔴)</td>
+<td>练习后查看详情</td>
+</tr>
+<tr>
+<td><strong>🔊 语音 TTS</strong></td>
+<td>AirPods/扬声器</td>
+<td>1-2 句教练建议</td>
+<td>练习中即时反馈</td>
+</tr>
+<tr>
+<td><strong>📳 触觉反馈</strong></td>
+<td>Apple Watch/手机</td>
+<td>振动模式提示问题类型</td>
+<td>不看屏幕时的即时提醒</td>
+</tr>
+<tr>
+<td><strong>👻 Ghost 叠加</strong></td>
+<td>AR 骨架叠加</td>
+<td>理想轨迹 vs 实际轨迹对比</td>
+<td>慢动作回放时的视觉对比</td>
+</tr>
+</tbody>
+</table>
+<p><strong>延迟预算</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>挥杆结束 → 反馈呈现: &lt;500ms
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>时间分配:
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>─────────────────────────────────────
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>  Impact 检测:        ~0ms   (实时)
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>  数据传输 (BLE):    ~50ms
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>  传感器融合:        ~10ms
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>  特征提取:          ~20ms
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>  规则引擎:           ~5ms
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>  LLM 生成:        ~300ms
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>  UI 渲染:          ~50ms
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>─────────────────────────────────────
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>  总计:            ~435ms  ✅ &lt;500ms
+</span></code></pre></div>
+<p><strong>用户体验设计原则</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>不过载</strong></td>
+<td>每次最多显示 3 个指标，避免信息轰炸</td>
+</tr>
+<tr>
+<td><strong>可执行</strong></td>
+<td>建议是具体动作（"收紧腹肌"），不是抽象概念（"增加核心参与度"）</td>
+</tr>
+<tr>
+<td><strong>即时性</strong></td>
+<td>用户无感知延迟，反馈像是"实时"的</td>
+</tr>
+<tr>
+<td><strong>渐进式</strong></td>
+<td>先给简单提示，用户想看详情再展开</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键技术</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AVSpeechSynthesizer</strong></td>
+<td>iOS 原生 TTS，离线可用</td>
+</tr>
+<tr>
+<td><strong>Core Haptics</strong></td>
+<td>精细触觉反馈控制</td>
+</tr>
+<tr>
+<td><strong>ARKit</strong></td>
+<td>Ghost 骨架叠加渲染</td>
+</tr>
+<tr>
+<td><strong>SwiftUI</strong></td>
+<td>响应式 UI，快速渲染</td>
+</tr>
+</tbody>
+</table>
+<p><strong>价值</strong>:
+- <strong>即时反馈</strong>: 让用户在挥杆记忆最新鲜时收到建议
+- <strong>多模态适应</strong>: 不同场景（看手机/不看手机）都能接收反馈
+- <strong>渐进复杂度</strong>: 从简单提示到详细分析，用户自主选择深度</p>
+<blockquote>
+<p>📐 详见: <a href="../../specs/real-time-feedback/">实时反馈规格</a> — 三种反馈模式的详细设计</p>
+</blockquote>
 <hr />
 <h2 id="2">2. 技术栈<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -5104,27 +5667,27 @@
 <blockquote>
 <p>📐 <strong>架构决策</strong>: 见 <a href="../../decisions/0008-desktop-to-mobile-architecture/">ADR-0008 Desktop→Mobile</a></p>
 </blockquote>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│                    Development vs Production Architecture                    │
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│                                                                             │
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   DEVELOPMENT (Phase 1-3)                 PRODUCTION (Phase 4)              │
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ───────────────────────                 ────────────────────              │
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│                                                                             │
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   ┌─────────────┐                         ┌─────────────┐                   │
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   │  Python     │   Same MediaPipe        │  Swift      │                   │
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   │  Desktop    │   .tflite models   ───► │  iOS App    │                   │
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   │  + Rerun.io │                         │  On-device  │                   │
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   └─────────────┘                         └─────────────┘                   │
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│        │                                        │                           │
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│        ▼                                        ▼                           │
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   Mock/Real data                           Real sensors                     │
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   Visualization                            Real-time UI                     │
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   Algorithm validation                     User feedback                    │
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│                                                                             │
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   PURPOSE: Debug, iterate, validate       PURPOSE: App Store product       │
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│                                                                             │
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>└─────────────────────────────────────────────────────────────────────────────┘
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>│                    Development vs Production Architecture                    │
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>│                                                                             │
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>│   DEVELOPMENT (Phase 1-3)                 PRODUCTION (Phase 4)              │
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>│   ───────────────────────                 ────────────────────              │
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>│                                                                             │
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>│   ┌─────────────┐                         ┌─────────────┐                   │
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>│   │  Python     │   Same MediaPipe        │  Swift      │                   │
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>│   │  Desktop    │   .tflite models   ───► │  iOS App    │                   │
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>│   │  + Rerun.io │                         │  On-device  │                   │
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>│   └─────────────┘                         └─────────────┘                   │
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>│        │                                        │                           │
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>│        ▼                                        ▼                           │
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>│   Mock/Real data                           Real sensors                     │
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>│   Visualization                            Real-time UI                     │
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>│   Algorithm validation                     User feedback                    │
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>│                                                                             │
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>│   PURPOSE: Debug, iterate, validate       PURPOSE: App Store product       │
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>│                                                                             │
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <h3 id="23">2.3 混合推理架构<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
 <p>基于 2025 最佳实践，采用 On-device + Cloud 混合架构:</p>
