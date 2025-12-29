@@ -240,7 +240,7 @@
 
 ---
 
-#### 1.3.3 Stage 3: 传感器融合层 (Sensor Fusion) {#stage-3}
+#### 1.3.3 Stage 3: 传感器融合层 {#stage-3}
 
 **功能**: 将三种不同采样率的数据对齐到统一时间轴，为后续分析提供可比较的数据基础。
 
@@ -277,7 +277,7 @@
 
 ---
 
-#### 1.3.4 Stage 4: 特征提取层 (Feature Extraction) {#stage-4}
+#### 1.3.4 Stage 4: 特征提取层 {#stage-4}
 
 **功能**: 从原始传感器数据中提取 12 个标准化的生物力学指标，将"原始波形"转换为"可分析数值"。
 
@@ -316,7 +316,7 @@
 
 ---
 
-#### 1.3.5 Stage 5: 分析诊断层 (Analysis & Diagnosis) {#stage-5}
+#### 1.3.5 Stage 5: 分析诊断层 {#stage-5}
 
 **功能**: 基于 12 个指标，执行规则引擎诊断和因果归因分析。这是系统的**核心差异化能力**。
 
@@ -375,7 +375,7 @@ Address → Takeaway → Backswing → Top → Downswing → Impact → Follow-t
 
 ---
 
-#### 1.3.6 Stage 6: AI 反馈生成层 (AI Feedback Generation) {#stage-6}
+#### 1.3.6 Stage 6: AI 反馈生成层 {#stage-6}
 
 **功能**: 将结构化的诊断结果转换为自然语言的教练反馈。
 
@@ -436,7 +436,7 @@ LLM 输出:
 
 ---
 
-#### 1.3.7 Stage 7: 用户反馈层 (User Feedback) {#stage-7}
+#### 1.3.7 Stage 7: 用户反馈层 {#stage-7}
 
 **功能**: 将 AI 生成的反馈通过多种模态呈现给用户，确保挥杆后 <500ms 内收到反馈。
 
