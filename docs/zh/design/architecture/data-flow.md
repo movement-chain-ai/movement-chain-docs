@@ -74,6 +74,8 @@
 
 **关键点**: 就像竞品 OnForm/Sportsbox 一样，我们在每帧都计算 X-Factor 等指标，而不是只在挥杆结束后计算。
 
+> 详见：[数据处理与指标计算 §3](sensor-data-processing.md#3-单传感器数据处理与指标计算) — X-Factor 等指标的具体计算公式和 Python 代码
+
 ---
 
 ### 1.2 原始传感器数据
