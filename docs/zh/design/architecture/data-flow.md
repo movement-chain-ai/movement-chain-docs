@@ -203,13 +203,17 @@ IMU 是主时钟 (Master Clock):
 
 #### Vision 指标 (从 MediaPipe 计算)
 
-| 指标 | 公式 | 单位 | 正常范围 |
-|-----|------|-----|---------|
-| **X-Factor** | `abs(shoulder_angle) - abs(hip_angle)` | 度 (°) | 35-55° |
-| **S-Factor** | `atan2(shoulder_height_diff, shoulder_width)` | 度 (°) | 30-40° |
-| **O-Factor** | `atan2(hip_height_diff, hip_width)` | 度 (°) | 5-10° |
-| **Sway** | `hip_center.x - address_hip_center.x` | 归一化 | < 0.03 |
-| **Lift** | `hip_center.y - address_hip_center.y` | 归一化 | < 0.02 |
+| 指标 | 中文名 | 公式 | 单位 | 正常范围 |
+|-----|-------|------|-----|---------|
+| **X-Factor** | 肩髋分离角 | `abs(shoulder_angle) - abs(hip_angle)` | 度 (°) | 35-55° |
+| **S-Factor** | 肩部倾斜角 | `atan2(shoulder_height_diff, shoulder_width)` | 度 (°) | 30-40° |
+| **O-Factor** | 骨盆倾斜角 | `atan2(hip_height_diff, hip_width)` | 度 (°) | 5-10° |
+| **Sway** | 髋部侧移 | `hip_center.x - address_hip_center.x` | 归一化 | < 0.03 |
+| **Lift** | 髋部抬升 | `hip_center.y - address_hip_center.y` | 归一化 | < 0.02 |
+
+!!! note "为什么没有 Thrust（髋部前推）？"
+    Thrust 需要测量 Z 轴（深度）位移，但 MediaPipe 的 z 坐标是从 2D 图像推断的，精度较低。
+    MVP 阶段优先关注 Sway/Lift（x/y 轴精度高），Thrust 可在 Phase 2 使用双目摄像头或 LiDAR 时加入。
 
 **X-Factor 计算示例**:
 
@@ -233,22 +237,22 @@ def calculate_x_factor(landmarks):
 
 #### IMU 指标
 
-| 指标 | 计算方法 | 单位 | 正常范围 |
-|-----|---------|-----|---------|
-| **Peak Velocity** | `max(abs(gyro_z))` | °/s | > 800°/s |
-| **Tempo Ratio** | `backswing_time / downswing_time` | 比值 | 2.5-3.5 |
-| **Top 检测** | `gyro_z` 零交叉点 (负→正) | ms | ±9-15ms 精度 |
-| **Impact 检测** | `gyro_z` 峰值点 | ms | ±9-15ms 精度 |
+| 指标 | 中文名 | 计算方法 | 单位 | 正常范围 |
+|-----|-------|---------|-----|---------|
+| **Peak Velocity** | 峰值角速度 | `max(abs(gyro_z))` | °/s | > 800°/s |
+| **Tempo Ratio** | 节奏比 | `backswing_time / downswing_time` | 比值 | 2.5-3.5 |
+| **Top 检测** | 顶点检测 | `gyro_z` 零交叉点 (负→正) | ms | ±9-15ms 精度 |
+| **Impact 检测** | 击球检测 | `gyro_z` 峰值点 | ms | ±9-15ms 精度 |
 
 #### EMG 指标
 
-| 指标 | 计算方法 | 单位 | 正常范围 |
-|-----|---------|-----|---------|
-| **Core Activation** | `RMS(core_mV) / MVC_baseline` | % | > 50% |
-| **Forearm Activation** | `RMS(forearm_mV) / MVC_baseline` | % | 40-60% |
-| **Core Onset Time** | 信号首次超过阈值的时刻 | ms | - |
-| **Forearm Onset Time** | 信号首次超过阈值的时刻 | ms | - |
-| **Timing Gap** | `forearm_onset - core_onset` | ms | > 20ms (核心先) |
+| 指标 | 中文名 | 计算方法 | 单位 | 正常范围 |
+|-----|-------|---------|-----|---------|
+| **Core Activation** | 核心激活度 | `RMS(core_mV) / MVC_baseline` | % | > 50% |
+| **Forearm Activation** | 前臂激活度 | `RMS(forearm_mV) / MVC_baseline` | % | 40-60% |
+| **Core Onset Time** | 核心激活时刻 | 信号首次超过阈值的时刻 | ms | - |
+| **Forearm Onset Time** | 前臂激活时刻 | 信号首次超过阈值的时刻 | ms | - |
+| **Timing Gap** | 时序差 | `forearm_onset - core_onset` | ms | > 20ms (核心先) |
 
 ---
 
