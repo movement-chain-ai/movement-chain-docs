@@ -5858,6 +5858,7 @@
 <thead>
 <tr>
 <th>指标</th>
+<th>中文名</th>
 <th>公式</th>
 <th>单位</th>
 <th>正常范围</th>
@@ -5866,36 +5867,46 @@
 <tbody>
 <tr>
 <td><strong>X-Factor</strong></td>
+<td>肩髋分离角</td>
 <td><code>abs(shoulder_angle) - abs(hip_angle)</code></td>
 <td>度 (°)</td>
 <td>35-55°</td>
 </tr>
 <tr>
 <td><strong>S-Factor</strong></td>
+<td>肩部倾斜角</td>
 <td><code>atan2(shoulder_height_diff, shoulder_width)</code></td>
 <td>度 (°)</td>
 <td>30-40°</td>
 </tr>
 <tr>
 <td><strong>O-Factor</strong></td>
+<td>骨盆倾斜角</td>
 <td><code>atan2(hip_height_diff, hip_width)</code></td>
 <td>度 (°)</td>
 <td>5-10°</td>
 </tr>
 <tr>
 <td><strong>Sway</strong></td>
+<td>髋部侧移</td>
 <td><code>hip_center.x - address_hip_center.x</code></td>
 <td>归一化</td>
 <td>&lt; 0.03</td>
 </tr>
 <tr>
 <td><strong>Lift</strong></td>
+<td>髋部抬升</td>
 <td><code>hip_center.y - address_hip_center.y</code></td>
 <td>归一化</td>
 <td>&lt; 0.02</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">为什么没有 Thrust（髋部前推）？</p>
+<p>Thrust 需要测量 Z 轴（深度）位移，但 MediaPipe 的 z 坐标是从 2D 图像推断的，精度较低。
+MVP 阶段优先关注 Sway/Lift（x/y 轴精度高），Thrust 可在 Phase 2 使用双目摄像头或 LiDAR 时加入。</p>
+</div>
 <p><strong>X-Factor 计算示例</strong>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_x_factor</span><span class="p">(</span><span class="n">landmarks</span><span class="p">):</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="c1"># 肩膀旋转角度</span>
@@ -5918,6 +5929,7 @@
 <thead>
 <tr>
 <th>指标</th>
+<th>中文名</th>
 <th>计算方法</th>
 <th>单位</th>
 <th>正常范围</th>
@@ -5926,24 +5938,28 @@
 <tbody>
 <tr>
 <td><strong>Peak Velocity</strong></td>
+<td>峰值角速度</td>
 <td><code>max(abs(gyro_z))</code></td>
 <td>°/s</td>
 <td>&gt; 800°/s</td>
 </tr>
 <tr>
 <td><strong>Tempo Ratio</strong></td>
+<td>节奏比</td>
 <td><code>backswing_time / downswing_time</code></td>
 <td>比值</td>
 <td>2.5-3.5</td>
 </tr>
 <tr>
 <td><strong>Top 检测</strong></td>
+<td>顶点检测</td>
 <td><code>gyro_z</code> 零交叉点 (负→正)</td>
 <td>ms</td>
 <td>±9-15ms 精度</td>
 </tr>
 <tr>
 <td><strong>Impact 检测</strong></td>
+<td>击球检测</td>
 <td><code>gyro_z</code> 峰值点</td>
 <td>ms</td>
 <td>±9-15ms 精度</td>
@@ -5955,6 +5971,7 @@
 <thead>
 <tr>
 <th>指标</th>
+<th>中文名</th>
 <th>计算方法</th>
 <th>单位</th>
 <th>正常范围</th>
@@ -5963,30 +5980,35 @@
 <tbody>
 <tr>
 <td><strong>Core Activation</strong></td>
+<td>核心激活度</td>
 <td><code>RMS(core_mV) / MVC_baseline</code></td>
 <td>%</td>
 <td>&gt; 50%</td>
 </tr>
 <tr>
 <td><strong>Forearm Activation</strong></td>
+<td>前臂激活度</td>
 <td><code>RMS(forearm_mV) / MVC_baseline</code></td>
 <td>%</td>
 <td>40-60%</td>
 </tr>
 <tr>
 <td><strong>Core Onset Time</strong></td>
+<td>核心激活时刻</td>
 <td>信号首次超过阈值的时刻</td>
 <td>ms</td>
 <td>-</td>
 </tr>
 <tr>
 <td><strong>Forearm Onset Time</strong></td>
+<td>前臂激活时刻</td>
 <td>信号首次超过阈值的时刻</td>
 <td>ms</td>
 <td>-</td>
 </tr>
 <tr>
 <td><strong>Timing Gap</strong></td>
+<td>时序差</td>
 <td><code>forearm_onset - core_onset</code></td>
 <td>ms</td>
 <td>&gt; 20ms (核心先)</td>
