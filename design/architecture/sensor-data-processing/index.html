@@ -6398,6 +6398,31 @@
 <li><strong>校准补偿</strong>: 每次使用时重新校准基线，消除绝对值误差</li>
 </ul>
 </div>
+<div class="admonition question">
+<p class="admonition-title">是否需要 %MVC 归一化？（待定）</p>
+<p><strong>MVC 测量的困难</strong>：</p>
+<ul>
+<li><strong>用户不理解概念</strong>: "用最大力量收缩肌肉" 普通用户不知道怎么做</li>
+<li><strong>很难真正用到最大力量</strong>: 人会本能保留一点力量，怕受伤</li>
+<li><strong>需要专业指导</strong>: 运动实验室里有专业人员指导，告诉你怎么发力</li>
+<li><strong>需要固定姿势</strong>: 比如测量股四头肌 MVC，需要坐在专用设备上，腿固定住</li>
+<li><strong>每块肌肉都要单独测</strong>: 多个 EMG 通道意味着要测多次</li>
+</ul>
+<p><strong>对于消费级产品可能不现实。</strong></p>
+<p><strong>如果不做 MVC 归一化</strong>：</p>
+<ul>
+<li>用 SD 阈值法（基线 + N 倍标准差）做 Onset 检测</li>
+<li>不需要 MVC</li>
+<li>只输出时间点，不输出 "%MVC" 这种百分比指标</li>
+</ul>
+<p><strong>如果要做归一化，可以考虑的替代方案</strong>：</p>
+<ul>
+<li><strong>简化版校准</strong>: "做一次你感觉用力的挥杆" 而不是 "最大力量"</li>
+<li><strong>自动估算</strong>: 用历史数据中最大的那次作为参考值</li>
+<li><strong>根本不做归一化</strong>: 只比较同一个用户不同次挥杆的相对变化</li>
+</ul>
+<p><strong>此决策待后续确定。</strong></p>
+</div>
 <p><strong>系统设计: 2 通道 EMG</strong> (见 <a href="../system-design/">系统设计</a>)</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>┌─────────────────────────────────────────────────────────────────┐
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>│              Movement Chain AI EMG 通道配置                      │
