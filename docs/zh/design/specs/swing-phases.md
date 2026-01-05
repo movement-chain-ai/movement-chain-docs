@@ -439,7 +439,7 @@ graph TD
     A --> D[swing-comparison.md]
 
     B --> E[规则引擎 9 条规则]
-    C --> F[三种反馈模式]
+    C --> F[三种训练场景]
     D --> G[DTW 对比算法]
 
     style A fill:#e1f5fe
