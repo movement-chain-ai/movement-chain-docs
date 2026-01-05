@@ -1,4 +1,4 @@
-# 挥杆对比策略 Swing Comparison Strategy
+# 四种对比方法 Four Comparison Methods
 
 > **核心问题**: 用户挥杆数据应该与什么进行比较？如何量化"好"与"坏"？
 >

@@ -33,7 +33,7 @@
 - **反馈通道**: 语音、视觉、触觉
 - **反馈时机**: 挥杆后 <500ms 延迟目标
 
-### [挥杆对比](swing-comparison.md)
+### [四种对比方法](four-comparison-methods.md)
 
 **阅读时间**: ~20 分钟 | **分析功能**
 
@@ -68,7 +68,7 @@
 │  2. training-feedback.md ─── 用户体验                               │
 │     └── 分析结果如何变成用户感知的反馈                                │
 │                                                                     │
-│  3. swing-comparison.md ─── 分析方法                                │
+│  3. four-comparison-methods.md ─── 分析方法                         │
 │     └── 如何评估挥杆质量、与谁对比                                   │
 │                                                                     │
 │  4. personalization.md ─── 进阶功能 (Phase 2+)                      │

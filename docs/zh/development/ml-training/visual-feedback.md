@@ -406,7 +406,7 @@ def align_movements_with_dtw(user_trajectory, reference_trajectory):
     return best_path, distance, aligned_user
 ```
 
-> **扩展阅读**: DTW 在挥杆分析中的完整应用 (四种参考模型、全身数据采集) 见 [挥杆对比策略](../../design/specs/swing-comparison.md)
+> **扩展阅读**: DTW 在挥杆分析中的完整应用 (四种参考模型、全身数据采集) 见 [四种对比方法](../../design/specs/four-comparison-methods.md)
 
 ---
 

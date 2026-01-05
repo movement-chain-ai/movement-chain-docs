@@ -26,7 +26,7 @@
     **快速参考**:
 
     - [ADR 决策记录](../design/decisions/index.md) - 所有 ADR 一页速查
-    - [挥杆对比策略](../design/specs/swing-comparison.md) - 如何对比两次挥杆
+    - [四种对比方法](../design/specs/four-comparison-methods.md) - 如何对比两次挥杆
     - [生物力学基准值](../prerequisites/foundations/biomechanics-benchmarks.md) - 阈值来源
 
 ---
@@ -109,7 +109,7 @@ graph LR
 | IMU | LSM6DSV16X | ✅ 选型完成 | [ADR-0002](../design/decisions/0002-lsm6dsv16x-imu.md) |
 | EMG | NeuroKit2 处理 | 🔧 Phase 2 | - |
 
-> **全身传感器部署**: MediaPipe 33 关键点分组、IMU 多位置放置策略、EMG 肌群选择及力量链设计见 [挥杆对比策略 - 全身数据采集](../design/specs/swing-comparison.md#全身数据采集-full-body-data-collection)
+> **全身传感器部署**: MediaPipe 33 关键点分组、IMU 多位置放置策略、EMG 肌群选择及力量链设计见 [四种对比方法 - 全身数据采集](../design/specs/four-comparison-methods.md#全身数据采集-full-body-data-collection)
 
 ---
 
@@ -471,7 +471,7 @@ Ghost 是用户最想要的功能之一: 生成一个"理想的灰色图形"，�
 | 用户最佳挥杆 | 系统筛选用户评分最高的挥杆作为个人模板 | Phase 2 |
 | 教练定制 | 教练演示一次，系统记录作为学员目标 | B2B |
 
-> **详细对比策略**: 四种参考模型方法 (职业参考、个人最佳、统计参考、神经网络嵌入) 及 DTW 算法见 [挥杆对比策略](../design/specs/swing-comparison.md)
+> **详细对比策略**: 四种参考模型方法 (职业参考、个人最佳、统计参考、神经网络嵌入) 及 DTW 算法见 [四种对比方法](../design/specs/four-comparison-methods.md)
 
 ---
 
