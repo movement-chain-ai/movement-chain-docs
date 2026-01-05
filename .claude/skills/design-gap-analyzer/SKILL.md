@@ -164,7 +164,7 @@ AFTER:  "角速度精度 ±0.5°/s"
 
 | Gap Type | Location | Issue | Suggested Fix |
 |----------|----------|-------|---------------|
-| Specification | `real-time-feedback.md:23` | "实时" - no latency target | Specify: <100ms P95 |
+| Specification | `training-feedback.md:23` | "实时" - no latency target | Specify: <100ms P95 |
 | Edge Case | `sensor-data-processing.md` | Left-handed users | Add handedness parameter |
 
 ---

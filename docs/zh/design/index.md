@@ -47,7 +47,7 @@
 | 文档 | 内容 |
 |------|------|
 | [挥杆阶段](specs/swing-phases.md) | 8阶段定义与检测方法 |
-| [实时反馈](specs/real-time-feedback.md) | 三种反馈模式与延迟要求 |
+| [训练反馈](specs/training-feedback.md) | 三种训练场景与反馈通道 |
 | [挥杆对比](specs/swing-comparison.md) | DTW 与四种对比方法 |
 | [个性化](specs/personalization.md) | 按用户特征调整阈值 |
 
@@ -86,7 +86,7 @@ graph TD
 
     subgraph specs["详细规格"]
         S1[swing-phases.md]
-        S2[real-time-feedback.md]
+        S2[training-feedback.md]
     end
 
     F1 --> A1
