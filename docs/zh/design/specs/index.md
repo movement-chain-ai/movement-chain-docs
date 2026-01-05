@@ -45,7 +45,7 @@
 - **Learned**: ML 模型个性化建议
 - **DTW 算法**: 动态时间规整用于时序对齐
 
-### [五种阈值调整](five-threshold-adjustments.md)
+### [阈值调整](five-threshold-adjustments.md)
 
 **阅读时间**: ~10 分钟 | **Post-MVP 规划**
 

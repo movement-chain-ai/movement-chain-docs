@@ -49,7 +49,7 @@
 | [八个挥杆阶段](specs/eight-swing-phases.md) | 8阶段定义与检测方法 |
 | [三个训练场景](specs/three-training-scenarios.md) | 三个训练场景与反馈通道 |
 | [四种对比方法](specs/four-comparison-methods.md) | DTW 与四种对比方法 |
-| [五种阈值调整](specs/five-threshold-adjustments.md) | 按用户特征调整阈值 |
+| [阈值调整](specs/five-threshold-adjustments.md) | 按用户特征调整阈值 |
 
 ### 技术决策
 
