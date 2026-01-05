@@ -1621,7 +1621,7 @@ MVP 阶段:
 | 文档 | 内容 | 适合 |
 |------|------|------|
 | [ML 基础](../../prerequisites/ml-basics.md) | ML 概念入门 | 无 ML 背景读者 |
-| [训练反馈](../specs/training-feedback.md) | 反馈系统设计 | OUTPUT Block 实现 |
+| [三个训练场景](../specs/three-training-scenarios.md) | 反馈系统设计 | OUTPUT Block 实现 |
 
 ---
 

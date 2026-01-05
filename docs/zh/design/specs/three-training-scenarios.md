@@ -1,4 +1,4 @@
-# 三种训练场景 Three Training Scenarios
+# 三个训练场景 Three Training Scenarios
 
 > **文档目的**: 定义三种训练场景的延迟要求、触发条件和实现策略
 >
@@ -796,7 +796,7 @@ class FeedbackSpeaker {
 
 ```mermaid
 graph TD
-    A[training-feedback.md] --> B[system-design.md]
+    A[three-training-scenarios.md] --> B[system-design.md]
     A --> C[eight-swing-phases.md]
     A --> D[research/biomechanics-benchmarks.md]
 

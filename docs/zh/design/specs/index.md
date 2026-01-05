@@ -23,11 +23,11 @@
 - **触发条件**: 各阶段进入/退出判定规则
 - **代码实现**: Python 示例
 
-### [训练反馈](training-feedback.md)
+### [三个训练场景](three-training-scenarios.md)
 
 **阅读时间**: ~15 分钟 | **用户体验**
 
-三种训练场景 × 三种反馈通道：
+三个训练场景 × 三种反馈通道：
 
 - **训练场景**: 站姿检查、慢动作训练、全速分析
 - **反馈通道**: 语音、视觉、触觉
@@ -65,7 +65,7 @@
 │  1. eight-swing-phases.md ─── 核心算法                              │
 │     └── 挥杆如何被分解为 8 个阶段                                    │
 │                                                                     │
-│  2. training-feedback.md ─── 用户体验                               │
+│  2. three-training-scenarios.md ─── 用户体验                        │
 │     └── 分析结果如何变成用户感知的反馈                                │
 │                                                                     │
 │  3. four-comparison-methods.md ─── 分析方法                         │
