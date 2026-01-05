@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#five-threshold-adjustments" class="md-skip">
+        <a href="#threshold-adjustments" class="md-skip">
           跳转至
         </a>
       
@@ -5106,7 +5106,7 @@
   
 
 
-<h1 id="five-threshold-adjustments">五种阈值调整 Five Threshold Adjustments<a class="headerlink" href="#five-threshold-adjustments" title="Permanent link">&para;</a></h1>
+<h1 id="threshold-adjustments">阈值调整 Threshold Adjustments<a class="headerlink" href="#threshold-adjustments" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>文档目的</strong>: 定义如何根据用户特征调整生物力学阈值</p>
 <p><strong>阅读对象</strong>: 算法工程师、产品经理</p>
@@ -5114,7 +5114,7 @@
 </blockquote>
 <hr />
 <h2 id="1-mvp">1. 通用阈值 (MVP 默认)<a class="headerlink" href="#1-mvp" title="Permanent link">&para;</a></h2>
-<p>最小可行产品阶段使用固定的通用阈值，适用于所有用户：</p>
+<p>最小可行产品阶段使用硬编码的固定通用阈值，适用于所有用户：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">THRESHOLDS_MVP</span> <span class="o">=</span> <span class="p">{</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="s1">&#39;shoulder_rotation_min&#39;</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span>  <span class="c1"># degrees (肩部最小旋转角度)</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="s1">&#39;hip_rotation_min&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>       <span class="c1"># degrees (髋部最小旋转角度)</span>
@@ -5411,7 +5411,7 @@
 <tbody>
 <tr>
 <td>1</td>
-<td>通用硬编码阈值</td>
+<td>通用阈值</td>
 <td>无</td>
 <td>MVP</td>
 </tr>
