@@ -1,14 +1,16 @@
 # 四种对比方法 Four Comparison Methods
 
-> **核心问题**: 用户挥杆数据应该与什么进行比较？如何量化"好"与"坏"？
+> **文档角色**: 功能规格 - 定义挥杆评估的对比基准与算法策略
 >
-> **本文档**: 定义全身数据采集方案 + 四种对比方法 + MVP 推荐策略
+> **目标读者**: 算法工程师、产品经理、ML 团队
+>
+> **阅读时间**: 10分钟
 
 ---
 
-## 全身数据采集 Full-Body Data Collection {#全身数据采集-full-body-data-collection}
+## 1. 全身数据采集 Full-Body Data Collection {#全身数据采集-full-body-data-collection}
 
-### MediaPipe 33 关键点 (按高尔夫相关性)
+### 1.1 MediaPipe 33 关键点 (按高尔夫相关性)
 
 MediaPipe Pose 输出 33 个 3D 关键点。以下按高尔夫挥杆分析的相关性分组：
 
@@ -33,7 +35,7 @@ x_factor = shoulder_angle - hip_angle  # 职业选手: 45-55°
 
 ---
 
-### IMU 放置位置 (研究验证)
+### 1.2 IMU 放置位置 (研究验证)
 
 基于 [PMC 研究](https://pmc.ncbi.nlm.nih.gov/articles/PMC11035581/)，最优传感器放置优先级：
 
@@ -66,7 +68,7 @@ class FullBodyIMUMock:
 
 ---
 
-### EMG 肌群 (高尔夫力量链)
+### 1.3 EMG 肌群 (高尔夫力量链)
 
 高尔夫挥杆的正确发力顺序 (Kinetic Chain):
 
@@ -104,9 +106,9 @@ def detect_compensation(emg_data):
 
 ---
 
-## 视频录制规范 Video Recording Standards {#视频录制规范-video-recording-standards}
+## 2. 视频录制规范 Video Recording Standards {#视频录制规范-video-recording-standards}
 
-### 教练标准设备 (行业参考)
+### 2.1 教练标准设备 (行业参考)
 
 | 设备 | 推荐规格 | 技术原因 |
 |-----|---------|---------|
@@ -114,7 +116,7 @@ def detect_compensation(emg_data):
 | **三脚架** | iRange Stick 或等效 | 固定视角，可重复对比 |
 | **对准杆** | 2-3 根 | 定义目标线，校准坐标系 |
 
-### 双视角要求 (DTL + FO)
+### 2.2 双视角要求 (DTL + FO)
 
 | 视角 | 英文 | 摄像头位置 | 检测目标 |
 |-----|------|-----------|---------|
@@ -123,7 +125,7 @@ def detect_compensation(emg_data):
 
 **产品启示**: MVP 支持单视角，Phase 2 考虑双视角同步
 
-### 录制质量要求
+### 2.3 录制质量要求
 
 ```python
 VIDEO_REQUIREMENTS = {
@@ -137,12 +139,12 @@ VIDEO_REQUIREMENTS = {
 
 ---
 
-## 挥杆关键检查点 Swing Checkpoints
+## 3. 挥杆关键检查点 Swing Checkpoints
 
 !!! warning "MVP 必须检测"
     这 5 个位置是教练评估挥杆的核心，我们的分析引擎需要自动检测并评分
 
-### 五阶段检查点定义
+### 3.1 五阶段检查点定义
 
 | # | 阶段 | 英文 | 检测条件 | 评估指标 |
 |---|------|------|---------|---------|
@@ -152,7 +154,7 @@ VIDEO_REQUIREMENTS = {
 | **4** | 击球 | Impact | 峰值角速度时刻 | 手在球前、髋打开、前倾杆身 |
 | **5** | 收杆 | Follow Through | 挥杆结束静止帧 | 平衡、胸朝目标、高手位 |
 
-### 检查点检测代码框架
+### 3.2 检查点检测代码框架
 
 ```python
 class SwingCheckpoints:
@@ -210,7 +212,7 @@ class SwingCheckpoints:
         return np.mean(scores)
 ```
 
-### 各检查点详细评估标准
+### 3.3 各检查点详细评估标准
 
 #### 1. Setup 站姿
 
@@ -258,9 +260,9 @@ class SwingCheckpoints:
 
 ---
 
-## 四种对比方法 Four Comparison Approaches
+## 4. 四种对比方法 Four Comparison Approaches
 
-### 方法 A: 职业参考 (Pro Player Reference)
+### 4.1 方法 A: 职业参考 (Pro Player Reference)
 
 ```text
 你的挥杆 → DTW 对齐 → 与职业模板比较 → 相似度评分
@@ -282,7 +284,7 @@ class SwingCheckpoints:
 
 ---
 
-### 方法 B: 个人最佳 (Personal Best / Self-Reference)
+### 4.2 方法 B: 个人最佳 (Personal Best / Self-Reference)
 
 ```text
 你的挥杆 → 与你的最佳挥杆比较 → 差异分析
@@ -326,7 +328,7 @@ class PersonalBestTracker:
 
 ---
 
-### 方法 C: 统计参考 (Statistical Reference / Poze Method)
+### 4.3 方法 C: 统计参考 (Statistical Reference / Poze Method)
 
 ```text
 ~30 个"好"样本 → 计算每个关节的 μ (均值) & σ (方差)
@@ -386,7 +388,7 @@ class StatisticalReference:
 
 ---
 
-### 方法 D: 学习嵌入 (Learned Embedding / Neural Network)
+### 4.4 方法 D: 学习嵌入 (Learned Embedding / Neural Network)
 
 ```text
 你的挥杆 → CNN/Transformer → 潜在空间 → 比较嵌入向量
@@ -408,7 +410,7 @@ class StatisticalReference:
 
 ---
 
-## DTW 对比管道 (核心算法)
+## 5. DTW 对比管道 (核心算法)
 
 所有方法都依赖 DTW (Dynamic Time Warping) 进行时间对齐:
 
@@ -478,9 +480,9 @@ def normalize_pose(keypoints):
 
 ---
 
-## MVP 推荐策略
+## 6. MVP 推荐策略
 
-### Phase 1: 规则引擎 + 个人最佳
+### 6.1 Phase 1: 规则引擎 + 个人最佳
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
@@ -506,7 +508,7 @@ def normalize_pose(keypoints):
 
 ---
 
-### Phase 2: 添加职业参考库
+### 6.2 Phase 2: 添加职业参考库
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
@@ -525,7 +527,7 @@ def normalize_pose(keypoints):
 
 ---
 
-### Phase 3: 统计/ML 方法
+### 6.3 Phase 3: 统计/ML 方法
 
 当收集 100+ 用户挥杆后:
 
@@ -535,7 +537,7 @@ def normalize_pose(keypoints):
 
 ---
 
-## 相关文档
+## 7. 相关文档
 
 - [系统设计](../architecture/system-design.md) - 整体 MVP 管道架构
 - [视觉反馈](../../development/ml-training/visual-feedback.md) - DTW 实现代码, UI 模式
@@ -545,7 +547,7 @@ def normalize_pose(keypoints):
 
 ---
 
-## 参考来源
+## 8. 参考来源
 
 - [Poze Framework (2024)](https://arxiv.org/html/2411.05734) - DTW + Z-Score 方法
 - [Sportsbox AI](https://www.sportsbox.ai/) - 职业挥杆对比
@@ -556,4 +558,14 @@ def normalize_pose(keypoints):
 
 ---
 
-**最后更新**: 2025年12月12日
+## 9. 版本历史
+
+| 版本 | 日期 | 修改内容 |
+|------|------|----------|
+| 1.0 | 2025-12-12 | 初始版本，定义四种对比方法 |
+| 1.1 | 2026-01-04 | 添加章节编号，统一文档格式 |
+
+---
+
+**最后更新**: 2026-01-04
+**维护者**: Movement Chain AI Team
