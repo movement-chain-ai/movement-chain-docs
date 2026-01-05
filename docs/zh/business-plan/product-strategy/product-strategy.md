@@ -290,7 +290,7 @@ flowchart LR
 
 ### 技术规格
 
-- [8阶段挥杆分解](../../design/specs/swing-phases.md) - 挥杆相位检测的技术实现
+- [八个挥杆阶段](../../design/specs/eight-swing-phases.md) - 挥杆相位检测的技术实现
 - [训练反馈规范](../../design/specs/training-feedback.md) - 三种训练场景的延迟与实现
 - [系统设计](../../design/architecture/system-design.md) - MVP技术架构
 

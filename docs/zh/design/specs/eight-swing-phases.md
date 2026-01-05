@@ -1,4 +1,4 @@
-# 挥杆 8 阶段细分 Golf Swing 8-Phase Breakdown
+# 八个挥杆阶段 Eight Swing Phases
 
 > **文档目的**: 定义高尔夫挥杆的 8 个标准阶段及其检测方法
 >
@@ -434,7 +434,7 @@ class SwingPhaseDetector:
 
 ```mermaid
 graph TD
-    A[swing-phases.md] --> B[system-design.md]
+    A[eight-swing-phases.md] --> B[system-design.md]
     A --> C[training-feedback.md]
     A --> D[swing-comparison.md]
 

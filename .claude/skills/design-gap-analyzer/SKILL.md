@@ -155,7 +155,7 @@ AFTER:  "角速度精度 ±0.5°/s"
 
 | Gap Type | Location | Issue | Suggested Fix |
 |----------|----------|-------|---------------|
-| Definition | `swing-phases.md:45` | "X-Factor" undefined | Add to biomechanics-glossary.md |
+| Definition | `eight-swing-phases.md:45` | "X-Factor" undefined | Add to biomechanics-glossary.md |
 | Interface | Assessment → Diagnosis | Data format unspecified | Define JSON schema |
 
 ---
@@ -181,7 +181,7 @@ AFTER:  "角速度精度 ±0.5°/s"
 
 - [x] system-design.md - Core pipeline defined
 - [x] modular-architecture.md - Module boundaries clear
-- [x] swing-phases.md - Phase definitions complete
+- [x] eight-swing-phases.md - Phase definitions complete
 
 ---
 
@@ -204,7 +204,7 @@ system-design.md
     ├── modular-architecture.md ✅
     ├── data-flow.md ⚠️ (missing error handling)
     ├── sensor-data-processing.md ⚠️ (missing units)
-    └── swing-phases.md ✅
+    └── eight-swing-phases.md ✅
 ```
 ```
 

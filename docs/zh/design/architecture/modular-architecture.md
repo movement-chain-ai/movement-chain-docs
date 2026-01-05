@@ -1605,7 +1605,7 @@ MVP 阶段:
 |------|------|------|
 | [系统设计](./system-design.md) | MVP 4 模块架构 | 本文档的父文档 |
 | [数据处理与指标计算](./sensor-data-processing.md) | 算法实现代码 | §3.1-3.3 的详细实现 |
-| [挥杆阶段](../specs/swing-phases.md) | 8 阶段检测 | CLASSIFIER Block 输出 |
+| [八个挥杆阶段](../specs/eight-swing-phases.md) | 8 阶段检测 | CLASSIFIER Block 输出 |
 | [生物力学术语表](../../prerequisites/foundations/biomechanics-glossary.md) | 术语定义 | 高尔夫专业术语 |
 
 ### 技术决策 (ADRs)

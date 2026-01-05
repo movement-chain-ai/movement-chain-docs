@@ -244,7 +244,7 @@ def compare_swings(swing_a, swing_b):
 
 ## 相关文档
 
-- [8 相位挥杆分解](../design/specs/swing-phases.md) - 系统实现
+- [八个挥杆阶段](../design/specs/eight-swing-phases.md) - 系统实现
 - [训练反馈规范](../design/specs/training-feedback.md) - 反馈通道
 - [数据处理与指标计算](../design/architecture/sensor-data-processing.md) - IMU/EMG 指标
 - [学术数据集](academic-datasets.md) - 通用运动数据集

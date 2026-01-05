@@ -58,7 +58,7 @@ All other design documents reference the hub. The hub is the single source of tr
 
 - `architecture/system-design.md` ↔ All ADRs (decisions shape architecture)
 - `architecture/modular-architecture.md` ↔ `architecture/data-flow.md` (block design + data flow)
-- `specs/swing-phases.md` ↔ `foundations/biomechanics-glossary.md` (terminology)
+- `specs/eight-swing-phases.md` ↔ `foundations/biomechanics-glossary.md` (terminology)
 - `guides/ml-basics.md` ↔ `decisions/ADR-0007-swift-ios-native.md` (Mobile development)
 
 ## Maintenance

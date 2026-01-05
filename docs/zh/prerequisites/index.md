@@ -54,7 +54,7 @@ Movement Chain AI 融合了多个领域：
 
 | 概念 | 说明 | 详见 |
 |------|------|------|
-| **8 个挥杆阶段** | Address → Takeaway → ... → Follow-through | [挥杆阶段](../design/specs/swing-phases.md) |
+| **8 个挥杆阶段** | Address → Takeaway → ... → Follow-through | [八个挥杆阶段](../design/specs/eight-swing-phases.md) |
 | **节奏比 3:1** | 上杆:下杆时间比，职业球手标准 | [高尔夫术语表](../reference/golf-glossary.md#2-节奏比-tempo-ratio) |
 | **X-Factor** | 肩膀与髋部旋转差，爆发力来源 | [生物力学入门](foundations/biomechanics-101.md) |
 

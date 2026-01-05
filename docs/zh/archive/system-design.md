@@ -17,7 +17,7 @@
     | 顺序 | 文档 | 内容 |
     |:----:|------|------|
     | 1️⃣ | **本文档** (system-design.md) | 架构总览、数据流、规则引擎 |
-    | 2️⃣ | [8阶段挥杆分解](../design/specs/swing-phases.md) | 挥杆相位检测方法与代码 |
+    | 2️⃣ | [八个挥杆阶段](../design/specs/eight-swing-phases.md) | 挥杆相位检测方法与代码 |
     | 3️⃣ | [训练反馈规范](../design/specs/training-feedback.md) | 三种训练场景与反馈通道 |
     | 4️⃣ | [ML 基础入门](../prerequisites/ml-basics.md) | 什么需要 ML、什么用物理公式 |
     | 5️⃣ | [SDK 选型指南](../design/decisions/sdk-selection.md) | 所有库的安装命令、Stars |
