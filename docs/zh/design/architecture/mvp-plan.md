@@ -448,7 +448,7 @@ MVP Phase 4 实现基础 UI 反馈后，以下功能延后到 Post-MVP：
 
 | 方向 | 文档 | 内容 | 依赖 |
 |------|------|------|------|
-| **个性化调优** | [个性化规格](../specs/personalization.md) | 按性别/年龄/体型调整阈值 | Phase 4 完成 |
+| **阈值调整** | [五种阈值调整](../specs/five-threshold-adjustments.md) | 按性别/年龄/体型调整阈值 | Post-MVP |
 | **EMG 扩展** | [传感器映射](./sensor-data-processing.md) | 2→4→6 通道 EMG | 硬件验证 |
 | **高级模型** | [模块化架构](./modular-architecture.md) | MediaPipe → RTMPose → ViTPose++ | 性能基准 |
 | **球杆追踪** | [可视化工具](../decisions/visualization-tools-evaluation.md) | TAPIR 替代 Trackman 雷达 | Post-MVP |

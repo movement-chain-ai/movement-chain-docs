@@ -1,14 +1,14 @@
-# 个性化基准规范 Personalization Specification
+# 五种阈值调整 Five Threshold Adjustments
 
-> **文档目的**: 定义如何根据用户特征调整生物力学基准阈值
+> **文档目的**: 定义如何根据用户特征调整生物力学阈值
 >
 > **阅读对象**: 算法工程师、产品经理
 >
-> **阶段规划**: Phase 1 硬编码 → Phase 2 性别/年龄 → Phase 3 体型 → Phase 4 个人学习
+> **演进路径**: 通用阈值 → 性别调整 → 体型调整 → 年龄调整 → 个人学习
 
 ---
 
-## 1. Phase 1: MVP 硬编码通用阈值
+## 1. 通用阈值 (MVP 默认)
 
 最小可行产品阶段使用固定的通用阈值，适用于所有用户：
 
@@ -35,7 +35,7 @@ THRESHOLDS_MVP = {
 
 ---
 
-## 2. Phase 2: 性别基础调整
+## 2. 性别调整
 
 研究显示男女生物力学存在显著差异：
 
@@ -73,7 +73,7 @@ GENDER_ADJUSTMENTS = {
 
 ---
 
-## 3. Phase 3: 体型比例调整（视觉采集）
+## 3. 体型调整
 
 利用 Vision (MediaPipe) 从站姿中提取体型比例，用于调整阈值。
 
@@ -135,7 +135,7 @@ BODY_TYPE_ADJUSTMENTS = {
 
 ---
 
-## 4. Phase 4: 年龄基础调整
+## 4. 年龄调整
 
 随着年龄增长，柔韧性和爆发力会下降：
 
@@ -167,7 +167,7 @@ def get_age_adjustment(age: int) -> dict:
 
 ---
 
-## 5. Phase 5: 个性化学习（机器学习）
+## 5. 个人学习
 
 在收集足够用户数据后，学习用户的个人基线和改进轨迹。
 
@@ -275,13 +275,13 @@ peak_velocity_min = 800 * 0.85 * 1.05 * 0.85 = 606 deg/s
 
 ## 7. 实施路线图
 
-| 阶段 Phase | 内容 Content | 数据要求 Data Requirement | 时间线 Timeline |
-|-----------|-------------|-------------------------|----------------|
+| 层级 | 内容 | 数据要求 | 实施时机 |
+|-----|------|---------|---------|
 | 1 | 通用硬编码阈值 | 无 | MVP |
-| 2 | 性别选择 | 用户输入 | Phase 2 |
-| 3 | 体型比例采集 | 摄像头校准姿态 | Phase 2-3 |
-| 4 | 年龄基础调整 | 用户输入 | Phase 2 |
-| 5 | 个性化学习 | 10+ 次有效挥杆 | Phase 3+ |
+| 2 | 性别调整 | 用户输入 | Post-MVP |
+| 3 | 体型调整 | 摄像头校准姿态 | Post-MVP |
+| 4 | 年龄调整 | 用户输入 | Post-MVP |
+| 5 | 个人学习 | 10+ 次有效挥杆 | Post-MVP |
 
 ### 7.1 降级策略 (Fallback Strategy)
 
@@ -313,7 +313,7 @@ def get_thresholds(user_profile):
 - [ML 基础入门](../../prerequisites/ml-basics.md) - 机器学习基础概念
 - [移动开发](../../development/mobile/development.md) - Swift iOS 开发与测试指南
 
-**待创建文档**（Phase 2 后补充）:
+**待创建文档**（Post-MVP 补充）:
 
 - `biomechanics-benchmarks.md` - 详细的生物力学基准数据库
 - `sensor-data-processing.md` - 传感器数据到生物力学指标的映射

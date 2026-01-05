@@ -163,7 +163,7 @@ nav:
           - 三个训练场景: design/specs/three-training-scenarios.md
           - 实战场景（待补充）: design/specs/real-play-scenarios.md
           - 四种对比方法: design/specs/four-comparison-methods.md
-          - 个性化: design/specs/personalization.md
+          - 五种阈值调整: design/specs/five-threshold-adjustments.md
       - 技术决策:
           - 概览: design/decisions/index.md
           - ADR-0001 多仓库结构: design/decisions/0001-multi-repo-structure.md
