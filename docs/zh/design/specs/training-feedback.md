@@ -1,4 +1,4 @@
-# 训练反馈规范 Training Feedback Specification
+# 三种训练场景 Three Training Scenarios
 
 > **文档目的**: 定义三种训练场景的延迟要求、触发条件和实现策略
 >
@@ -6,7 +6,7 @@
 >
 ---
 
-## 1. 三种训练场景 Three Training Scenarios
+## 1. 场景概览 Scenario Overview
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────────┐
