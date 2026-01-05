@@ -1,4 +1,4 @@
-# 系统设计 System Design
+# 系统架构 System Architecture
 
 > **文档角色**: 总纲 (Hub) - 系统核心设计文档，所有详细规格文档的入口
 >
