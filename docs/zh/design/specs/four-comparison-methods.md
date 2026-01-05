@@ -214,7 +214,7 @@ class SwingCheckpoints:
 
 ### 3.3 各检查点详细评估标准
 
-#### 1. Setup 站姿
+#### 3.3.1 Setup 站姿
 
 | 指标 | 理想值 | 检测方法 | 来源 |
 |-----|-------|---------|------|
@@ -223,14 +223,14 @@ class SwingCheckpoints:
 | 膝盖弯曲 | 140-170° | `angle(hip, knee, ankle)` | Vision |
 | 对准误差 | < 5° | `alignment(shoulders, hips, feet) vs target_line` | Vision |
 
-#### 2. Takeaway 起杆
+#### 3.3.2 Takeaway 起杆
 
 | 指标 | 理想值 | 检测方法 | 来源 |
 |-----|-------|---------|------|
 | 一体起杆 | 肩/手同步 | `correlation(shoulder_rotation, hand_path)` | Vision |
 | 杆面方正 | 与脊柱平行 | `angle(clubface, spine)` | Vision (需要球杆检测) |
 
-#### 3. Top of Backswing 上杆顶点
+#### 3.3.3 Top of Backswing 上杆顶点
 
 | 指标 | 理想值 | 检测方法 | 来源 |
 |-----|-------|---------|------|
@@ -239,7 +239,7 @@ class SwingCheckpoints:
 | X-Factor | 35-55° | `shoulder_rotation - hip_rotation` | Vision |
 | 后脚重心 | 70-80% | 需要压力传感器或 EMG 推断 | IMU/EMG |
 
-#### 4. Impact 击球
+#### 3.3.4 Impact 击球
 
 | 指标 | 理想值 | 检测方法 | 来源 |
 |-----|-------|---------|------|
@@ -248,7 +248,7 @@ class SwingCheckpoints:
 | 前倾杆身 | >5° | 需要球杆检测 | Vision |
 | 核心激活 | >50% | `core_emg at impact` | EMG |
 
-#### 5. Follow Through 收杆
+#### 3.3.5 Follow Through 收杆
 
 | 指标 | 理想值 | 检测方法 | 来源 |
 |-----|-------|---------|------|
