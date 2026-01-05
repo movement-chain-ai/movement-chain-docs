@@ -2612,7 +2612,7 @@
   <a href="#61-mvp-b" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6.1 MVP 阶段: 规则引擎 + 个人最佳 (方法 B)
+        6.1 MVP: 规则引擎 + 个人最佳 (方法 B)
       
     </span>
   </a>
@@ -2620,21 +2620,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#62-post-mvp-a" class="md-nav__link">
+  <a href="#62-post-mvp-ml-acd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6.2 Post-MVP: 添加职业参考库 (方法 A)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#63-ml-cd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6.3 成熟期: 统计/ML 方法 (方法 C/D)
+        6.2 Post-MVP: 添加职业参考库 + 统计/ML 方法 (方法 A/C/D)
       
     </span>
   </a>
@@ -5183,7 +5172,7 @@
   <a href="#61-mvp-b" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6.1 MVP 阶段: 规则引擎 + 个人最佳 (方法 B)
+        6.1 MVP: 规则引擎 + 个人最佳 (方法 B)
       
     </span>
   </a>
@@ -5191,21 +5180,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#62-post-mvp-a" class="md-nav__link">
+  <a href="#62-post-mvp-ml-acd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6.2 Post-MVP: 添加职业参考库 (方法 A)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#63-ml-cd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6.3 成熟期: 统计/ML 方法 (方法 C/D)
+        6.2 Post-MVP: 添加职业参考库 + 统计/ML 方法 (方法 A/C/D)
       
     </span>
   </a>
@@ -5894,7 +5872,7 @@
 </ol>
 <p><strong>优点</strong>: 能捕捉微妙模式
 <strong>缺点</strong>: 需要大数据集, 可解释性差</p>
-<p><strong>成熟期考虑</strong> - 当收集足够数据后</p>
+<p><strong>Post-MVP 考虑</strong> - 当收集足够数据后</p>
 <hr />
 <h2 id="5-dtw">5. DTW 对比管道 (核心算法)<a class="headerlink" href="#5-dtw" title="Permanent link">&para;</a></h2>
 <p>所有方法都依赖 DTW (Dynamic Time Warping) 进行时间对齐:</p>
@@ -5983,9 +5961,9 @@
 <div class="admonition note">
 <p class="admonition-title">与 MVP 开发阶段的关系</p>
 <p>本节描述的是<strong>对比算法的演进路径</strong>，不是 MVP 开发阶段 (Phase 1-4)。
-对比策略会随产品成熟度逐步升级：MVP → Post-MVP → 成熟期。</p>
+对比策略会随产品成熟度逐步升级：MVP → Post-MVP。</p>
 </div>
-<h3 id="61-mvp-b">6.1 MVP 阶段: 规则引擎 + 个人最佳 (方法 B)<a class="headerlink" href="#61-mvp-b" title="Permanent link">&para;</a></h3>
+<h3 id="61-mvp-b">6.1 MVP: 规则引擎 + 个人最佳 (方法 B)<a class="headerlink" href="#61-mvp-b" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>┌─────────────────────────────────────────────────────────────┐
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>│  MVP 对比策略                                                │
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>├─────────────────────────────────────────────────────────────┤
@@ -6007,28 +5985,26 @@
 <li>可以立即开始</li>
 </ul>
 <hr />
-<h3 id="62-post-mvp-a">6.2 Post-MVP: 添加职业参考库 (方法 A)<a class="headerlink" href="#62-post-mvp-a" title="Permanent link">&para;</a></h3>
+<h3 id="62-post-mvp-ml-acd">6.2 Post-MVP: 添加职业参考库 + 统计/ML 方法 (方法 A/C/D)<a class="headerlink" href="#62-post-mvp-ml-acd" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>┌─────────────────────────────────────────────────────────────┐
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>│  Post-MVP 增强                                               │
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>├─────────────────────────────────────────────────────────────┤
 </span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>│                                                              │
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>│  1. 下载 GolfDB 视频                                        │
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>│  2. 运行 MediaPipe → 提取 33 关键点                         │
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>│  3. 归一化 + 存储为参考库                                    │
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>│  4. 用户可切换: 比较&quot;我的最佳&quot; vs &quot;职业平均&quot;                 │
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>│                                                              │
-</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>│  参考数据: 职业库 (GolfDB) + 个人最佳                        │
-</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>│                                                              │
-</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>└─────────────────────────────────────────────────────────────┘
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>│  方法 A: 职业参考库                                          │
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>│  1. 下载 GolfDB 视频                                        │
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>│  2. 运行 MediaPipe → 提取 33 关键点                         │
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>│  3. 归一化 + 存储为参考库                                    │
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>│  4. 用户可切换: 比较&quot;我的最佳&quot; vs &quot;职业平均&quot;                 │
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>│                                                              │
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>│  方法 C/D: 统计/ML 方法 (当收集 100+ 用户挥杆后)             │
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>│  - 应用 Poze 方法 (统计参考)                                 │
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>│  - 或训练 SwingNet 风格的嵌入网络                            │
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>│  - 提供更细粒度的反馈                                        │
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>│                                                              │
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>│  参考数据: 职业库 (GolfDB) + 个人最佳 + 用户数据             │
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>│                                                              │
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>└─────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
-<hr />
-<h3 id="63-ml-cd">6.3 成熟期: 统计/ML 方法 (方法 C/D)<a class="headerlink" href="#63-ml-cd" title="Permanent link">&para;</a></h3>
-<p>当收集 100+ 用户挥杆后:</p>
-<ul>
-<li>应用 Poze 方法 (统计参考)</li>
-<li>或训练 SwingNet 风格的嵌入网络</li>
-<li>提供更细粒度的反馈</li>
-</ul>
 <hr />
 <h2 id="7">7. 相关文档<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
 <ul>
