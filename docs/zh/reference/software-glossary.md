@@ -683,7 +683,7 @@ def calculate_x_factor(landmarks):
 - [关键决策 2025-12 § Polars 替代 Pandas](../design/decisions/architecture-decisions-2025-12-23.md#23-polars-替代-pandas) - 数据处理库选型决策
 - [关键决策 2025-12 § 部署策略](../design/decisions/architecture-decisions-2025-12-23.md#deployment-strategy) - 边缘计算与云端部署决策
 - [机器学习术语表](ml-glossary.md) - 推理引擎、ONNX Runtime、TFLite 等
-- [系统设计](../design/architecture/system-design.md) - 整体架构
+- [系统架构](../design/architecture/system-design.md) - 整体架构
 - [工程术语表](engineering-glossary.md) - 嵌入式系统、传感器术语
 
 ---

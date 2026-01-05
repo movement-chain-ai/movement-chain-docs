@@ -2,7 +2,7 @@
 
 > **文档状态**: 草稿 v1.2
 > **最后更新**: 2025-12-23
-> **关联文档**: [模块化架构](modular-architecture.md) | [三个训练场景](../specs/three-training-scenarios.md) | [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) | [关键决策 2025-12](../decisions/architecture-decisions-2025-12-23.md)
+> **关联文档**: [模块化设计](modular-architecture.md) | [三个训练场景](../specs/three-training-scenarios.md) | [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) | [关键决策 2025-12](../decisions/architecture-decisions-2025-12-23.md)
 
 ---
 
@@ -154,11 +154,11 @@ IMU 是主时钟 (Master Clock):
 
 !!! tip "实现细节"
     时间同步的具体实现方案（NTP 预同步 + Impact 验证）详见
-    [模块化架构 §2.2.3](modular-architecture.md#223-时间同步实现方案)。
+    [模块化设计 §2.2.3](modular-architecture.md#223-时间同步实现方案)。
 
 #### Sensor Hub 时间同步架构 (2025-12 推荐) {#sensor-hub-架构-2025-12-推荐}
 
-> 📐 **物理架构图**: 见 [模块化架构 §2.2.4](./modular-architecture.md#224-sensor-hub-architecture) (单一权威来源)
+> 📐 **物理架构图**: 见 [模块化设计 §2.2.4](./modular-architecture.md#224-sensor-hub-architecture) (单一权威来源)
 
 本节聚焦于**时间同步的 3 层级架构**，与物理布局互补：
 
@@ -851,7 +851,7 @@ P2 (最后):   优化建议 (BALANCE)
 
 ### B. 相关文档
 
-- [模块化架构](modular-architecture.md) - 系统模块详细设计
+- [模块化设计](modular-architecture.md) - 系统模块详细设计
 - [三个训练场景](../specs/three-training-scenarios.md) - 反馈时延和通道详解
 - [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) - 完整阈值表
 - [数据处理与指标计算](./sensor-data-processing.md) - 数据计算公式

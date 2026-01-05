@@ -354,7 +354,7 @@ LSM6DSV16X (stm32duino): "latest"
 
 ## 相关文档
 
-- [系统设计](../architecture/system-design.md) - 整体架构和数据流
+- [系统架构](../architecture/system-design.md) - 整体架构和数据流
 - [ADR 决策记录](../decisions/index.md) - 架构决策快速参考
 - [ADR-0007 Swift 原生 iOS 开发](0007-swift-ios-native.md) - 为什么选择 Swift 而非 Flutter
 - [移动开发](../../development/mobile/development.md) - Swift iOS 开发指南

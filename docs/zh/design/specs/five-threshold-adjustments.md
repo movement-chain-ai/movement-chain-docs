@@ -309,7 +309,7 @@ def get_thresholds(user_profile):
 
 ## 8. 相关文档
 
-- [系统设计](../architecture/system-design.md) - MVP 核心管道总览
+- [系统架构](../architecture/system-design.md) - MVP 核心管道总览
 - [ML 基础入门](../../prerequisites/ml-basics.md) - 机器学习基础概念
 - [移动开发](../../development/mobile/development.md) - Swift iOS 开发与测试指南
 

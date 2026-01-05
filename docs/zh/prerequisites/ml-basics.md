@@ -296,7 +296,7 @@ MVP1 使用 MediaPipe 内置的 TFLite 推理引擎，无需额外配置。
 
 ## 9. 相关文档
 
-- [系统设计](../design/architecture/system-design.md) - IMU/EMG 完整处理代码
+- [系统架构](../design/architecture/system-design.md) - IMU/EMG 完整处理代码
 - [SDK 选型](../design/decisions/sdk-selection.md) - MediaPipe、NeuroKit2 等工具
 - [ADR-0007 Swift iOS](../design/decisions/0007-swift-ios-native.md) - 移动端开发决策
 

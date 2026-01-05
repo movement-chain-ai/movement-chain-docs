@@ -549,7 +549,7 @@ LLM 输出:
 | **LLM Feedback** | ☁️ Cloud API | 200-500ms | 复杂推理，挥杆后可接受 |
 | **Data Sync** | ☁️ Cloud (Post-MVP) | N/A | 趋势分析、跨设备 |
 
-> 📐 **详细规格**: [数据管道与AI](./data-flow.md) | [模块化架构](./modular-architecture.md)
+> 📐 **详细规格**: [数据管道与AI](./data-flow.md) | [模块化设计](./modular-architecture.md)
 
 ---
 
@@ -574,7 +574,7 @@ LLM 输出:
 | MCU 选型 | ESP32-S3 | [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) |
 | EMG 选型 | MyoWare 2.0 + Link Shield | [架构决策](../decisions/architecture-decisions-2025-12-23.md) |
 | 时间同步 | Sensor Hub + Impact 对齐 | [数据管道](./data-flow.md) |
-| 升级路径 | LEGO block 可替换设计 | [模块化架构](./modular-architecture.md) |
+| 升级路径 | LEGO block 可替换设计 | [模块化设计](./modular-architecture.md) |
 
 ### 3.3 开发计划
 

@@ -1,6 +1,6 @@
 # 核心架构概览
 
-> **阅读时间**: 2-3 小时 | **前置知识**: [高尔夫生物力学基础](../../prerequisites/foundations/index.md) | **目标**: 理解 MVP 系统设计
+> **阅读时间**: 2-3 小时 | **前置知识**: [高尔夫生物力学基础](../../prerequisites/foundations/index.md) | **目标**: 理解 MVP 系统架构
 
 ---
 
@@ -32,7 +32,7 @@
 
 ## 文档概览
 
-### [系统设计](system-design.md)
+### [系统架构](system-design.md)
 
 **阅读时间**: ~25 分钟 | **Hub 文档** | **必读**
 
@@ -44,7 +44,7 @@ MVP 的单一事实来源：
 - **构建顺序**: 6 周 MVP 实现路线图
 - **技术栈**: Swift iOS、MediaPipe、ESP32-S3、ONNX
 
-### [模块化架构](modular-architecture.md)
+### [模块化设计](modular-architecture.md)
 
 **阅读时间**: ~25 分钟 | **结构设计** | **必读**
 

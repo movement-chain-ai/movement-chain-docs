@@ -292,7 +292,7 @@ flowchart LR
 
 - [八个挥杆阶段](../../design/specs/eight-swing-phases.md) - 挥杆相位检测的技术实现
 - [三个训练场景](../../design/specs/three-training-scenarios.md) - 三个训练场景的延迟与实现
-- [系统设计](../../design/architecture/system-design.md) - MVP技术架构
+- [系统架构](../../design/architecture/system-design.md) - MVP技术架构
 
 ### 市场与商业
 

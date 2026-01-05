@@ -539,7 +539,7 @@ def normalize_pose(keypoints):
 
 ## 7. 相关文档
 
-- [系统设计](../architecture/system-design.md) - 整体 MVP 管道架构
+- [系统架构](../architecture/system-design.md) - 整体 MVP 管道架构
 - [视觉反馈](../../development/ml-training/visual-feedback.md) - DTW 实现代码, UI 模式
 - [视觉软件](../../components/vision/software.md) - 关键点格式, RTMPose vs MediaPipe
 - [SDK 选型指南](../decisions/sdk-selection.md) - dtw-python 等库选择

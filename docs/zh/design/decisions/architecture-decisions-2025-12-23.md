@@ -563,7 +563,7 @@ build-backend = "hatchling.build"
 
 #### Sensor Hub 架构 (推荐)
 
-> 📐 **完整架构图与原理**: 见 [模块化架构 §2.2.4](../architecture/modular-architecture.md#224-sensor-hub-architecture) (单一权威来源)
+> 📐 **完整架构图与原理**: 见 [模块化设计 §2.2.4](../architecture/modular-architecture.md#224-sensor-hub-architecture) (单一权威来源)
 
 **架构要点** (硬件购买需考虑):
 
@@ -985,7 +985,7 @@ build-backend = "hatchling.build"
 
 #### 多单元时间同步拓扑 (Multi-Unit Sync Topology) ✅ 2025-12-23
 
-> 📐 **完整架构图与 "为什么每个单元需要 IMU" 解释**: 见 [模块化架构 §2.2.4](../architecture/modular-architecture.md#224-sensor-hub-architecture) (单一权威来源)
+> 📐 **完整架构图与 "为什么每个单元需要 IMU" 解释**: 见 [模块化设计 §2.2.4](../architecture/modular-architecture.md#224-sensor-hub-architecture) (单一权威来源)
 
 **决策要点**:
 
@@ -1458,9 +1458,9 @@ build-backend = "hatchling.build"
 
 | 文档 | 内容 | 关系 |
 |------|------|------|
-| **[system-design.md](../architecture/system-design.md)** | **MVP 系统设计总览** | **⭐ Hub 文档** |
+| **[system-design.md](../architecture/system-design.md)** | **MVP 系统架构总览** | **⭐ Hub 文档** |
 | **[data-flow.md](../architecture/data-flow.md)** | **数据流与时间同步** | **⭐ 权威来源** |
-| [modular-architecture.md](../architecture/modular-architecture.md) | LEGO 积木架构 | 六边形对应 |
+| [modular-architecture.md](../architecture/modular-architecture.md) | LEGO 积木设计 | 六边形对应 |
 | [sensor-data-processing.md](../architecture/sensor-data-processing.md) | 算法实现代码 | Mock 数据生成 |
 | [ADR-0005](0005-esp32-s3-microcontroller.md) | ESP32-S3 选型 | 硬件决策 |
 | [ADR-0007](0007-swift-ios-native.md) | Swift iOS 开发 | 移动端决策 |

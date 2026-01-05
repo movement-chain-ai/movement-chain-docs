@@ -94,7 +94,7 @@ Movement Chain AI 融合了多个领域：
 
 完成前置知识学习后，推荐阅读：
 
-1. [系统设计](../design/architecture/system-design.md) - MVP 核心架构
+1. [系统架构](../design/architecture/system-design.md) - MVP 核心架构
 2. [2025-12 关键决策](../design/decisions/architecture-decisions-2025-12-23.md) - 最新技术选型
 
 ---

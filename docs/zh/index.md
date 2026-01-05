@@ -247,7 +247,7 @@
 - 📚 三周内完成 **140 万字符技术文档体系**（生物力学、系统架构、硬件规格）
 - 🔬 完成 **IMU/EMG/MCU 供应商调研**（规格对比、BOM 成本、采购渠道）
 - 📊 完成 **2025 年竞品深度分析**（15+ 产品，4 大品类，定价/功能/缺陷）
-- 🏗️ 设计完整 **模块化架构**（LEGO 积木块 + 六边形架构 + 时间同步方案）
+- 🏗️ 设计完整 **模块化设计**（LEGO 积木块 + 六边形架构 + 时间同步方案）
 
 ### 我们能想明白什么
 
@@ -297,7 +297,7 @@
 
 ### 机械 / 硬件工程师 (1 小时)
 
-1. [系统设计](design/architecture/system-design.md) → MVP 架构总纲
+1. [系统架构](design/architecture/system-design.md) → MVP 架构总纲
 2. [硬件组件概览](components/index.md) → 组件选型与接口
 3. [IMU 规格](components/imu/hardware.md) → LSM6DSV16X 详规
 4. [EMG 规格](components/emg/hardware.md) → 肌电传感系统
@@ -306,16 +306,16 @@
 ### 软件工程师 (2-3 小时)
 
 1. [生物力学入门](prerequisites/foundations/biomechanics-101.md) → 领域知识 (90 分钟)
-2. [系统设计](design/architecture/system-design.md) → 4 模块流水线
-3. [模块化架构](design/architecture/modular-architecture.md) → LEGO 积木块设计
+2. [系统架构](design/architecture/system-design.md) → 4 模块流水线
+3. [模块化设计](design/architecture/modular-architecture.md) → LEGO 积木块设计
 4. [数据流](design/architecture/data-flow.md) → Kinematic Prompts
 5. [传感器-指标映射](design/architecture/sensor-data-processing.md) → Python 代码示例
 
 ### 新团队成员
 
 1. [生物力学入门](prerequisites/foundations/biomechanics-101.md) → ⭐ **必读基础** (90 分钟)
-2. [系统设计](design/architecture/system-design.md) → 理解 MVP 架构
-3. [模块化架构](design/architecture/modular-architecture.md) → LEGO 积木块设计
+2. [系统架构](design/architecture/system-design.md) → 理解 MVP 架构
+3. [模块化设计](design/architecture/modular-architecture.md) → LEGO 积木块设计
 
 ---
 
@@ -323,7 +323,7 @@
 
 | 想了解 | 文档 |
 |-------|------|
-| MVP 核心架构 | [系统设计](design/architecture/system-design.md) |
+| MVP 核心架构 | [系统架构](design/architecture/system-design.md) |
 | 2025 最新技术决策 | [架构决策 2025-12-23](design/decisions/architecture-decisions-2025-12-23.md) |
 | 技术选型记录 | [ADR 索引](design/decisions/index.md) |
 | 生物力学术语 | [术语表 (140+ 词条)](prerequisites/foundations/biomechanics-glossary.md) |

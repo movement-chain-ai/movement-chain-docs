@@ -711,7 +711,7 @@ Movement Chain AI 数据流:
 - [软件架构术语表](software-glossary.md) - 六边形架构等设计模式
 - [工程术语表](engineering-glossary.md) - Edge AI 相关概念
 - [关键决策 2025-12](../design/decisions/architecture-decisions-2025-12-23.md) - 技术选型决策
-- [系统设计](../design/architecture/system-design.md) - 整体架构
+- [系统架构](../design/architecture/system-design.md) - 整体架构
 - [数据流](../design/architecture/data-flow.md) - Kinematic Prompt 实际应用
 
 ---

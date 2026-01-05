@@ -809,7 +809,7 @@ graph TD
 
 | 相关文档 | 内容 | 本文档使用 |
 |---------|------|-----------|
-| [系统设计](../architecture/system-design.md) | MVP 管道架构 | 规则引擎阈值 |
+| [系统架构](../architecture/system-design.md) | MVP 管道架构 | 规则引擎阈值 |
 | [八个挥杆阶段](eight-swing-phases.md) | 阶段检测 | 阶段触发点 |
 | [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) | 指标阈值 | 问题判断标准 |
 | [传感器映射](../architecture/sensor-data-processing.md) | 传感器能力 | 检测方法选择 |

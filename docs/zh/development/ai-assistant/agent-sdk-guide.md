@@ -485,7 +485,7 @@ print(result.output)
 
 ## 相关文档
 
-- [系统设计](../../design/architecture/system-design.md) - 核心架构
+- [系统架构](../../design/architecture/system-design.md) - 核心架构
 - [ADR-0007 Swift iOS](../../design/decisions/0007-swift-ios-native.md) - 移动端开发
 - [开发指南](../index.md) - 开发入口
 

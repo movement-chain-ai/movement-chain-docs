@@ -12,7 +12,7 @@
 │  └── 理解高尔夫挥杆的物理与生理                                       │
 │                                                                      │
 │  LEVEL 2: 核心架构 (2-3小时)                                         │
-│  └── 理解 MVP 系统设计                                                │
+│  └── 理解 MVP 系统架构                                                │
 │                                                                      │
 │  LEVEL 3: 详细规格 (按需)                                            │
 │  └── 参考具体功能规格                                                 │
@@ -37,8 +37,8 @@
 
 | 文档 | 内容 | 阅读时间 |
 |------|------|---------|
-| [系统设计](architecture/system-design.md) | MVP 全貌：4模块、12指标、6规则 | ~25分钟 |
-| [模块化架构](architecture/modular-architecture.md) | LEGO 积木块设计 | ~25分钟 |
+| [系统架构](architecture/system-design.md) | MVP 全貌：4模块、12指标、6规则 | ~25分钟 |
+| [模块化设计](architecture/modular-architecture.md) | LEGO 积木块设计 | ~25分钟 |
 | [数据流](architecture/data-flow.md) | 时间对齐、Kinematic Prompts | ~20分钟 |
 | [数据处理与指标计算](architecture/sensor-data-processing.md) | Python 实现代码 | 按需查阅 |
 

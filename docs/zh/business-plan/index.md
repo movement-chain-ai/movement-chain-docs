@@ -56,7 +56,7 @@
 
 ## 相关文档
 
-- [系统设计](../design/architecture/system-design.md) - 技术架构
+- [系统架构](../design/architecture/system-design.md) - 技术架构
 
 ---
 

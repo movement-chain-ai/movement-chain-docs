@@ -352,7 +352,7 @@ flowchart LR
 | **硬件选型** | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md), [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) | LSM6DSV16X IMU + ESP32-S3 MCU |
 | **SDK 选型** | [SDK选型](../decisions/sdk-selection.md) | MediaPipe + NeuroKit2 + imufusion |
 | **移动端架构** | [ADR-0007](../decisions/0007-swift-ios-native.md) | Swift iOS 原生 (非 Flutter) |
-| **升级路径** | [模块化架构](./modular-architecture.md) | LEGO block 可替换设计 |
+| **升级路径** | [模块化设计](./modular-architecture.md) | LEGO block 可替换设计 |
 
 ### 7.2 MVP 6 条诊断规则 {#72-mvp-6-条诊断规则}
 
@@ -450,7 +450,7 @@ MVP Phase 4 实现基础 UI 反馈后，以下功能延后到 Post-MVP：
 |------|------|------|------|
 | **阈值调整** | [阈值调整](../specs/five-threshold-adjustments.md) | 按性别/年龄/体型调整阈值 | Post-MVP |
 | **EMG 扩展** | [传感器映射](./sensor-data-processing.md) | 2→4→6 通道 EMG | 硬件验证 |
-| **高级模型** | [模块化架构](./modular-architecture.md) | MediaPipe → RTMPose → ViTPose++ | 性能基准 |
+| **高级模型** | [模块化设计](./modular-architecture.md) | MediaPipe → RTMPose → ViTPose++ | 性能基准 |
 | **球杆追踪** | [可视化工具](../decisions/visualization-tools-evaluation.md) | TAPIR 替代 Trackman 雷达 | Post-MVP |
 | **Mode 1/2** | [三个训练场景](../specs/three-training-scenarios.md) | 站姿检查 + 慢动作训练 | Post-MVP |
 

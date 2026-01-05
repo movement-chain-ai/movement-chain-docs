@@ -687,7 +687,7 @@ ADC Value vs 肌肉状态:
 
     **此决策待后续确定。**
 
-**系统设计: 2 通道 EMG** (见 [系统设计](./system-design.md))
+**系统架构: 2 通道 EMG** (见 [系统架构](./system-design.md))
 
 ```text
 ┌─────────────────────────────────────────────────────────────────┐
@@ -1026,7 +1026,7 @@ def calculate_activation_ratio(mock_emg):
 
 !!! tip "时间对齐实现"
     Phase 2 时间对齐的具体实现方案（NTP 预同步 + Impact 验证）详见
-    [模块化架构 §2.2.3](modular-architecture.md#223-时间同步实现方案)。
+    [模块化设计 §2.2.3](modular-architecture.md#223-时间同步实现方案)。
 ```
 
 **融合优势**:
@@ -1963,8 +1963,8 @@ def simulate_emg_from_phases(
 
 ## 6. 相关文档 {#6-相关文档-related-documents}
 
-- [系统设计](./system-design.md): MVP 技术架构和构建顺序
-- [模块化架构](./modular-architecture.md): LEGO 积木式架构设计
+- [系统架构](./system-design.md): MVP 技术架构和构建顺序
+- [模块化设计](./modular-architecture.md): LEGO 积木式架构设计
 - [关键决策 2025-12](../decisions/architecture-decisions-2025-12-23.md): 传感器选型和 Sensor Hub 同步策略
 - [四种对比基准](../specs/four-comparison-methods.md): Pro vs Amateur 的生物力学差异
 - [生物力学术语表](../../prerequisites/foundations/biomechanics-glossary.md): 技术术语定义
