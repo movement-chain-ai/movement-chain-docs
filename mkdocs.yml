@@ -167,10 +167,10 @@ nav:
       - 技术决策:
           - 概览: design/decisions/index.md
           - ADR-0001 多仓库结构: design/decisions/0001-multi-repo-structure.md
-          - ADR-0002 IMU 传感器: design/decisions/0002-lsm6dsv16x-imu.md
-          - ADR-0005 ESP32-S3: design/decisions/0005-esp32-s3-microcontroller.md
+          - ADR-0002 IMU 传感器选型: design/decisions/0002-lsm6dsv16x-imu.md
+          - ADR-0005 ESP32-S3 微控制器选型: design/decisions/0005-esp32-s3-microcontroller.md
           - ADR-0007 Swift iOS: design/decisions/0007-swift-ios-native.md
-          - ADR-0008 Desktop→Mobile: design/decisions/0008-desktop-to-mobile-architecture.md
+          - ADR-0008 桌面到移动架构: design/decisions/0008-desktop-to-mobile-architecture.md
           - SDK/库选型: design/decisions/sdk-selection.md
           - 可视化工具: design/decisions/visualization-tools-evaluation.md
           - 2025-12 关键决策: design/decisions/architecture-decisions-2025-12-23.md
