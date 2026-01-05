@@ -1,4 +1,4 @@
-# 四种对比方法 Four Comparison Methods
+# 四种对比基准 Four Comparison Baselines
 
 > **文档角色**: 功能规格 - 定义挥杆评估的对比基准与算法策略
 >
@@ -260,7 +260,7 @@ class SwingCheckpoints:
 
 ---
 
-## 4. 四种对比方法 Four Comparison Approaches
+## 4. 四种对比基准 Four Comparison Baselines
 
 ### 4.1 方法 A: 职业参考 (Pro Player Reference)
 
@@ -562,7 +562,7 @@ def normalize_pose(keypoints):
 
 | 版本 | 日期 | 修改内容 |
 |------|------|----------|
-| 1.0 | 2025-12-12 | 初始版本，定义四种对比方法 |
+| 1.0 | 2025-12-12 | 初始版本，定义四种对比基准 |
 | 1.1 | 2026-01-04 | 添加章节编号，统一文档格式 |
 | 1.2 | 2026-01-04 | 修正第6节标题，避免与 MVP Phase 混淆 |
 

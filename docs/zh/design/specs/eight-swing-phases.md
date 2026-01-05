@@ -449,7 +449,7 @@ graph TD
 |---------|------|-----------|
 | [系统设计](../architecture/system-design.md) | MVP 管道架构 | 阶段检测算法详情 |
 | [三个训练场景](three-training-scenarios.md) | 反馈触发条件 | 阶段检测作为触发点 |
-| [四种对比方法](four-comparison-methods.md) | 对比方法 | 阶段对齐基础 |
+| [四种对比基准](four-comparison-methods.md) | 对比基准 | 阶段对齐基础 |
 | [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) | 各指标阈值 | 阶段内评估标准 |
 
 ---
