@@ -1,4 +1,4 @@
-# 产品层级 Product Tiers
+# 三个产品版本 Three Product Tiers
 
 > **文档角色**: 功能规格 - 定义不同硬件配置下的产品能力边界
 >

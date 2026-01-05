@@ -158,7 +158,7 @@ nav:
           - 数据处理与指标计算: design/architecture/sensor-data-processing.md
       - 产品设计:
           - 概览: design/specs/index.md
-          - 产品层级: design/specs/product-tiers.md
+          - 三个产品版本: design/specs/three-product-tiers.md
           - 八个挥杆阶段: design/specs/eight-swing-phases.md
           - 三种训练场景: design/specs/training-feedback.md
           - 实战场景（待补充）: design/specs/real-play-scenarios.md

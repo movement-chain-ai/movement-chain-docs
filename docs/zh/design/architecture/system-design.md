@@ -562,7 +562,7 @@ LLM 输出:
 | **12 测量指标** | [数据处理与指标计算](./sensor-data-processing.md) | Vision (6) + IMU (4) + EMG (2) |
 | **6 诊断规则** | [MVP 开发计划 §7.2](./mvp-plan.md#72-mvp-6-条诊断规则) | P0 (2条) + P1 (4条) |
 | **训练场景** | [训练反馈规范](../specs/training-feedback.md) | 3种场景: 站姿检查 / 慢动作训练 / 全速分析 |
-| **产品层级** | [产品层级](../specs/product-tiers.md) | Lite / Pro / Elite 三个版本 |
+| **产品版本** | [三个产品版本](../specs/three-product-tiers.md) | Lite / Pro / Elite |
 
 ### 3.2 架构决策
 
