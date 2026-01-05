@@ -33,7 +33,7 @@
     
     
       
-        <title>模块化架构 - Movement Chain AI Documentation</title>
+        <title>模块化设计 - Movement Chain AI Documentation</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#modular-architecture" class="md-skip">
+        <a href="#modular-design" class="md-skip">
           跳转至
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              模块化架构
+              模块化设计
             
           </span>
         </div>
@@ -1923,7 +1923,7 @@
   <span class="md-ellipsis">
     
   
-    系统设计
+    系统架构
   
 
     
@@ -1960,7 +1960,7 @@
   <span class="md-ellipsis">
     
   
-    模块化架构
+    模块化设计
   
 
     
@@ -1978,7 +1978,7 @@
   <span class="md-ellipsis">
     
   
-    模块化架构
+    模块化设计
   
 
     
@@ -2007,12 +2007,12 @@
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 设计哲学
+        1. 模块化设计哲学
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. 设计哲学">
+    <nav class="md-nav" aria-label="1. 模块化设计哲学">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2057,12 +2057,12 @@
   <a href="#2-模块详情" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 模块详情
+        2. 十二个模块详解
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 模块详情">
+    <nav class="md-nav" aria-label="2. 十二个模块详解">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -5022,12 +5022,12 @@
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 设计哲学
+        1. 模块化设计哲学
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1. 设计哲学">
+    <nav class="md-nav" aria-label="1. 模块化设计哲学">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -5072,12 +5072,12 @@
   <a href="#2-模块详情" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 模块详情
+        2. 十二个模块详解
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. 模块详情">
+    <nav class="md-nav" aria-label="2. 十二个模块详解">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -5538,14 +5538,14 @@
   
 
 
-<h1 id="modular-architecture">模块化架构设计 Modular Architecture<a class="headerlink" href="#modular-architecture" title="Permanent link">&para;</a></h1>
+<h1 id="modular-design">模块化设计 Modular Design<a class="headerlink" href="#modular-design" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>文档目的</strong>: 定义 Movement Chain AI 的 LEGO 积木式模块化架构</p>
 <p><strong>核心理念</strong>: 每个组件独立可替换，MVP 快速验证，渐进式升级</p>
 <p><strong>阅读时间</strong>: 25 分钟</p>
 </blockquote>
 <hr />
-<h2 id="1">1. 设计哲学<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h2 id="1">1. 模块化设计哲学<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <h3 id="11-lego">1.1 LEGO 核心原则<a class="headerlink" href="#11-lego" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>模块独立</strong> — 每个模块是独立的"积木块"，可以单独替换，接口保持稳定</li>
@@ -5773,7 +5773,7 @@
 <p>💡 <strong>SENSOR_HUB 复用</strong>: 同一套固件代码，通过 <code>hub_id</code> 参数区分不同实例。MVP 部署 2 个 (N=2)。</p>
 <p>📐 <strong>详细定义</strong>: 各 Block 接口契约的完整 Python dataclass 定义见对应章节。</p>
 </blockquote>
-<h2 id="2-模块详情">2. 模块详情<a class="headerlink" href="#2-模块详情" title="Permanent link">&para;</a></h2>
+<h2 id="2-模块详情">2.  十二个模块详解<a class="headerlink" href="#2-模块详情" title="Permanent link">&para;</a></h2>
 <h3 id="21-数据采集层">2.1 数据采集层<a class="headerlink" href="#21-数据采集层" title="Permanent link">&para;</a></h3>
 <p>Stage 2 负责从多种传感器采集原始数据:
 - <strong>CAMERA</strong>: iPhone 本机摄像头，通过 Native SDK 直接访问 (零延迟)
