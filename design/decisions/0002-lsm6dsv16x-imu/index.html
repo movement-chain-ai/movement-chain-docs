@@ -33,7 +33,7 @@
     
     
       
-        <title>ADR-0002 IMU 传感器 - Movement Chain AI Documentation</title>
+        <title>ADR-0002 IMU 传感器选型 - Movement Chain AI Documentation</title>
       
     
     
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ADR-0002 IMU 传感器
+              ADR-0002 IMU 传感器选型
             
           </span>
         </div>
@@ -2440,7 +2440,7 @@
   <span class="md-ellipsis">
     
   
-    ADR-0002 IMU 传感器
+    ADR-0002 IMU 传感器选型
   
 
     
@@ -2458,7 +2458,7 @@
   <span class="md-ellipsis">
     
   
-    ADR-0002 IMU 传感器
+    ADR-0002 IMU 传感器选型
   
 
     
@@ -2839,7 +2839,7 @@
   <span class="md-ellipsis">
     
   
-    ADR-0005 ESP32-S3
+    ADR-0005 ESP32-S3 微控制器选型
   
 
     
@@ -2895,7 +2895,7 @@
   <span class="md-ellipsis">
     
   
-    ADR-0008 Desktop→Mobile
+    ADR-0008 桌面到移动架构
   
 
     
@@ -5204,7 +5204,7 @@
   
 
 
-<h1 id="adr-0002-imu">ADR 0002: IMU 传感器选型<a class="headerlink" href="#adr-0002-imu" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0002-imu">ADR-0002 IMU 传感器选型<a class="headerlink" href="#adr-0002-imu" title="Permanent link">&para;</a></h1>
 <h2 id="_1">一、背景<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>Movement Chain AI 需要一个高性能的 6 轴<a href="../../../reference/engineering-glossary/#1-imu-惯性测量单元">惯性测量单元（IMU）</a>，能够以最低 100Hz <a href="../../../reference/engineering-glossary/#3-采样率-sampling-rate">采样率</a>捕获人体运动数据，用于专业级健身跟踪和运动分析。之前流行的 Bosch BNO055 传感器已经停产，且存在使用 15-20 分钟后漂移明显加剧的问题（无法支撑完整的锻炼时长），因此需要选择一个现代化的替代品，满足以下要求：</p>
 <ul>
