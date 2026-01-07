@@ -161,7 +161,7 @@ nav:
           - 三种产品版本: design/specs/three-product-versions.md
           - 八个挥杆阶段: design/specs/eight-swing-phases.md
           - 四种对比基准: design/specs/four-comparison-methods.md
-          - 阈值调整: design/specs/five-threshold-adjustments.md
+          - 阈值调整: design/specs/threshold-adjustments.md
           - 评估模式: design/specs/assessment-mode.md
           - 训练模式: design/specs/training-mode.md
           - 实战模式: design/specs/game-mode.md
