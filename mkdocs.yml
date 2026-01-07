@@ -160,10 +160,11 @@ nav:
           - 概览: design/specs/index.md
           - 三种产品版本: design/specs/three-product-versions.md
           - 八个挥杆阶段: design/specs/eight-swing-phases.md
-          - 三个训练场景: design/specs/three-training-scenarios.md
-          - 实战场景（待补充）: design/specs/real-play-scenarios.md
           - 四种对比基准: design/specs/four-comparison-methods.md
           - 阈值调整: design/specs/five-threshold-adjustments.md
+          - 评估模式: design/specs/assessment-mode.md
+          - 训练模式: design/specs/training-mode.md
+          - 实战模式: design/specs/game-mode.md
       - 技术决策:
           - 概览: design/decisions/index.md
           - ADR-0001 多仓库结构: design/decisions/0001-multi-repo-structure.md
@@ -176,7 +177,6 @@ nav:
           - 2025-12 关键决策: design/decisions/architecture-decisions-2025-12-23.md
       - 竞品研究:
           - 竞品指标对比: design/research/competitor-metrics-comparison.md
-          - 个性化训练推荐: design/research/personalized-training-recommendation.md
 
   - 硬件组件:
       - 概览: components/index.md
