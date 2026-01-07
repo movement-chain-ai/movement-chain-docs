@@ -163,8 +163,8 @@ nav:
           - 四种对比基准: design/specs/four-comparison-methods.md
           - 阈值调整: design/specs/threshold-adjustments.md
           - 评估模式: design/specs/assessment-mode.md
-          - 引导模式: design/specs/guide-mode.md
           - 练习模式: design/specs/drill-mode.md
+          - 引导模式: design/specs/guide-mode.md
           - 实战模式: design/specs/game-mode.md
       - 技术决策:
           - 概览: design/decisions/index.md
