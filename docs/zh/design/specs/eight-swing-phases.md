@@ -435,7 +435,7 @@ class SwingPhaseDetector:
 ```mermaid
 graph TD
     A[eight-swing-phases.md] --> B[system-design.md]
-    A --> C[three-training-scenarios.md]
+    A --> C[assessment-mode.md]
     A --> D[four-comparison-methods.md]
 
     B --> E[规则引擎 9 条规则]
@@ -448,7 +448,7 @@ graph TD
 | 相关文档 | 内容 | 本文档提供 |
 |---------|------|-----------|
 | [系统架构](../architecture/system-design.md) | MVP 管道架构 | 阶段检测算法详情 |
-| [三个训练场景](three-training-scenarios.md) | 反馈触发条件 | 阶段检测作为触发点 |
+| [三个训练场景](assessment-mode.md) | 反馈触发条件 | 阶段检测作为触发点 |
 | [四种对比基准](four-comparison-methods.md) | 对比基准 | 阶段对齐基础 |
 | [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) | 各指标阈值 | 阶段内评估标准 |
 

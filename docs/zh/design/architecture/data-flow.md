@@ -2,7 +2,7 @@
 
 > **文档状态**: 草稿 v1.2
 > **最后更新**: 2025-12-23
-> **关联文档**: [模块化设计](modular-architecture.md) | [三个训练场景](../specs/three-training-scenarios.md) | [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) | [关键决策 2025-12](../decisions/architecture-decisions-2025-12-23.md)
+> **关联文档**: [模块化设计](modular-architecture.md) | [三个训练场景](../specs/assessment-mode.md) | [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) | [关键决策 2025-12](../decisions/architecture-decisions-2025-12-23.md)
 
 ---
 
@@ -852,7 +852,7 @@ P2 (最后):   优化建议 (BALANCE)
 ### B. 相关文档
 
 - [模块化设计](modular-architecture.md) - 系统模块详细设计
-- [三个训练场景](../specs/three-training-scenarios.md) - 反馈时延和通道详解
+- [三个训练场景](../specs/assessment-mode.md) - 反馈时延和通道详解
 - [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) - 完整阈值表
 - [数据处理与指标计算](./sensor-data-processing.md) - 数据计算公式
 

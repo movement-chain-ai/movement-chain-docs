@@ -23,7 +23,7 @@
 - **触发条件**: 各阶段进入/退出判定规则
 - **代码实现**: Python 示例
 
-### [三个训练场景](three-training-scenarios.md)
+### [三个训练场景](assessment-mode.md)
 
 **阅读时间**: ~15 分钟 | **用户体验**
 
@@ -66,7 +66,7 @@
 │  1. eight-swing-phases.md ─── 核心算法                              │
 │     └── 挥杆如何被分解为 8 个阶段                                    │
 │                                                                     │
-│  2. three-training-scenarios.md ─── 用户体验                        │
+│  2. assessment-mode.md ─── 用户体验                        │
 │     └── 分析结果如何变成用户感知的反馈                                │
 │                                                                     │
 │  3. four-comparison-methods.md ─── 分析方法                         │

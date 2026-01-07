@@ -47,7 +47,7 @@
 | 文档 | 内容 |
 |------|------|
 | [八个挥杆阶段](specs/eight-swing-phases.md) | 8阶段定义与检测方法 |
-| [三个训练场景](specs/three-training-scenarios.md) | 三个训练场景与反馈通道 |
+| [三个训练场景](specs/assessment-mode.md) | 三个训练场景与反馈通道 |
 | [四种对比基准](specs/four-comparison-methods.md) | DTW 与四种对比基准 |
 | [阈值调整](specs/five-threshold-adjustments.md) | 按用户特征调整阈值 |
 
@@ -86,7 +86,7 @@ graph TD
 
     subgraph specs["详细规格"]
         S1[eight-swing-phases.md]
-        S2[three-training-scenarios.md]
+        S2[assessment-mode.md]
     end
 
     F1 --> A1
