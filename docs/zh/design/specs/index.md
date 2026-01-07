@@ -45,7 +45,7 @@
 - **Learned**: ML 模型个性化建议
 - **DTW 算法**: 动态时间规整用于时序对齐
 
-### [阈值调整](threshold-adjustments.md)
+### [用户信息和阈值调整](user-profile-thresholds.md)
 
 **阅读时间**: ~10 分钟 | **Post-MVP 规划**
 
@@ -72,7 +72,7 @@
 │  3. four-comparison-methods.md ─── 分析方法                         │
 │     └── 如何评估挥杆质量、与谁对比                                   │
 │                                                                     │
-│  4. threshold-adjustments.md ─── 进阶功能 (Post-MVP)           │
+│  4. user-profile-thresholds.md ─── 进阶功能 (Post-MVP)         │
 │     └── 如何根据用户特征调整阈值                                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
