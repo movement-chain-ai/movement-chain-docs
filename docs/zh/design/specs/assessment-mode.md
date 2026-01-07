@@ -55,16 +55,20 @@
 
 ### 2.2 检测项目
 
-| 检测项 | 传感器 | 阈值 | 反馈语音 |
-|-------|--------|-----|---------|
-| 头部位置过高 | Vision | `nose.y < shoulder.y * 0.7` | "下巴收一点" |
-| 肩膀耸起 | Vision | `(shoulder.y - ear.y) < threshold` | "放松肩膀" |
-| 站距过窄 | Vision | `ankle_dist / shoulder_width < 0.9` | "脚再宽一点" |
-| 站距过宽 | Vision | `ankle_dist / shoulder_width > 1.3` | "脚收窄一点" |
-| 脊柱太直 | Vision | `spine_angle < 25°` | "上身前倾一些" |
-| 脊柱过弯 | Vision | `spine_angle > 45°` | "背挺直一点" |
-| 膝盖锁死 | Vision | `knee_angle > 175°` | "膝盖弯一下" |
-| 重心偏移 | Vision | `hip_center.x` 偏离中心 | "重心放中间" |
+| 检测项 | 传感器 | 阈值 | 反馈（客观描述） |
+|-------|--------|-----|-----------------|
+| 头部位置过高 | Vision | `nose.y < shoulder.y * 0.7` | "头部位置偏高" |
+| 肩膀耸起 | Vision | `(shoulder.y - ear.y) < threshold` | "肩膀有些紧张" |
+| 站距过窄 | Vision | `ankle_dist / shoulder_width < 0.9` | "站距偏窄" |
+| 站距过宽 | Vision | `ankle_dist / shoulder_width > 1.3` | "站距偏宽" |
+| 脊柱太直 | Vision | `spine_angle < 25°` | "上身较直" |
+| 脊柱过弯 | Vision | `spine_angle > 45°` | "上身前倾较多" |
+| 膝盖锁死 | Vision | `knee_angle > 175°` | "膝盖较直" |
+| 重心偏移 | Vision | `hip_center.x` 偏离中心 | "重心偏左/右" |
+
+!!! note "评估 vs 引导"
+    评估模式只**告知问题**，不指导如何调整。用户自主决定是否修正。
+    如需实时引导调整，请参考 [引导模式](guide-mode.md)。
 
 ### 2.3 实现代码
 
@@ -95,29 +99,29 @@ class SetupChecker:
 
         # 1. 检查头部位置
         if self._head_too_high(landmarks):
-            issues.append(('head_high', '下巴收一点', 2))
+            issues.append(('head_high', '头部位置偏高', 2))
 
         # 2. 检查肩膀
         if self._shoulders_raised(landmarks):
-            issues.append(('shoulders', '放松肩膀', 2))
+            issues.append(('shoulders', '肩膀有些紧张', 2))
 
         # 3. 检查站距
         stance_ratio = self._get_stance_ratio(landmarks)
         if stance_ratio < 0.9:
-            issues.append(('stance_narrow', '脚再宽一点', 1))
+            issues.append(('stance_narrow', '站距偏窄', 1))
         elif stance_ratio > 1.3:
-            issues.append(('stance_wide', '脚收窄一点', 1))
+            issues.append(('stance_wide', '站距偏宽', 1))
 
         # 4. 检查脊柱角度
         spine_angle = self._get_spine_angle(landmarks)
         if spine_angle < 25:
-            issues.append(('spine_straight', '上身前倾一些', 1))
+            issues.append(('spine_straight', '上身较直', 1))
         elif spine_angle > 45:
-            issues.append(('spine_bent', '背挺直一点', 1))
+            issues.append(('spine_bent', '上身前倾较多', 1))
 
         # 5. 检查膝盖
         if self._knees_locked(landmarks):
-            issues.append(('knees', '膝盖弯一下', 2))
+            issues.append(('knees', '膝盖较直', 2))
 
         # 过滤冷却中的反馈
         filtered_issues = []
@@ -534,9 +538,9 @@ class PostSwingFeedback:
 | **节奏问题 (P1)** | `slow_backswing.mp3` | "上杆慢一点" | ~1s |
 | | `faster_downswing.mp3` | "下杆再快一点" | ~1s |
 | | `good_tempo.mp3` | "节奏不错" | ~0.8s |
-| **站姿问题** | `relax_shoulders.mp3` | "放松肩膀" | ~0.8s |
-| | `wider_stance.mp3` | "脚再宽一点" | ~1s |
-| | `bend_knees.mp3` | "膝盖弯一下" | ~1s |
+| **站姿问题** | `shoulders_tense.mp3` | "肩膀有些紧张" | ~1s |
+| | `stance_narrow.mp3` | "站距偏窄" | ~0.8s |
+| | `knees_straight.mp3` | "膝盖较直" | ~0.8s |
 | **正面反馈** | `good_swing.mp3` | "这一杆不错" | ~1s |
 | | `great_power.mp3` | "力量很好" | ~0.8s |
 | | `perfect.mp3` | "完美！" | ~0.6s |
