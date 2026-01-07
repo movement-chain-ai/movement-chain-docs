@@ -12,13 +12,13 @@
         <meta name="author" content="Movement Chain AI Team">
       
       
-        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/design/specs/assessment-mode/">
+        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/design/specs/guide-mode/">
       
       
-        <link rel="prev" href="../threshold-adjustments/">
+        <link rel="prev" href="../assessment-mode/">
       
       
-        <link rel="next" href="../guide-mode/">
+        <link rel="next" href="../drill-mode/">
       
       
         
@@ -33,7 +33,7 @@
     
     
       
-        <title>评估模式 - Movement Chain AI Documentation</title>
+        <title>引导模式 - Movement Chain AI Documentation</title>
       
     
     
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              评估模式
+              引导模式
             
           </span>
         </div>
@@ -2251,6 +2251,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../assessment-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    评估模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -2270,7 +2298,7 @@
   <span class="md-ellipsis">
     
   
-    评估模式
+    引导模式
   
 
     
@@ -2288,7 +2316,7 @@
   <span class="md-ellipsis">
     
   
-    评估模式
+    引导模式
   
 
     
@@ -2317,7 +2345,7 @@
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 三段式评估设计
+        1. 引导模式概述
       
     </span>
   </a>
@@ -2325,26 +2353,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#three-step-assessment-step-1-setup-check-300ms-2-5-step-2-slow-motion-analysis-500ms-14-12-3-5-step-3-full-speed-analysis-500ms-12" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ┌─────────────────────────────────────────────────────────────────────────────┐ │ THREE-STEP ASSESSMENT │ ├─────────────────────────────────────────────────────────────────────────────┤ │ │ │ Step 1: SETUP CHECK (站姿检查) 延迟要求: &lt;300ms │ │ ───────────────────────────────────────────────────────────────────────── │ │ 用户静止准备 → 实时检测姿势 → 语音/视觉反馈 │ │ &quot;肩膀放松一点&quot; / &quot;脚再宽一点&quot; │ │ │ │ ⏱️ 用户有 2-5 秒反应时间 → 完全可行 │ │ │ ├─────────────────────────────────────────────────────────────────────────────┤ │ │ │ Step 2: SLOW MOTION ANALYSIS (慢动作分析) 延迟要求: &lt;500ms │ │ ───────────────────────────────────────────────────────────────────────── │ │ 用户慢速挥杆 (1/4-1/2 速度) → 每阶段检测 → 阶段性反馈 │ │ &quot;好，继续转肩...&quot; / &quot;现在开始下杆...&quot; │ │ │ │ ⏱️ 慢动作挥杆 3-5 秒 → 有时间在每阶段给反馈 │ │ │ ├─────────────────────────────────────────────────────────────────────────────┤ │ │ │ Step 3: FULL SPEED ANALYSIS (全速分析) 延迟要求: &lt;500ms (挥杆后) │ │ ───────────────────────────────────────────────────────────────────────── │ │ 正常速度挥杆 → 挥杆后即时分析 → 综合反馈 │ │ &quot;这一杆节奏不错，但核心发力可以更早&quot; │ │ │ │ ⏱️ 挥杆只有 1.2 秒 → 只能事后反馈 │ │ │ └─────────────────────────────────────────────────────────────────────────────┘
+        2. 站姿引导
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-step-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Step 1: 站姿检查
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Step 1: 站姿检查">
+    <nav class="md-nav" aria-label="2. 站姿引导">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2386,15 +2403,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-step-2" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Step 2: 慢动作分析
+        3. 慢动作引导
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Step 2: 慢动作分析">
+    <nav class="md-nav" aria-label="3. 慢动作引导">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2434,12 +2451,12 @@
   <a href="#34" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.4 慢动作训练的核心价值
+        3.4 慢动作引导的核心价值
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3.4 慢动作训练的核心价值">
+    <nav class="md-nav" aria-label="3.4 慢动作引导的核心价值">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2475,17 +2492,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#344" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.4.4 与全速分析建立训练闭环
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2497,52 +2503,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-step-3" class="md-nav__link">
+  <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Step 3: 全速分析
+        4. 引导模式与评估模式的配合
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="4. Step 3: 全速分析">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.1 设计原则
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#42" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.2 反馈优先级
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#43" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.3 实现代码
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2550,19 +2517,19 @@
   <a href="#5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 反馈通道
+        5. 延迟预算
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. 反馈通道">
+    <nav class="md-nav" aria-label="5. 延迟预算">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#51" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.1 语音反馈
+        5.1 端到端延迟分解
       
     </span>
   </a>
@@ -2573,18 +2540,7 @@
   <a href="#52" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.2 触觉反馈
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#53" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5.3 分析模式 × 反馈通道
+        5.2 各场景延迟要求
       
     </span>
   </a>
@@ -2600,38 +2556,10 @@
   <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. 延迟预算
+        6. 实施路线图
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="6. 延迟预算">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#61" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6.1 端到端延迟分解
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#62" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6.2 各场景延迟要求
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2639,18 +2567,7 @@
   <a href="#7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. 实施路线图
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. 与其他文档的关系
+        7. 相关文档
       
     </span>
   </a>
@@ -2661,34 +2578,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../guide-mode/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    引导模式
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -4922,7 +4811,7 @@
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 三段式评估设计
+        1. 引导模式概述
       
     </span>
   </a>
@@ -4930,26 +4819,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#three-step-assessment-step-1-setup-check-300ms-2-5-step-2-slow-motion-analysis-500ms-14-12-3-5-step-3-full-speed-analysis-500ms-12" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ┌─────────────────────────────────────────────────────────────────────────────┐ │ THREE-STEP ASSESSMENT │ ├─────────────────────────────────────────────────────────────────────────────┤ │ │ │ Step 1: SETUP CHECK (站姿检查) 延迟要求: &lt;300ms │ │ ───────────────────────────────────────────────────────────────────────── │ │ 用户静止准备 → 实时检测姿势 → 语音/视觉反馈 │ │ &quot;肩膀放松一点&quot; / &quot;脚再宽一点&quot; │ │ │ │ ⏱️ 用户有 2-5 秒反应时间 → 完全可行 │ │ │ ├─────────────────────────────────────────────────────────────────────────────┤ │ │ │ Step 2: SLOW MOTION ANALYSIS (慢动作分析) 延迟要求: &lt;500ms │ │ ───────────────────────────────────────────────────────────────────────── │ │ 用户慢速挥杆 (1/4-1/2 速度) → 每阶段检测 → 阶段性反馈 │ │ &quot;好，继续转肩...&quot; / &quot;现在开始下杆...&quot; │ │ │ │ ⏱️ 慢动作挥杆 3-5 秒 → 有时间在每阶段给反馈 │ │ │ ├─────────────────────────────────────────────────────────────────────────────┤ │ │ │ Step 3: FULL SPEED ANALYSIS (全速分析) 延迟要求: &lt;500ms (挥杆后) │ │ ───────────────────────────────────────────────────────────────────────── │ │ 正常速度挥杆 → 挥杆后即时分析 → 综合反馈 │ │ &quot;这一杆节奏不错，但核心发力可以更早&quot; │ │ │ │ ⏱️ 挥杆只有 1.2 秒 → 只能事后反馈 │ │ │ └─────────────────────────────────────────────────────────────────────────────┘
+        2. 站姿引导
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-step-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Step 1: 站姿检查
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Step 1: 站姿检查">
+    <nav class="md-nav" aria-label="2. 站姿引导">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4991,15 +4869,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-step-2" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Step 2: 慢动作分析
+        3. 慢动作引导
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Step 2: 慢动作分析">
+    <nav class="md-nav" aria-label="3. 慢动作引导">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -5039,12 +4917,12 @@
   <a href="#34" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.4 慢动作训练的核心价值
+        3.4 慢动作引导的核心价值
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3.4 慢动作训练的核心价值">
+    <nav class="md-nav" aria-label="3.4 慢动作引导的核心价值">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -5080,17 +4958,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#344" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.4.4 与全速分析建立训练闭环
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -5102,52 +4969,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-step-3" class="md-nav__link">
+  <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Step 3: 全速分析
+        4. 引导模式与评估模式的配合
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="4. Step 3: 全速分析">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.1 设计原则
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#42" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.2 反馈优先级
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#43" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.3 实现代码
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -5155,19 +4983,19 @@
   <a href="#5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 反馈通道
+        5. 延迟预算
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. 反馈通道">
+    <nav class="md-nav" aria-label="5. 延迟预算">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#51" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.1 语音反馈
+        5.1 端到端延迟分解
       
     </span>
   </a>
@@ -5178,18 +5006,7 @@
   <a href="#52" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.2 触觉反馈
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#53" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5.3 分析模式 × 反馈通道
+        5.2 各场景延迟要求
       
     </span>
   </a>
@@ -5205,38 +5022,10 @@
   <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. 延迟预算
+        6. 实施路线图
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="6. 延迟预算">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#61" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6.1 端到端延迟分解
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#62" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6.2 各场景延迟要求
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -5244,18 +5033,7 @@
   <a href="#7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. 实施路线图
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. 与其他文档的关系
+        7. 相关文档
       
     </span>
   </a>
@@ -5282,19 +5060,44 @@
   
 
 
-<h1 id="_1">评估模式<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h1 id="_1">引导模式<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>文档目的</strong>: 定义三段式评估模式的延迟要求、触发条件和实现策略</p>
-<p><strong>核心洞察</strong>: 不同评估模式有不同的延迟要求和反馈时机
+<p><strong>文档目的</strong>: 定义实时引导功能的设计，包括站姿检查和慢动作引导</p>
+<p><strong>核心定位</strong>: 在用户动作过程中提供实时指导，帮助建立正确动作模式
 </p>
 </blockquote>
 <hr />
-<h2 id="1">1. 三段式评估设计<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
-<h2 id="three-step-assessment-step-1-setup-check-300ms-2-5-step-2-slow-motion-analysis-500ms-14-12-3-5-step-3-full-speed-analysis-500ms-12"><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                    THREE-STEP ASSESSMENT                                    │
+<h2 id="1">1. 引导模式概述<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>引导模式与评估模式的核心区别：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>本质</th>
+<th>时机</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>引导模式</strong></td>
+<td>实时指导</td>
+<td>动作前/动作中</td>
+<td>帮助用户"做对"</td>
+</tr>
+<tr>
+<td><strong>评估模式</strong></td>
+<td>事后诊断</td>
+<td>动作后</td>
+<td>告诉用户"哪里错了"</td>
+</tr>
+</tbody>
+</table>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                         GUIDE MODE                                          │
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│                                                                             │
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  Step 1: SETUP CHECK (站姿检查)                 延迟要求: &lt;300ms               │
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  站姿引导 (Setup Guide)                        延迟要求: &lt;300ms              │
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  ─────────────────────────────────────────────────────────────────────────  │
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│  用户静止准备 → 实时检测姿势 → 语音/视觉反馈                                      │
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│  &quot;肩膀放松一点&quot; / &quot;脚再宽一点&quot;                                                  │
@@ -5303,25 +5106,17 @@
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│                                                                             │
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│                                                                             │
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│  Step 2: SLOW MOTION ANALYSIS (慢动作分析)      延迟要求: &lt;500ms               │
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│  慢动作引导 (Slow Motion Guide)                延迟要求: &lt;500ms              │
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│  ─────────────────────────────────────────────────────────────────────────  │
 </span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│  用户慢速挥杆 (1/4-1/2 速度) → 每阶段检测 → 阶段性反馈                            │
 </span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│  &quot;好，继续转肩...&quot; / &quot;现在开始下杆...&quot;                                          │
 </span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│                                                                             │
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│  ⏱️ 慢动作挥杆 3-5 秒 → 有时间在每阶段给反馈                                     │
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│                                                                             │
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>├─────────────────────────────────────────────────────────────────────────────┤
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│                                                                             │
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│  Step 3: FULL SPEED ANALYSIS (全速分析)         延迟要求: &lt;500ms (挥杆后)       │
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│  ─────────────────────────────────────────────────────────────────────────  │
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│  正常速度挥杆 → 挥杆后即时分析 → 综合反馈                                         │
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│  &quot;这一杆节奏不错，但核心发力可以更早&quot;                                             │
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>│                                                                             │
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>│  ⏱️ 挥杆只有 1.2 秒 → 只能事后反馈                                              │
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>│                                                                             │
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>└─────────────────────────────────────────────────────────────────────────────┘
-</span></code></pre></div><a class="headerlink" href="#three-step-assessment-step-1-setup-check-300ms-2-5-step-2-slow-motion-analysis-500ms-14-12-3-5-step-3-full-speed-analysis-500ms-12" title="Permanent link">&para;</a></h2>
-<h2 id="2-step-1">2. Step 1: 站姿检查<a class="headerlink" href="#2-step-1" title="Permanent link">&para;</a></h2>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>└─────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<hr />
+<h2 id="2">2. 站姿引导<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <h3 id="21">2.1 设计原则<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
 <p>用户在挥杆前有 2-5 秒的准备时间，这是<strong>最佳反馈窗口</strong>：</p>
 <ul>
@@ -5392,9 +5187,9 @@
 </tbody>
 </table>
 <h3 id="23">2.3 实现代码<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SetupChecker</span><span class="p">:</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SetupGuide</span><span class="p">:</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="sd">    站姿实时检查器</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="sd">    站姿实时引导器</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="sd">    在用户准备挥杆时持续运行，检测并反馈姿态问题</span>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="sd">    &quot;&quot;&quot;</span>
@@ -5533,7 +5328,7 @@
 </span><span id="__span-1-139"><a id="__codelineno-1-139" name="__codelineno-1-139" href="#__codelineno-1-139"></a>        <span class="k">return</span> <span class="n">angle</span> <span class="o">&gt;</span> <span class="mi">175</span>
 </span></code></pre></div>
 <hr />
-<h2 id="3-step-2">3. Step 2: 慢动作分析<a class="headerlink" href="#3-step-2" title="Permanent link">&para;</a></h2>
+<h2 id="3">3. 慢动作引导<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <h3 id="31">3.1 设计原则<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
 <p>让用户以 1/4 或 1/2 速度练习，系统可以在每个阶段给出实时反馈。</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>正常挥杆:  1.2 秒 (太快，无法实时反馈)
@@ -5590,9 +5385,9 @@
 </tbody>
 </table>
 <h3 id="33">3.3 实现代码<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SlowMotionCoach</span><span class="p">:</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SlowMotionGuide</span><span class="p">:</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="sd">    慢动作训练教练</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="sd">    慢动作引导教练</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="sd">    在用户慢速挥杆时，每个阶段给出引导反馈</span>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="sd">    &quot;&quot;&quot;</span>
@@ -5656,14 +5451,14 @@
 </span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>
 </span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>        <span class="k">return</span> <span class="s1">&#39;address_start&#39;</span>
 </span></code></pre></div>
-<h3 id="34">3.4 慢动作训练的核心价值<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
+<h3 id="34">3.4 慢动作引导的核心价值<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
 <h4 id="341">3.4.1 还原真实高尔夫教学场景<a class="headerlink" href="#341" title="Permanent link">&para;</a></h4>
-<p>慢动作训练（Mode 2）模拟了专业教练教学的核心环节：</p>
+<p>慢动作引导模拟了专业教练教学的核心环节：</p>
 <table>
 <thead>
 <tr>
 <th>真实教学场景</th>
-<th>Mode 2 实现</th>
+<th>引导模式实现</th>
 </tr>
 </thead>
 <tbody>
@@ -5687,7 +5482,7 @@
 </table>
 <h4 id="342">3.4.2 解决"知道但做不到"的问题<a class="headerlink" href="#342" title="Permanent link">&para;</a></h4>
 <p>全速分析能告诉用户"核心发力太晚"，但用户下一杆还是一样——因为 1.2 秒的挥杆太快，来不及调整。</p>
-<p>慢动作训练把动作拉长到 3-5 秒，用户可以在"下杆启动"的那个瞬间：
+<p>慢动作引导把动作拉长到 3-5 秒，用户可以在"下杆启动"的那个瞬间：
 - 听到提示"从核心发力"
 - 体会正确的发力感觉
 - 重复 50 次建立肌肉记忆
@@ -5697,8 +5492,8 @@
 <thead>
 <tr>
 <th>场景</th>
-<th>没有 Mode 2</th>
-<th>有 Mode 2</th>
+<th>没有引导模式</th>
+<th>有引导模式</th>
 </tr>
 </thead>
 <tbody>
@@ -5719,21 +5514,22 @@
 </tr>
 </tbody>
 </table>
-<h4 id="344">3.4.4 与全速分析建立训练闭环<a class="headerlink" href="#344" title="Permanent link">&para;</a></h4>
-<p>慢动作训练（Mode 2）和全速分析（Mode 3）共同构建了<strong>验证 → 反馈 → 训练 → 实战</strong>的完整学习闭环：</p>
+<hr />
+<h2 id="4">4. 引导模式与评估模式的配合<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p>引导模式和评估模式共同构建了<strong>学习 → 验证</strong>的完整闭环：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>┌─────────────────────────────────────────────────────────────┐
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>│              验证 → 反馈 → 训练 → 实战 闭环                    │
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>│              学习 → 验证 闭环                                 │
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>├─────────────────────────────────────────────────────────────┤
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│                                                             │
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│   ┌──────────────┐                    ┌──────────────┐      │
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>│   │    实战       │                    │     反馈     │      │
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│   │  Mode 3 全速  │ ─── 发现问题 ────▶  │ &quot;核心发力晚&quot;  │      │
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>│   │    验证       │                    │     反馈     │      │
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│   │  评估模式全速  │ ─── 发现问题 ────▶  │ &quot;核心发力晚&quot;  │      │
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>│   └──────────────┘                    └──────┬───────┘      │
 </span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>│          ▲                                   │              │
 </span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>│          │                                   ▼              │
 </span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>│   ┌──────┴───────┐                    ┌──────────────┐      │
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>│   │    验证       │                    │    训练      │      │
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>│   │ &quot;问题解决了&quot;   │ ◀─── 建立记忆 ────  │ Mode 2 慢练   │      │
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>│   │    确认       │                    │    学习      │      │
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>│   │ &quot;问题解决了&quot;   │ ◀─── 建立记忆 ────  │ 引导模式慢练   │      │
 </span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>│   └──────────────┘                    └──────────────┘      │
 </span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>│                                                             │
 </span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>└─────────────────────────────────────────────────────────────┘
@@ -5743,486 +5539,58 @@
 <thead>
 <tr>
 <th>环节</th>
-<th>Mode</th>
+<th>模式</th>
 <th>作用</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>实战</strong></td>
-<td>Mode 3</td>
+<td><strong>验证</strong></td>
+<td>评估模式</td>
 <td>全速挥杆</td>
 <td>真实表现，暴露问题</td>
 </tr>
 <tr>
 <td><strong>反馈</strong></td>
-<td>Mode 3</td>
+<td>评估模式</td>
 <td>诊断分析</td>
 <td>告诉用户"哪里错了"</td>
 </tr>
 <tr>
-<td><strong>训练</strong></td>
-<td>Mode 2</td>
-<td>慢动作纠正</td>
+<td><strong>学习</strong></td>
+<td>引导模式</td>
+<td>慢动作引导</td>
 <td>在过程中体会"怎么做对"</td>
 </tr>
 <tr>
-<td><strong>验证</strong></td>
-<td>Mode 3</td>
+<td><strong>确认</strong></td>
+<td>评估模式</td>
 <td>检验迁移</td>
-<td>确认训练效果是否保持</td>
+<td>确认学习效果是否保持</td>
 </tr>
 </tbody>
 </table>
-<p><strong>闭环运转示例</strong>：</p>
-<ol>
-<li><strong>实战</strong>：用户全速挥杆</li>
-<li><strong>反馈</strong>：系统诊断"核心发力太晚"</li>
-<li><strong>训练</strong>：切换慢动作模式，在下杆启动阶段实时提示"从核心发力"，重复练习建立肌肉记忆</li>
-<li><strong>验证</strong>：回到全速挥杆，确认问题是否解决</li>
-<li><strong>循环</strong>：如果问题解决则进入下一个改进点，否则继续训练</li>
-</ol>
-<div class="admonition tip">
-<p class="admonition-title">一句话总结</p>
-<p>Mode 2 是让用户<strong>真正学会</strong>的关键——不只是看到问题，而是在过程中体会正确的感觉，并通过 Mode 3 验证学习效果。</p>
-</div>
 <hr />
-<h2 id="4-step-3">4. Step 3: 全速分析<a class="headerlink" href="#4-step-3" title="Permanent link">&para;</a></h2>
-<h3 id="41">4.1 设计原则<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
-<p>正常速度挥杆时，系统只能在<strong>挥杆结束后</strong>提供反馈。但反馈要足够快 (&lt;500ms)，让用户在下一次挥杆前能消化。</p>
-<h3 id="42">4.2 反馈优先级<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<h2 id="5">5. 延迟预算<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<h3 id="51">5.1 端到端延迟分解<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>│                    FEEDBACK PRIORITY (POST-SWING)                           │
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>│                    END-TO-END LATENCY BREAKDOWN                             │
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│                                                                             │
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>│  P0 (立即说): 严重问题，影响挥杆质量                                             │
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>│  ─────────────────────────────────────────────────────────────────────────  │
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>│  • 发力顺序错误 (EMG: 手臂先于核心) → &quot;从核心启动&quot;                                │
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>│  • 运动链断裂 (EMG: 核心激活不足) → &quot;收紧腹部发力&quot;                                │
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>│                                                                             │
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>│  P1 (其次): 重要问题，影响表现                                                  │
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>│  ─────────────────────────────────────────────────────────────────────────  │
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>│  • X-Factor 不足 → &quot;肩膀再多转一点&quot;                                            │
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>│  • 节奏过快 → &quot;上杆慢一点&quot;                                                     │
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>│  • 速度不足 → &quot;再用力一些&quot;                                                     │
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>│                                                                             │
-</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>│  P2 (最后): 优化建议，锦上添花                                                  │
-</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>│  ─────────────────────────────────────────────────────────────────────────  │
-</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>│  • 收杆平衡问题 → &quot;注意收杆平衡&quot;                                                │
-</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>│  • 细节调整 → 可以不说，留待详细分析                                             │
-</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>│                                                                             │
-</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>└─────────────────────────────────────────────────────────────────────────────┘
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>│  传感器采集         特征提取          规则判断          反馈生成                  │
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>│  ────────────     ───────────      ──────────       ──────────              │
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>│                                                                             │
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>│  Vision: 33ms     MediaPipe: 30ms  规则引擎: &lt;5ms   语音TTS: 50-100ms         │
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>│  IMU: &lt;10ms       特征计算: &lt;10ms                   视觉叠加: &lt;20ms            │
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>│  EMG: &lt;5ms        时间同步: &lt;5ms                    触觉振动: &lt;10ms            │
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>│                                                                             │
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>│  ────────────────────────────────────────────────────────────────────────── │
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>│                                                                             │
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>│  延迟预算:    33 + 30 + 5 + 100 = ~170ms                                     │
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>└─────────────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
-<h3 id="43">4.3 实现代码<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">PostSwingFeedback</span><span class="p">:</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="sd">    挥杆后即时反馈生成器</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="sd">    在挥杆结束后 &lt;500ms 内生成并播放反馈</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio_player</span><span class="p">):</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">audio_player</span> <span class="o">=</span> <span class="n">audio_player</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">generate_feedback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">swing_analysis</span><span class="p">):</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="sd">        生成优先级排序的反馈</span>
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="sd">        Args:</span>
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="sd">            swing_analysis: dict with vision, imu, emg features and scores</span>
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
-</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="sd">        Returns:</span>
-</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="sd">            feedback_list: list of (priority, text, audio_file)</span>
-</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>        <span class="n">feedbacks</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>
-</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>        <span class="c1"># P0: EMG 独特洞察 (最高优先级)</span>
-</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>        <span class="k">if</span> <span class="n">swing_analysis</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;emg&#39;</span><span class="p">):</span>
-</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>            <span class="n">emg</span> <span class="o">=</span> <span class="n">swing_analysis</span><span class="p">[</span><span class="s1">&#39;emg&#39;</span><span class="p">]</span>
-</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>
-</span><span id="__span-6-27"><a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">emg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;activation_sequence_correct&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
-</span><span id="__span-6-28"><a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>                <span class="n">feedbacks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
-</span><span id="__span-6-29"><a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>                    <span class="mi">0</span><span class="p">,</span>
-</span><span id="__span-6-30"><a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>                    <span class="s1">&#39;发力顺序错了，从核心启动&#39;</span><span class="p">,</span>
-</span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>                    <span class="s1">&#39;core_first.mp3&#39;</span>
-</span><span id="__span-6-32"><a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>                <span class="p">))</span>
-</span><span id="__span-6-33"><a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>
-</span><span id="__span-6-34"><a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>            <span class="k">if</span> <span class="n">emg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;core_activation&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
-</span><span id="__span-6-35"><a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>                <span class="n">feedbacks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
-</span><span id="__span-6-36"><a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>                    <span class="mi">0</span><span class="p">,</span>
-</span><span id="__span-6-37"><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a>                    <span class="s1">&#39;核心发力不够，收紧腹部&#39;</span><span class="p">,</span>
-</span><span id="__span-6-38"><a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a>                    <span class="s1">&#39;engage_core.mp3&#39;</span>
-</span><span id="__span-6-39"><a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>                <span class="p">))</span>
-</span><span id="__span-6-40"><a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a>
-</span><span id="__span-6-41"><a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a>        <span class="c1"># P1: Vision + IMU 分析</span>
-</span><span id="__span-6-42"><a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a>        <span class="n">vision</span> <span class="o">=</span> <span class="n">swing_analysis</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;vision&#39;</span><span class="p">,</span> <span class="p">{})</span>
-</span><span id="__span-6-43"><a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a>        <span class="n">imu</span> <span class="o">=</span> <span class="n">swing_analysis</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;imu&#39;</span><span class="p">,</span> <span class="p">{})</span>
-</span><span id="__span-6-44"><a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a>
-</span><span id="__span-6-45"><a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a>        <span class="k">if</span> <span class="n">vision</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;x_factor&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">35</span><span class="p">:</span>
-</span><span id="__span-6-46"><a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a>            <span class="n">feedbacks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
-</span><span id="__span-6-47"><a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a>                <span class="mi">1</span><span class="p">,</span>
-</span><span id="__span-6-48"><a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a>                <span class="s1">&#39;肩膀转不够，X因子只有</span><span class="si">{:.0f}</span><span class="s1">度&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vision</span><span class="p">[</span><span class="s1">&#39;x_factor&#39;</span><span class="p">]),</span>
-</span><span id="__span-6-49"><a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a>                <span class="s1">&#39;more_rotation.mp3&#39;</span>
-</span><span id="__span-6-50"><a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a>            <span class="p">))</span>
-</span><span id="__span-6-51"><a id="__codelineno-6-51" name="__codelineno-6-51" href="#__codelineno-6-51"></a>
-</span><span id="__span-6-52"><a id="__codelineno-6-52" name="__codelineno-6-52" href="#__codelineno-6-52"></a>        <span class="k">if</span> <span class="n">imu</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tempo_ratio&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">2.5</span><span class="p">:</span>
-</span><span id="__span-6-53"><a id="__codelineno-6-53" name="__codelineno-6-53" href="#__codelineno-6-53"></a>            <span class="n">feedbacks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
-</span><span id="__span-6-54"><a id="__codelineno-6-54" name="__codelineno-6-54" href="#__codelineno-6-54"></a>                <span class="mi">1</span><span class="p">,</span>
-</span><span id="__span-6-55"><a id="__codelineno-6-55" name="__codelineno-6-55" href="#__codelineno-6-55"></a>                <span class="s1">&#39;节奏太快，上杆慢一点&#39;</span><span class="p">,</span>
-</span><span id="__span-6-56"><a id="__codelineno-6-56" name="__codelineno-6-56" href="#__codelineno-6-56"></a>                <span class="s1">&#39;slow_backswing.mp3&#39;</span>
-</span><span id="__span-6-57"><a id="__codelineno-6-57" name="__codelineno-6-57" href="#__codelineno-6-57"></a>            <span class="p">))</span>
-</span><span id="__span-6-58"><a id="__codelineno-6-58" name="__codelineno-6-58" href="#__codelineno-6-58"></a>        <span class="k">elif</span> <span class="n">imu</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tempo_ratio&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">4.0</span><span class="p">:</span>
-</span><span id="__span-6-59"><a id="__codelineno-6-59" name="__codelineno-6-59" href="#__codelineno-6-59"></a>            <span class="n">feedbacks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
-</span><span id="__span-6-60"><a id="__codelineno-6-60" name="__codelineno-6-60" href="#__codelineno-6-60"></a>                <span class="mi">1</span><span class="p">,</span>
-</span><span id="__span-6-61"><a id="__codelineno-6-61" name="__codelineno-6-61" href="#__codelineno-6-61"></a>                <span class="s1">&#39;节奏太慢，可以再流畅一些&#39;</span><span class="p">,</span>
-</span><span id="__span-6-62"><a id="__codelineno-6-62" name="__codelineno-6-62" href="#__codelineno-6-62"></a>                <span class="s1">&#39;smoother_tempo.mp3&#39;</span>
-</span><span id="__span-6-63"><a id="__codelineno-6-63" name="__codelineno-6-63" href="#__codelineno-6-63"></a>            <span class="p">))</span>
-</span><span id="__span-6-64"><a id="__codelineno-6-64" name="__codelineno-6-64" href="#__codelineno-6-64"></a>
-</span><span id="__span-6-65"><a id="__codelineno-6-65" name="__codelineno-6-65" href="#__codelineno-6-65"></a>        <span class="k">if</span> <span class="n">imu</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;peak_angular_velocity&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">800</span><span class="p">:</span>
-</span><span id="__span-6-66"><a id="__codelineno-6-66" name="__codelineno-6-66" href="#__codelineno-6-66"></a>            <span class="n">feedbacks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
-</span><span id="__span-6-67"><a id="__codelineno-6-67" name="__codelineno-6-67" href="#__codelineno-6-67"></a>                <span class="mi">1</span><span class="p">,</span>
-</span><span id="__span-6-68"><a id="__codelineno-6-68" name="__codelineno-6-68" href="#__codelineno-6-68"></a>                <span class="s1">&#39;速度不够，再用力一些&#39;</span><span class="p">,</span>
-</span><span id="__span-6-69"><a id="__codelineno-6-69" name="__codelineno-6-69" href="#__codelineno-6-69"></a>                <span class="s1">&#39;more_power.mp3&#39;</span>
-</span><span id="__span-6-70"><a id="__codelineno-6-70" name="__codelineno-6-70" href="#__codelineno-6-70"></a>            <span class="p">))</span>
-</span><span id="__span-6-71"><a id="__codelineno-6-71" name="__codelineno-6-71" href="#__codelineno-6-71"></a>
-</span><span id="__span-6-72"><a id="__codelineno-6-72" name="__codelineno-6-72" href="#__codelineno-6-72"></a>        <span class="c1"># P2: 优化建议</span>
-</span><span id="__span-6-73"><a id="__codelineno-6-73" name="__codelineno-6-73" href="#__codelineno-6-73"></a>        <span class="n">score</span> <span class="o">=</span> <span class="n">swing_analysis</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-</span><span id="__span-6-74"><a id="__codelineno-6-74" name="__codelineno-6-74" href="#__codelineno-6-74"></a>        <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span>
-</span><span id="__span-6-75"><a id="__codelineno-6-75" name="__codelineno-6-75" href="#__codelineno-6-75"></a>            <span class="n">feedbacks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
-</span><span id="__span-6-76"><a id="__codelineno-6-76" name="__codelineno-6-76" href="#__codelineno-6-76"></a>                <span class="mi">2</span><span class="p">,</span>
-</span><span id="__span-6-77"><a id="__codelineno-6-77" name="__codelineno-6-77" href="#__codelineno-6-77"></a>                <span class="s1">&#39;这一杆不错，</span><span class="si">{:.0f}</span><span class="s1">分&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score</span><span class="p">),</span>
-</span><span id="__span-6-78"><a id="__codelineno-6-78" name="__codelineno-6-78" href="#__codelineno-6-78"></a>                <span class="s1">&#39;good_swing.mp3&#39;</span>
-</span><span id="__span-6-79"><a id="__codelineno-6-79" name="__codelineno-6-79" href="#__codelineno-6-79"></a>            <span class="p">))</span>
-</span><span id="__span-6-80"><a id="__codelineno-6-80" name="__codelineno-6-80" href="#__codelineno-6-80"></a>
-</span><span id="__span-6-81"><a id="__codelineno-6-81" name="__codelineno-6-81" href="#__codelineno-6-81"></a>        <span class="c1"># 排序并返回前 2 个</span>
-</span><span id="__span-6-82"><a id="__codelineno-6-82" name="__codelineno-6-82" href="#__codelineno-6-82"></a>        <span class="n">feedbacks</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span><span id="__span-6-83"><a id="__codelineno-6-83" name="__codelineno-6-83" href="#__codelineno-6-83"></a>        <span class="k">return</span> <span class="n">feedbacks</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
-</span><span id="__span-6-84"><a id="__codelineno-6-84" name="__codelineno-6-84" href="#__codelineno-6-84"></a>
-</span><span id="__span-6-85"><a id="__codelineno-6-85" name="__codelineno-6-85" href="#__codelineno-6-85"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">play_feedback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feedbacks</span><span class="p">):</span>
-</span><span id="__span-6-86"><a id="__codelineno-6-86" name="__codelineno-6-86" href="#__codelineno-6-86"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;播放反馈&quot;&quot;&quot;</span>
-</span><span id="__span-6-87"><a id="__codelineno-6-87" name="__codelineno-6-87" href="#__codelineno-6-87"></a>        <span class="k">for</span> <span class="n">priority</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">audio_file</span> <span class="ow">in</span> <span class="n">feedbacks</span><span class="p">:</span>
-</span><span id="__span-6-88"><a id="__codelineno-6-88" name="__codelineno-6-88" href="#__codelineno-6-88"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">audio_player</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">audio_file</span><span class="p">)</span>
-</span><span id="__span-6-89"><a id="__codelineno-6-89" name="__codelineno-6-89" href="#__codelineno-6-89"></a>            <span class="c1"># 等待播放完成再说下一条</span>
-</span><span id="__span-6-90"><a id="__codelineno-6-90" name="__codelineno-6-90" href="#__codelineno-6-90"></a>            <span class="k">break</span>  <span class="c1"># 只说最重要的一条</span>
-</span></code></pre></div>
-<hr />
-<h2 id="5">5. 反馈通道<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
-<p>反馈通道是指系统向用户传递信息的<strong>形式</strong>，与分析模式（场景 1/2/3）是正交的两个维度。</p>
-<table>
-<thead>
-<tr>
-<th>反馈通道</th>
-<th>延迟</th>
-<th>适用场景</th>
-<th>优势</th>
-<th>局限</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>语音反馈</strong></td>
-<td>50-100ms</td>
-<td>所有场景</td>
-<td>信息量大，无需看屏幕</td>
-<td>需要安静环境</td>
-</tr>
-<tr>
-<td><strong>视觉反馈</strong></td>
-<td>&lt;20ms</td>
-<td>所有场景</td>
-<td>精确展示位置/角度</td>
-<td>用户需看屏幕</td>
-</tr>
-<tr>
-<td><strong>触觉反馈</strong></td>
-<td>&lt;50ms</td>
-<td>慢动作训练</td>
-<td>唯一能实时干预的方式</td>
-<td>信息量有限</td>
-</tr>
-</tbody>
-</table>
-<h3 id="51">5.1 语音反馈<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
-<p><strong>预录制语音文件</strong></p>
-<table>
-<thead>
-<tr>
-<th>类别</th>
-<th>文件名</th>
-<th>文案</th>
-<th>时长</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>核心问题 (P0)</strong></td>
-<td><code>core_first.mp3</code></td>
-<td>"从核心启动"</td>
-<td>~1s</td>
-</tr>
-<tr>
-<td></td>
-<td><code>engage_core.mp3</code></td>
-<td>"收紧腹部发力"</td>
-<td>~1.2s</td>
-</tr>
-<tr>
-<td></td>
-<td><code>sequence_wrong.mp3</code></td>
-<td>"发力顺序错了"</td>
-<td>~1s</td>
-</tr>
-<tr>
-<td><strong>旋转问题 (P1)</strong></td>
-<td><code>more_rotation.mp3</code></td>
-<td>"肩膀再多转一点"</td>
-<td>~1.2s</td>
-</tr>
-<tr>
-<td></td>
-<td><code>hip_lead.mp3</code></td>
-<td>"髋部先转开"</td>
-<td>~1s</td>
-</tr>
-<tr>
-<td><strong>节奏问题 (P1)</strong></td>
-<td><code>slow_backswing.mp3</code></td>
-<td>"上杆慢一点"</td>
-<td>~1s</td>
-</tr>
-<tr>
-<td></td>
-<td><code>faster_downswing.mp3</code></td>
-<td>"下杆再快一点"</td>
-<td>~1s</td>
-</tr>
-<tr>
-<td></td>
-<td><code>good_tempo.mp3</code></td>
-<td>"节奏不错"</td>
-<td>~0.8s</td>
-</tr>
-<tr>
-<td><strong>站姿问题</strong></td>
-<td><code>relax_shoulders.mp3</code></td>
-<td>"放松肩膀"</td>
-<td>~0.8s</td>
-</tr>
-<tr>
-<td></td>
-<td><code>wider_stance.mp3</code></td>
-<td>"脚再宽一点"</td>
-<td>~1s</td>
-</tr>
-<tr>
-<td></td>
-<td><code>bend_knees.mp3</code></td>
-<td>"膝盖弯一下"</td>
-<td>~1s</td>
-</tr>
-<tr>
-<td><strong>正面反馈</strong></td>
-<td><code>good_swing.mp3</code></td>
-<td>"这一杆不错"</td>
-<td>~1s</td>
-</tr>
-<tr>
-<td></td>
-<td><code>great_power.mp3</code></td>
-<td>"力量很好"</td>
-<td>~0.8s</td>
-</tr>
-<tr>
-<td></td>
-<td><code>perfect.mp3</code></td>
-<td>"完美！"</td>
-<td>~0.6s</td>
-</tr>
-</tbody>
-</table>
-<p><strong>TTS 动态生成</strong></p>
-<p>对于需要包含数据的反馈（如具体分数、角度），使用 TTS 动态生成：</p>
-<div class="language-swift highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">import</span><span class="w"> </span><span class="nc">AVFoundation</span><span class="w">  </span><span class="c1">// iOS 原生 TTS</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kd">class</span><span class="w"> </span><span class="nc">FeedbackSpeaker</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nv">synthesizer</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">AVSpeechSynthesizer</span><span class="p">()</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="c1">/// 动态生成语音反馈</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="c1">/// - Examples:</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="c1">///   - generateFeedback(&quot;X因子\(xFactor)度，不够&quot;)</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="c1">///   - generateFeedback(&quot;速度\(speed)，很不错&quot;)</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="kd">func</span><span class="w"> </span><span class="nf">generateFeedback</span><span class="p">(</span><span class="kc">_</span><span class="w"> </span><span class="n">text</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="n">rate</span><span class="p">:</span><span class="w"> </span><span class="nb">Float</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nv">utterance</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">AVSpeechUtterance</span><span class="p">(</span><span class="n">string</span><span class="p">:</span><span class="w"> </span><span class="n">text</span><span class="p">)</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">        </span><span class="n">utterance</span><span class="p">.</span><span class="n">voice</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">AVSpeechSynthesisVoice</span><span class="p">(</span><span class="n">language</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;zh-CN&quot;</span><span class="p">)</span>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="n">utterance</span><span class="p">.</span><span class="n">rate</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rate</span>
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">        </span><span class="n">synthesizer</span><span class="p">.</span><span class="n">speak</span><span class="p">(</span><span class="n">utterance</span><span class="p">)</span>
-</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="p">}</span>
-</span></code></pre></div>
-<h3 id="52">5.2 触觉反馈<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
-<p>触觉反馈 (&lt;50ms 延迟) 是唯一能在挥杆过程中实时干预的方式。</p>
-<p><strong>硬件依赖</strong></p>
-<p>触觉反馈需要<strong>振动输出设备</strong>，不是输入传感器：</p>
-<table>
-<thead>
-<tr>
-<th>设备</th>
-<th>说明</th>
-<th>优劣</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Apple Watch</strong></td>
-<td>通过 WatchKit 触发振动</td>
-<td>✅ 贴近身体，感知明确；❌ 需额外开发 watchOS App</td>
-</tr>
-<tr>
-<td><strong>iPhone Taptic Engine</strong></td>
-<td>通过 Core Haptics 控制</td>
-<td>⚠️ 用户打球时不握手机，实用性有限</td>
-</tr>
-<tr>
-<td><strong>自定义可穿戴</strong></td>
-<td>手环/腰带上的振动马达</td>
-<td>✅ 位置灵活；❌ 需要硬件开发</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">MVP 不包含触觉反馈</p>
-<p>触觉反馈需要额外硬件支持，列入 Post-MVP 阶段。</p>
-</div>
-<p><strong>振动模式</strong></p>
-<table>
-<thead>
-<tr>
-<th>模式</th>
-<th>振动时长</th>
-<th>含义</th>
-<th>触发条件</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>短振 (50ms)</td>
-<td>1次</td>
-<td>轻微提示</td>
-<td>接近阈值边界</td>
-</tr>
-<tr>
-<td>短振 (50ms)</td>
-<td>2次</td>
-<td>需要注意</td>
-<td>超出阈值</td>
-</tr>
-<tr>
-<td>长振 (200ms)</td>
-<td>1次</td>
-<td>严重问题</td>
-<td>严重超出阈值</td>
-</tr>
-<tr>
-<td>连续振</td>
-<td>持续</td>
-<td>停止动作</td>
-<td>危险动作</td>
-</tr>
-</tbody>
-</table>
-<p><strong>应用场景</strong></p>
-<table>
-<thead>
-<tr>
-<th>场景</th>
-<th>触发条件</th>
-<th>振动模式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>上杆过快</td>
-<td>上杆时间 &lt; 500ms</td>
-<td>短振 2次</td>
-</tr>
-<tr>
-<td>上杆顶点不够</td>
-<td>X-Factor &lt; 20°</td>
-<td>短振 1次</td>
-</tr>
-<tr>
-<td>下杆过早释放</td>
-<td>手腕角度过早变化</td>
-<td>短振 2次</td>
-</tr>
-<tr>
-<td>疲劳预警</td>
-<td>EMG 激活强度下降 30%</td>
-<td>长振 1次</td>
-</tr>
-</tbody>
-</table>
-<h3 id="53">5.3 分析模式 × 反馈通道<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>分析模式</th>
-<th>语音反馈</th>
-<th>视觉反馈</th>
-<th>触觉反馈</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Step 1: 站姿检查</strong></td>
-<td>✅ 主要</td>
-<td>✅ 辅助</td>
-<td>❌ 不适用</td>
-</tr>
-<tr>
-<td><strong>Step 2: 慢动作分析</strong></td>
-<td>✅ 主要</td>
-<td>✅ 辅助</td>
-<td>✅ 可选</td>
-</tr>
-<tr>
-<td><strong>Step 3: 全速分析</strong></td>
-<td>✅ 辅助</td>
-<td>✅ 主要（事后回放）</td>
-<td>❌ 太快无法干预</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="6">6. 延迟预算<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
-<p><strong>延迟预算(Latency Budget)</strong>是指：从用户做动作到系统给出反馈，整个过程需要多长时间，每个环节各分配多少时间。</p>
-<p>就像做项目有时间预算一样，每个环节分配固定时间，不能超支。</p>
-<p><strong>举例</strong>：用户站好准备挥杆，系统要说"放松肩膀"：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>用户做动作 → 摄像头拍到 → 分析姿势 → 判断问题 → 播放语音 → 用户听到
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>            ↓            ↓          ↓          ↓
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>           33ms        30ms        5ms      100ms
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>           总共 = 33 + 30 + 5 + 100 = 约 170ms (0.17秒)
-</span></code></pre></div>
-<h3 id="61">6.1 端到端延迟分解<a class="headerlink" href="#61" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>┌─────────────────────────────────────────────────────────────────────────────┐
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>│                    END-TO-END LATENCY BREAKDOWN                             │
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>├─────────────────────────────────────────────────────────────────────────────┤
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>│                                                                             │
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>│  传感器采集         特征提取          规则判断          反馈生成                  │
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>│  ────────────     ───────────      ──────────       ──────────              │
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>│                                                                             │
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>│  Vision: 33ms     MediaPipe: 30ms  规则引擎: &lt;5ms   语音TTS: 50-100ms         │
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>│  IMU: &lt;10ms       特征计算: &lt;10ms                   视觉叠加: &lt;20ms            │
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>│  EMG: &lt;5ms        时间同步: &lt;5ms                    触觉振动: &lt;10ms            │
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>│                                                                             │
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>│  ────────────────────────────────────────────────────────────────────────── │
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>│                                                                             │
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>│  延迟预算:    33 + 30 + 5 + 100 = ~170ms                                     │
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>└─────────────────────────────────────────────────────────────────────────────┘
-</span></code></pre></div>
-<h3 id="62">6.2 各场景延迟要求<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
+<h3 id="52">5.2 各场景延迟要求<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -6235,33 +5603,23 @@
 </thead>
 <tbody>
 <tr>
-<td>Setup Check</td>
+<td>站姿引导</td>
 <td>&lt;300ms</td>
 <td>TTS 生成</td>
 <td>用户静止等待，语音是主要反馈方式，TTS 占总延迟 60%</td>
 <td>预缓存常用语音</td>
 </tr>
 <tr>
-<td>Slow Motion</td>
+<td>慢动作引导</td>
 <td>&lt;500ms</td>
 <td>Vision 帧率</td>
 <td>需要追踪连续动作，30fps 每帧 33ms 会累积误差</td>
 <td>提高到 60fps</td>
 </tr>
-<tr>
-<td>Full Speed</td>
-<td>&lt;500ms (挥杆后)</td>
-<td>分析复杂度</td>
-<td>挥杆后需综合多指标判断，规则越多耗时越长</td>
-<td>规则引擎优先</td>
-</tr>
 </tbody>
 </table>
 <hr />
-<h2 id="7">7. 实施路线图<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>📐 <strong>详细规格</strong>: 完整的 MVP 开发阶段见 <a href="../../architecture/mvp-plan/">MVP 开发计划</a></p>
-</blockquote>
+<h2 id="6">6. 实施路线图<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -6273,20 +5631,14 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>MVP</strong></td>
-<td>Step 3: 全速分析 + 挥杆后反馈</td>
-<td>🔴 必须</td>
-<td>MVP 核心功能</td>
-</tr>
-<tr>
 <td><strong>Post-MVP</strong></td>
-<td>Step 1: 站姿检查</td>
+<td>站姿引导</td>
 <td>🟡 高</td>
 <td>需要静态姿态检测</td>
 </tr>
 <tr>
 <td><strong>Post-MVP</strong></td>
-<td>Step 2: 慢动作分析</td>
+<td>慢动作引导</td>
 <td>🟡 高</td>
 <td>实时处理复杂度高</td>
 </tr>
@@ -6296,35 +5648,18 @@
 <td>🟡 中</td>
 <td>需要 Apple Watch 联动</td>
 </tr>
-<tr>
-<td><strong>Post-MVP</strong></td>
-<td>LLM 个性化反馈</td>
-<td>🟢 可选</td>
-<td>按用户特征定制</td>
-</tr>
 </tbody>
 </table>
 <div class="admonition info">
-<p class="admonition-title">为什么 MVP 只做 Step 3?</p>
+<p class="admonition-title">为什么 MVP 不包含引导模式?</p>
 <ol>
-<li><strong>无实时约束</strong> — 可以反复回放同一录制，逐帧调试</li>
-<li><strong>完整数据</strong> — 录制完成后数据完整，不会丢帧</li>
-<li><strong>优先验证核心价值</strong> — 时间对齐是否正确比实时性更重要</li>
+<li><strong>实时约束高</strong> — 需要低延迟实时处理</li>
+<li><strong>依赖完善的阶段检测</strong> — 需要先验证评估模式的阶段检测准确性</li>
+<li><strong>MVP 优先验证核心价值</strong> — 先证明传感器融合分析的价值</li>
 </ol>
 </div>
 <hr />
-<hr />
-<h2 id="8">8. 与其他文档的关系<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>graph TD
-    A[three-step-assessment.md] --&gt; B[system-design.md]
-    A --&gt; C[eight-swing-phases.md]
-    A --&gt; D[research/biomechanics-benchmarks.md]
-
-    B --&gt; E[规则引擎]
-    C --&gt; F[阶段检测]
-    D --&gt; G[阈值参考]
-
-    style A fill:#e1f5fe</code></pre>
+<h2 id="7">7. 相关文档<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -6335,19 +5670,14 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../../architecture/system-design/">系统架构</a></td>
-<td>MVP 管道架构</td>
-<td>规则引擎阈值</td>
+<td><a href="../assessment-mode/">评估模式</a></td>
+<td>全速分析</td>
+<td>验证学习效果</td>
 </tr>
 <tr>
 <td><a href="../eight-swing-phases/">八个挥杆阶段</a></td>
 <td>阶段检测</td>
 <td>阶段触发点</td>
-</tr>
-<tr>
-<td><a href="../../../prerequisites/foundations/biomechanics-benchmarks/">生物力学基准</a></td>
-<td>指标阈值</td>
-<td>问题判断标准</td>
 </tr>
 <tr>
 <td><a href="../../architecture/sensor-data-processing/">传感器映射</a></td>
@@ -6356,7 +5686,8 @@
 </tr>
 </tbody>
 </table>
-<p><strong>最后更新</strong>: 2026-01-05
+<hr />
+<p><strong>最后更新</strong>: 2026-01-06
 <strong>维护者</strong>: Movement Chain AI Team</p>
 
 
