@@ -10,7 +10,7 @@
 
 | 项目 | 内容 |
 |------|------|
-| 受试者 | 2人（A、B） |
+| 受试者 | 2人（A、B）, 业余球手|
 | 时长 | 1天 |
 | 总采集量 | 96次挥杆（目标80次有效 + 20%余量） |
 | 设备 | 1套（串行采集） |
@@ -18,272 +18,7 @@
 
 ---
 
-## 二、受试者
-
-| ID | 要求 |
-|----|------|
-| A | 业余球手 |
-| B | 业余球手 |
-
----
-
-## 三、时间安排
-
-> **注意**：只有1套设备，A/B 需要串行采集，每次切换需要重新佩戴传感器（约5分钟）
-
-### 受试者 A（上午）
-
-| 时间 | 内容 | 说明 |
-|------|------|------|
-| 09:00-09:30 | 设备调试、传感器校准 | |
-| 09:30-09:40 | A 佩戴传感器 | IMU×2 + EMG×2 |
-| **第1组** | | |
-| 09:40-10:05 | A **12次** 正常挥杆 | 含余量 |
-| 10:05-10:10 | 休息 5分钟 | 喝水、放松 |
-| **第2组** | | |
-| 10:10-10:35 | A **12次** 正常挥杆 | 含余量 |
-| 10:35-10:40 | 休息 5分钟 | |
-| **第3组** | | |
-| 10:40-11:05 | A **6次** 正常 + **6次** 错误动作 | |
-| 11:05-11:10 | 休息 5分钟 | |
-| **第4组** | | |
-| 11:10-11:35 | A **12次** 错误动作 | |
-| 11:35-11:45 | A 摘除传感器 | |
-
-### 午休
-
-| 时间 | 内容 | 说明 |
-|------|------|------|
-| 11:45-13:15 | **午休** | 1.5小时休息 |
-
-### 受试者 B（下午）
-
-| 时间 | 内容 | 说明 |
-|------|------|------|
-| 13:15-13:25 | B 佩戴传感器 | IMU×2 + EMG×2 |
-| **第1组** | | |
-| 13:25-13:50 | B **12次** 正常挥杆 | 含余量 |
-| 13:50-13:55 | 休息 5分钟 | 喝水、放松 |
-| **第2组** | | |
-| 13:55-14:20 | B **12次** 正常挥杆 | 含余量 |
-| 14:20-14:25 | 休息 5分钟 | |
-| **第3组** | | |
-| 14:25-14:50 | B **6次** 正常 + **6次** 错误动作 | |
-| 14:50-14:55 | 休息 5分钟 | |
-| **第4组** | | |
-| 14:55-15:20 | B **12次** 错误动作 | |
-| 15:20-15:30 | B 摘除传感器 | |
-| 15:30-15:50 | 数据检查、补采 | 预留20分钟 |
-
-### 休息原则
-
-| 情况 | 休息时长 | 说明 |
-|------|---------|------|
-| 每10次挥杆后 | 5分钟 | 防止疲劳累积 |
-| 每15次挥杆后 | 10分钟 | 较长休息 |
-| 换人前 | 10分钟 | 摘除/佩戴传感器 |
-| 午休 | 1.5小时 | - |
-
----
-
-## 四、采集汇总
-
-### 失败余量预估
-
-> 假设采集失败率约 **15-20%**（传感器脱落、数据异常、动作不到位等）
-
-| 类型 | 采集次数 |
-|------|---------|
-| 正常挥杆 | 60次（30次/人） |
-| 错误动作 | 36次（18次/人） |
-| **总计** | **96次** |
-
-**每人采集明细**：
-
-| 组别 | 正常挥杆 | 错误动作 | 小计 |
-|------|---------|---------|------|
-| 第1组 | 12次 | 0次 | 12次 |
-| 第2组 | 12次 | 0次 | 12次 |
-| 第3组 | 6次 | 6次 | 12次 |
-| 第4组 | 0次 | 12次 | 12次 |
-| **合计** | **30次** | **18次** | **48次** |
-
-**补采时间**：结束前预留 20 分钟用于补采失败数据
-
-### 错误动作类型（对应6条诊断规则）
-
-| 优先级 | 错误类型 | 触发条件 | 数据源 | 次数/人 | 总次数 | 动作指导 |
-|-------|---------|---------|--------|--------|--------|---------|
-| P0 | 倒序运动链 | 前臂先于核心激活 (gap < -20ms) | EMG | 3次 | 6次 | 刻意用手臂启动下杆 |
-| P0 | 过度手臂挥杆 | Forearm/Core ratio > 1.3 | EMG | 3次 | 6次 | 核心不发力，纯手臂挥 |
-| P1 | X-Factor 不足 | X-Factor < 20° | Vision | 3次 | 6次 | 最小化肩髋分离 |
-| P1 | 节奏过快 | Downswing < 0.20s | IMU | 3次 | 6次 | 尽可能快地下杆 |
-| P1 | 节奏过慢 | Downswing > 0.40s | IMU | 3次 | 6次 | 刻意放慢下杆速度 |
-| P1 | 早释放 | Wrist release < 40% downswing | IMU | 3次 | 6次 | 下杆初期就打开手腕 |
-| | **合计** | | | **18次** | **36次** | |
-
-### 错误动作参考视频
-
-| 错误类型 | 参考资料 | 链接 |
-|---------|---------|------|
-| 倒序运动链 | Golf.com - Step Drill (Harrington) | [链接](https://golf.com/instruction/driving/step-drill-sequencing-padraig-harrington/) |
-| 倒序运动链 | RotarySwing - Sequencing Drill | [链接](https://rotaryswing.com/golf-instruction/golfbiomechanics/golf-swing-sequencing-drill) |
-| 过度手臂挥杆 | Golf Distillery - All Arms Swing | [链接](https://www.golfdistillery.com/swing-errors/all-arms-swing/) |
-| 过度手臂挥杆 | HackMotion - Over the Top Fix | [链接](https://hackmotion.com/over-the-top-golf-swing/) |
-| X-Factor 不足 | TPI - X-Factor Essentials | [链接](https://www.mytpi.com/articles/fitness/x-factor_essentials_what_it_is_and_how_to_train_it) |
-| X-Factor 不足 | SwingStation - Hip Twister Drill | [链接](https://swingstation.com/video/downswing-separation-drill-hip-twister-ll) |
-| 节奏过快 | RotarySwing - Stop Rushing Downswing | [链接](https://rotaryswing.com/golf-instruction/stop-rushing-downswing-golf) |
-| 节奏过快 | Performance Golf - Rushing Fix | [链接](https://www.performancegolf.com/stop-rushing-downswing) |
-| 节奏过慢 | Golf Distillery - Deceleration Fix | [链接](https://www.golfdistillery.com/swing-errors/decel/) |
-| 节奏过慢 | Left Rough - Deceleration Cure | [链接](https://theleftrough.com/golf-swing-deceleration/) |
-| 早释放 | HackMotion - Stop Early Release | [链接](https://hackmotion.com/stop-early-release-in-golf-swing/) |
-| 早释放 | Golf Distillery - Casting Fix | [链接](https://www.golfdistillery.com/swing-errors/casting/) |
-
----
-
-## 五、数据量说明
-
-> **本计划定位**：流程验证（Pilot Study），非完整基准数据库
-
-| 用途 | 80次够吗 | 说明 |
-|------|---------|------|
-| 验证传感器工作正常 | ✅ 够 | 能看到数据波形 |
-| 验证阶段检测算法 | ✅ 够 | Top/Impact 能检测 |
-| 验证6条规则能触发 | ✅ 够 | 每种错误4-6次可验证逻辑 |
-| 计算指标基准值 | ❌ 偏少 | 需要至少20-30次/人才有统计意义 |
-| 训练ML模型 | ❌ 不够 | 至少需要200-500次 |
-
-**后续扩展建议**：
-- 流程验证通过后，可扩展到 150-200 次建立基准
-- ML 训练需要 500+ 次数据
-
-### 代码开发阶段数据需求
-
-| 开发任务 | 80次够吗 | 说明 |
-|---------|---------|------|
-| 数据采集代码 | ✅ 够 | 1次就能验证数据流 |
-| 数据解析/预处理 | ✅ 够 | 几次数据就能调通 |
-| 阶段检测算法 (Top/Impact) | ✅ 够 | 10-20次足够调参 |
-| 6条诊断规则实现 | ✅ 够 | 每种错误4-6次可验证逻辑 |
-| 可视化/Dashboard | ✅ 够 | 有数据就能开发 |
-| 单元测试/集成测试 | ✅ 够 | 作为测试数据集 |
-| 端到端流程验证 | ✅ 够 | 完整跑通整个pipeline |
-
-**建议开发顺序**：
-1. 先用 Plan A 的 80 次数据写完所有代码
-2. 代码调通后，再扩展采集更多数据用于统计/ML
-
----
-
-## 六、验证目标
-
-- [ ] IMU 检测 Impact 时刻
-- [ ] EMG 区分核心 vs 手臂激活顺序
-- [ ] 时间同步 <1ms
-- [ ] 6条诊断规则全部可触发
-
----
-
-## 七、原始数据格式
-
-### 7.1 IMU 数据（1666Hz）
-
-```csv
-timestamp_ms, acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z
-0.0,    0.12,  9.78,  0.34,   2.1,   -1.3,    5.2
-0.6,    0.15,  9.81,  0.31,   3.4,   -2.1,   12.8
-1.2,    0.21,  9.75,  0.29,  15.2,   -8.4,   85.3
-...
-600.0,  2.34,  8.12,  3.21, 180.5, -120.3, 1850.2  ← Impact 附近
-```
-
-- **acc**: 加速度 (g)
-- **gyro**: 角速度 (°/s)
-
-### 7.2 EMG 数据（1000Hz）
-
-```csv
-timestamp_ms, forearm_raw, forearm_rms, core_raw, core_rms
-0.0,    12,   0.02,    8,   0.01
-1.0,    15,   0.02,   11,   0.01
-2.0,    18,   0.03,   45,   0.08  ← 核心先激活
-...
-350.0, 180,   0.42,  120,   0.35  ← 前臂后激活
-```
-
-- **raw**: 原始 ADC 值
-- **rms**: 平滑后的激活强度 (0-1)
-
-### 7.3 Vision 数据（30fps）
-
-```csv
-timestamp_ms, shoulder_x, shoulder_y, hip_x, hip_y, wrist_x, wrist_y, ...
-0,     320, 180, 325, 350, 280, 420
-33,    318, 178, 326, 352, 275, 415
-66,    312, 172, 330, 355, 260, 400
-...
-```
-
-- 33个 MediaPipe 关键点的 x, y 坐标
-
-### 7.4 计算后的指标（每次挥杆1条）
-
-```json
-{
-  "swing_id": "A_001",
-  "timestamp": "2026-01-08T10:23:45",
-  "subject": "A",
-
-  "phases": {
-    "address_ms": 0,
-    "top_ms": 720,
-    "impact_ms": 980
-  },
-
-  "metrics": {
-    "x_factor": 48.2,
-    "shoulder_rotation": 92.5,
-    "hip_rotation": 47.1,
-    "peak_angular_velocity": 1820,
-    "tempo_ratio": 2.8,
-    "backswing_duration_ms": 720,
-    "downswing_duration_ms": 260,
-    "core_activation_pct": 0.72,
-    "core_forearm_delay_ms": 45
-  },
-
-  "diagnosis": {
-    "triggered_rules": [],
-    "score": 85
-  }
-}
-```
-
----
-
-## 八、文件结构
-
-```text
-data/
-├── raw/
-│   ├── A_001/
-│   │   ├── imu.csv       (~100KB)
-│   │   ├── emg.csv       (~60KB)
-│   │   ├── vision.csv    (~30KB)
-│   │   └── video.mp4     (~5MB)
-│   ├── A_002/
-│   └── ...
-├── processed/
-│   └── swings.json       (所有挥杆的计算指标)
-└── labels/
-    └── annotations.csv   (人工标注)
-```
-
-80次挥杆 ≈ **400-500MB** 总数据量
-
----
-
-## 九、设备清单
+## 二、设备清单
 
 | 设备 | 数量 | 用途 |
 |------|------|------|
@@ -297,7 +32,7 @@ data/
 
 ---
 
-## 十、传感器佩戴位置
+## 三、传感器佩戴位置
 
 ### 位置方案选择
 
@@ -363,7 +98,117 @@ data/
 
 ---
 
-## 十一、采集操作流程
+
+## 四、时间安排
+
+> **注意**：只有1套设备，A/B 需要串行采集，每次切换需要重新佩戴传感器（约5分钟）
+
+### 受试者 A（上午，总时长 2小时45分钟）
+
+| 时间 | 时长 | 内容 | 说明 |
+|------|------|------|------|
+| 09:00-09:30 | 30min | 设备调试、传感器校准 | |
+| 09:30-09:40 | 10min | A 佩戴传感器 | IMU×2 + EMG×2 |
+| **第1组** | | | |
+| 09:40-10:05 | 25min | A **12次** 正常挥杆 | |
+| 10:05-10:10 | 5min | 休息 | 喝水、放松 |
+| **第2组** | | | |
+| 10:10-10:35 | 25min | A **12次** 正常挥杆 | |
+| 10:35-10:40 | 5min | 休息 | |
+| **第3组** | | | |
+| 10:40-11:05 | 25min | A **6次** 正常 + **6次** 错误 | |
+| 11:05-11:10 | 5min | 休息 | |
+| **第4组** | | | |
+| 11:10-11:35 | 25min | A **12次** 错误动作 | |
+| 11:35-11:45 | 10min | A 摘除传感器 | |
+
+### 午休
+
+| 时间 | 时长 | 内容 |
+|------|------|------|
+| 11:45-13:15 | 90min | **午休** |
+
+### 受试者 B（下午，总时长 2小时35分钟）
+
+| 时间 | 时长 | 内容 | 说明 |
+|------|------|------|------|
+| 13:15-13:25 | 10min | B 佩戴传感器 | IMU×2 + EMG×2 |
+| **第1组** | | | |
+| 13:25-13:50 | 25min | B **12次** 正常挥杆 | |
+| 13:50-13:55 | 5min | 休息 | 喝水、放松 |
+| **第2组** | | | |
+| 13:55-14:20 | 25min | B **12次** 正常挥杆 | |
+| 14:20-14:25 | 5min | 休息 | |
+| **第3组** | | | |
+| 14:25-14:50 | 25min | B **6次** 正常 + **6次** 错误 | |
+| 14:50-14:55 | 5min | 休息 | |
+| **第4组** | | | |
+| 14:55-15:20 | 25min | B **12次** 错误动作 | |
+| 15:20-15:30 | 10min | B 摘除传感器 | |
+| 15:30-15:50 | 20min | 数据检查、补采 | |
+
+### 休息原则
+
+每12次挥杆后, 休息5分钟, 防止疲劳累积.
+
+---
+
+## 五、采集汇总
+
+**失败余量预估**
+
+> 假设采集失败率约 **15-20%**（传感器脱落、数据异常、动作不到位等）
+
+| 类型 | 采集次数 |
+|------|---------|
+| 正常挥杆 | 60次（30次/人） |
+| 错误动作 | 36次（18次/人） |
+| **总计** | **96次** |
+
+**每人采集明细**：
+
+| 组别 | 正常挥杆 | 错误动作 | 小计 |
+|------|---------|---------|------|
+| 第1组 | 12次 | 0次 | 12次 |
+| 第2组 | 12次 | 0次 | 12次 |
+| 第3组 | 6次 | 6次 | 12次 |
+| 第4组 | 0次 | 12次 | 12次 |
+| **合计** | **30次** | **18次** | **48次** |
+
+**补采时间**：结束前预留 20 分钟用于补采失败数据
+
+### 错误动作类型（对应6条诊断规则）
+
+| 优先级 | 错误类型 | 触发条件 | 数据源 | 次数/人 | 总次数 | 动作指导 |
+|-------|---------|---------|--------|--------|--------|---------|
+| P0 | 倒序运动链 | 前臂先于核心激活 (gap < -20ms) | EMG | 3次 | 6次 | 刻意用手臂启动下杆 |
+| P0 | 过度手臂挥杆 | Forearm/Core ratio > 1.3 | EMG | 3次 | 6次 | 核心不发力，纯手臂挥 |
+| P1 | X-Factor 不足 | X-Factor < 20° | Vision | 3次 | 6次 | 最小化肩髋分离 |
+| P1 | 节奏过快 | Downswing < 0.20s | IMU | 3次 | 6次 | 尽可能快地下杆 |
+| P1 | 节奏过慢 | Downswing > 0.40s | IMU | 3次 | 6次 | 刻意放慢下杆速度 |
+| P1 | 早释放 | Wrist release < 40% downswing | IMU | 3次 | 6次 | 下杆初期就打开手腕 |
+| | **合计** | | | **18次** | **36次** | |
+
+### 错误动作参考视频
+
+| 错误类型 | 参考资料 | 链接 |
+|---------|---------|------|
+| 倒序运动链 | Golf.com - Step Drill (Harrington) | [链接](https://golf.com/instruction/driving/step-drill-sequencing-padraig-harrington/) |
+| 倒序运动链 | RotarySwing - Sequencing Drill | [链接](https://rotaryswing.com/golf-instruction/golfbiomechanics/golf-swing-sequencing-drill) |
+| 过度手臂挥杆 | Golf Distillery - All Arms Swing | [链接](https://www.golfdistillery.com/swing-errors/all-arms-swing/) |
+| 过度手臂挥杆 | HackMotion - Over the Top Fix | [链接](https://hackmotion.com/over-the-top-golf-swing/) |
+| X-Factor 不足 | TPI - X-Factor Essentials | [链接](https://www.mytpi.com/articles/fitness/x-factor_essentials_what_it_is_and_how_to_train_it) |
+| X-Factor 不足 | SwingStation - Hip Twister Drill | [链接](https://swingstation.com/video/downswing-separation-drill-hip-twister-ll) |
+| 节奏过快 | RotarySwing - Stop Rushing Downswing | [链接](https://rotaryswing.com/golf-instruction/stop-rushing-downswing-golf) |
+| 节奏过快 | Performance Golf - Rushing Fix | [链接](https://www.performancegolf.com/stop-rushing-downswing) |
+| 节奏过慢 | Golf Distillery - Deceleration Fix | [链接](https://www.golfdistillery.com/swing-errors/decel/) |
+| 节奏过慢 | Left Rough - Deceleration Cure | [链接](https://theleftrough.com/golf-swing-deceleration/) |
+| 早释放 | HackMotion - Stop Early Release | [链接](https://hackmotion.com/stop-early-release-in-golf-swing/) |
+| 早释放 | Golf Distillery - Casting Fix | [链接](https://www.golfdistillery.com/swing-errors/casting/) |
+
+---
+
+## 六、采集操作流程
 
 ### 单次挥杆采集步骤
 
@@ -374,7 +219,7 @@ data/
    └── 受试者站好准备姿势（Address）
 
 2. 开始录制
-   ├── 点击 APP "开始采集" 按钮
+   ├── 点击 "开始采集" 按钮
    ├── 等待 2 秒（让所有传感器同步）
    └── 语音提示 "开始"
 
@@ -393,20 +238,151 @@ data/
    └── 如异常则标记并补采
 ```
 
-### 错误动作采集提示
+---
 
-| 错误类型 | 采集前提示语 |
-|---------|-------------|
-| 倒序运动链 | "这次请用手臂启动下杆，不要转髋" |
-| 过度手臂挥杆 | "这次请只用手臂挥，核心不要发力" |
-| X-Factor 不足 | "这次上杆时肩膀和髋尽量一起转，不要分离" |
-| 节奏过快 | "这次下杆请尽可能快，越快越好" |
-| 节奏过慢 | "这次下杆请慢慢来，像慢动作一样" |
-| 早释放 | "这次下杆一开始就把手腕打开" |
+## 七、验证目标
+
+- [ ] IMU 检测 Impact 时刻
+- [ ] EMG 区分核心 vs 手臂激活顺序
+- [ ] 时间同步 <1ms
+- [ ] 6条诊断规则全部可触发
 
 ---
 
-## 十二、数据质量检查清单
+## 八、数据量说明
+
+> **本计划定位**：流程验证（Pilot Study），非完整基准数据库
+
+| 用途 | 80次够吗 | 说明 |
+|------|---------|------|
+| 验证传感器工作正常 | ✅ 够 | 能看到数据波形 |
+| 验证阶段检测算法 | ✅ 够 | Top/Impact 能检测 |
+| 验证6条规则能触发 | ✅ 够 | 每种错误4-6次可验证逻辑 |
+| 计算指标基准值 | ❌ 偏少 | 需要至少20-30次/人才有统计意义 |
+| 训练ML模型 | ❌ 不够 | 至少需要200-500次 |
+
+**后续扩展建议**：
+- 流程验证通过后，可扩展到 150-200 次建立基准
+- ML 训练需要 500+ 次数据
+
+### 代码开发阶段数据需求
+
+| 开发任务 | 80次够吗 | 说明 |
+|---------|---------|------|
+| 数据采集代码 | ✅ 够 | 1次就能验证数据流 |
+| 数据解析/预处理 | ✅ 够 | 几次数据就能调通 |
+| 阶段检测算法 (Top/Impact) | ✅ 够 | 10-20次足够调参 |
+| 6条诊断规则实现 | ✅ 够 | 每种错误4-6次可验证逻辑 |
+| 可视化/Dashboard | ✅ 够 | 有数据就能开发 |
+| 单元测试/集成测试 | ✅ 够 | 作为测试数据集 |
+| 端到端流程验证 | ✅ 够 | 完整跑通整个pipeline |
+
+**建议开发顺序**：
+1. 先用 Plan A 的 80 次数据写完所有代码
+2. 代码调通后，再扩展采集更多数据用于统计/ML
+
+---
+
+## 九、原始数据格式
+
+### 9.1 IMU 数据（1666Hz）
+
+```csv
+timestamp_ms, acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z
+0.0,    0.12,  9.78,  0.34,   2.1,   -1.3,    5.2
+0.6,    0.15,  9.81,  0.31,   3.4,   -2.1,   12.8
+1.2,    0.21,  9.75,  0.29,  15.2,   -8.4,   85.3
+...
+600.0,  2.34,  8.12,  3.21, 180.5, -120.3, 1850.2  ← Impact 附近
+```
+
+- **acc**: 加速度 (g)
+- **gyro**: 角速度 (°/s)
+
+### 9.2 EMG 数据（1000Hz）
+
+```csv
+timestamp_ms, forearm_raw, forearm_rms, core_raw, core_rms
+0.0,    12,   0.02,    8,   0.01
+1.0,    15,   0.02,   11,   0.01
+2.0,    18,   0.03,   45,   0.08  ← 核心先激活
+...
+350.0, 180,   0.42,  120,   0.35  ← 前臂后激活
+```
+
+- **raw**: 原始 ADC 值
+- **rms**: 平滑后的激活强度 (0-1)
+
+### 9.3 Vision 数据（30fps）
+
+```csv
+timestamp_ms, shoulder_x, shoulder_y, hip_x, hip_y, wrist_x, wrist_y, ...
+0,     320, 180, 325, 350, 280, 420
+33,    318, 178, 326, 352, 275, 415
+66,    312, 172, 330, 355, 260, 400
+...
+```
+
+- 33个 MediaPipe 关键点的 x, y 坐标
+
+### 9.4 计算后的指标（每次挥杆1条）
+
+```json
+{
+  "swing_id": "A_001",
+  "timestamp": "2026-01-08T10:23:45",
+  "subject": "A",
+
+  "phases": {
+    "address_ms": 0,
+    "top_ms": 720,
+    "impact_ms": 980
+  },
+
+  "metrics": {
+    "x_factor": 48.2,
+    "shoulder_rotation": 92.5,
+    "hip_rotation": 47.1,
+    "peak_angular_velocity": 1820,
+    "tempo_ratio": 2.8,
+    "backswing_duration_ms": 720,
+    "downswing_duration_ms": 260,
+    "core_activation_pct": 0.72,
+    "core_forearm_delay_ms": 45
+  },
+
+  "diagnosis": {
+    "triggered_rules": [],
+    "score": 85
+  }
+}
+```
+
+---
+
+## 十、文件结构
+
+```text
+data/
+├── raw/
+│   ├── A_001/
+│   │   ├── imu.csv       (~100KB)
+│   │   ├── emg.csv       (~60KB)
+│   │   ├── vision.csv    (~30KB)
+│   │   └── video.mp4     (~5MB)
+│   ├── A_002/
+│   └── ...
+├── processed/
+│   └── swings.json       (所有挥杆的计算指标)
+└── labels/
+    └── annotations.csv   (人工标注)
+```
+
+80次挥杆 ≈ **400-500MB** 总数据量
+
+---
+
+## 十一、数据质量检查清单
 
 ### 采集中实时检查
 
@@ -438,7 +414,7 @@ data/
 
 ---
 
-## 十三、风险与备用方案
+## 十二、风险与备用方案
 
 | 风险 | 概率 | 影响 | 备用方案 |
 |------|------|------|---------|
