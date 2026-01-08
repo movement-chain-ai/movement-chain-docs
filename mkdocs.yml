@@ -158,6 +158,7 @@ nav:
               - 信号处理: design/architecture/data-processing/signal-processing.md
               - 指标计算: design/architecture/data-processing/metrics-calculation.md
               - 数据采集计划 A: design/architecture/data-processing/data-collection-plan-a.md
+              - 数据采集计划 B: design/architecture/data-processing/data-collection-plan-b.md
       - 产品设计:
           - 概览: design/specs/index.md
           - 三种产品版本: design/specs/three-product-versions.md
