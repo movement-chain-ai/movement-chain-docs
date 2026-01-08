@@ -166,8 +166,8 @@ nav:
               - 练习模式: design/specs/modes/drill-mode.md
               - 引导模式: design/specs/modes/guide-mode.md
               - 实战模式: design/specs/modes/game-mode.md
+          - 三种反馈通道: design/specs/feedback-system.md
           - 用户信息和阈值调整: design/specs/user-profile-thresholds.md
-          - 反馈系统: design/specs/feedback-system.md
       - 技术决策:
           - 概览: design/decisions/index.md
           - ADR-0001 多仓库结构: design/decisions/0001-multi-repo-structure.md
