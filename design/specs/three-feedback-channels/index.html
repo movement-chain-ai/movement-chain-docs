@@ -2541,10 +2541,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#231" class="md-nav__link">
+  <a href="#231-ui" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3.1 视频叠加
+        2.3.1 评估报告 UI
       
     </span>
   </a>
@@ -2555,7 +2555,18 @@
   <a href="#232" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3.2 教学视频
+        2.3.2 用户视频
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.3 教学视频
       
     </span>
   </a>
@@ -5152,10 +5163,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#231" class="md-nav__link">
+  <a href="#231-ui" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3.1 视频叠加
+        2.3.1 评估报告 UI
       
     </span>
   </a>
@@ -5166,7 +5177,18 @@
   <a href="#232" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3.2 教学视频
+        2.3.2 用户视频
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.3 教学视频
       
     </span>
   </a>
@@ -5653,8 +5675,51 @@
 </span></code></pre></div>
 <h3 id="23">2.3 视觉反馈<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
 <p>视觉反馈延迟最低，适用于精确展示位置和角度信息。</p>
-<h4 id="231">2.3.1 视频叠加<a class="headerlink" href="#231" title="Permanent link">&para;</a></h4>
-<p>在用户采集的视频上叠加以下信息（实时预览或回放）：</p>
+<h4 id="231-ui">2.3.1 评估报告 UI<a class="headerlink" href="#231-ui" title="Permanent link">&para;</a></h4>
+<p>评估完成后生成的可视化报告界面：</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>说明</th>
+<th>内容示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>问题卡片</strong></td>
+<td>每个问题独立卡片展示</td>
+<td>问题描述 + 严重程度 + 改进建议</td>
+</tr>
+<tr>
+<td><strong>视频回放</strong></td>
+<td>带标注的关键片段回放</td>
+<td>问题时刻 + 姿态骨架 + 角度标注</td>
+</tr>
+<tr>
+<td><strong>数据图表</strong></td>
+<td>sEMG / IMU 数据可视化</td>
+<td>肌肉激活时序图、关节角度曲线</td>
+</tr>
+<tr>
+<td><strong>热力图</strong></td>
+<td>肌肉激活强度分布</td>
+<td>颜色渐变表示激活程度</td>
+</tr>
+<tr>
+<td><strong>对比视图</strong></td>
+<td>用户动作 vs 标准动作</td>
+<td>分屏或叠加对比</td>
+</tr>
+<tr>
+<td><strong>评分概览</strong></td>
+<td>整体评估得分</td>
+<td>各维度评分 + 综合得分</td>
+</tr>
+</tbody>
+</table>
+<h4 id="232">2.3.2 用户视频<a class="headerlink" href="#232" title="Permanent link">&para;</a></h4>
+<p>采集用户视频, 并在视频上叠加以下信息（实时或回放）：</p>
 <table>
 <thead>
 <tr>
@@ -5699,7 +5764,7 @@
 <blockquote>
 <p><strong>开发调试工具</strong>：开发阶段可使用 <a href="https://rerun.io/">Rerun SDK</a> 进行视频叠加调试和姿态分析可视化。Rerun 支持 MediaPipe 姿态点的 2D/3D 可视化，适合快速验证算法效果。生产环境使用原生方案（iOS: Core Graphics / Metal）。</p>
 </blockquote>
-<h4 id="232">2.3.2 教学视频<a class="headerlink" href="#232" title="Permanent link">&para;</a></h4>
+<h4 id="233">2.3.3 教学视频<a class="headerlink" href="#233" title="Permanent link">&para;</a></h4>
 <p>预制的动作演示视频，帮助用户理解正确动作：</p>
 <table>
 <thead>
@@ -5751,7 +5816,7 @@
 <td>⚠️ 用户打球时不握手机，实用性有限</td>
 </tr>
 <tr>
-<td><strong>自定义可穿戴</strong></td>
+<td><strong>自定义可穿戴输出设备</strong></td>
 <td>手环/腰带上的振动马达</td>
 <td>✅ 位置灵活；❌ 需要硬件开发</td>
 </tr>
