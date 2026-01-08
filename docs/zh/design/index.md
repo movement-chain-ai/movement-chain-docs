@@ -47,7 +47,7 @@
 | 文档 | 内容 |
 |------|------|
 | [八个挥杆阶段](specs/eight-swing-phases.md) | 8阶段定义与检测方法 |
-| [三个训练场景](specs/modes/assessment-mode.md) | 三个训练场景与反馈通道 |
+| [评估模式](specs/modes/assessment-mode.md) | 三段式评估设计 |
 | [四种对比基准](specs/four-comparison-methods.md) | DTW 与四种对比基准 |
 | [用户信息和阈值调整](specs/user-profile-thresholds.md) | 按用户特征调整阈值 |
 

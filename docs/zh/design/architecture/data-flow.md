@@ -2,7 +2,7 @@
 
 > **文档状态**: 草稿 v1.2
 > **最后更新**: 2025-12-23
-> **关联文档**: [模块化设计](modular-architecture.md) | [三个训练场景](../specs/modes/assessment-mode.md) | [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) | [关键决策 2025-12](../decisions/architecture-decisions-2025-12-23.md)
+> **关联文档**: [模块化设计](modular-architecture.md) | [评估模式](../specs/modes/assessment-mode.md) | [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) | [关键决策 2025-12](../decisions/architecture-decisions-2025-12-23.md)
 
 ---
 
@@ -720,7 +720,7 @@ Kinematic Prompt 是将计算特征转换为 LLM 可理解的结构化文本。�
 
 ### 2.5 D6-D7 用户体验设计 {#4-用户体验设计}
 
-### 2.5.1 用户界面
+#### 2.5.1 用户界面
 
 用户在手机 App 上看到的界面简洁明了:
 
@@ -777,7 +777,7 @@ Kinematic Prompt 是将计算特征转换为 LLM 可理解的结构化文本。�
 
 ---
 
-### 2.5.2 语音反馈
+#### 2.5.2 语音反馈
 
 **预录音频 (快速响应)**:
 
@@ -1071,7 +1071,7 @@ Phase 4+ (Week 5-8): Integration & Testing
 ## 相关文档
 
 - [模块化设计](modular-architecture.md) - 系统模块详细设计
-- [三个训练场景](../specs/modes/assessment-mode.md) - 反馈时延和通道详解
+- [三个反馈通道](../specs/three-feedback-channels.md) - 反馈时延和通道详解
 - [生物力学基准](../../prerequisites/foundations/biomechanics-benchmarks.md) - 完整阈值表
 - [数据处理与指标计算](./sensor-data-processing.md) - 数据计算公式
 

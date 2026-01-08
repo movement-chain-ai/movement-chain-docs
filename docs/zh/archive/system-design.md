@@ -18,7 +18,7 @@
     |:----:|------|------|
     | 1️⃣ | **本文档** (system-design.md) | 架构总览、数据流、规则引擎 |
     | 2️⃣ | [八个挥杆阶段](../design/specs/eight-swing-phases.md) | 挥杆相位检测方法与代码 |
-    | 3️⃣ | [三个训练场景](../design/specs/modes/assessment-mode.md) | 三个训练场景与反馈通道 |
+    | 3️⃣ | [评估模式](../design/specs/modes/assessment-mode.md) | 三段式评估设计 |
     | 4️⃣ | [ML 基础入门](../prerequisites/ml-basics.md) | 什么需要 ML、什么用物理公式 |
     | 5️⃣ | [SDK 选型指南](../design/decisions/sdk-selection.md) | 所有库的安装命令、Stars |
     | 6️⃣ | MVP 原型代码 (见移动开发文档) | 无需硬件即可测试，Mock 数据 |
