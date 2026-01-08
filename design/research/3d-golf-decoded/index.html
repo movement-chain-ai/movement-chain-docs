@@ -3133,6 +3133,56 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2.3 可视化元素清单">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.1 线条类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.2 数据标注
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.3 视觉效果
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#234" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.4 文字标注
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -5219,6 +5269,56 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2.3 可视化元素清单">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.1 线条类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.2 数据标注
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.3 视觉效果
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#234" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.4 文字标注
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -5740,50 +5840,170 @@
 </tbody>
 </table>
 <h3 id="23">2.3 可视化元素清单<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
-<p>他们的动画界面有很强的<strong>教学直观性</strong>：</p>
+<p>他们的动画界面有很强的<strong>教学直观性</strong>，以下是可供我们参考的标注元素：</p>
+<h4 id="231">2.3.1 线条类型<a class="headerlink" href="#231" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
-<th>可视化元素</th>
+<th>线条类型</th>
+<th>视觉样式</th>
+<th>用途</th>
+<th>我们可参考的场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>角度弧线</strong></td>
+<td>紫色/蓝色圆弧 + 角度数值</td>
+<td>标注关节旋转角度（髋、肩、膝）</td>
+<td>视频回放中标注IMU角度</td>
+</tr>
+<tr>
+<td><strong>运动轨迹线</strong></td>
+<td>彩虹渐变色曲线</td>
+<td>显示杆头/手部运动路径</td>
+<td>视频回放中叠加轨迹</td>
+</tr>
+<tr>
+<td><strong>力线/矢量线</strong></td>
+<td>箭头线条</td>
+<td>显示力的方向和大小</td>
+<td>标注发力方向</td>
+</tr>
+<tr>
+<td><strong>参考线</strong></td>
+<td>白色/灰色虚线</td>
+<td>地面线、目标线、垂直线</td>
+<td>对齐参考</td>
+</tr>
+<tr>
+<td><strong>连接线</strong></td>
+<td>细线连接关节点</td>
+<td>骨骼简化显示</td>
+<td>姿态骨架叠加</td>
+</tr>
+<tr>
+<td><strong>重心轨迹</strong></td>
+<td>点状轨迹线</td>
+<td>显示重心移动路径</td>
+<td>重心转移可视化</td>
+</tr>
+</tbody>
+</table>
+<h4 id="232">2.3.2 数据标注<a class="headerlink" href="#232" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>显示方式</th>
+<th>典型值</th>
+<th>我们可标注的数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>角度值</strong></td>
+<td>数字 + 度数符号</td>
+<td>45°、90°</td>
+<td>IMU关节角度</td>
+</tr>
+<tr>
+<td><strong>速度值</strong></td>
+<td>数字 + 单位</td>
+<td>120 mph</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>百分比</strong></td>
+<td>数字 + %</td>
+<td>80%</td>
+<td>肌肉激活百分比（sEMG）</td>
+</tr>
+<tr>
+<td><strong>时间戳</strong></td>
+<td>动作阶段标记</td>
+<td>Address、Top、Impact</td>
+<td>动作阶段划分</td>
+</tr>
+</tbody>
+</table>
+<h4 id="233">2.3.3 视觉效果<a class="headerlink" href="#233" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>效果类型</th>
 <th>说明</th>
-<th>对学习者的价值</th>
+<th>用途</th>
+<th>我们可参考的场景</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>肌肉高亮</strong></td>
-<td>不同颜色标记参与的肌肉群</td>
+<td>颜色变化标记激活肌肉群</td>
 <td>理解"该用哪些肌肉发力"</td>
+<td>指导视频中高亮目标肌群</td>
 </tr>
 <tr>
-<td><strong>角度标注圆</strong></td>
-<td>紫色圆圈标注髋部/肩部旋转角度</td>
-<td>量化动作幅度，有具体目标</td>
+<td><strong>脉冲/光晕</strong></td>
+<td>发力瞬间的视觉强调</td>
+<td>突出发力时机</td>
+<td>关键发力点提示</td>
 </tr>
 <tr>
-<td><strong>运动轨迹线</strong></td>
-<td>彩虹色轨迹线显示球/杆头路径</td>
-<td>理解 Draw/Fade 的区别</td>
+<td><strong>半透明叠加</strong></td>
+<td>骨骼在肌肉上方半透明显示</td>
+<td>同时看到内外结构</td>
+<td>数据叠加在视频上</td>
 </tr>
 <tr>
-<td><strong>对比视图</strong></td>
-<td>左右对比（正确 vs 错误）</td>
-<td>直观看到差异在哪</td>
+<td><strong>颜色渐变</strong></td>
+<td>从冷色到暖色表示强度</td>
+<td>量化显示程度差异</td>
+<td>sEMG激活强度</td>
 </tr>
 <tr>
-<td><strong>骨骼叠加</strong></td>
-<td>肌肉 + 骨骼线条同时显示</td>
-<td>理解骨骼如何驱动肌肉</td>
+<td><strong>对比分屏</strong></td>
+<td>左右/上下分屏对比</td>
+<td>正确vs错误、前后对比</td>
+<td>用户动作vs标准动作</td>
+</tr>
+</tbody>
+</table>
+<h4 id="234">2.3.4 文字标注<a class="headerlink" href="#234" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>标注类型</th>
+<th>样式</th>
+<th>示例</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>动作标题</strong></td>
+<td>大字、醒目</td>
+<td>"Trail Hip Control"</td>
+<td>快速传达主题</td>
 </tr>
 <tr>
-<td><strong>文字标签</strong></td>
-<td>大字标题如 "Trail Hip Control"</td>
-<td>快速理解动作要点</td>
+<td><strong>数值标签</strong></td>
+<td>数字 + 单位</td>
+<td>"45°"、"120 mph"</td>
+<td>量化反馈</td>
 </tr>
 <tr>
-<td><strong>数值显示</strong></td>
-<td>角度、速度等具体数字</td>
-<td>量化反馈，可追踪进步</td>
+<td><strong>阶段标记</strong></td>
+<td>简短词汇</td>
+<td>"Address"、"Top"、"Impact"</td>
+<td>动作时间节点</td>
+</tr>
+<tr>
+<td><strong>提示文字</strong></td>
+<td>简短说明</td>
+<td>"保持后髋稳定"</td>
+<td>动作要点提示</td>
 </tr>
 </tbody>
 </table>
