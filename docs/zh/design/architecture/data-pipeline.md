@@ -239,7 +239,7 @@ D1→D2 阶段将物理世界的模拟信号转换为数字化的原始数据帧
 | **IMU** | 加速度/角速度 | LSM6DSV16X A/D 转换 | IMUFrame (6 轴 @ 1666Hz) |
 | **EMG** | 肌电信号 | 滤波 → 整流 → RMS 包络 | EMGFrame (2 通道 @ 1000Hz) |
 
-> 📚 **EMG 信号处理原理**: [信号处理入门 §1-4](../../prerequisites/signal-processing.md) — EMG 滤波、整流、RMS 包络、Onset 检测等
+> 📚 **EMG 信号处理原理**: [信号处理入门 §1-4](signal-processing.md) — EMG 滤波、整流、RMS 包络、Onset 检测等
 
 #### 2.1.1 D2 数据帧格式
 
@@ -301,7 +301,7 @@ D2→D3 阶段将三路异步数据流（不同采样率、不同时钟源）融
 | IMUFrame | 1666 Hz | ESP32 时钟 | 参考轴（不变） |
 | EMGFrame | 1000 Hz | ESP32 时钟 | 三次样条插值 → 1666Hz |
 
-> 📚 **时间同步原理**: [信号处理入门 §3](../../prerequisites/signal-processing.md#part3-sync) — 时钟对齐、插值方法、Impact 事件同步
+> 📚 **时间同步原理**: [信号处理入门 §3](signal-processing.md#part3-sync) — 时钟对齐、插值方法、Impact 事件同步
 
 #### 2.2.1 时间同步策略
 
