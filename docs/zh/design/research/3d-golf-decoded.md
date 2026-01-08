@@ -164,7 +164,7 @@ Instagram 上有**两种类型**的 3D 动画内容：
 | | | | |
 |:---:|:---:|:---:|:---:|
 | ![数据可视化](images/data-visualization-1.jpg){ width="300" } | ![数据可视化](images/data-visualization-2.jpg){ width="300" } | ![数据可视化](images/data-visualization-3.jpg){ width="300" } | ![数据可视化](images/data-visualization-4.jpg){ width="300" } |
-| ![数据可视化](images/data-visualization-5.jpg){ width="300" } | ![数据可视化](images/data-visualization-6.jpg){ width="300" } | ![数据可视化](images/data-visualization-7.jpg){ width="300" } | |
+| ![数据可视化](images/data-visualization-5.jpg){ width="300" } | ![数据可视化](images/data-visualization-6.jpg){ width="300" } | ![数据可视化](images/data-visualization-7.jpg){ width="300" } | ![数据可视化](images/data-visualization-8.jpg){ width="300" } |
 
 #### 2.2.5 实时对比
 
