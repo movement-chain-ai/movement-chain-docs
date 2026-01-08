@@ -170,6 +170,7 @@ Instagram 上有**两种类型**的 3D 动画内容：
 | ![数据可视化](images/data-visualization-1.jpg){ width="300" } | ![数据可视化](images/data-visualization-2.jpg){ width="300" } | ![数据可视化](images/data-visualization-3.jpg){ width="300" } | ![数据可视化](images/data-visualization-4.jpg){ width="300" } |
 | ![数据可视化](images/data-visualization-5.jpg){ width="300" } | ![数据可视化](images/data-visualization-6.jpg){ width="300" } | ![数据可视化](images/data-visualization-7.jpg){ width="300" } | ![数据可视化](images/data-visualization-8.jpg){ width="300" } |
 | ![数据可视化](images/data-visualization-9.jpg){ width="300" } | ![数据可视化](images/data-visualization-10.jpg){ width="300" } | ![数据可视化](images/data-visualization-11.jpg){ width="300" } | ![数据可视化](images/data-visualization-12.jpg){ width="300" } |
+| ![数据可视化](images/data-visualization-13.jpg){ width="300" } | ![数据可视化](images/data-visualization-14.jpg){ width="300" } | | |
 
 #### 2.2.5 实时对比
 
@@ -188,15 +189,7 @@ Instagram 上有**两种类型**的 3D 动画内容：
 
 #### 2.2.7 发力效果展示
 
-动画通过**视觉特效**展示肌肉发力的强度和时机。
-
-发力的肌肉群会**高亮显示**，颜色变化表示激活程度，越亮表示发力越大。
-
-有些动画还会用**脉冲效果**或**光晕效果**来强调发力的瞬间。
-
-例如下杆时，先是臀肌和核心高亮，然后是躯干旋转肌群，最后是手臂和手腕，清晰展示 Kinematic Sequence（动力链顺序）。
-
-这种发力可视化让学习者理解"什么时候该发力"和"用哪里发力"。
+动画通过**视觉特效**展示肌肉发力的强度和时机。发力的肌肉群会**高亮显示**，颜色变化表示激活程度，越亮表示发力越大。有些动画还会用**脉冲效果**或**光晕效果**来强调发力的瞬间。这种发力可视化让学习者理解"什么时候该发力"和"用哪里发力"。
 
 ### 2.3 可视化元素清单
 
