@@ -177,15 +177,14 @@ Instagram 上有**两种类型**的 3D 动画内容：
 
 **对错对比**：左边是正确动作，右边是常见错误，学习者可以清晰看到两者的差异。
 
-例如展示"早伸展（Early Extension）"时，左边髋部保持稳定，右边髋部前冲，下杆过程中差距逐渐拉开。
-
 **角度对比**：同一个动作从正面、侧面、俯视等不同角度同时展示。
-
-例如髋部旋转，正面看是重心转移，侧面看是前后移动，俯视才能看清旋转幅度。
 
 **画面对比**：肌肉视图和骨骼视图并排显示，或者全身视图和局部放大同时展示。
 
-这些对比都是动态的、实时的，每一帧都能看到差异，比静态截图更直观。
+| | | | |
+|:---:|:---:|:---:|:---:|
+| ![实时对比](images/realtime-compare-1.jpg){ width="300" } | ![实时对比](images/realtime-compare-2.jpg){ width="300" } | ![实时对比](images/realtime-compare-3.jpg){ width="300" } | ![实时对比](images/realtime-compare-4.jpg){ width="300" } |
+| ![实时对比](images/realtime-compare-5.jpg){ width="300" } | ![实时对比](images/realtime-compare-6.jpg){ width="300" } | | |
 
 #### 2.2.7 发力效果展示
 
