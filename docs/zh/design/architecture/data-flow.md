@@ -808,7 +808,7 @@ P2 (最后):   优化建议 (BALANCE)
 ```
 ---
 
-## 3 Rerun 开发者可视化
+## 附录 A: Rerun 开发者可视化
 
 Rerun 是**开发者调试工具**，用于验证多流数据是否正确对齐。
 
@@ -880,7 +880,7 @@ Rerun 是**开发者调试工具**，用于验证多流数据是否正确对齐�
 
 ```
 
-### 3.1 快速开始
+### A.1 快速开始
 
 ```bash
 # 安装
@@ -897,7 +897,7 @@ rr.log("imu/gyro_z", rr.Scalar(gyro_z))
 rr.log("emg/core", rr.Scalar(core_activation))
 ```
 
-### 3.2 调试场景速查表
+### A.2 调试场景速查表
 
 | 场景 | 相关章节 | Rerun 功能 | 解决的问题 |
 |------|---------|-----------|-----------|
@@ -907,7 +907,7 @@ rr.log("emg/core", rr.Scalar(core_activation))
 | **EMG 激活时序** | §1.3 EMG 指标 | 双曲线叠加 + onset 标记 | 验证 Core 是否先于 Forearm 激活 |
 | **诊断规则调试** | §2.3 推荐架构 | 标记触发点 + 回归测试 | 验证 ARMS_BEFORE_CORE 等规则逻辑 |
 
-### 3.3 开发阶段使用建议
+### A.3 开发阶段使用建议
 
 ```text
 Phase 1 (Week 1-2): Vision Pipeline
@@ -929,7 +929,7 @@ Phase 4+ (Week 5-8): Integration & Testing
 └── 推荐: 分享 .rrd 给团队成员协作调试
 ```
 
-### 3.4 详细评估
+### A.4 详细评估
 
 关于 Rerun 的完整技术评估、竞品对比，详见:
 
