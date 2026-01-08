@@ -702,7 +702,7 @@ Movement Chain AI 数据流:
 | **Chain-of-Thought** | 让 LLM 分步推理 |
 | **Structured Output** | 让 LLM 输出 JSON 等结构化格式 |
 
-> 详见：[数据流 § Stage 5](../design/architecture/data-flow.md) — Kinematic Prompt 在系统中的位置
+> 详见：[数据流 § Stage 5](../design/architecture/data-pipeline.md) — Kinematic Prompt 在系统中的位置
 
 ---
 
@@ -712,7 +712,7 @@ Movement Chain AI 数据流:
 - [工程术语表](engineering-glossary.md) - Edge AI 相关概念
 - [关键决策 2025-12](../design/decisions/architecture-decisions-2025-12-23.md) - 技术选型决策
 - [系统架构](../design/architecture/system-design.md) - 整体架构
-- [数据流](../design/architecture/data-flow.md) - Kinematic Prompt 实际应用
+- [数据流](../design/architecture/data-pipeline.md) - Kinematic Prompt 实际应用
 
 ---
 

@@ -757,7 +757,7 @@ def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
     """
     Detect muscle activation onset time (Onset Detection)
 
-    ⚠️ Prerequisites: Understanding this algorithm requires reading signal-processing-101.md
+    ⚠️ Prerequisites: Understanding this algorithm requires reading signal-processing.md
        - Baseline: EMG at rest is not 0, need to calculate baseline first
        - Threshold method: SD method (2-3 standard deviations) or %MVC method
 
@@ -776,7 +776,7 @@ def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
         1. Add baseline window calculation (baseline_window_ms: 200-500ms)
         2. Use SD method threshold (onset_threshold_sd: 2-3)
         3. Add debounce logic (debounce_ms: 10-20ms)
-        See: signal-processing-101.md sections 3-5
+        See: signal-processing.md sections 3-5
     """
     # Find first moment when signal exceeds threshold
     onset_idx = np.where(emg_signal > threshold)[0]
@@ -1024,7 +1024,7 @@ def validate_kinematic_sequence(emg_core, emg_forearm, timestamps, threshold=0.5
     ⚠️ Key parameter: Co-activation Tolerance
        - If |time_diff| < 5ms, consider as "co-activation"
        - Due to EMG sampling precision limits (1000Hz = 1ms)
-       - See: signal-processing-101.md section 3.2
+       - See: signal-processing.md section 3.2
 
     Args:
         emg_core: Core muscle EMG signal (obliques or erector spinae)

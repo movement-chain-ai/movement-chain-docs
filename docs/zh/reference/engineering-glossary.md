@@ -175,7 +175,7 @@ lsm6dsv16x_linear_acceleration_get(&dev_ctx, &linear_accel);  // 去重力后
 lsm6dsv16x_acceleration_raw_get(&dev_ctx, &raw_accel);        // 含重力原始值
 ```
 
-> 详见：[数据处理与指标计算 §3.2](../design/architecture/sensor-data-processing.md#32-imu-数据处理-lsm6dsv16x--1666hz) — IMU 数据处理
+> 详见：[数据处理与指标计算 §3.2](../design/architecture/metrics-calculation.md#32-imu-数据处理-lsm6dsv16x--1666hz) — IMU 数据处理
 
 ---
 
@@ -304,7 +304,7 @@ lsm6dsv16x_angular_rate_raw_get(&dev_ctx, raw_gyro);
 float gyro_z_dps = raw_gyro[2] * sensitivity;  // 转换为 °/s
 ```
 
-> 详见：[数据处理与指标计算 §3.2](../design/architecture/sensor-data-processing.md#32-imu-数据处理-lsm6dsv16x--1666hz) — IMU 数据处理
+> 详见：[数据处理与指标计算 §3.2](../design/architecture/metrics-calculation.md#32-imu-数据处理-lsm6dsv16x--1666hz) — IMU 数据处理
 
 ---
 
@@ -496,7 +496,7 @@ fps 决定了能分辨的**最短时间间隔**：
 !!! info "为什么 IMU 用 Hz 而不是 fps？"
     fps 专指**图像帧**，而 IMU 输出的是**数值数据**（加速度、角速度），所以用 Hz 表示采样率更准确。
 
-> 详见：[数据流 §2.1](../design/architecture/data-flow.md#21-d1-d2-信号采集与数字化) — MediaPipe Vision 30fps 数据采集
+> 详见：[数据流 §2.1](../design/architecture/data-pipeline.md#21-d1-d2-信号采集与数字化) — MediaPipe Vision 30fps 数据采集
 
 ---
 

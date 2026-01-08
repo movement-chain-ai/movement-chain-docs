@@ -538,7 +538,7 @@ build-backend = "hatchling.build"
 
 ### 4.2 Mock 数据策略 ✅ 已有完整文档
 
-**现状**: `sensor-data-processing.md §8` 已包含完整的 Mock 数据生成代码
+**现状**: `metrics-calculation.md §8` 已包含完整的 Mock 数据生成代码
 
 | Mock 类型 | 函数 | 来源 |
 |----------|------|------|
@@ -847,7 +847,7 @@ build-backend = "hatchling.build"
 
 ### 4.5 视频与传感器同步方案 {#45-视频与传感器同步方案}
 
-> **权威来源**: [data-flow.md §1.2](../architecture/data-flow.md) 定义了时间同步的完整规格。
+> **权威来源**: [data-pipeline.md §1.2](../architecture/data-pipeline.md) 定义了时间同步的完整规格。
 > 本节仅做决策确认，详细实现请参考权威文档。
 
 ```text
@@ -1435,7 +1435,7 @@ build-backend = "hatchling.build"
 
 | 项目 | 状态 | 说明 | 截止日期 |
 |------|------|------|----------|
-| 更新 data-flow.md | ⏳ 待更新 | 同步 BLE 抖动研究到权威文档 | 下周 |
+| 更新 data-pipeline.md | ⏳ 待更新 | 同步 BLE 抖动研究到权威文档 | 下周 |
 | 更新 components/emg/hardware.md | ⏳ 待更新 | 添加 MyoWare 2.0 停产警告 | 下周 |
 | ESP32 源端时间戳固件原型 | ⏳ 待开发 | 实现 `esp_timer_get_time()` 打包 | Phase 2 |
 
@@ -1459,14 +1459,14 @@ build-backend = "hatchling.build"
 | 文档 | 内容 | 关系 |
 |------|------|------|
 | **[system-design.md](../architecture/system-design.md)** | **MVP 系统架构总览** | **⭐ Hub 文档** |
-| **[data-flow.md](../architecture/data-flow.md)** | **数据流与时间同步** | **⭐ 权威来源** |
+| **[data-pipeline.md](../architecture/data-pipeline.md)** | **数据流与时间同步** | **⭐ 权威来源** |
 | [modular-architecture.md](../architecture/modular-architecture.md) | LEGO 积木设计 | 六边形对应 |
-| [sensor-data-processing.md](../architecture/sensor-data-processing.md) | 算法实现代码 | Mock 数据生成 |
+| [metrics-calculation.md](../architecture/metrics-calculation.md) | 算法实现代码 | Mock 数据生成 |
 | [ADR-0005](0005-esp32-s3-microcontroller.md) | ESP32-S3 选型 | 硬件决策 |
 | [ADR-0007](0007-swift-ios-native.md) | Swift iOS 开发 | 移动端决策 |
 | [vision-based.md](../../business-plan/market-insights/competitors/vision-based.md) | 竞品分析 | 2025 更新 |
 
-> **文档优先级**: `data-flow.md` 是数据流和时间同步的**单一权威来源**。
+> **文档优先级**: `data-pipeline.md` 是数据流和时间同步的**单一权威来源**。
 > 本决策文档只做高层确认，与 data-pipeline 冲突时以后者为准。
 
 ---

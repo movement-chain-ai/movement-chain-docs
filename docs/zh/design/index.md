@@ -39,8 +39,8 @@
 |------|------|---------|
 | [系统架构](architecture/system-design.md) | MVP 全貌：4模块、12指标、6规则 | ~25分钟 |
 | [模块化设计](architecture/modular-architecture.md) | LEGO 积木块设计 | ~25分钟 |
-| [数据流](architecture/data-flow.md) | 时间对齐、Kinematic Prompts | ~20分钟 |
-| [数据处理与指标计算](architecture/sensor-data-processing.md) | Python 实现代码 | 按需查阅 |
+| [数据流](architecture/data-pipeline.md) | 时间对齐、Kinematic Prompts | ~20分钟 |
+| [数据处理与指标计算](architecture/metrics-calculation.md) | Python 实现代码 | 按需查阅 |
 
 ### 3️⃣ 详细规格 (按需参考)
 
@@ -81,8 +81,8 @@ graph TD
     subgraph architecture["核心架构"]
         A1[system-design.md]
         A2[modular-architecture.md]
-        A3[data-flow.md]
-        A4[sensor-data-processing.md]
+        A3[data-pipeline.md]
+        A4[metrics-calculation.md]
     end
 
     subgraph specs["详细规格"]

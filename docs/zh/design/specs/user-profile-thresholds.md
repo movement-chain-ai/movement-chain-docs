@@ -316,7 +316,7 @@ def get_thresholds(user_profile):
 **待创建文档**（Post-MVP 补充）:
 
 - `biomechanics-benchmarks.md` - 详细的生物力学基准数据库
-- `sensor-data-processing.md` - 传感器数据到生物力学指标的映射
+- `metrics-calculation.md` - 传感器数据到生物力学指标的映射
 
 ---
 

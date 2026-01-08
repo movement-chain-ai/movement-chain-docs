@@ -246,7 +246,7 @@ def compare_swings(swing_a, swing_b):
 
 - [八个挥杆阶段](../design/specs/eight-swing-phases.md) - 系统实现
 - [评估模式](../design/specs/modes/assessment-mode.md) - 三段式评估设计
-- [数据处理与指标计算](../design/architecture/sensor-data-processing.md) - IMU/EMG 指标
+- [数据处理与指标计算](../design/architecture/metrics-calculation.md) - IMU/EMG 指标
 - [学术数据集](academic-datasets.md) - 通用运动数据集
 
 ---

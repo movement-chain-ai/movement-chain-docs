@@ -247,7 +247,7 @@ def detect_mid_downswing(gyro_z, timestamps, top_time, accel_threshold=500):
     - 这样无论是否有球、是否击中，检测逻辑都一致
     - 空挥、打垫、练习挥杆都能正确检测
 
-    详见: [信号处理入门 - IMU 相位检测](../../prerequisites/signal-processing-101.md#part2-imu)
+    详见: [信号处理入门 - IMU 相位检测](../../prerequisites/signal-processing.md#part2-imu)
 
 **检测代码 (最可靠)**:
 

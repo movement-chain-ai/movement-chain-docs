@@ -236,7 +236,7 @@
 - **信息完整性**: Vision 告诉你"发生了什么"，IMU 告诉你"何时发生"，EMG 告诉你"为什么发生"
 - **竞品对比**: 纯 Vision 方案只有 WHAT，我们有 WHAT + WHEN + WHY
 
-> 📐 详见: [数据处理与指标计算](./sensor-data-processing.md) — 各传感器的数据格式与处理
+> 📐 详见: [数据处理与指标计算](./metrics-calculation.md) — 各传感器的数据格式与处理
 
 ---
 
@@ -273,7 +273,7 @@
 - **因果推断基础**: 只有时间精确对齐，才能判断"核心激活是否先于手臂动作"
 - **数据可比性**: 不同挥杆、不同用户的数据可以直接比较
 
-> 📐 详见: [数据管道与AI](./data-flow.md#sensor-hub-架构-2025-12-推荐) — 时间同步策略
+> 📐 详见: [数据管道与AI](./data-pipeline.md#sensor-hub-架构-2025-12-推荐) — 时间同步策略
 
 ---
 
@@ -312,7 +312,7 @@
 - **可解释性**: 每个指标都有明确的生物力学含义，用户可以理解
 - **诊断基础**: 为下一层的规则引擎提供结构化输入
 
-> 📐 详见: [数据处理与指标计算](./sensor-data-processing.md) — 12 个指标的详细计算公式
+> 📐 详见: [数据处理与指标计算](./metrics-calculation.md) — 12 个指标的详细计算公式
 
 ---
 
@@ -432,7 +432,7 @@ LLM 输出:
 - **可执行**: 建议是具体动作（"收紧腹肌"），不是抽象概念
 - **个性化**: 根据具体数据定制反馈内容
 
-> 📐 详见: [数据管道与AI](./data-flow.md) — Kinematic Prompts 详细设计
+> 📐 详见: [数据管道与AI](./data-pipeline.md) — Kinematic Prompts 详细设计
 
 ---
 
@@ -505,8 +505,8 @@ LLM 输出:
 | **移动端 (Swift iOS)** | [ADR-0007](../decisions/0007-swift-ios-native.md), [SDK选型](../decisions/sdk-selection.md) | MediaPipeTasksVision + CoreBluetooth + AVFoundation |
 | **开发环境 (Python)** | [SDK选型](../decisions/sdk-selection.md), [架构决策](../decisions/architecture-decisions-2025-12-23.md) | MediaPipe + NeuroKit2 + Polars + Rerun.io |
 | **嵌入式 (ESP32)** | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md), [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) | ESP-IDF + FreeRTOS + BLE 5.0 |
-| **传感器** | [数据处理与指标计算](./sensor-data-processing.md) | LSM6DSV16X (IMU) + MyoWare 2.0 (EMG) |
-| **时间同步** | [数据管道](./data-flow.md#sensor-hub-架构-2025-12-推荐) | Sensor Hub + Impact T=0 对齐 |
+| **传感器** | [数据处理与指标计算](./metrics-calculation.md) | LSM6DSV16X (IMU) + MyoWare 2.0 (EMG) |
+| **时间同步** | [数据管道](./data-pipeline.md#sensor-hub-架构-2025-12-推荐) | Sensor Hub + Impact T=0 对齐 |
 | **硬件设计** | [硬件购买清单](../decisions/architecture-decisions-2025-12-23.md#43-硬件购买清单) | KiCad PCB 设计 |
 
 ### 2.2 开发 vs 生产架构
@@ -549,7 +549,7 @@ LLM 输出:
 | **LLM Feedback** | ☁️ Cloud API | 200-500ms | 复杂推理，挥杆后可接受 |
 | **Data Sync** | ☁️ Cloud (Post-MVP) | N/A | 趋势分析、跨设备 |
 
-> 📐 **详细规格**: [数据管道与AI](./data-flow.md) | [模块化设计](./modular-architecture.md)
+> 📐 **详细规格**: [数据管道与AI](./data-pipeline.md) | [模块化设计](./modular-architecture.md)
 
 ---
 
@@ -559,7 +559,7 @@ LLM 输出:
 
 | 规格类别 | 详细文档 | 核心内容 |
 |----------|----------|----------|
-| **12 测量指标** | [数据处理与指标计算](./sensor-data-processing.md) | Vision (6) + IMU (4) + EMG (2) |
+| **12 测量指标** | [数据处理与指标计算](./metrics-calculation.md) | Vision (6) + IMU (4) + EMG (2) |
 | **6 诊断规则** | [MVP 开发计划 §7.2](./mvp-plan.md#72-mvp-6-条诊断规则) | P0 (2条) + P1 (4条) |
 | **训练场景** | [评估模式](../specs/modes/assessment-mode.md) | 三段式评估设计 |
 | **产品版本** | [三种产品版本](../specs/three-product-versions.md) | Lite / Pro / Elite |
@@ -573,7 +573,7 @@ LLM 输出:
 | IMU 选型 | LSM6DSV16X | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md) |
 | MCU 选型 | ESP32-S3 | [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) |
 | EMG 选型 | MyoWare 2.0 + Link Shield | [架构决策](../decisions/architecture-decisions-2025-12-23.md) |
-| 时间同步 | Sensor Hub + Impact 对齐 | [数据管道](./data-flow.md) |
+| 时间同步 | Sensor Hub + Impact 对齐 | [数据管道](./data-pipeline.md) |
 | 升级路径 | LEGO block 可替换设计 | [模块化设计](./modular-architecture.md) |
 
 ### 3.3 开发计划

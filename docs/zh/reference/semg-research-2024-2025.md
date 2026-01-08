@@ -330,7 +330,7 @@ Transformer架构最初用于自然语言处理，现已被成功迁移至生理
 
 ## 相关文档
 
-- [数据处理与指标计算](../design/architecture/sensor-data-processing.md) — EMG 指标定义
+- [数据处理与指标计算](../design/architecture/metrics-calculation.md) — EMG 指标定义
 - [硬件组件 - EMG](../components/emg/hardware.md) — MyoWare 2.0 选型
 - [生物力学基准值](../prerequisites/foundations/biomechanics-benchmarks.md) — 挥杆指标阈值
 

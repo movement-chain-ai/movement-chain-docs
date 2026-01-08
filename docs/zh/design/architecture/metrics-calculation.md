@@ -1,4 +1,4 @@
-# 数据处理与指标计算 Sensor Data Processing
+# 指标计算
 
 > **文档目的**: 定义三模态系统 (Vision + IMU + EMG) 的数据处理流程与可计算指标
 > **核心价值**: EMG 提供的肌肉激活检测是独特差异化优势，竞品无法实现
@@ -559,7 +559,7 @@ def detect_kinematic_sequence(gyro_data, timestamps, threshold=50):
 !!! info "信号处理基础知识"
     理解 EMG 检测算法前，请先阅读:
 
-    - [信号处理入门](../../prerequisites/signal-processing-101.md) — 基线、激活检测、消抖的基础概念
+    - [信号处理入门](../../prerequisites/signal-processing.md) — 基线、激活检测、消抖的基础概念
     - 关键术语: Baseline (基线)、Onset Detection (激活检测)、Debounce (消抖)
 
 #### 3.3.1 原始数据 {#331-emg-原始数据}
@@ -783,7 +783,7 @@ def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
     """
     检测肌肉激活起始时间 (Onset Detection)
 
-    ⚠️ 前置知识: 理解本算法需要先阅读 signal-processing-101.md
+    ⚠️ 前置知识: 理解本算法需要先阅读 signal-processing.md
        - 基线 (Baseline): EMG 静息时不是 0，需要先计算基线
        - 阈值方法: SD 法 (2-3 倍标准差) 或 %MVC 法
 
@@ -802,7 +802,7 @@ def detect_muscle_onset(emg_signal, timestamps, threshold=0.5):
         1. 添加基线窗口计算 (baseline_window_ms: 200-500ms)
         2. 使用 SD 法阈值 (onset_threshold_sd: 2-3)
         3. 添加消抖逻辑 (debounce_ms: 10-20ms)
-        详见: signal-processing-101.md §3-§5
+        详见: signal-processing.md §3-§5
     """
     # 寻找信号超过阈值的首次时刻
     onset_idx = np.where(emg_signal > threshold)[0]
@@ -1050,7 +1050,7 @@ def validate_kinematic_sequence(emg_core, emg_forearm, timestamps, threshold=0.5
     ⚠️ 关键参数: 同时激活容差 (Co-activation Tolerance)
        - 如果 |time_diff| < 5ms，视为"同时激活"
        - 这是因为 EMG 采样精度限制 (1000Hz = 1ms)
-       - 详见: signal-processing-101.md §3.2
+       - 详见: signal-processing.md §3.2
 
     Args:
         emg_core: 核心肌群 EMG 信号 (腹斜肌或竖脊肌)

@@ -116,7 +116,7 @@ nav:
           - 入门教程: prerequisites/foundations/biomechanics-101.md
           - 术语表: prerequisites/foundations/biomechanics-glossary.md
           - 基准值: prerequisites/foundations/biomechanics-benchmarks.md
-      - 信号处理入门: prerequisites/signal-processing-101.md
+      - 信号处理: prerequisites/signal-processing.md
       - ML 基础: prerequisites/ml-basics.md
 
   - 商业计划:
@@ -154,8 +154,8 @@ nav:
           - 系统架构: design/architecture/system-design.md
           - 模块化设计: design/architecture/modular-architecture.md
           - MVP 开发计划: design/architecture/mvp-plan.md
-          - 数据流: design/architecture/data-flow.md
-          - 数据处理与指标计算: design/architecture/sensor-data-processing.md
+          - 数据管道: design/architecture/data-pipeline.md
+          - 指标计算: design/architecture/metrics-calculation.md
       - 产品设计:
           - 概览: design/specs/index.md
           - 三种产品版本: design/specs/three-product-versions.md
