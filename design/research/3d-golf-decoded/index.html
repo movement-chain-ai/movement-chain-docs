@@ -3101,7 +3101,7 @@
   <a href="#224" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2.4 数据标注设计
+        2.2.4 线条和数据标注设计
       
     </span>
   </a>
@@ -3113,17 +3113,6 @@
     <span class="md-ellipsis">
       
         2.2.5 实时对比
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#226" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2.6 重力线、力线、旋转线与平衡参考
       
     </span>
   </a>
@@ -5209,7 +5198,7 @@
   <a href="#224" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2.4 数据标注设计
+        2.2.4 线条和数据标注设计
       
     </span>
   </a>
@@ -5221,17 +5210,6 @@
     <span class="md-ellipsis">
       
         2.2.5 实时对比
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#226" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2.6 重力线、力线、旋转线与平衡参考
       
     </span>
   </a>
@@ -5679,10 +5657,17 @@
 <td style="text-align: center;"><img alt="肌肉骨骼叠加" src="../images/muscle-skeleton-overlay-3.jpg" width="300" /></td>
 <td style="text-align: center;"><img alt="肌肉骨骼叠加" src="../images/muscle-skeleton-overlay-4.jpg" width="300" /></td>
 </tr>
+<tr>
+<td style="text-align: center;"><img alt="肌肉骨骼叠加" src="../images/muscle-skeleton-overlay-5.jpg" width="300" /></td>
+<td style="text-align: center;"><img alt="肌肉骨骼叠加" src="../images/muscle-skeleton-overlay-6.jpg" width="300" /></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
 </tbody>
 </table>
-<h4 id="224">2.2.4 数据标注设计<a class="headerlink" href="#224" title="Permanent link">&para;</a></h4>
+<h4 id="224">2.2.4 线条和数据标注设计<a class="headerlink" href="#224" title="Permanent link">&para;</a></h4>
 <p>动画中的各种标注和指标采用<strong>半透明设计</strong>，不遮挡人体动作本身。重力线、力线、旋转线、角度标注等都是半透明的，既能看到指标信息，又能看清背后的肌肉和骨骼。文字标签和数值显示也采用半透明背景，确保信息清晰但不喧宾夺主。这种设计让界面信息丰富但不杂乱，学习者可以同时关注动作和数据。</p>
+<p>线条和标注让学习者直观理解"重心转移"、"地面反作用力"、"旋转发力"和"动作幅度"这些抽象概念。</p>
 <table>
 <thead>
 <tr>
@@ -5715,16 +5700,6 @@
 <p>例如髋部旋转，正面看是重心转移，侧面看是前后移动，俯视才能看清旋转幅度。</p>
 <p><strong>画面对比</strong>：肌肉视图和骨骼视图并排显示，或者全身视图和局部放大同时展示。</p>
 <p>这些对比都是动态的、实时的，每一帧都能看到差异，比静态截图更直观。</p>
-<h4 id="226">2.2.6 重力线、力线、旋转线与平衡参考<a class="headerlink" href="#226" title="Permanent link">&para;</a></h4>
-<p><strong>重力线</strong>显示身体重心相对于双脚支撑面的位置，帮助判断平衡状态。</p>
-<p>挥杆过程中重力线会随重心转移而移动，理想状态是始终保持在支撑范围内。</p>
-<p><strong>力线（Force Line）</strong>显示地面反作用力的方向和大小。</p>
-<p>力线从脚底向上延伸，展示力量如何从地面传递到身体各部位。</p>
-<p><strong>旋转线</strong>标注髋部和肩部的旋转轴心和旋转方向。</p>
-<p>通过旋转线可以清晰看到肩髋分离角（X-Factor），以及下杆时髋部如何领先肩部旋转。</p>
-<p><strong>角度标注</strong>在关键部位显示具体数值，如髋部旋转角度、肩部旋转角度、脊柱前倾角等。</p>
-<p>角度标注通常用弧线或圆圈表示，配合数字显示，让学习者有明确的量化目标。</p>
-<p>这些线条和标注让学习者直观理解"重心转移"、"地面反作用力"、"旋转发力"和"动作幅度"这些抽象概念。</p>
 <h4 id="227">2.2.7 发力效果展示<a class="headerlink" href="#227" title="Permanent link">&para;</a></h4>
 <p>动画通过<strong>视觉特效</strong>展示肌肉发力的强度和时机。</p>
 <p>发力的肌肉群会<strong>高亮显示</strong>，颜色变化表示激活程度，越亮表示发力越大。</p>
