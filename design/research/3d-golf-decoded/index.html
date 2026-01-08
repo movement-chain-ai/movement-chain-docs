@@ -6165,14 +6165,15 @@
 </tbody>
 </table>
 <p>我们的产品重点在于联结和自动化阶段的辅助训练，但<strong>认知阶段同样重要</strong>——用户在练习时也需要理解"为什么要这样做"。</p>
-<p><strong>我们的视觉界面</strong>：</p>
+<p><strong>我们的视觉反馈</strong>（参考 <a href="../../specs/three-feedback-channels/">三个反馈通道</a>）：</p>
 <ul>
-<li>视频回放</li>
-<li>训练指导视频</li>
-<li>UI界面</li>
+<li><strong>视频回放 + 标注</strong>：评估后回放，叠加骨骼、角度、轨迹</li>
+<li><strong>动作演示视频</strong>：Drill 的示范动作</li>
+<li><strong>评估报告</strong>：问题卡片、数据图表</li>
+<li><strong>实时预览</strong>：引导模式的实时叠加（Post-MVP）</li>
 </ul>
 <p>他们在认知阶段的界面设计值得我们借鉴：</p>
-<p><strong>训练指导视频</strong>：</p>
+<p><strong>动作演示视频</strong>：</p>
 <table>
 <thead>
 <tr>
@@ -6199,7 +6200,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>视频回放</strong>：</p>
+<p><strong>视频回放 + 标注</strong>：</p>
 <table>
 <thead>
 <tr>
@@ -6209,6 +6210,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><strong>骨骼叠加</strong></td>
+<td>骨骼线条叠加在人体上</td>
+<td>叠加检测到的骨骼关节点</td>
+</tr>
 <tr>
 <td><strong>角度标注</strong></td>
 <td>角度圆、数值显示</td>
@@ -6229,9 +6235,14 @@
 <td>半透明叠加、不遮挡主体</td>
 <td>数据叠加时保持视频可见</td>
 </tr>
+<tr>
+<td><strong>问题高亮</strong></td>
+<td>红色高亮问题区域</td>
+<td>高亮问题关节/肌群</td>
+</tr>
 </tbody>
 </table>
-<p><strong>UI界面</strong>：</p>
+<p><strong>评估报告</strong>：</p>
 <table>
 <thead>
 <tr>
@@ -6250,6 +6261,11 @@
 <td><strong>颜色渐变</strong></td>
 <td>冷暖色表示强度</td>
 <td>sEMG 激活强度热力图</td>
+</tr>
+<tr>
+<td><strong>问题卡片</strong></td>
+<td>—</td>
+<td>问题描述 + 改进建议</td>
 </tr>
 </tbody>
 </table>
