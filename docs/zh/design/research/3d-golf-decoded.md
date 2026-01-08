@@ -157,15 +157,16 @@ Instagram 上有**两种类型**的 3D 动画内容：
 |:---:|:---:|:---:|:---:|
 | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-1.jpg){ width="300" } | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-2.jpg){ width="300" } | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-3.jpg){ width="300" } | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-4.jpg){ width="300" } |
 
-#### 2.2.5 数据可视化
+#### 2.2.4 数据标注设计
 
 动画中的各种标注和指标采用**半透明设计**，不遮挡人体动作本身。重力线、力线、旋转线、角度标注等都是半透明的，既能看到指标信息，又能看清背后的肌肉和骨骼。文字标签和数值显示也采用半透明背景，确保信息清晰但不喧宾夺主。这种设计让界面信息丰富但不杂乱，学习者可以同时关注动作和数据。
 
-| | | | | | | |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| ![数据可视化](images/data-visualization-1.jpg){ width="200" } | ![数据可视化](images/data-visualization-2.jpg){ width="200" } | ![数据可视化](images/data-visualization-3.jpg){ width="200" } | ![数据可视化](images/data-visualization-4.jpg){ width="200" } | ![数据可视化](images/data-visualization-5.jpg){ width="200" } | ![数据可视化](images/data-visualization-6.jpg){ width="200" } | ![数据可视化](images/data-visualization-7.jpg){ width="200" } |
+| | | | |
+|:---:|:---:|:---:|:---:|
+| ![数据可视化](images/data-visualization-1.jpg){ width="300" } | ![数据可视化](images/data-visualization-2.jpg){ width="300" } | ![数据可视化](images/data-visualization-3.jpg){ width="300" } | ![数据可视化](images/data-visualization-4.jpg){ width="300" } |
+| ![数据可视化](images/data-visualization-5.jpg){ width="300" } | ![数据可视化](images/data-visualization-6.jpg){ width="300" } | ![数据可视化](images/data-visualization-7.jpg){ width="300" } | |
 
-#### 2.2.4 实时对比
+#### 2.2.5 实时对比
 
 动画采用**左右分屏或叠加对比**的方式，多个画面**同步播放**，让学习者更容易理解动作细节。
 
