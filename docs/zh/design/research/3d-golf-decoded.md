@@ -163,7 +163,7 @@ Instagram 上有**两种类型**的 3D 动画内容：
 
 动画中的各种标注和指标采用**半透明设计**，不遮挡人体动作本身。重力线、力线、旋转线、角度标注等都是半透明的，既能看到指标信息，又能看清背后的肌肉和骨骼。文字标签和数值显示也采用半透明背景，确保信息清晰但不喧宾夺主。这种设计让界面信息丰富但不杂乱，学习者可以同时关注动作和数据。
 
-线条和标注让学习者直观理解"重心转移"、"地面反作用力"、"旋转发力"和"动作幅度"这些抽象概念。
+线条和标注让学习者直观理解"重心转移"、"地面反作用力"、"旋转发力"、‘运动轨迹“和"动作幅度"这些抽象概念。
 
 | | | | |
 |:---:|:---:|:---:|:---:|
@@ -184,7 +184,7 @@ Instagram 上有**两种类型**的 3D 动画内容：
 | | | | |
 |:---:|:---:|:---:|:---:|
 | ![实时对比](images/realtime-compare-1.jpg){ width="300" } | ![实时对比](images/realtime-compare-2.jpg){ width="300" } | ![实时对比](images/realtime-compare-3.jpg){ width="300" } | ![实时对比](images/realtime-compare-4.jpg){ width="300" } |
-| ![实时对比](images/realtime-compare-5.jpg){ width="300" } | ![实时对比](images/realtime-compare-6.jpg){ width="300" } | | |
+| ![实时对比](images/realtime-compare-5.jpg){ width="300" } | ![实时对比](images/realtime-compare-6.jpg){ width="300" } | ![实时对比](images/realtime-compare-7.jpg){ width="300" } | ![实时对比](images/realtime-compare-8.jpg){ width="300" } |
 
 #### 2.2.7 发力效果展示
 
