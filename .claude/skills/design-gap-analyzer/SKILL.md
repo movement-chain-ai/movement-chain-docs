@@ -17,8 +17,8 @@ description: Analyze design documents for gaps, ambiguities, and missing details
 ```text
 docs/zh/design/architecture/system-design.md    # Hub document (source of truth)
 docs/zh/design/architecture/modular-architecture.md
-docs/zh/design/architecture/data-pipeline.md
-docs/zh/design/architecture/metrics-calculation.md
+docs/zh/design/architecture/data-processing/data-pipeline.md
+docs/zh/design/architecture/data-processing/metrics-calculation.md
 docs/zh/design/specs/*.md                        # Feature specifications
 docs/zh/prerequisites/foundations/biomechanics-glossary.md  # Term definitions
 ```

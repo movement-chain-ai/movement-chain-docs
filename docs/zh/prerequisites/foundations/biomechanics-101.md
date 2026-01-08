@@ -1804,7 +1804,7 @@ OTT **不一定**导致距离损失：
 
 1. **深入学习**: 查阅 [术语表](biomechanics-glossary.md) 了解更多专业术语
 2. **查看基准**: 参考 [基准值](biomechanics-benchmarks.md) 了解完整数据
-3. **了解系统**: 阅读 [传感器映射](../../design/architecture/metrics-calculation.md) 了解我们的测量能力
+3. **了解系统**: 阅读 [传感器映射](../../design/architecture/data-processing/metrics-calculation.md) 了解我们的测量能力
 
 ---
 

@@ -56,7 +56,7 @@ LEGO 积木块架构：
 - **MVP 策略**: Simple Rules 分类器、Mode 3 聚焦
 - **升级路径**: Phase 1-4 渐进式开发
 
-### [数据流](data-pipeline.md)
+### [数据流](data-processing/data-pipeline.md)
 
 **阅读时间**: ~20 分钟 | **行为设计** | **必读**
 
@@ -67,7 +67,7 @@ LEGO 积木块架构：
 - **反馈生成**: Plan A/B/C 架构对比
 - **阈值来源**: TPI、Meister、Cheetham 论文
 
-### [数据处理与指标计算](metrics-calculation.md)
+### [数据处理与指标计算](data-processing/metrics-calculation.md)
 
 **阅读时间**: 按需查阅 | **实现参考**
 

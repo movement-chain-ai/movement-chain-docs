@@ -153,9 +153,10 @@ nav:
           - 系统架构: design/architecture/system-design.md
           - 模块化设计: design/architecture/modular-architecture.md
           - MVP 开发计划: design/architecture/mvp-plan.md
-          - 数据管道: design/architecture/data-pipeline.md
-          - 指标计算: design/architecture/metrics-calculation.md
-          - 信号处理: design/architecture/signal-processing.md
+          - 数据处理:
+              - 数据管道: design/architecture/data-processing/data-pipeline.md
+              - 指标计算: design/architecture/data-processing/metrics-calculation.md
+              - 信号处理: design/architecture/data-processing/signal-processing.md
       - 产品设计:
           - 概览: design/specs/index.md
           - 三种产品版本: design/specs/three-product-versions.md

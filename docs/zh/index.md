@@ -308,8 +308,8 @@
 1. [生物力学入门](prerequisites/foundations/biomechanics-101.md) → 领域知识 (90 分钟)
 2. [系统架构](design/architecture/system-design.md) → 4 模块流水线
 3. [模块化设计](design/architecture/modular-architecture.md) → LEGO 积木块设计
-4. [数据流](design/architecture/data-pipeline.md) → Kinematic Prompts
-5. [传感器-指标映射](design/architecture/metrics-calculation.md) → Python 代码示例
+4. [数据流](design/architecture/data-processing/data-pipeline.md) → Kinematic Prompts
+5. [传感器-指标映射](design/architecture/data-processing/metrics-calculation.md) → Python 代码示例
 
 ### 新团队成员
 

@@ -20,7 +20,7 @@
 - IMU 如何检测**挥杆阶段**的变化
 - 多传感器如何**时间对齐**
 
-掌握这些知识后，你就能理解 [数据处理与指标计算](../design/architecture/metrics-calculation.md) 中的检测算法为什么这样写。
+掌握这些知识后，你就能理解 [数据处理与指标计算](../design/architecture/data-processing/metrics-calculation.md) 中的检测算法为什么这样写。
 
 ---
 
@@ -1228,7 +1228,7 @@ Impact 检测：找 gyro_z 的负峰值（绝对值最大）
 
 掌握这些信号处理基础后，你可以：
 
-1. 阅读 [数据处理与指标计算](../design/architecture/metrics-calculation.md) — 理解检测算法的实现
+1. 阅读 [数据处理与指标计算](../design/architecture/data-processing/metrics-calculation.md) — 理解检测算法的实现
 2. 阅读 [八个挥杆阶段](../design/specs/eight-swing-phases.md) — 理解如何应用相位检测
 3. 阅读 [生物力学基准值](foundations/biomechanics-benchmarks.md) — 了解阈值从何而来
 
