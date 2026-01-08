@@ -166,7 +166,7 @@ nav:
               - 练习模式: design/specs/modes/drill-mode.md
               - 引导模式: design/specs/modes/guide-mode.md
               - 实战模式: design/specs/modes/game-mode.md
-          - 三个反馈通道: design/specs/feedback-system.md
+          - 三个反馈通道: design/specs/three-feedback-channels.md
           - 用户信息和阈值调整: design/specs/user-profile-thresholds.md
       - 技术决策:
           - 概览: design/decisions/index.md
