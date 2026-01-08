@@ -144,18 +144,18 @@ Instagram 上有**两种类型**的 3D 动画内容：
 
 动画播放**流畅丝滑**，配合讲解节奏调整速度。关键动作点会**暂停或慢放**，配合文字和语音讲解，让学习者理解要点。**重点标注**在暂停时出现，用箭头、圆圈、高亮等方式指向需要关注的部位。**视图切换**在讲解过程中自然过渡，从正面切到侧面，或从全身切到局部放大。**重影（Ghost/Onion Skin）设计**保留前几帧的半透明残影，在单帧画面中展示动作的连续变化轨迹。整体观感像一个精心制作的教学视频，而不是枯燥的数据展示。
 
-| | | | | |
-|:---:|:---:|:---:|:---:|:---:|
-| ![丝滑动画](images/smooth-animation-1.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-2.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-3.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-4.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-5.jpg){ width="300" } |
+| | | | |
+|:---:|:---:|:---:|:---:|
+| ![丝滑动画](images/smooth-animation-1.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-2.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-3.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-5.jpg){ width="300" } |
 
 
 #### 2.2.3 肌肉与骨骼叠加显示
 
 界面同时展示**肌肉层**和**骨骼层**，两者可以叠加或单独展示。骨骼层展示关节角度、旋转轴心、运动轨迹等几何信息。肌肉层展示哪些肌肉群在发力、肌肉的拉伸和收缩状态。这种双层设计帮助学习者理解"骨骼怎么动"和"肌肉怎么配合"的关系。每个动作要点都可以在对应的肌肉或骨骼上标注指标，比如髋部旋转角度标注在骨盆上，核心发力标注在腹肌群上。
 
-| | | |
-|:---:|:---:|:---:|
-| ![肌肉骨骼叠加](images/muscle-skeleton-overlay-1.jpg){ width="300" } | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-2.jpg){ width="300" } | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-3.jpg){ width="300" } || ![丝滑动画](images/smooth-animation-4.jpg){ width="300" } 
+| | | | |
+|:---:|:---:|:---:|:---:|
+| ![肌肉骨骼叠加](images/muscle-skeleton-overlay-1.jpg){ width="300" } | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-2.jpg){ width="300" } | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-3.jpg){ width="300" } | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-4.jpg){ width="300" } |
 
 #### 2.2.4 实时对比
 
