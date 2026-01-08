@@ -136,11 +136,9 @@ Instagram 上有**两种类型**的 3D 动画内容：
 
 3D 呈现让抽象的生物力学概念变得可触可感。
 
-<div style="display: flex; gap: 10px; justify-content: center;">
-  <img src="images/3d-golf-decoded-3.jpg" width="200" />
-  <img src="images/3d-golf-decoded-2.jpg" width="200" />
-  <img src="images/3d-golf-decoded-1.jpg" width="200" />
-</div>
+| | | |
+|:---:|:---:|:---:|
+| ![正面](images/3d-golf-decoded-3.jpg){ width="200" } | ![侧面](images/3d-golf-decoded-2.jpg){ width="200" } | ![俯视](images/3d-golf-decoded-1.jpg){ width="200" } |
 
 #### 2.2.2 肌肉与骨骼双层显示
 
