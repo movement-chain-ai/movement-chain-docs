@@ -136,14 +136,11 @@ Instagram 上有**两种类型**的 3D 动画内容：
 
 3D 呈现让抽象的生物力学概念变得可触可感。
 
-![3D Golf Decoded 正面视角](images/3d-golf-decoded-3.jpg)
-*正面视角：展示全身肌肉和骨骼结构*
-
-![3D Golf Decoded 侧面视角](images/3d-golf-decoded-2.jpg)
-*侧面视角：展示发力点标注（黄色圆圈）和旋转方向*
-
-![3D Golf Decoded 俯视视角](images/3d-golf-decoded-1.jpg)
-*俯视视角：展示肩髋旋转线和 X-Factor*
+<div style="display: flex; gap: 10px; justify-content: center;">
+  <img src="images/3d-golf-decoded-3.jpg" width="200" />
+  <img src="images/3d-golf-decoded-2.jpg" width="200" />
+  <img src="images/3d-golf-decoded-1.jpg" width="200" />
+</div>
 
 #### 2.2.2 肌肉与骨骼双层显示
 
