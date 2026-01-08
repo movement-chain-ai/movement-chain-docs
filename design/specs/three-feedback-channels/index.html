@@ -2537,6 +2537,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2.3 视觉反馈">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.1 视频叠加
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.2 教学视频
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -5120,6 +5148,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2.3 视觉反馈">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.1 视频叠加
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3.2 教学视频
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -5597,6 +5653,8 @@
 </span></code></pre></div>
 <h3 id="23">2.3 视觉反馈<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
 <p>视觉反馈延迟最低，适用于精确展示位置和角度信息。</p>
+<h4 id="231">2.3.1 视频叠加<a class="headerlink" href="#231" title="Permanent link">&para;</a></h4>
+<p>在用户采集的视频上叠加以下信息（实时预览或回放）：</p>
 <table>
 <thead>
 <tr>
@@ -5607,14 +5665,14 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>骨骼叠加</strong></td>
-<td>在视频上叠加检测到的骨骼</td>
+<td><strong>姿态骨架</strong></td>
+<td>关节点 + 连接线（火柴人风格）</td>
 <td>实时预览、回放分析</td>
 </tr>
 <tr>
 <td><strong>角度标注</strong></td>
-<td>显示关节角度数值</td>
-<td>评估报告、对比分析</td>
+<td>角度弧线 + 数值显示</td>
+<td>评估报告、回放分析</td>
 </tr>
 <tr>
 <td><strong>轨迹绘制</strong></td>
@@ -5630,6 +5688,42 @@
 <td><strong>进度指示</strong></td>
 <td>显示阶段进度条</td>
 <td>引导模式</td>
+</tr>
+<tr>
+<td><strong>阶段标记</strong></td>
+<td>动作阶段文字标注</td>
+<td>回放分析</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>开发调试工具</strong>：开发阶段可使用 <a href="https://rerun.io/">Rerun SDK</a> 进行视频叠加调试和姿态分析可视化。Rerun 支持 MediaPipe 姿态点的 2D/3D 可视化，适合快速验证算法效果。生产环境使用原生方案（iOS: Core Graphics / Metal）。</p>
+</blockquote>
+<h4 id="232">2.3.2 教学视频<a class="headerlink" href="#232" title="Permanent link">&para;</a></h4>
+<p>预制的动作演示视频，帮助用户理解正确动作：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Drill 示范</strong></td>
+<td>展示正确的 Drill 动作</td>
+<td>练习模式、引导模式</td>
+</tr>
+<tr>
+<td><strong>动作对比</strong></td>
+<td>正确 vs 错误动作对比</td>
+<td>练习模式、引导模式</td>
+</tr>
+<tr>
+<td><strong>要点讲解</strong></td>
+<td>关键动作点的暂停标注</td>
+<td>练习模式、引导模式</td>
 </tr>
 </tbody>
 </table>
@@ -6191,7 +6285,7 @@
 </tbody>
 </table>
 <hr />
-<p><strong>最后更新</strong>: 2026-01-07
+<p><strong>最后更新</strong>: 2026-01-08
 <strong>维护者</strong>: Movement Chain AI Team</p>
 
 
