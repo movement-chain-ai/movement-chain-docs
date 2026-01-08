@@ -108,6 +108,23 @@
 | P1 | 节奏过慢 | Downswing > 0.40s | IMU | 2次 | 4次 | 刻意放慢下杆速度 |
 | P1 | 早释放 | Wrist release < 40% downswing | IMU | 2次 | 4次 | 下杆初期就打开手腕 |
 
+### 错误动作参考视频
+
+| 错误类型 | 参考资料 | 链接 |
+|---------|---------|------|
+| 倒序运动链 | Golf.com - Step Drill (Harrington) | [链接](https://golf.com/instruction/driving/step-drill-sequencing-padraig-harrington/) |
+| 倒序运动链 | RotarySwing - Sequencing Drill | [链接](https://rotaryswing.com/golf-instruction/golfbiomechanics/golf-swing-sequencing-drill) |
+| 过度手臂挥杆 | Golf Distillery - All Arms Swing | [链接](https://www.golfdistillery.com/swing-errors/all-arms-swing/) |
+| 过度手臂挥杆 | HackMotion - Over the Top Fix | [链接](https://hackmotion.com/over-the-top-golf-swing/) |
+| X-Factor 不足 | TPI - X-Factor Essentials | [链接](https://www.mytpi.com/articles/fitness/x-factor_essentials_what_it_is_and_how_to_train_it) |
+| X-Factor 不足 | SwingStation - Hip Twister Drill | [链接](https://swingstation.com/video/downswing-separation-drill-hip-twister-ll) |
+| 节奏过快 | RotarySwing - Stop Rushing Downswing | [链接](https://rotaryswing.com/golf-instruction/stop-rushing-downswing-golf) |
+| 节奏过快 | Performance Golf - Rushing Fix | [链接](https://www.performancegolf.com/stop-rushing-downswing) |
+| 节奏过慢 | Golf Distillery - Deceleration Fix | [链接](https://www.golfdistillery.com/swing-errors/decel/) |
+| 节奏过慢 | Left Rough - Deceleration Cure | [链接](https://theleftrough.com/golf-swing-deceleration/) |
+| 早释放 | HackMotion - Stop Early Release | [链接](https://hackmotion.com/stop-early-release-in-golf-swing/) |
+| 早释放 | Golf Distillery - Casting Fix | [链接](https://www.golfdistillery.com/swing-errors/casting/) |
+
 ---
 
 ## 五、验证目标
