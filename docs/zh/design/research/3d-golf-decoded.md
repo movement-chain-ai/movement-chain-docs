@@ -149,13 +149,21 @@ Instagram 上有**两种类型**的 3D 动画内容：
 | ![丝滑动画](images/smooth-animation-1.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-2.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-3.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-5.jpg){ width="300" } |
 
 
-#### 2.2.3 肌肉与骨骼叠加显示
+#### 2.2.3 肌肉与骨骼叠加
 
 界面同时展示**肌肉层**和**骨骼层**，两者可以叠加或单独展示。骨骼层展示关节角度、旋转轴心、运动轨迹等几何信息。肌肉层展示哪些肌肉群在发力、肌肉的拉伸和收缩状态。这种双层设计帮助学习者理解"骨骼怎么动"和"肌肉怎么配合"的关系。每个动作要点都可以在对应的肌肉或骨骼上标注指标，比如髋部旋转角度标注在骨盆上，核心发力标注在腹肌群上。
 
 | | | | |
 |:---:|:---:|:---:|:---:|
 | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-1.jpg){ width="300" } | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-2.jpg){ width="300" } | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-3.jpg){ width="300" } | ![肌肉骨骼叠加](images/muscle-skeleton-overlay-4.jpg){ width="300" } |
+
+#### 2.2.5 数据可视化
+
+动画中的各种标注和指标采用**半透明设计**，不遮挡人体动作本身。重力线、力线、旋转线、角度标注等都是半透明的，既能看到指标信息，又能看清背后的肌肉和骨骼。文字标签和数值显示也采用半透明背景，确保信息清晰但不喧宾夺主。这种设计让界面信息丰富但不杂乱，学习者可以同时关注动作和数据。
+
+| | | | | | | |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| ![数据可视化](images/data-visualization-1.jpg){ width="200" } | ![数据可视化](images/data-visualization-2.jpg){ width="200" } | ![数据可视化](images/data-visualization-3.jpg){ width="200" } | ![数据可视化](images/data-visualization-4.jpg){ width="200" } | ![数据可视化](images/data-visualization-5.jpg){ width="200" } | ![数据可视化](images/data-visualization-6.jpg){ width="200" } | ![数据可视化](images/data-visualization-7.jpg){ width="200" } |
 
 #### 2.2.4 实时对比
 
@@ -173,15 +181,7 @@ Instagram 上有**两种类型**的 3D 动画内容：
 
 这些对比都是动态的、实时的，每一帧都能看到差异，比静态截图更直观。
 
-#### 2.2.5 指标半透明设计
 
-动画中的各种标注和指标采用**半透明设计**，不遮挡人体动作本身。
-
-重力线、力线、旋转线、角度标注等都是半透明的，既能看到指标信息，又能看清背后的肌肉和骨骼。
-
-文字标签和数值显示也采用半透明背景，确保信息清晰但不喧宾夺主。
-
-这种设计让界面信息丰富但不杂乱，学习者可以同时关注动作和数据。
 
 #### 2.2.6 重力线、力线、旋转线与平衡参考
 
