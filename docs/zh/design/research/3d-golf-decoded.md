@@ -147,6 +147,7 @@ Instagram 上有**两种类型**的 3D 动画内容：
 | | | | |
 |:---:|:---:|:---:|:---:|
 | ![丝滑动画](images/smooth-animation-1.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-2.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-3.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-5.jpg){ width="300" } |
+| ![丝滑动画](images/smooth-animation-6.jpg){ width="300" } | ![丝滑动画](images/smooth-animation-7.jpg){ width="300" } | | |
 
 
 #### 2.2.3 肌肉与骨骼叠加
