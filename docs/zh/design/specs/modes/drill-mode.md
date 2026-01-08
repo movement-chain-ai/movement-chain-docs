@@ -41,7 +41,7 @@
 
 ### 3.1 Stage 6 扩展设计
 
-根据 [系统设计文档](../architecture/system-design.md)，训练推荐集成到 Stage 6 AI 反馈层：
+根据 [系统设计文档](../../architecture/system-design.md)，训练推荐集成到 Stage 6 AI 反馈层：
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -95,7 +95,7 @@ AI Agent 工具集:
 
 ### 4.2 诊断 → 训练映射表
 
-根据 [生物力学基础](../../prerequisites/foundations/biomechanics-101.md) 已有的映射：
+根据 [生物力学基础](../../../prerequisites/foundations/biomechanics-101.md) 已有的映射：
 
 | MVP 诊断规则 | EMG 根因 | 推荐训练 | 类型 |
 |-------------|---------|---------|------|
@@ -250,9 +250,9 @@ AI Agent 工具集:
 
 ### 相关文档
 
-- [系统设计](../architecture/system-design.md) - Stage 6 AI 反馈架构
-- [生物力学基础](../../prerequisites/foundations/biomechanics-101.md) - 诊断 → 训练映射
-- [视觉竞品分析](../../business-plan/market-insights/competitors/vision-based.md) - 竞品详情
+- [系统设计](../../architecture/system-design.md) - Stage 6 AI 反馈架构
+- [生物力学基础](../../../prerequisites/foundations/biomechanics-101.md) - 诊断 → 训练映射
+- [视觉竞品分析](../../../business-plan/market-insights/competitors/vision-based.md) - 竞品详情
 
 ---
 

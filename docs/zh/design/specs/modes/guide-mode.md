@@ -531,10 +531,10 @@ class SlowMotionGuide:
 
 | 相关文档 | 内容 | 本文档使用 |
 |---------|------|-----------|
-| [反馈系统](feedback-system.md) | 反馈通道与延迟预算 | 语音、视觉、触觉反馈设计 |
+| [反馈系统](../feedback-system.md) | 反馈通道与延迟预算 | 语音、视觉、触觉反馈设计 |
 | [评估模式](assessment-mode.md) | 全速分析 | 验证学习效果 |
-| [八个挥杆阶段](eight-swing-phases.md) | 阶段检测 | 阶段触发点 |
-| [传感器映射](../architecture/sensor-data-processing.md) | 传感器能力 | 检测方法选择 |
+| [八个挥杆阶段](../eight-swing-phases.md) | 阶段检测 | 阶段触发点 |
+| [传感器映射](../../architecture/sensor-data-processing.md) | 传感器能力 | 检测方法选择 |
 
 ---
 

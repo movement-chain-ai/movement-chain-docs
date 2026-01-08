@@ -133,7 +133,7 @@ flowchart LR
 !!! tip "创新点：慢动作模式"
     用户以慢速执行挥杆动作，系统可在动作过程中提供实时语音反馈。这解决了"正常挥杆太快无法实时纠正"的难题。
 
-> 详细技术规格见: [三个训练场景](../../design/specs/assessment-mode.md)
+> 详细技术规格见: [三个训练场景](../../design/specs/modes/assessment-mode.md)
 
 ### 反馈设计原则
 
@@ -291,7 +291,7 @@ flowchart LR
 ### 技术规格
 
 - [八个挥杆阶段](../../design/specs/eight-swing-phases.md) - 挥杆相位检测的技术实现
-- [三个训练场景](../../design/specs/assessment-mode.md) - 三个训练场景的延迟与实现
+- [三个训练场景](../../design/specs/modes/assessment-mode.md) - 三个训练场景的延迟与实现
 - [系统架构](../../design/architecture/system-design.md) - MVP技术架构
 
 ### 市场与商业

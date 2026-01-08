@@ -222,7 +222,7 @@ class FeedbackSpeaker {
 - **语音讲解**：TTS 生成问题解释和改进建议
 - **数据可视化**：图表展示指标对比
 
-详见 [评估模式](assessment-mode.md)
+详见 [评估模式](modes/assessment-mode.md)
 
 ### 4.3 练习模式反馈
 
@@ -239,7 +239,7 @@ class FeedbackSpeaker {
 !!! note "触觉反馈为可选"
     练习模式的触觉反馈需要 Apple Watch 或自定义可穿戴设备，列入 Post-MVP。
 
-详见 [练习模式](drill-mode.md)
+详见 [练习模式](modes/drill-mode.md)
 
 ### 4.4 引导模式反馈
 
@@ -250,7 +250,7 @@ class FeedbackSpeaker {
 | **站姿引导** | ✅ 主要 | ✅ 辅助 | ❌ 不适用 |
 | **挥杆引导** | ✅ 主要 | ✅ 辅助 | ✅ 可选 |
 
-详见 [引导模式](guide-mode.md)
+详见 [引导模式](modes/guide-mode.md)
 
 ### 4.5 实战模式反馈
 
@@ -260,7 +260,7 @@ class FeedbackSpeaker {
 - **语音简短**：只在击球后简短反馈
 - **视觉最小化**：不遮挡视线
 
-详见 [实战模式](game-mode.md)
+详见 [实战模式](modes/game-mode.md)
 
 ---
 
@@ -329,7 +329,7 @@ class FeedbackManager:
 | 阶段 | 内容 | 优先级 | 说明 |
 |------|------|--------|------|
 | **MVP** | 评估报告视觉反馈 | 🔴 必须 | 问题卡片、数据图表 |
-| **MVP** | 预录制语音文件 | 🔴 必须 | 基础反馈语音库 |
+| **Post-MVP** | 预录制语音文件 | 🔴 必须 | 基础反馈语音库 |
 | **Post-MVP** | 视频回放 + 语音讲解 | 🔴 必须 | 评估报告核心体验 |
 | **Post-MVP** | 实时语音引导 | 🟡 高 | 引导模式核心功能 |
 | **Post-MVP** | TTS 动态生成 | 🟡 中 | 个性化数据反馈 |
@@ -341,10 +341,10 @@ class FeedbackManager:
 
 | 相关文档 | 内容 | 本文档使用 |
 |---------|------|-----------|
-| [评估模式](assessment-mode.md) | 事后报告反馈 | 报告生成策略 |
-| [练习模式](drill-mode.md) | Drill 指导反馈 | 练习过程反馈 |
-| [引导模式](guide-mode.md) | 实时引导反馈 | 延迟要求来源 |
-| [实战模式](game-mode.md) | 最小化干扰反馈 | 触觉优先策略 |
+| [评估模式](modes/assessment-mode.md) | 事后报告反馈 | 报告生成策略 |
+| [练习模式](modes/drill-mode.md) | Drill 指导反馈 | 练习过程反馈 |
+| [引导模式](modes/guide-mode.md) | 实时引导反馈 | 延迟要求来源 |
+| [实战模式](modes/game-mode.md) | 最小化干扰反馈 | 触觉优先策略 |
 
 ---
 

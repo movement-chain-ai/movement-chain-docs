@@ -154,7 +154,7 @@ assert result is not None  # MVP 通过!
     3. **Rerun 友好** — 录制 .rrd 文件分享给团队协作
     4. **优先验证核心价值** — 时间对齐是否正确比实时性更重要
 
-> 📐 **详细规格**: 三个训练场景的完整定义见 [三个训练场景](../specs/assessment-mode.md)
+> 📐 **详细规格**: 三个训练场景的完整定义见 [三个训练场景](../specs/modes/assessment-mode.md)
 
 ---
 
@@ -258,7 +258,7 @@ flowchart LR
 | 规则准确率 | 100% (已知案例) |
 | 反馈可读性 | 用户评分 >4/5 |
 
-> 📐 **详细规格**: [§7.2 诊断规则](#72-mvp-6-条诊断规则) | [三个训练场景](../specs/assessment-mode.md)
+> 📐 **详细规格**: [§7.2 诊断规则](#72-mvp-6-条诊断规则) | [三个训练场景](../specs/modes/assessment-mode.md)
 
 ---
 
@@ -335,7 +335,7 @@ flowchart LR
 | **Phase 3** | 反馈可读性 | 用户评分 >4/5 | - |
 | **Phase 3.5** | Python↔Swift 一致性 | 输出差异 <1% | [ADR-0008](../decisions/0008-desktop-to-mobile-architecture.md) |
 | **Phase 3.5** | Swift 单元测试 | >90% 覆盖率 | - |
-| **Phase 4** | E2E 延迟 | <500ms | [三个训练场景](../specs/assessment-mode.md) |
+| **Phase 4** | E2E 延迟 | <500ms | [三个训练场景](../specs/modes/assessment-mode.md) |
 | **Phase 4** | Mock→Real 切换 | 配置切换成功 | - |
 
 ---
@@ -348,7 +348,7 @@ flowchart LR
 |----------|----------|----------|
 | **12 测量指标** | [数据处理与指标计算](./sensor-data-processing.md) | Vision (6) + IMU (4) + EMG (2) |
 | **6 诊断规则** | [§7.2 诊断规则](#72-mvp-6-条诊断规则) | P0 (2条) + P1 (4条) |
-| **训练场景** | [三个训练场景](../specs/assessment-mode.md) | 3个场景: 站姿检查 / 慢动作训练 / 全速分析 |
+| **训练场景** | [三个训练场景](../specs/modes/assessment-mode.md) | 3个场景: 站姿检查 / 慢动作训练 / 全速分析 |
 | **硬件选型** | [ADR-0002](../decisions/0002-lsm6dsv16x-imu.md), [ADR-0005](../decisions/0005-esp32-s3-microcontroller.md) | LSM6DSV16X IMU + ESP32-S3 MCU |
 | **SDK 选型** | [SDK选型](../decisions/sdk-selection.md) | MediaPipe + NeuroKit2 + imufusion |
 | **移动端架构** | [ADR-0007](../decisions/0007-swift-ios-native.md) | Swift iOS 原生 (非 Flutter) |
@@ -452,7 +452,7 @@ MVP Phase 4 实现基础 UI 反馈后，以下功能延后到 Post-MVP：
 | **EMG 扩展** | [传感器映射](./sensor-data-processing.md) | 2→4→6 通道 EMG | 硬件验证 |
 | **高级模型** | [模块化设计](./modular-architecture.md) | MediaPipe → RTMPose → ViTPose++ | 性能基准 |
 | **球杆追踪** | [可视化工具](../decisions/visualization-tools-evaluation.md) | TAPIR 替代 Trackman 雷达 | Post-MVP |
-| **Mode 1/2** | [三个训练场景](../specs/assessment-mode.md) | 站姿检查 + 慢动作训练 | Post-MVP |
+| **Mode 1/2** | [三个训练场景](../specs/modes/assessment-mode.md) | 站姿检查 + 慢动作训练 | Post-MVP |
 
 ### 10.3 产品扩展
 
