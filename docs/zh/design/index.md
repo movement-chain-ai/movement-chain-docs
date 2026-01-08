@@ -59,11 +59,12 @@
 | [SDK/库选型](decisions/sdk-selection.md) | MediaPipe、NeuroKit2 等库选型 |
 | [可视化工具](decisions/visualization-tools-evaluation.md) | Rerun 调试工具选型 |
 
-### 竞品研究
+### 产品调研
 
 | 文档 | 内容 |
 |------|------|
-| [竞品指标对比](research/competitor-metrics-comparison.md) | OnForm/Sportsbox vs 我们 |
+| [OnForm & Sportsbox AI](market-research/competitor-metrics-comparison.md) | OnForm/Sportsbox vs 我们 |
+| [3D Golf Decoded](market-research/3d-golf-decoded.md) | 3D 动画界面分析 |
 
 ---
 
