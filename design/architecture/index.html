@@ -725,34 +725,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../prerequisites/signal-processing-101/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    信号处理入门
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../prerequisites/ml-basics/" class="md-nav__link">
         
   
@@ -2151,15 +2123,65 @@
   
   
   
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据处理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据处理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="data-flow/" class="md-nav__link">
+      <a href="data-processing/data-pipeline/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    数据流
+    数据管道
   
 
     
@@ -2180,14 +2202,14 @@
   
   
     <li class="md-nav__item">
-      <a href="sensor-data-processing/" class="md-nav__link">
+      <a href="data-processing/signal-processing/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    数据处理与指标计算
+    信号处理
   
 
     
@@ -2196,6 +2218,126 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data-processing/metrics-calculation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指标计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data-processing/data-collection-plan-a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data-processing/data-collection-plan-b.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 B
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data-processing/data-collection-plan-c.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -5132,10 +5274,10 @@
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  2. modular-architecture.md (25分钟) ─── 结构设计                     │
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│     └── LEGO 积木块：Input→Extraction→Analysis→Output                │
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│                                                                     │
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│  3. data-flow.md (20分钟) ─── 数据流设计                   │
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│  3. data-pipeline.md (20分钟) ─── 数据流设计                   │
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│     └── 时间对齐、Kinematic Prompts、反馈生成                          │
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│                                                                     │
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│  4. sensor-data-processing.md (参考) ─── 算法实现                     │
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│  4. metrics-calculation.md (参考) ─── 算法实现                     │
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│     └── Python 代码：特征计算、融合诊断、模拟数据生成                     │
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>└─────────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
@@ -5161,7 +5303,7 @@
 <li><strong>MVP 策略</strong>: Simple Rules 分类器、Mode 3 聚焦</li>
 <li><strong>升级路径</strong>: Phase 1-4 渐进式开发</li>
 </ul>
-<h3 id="_7"><a href="data-flow/">数据流</a><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<h3 id="_7"><a href="data-processing/data-pipeline/">数据流</a><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p><strong>阅读时间</strong>: ~20 分钟 | <strong>行为设计</strong> | <strong>必读</strong></p>
 <p>数据如何变成反馈：</p>
 <ul>
@@ -5170,7 +5312,7 @@
 <li><strong>反馈生成</strong>: Plan A/B/C 架构对比</li>
 <li><strong>阈值来源</strong>: TPI、Meister、Cheetham 论文</li>
 </ul>
-<h3 id="_8"><a href="sensor-data-processing/">数据处理与指标计算</a><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<h3 id="_8"><a href="data-processing/metrics-calculation/">数据处理与指标计算</a><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p><strong>阅读时间</strong>: 按需查阅 | <strong>实现参考</strong></p>
 <p>完整 Python 实现代码：</p>
 <ul>
@@ -5214,7 +5356,7 @@
 <tr>
 <td>Kinematic Prompts</td>
 <td>传感器→LLM 的桥梁</td>
-<td>data-flow.md §2</td>
+<td>data-pipeline.md §2</td>
 </tr>
 <tr>
 <td>False Coil</td>
@@ -5224,7 +5366,7 @@
 <tr>
 <td>Mode 3</td>
 <td>全速挥杆后处理模式</td>
-<td>data-flow.md §2</td>
+<td>data-pipeline.md §2</td>
 </tr>
 <tr>
 <td>LEGO 原则</td>

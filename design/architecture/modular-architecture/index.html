@@ -725,34 +725,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../prerequisites/signal-processing-101/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    信号处理入门
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../prerequisites/ml-basics/" class="md-nav__link">
         
   
@@ -2546,15 +2518,65 @@
   
   
   
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据处理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据处理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../data-flow/" class="md-nav__link">
+      <a href="../data-processing/data-pipeline/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    数据流
+    数据管道
   
 
     
@@ -2575,14 +2597,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../sensor-data-processing/" class="md-nav__link">
+      <a href="../data-processing/signal-processing/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    数据处理与指标计算
+    信号处理
   
 
     
@@ -2591,6 +2613,126 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-processing/metrics-calculation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指标计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-processing/data-collection-plan-a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-processing/data-collection-plan-b.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 B
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-processing/data-collection-plan-c.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -6728,7 +6870,7 @@
 </ul>
 <h5 id="_4">同步精度<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h5>
 <blockquote>
-<p>📐 <strong>详细时间同步规格</strong>: 见 <a href="../data-flow/#sensor-hub-架构-2025-12-推荐">数据管道与AI §1.2</a></p>
+<p>📐 <strong>详细时间同步规格</strong>: 见 <a href="./data-pipeline.md#sensor-hub-架构-2025-12-推荐">数据管道与AI §1.2</a></p>
 </blockquote>
 <table>
 <thead>
@@ -7147,7 +7289,7 @@
 </table>
 <div class="admonition tip">
 <p class="admonition-title">详细算法实现</p>
-<p>计算代码见 <a href="../sensor-data-processing/#31-vision-数据处理-mediapipe-33-landmarks">数据处理与指标计算 §3.1</a></p>
+<p>计算代码见 <a href="./metrics-calculation.md#31-vision-数据处理-mediapipe-33-landmarks">数据处理与指标计算 §3.1</a></p>
 </div>
 <h4 id="233-imu-block">2.3.3 IMU Block 实现<a class="headerlink" href="#233-imu-block" title="Permanent link">&para;</a></h4>
 <p><strong>职责</strong>: 从惯性测量单元提取角速度、加速度等时序特征</p>
@@ -7226,7 +7368,7 @@
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">完整算法实现</p>
-<p>详细代码和测试场景见 <a href="../sensor-data-processing/#51-从-pose-数据生成模拟-imu">数据处理与指标计算 §5.1</a></p>
+<p>详细代码和测试场景见 <a href="./metrics-calculation.md#51-从-pose-数据生成模拟-imu">数据处理与指标计算 §5.1</a></p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">真实硬件选项 (Phase 2+)</p>
@@ -7302,7 +7444,7 @@
 </table>
 <div class="admonition tip">
 <p class="admonition-title">详细算法实现</p>
-<p>峰值检测、运动链验证代码见 <a href="../sensor-data-processing/#32-imu-数据处理-lsm6dsv16x--1666hz">数据处理与指标计算 §3.2</a></p>
+<p>峰值检测、运动链验证代码见 <a href="./metrics-calculation.md#32-imu-数据处理-lsm6dsv16x--1666hz">数据处理与指标计算 §3.2</a></p>
 </div>
 <h4 id="234-emg-block">2.3.4 EMG Block 实现<a class="headerlink" href="#234-emg-block" title="Permanent link">&para;</a></h4>
 <p><strong>职责</strong>: 从肌电传感器提取肌肉激活时序和强度</p>
@@ -7400,7 +7542,7 @@
 </div>
 <div class="admonition tip">
 <p class="admonition-title">完整算法实现</p>
-<p>详细代码和测试场景见 <a href="../sensor-data-processing/#52-从阶段时间戳生成模拟-emg">数据处理与指标计算 §5.2</a></p>
+<p>详细代码和测试场景见 <a href="./metrics-calculation.md#52-从阶段时间戳生成模拟-emg">数据处理与指标计算 §5.2</a></p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">真实硬件选项 (Phase 2+)</p>
@@ -7474,7 +7616,7 @@
 </table>
 <div class="admonition tip">
 <p class="admonition-title">详细布局图</p>
-<p>电极放置位置、选择依据见 <a href="../sensor-data-processing/#333-emg-传感器布局规划">数据处理与指标计算 §3.3.3</a></p>
+<p>电极放置位置、选择依据见 <a href="./metrics-calculation.md#333-emg-传感器布局规划">数据处理与指标计算 §3.3.3</a></p>
 </div>
 <h5 id="emg_3">真实 EMG 检测能力<a class="headerlink" href="#emg_3" title="Permanent link">&para;</a></h5>
 <table>
@@ -7515,7 +7657,7 @@
 </table>
 <div class="admonition tip">
 <p class="admonition-title">详细算法实现</p>
-<p>信号处理、特征提取代码见 <a href="../sensor-data-processing/#33-emg-数据处理-unique-capability">数据处理与指标计算 §3.3</a></p>
+<p>信号处理、特征提取代码见 <a href="./metrics-calculation.md#33-emg-数据处理-unique-capability">数据处理与指标计算 §3.3</a></p>
 </div>
 <h3 id="24-分析诊断层">2.4 分析诊断层<a class="headerlink" href="#24-分析诊断层" title="Permanent link">&para;</a></h3>
 <p>对提取的特征进行智能分析，识别挥杆阶段并融合多模态数据。</p>
@@ -7654,7 +7796,7 @@
 <h5 id="_6">核心诊断算法<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h5>
 <p>FUSION Block 的核心价值在于<strong>诊断算法</strong> — 这些算法只有三模态融合才能实现。</p>
 <blockquote>
-<p><strong>实现代码</strong>: 见 <a href="../sensor-data-processing/#45-融合诊断算法-fusion-diagnostic-algorithms">数据处理与指标计算 §4.5 融合诊断算法</a></p>
+<p><strong>实现代码</strong>: 见 <a href="./metrics-calculation.md#45-融合诊断算法-fusion-diagnostic-algorithms">数据处理与指标计算 §4.5 融合诊断算法</a></p>
 </blockquote>
 <table>
 <thead>
@@ -7885,7 +8027,7 @@
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">算法实现</p>
-<p>完整 Python 代码见 <a href="../sensor-data-processing/#44-融合置信度计算-fusion-confidence">数据处理与指标计算 §4.4</a></p>
+<p>完整 Python 代码见 <a href="./metrics-calculation.md#44-融合置信度计算-fusion-confidence">数据处理与指标计算 §4.4</a></p>
 </div>
 <h3 id="25-ai-反馈生成层">2.5 AI 反馈生成层<a class="headerlink" href="#25-ai-反馈生成层" title="Permanent link">&para;</a></h3>
 <p>将传感器数据结构化为 LLM 可理解格式，生成教练级自然语言反馈。</p>
@@ -8387,7 +8529,7 @@
 <td>本文档的父文档</td>
 </tr>
 <tr>
-<td><a href="../sensor-data-processing/">数据处理与指标计算</a></td>
+<td><a href="./metrics-calculation.md">数据处理与指标计算</a></td>
 <td>算法实现代码</td>
 <td>§3.1-3.3 的详细实现</td>
 </tr>
@@ -8471,7 +8613,7 @@
 <tr>
 <td></td>
 <td></td>
-<td>• §4 Rerun 调试工具迁移至 data-flow.md §5</td>
+<td>• §4 Rerun 调试工具迁移至 data-pipeline.md §5</td>
 </tr>
 <tr>
 <td></td>

@@ -173,10 +173,6 @@
          <lastmod>2026-01-08</lastmod>
     </url>
     <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/data-flow/</loc>
-         <lastmod>2026-01-08</lastmod>
-    </url>
-    <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/modular-architecture/</loc>
          <lastmod>2026-01-08</lastmod>
     </url>
@@ -185,11 +181,23 @@
          <lastmod>2026-01-08</lastmod>
     </url>
     <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/sensor-data-processing/</loc>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/system-design/</loc>
          <lastmod>2026-01-08</lastmod>
     </url>
     <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/system-design/</loc>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/data-processing/data-collection-plan-a/</loc>
+         <lastmod>2026-01-08</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/data-processing/data-pipeline/</loc>
+         <lastmod>2026-01-08</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/data-processing/metrics-calculation/</loc>
+         <lastmod>2026-01-08</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/data-processing/signal-processing/</loc>
          <lastmod>2026-01-08</lastmod>
     </url>
     <url>
@@ -322,10 +330,6 @@
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/prerequisites/ml-basics/</loc>
-         <lastmod>2026-01-08</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/prerequisites/signal-processing-101/</loc>
          <lastmod>2026-01-08</lastmod>
     </url>
     <url>

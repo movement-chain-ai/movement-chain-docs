@@ -725,34 +725,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../prerequisites/signal-processing-101/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    信号处理入门
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../prerequisites/ml-basics/" class="md-nav__link">
         
   
@@ -1992,15 +1964,65 @@
   
   
   
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据处理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据处理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../design/architecture/data-flow/" class="md-nav__link">
+      <a href="../../design/architecture/data-processing/data-pipeline/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    数据流
+    数据管道
   
 
     
@@ -2021,14 +2043,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../design/architecture/sensor-data-processing/" class="md-nav__link">
+      <a href="../../design/architecture/data-processing/signal-processing/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    数据处理与指标计算
+    信号处理
   
 
     
@@ -2037,6 +2059,126 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/architecture/data-processing/metrics-calculation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指标计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/architecture/data-processing/data-collection-plan-a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/architecture/data-processing/data-collection-plan-b.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 B
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/architecture/data-processing/data-collection-plan-c.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -7043,7 +7185,7 @@
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">lsm6dsv16x_acceleration_raw_get</span><span class="p">(</span><span class="o">&amp;</span><span class="n">dev_ctx</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">raw_accel</span><span class="p">);</span><span class="w">        </span><span class="c1">// 含重力原始值</span>
 </span></code></pre></div>
 <blockquote>
-<p>详见：<a href="../../design/architecture/sensor-data-processing/#32-imu-数据处理-lsm6dsv16x--1666hz">数据处理与指标计算 §3.2</a> — IMU 数据处理</p>
+<p>详见：<a href="../../design/architecture/data-processing/metrics-calculation/#32-imu-数据处理-lsm6dsv16x--1666hz">数据处理与指标计算 §3.2</a> — IMU 数据处理</p>
 </blockquote>
 <hr />
 <h3 id="12-陀螺仪-gyroscope">1.2 陀螺仪 (Gyroscope)<a class="headerlink" href="#12-陀螺仪-gyroscope" title="Permanent link">&para;</a></h3>
@@ -7252,7 +7394,7 @@
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="kt">float</span><span class="w"> </span><span class="n">gyro_z_dps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">raw_gyro</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sensitivity</span><span class="p">;</span><span class="w">  </span><span class="c1">// 转换为 °/s</span>
 </span></code></pre></div>
 <blockquote>
-<p>详见：<a href="../../design/architecture/sensor-data-processing/#32-imu-数据处理-lsm6dsv16x--1666hz">数据处理与指标计算 §3.2</a> — IMU 数据处理</p>
+<p>详见：<a href="../../design/architecture/data-processing/metrics-calculation/#32-imu-数据处理-lsm6dsv16x--1666hz">数据处理与指标计算 §3.2</a> — IMU 数据处理</p>
 </blockquote>
 <hr />
 <h2 id="2-emg-肌电传感器">2. EMG (肌电传感器)<a class="headerlink" href="#2-emg-肌电传感器" title="Permanent link">&para;</a></h2>
@@ -7681,7 +7823,7 @@ f_s \geq 2 \times 500 = 1000 \text{ Hz}
 <p>fps 专指<strong>图像帧</strong>，而 IMU 输出的是<strong>数值数据</strong>（加速度、角速度），所以用 Hz 表示采样率更准确。</p>
 </div>
 <blockquote>
-<p>详见：<a href="../../design/architecture/data-flow/#21-d1-d2-信号采集与数字化">数据流 §2.1</a> — MediaPipe Vision 30fps 数据采集</p>
+<p>详见：<a href="../../design/architecture/data-processing/data-pipeline/#21-d1-d2-信号采集与数字化">数据流 §2.1</a> — MediaPipe Vision 30fps 数据采集</p>
 </blockquote>
 <hr />
 <h2 id="5-漂移-drift">5. 漂移 (Drift)<a class="headerlink" href="#5-漂移-drift" title="Permanent link">&para;</a></h2>

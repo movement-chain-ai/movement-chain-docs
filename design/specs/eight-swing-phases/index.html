@@ -725,34 +725,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../prerequisites/signal-processing-101/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    信号处理入门
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../prerequisites/ml-basics/" class="md-nav__link">
         
   
@@ -1997,15 +1969,65 @@
   
   
   
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据处理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据处理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../architecture/data-flow/" class="md-nav__link">
+      <a href="../../architecture/data-processing/data-pipeline/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    数据流
+    数据管道
   
 
     
@@ -2026,14 +2048,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/sensor-data-processing/" class="md-nav__link">
+      <a href="../../architecture/data-processing/signal-processing/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    数据处理与指标计算
+    信号处理
   
 
     
@@ -2042,6 +2064,126 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/data-processing/metrics-calculation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指标计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/data-processing/data-collection-plan-a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/data-processing/data-collection-plan-b.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 B
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/data-processing/data-collection-plan-c.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -5645,7 +5787,7 @@
 <li>这样无论是否有球、是否击中，检测逻辑都一致</li>
 <li>空挥、打垫、练习挥杆都能正确检测</li>
 </ul>
-<p>详见: <a href="../../../prerequisites/signal-processing-101/#part2-imu">信号处理入门 - IMU 相位检测</a></p>
+<p>详见: <a href="../../architecture/data-processing/signal-processing/#part2-imu">信号处理入门 - IMU 相位检测</a></p>
 </div>
 <p><strong>检测代码 (最可靠)</strong>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">detect_impact</span><span class="p">(</span><span class="n">gyro_z</span><span class="p">,</span> <span class="n">accel_z</span><span class="p">,</span> <span class="n">timestamps</span><span class="p">):</span>

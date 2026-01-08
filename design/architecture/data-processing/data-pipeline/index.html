@@ -12,13 +12,13 @@
         <meta name="author" content="Movement Chain AI Team">
       
       
-        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/data-flow/">
+        <link rel="canonical" href="https://movement-chain-ai.github.io/movement-chain-docs/design/architecture/data-processing/data-pipeline/">
       
       
-        <link rel="prev" href="../mvp-plan/">
+        <link rel="prev" href="../../mvp-plan/">
       
       
-        <link rel="next" href="../sensor-data-processing/">
+        <link rel="next" href="../signal-processing/">
       
       
         
@@ -28,19 +28,19 @@
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>数据流 - Movement Chain AI Documentation</title>
+        <title>数据管道 - Movement Chain AI Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -59,9 +59,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -104,7 +104,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../../../.." title="Movement Chain AI Documentation" class="md-header__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              数据流
+              数据管道
             
           </span>
         </div>
@@ -263,7 +263,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
   
@@ -284,7 +284,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../prerequisites/" class="md-tabs__link">
+        <a href="../../../../prerequisites/" class="md-tabs__link">
           
   
   
@@ -304,7 +304,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../business-plan/" class="md-tabs__link">
+        <a href="../../../../business-plan/" class="md-tabs__link">
           
   
   
@@ -326,7 +326,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../" class="md-tabs__link">
+        <a href="../../../" class="md-tabs__link">
           
   
   
@@ -346,7 +346,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../components/" class="md-tabs__link">
+        <a href="../../../../components/" class="md-tabs__link">
           
   
   
@@ -366,7 +366,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../development/" class="md-tabs__link">
+        <a href="../../../../development/" class="md-tabs__link">
           
   
   
@@ -386,7 +386,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../reference/" class="md-tabs__link">
+        <a href="../../../../reference/" class="md-tabs__link">
           
   
   
@@ -420,7 +420,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
+    <a href="../../../.." title="Movement Chain AI Documentation" class="md-nav__button md-logo" aria-label="Movement Chain AI Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -450,7 +450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -527,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../prerequisites/" class="md-nav__link">
+      <a href="../../../../prerequisites/" class="md-nav__link">
         
   
   
@@ -605,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../prerequisites/foundations/" class="md-nav__link">
+      <a href="../../../../prerequisites/foundations/" class="md-nav__link">
         
   
   
@@ -633,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../prerequisites/foundations/biomechanics-101/" class="md-nav__link">
+      <a href="../../../../prerequisites/foundations/biomechanics-101/" class="md-nav__link">
         
   
   
@@ -661,7 +661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../prerequisites/foundations/biomechanics-glossary/" class="md-nav__link">
+      <a href="../../../../prerequisites/foundations/biomechanics-glossary/" class="md-nav__link">
         
   
   
@@ -689,7 +689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../prerequisites/foundations/biomechanics-benchmarks/" class="md-nav__link">
+      <a href="../../../../prerequisites/foundations/biomechanics-benchmarks/" class="md-nav__link">
         
   
   
@@ -725,35 +725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../prerequisites/signal-processing-101/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    信号处理入门
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../prerequisites/ml-basics/" class="md-nav__link">
+      <a href="../../../../prerequisites/ml-basics/" class="md-nav__link">
         
   
   
@@ -838,7 +810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/" class="md-nav__link">
+      <a href="../../../../business-plan/" class="md-nav__link">
         
   
   
@@ -916,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/market-insights/market-analysis/" class="md-nav__link">
+      <a href="../../../../business-plan/market-insights/market-analysis/" class="md-nav__link">
         
   
   
@@ -944,7 +916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/market-insights/pain-points/" class="md-nav__link">
+      <a href="../../../../business-plan/market-insights/pain-points/" class="md-nav__link">
         
   
   
@@ -972,7 +944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/market-insights/user-personas/" class="md-nav__link">
+      <a href="../../../../business-plan/market-insights/user-personas/" class="md-nav__link">
         
   
   
@@ -1050,7 +1022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/market-insights/competitors/imu-based/" class="md-nav__link">
+      <a href="../../../../business-plan/market-insights/competitors/imu-based/" class="md-nav__link">
         
   
   
@@ -1078,7 +1050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/market-insights/competitors/vision-based/" class="md-nav__link">
+      <a href="../../../../business-plan/market-insights/competitors/vision-based/" class="md-nav__link">
         
   
   
@@ -1106,7 +1078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/market-insights/competitors/multi-sensor/" class="md-nav__link">
+      <a href="../../../../business-plan/market-insights/competitors/multi-sensor/" class="md-nav__link">
         
   
   
@@ -1134,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/market-insights/competitors/smart-clothing/" class="md-nav__link">
+      <a href="../../../../business-plan/market-insights/competitors/smart-clothing/" class="md-nav__link">
         
   
   
@@ -1228,7 +1200,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/business-model/business-model/" class="md-nav__link">
+      <a href="../../../../business-plan/business-model/business-model/" class="md-nav__link">
         
   
   
@@ -1256,7 +1228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/business-model/pricing-strategy/" class="md-nav__link">
+      <a href="../../../../business-plan/business-model/pricing-strategy/" class="md-nav__link">
         
   
   
@@ -1284,7 +1256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/business-model/unit-economics/" class="md-nav__link">
+      <a href="../../../../business-plan/business-model/unit-economics/" class="md-nav__link">
         
   
   
@@ -1370,7 +1342,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/go-to-market/entry-strategy/" class="md-nav__link">
+      <a href="../../../../business-plan/go-to-market/entry-strategy/" class="md-nav__link">
         
   
   
@@ -1398,7 +1370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/go-to-market/channel-strategy/" class="md-nav__link">
+      <a href="../../../../business-plan/go-to-market/channel-strategy/" class="md-nav__link">
         
   
   
@@ -1426,7 +1398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/go-to-market/market-timing/" class="md-nav__link">
+      <a href="../../../../business-plan/go-to-market/market-timing/" class="md-nav__link">
         
   
   
@@ -1512,7 +1484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/product-strategy/strategic-vision/" class="md-nav__link">
+      <a href="../../../../business-plan/product-strategy/strategic-vision/" class="md-nav__link">
         
   
   
@@ -1540,7 +1512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/product-strategy/product-strategy/" class="md-nav__link">
+      <a href="../../../../business-plan/product-strategy/product-strategy/" class="md-nav__link">
         
   
   
@@ -1626,7 +1598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/compliance-risk/risk-management/" class="md-nav__link">
+      <a href="../../../../business-plan/compliance-risk/risk-management/" class="md-nav__link">
         
   
   
@@ -1654,7 +1626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/compliance-risk/regulatory/" class="md-nav__link">
+      <a href="../../../../business-plan/compliance-risk/regulatory/" class="md-nav__link">
         
   
   
@@ -1682,7 +1654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/compliance-risk/ip-strategy/" class="md-nav__link">
+      <a href="../../../../business-plan/compliance-risk/ip-strategy/" class="md-nav__link">
         
   
   
@@ -1718,7 +1690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../business-plan/exit-strategy/" class="md-nav__link">
+      <a href="../../../../business-plan/exit-strategy/" class="md-nav__link">
         
   
   
@@ -1808,7 +1780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../../../" class="md-nav__link">
         
   
   
@@ -1888,7 +1860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -1916,7 +1888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-design/" class="md-nav__link">
+      <a href="../../system-design/" class="md-nav__link">
         
   
   
@@ -1944,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modular-architecture/" class="md-nav__link">
+      <a href="../../modular-architecture/" class="md-nav__link">
         
   
   
@@ -1972,7 +1944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mvp-plan/" class="md-nav__link">
+      <a href="../../mvp-plan/" class="md-nav__link">
         
   
   
@@ -2001,6 +1973,58 @@
   
   
   
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据处理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据处理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -2016,7 +2040,7 @@
   <span class="md-ellipsis">
     
   
-    数据流
+    数据管道
   
 
     
@@ -2034,7 +2058,7 @@
   <span class="md-ellipsis">
     
   
-    数据流
+    数据管道
   
 
     
@@ -2531,14 +2555,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../sensor-data-processing/" class="md-nav__link">
+      <a href="../signal-processing/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    数据处理与指标计算
+    信号处理
   
 
     
@@ -2547,6 +2571,126 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metrics-calculation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指标计算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-collection-plan-a/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-collection-plan-b.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 B
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-collection-plan-c.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据采集计划 C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2617,7 +2761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/" class="md-nav__link">
+      <a href="../../../specs/" class="md-nav__link">
         
   
   
@@ -2645,7 +2789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/three-product-versions/" class="md-nav__link">
+      <a href="../../../specs/three-product-versions/" class="md-nav__link">
         
   
   
@@ -2673,7 +2817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/eight-swing-phases/" class="md-nav__link">
+      <a href="../../../specs/eight-swing-phases/" class="md-nav__link">
         
   
   
@@ -2751,7 +2895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/modes/assessment-mode/" class="md-nav__link">
+      <a href="../../../specs/modes/assessment-mode/" class="md-nav__link">
         
   
   
@@ -2779,7 +2923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/modes/drill-mode/" class="md-nav__link">
+      <a href="../../../specs/modes/drill-mode/" class="md-nav__link">
         
   
   
@@ -2807,7 +2951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/modes/guide-mode/" class="md-nav__link">
+      <a href="../../../specs/modes/guide-mode/" class="md-nav__link">
         
   
   
@@ -2835,7 +2979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/modes/game-mode/" class="md-nav__link">
+      <a href="../../../specs/modes/game-mode/" class="md-nav__link">
         
   
   
@@ -2871,7 +3015,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/four-comparison-methods/" class="md-nav__link">
+      <a href="../../../specs/four-comparison-methods/" class="md-nav__link">
         
   
   
@@ -2899,7 +3043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/three-feedback-channels/" class="md-nav__link">
+      <a href="../../../specs/three-feedback-channels/" class="md-nav__link">
         
   
   
@@ -2927,7 +3071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/user-profile-thresholds/" class="md-nav__link">
+      <a href="../../../specs/user-profile-thresholds/" class="md-nav__link">
         
   
   
@@ -3005,7 +3149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/ui/" class="md-nav__link">
+      <a href="../../../specs/ui/" class="md-nav__link">
         
   
   
@@ -3033,7 +3177,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/ui/screens/" class="md-nav__link">
+      <a href="../../../specs/ui/screens/" class="md-nav__link">
         
   
   
@@ -3061,7 +3205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/ui/user-flows/" class="md-nav__link">
+      <a href="../../../specs/ui/user-flows/" class="md-nav__link">
         
   
   
@@ -3089,7 +3233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/ui/design-system/" class="md-nav__link">
+      <a href="../../../specs/ui/design-system/" class="md-nav__link">
         
   
   
@@ -3117,7 +3261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../specs/ui/data-visualization/" class="md-nav__link">
+      <a href="../../../specs/ui/data-visualization/" class="md-nav__link">
         
   
   
@@ -3211,7 +3355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../decisions/" class="md-nav__link">
+      <a href="../../../decisions/" class="md-nav__link">
         
   
   
@@ -3239,7 +3383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../decisions/0001-multi-repo-structure/" class="md-nav__link">
+      <a href="../../../decisions/0001-multi-repo-structure/" class="md-nav__link">
         
   
   
@@ -3267,7 +3411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
+      <a href="../../../decisions/0002-lsm6dsv16x-imu/" class="md-nav__link">
         
   
   
@@ -3295,7 +3439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
+      <a href="../../../decisions/0005-esp32-s3-microcontroller/" class="md-nav__link">
         
   
   
@@ -3323,7 +3467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../decisions/0007-swift-ios-native/" class="md-nav__link">
+      <a href="../../../decisions/0007-swift-ios-native/" class="md-nav__link">
         
   
   
@@ -3351,7 +3495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../decisions/0008-desktop-to-mobile-architecture/" class="md-nav__link">
+      <a href="../../../decisions/0008-desktop-to-mobile-architecture/" class="md-nav__link">
         
   
   
@@ -3379,7 +3523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../decisions/sdk-selection/" class="md-nav__link">
+      <a href="../../../decisions/sdk-selection/" class="md-nav__link">
         
   
   
@@ -3407,7 +3551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../decisions/visualization-tools-evaluation/" class="md-nav__link">
+      <a href="../../../decisions/visualization-tools-evaluation/" class="md-nav__link">
         
   
   
@@ -3435,7 +3579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../decisions/architecture-decisions-2025-12-23/" class="md-nav__link">
+      <a href="../../../decisions/architecture-decisions-2025-12-23/" class="md-nav__link">
         
   
   
@@ -3521,7 +3665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../market-research/competitor-metrics-comparison/" class="md-nav__link">
+      <a href="../../../market-research/competitor-metrics-comparison/" class="md-nav__link">
         
   
   
@@ -3549,7 +3693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../market-research/3d-golf-decoded/" class="md-nav__link">
+      <a href="../../../market-research/3d-golf-decoded/" class="md-nav__link">
         
   
   
@@ -3642,7 +3786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/" class="md-nav__link">
+      <a href="../../../../components/" class="md-nav__link">
         
   
   
@@ -3720,7 +3864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/imu/hardware/" class="md-nav__link">
+      <a href="../../../../components/imu/hardware/" class="md-nav__link">
         
   
   
@@ -3748,7 +3892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/imu/suppliers/" class="md-nav__link">
+      <a href="../../../../components/imu/suppliers/" class="md-nav__link">
         
   
   
@@ -3834,7 +3978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/emg/hardware/" class="md-nav__link">
+      <a href="../../../../components/emg/hardware/" class="md-nav__link">
         
   
   
@@ -3862,7 +4006,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/emg/suppliers/" class="md-nav__link">
+      <a href="../../../../components/emg/suppliers/" class="md-nav__link">
         
   
   
@@ -3948,7 +4092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/vision/hardware/" class="md-nav__link">
+      <a href="../../../../components/vision/hardware/" class="md-nav__link">
         
   
   
@@ -3976,7 +4120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/vision/software/" class="md-nav__link">
+      <a href="../../../../components/vision/software/" class="md-nav__link">
         
   
   
@@ -4062,7 +4206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/mcu/hardware/" class="md-nav__link">
+      <a href="../../../../components/mcu/hardware/" class="md-nav__link">
         
   
   
@@ -4090,7 +4234,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/mcu/suppliers/" class="md-nav__link">
+      <a href="../../../../components/mcu/suppliers/" class="md-nav__link">
         
   
   
@@ -4176,7 +4320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/flexible-sensors/hardware/" class="md-nav__link">
+      <a href="../../../../components/flexible-sensors/hardware/" class="md-nav__link">
         
   
   
@@ -4204,7 +4348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/flexible-sensors/suppliers/" class="md-nav__link">
+      <a href="../../../../components/flexible-sensors/suppliers/" class="md-nav__link">
         
   
   
@@ -4290,7 +4434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/pressure-sensors/hardware/" class="md-nav__link">
+      <a href="../../../../components/pressure-sensors/hardware/" class="md-nav__link">
         
   
   
@@ -4318,7 +4462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/pressure-sensors/suppliers/" class="md-nav__link">
+      <a href="../../../../components/pressure-sensors/suppliers/" class="md-nav__link">
         
   
   
@@ -4404,7 +4548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/supply-chain/" class="md-nav__link">
+      <a href="../../../../components/supply-chain/" class="md-nav__link">
         
   
   
@@ -4432,7 +4576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/supply-chain/china-sensors/" class="md-nav__link">
+      <a href="../../../../components/supply-chain/china-sensors/" class="md-nav__link">
         
   
   
@@ -4460,7 +4604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/supply-chain/china-wearables/" class="md-nav__link">
+      <a href="../../../../components/supply-chain/china-wearables/" class="md-nav__link">
         
   
   
@@ -4488,7 +4632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/supply-chain/mvp-suppliers/" class="md-nav__link">
+      <a href="../../../../components/supply-chain/mvp-suppliers/" class="md-nav__link">
         
   
   
@@ -4516,7 +4660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/supply-chain/smart-clothing-market/" class="md-nav__link">
+      <a href="../../../../components/supply-chain/smart-clothing-market/" class="md-nav__link">
         
   
   
@@ -4544,7 +4688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../components/supply-chain/e-skin-odm/" class="md-nav__link">
+      <a href="../../../../components/supply-chain/e-skin-odm/" class="md-nav__link">
         
   
   
@@ -4637,7 +4781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../development/" class="md-nav__link">
+      <a href="../../../../development/" class="md-nav__link">
         
   
   
@@ -4715,7 +4859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../development/mobile/development/" class="md-nav__link">
+      <a href="../../../../development/mobile/development/" class="md-nav__link">
         
   
   
@@ -4801,7 +4945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../development/ml-training/datasets/" class="md-nav__link">
+      <a href="../../../../development/ml-training/datasets/" class="md-nav__link">
         
   
   
@@ -4829,7 +4973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../development/ml-training/visual-feedback/" class="md-nav__link">
+      <a href="../../../../development/ml-training/visual-feedback/" class="md-nav__link">
         
   
   
@@ -4915,7 +5059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../development/ai-assistant/agent-sdk-guide/" class="md-nav__link">
+      <a href="../../../../development/ai-assistant/agent-sdk-guide/" class="md-nav__link">
         
   
   
@@ -5008,7 +5152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/" class="md-nav__link">
+      <a href="../../../../reference/" class="md-nav__link">
         
   
   
@@ -5036,7 +5180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/golf-glossary/" class="md-nav__link">
+      <a href="../../../../reference/golf-glossary/" class="md-nav__link">
         
   
   
@@ -5064,7 +5208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/physics-glossary/" class="md-nav__link">
+      <a href="../../../../reference/physics-glossary/" class="md-nav__link">
         
   
   
@@ -5092,7 +5236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/engineering-glossary/" class="md-nav__link">
+      <a href="../../../../reference/engineering-glossary/" class="md-nav__link">
         
   
   
@@ -5120,7 +5264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/software-glossary/" class="md-nav__link">
+      <a href="../../../../reference/software-glossary/" class="md-nav__link">
         
   
   
@@ -5148,7 +5292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/ml-glossary/" class="md-nav__link">
+      <a href="../../../../reference/ml-glossary/" class="md-nav__link">
         
   
   
@@ -5176,7 +5320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/business-glossary/" class="md-nav__link">
+      <a href="../../../../reference/business-glossary/" class="md-nav__link">
         
   
   
@@ -5204,7 +5348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/academic-datasets/" class="md-nav__link">
+      <a href="../../../../reference/academic-datasets/" class="md-nav__link">
         
   
   
@@ -5232,7 +5376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/golf-research/" class="md-nav__link">
+      <a href="../../../../reference/golf-research/" class="md-nav__link">
         
   
   
@@ -5260,7 +5404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/open-source-tools/" class="md-nav__link">
+      <a href="../../../../reference/open-source-tools/" class="md-nav__link">
         
   
   
@@ -5288,7 +5432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/semg-research-2024-2025/" class="md-nav__link">
+      <a href="../../../../reference/semg-research-2024-2025/" class="md-nav__link">
         
   
   
@@ -5818,11 +5962,11 @@
   
 
 
-<h1 id="_1">数据流<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h1 id="_1">数据管道<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p><strong>文档状态</strong>: 草稿 v1.2
 <strong>最后更新</strong>: 2025-12-23
-<strong>关联文档</strong>: <a href="../modular-architecture/">模块化设计</a> | <a href="../../specs/modes/assessment-mode/">评估模式</a> | <a href="../../../prerequisites/foundations/biomechanics-benchmarks/">生物力学基准</a> | <a href="../../decisions/architecture-decisions-2025-12-23/">关键决策 2025-12</a></p>
+<strong>关联文档</strong>: <a href="modular-architecture.md">模块化设计</a> | <a href="../specs/modes/assessment-mode.md">评估模式</a> | <a href="../../prerequisites/foundations/biomechanics-benchmarks.md">生物力学基准</a> | <a href="../decisions/architecture-decisions-2025-12-23.md">关键决策 2025-12</a></p>
 </blockquote>
 <hr />
 <h2 id="_2">引言<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
@@ -6130,7 +6274,7 @@
 </tbody>
 </table>
 <blockquote>
-<p>📐 详见: <a href="../system-design/#12-完整系统架构">系统架构</a> — 完整的 7 层架构详解</p>
+<p>📐 详见: <a href="./system-design.md#12-完整系统架构">系统架构</a> — 完整的 7 层架构详解</p>
 </blockquote>
 <hr />
 <h2 id="2-数据流详解">2. 数据流详解<a class="headerlink" href="#2-数据流详解" title="Permanent link">&para;</a></h2>
@@ -6167,11 +6311,11 @@
 </tbody>
 </table>
 <blockquote>
-<p>📚 <strong>EMG 信号处理原理</strong>: <a href="../../../prerequisites/signal-processing-101/">信号处理入门 §1-4</a> — EMG 滤波、整流、RMS 包络、Onset 检测等</p>
+<p>📚 <strong>EMG 信号处理原理</strong>: <a href="../signal-processing/">信号处理入门 §1-4</a> — EMG 滤波、整流、RMS 包络、Onset 检测等</p>
 </blockquote>
 <h4 id="211-d2">2.1.1 D2 数据帧格式<a class="headerlink" href="#211-d2" title="Permanent link">&para;</a></h4>
-<h5 id="mediapipe-vision-30fps">MediaPipe Vision (<a href="../../../reference/engineering-glossary/#4-fps-每秒帧数">30fps</a>)<a class="headerlink" href="#mediapipe-vision-30fps" title="Permanent link">&para;</a></h5>
-<p>每帧输出 33 个关键点，使用<a href="../../../reference/software-glossary/#7-归一化坐标-normalized-coordinates">归一化坐标</a>：</p>
+<h5 id="mediapipe-vision-30fps">MediaPipe Vision (<a href="../../reference/engineering-glossary.md#4-fps-每秒帧数">30fps</a>)<a class="headerlink" href="#mediapipe-vision-30fps" title="Permanent link">&para;</a></h5>
+<p>每帧输出 33 个关键点，使用<a href="../../reference/software-glossary.md#7-归一化坐标-normalized-coordinates">归一化坐标</a>：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">PoseLandmark</span> <span class="o">=</span> <span class="p">{</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>        <span class="c1"># 归一化坐标 [0, 1]，0=左边缘，1=右边缘</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>        <span class="c1"># 归一化坐标 [0, 1]，0=上边缘，1=下边缘</span>
@@ -6240,7 +6384,7 @@
 </tbody>
 </table>
 <blockquote>
-<p>📚 <strong>时间同步原理</strong>: <a href="../../../prerequisites/signal-processing-101/#part3-sync">信号处理入门 §3</a> — 时钟对齐、插值方法、Impact 事件同步</p>
+<p>📚 <strong>时间同步原理</strong>: <a href="../signal-processing/#part3-sync">信号处理入门 §3</a> — 时钟对齐、插值方法、Impact 事件同步</p>
 </blockquote>
 <h4 id="221">2.2.1 时间同步策略<a class="headerlink" href="#221" title="Permanent link">&para;</a></h4>
 <div class="admonition warning">
@@ -6257,7 +6401,7 @@
 <li>使用 <code>esp_timer_get_time()</code> 在采集时立即打微秒时间戳</li>
 <li>跨设备使用 Impact 事件对齐</li>
 </ul>
-<p>详见 <a href="../../decisions/architecture-decisions-2025-12-23/#45-视频与传感器同步方案">关键决策 2025-12</a></p>
+<p>详见 <a href="../decisions/architecture-decisions-2025-12-23.md#45-视频与传感器同步方案">关键决策 2025-12</a></p>
 </div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>IMU 是主时钟 (Master Clock):
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>├── Vision 30fps → 线性插值到 1666Hz
@@ -6269,11 +6413,11 @@
 <div class="admonition tip">
 <p class="admonition-title">实现细节</p>
 <p>时间同步的具体实现方案（NTP 预同步 + Impact 验证）详见
-<a href="../modular-architecture/#223-时间同步实现方案">模块化设计 §2.2.3</a>。</p>
+<a href="modular-architecture.md#223-时间同步实现方案">模块化设计 §2.2.3</a>。</p>
 </div>
 <h4 id="sensor-hub-架构-2025-12-推荐">2.2.2 Sensor Hub 时间同步架构<a class="headerlink" href="#sensor-hub-架构-2025-12-推荐" title="Permanent link">&para;</a></h4>
 <blockquote>
-<p>📐 <strong>物理架构图</strong>: 见 <a href="../modular-architecture/#224-sensor-hub-architecture">模块化设计 §2.2.4</a> (单一权威来源)</p>
+<p>📐 <strong>物理架构图</strong>: 见 <a href="./modular-architecture.md#224-sensor-hub-architecture">模块化设计 §2.2.4</a> (单一权威来源)</p>
 </blockquote>
 <p>本节聚焦于<strong>时间同步的 3 层级架构</strong>，与物理布局互补：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>┌─────────────────────────────────────────────────────────────────┐
@@ -6655,7 +6799,7 @@ MVP 阶段优先关注 Sway/Lift（x/y 轴精度高），Thrust 可在 Phase 2 �
 </tr>
 </tbody>
 </table>
-<h5 id="b-kinematic-prompts-llm">方案 B: <a href="../../../reference/ml-glossary/#7-kinematic-prompt-运动学提示">Kinematic Prompts</a> + LLM 推理 (研究验证)<a class="headerlink" href="#b-kinematic-prompts-llm" title="Permanent link">&para;</a></h5>
+<h5 id="b-kinematic-prompts-llm">方案 B: <a href="../../reference/ml-glossary.md#7-kinematic-prompt-运动学提示">Kinematic Prompts</a> + LLM 推理 (研究验证)<a class="headerlink" href="#b-kinematic-prompts-llm" title="Permanent link">&para;</a></h5>
 <blockquote>
 <p><strong>研究来源</strong>: BoxingPro (2025), SportsGPT (2025) 验证了此架构</p>
 </blockquote>
@@ -7458,16 +7602,16 @@ MVP 阶段优先关注 Sway/Lift（x/y 轴精度高），Thrust 可在 Phase 2 �
 <h3 id="44">4.4 详细评估<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
 <p>关于 Rerun 的完整技术评估、竞品对比，详见:</p>
 <ul>
-<li><strong><a href="../../decisions/visualization-tools-evaluation/">可视化工具评估</a></strong> — 为什么选择 Rerun 而非 Foxglove/PlotJuggler</li>
-<li><strong><a href="../mvp-plan/#10-post-mvp-路线图">MVP 开发计划 §10</a></strong> — 项目整体技术路线图</li>
+<li><strong><a href="../decisions/visualization-tools-evaluation.md">可视化工具评估</a></strong> — 为什么选择 Rerun 而非 Foxglove/PlotJuggler</li>
+<li><strong><a href="./mvp-plan.md#10-post-mvp-路线图">MVP 开发计划 §10</a></strong> — 项目整体技术路线图</li>
 </ul>
 <hr />
 <h2 id="_5">相关文档<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../modular-architecture/">模块化设计</a> - 系统模块详细设计</li>
-<li><a href="../../specs/three-feedback-channels/">三个反馈通道</a> - 反馈时延和通道详解</li>
-<li><a href="../../../prerequisites/foundations/biomechanics-benchmarks/">生物力学基准</a> - 完整阈值表</li>
-<li><a href="../sensor-data-processing/">数据处理与指标计算</a> - 数据计算公式</li>
+<li><a href="modular-architecture.md">模块化设计</a> - 系统模块详细设计</li>
+<li><a href="../specs/three-feedback-channels.md">三个反馈通道</a> - 反馈时延和通道详解</li>
+<li><a href="../../prerequisites/foundations/biomechanics-benchmarks.md">生物力学基准</a> - 完整阈值表</li>
+<li><a href="../metrics-calculation/">数据处理与指标计算</a> - 数据计算公式</li>
 </ul>
 <hr />
 <p>文档版本: v1.3 | 作者: Movement Chain AI Team | 最后更新: 2025-12-27</p>
@@ -7555,12 +7699,12 @@ MVP 阶段优先关注 Sway/Lift（x/y 轴精度高），Thrust 可在 Phase 2 �
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
-        <script src="../../../javascripts/mathjax.js"></script>
+        <script src="../../../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
