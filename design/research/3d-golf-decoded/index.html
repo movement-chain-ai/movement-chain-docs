@@ -6172,12 +6172,12 @@
 <li>UI界面</li>
 </ul>
 <p>他们在认知阶段的界面设计值得我们借鉴：</p>
+<p><strong>训练指导视频</strong>：</p>
 <table>
 <thead>
 <tr>
 <th>借鉴维度</th>
 <th>他们的做法</th>
-<th>我们可应用的场景</th>
 <th>我们可以做的</th>
 </tr>
 </thead>
@@ -6185,53 +6185,81 @@
 <tr>
 <td><strong>肌肉可视化</strong></td>
 <td>3D动画、肌肉高亮</td>
-<td>训练指导视频、视频回放</td>
-<td>在指导视频中展示肌肉发力部位</td>
-</tr>
-<tr>
-<td><strong>角度标注</strong></td>
-<td>角度圆、数值显示</td>
-<td>视频回放叠加数据</td>
-<td>用 <strong>IMU 数据</strong>在回放中标注关节角度</td>
-</tr>
-<tr>
-<td><strong>信息层次</strong></td>
-<td>半透明叠加、不遮挡主体</td>
-<td>视频回放叠加数据</td>
-<td>学习他们的半透明线条设计</td>
-</tr>
-<tr>
-<td><strong>对比展示</strong></td>
-<td>正确vs错误、多角度同步</td>
-<td>视频回放</td>
-<td>用户动作 vs 标准动作对比</td>
+<td>在指导视频中展示目标肌肉发力部位</td>
 </tr>
 <tr>
 <td><strong>关键点强调</strong></td>
 <td>暂停标注、高亮发力肌群</td>
-<td>训练指导视频</td>
-<td>在关键动作点暂停并标注</td>
+<td>在关键动作点暂停并标注要点</td>
+</tr>
+<tr>
+<td><strong>对比展示</strong></td>
+<td>正确vs错误对比</td>
+<td>正确动作 vs 常见错误对比</td>
+</tr>
+</tbody>
+</table>
+<p><strong>视频回放</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>借鉴维度</th>
+<th>他们的做法</th>
+<th>我们可以做的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>角度标注</strong></td>
+<td>角度圆、数值显示</td>
+<td>用 IMU 数据标注关节角度</td>
 </tr>
 <tr>
 <td><strong>轨迹可视化</strong></td>
 <td>轨迹线、运动路径</td>
-<td>视频回放</td>
 <td>叠加运动轨迹线</td>
 </tr>
 <tr>
-<td><strong>数据图表</strong></td>
-<td>—</td>
-<td>UI界面</td>
-<td>sEMG、IMU 数据的可视化图表</td>
+<td><strong>对比展示</strong></td>
+<td>多角度同步播放</td>
+<td>用户动作 vs 标准动作对比</td>
 </tr>
 <tr>
-<td><strong>标注元素</strong></td>
-<td>线条、数据、文字、视觉效果</td>
-<td>全部视觉界面</td>
-<td>参考上文 2.3 可视化元素清单</td>
+<td><strong>信息层次</strong></td>
+<td>半透明叠加、不遮挡主体</td>
+<td>数据叠加时保持视频可见</td>
 </tr>
 </tbody>
 </table>
+<p><strong>UI界面</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>借鉴维度</th>
+<th>他们的做法</th>
+<th>我们可以做的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数据图表</strong></td>
+<td>—</td>
+<td>sEMG、IMU 数据的可视化图表</td>
+</tr>
+<tr>
+<td><strong>颜色渐变</strong></td>
+<td>冷暖色表示强度</td>
+<td>sEMG 激活强度热力图</td>
+</tr>
+</tbody>
+</table>
+<p><strong>通用标注元素</strong>（参考上文 2.3 可视化元素清单）：</p>
+<ul>
+<li>线条类型：角度弧线、轨迹线、力线、参考线</li>
+<li>数据标注：角度值、百分比、时间戳</li>
+<li>视觉效果：高亮、脉冲、半透明叠加、颜色渐变</li>
+<li>文字标注：动作标题、数值标签、阶段标记、提示文字</li>
+</ul>
 <h3 id="33">3.3 关键洞察<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>市场验证</strong>: 3D 生物力学分析在高尔夫教练市场有真实需求</li>
