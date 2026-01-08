@@ -178,9 +178,9 @@ nav:
           - SDK/库选型: design/decisions/sdk-selection.md
           - 可视化工具: design/decisions/visualization-tools-evaluation.md
           - 2025-12 关键决策: design/decisions/architecture-decisions-2025-12-23.md
-      - 竞品研究:
-          - 竞品指标对比: design/research/competitor-metrics-comparison.md
-          - 3D Golf Decoded: design/research/3d-golf-decoded.md
+      - 产品调研:
+          - OnForm & Sportsbox AI: design/market-research/competitor-metrics-comparison.md
+          - 3D Golf Decoded: design/market-research/3d-golf-decoded.md
 
   - 硬件组件:
       - 概览: components/index.md
