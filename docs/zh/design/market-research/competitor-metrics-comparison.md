@@ -1,4 +1,4 @@
-# 竞品指标对比 Competitor Metrics Comparison
+# OnForm 和 Sportsbox AI
 
 > **文档目的**: 全面对比 OnForm、Sportsbox AI 与我们系统的挥杆分析指标
 >
