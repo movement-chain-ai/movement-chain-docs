@@ -160,12 +160,12 @@ nav:
           - 概览: design/specs/index.md
           - 三种产品版本: design/specs/three-product-versions.md
           - 八个挥杆阶段: design/specs/eight-swing-phases.md
-          - 四种对比基准: design/specs/four-comparison-methods.md
           - 四种使用模式:
               - 评估模式: design/specs/modes/assessment-mode.md
               - 练习模式: design/specs/modes/drill-mode.md
               - 引导模式: design/specs/modes/guide-mode.md
               - 实战模式: design/specs/modes/game-mode.md
+          - 四种对比基准: design/specs/four-comparison-methods.md
           - 三个反馈通道: design/specs/three-feedback-channels.md
           - 用户信息和阈值调整: design/specs/user-profile-thresholds.md
       - 技术决策:
