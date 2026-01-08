@@ -241,14 +241,6 @@
          <lastmod>2026-01-08</lastmod>
     </url>
     <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/assessment-mode/</loc>
-         <lastmod>2026-01-08</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/drill-mode/</loc>
-         <lastmod>2026-01-08</lastmod>
-    </url>
-    <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/eight-swing-phases/</loc>
          <lastmod>2026-01-08</lastmod>
     </url>
@@ -261,19 +253,27 @@
          <lastmod>2026-01-08</lastmod>
     </url>
     <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/game-mode/</loc>
-         <lastmod>2026-01-08</lastmod>
-    </url>
-    <url>
-         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/guide-mode/</loc>
-         <lastmod>2026-01-08</lastmod>
-    </url>
-    <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/three-product-versions/</loc>
          <lastmod>2026-01-08</lastmod>
     </url>
     <url>
          <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/user-profile-thresholds/</loc>
+         <lastmod>2026-01-08</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/modes/assessment-mode/</loc>
+         <lastmod>2026-01-08</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/modes/drill-mode/</loc>
+         <lastmod>2026-01-08</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/modes/game-mode/</loc>
+         <lastmod>2026-01-08</lastmod>
+    </url>
+    <url>
+         <loc>https://movement-chain-ai.github.io/movement-chain-docs/design/specs/modes/guide-mode/</loc>
          <lastmod>2026-01-08</lastmod>
     </url>
     <url>

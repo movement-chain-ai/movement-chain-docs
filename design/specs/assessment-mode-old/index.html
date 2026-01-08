@@ -2212,15 +2212,29 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../user-profile-thresholds/" class="md-nav__link">
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_5" id="__nav_4_3_5_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
     
   
-    用户信息和阈值调整
+    四种使用模式
   
 
     
@@ -2228,11 +2242,19 @@
   
   
 
-      </a>
-    </li>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    四种使用模式
   
 
-              
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -2241,7 +2263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../assessment-mode/" class="md-nav__link">
+      <a href="../modes/assessment-mode/" class="md-nav__link">
         
   
   
@@ -2269,7 +2291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../drill-mode/" class="md-nav__link">
+      <a href="../modes/drill-mode/" class="md-nav__link">
         
   
   
@@ -2297,7 +2319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../guide-mode/" class="md-nav__link">
+      <a href="../modes/guide-mode/" class="md-nav__link">
         
   
   
@@ -2325,7 +2347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../game-mode/" class="md-nav__link">
+      <a href="../modes/game-mode/" class="md-nav__link">
         
   
   
@@ -2333,6 +2355,42 @@
     
   
     实战模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-profile-thresholds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用户信息和阈值调整
   
 
     
@@ -5018,7 +5076,7 @@
 <div class="admonition note">
 <p class="admonition-title">评估 vs 引导</p>
 <p>评估模式只<strong>告知问题</strong>，不指导如何调整。用户自主决定是否修正。
-如需实时引导调整，请参考 <a href="../guide-mode/">引导模式</a>。</p>
+如需实时引导调整，请参考 <a href="guide-mode.md">引导模式</a>。</p>
 </div>
 <h3 id="23">2.3 实现代码<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SetupChecker</span><span class="p">:</span>
