@@ -5764,6 +5764,42 @@
 <blockquote>
 <p><strong>开发调试工具</strong>：开发阶段可使用 <a href="https://rerun.io/">Rerun SDK</a> 进行视频叠加调试和姿态分析可视化。Rerun 支持 MediaPipe 姿态点的 2D/3D 可视化，适合快速验证算法效果。生产环境使用原生方案（iOS: Core Graphics / Metal）。</p>
 </blockquote>
+<p><strong>sEMG 肌肉激活可视化</strong>：</p>
+<p>我们采集了真实的 sEMG 肌肉数据，可在视频上叠加肌肉发力信息的方案考虑如下（不叠加解剖模型）：</p>
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>说明</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>颜色圆点/光晕</strong></td>
+<td>在肌肉位置叠加颜色圆点，冷→暖表示激活强度</td>
+<td>实时预览、回放分析</td>
+</tr>
+<tr>
+<td><strong>数值标签</strong></td>
+<td>显示激活百分比（如 "背阔肌 85%"）</td>
+<td>回放分析</td>
+</tr>
+<tr>
+<td><strong>脉冲动画</strong></td>
+<td>发力瞬间在对应位置显示脉冲光环</td>
+<td>关键发力点强调</td>
+</tr>
+<tr>
+<td><strong>边缘进度条</strong></td>
+<td>视频边缘显示各肌群激活进度条</td>
+<td>实时预览（不遮挡主体）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>推荐组合</strong>：实时/回放使用「颜色圆点 + 数值标签」；评估报告使用「身体轮廓热力图 + 时序曲线图」。</p>
+</blockquote>
 <h4 id="233">2.3.3 教学视频<a class="headerlink" href="#233" title="Permanent link">&para;</a></h4>
 <p>预制的动作演示视频，帮助用户理解正确动作：</p>
 <table>
