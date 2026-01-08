@@ -168,6 +168,12 @@ nav:
           - 四种对比基准: design/specs/four-comparison-methods.md
           - 三个反馈通道: design/specs/three-feedback-channels.md
           - 用户信息和阈值调整: design/specs/user-profile-thresholds.md
+          - UI 设计:
+              - 概览: design/specs/ui/index.md
+              - 屏幕列表: design/specs/ui/screens.md
+              - 用户流程: design/specs/ui/user-flows.md
+              - 设计系统: design/specs/ui/design-system.md
+              - 数据可视化: design/specs/ui/data-visualization.md
       - 技术决策:
           - 概览: design/decisions/index.md
           - ADR-0001 多仓库结构: design/decisions/0001-multi-repo-structure.md
