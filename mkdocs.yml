@@ -169,6 +169,7 @@ nav:
               - 实战模式: design/specs/modes/game-mode.md
           - 四种对比基准: design/specs/four-comparison-methods.md
           - 三个反馈通道: design/specs/three-feedback-channels.md
+          - 传感器位置协议: design/specs/sensor-placement-protocol.md
           - 用户信息和阈值调整: design/specs/user-profile-thresholds.md
           - UI 设计:
               - 概览: design/specs/ui/index.md

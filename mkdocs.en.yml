@@ -125,6 +125,8 @@ nav:
           - Data Pipeline & AI: design/architecture/data-processing/data-pipeline.md
           - Sensor Metric Mapping: design/architecture/sensor-metric-mapping.md
           - Architecture Decisions (Dec 2025): design/architecture/architecture-decisions-2025-12-23.md
+      - Specifications:
+          - Sensor Placement Protocol: design/specs/sensor-placement-protocol.md
 
   - Hardware Components:
       - components/index.md
