@@ -498,7 +498,135 @@
 
 ---
 
-## 11. 相关文档
+## 11. 主题系统
+
+应用支持多个配色主题，用户可在设置中切换。
+
+### 11.1 可用主题
+
+| 主题 ID | 名称 | 描述 | 风格 |
+|--------|------|------|------|
+| `golden-harvest` | 金稻绿野 | 深草地绿与金稻色的自然配色 | 默认亮色主题 |
+| `aurora-night` | 极光之夜 | 深邃星空与极光蓝的梦幻配色 | 深色主题 |
+
+### 11.2 金稻绿野 (Golden Harvest) - 默认
+
+灵感来自丰收的稻田，适合日间使用。
+
+```css
+/* 品牌色 */
+--color-primary: #2C5F2D;        /* 深草地绿 */
+--color-secondary: #C5A572;       /* 金稻色 */
+
+/* 背景 */
+--color-background: #F9F5ED;      /* 淡黄色背景（米黄）*/
+--color-surface: #FFFFFF;         /* 纯白卡片 */
+
+/* 文本 */
+--color-text-primary: #1A2E1A;    /* 深墨绿 */
+```
+
+### 11.3 极光之夜 (Aurora Night)
+
+灵感来自北极光下的夜空，适合夜间使用。
+
+```css
+/* 品牌色 */
+--color-primary: #3D5A80;         /* 蓝紫色 */
+--color-secondary: #7DD3E8;       /* 浅青色（极光）*/
+
+/* 背景 */
+--color-background: #0D1B2E;      /* 深夜蓝背景 */
+--color-surface: #1A2942;         /* 深蓝卡片 */
+
+/* 文本 */
+--color-text-primary: #F0F4F8;    /* 几乎纯白 */
+```
+
+### 11.4 主题接口
+
+```typescript
+interface Theme {
+  id: string;
+  name: string;
+  description: string;
+  colors: {
+    // 品牌色
+    primary: string;
+    primaryDark: string;
+    primaryLight: string;
+    secondary: string;
+
+    // 背景系统
+    background: string;
+    surface: string;
+    surfaceElevated: string;
+    surfaceHover: string;
+
+    // 边框与分割线
+    border: string;
+    borderLight: string;
+
+    // 文本颜色
+    textPrimary: string;
+    textSecondary: string;
+    textTertiary: string;
+
+    // 语义色
+    success: string;
+    warning: string;
+    error: string;
+    info: string;
+
+    // 辅助色
+    accent1: string;
+    accent2: string;
+    accent3: string;
+    accent4: string;
+    accent5: string;
+
+    // 渐变色
+    gradientPrimary: string;
+    gradientSecondary: string;
+  };
+}
+```
+
+### 11.5 主题切换
+
+主题配置存储在 `localStorage`，通过 `applyTheme()` 函数动态更新 CSS 变量。
+
+```typescript
+// 应用主题
+applyTheme(theme: Theme): void
+
+// 获取当前主题
+getCurrentTheme(): Theme
+```
+
+---
+
+## 12. 多语言支持
+
+应用支持中英文切换，通过 `LanguageContext` 管理。
+
+### 12.1 支持的语言
+
+| 语言代码 | 名称 |
+|---------|------|
+| `zh` | 简体中文 |
+| `en` | English |
+
+### 12.2 语言切换组件
+
+```typescript
+// LanguageToggle.tsx
+// 显示为 "中/EN" 切换按钮
+```
+
+---
+
+## 13. 相关文档
 
 | 相关文档 | 内容 | 本文档使用 |
 |---------|------|-----------|
@@ -508,5 +636,5 @@
 
 ---
 
-**最后更新**: 2026-01-12
+**最后更新**: 2026-01-17
 **维护者**: Movement Chain AI Team

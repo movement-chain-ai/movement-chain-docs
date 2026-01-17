@@ -631,6 +631,6 @@ if (hasSensors && !hasLowBattery && !hasWeakSignal) {
 
 ---
 
-**最后更新**: 2026-01-12
+**最后更新**: 2026-01-17
 **维护者**: Movement Chain AI Team
 **基于**: Movement-chain-mobile-figma 项目代码

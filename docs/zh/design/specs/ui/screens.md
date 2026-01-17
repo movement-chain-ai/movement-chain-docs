@@ -24,7 +24,7 @@
 │                                                                             │
 │   - 快速模式入口    - 数据分析     - 预留功能      - 账号设置                 │
 │   - 最近记录        - 趋势图表     - 待开发        - 传感器管理               │
-│   - 待改进问题      - 训练统计                     - 音量设置                 │
+│   - 待改进问题      - 训练统计                     - 音量/主题设置            │
 │                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -167,6 +167,7 @@
 | `drill/detail` | `DrillDetail.tsx` | 练习详情 | 视频对比、肌肉数据 |
 | `drill/plan` | `TrainingPlan.tsx` | 训练计划 | 计划列表、进度 |
 | `drill/plan-detail` | `PlanDetail.tsx` | 计划详情 | 计划内容 |
+| `drill/plan-editor` | `PlanEditor.tsx` | 计划编辑器 | 创建/编辑计划 |
 | `drill/executor` | `PlanExecutor.tsx` | 传感器检查 | 训练前检查 |
 | `drill/all` | `AllDrillsMode.tsx` | 训练执行 | 进度指示、执行 |
 
@@ -192,6 +193,7 @@
 | `guide/ready` | 内部状态 | 准备开始 | 传感器检查 |
 | `guide/intro` | 内部状态 | 选择类型 | 站姿/慢动作/整体 |
 | `guide/practice` | `GuidedPractice.tsx` | 引导练习 | 实时引导界面 |
+| `guide/auto` | `AutoGuidedPractice.tsx` | 自动引导 | 自动化引导流程 |
 
 **引导类型**:
 
@@ -225,7 +227,9 @@
 |--------|------|---------|---------|
 | `settings` | `SettingsPage.tsx` | 设置页面 | 账号、传感器、通知等 |
 | `volume-settings` | `VolumeSettingsPage.tsx` | 音量设置 | 反馈音量调节 |
+| `theme-settings` | `ThemeSettingsPage.tsx` | 主题设置 | 配色方案切换 |
 | `sensor` | `SensorPage.tsx` | 传感器页面 | 传感器管理、配对、状态 |
+| `profile` | `ProfilePage.tsx` | 个人资料 | 用户信息管理 |
 
 **传感器页面布局**:
 
@@ -278,6 +282,8 @@
 | 挥杆阶段详情 | `SwingPhaseDetail.tsx` | 单阶段详细数据 |
 | 肌肉激活显示 | `MuscleActivation.tsx` | sEMG 激活热力图 |
 | 指标详情 | `MetricDetail.tsx` | 单指标详细展示 |
+| 姿势叠加 | `PoseOverlay.tsx` | 骨骼姿势叠加显示 |
+| 视频骨骼 | `VideoWithSkeleton.tsx` | 视频 + 骨骼检测 |
 
 ### 3.2 练习相关组件
 
@@ -288,7 +294,9 @@
 | 传感器检查 | `PlanExecutor.tsx` | 训练前检查 |
 | 训练计划 | `TrainingPlan.tsx` | 计划管理 |
 | 计划详情 | `PlanDetail.tsx` | 计划内容展示 |
+| 计划编辑器 | `PlanEditor.tsx` | 计划创建/编辑 |
 | 添加到计划 | `AddToPlanDialog.tsx` | 练习添加弹窗 |
+| 练习图标 | `DrillIcons.tsx` | 练习类型图标 |
 
 ### 3.3 报告组件
 
@@ -296,12 +304,37 @@
 |-----|------|------|
 | 评估报告 | `AssessmentReport.tsx` | 完整评估报告展示 |
 | 引导练习 | `GuidedPractice.tsx` | 实时引导界面 |
+| 自动引导 | `AutoGuidedPractice.tsx` | 自动化引导流程 |
 
 ### 3.4 3D 模型
 
 | 组件 | 文件 | 功能 |
 |-----|------|------|
 | 高尔夫球员模型 | `GolferModelViewer.tsx` | 3D 姿态展示 |
+
+### 3.5 UI 基础组件
+
+| 组件 | 文件 | 功能 |
+|-----|------|------|
+| 底部导航栏 | `BottomNavBar.tsx` | Tab Bar 导航 |
+| 顶部导航栏 | `NavigationBar.tsx` | 页面标题和返回 |
+| 模式卡片 | `ModeCard.tsx` | 首页模式入口卡片 |
+| 按钮 | `Button.tsx` | 通用按钮组件 |
+| 卡片 | `Card.tsx` | 通用卡片容器 |
+| 输入框 | `Input.tsx` | 表单输入 |
+| 列表项 | `ListItem.tsx` | 列表单项 |
+| 进度条 | `ProgressBar.tsx` | 进度显示 |
+| 标签栏 | `TabBar.tsx` | Tab 切换 |
+| 标签 | `Tag.tsx` | 状态标签 |
+| 提示消息 | `Toast.tsx` | 操作反馈提示 |
+| 语言切换 | `LanguageToggle.tsx` | 多语言切换 |
+
+### 3.6 图标组件
+
+| 组件 | 文件 | 功能 |
+|-----|------|------|
+| 高尔夫剪影 | `icons/GolfSilhouetteIcons.tsx` | 高尔夫剪影图标 |
+| 高尔夫火柴人 | `icons/GolfStickmanIcons.tsx` | 高尔夫火柴人图标 |
 
 ---
 
@@ -356,7 +389,9 @@ type Page =
   | 'swing-phase-detail'// 挥杆阶段详情
   | 'analytics-training'// 数据分析
   | 'pending'           // 待定
-  | 'volume-settings';  // 音量设置
+  | 'volume-settings'   // 音量设置
+  | 'theme-settings'    // 主题设置
+  | 'profile';          // 个人资料
 ```
 
 ### 5.2 传感器数据接口
@@ -395,5 +430,5 @@ interface Sensor {
 
 ---
 
-**最后更新**: 2026-01-12
+**最后更新**: 2026-01-17
 **维护者**: Movement Chain AI Team
