@@ -957,9 +957,9 @@ t=0        t≈0      t=1       t≈1       t=11-21
 
 ---
 
-### 2.1 IMU 基础知识与姿态解算 {#imu-attitude-estimation}
+### 2.1 IMU 数据基础与预处理 {#imu-data-preprocessing}
 
-本节从 IMU 的基础概念讲起，帮助你理解原始数据的含义，以及为什么需要姿态解算。
+本节从 IMU 的基础概念讲起，帮助你理解原始数据的含义，以及如何将其转换为可用于相位检测的数据。
 
 **IMU (Inertial Measurement Unit)** = 惯性测量单元，包含两个核心传感器：
 
